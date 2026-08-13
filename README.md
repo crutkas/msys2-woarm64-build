@@ -161,6 +161,15 @@ flowchart LR
     end
 ```
 
+Every cross-toolchain run publishes two machine-readable artifacts:
+
+- `verify-cross-toolchain` contains the smoke-test executable and
+  `hello-world-architecture.json`, which records the compiler target and verifies the PE
+  `IMAGE_FILE_MACHINE_ARM64` header.
+- `mingw-cross-bootstrap-status` contains `bootstrap-status.json`, an ordered component status
+  manifest with `first_failure` set to the first package or architecture check that failed. The
+  manifest is uploaded even when downstream bootstrap jobs are skipped.
+
 ## MinGW Native Toolchain CI
 
 The [mingw-native-toolchain.yml](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/workflows/mingw-native-toolchain.yml)

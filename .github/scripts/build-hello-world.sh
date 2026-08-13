@@ -2,6 +2,8 @@
 
 source `dirname ${BASH_SOURCE[0]}`/../../config.sh
 
+SCRIPT_DIR=`dirname ${BASH_SOURCE[0]}`
+
 # Sanity check of the GCC binary and its version.
 aarch64-w64-mingw32-gcc --version
 
@@ -13,3 +15,7 @@ int main() {
 }
 ' > hello-world.c
 aarch64-w64-mingw32-gcc -o hello-world.exe hello-world.c
+
+bash "$SCRIPT_DIR/verify-pe-target.sh" \
+  hello-world.exe \
+  hello-world-architecture.json

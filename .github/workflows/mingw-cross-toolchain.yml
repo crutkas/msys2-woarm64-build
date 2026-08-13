@@ -119,3 +119,123 @@ jobs:
       needs: ${{ toJson(needs) }}
       packages_repository: Windows-on-ARM-Experiments/MSYS2-packages
       packages_branch: ${{ inputs.msys2_packages_branch || 'woarm64' }}
+
+  verify-cross-toolchain:
+    name: Verify aarch64-w64-mingw32 PE output
+    needs: [
+      mingw-w64-cross-mingwarm64-headers,
+      mingw-w64-cross-mingwarm64-binutils,
+      mingw-w64-cross-mingwarm64-gcc-stage1,
+      mingw-w64-cross-mingwarm64-windows-default-manifest,
+      mingw-w64-cross-mingwarm64-crt,
+      mingw-w64-cross-mingwarm64-winpthreads,
+      mingw-w64-cross-mingwarm64-gcc,
+      mingw-w64-cross-mingwarm64-zlib
+    ]
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    env:
+      FLAVOR: CROSS
+
+    steps:
+      - uses: msys2/setup-msys2@v2
+        timeout-minutes: 10
+        with:
+          msystem: MSYS
+          path-type: minimal
+          update: true
+          cache: true
+
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download cross-toolchain packages
+        uses: actions/download-artifact@v4
+        with:
+          pattern: mingw-w64-cross-mingwarm64-*
+          merge-multiple: true
+          path: artifacts
+
+      - name: Install completed cross toolchain
+        run: |
+          rm -f artifacts/*gcc-stage1*.pkg.tar.zst
+          pacman -U --noconfirm artifacts/*.pkg.tar.zst
+          mkdir -p verification
+
+      - name: Build and inspect ARM64 PE smoke binary
+        working-directory: verification
+        run: |
+          `cygpath "${{ github.workspace }}"`/.github/scripts/build-hello-world.sh
+
+      - name: Upload architecture evidence
+        uses: actions/upload-artifact@v4
+        with:
+          name: verify-cross-toolchain
+          retention-days: 14
+          path: |
+            verification/hello-world.exe
+            verification/hello-world-architecture.json
+
+  mingw-cross-bootstrap-status:
+    if: ${{ always() }}
+    name: Publish cross-toolchain bootstrap status
+    needs: [
+      mingw-w64-cross-mingwarm64-headers,
+      mingw-w64-cross-mingwarm64-binutils,
+      mingw-w64-cross-mingwarm64-gcc-stage1,
+      mingw-w64-cross-mingwarm64-windows-default-manifest,
+      mingw-w64-cross-mingwarm64-crt,
+      mingw-w64-cross-mingwarm64-winpthreads,
+      mingw-w64-cross-mingwarm64-gcc,
+      mingw-w64-cross-mingwarm64-zlib,
+      verify-cross-toolchain
+    ]
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+
+      - name: Download architecture evidence
+        if: needs.verify-cross-toolchain.result == 'success'
+        uses: actions/download-artifact@v4
+        with:
+          name: verify-cross-toolchain
+          path: bootstrap-status
+
+      - name: Create bootstrap status manifest
+        run: |
+          python3 .github/scripts/create-bootstrap-status.py \
+            --output bootstrap-status/bootstrap-status.json \
+            --target aarch64-w64-mingw32 \
+            --packages-repository Windows-on-ARM-Experiments/MSYS2-packages \
+            --packages-ref '${{ inputs.msys2_packages_branch || 'woarm64' }}' \
+            --run-repository '${{ github.repository }}' \
+            --run-id '${{ github.run_id }}' \
+            --run-attempt '${{ github.run_attempt }}' \
+            --run-sha '${{ github.sha }}' \
+            --run-ref '${{ github.ref }}' \
+            --run-url '${{ github.server_url }}/${{ github.repository }}/actions/runs/${{ github.run_id }}' \
+            --package 'mingw-w64-cross-mingwarm64-headers=${{ needs.mingw-w64-cross-mingwarm64-headers.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-binutils=${{ needs.mingw-w64-cross-mingwarm64-binutils.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-gcc-stage1=${{ needs.mingw-w64-cross-mingwarm64-gcc-stage1.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-windows-default-manifest=${{ needs.mingw-w64-cross-mingwarm64-windows-default-manifest.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-crt=${{ needs.mingw-w64-cross-mingwarm64-crt.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-winpthreads=${{ needs.mingw-w64-cross-mingwarm64-winpthreads.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-gcc=${{ needs.mingw-w64-cross-mingwarm64-gcc.result }}' \
+            --package 'mingw-w64-cross-mingwarm64-zlib=${{ needs.mingw-w64-cross-mingwarm64-zlib.result }}' \
+            --verification 'verify-cross-toolchain=${{ needs.verify-cross-toolchain.result }}' \
+            --architecture-report bootstrap-status/hello-world-architecture.json
+
+          python3 -c "import json; report=json.load(open('bootstrap-status/bootstrap-status.json')); print(f\"### Cross-toolchain bootstrap\n\n- Status: {report['status']}\n- First failure: {report['first_failure'] or 'none'}\")" >> "$GITHUB_STEP_SUMMARY"
+
+      - name: Upload cross-toolchain bootstrap status
+        uses: actions/upload-artifact@v4
+        with:
+          name: mingw-cross-bootstrap-status
+          retention-days: 30
+          path: bootstrap-status/bootstrap-status.json

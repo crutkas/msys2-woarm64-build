@@ -44,7 +44,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-world-cross
-          path: hello-world.exe
+          path: |
+            hello-world.exe
+            hello-world-architecture.json
 
   test-cross:
     needs: [build-cross]
@@ -112,7 +114,9 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: hello-world-native
-          path: hello-world.exe
+          path: |
+            hello-world.exe
+            hello-world-architecture.json
          
   test-native:
     needs: [build-native]
