@@ -1,7 +1,7 @@
 # MSYS2 WoArm64 Packages Build and Repository
 
 This repository contains GitHub Actions workflows for building MinGW and MSYS2 toolchains
-with `aarch64-w64-mingw32` and `aarch64-pc-msys` targets inside MSYS2 environment and deploys
+with `aarch64-w64-mingw32` and `aarch64-pc-cygwin` targets inside MSYS2 environment and deploys
 their Pacman packages overlay repositories to GitHub Pages environment of this repository.
 It also serves as a documentation of the necessary steps to build them.
 
@@ -161,6 +161,17 @@ flowchart LR
     end
 ```
 
+Every cross-toolchain run publishes two machine-readable artifacts:
+
+- `verify-cross-toolchain` contains the smoke-test executable and
+  `hello-world-architecture.json`, which records the compiler target and verifies the PE
+  `IMAGE_FILE_MACHINE_ARM64` header.
+- `mingw-cross-bootstrap-status` contains `bootstrap-status.json`, an ordered component status
+  manifest with `first_failure` set to the first package or architecture check that failed. The
+  manifest is uploaded even when downstream bootstrap jobs are skipped. Its `targets` object
+  distinguishes the `aarch64-w64-mingw32` MinGW target from the `aarch64-pc-cygwin` runtime
+  build triplet.
+
 ## MinGW Native Toolchain CI
 
 The [mingw-native-toolchain.yml](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/workflows/mingw-native-toolchain.yml)
@@ -293,10 +304,11 @@ flowchart LR
 
 ## MSYS2/Cygwin Toolchain Porting
 
-Work on native `aarch64-pc-msys`, resp. `aarch64-pc-cygwin`, toolchain is in progress.
-First iteration taken is to provide `x86_64-pc-msys` host, `aarch64-pc-msys` target cross-toolchain
-that will then eventually build the `aarch64-pc-msys` native toolchain. The current status of the
-cross-toolchain can be visualized by the following chart:
+Work on the native MSYS2 ARM64 toolchain is in progress. Runtime configury uses the
+`aarch64-pc-cygwin` build triplet; MSYS behavior is selected by the runtime sources. The first
+iteration provides an `x86_64-pc-msys` host, `aarch64-pc-cygwin` target cross-toolchain that will
+eventually build the native MSYS2 ARM64 environment. The current status of the cross-toolchain can
+be visualized by the following chart:
 
 ```mermaid
 %%{init: {"flowchart": {"htmlLabels": false, 'nodeSpacing': 30, 'rankSpacing': 30}} }%%
@@ -318,7 +330,7 @@ flowchart LR
     msys2-runtime-devel["`
         msys2-runtime-devel
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::DONE
     
     mingw-w64-cross-mingwarm64-gcc["`
@@ -350,19 +362,19 @@ flowchart LR
     cross-binutils["`
         cross-binutils
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::NEW_DONE
 
     cross-gcc-stage1["`
         cross-gcc-stage1
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::NEW_DONE
 
     cross-gcc["`
         cross-gcc
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::NEW_WIP
 
     windows-default-manifest["`
@@ -424,7 +436,7 @@ flowchart LR
 
 ## Detailed MSYS2 Toolchian Packages Dependencies Chart
 
-Relevant for `x86-64-pc-msys` host, `aarch64-pc-msys` and `aarch64-w64-mingw32`  target 
+Relevant for `x86-64-pc-msys` host, `aarch64-pc-cygwin` and `aarch64-w64-mingw32` target
 cross-compilation option:
 
 ```mermaid
@@ -459,7 +471,7 @@ flowchart LR
     msys2-runtime-devel["`
         msys2-runtime-devel
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::DONE
 
     mingw-w64-cross-mingwarm64-binutils["`
@@ -518,19 +530,19 @@ flowchart LR
     cross-binutils["`
         cross-binutils
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::NEW_DONE
 
     cross-gcc-stage1["`
         cross-gcc-stage1
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::NEW_DONE
 
     cross-gcc["`
         cross-gcc
         host: x86_64-pc-msys
-        target: aarch64-pc-msys
+        target: aarch64-pc-cygwin
     `"]:::NEW_WIP
 
     windows-default-manifest["`
