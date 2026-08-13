@@ -212,7 +212,8 @@ jobs:
         run: |
           python3 .github/scripts/create-bootstrap-status.py \
             --output bootstrap-status/bootstrap-status.json \
-            --target aarch64-w64-mingw32 \
+            --mingw-target aarch64-w64-mingw32 \
+            --runtime-target aarch64-pc-cygwin \
             --packages-repository Windows-on-ARM-Experiments/MSYS2-packages \
             --packages-ref '${{ inputs.msys2_packages_branch || 'woarm64' }}' \
             --run-repository '${{ github.repository }}' \

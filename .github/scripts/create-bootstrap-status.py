@@ -36,7 +36,8 @@ def parse_args() -> argparse.Namespace:
     parser.add_argument("--package", action="append", required=True, type=component_result)
     parser.add_argument("--verification", required=True, type=component_result)
     parser.add_argument("--architecture-report", type=Path)
-    parser.add_argument("--target", required=True)
+    parser.add_argument("--mingw-target", required=True)
+    parser.add_argument("--runtime-target", required=True)
     parser.add_argument("--packages-repository", required=True)
     parser.add_argument("--packages-ref", required=True)
     parser.add_argument("--run-repository", required=True)
@@ -69,13 +70,16 @@ def main() -> None:
     results = [result for _, result in pipeline]
 
     manifest = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": datetime.now(timezone.utc).isoformat(),
         "workflow": "mingw-cross-toolchain",
         "status": overall_status(results),
         "first_failure": first_failure,
         "first_incomplete": first_incomplete,
-        "target": args.target,
+        "targets": {
+            "mingw": args.mingw_target,
+            "runtime": args.runtime_target,
+        },
         "source": {
             "repository": args.packages_repository,
             "ref": args.packages_ref,
