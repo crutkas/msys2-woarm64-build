@@ -32,6 +32,7 @@ jobs:
     with:
       package_name: mingw-w64-cross-mingwarm64-binutils
       needs: ${{ toJson(needs) }}
+      dependencies: texinfo
       packages_repository: Windows-on-ARM-Experiments/MSYS2-packages
       packages_branch: ${{ inputs.msys2_packages_branch || 'woarm64' }}
 

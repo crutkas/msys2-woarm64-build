@@ -40,8 +40,5 @@ pushd /usr/lib/ccache/bin
     ln -sf /usr/bin/ccache aarch64-w64-mingw32-c++
     ln -sf /usr/bin/ccache aarch64-w64-mingw32-g++
     ln -sf /usr/bin/ccache aarch64-w64-mingw32-gcc
-    if [[ "$FLAVOR" = "CROSS" ]]; then
-        ln -sf /usr/bin/true makeinfo
-    fi
   echo "::endgroup::"
 popd
