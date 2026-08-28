@@ -1,27 +1,44 @@
 # MSYS2 WoArm64 Packages Build and Repository
 
-This repository contains GitHub Actions workflows for building MinGW and MSYS2 toolchains
-with `aarch64-w64-mingw32` and `aarch64-pc-msys` targets inside MSYS2 environment and deploys
-their Pacman packages overlay repositories to GitHub Pages environment of this repository.
-It also serves as a documentation of the necessary steps to build them.
+This repository documents workflows for building MinGW and MSYS2 toolchains with
+`aarch64-w64-mingw32` and `aarch64-pc-msys` targets. All package, native execution, artifact,
+and GitHub Pages definitions are quarantined as non-executable files under
+`.github/historical-workflows/`.
 
 ## ARM64 quarantine and admission
 
-The fail-closed policy in
-[`.github/policies/arm64-quarantine-policy.json`](.github/policies/arm64-quarantine-policy.json)
-is the only admission authority for ARM64 candidate metadata. It records the revoked runtime
-commit lineage and releases, revoked binutils package identity, accepted immutable
-Git-for-Windows baseline, exact producer trailers, reviewed Action pins, and the isolated
-workspace rule. Admission is metadata-only: it cannot authorize network, setup, download,
-installation, packaging, builds, artifact consumption, payload assembly, native execution,
-candidate output, publication, or release-setting changes.
+The deny-by-default
+[policy](.github/policies/arm64-quarantine-policy.json) has no live admissions. It commits to
+the complete immutable Git-for-Windows baseline asset manifest, exact annotated tag and peeled
+commit, explicit runtime and binutils revocations, reviewed Action commits, and canonical
+workspace requirements. Unknown candidates cannot pass.
 
-The manually dispatched
-[ARM64 admission workflow](.github/workflows/arm64-admission.yml) rejects incomplete metadata
-before checkout, then evaluates provenance and revocations without consuming an artifact. The
-old build workflows are marked historical and have no `push` or `pull_request` entry point.
-Ordinary pull requests run only the offline diagnostic fixture suite and do not schedule ARM64
-runners or upload candidate artifacts.
+After this bootstrap change is installed on protected `main`, the
+[protected verifier](.github/workflows/arm64-quarantine-policy.yml) runs only as
+`pull_request_target`. Its first job validates GitHub-owned base context before checkout or API
+access. It then checks out the exact base SHA, verifies every trusted verifier blob, collects
+candidate files through the read-only GitHub API, and parses those files strictly as data. It
+never checks out or executes candidate code. A pull request changing the verifier therefore
+continues to run the previous protected-base implementation.
+
+The reserved authoritative admission collector has no caller JSON or caller identity
+parameters. It derives run and artifact IDs from a protected-main `workflow_run` event, then
+independently queries run, job, artifact, commit, tree, workflow blob, immutable release,
+annotated tag, complete asset manifest, digest, and ancestry metadata. It uses collector UTC
+time for expiry. Live execution remains bootstrap-disabled until protected main contains that
+workflow and an exact candidate identity is separately allowlisted.
+
+The only ordinary `pull_request` workflow is explicitly untrusted bootstrap diagnostics. Its
+result is never admission authority, it has read-only permissions, and it uploads no artifacts.
+Workflow auditing uses a semantic YAML parser for both `.yml` and `.yaml`, resolves aliases and
+flow syntax, and rejects unreviewed actions, reusable workflows, local/Docker actions,
+containers, delegated scripts, URLs, git operations, and unsupported `MINGWARM64` setup before
+execution. The mandated `setup-msys2` commit does not support `MINGWARM64`, so every such
+operational path remains disabled.
+
+Publication remains disabled. Re-enablement requires authoritative admission plus a separately
+configured protected `arm64-publication-approval` environment; this repository does not claim
+that environment is currently protected.
 
 Run the deterministic tests with the repository's existing PowerShell runtime:
 

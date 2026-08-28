@@ -1,0 +1,9 @@
+name: Action case bypass
+on: pull_request
+jobs:
+  test:
+    runs-on: windows-latest
+    steps:
+      - uses: MSYS2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884
+        with:
+          msystem: MINGWARM64

@@ -1,0 +1,146 @@
+# Non-executable archive. Re-enablement requires authoritative admission and protected approval.
+name: "Historical: Build MinGW and MSYS2 toolchains"
+
+on:
+  workflow_dispatch:
+    inputs:
+      msys2_packages_branch:
+        description: "MSYS2-packages branch to build"
+        type: string
+        required: false
+        default: "woarm64"
+      mingw_packages_branch:
+        description: "MINGW-packages branch to build"
+        type: string
+        required: false
+        default: "woarm64"
+      build_cross:
+        description: "Build cross-compilation MinGW toolchain"
+        type: choice
+        options:
+          - true
+          - false
+        required: false
+        default: 'true'
+      build_native:
+        description: "Build native MinGW toolchain"
+        type: choice
+        options:
+          - true
+          - false
+        required: false
+        default: 'true'
+      build_native_with_native:
+        description: "Build native MinGW toolchain with native MinGW toolchain"
+        type: choice
+        options:
+          - true
+          - false
+        required: false
+        default: 'true'
+
+jobs:
+  mingw-cross-toolchain:
+    if: inputs.build_cross != 'false'
+    name: MinGW cross-compilation toolchain
+    uses: ./.github/workflows/mingw-cross-toolchain.yml
+    with:
+      msys2_packages_branch: ${{ inputs.msys2_packages_branch || 'woarm64' }}
+
+  mingw-native-toolchain:
+    if: inputs.build_native != 'false'
+    name: MinGW native toolchain
+    uses: ./.github/workflows/mingw-native-toolchain.yml
+    with:
+      mingw_packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
+      build_with_native: ${{ inputs.build_native_with_native || 'true' }}
+
+  repository:
+    name: Create MSYS2 repository
+    needs: [
+      mingw-cross-toolchain,
+      mingw-native-toolchain
+    ]
+    runs-on: windows-latest
+
+    defaults:
+      run:
+        shell: msys2 {0}
+
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+    steps:
+      - uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884
+        timeout-minutes: 10
+        with:
+          msystem: MSYS
+          path-type: minimal
+          update: true
+          cache: true
+
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Install dependencies
+        run: |
+          pacman -S --noconfirm \
+            git \
+            mingw-w64-x86_64-github-cli \
+            mingw-w64-x86_64-jq
+
+      - name: Download artifacts
+        run: |
+          `cygpath "${{ github.workspace }}"`/.github/scripts/download-artifacts.sh \
+            ${{ github.run_id }} \
+            '${{ needs.mingw-cross-toolchain.outputs.artifacts }}' \
+            '${{ needs.mingw-native-toolchain.outputs.artifacts }}'
+  
+      - name: Create MSYS2 packages repository
+        run: |
+          `cygpath "${{ github.workspace }}"`/.github/scripts/create-repository.sh
+
+      - name: Create index.html
+        run: |
+          echo "<!DOCTYPE html><head></head><body></body>" > repository/index.html
+
+      - name: Upload woarm64-msys2-repository
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
+        with:
+          name: woarm64-msys2-repository
+          retention-days: 1
+          path: repository
+
+  deploy:
+    if: github.ref == 'refs/heads/main'
+    name: Deploy MSYS2 repository
+    needs: repository
+    runs-on: ubuntu-latest
+
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+
+    environment:
+      name: github-pages
+      url: ${{steps.deployment.outputs.page_url}}
+
+    defaults:
+      run:
+        shell: bash {0}
+
+    steps:
+      - name: Setup GitHub Pages
+        uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
+        with:
+          artifact_name: woarm64-msys2-repository
+
+  check:
+    name: Check MSYS2 repository
+    needs: deploy
+    uses: ./.github/workflows/check-repository.yml

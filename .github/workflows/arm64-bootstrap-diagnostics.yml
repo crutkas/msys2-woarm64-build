@@ -1,0 +1,29 @@
+name: Untrusted ARM64 bootstrap diagnostics
+
+on:
+  pull_request:
+    paths:
+      - ".github/historical-workflows/**"
+      - ".github/policies/**"
+      - ".github/scripts/**"
+      - ".github/workflows/*.yml"
+      - ".github/workflows/*.yaml"
+      - "tests/arm64-admission/**"
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostics:
+    name: Diagnostic only - never admission
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: Run untrusted offline diagnostics
+        shell: pwsh
+        run: ./tests/arm64-admission/run.ps1

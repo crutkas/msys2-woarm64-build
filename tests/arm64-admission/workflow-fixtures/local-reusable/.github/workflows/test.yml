@@ -1,0 +1,5 @@
+name: Local reusable bypass
+on: pull_request
+jobs:
+  delegate:
+    uses: ./.github/workflows/reusable.yaml

@@ -1,0 +1,8 @@
+name: Custom shell bypass
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: ./scripts/shell.ps1 {0}
+        run: ./scripts/check.ps1

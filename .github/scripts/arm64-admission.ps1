@@ -1,54 +1,42 @@
 [CmdletBinding()]
 param(
-    [string]$MetadataPath,
-    [string]$MetadataJson,
-    [string]$PolicyPath = (Join-Path (Join-Path (Join-Path $PSScriptRoot '..') 'policies') 'arm64-quarantine-policy.json')
+    [switch]$OfflineFixture,
+    [string]$EvidencePath,
+    [string]$FixturePolicyPath,
+    [DateTimeOffset]$TrustedNow
 )
 
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
-function Get-Arm64JsonPath {
-    param(
-        [Parameter(Mandatory)]
-        [object]$InputObject,
-        [Parameter(Mandatory)]
-        [string]$Path
-    )
-
-    $current = $InputObject
-    foreach ($segment in $Path.Split('.')) {
-        if ($null -eq $current) {
-            return [pscustomobject]@{ Exists = $false; Value = $null }
-        }
-
-        $property = $current.PSObject.Properties[$segment]
-        if ($null -eq $property) {
-            return [pscustomobject]@{ Exists = $false; Value = $null }
-        }
-
-        $current = $property.Value
-    }
-
-    return [pscustomobject]@{ Exists = $true; Value = $current }
-}
-
 function Test-Arm64Sha {
     param([object]$Value)
 
-    return $Value -is [string] -and $Value -cmatch '^[0-9a-f]{40}$'
+    return $Value -is [string] -and
+        $Value -cmatch '^[0-9a-f]{40}$' -and
+        $Value -cne ('0' * 40)
+}
+
+function Test-Arm64Digest {
+    param([object]$Value)
+
+    return $Value -is [string] -and
+        $Value -cmatch '^sha256:[0-9a-f]{64}$' -and
+        $Value -cne "sha256:$('0' * 64)"
 }
 
 function Test-Arm64Sha256 {
     param([object]$Value)
 
-    return $Value -is [string] -and $Value -cmatch '^[0-9a-f]{64}$'
+    return $Value -is [string] -and
+        $Value -cmatch '^[0-9a-f]{64}$' -and
+        $Value -cne ('0' * 64)
 }
 
 function Test-Arm64PositiveInteger {
     param([object]$Value)
 
-    return ($Value -is [int] -or $Value -is [long]) -and $Value -gt 0
+    return ($Value -is [int] -or $Value -is [long]) -and [long]$Value -gt 0
 }
 
 function ConvertTo-Arm64Timestamp {
@@ -72,21 +60,467 @@ function ConvertTo-Arm64Timestamp {
         [Globalization.DateTimeStyles]::AssumeUniversal,
         [ref]$parsed
     )
-
     if (-not $valid) {
         return $null
     }
 
-    return $parsed
+    return $parsed.ToUniversalTime()
 }
 
-function Test-Arm64Admission {
+function Get-Arm64Property {
+    param(
+        [AllowNull()]
+        [object]$InputObject,
+        [Parameter(Mandatory)]
+        [string]$Name
+    )
+
+    if ($null -eq $InputObject) {
+        return $null
+    }
+
+    return $InputObject.PSObject.Properties[$Name]
+}
+
+function Get-Arm64PathValue {
+    param(
+        [AllowNull()]
+        [object]$InputObject,
+        [Parameter(Mandatory)]
+        [string]$Path
+    )
+
+    $current = $InputObject
+    foreach ($segment in $Path.Split('.')) {
+        $property = Get-Arm64Property -InputObject $current -Name $segment
+        if ($null -eq $property) {
+            return [pscustomobject]@{ Exists = $false; Value = $null }
+        }
+        $current = $property.Value
+    }
+
+    return [pscustomobject]@{ Exists = $true; Value = $current }
+}
+
+function Compare-Arm64ExactObject {
+    param(
+        [AllowNull()]
+        [object]$Expected,
+        [AllowNull()]
+        [object]$Actual,
+        [string]$Path = 'value'
+    )
+
+    $differences = [Collections.Generic.List[string]]::new()
+    function Compare-Node {
+        param(
+            [AllowNull()]
+            [object]$ExpectedNode,
+            [AllowNull()]
+            [object]$ActualNode,
+            [string]$NodePath
+        )
+
+        if ($null -eq $ExpectedNode -or $null -eq $ActualNode) {
+            if ($null -ne $ExpectedNode -or $null -ne $ActualNode) {
+                [void]$differences.Add($NodePath)
+            }
+            return
+        }
+
+        $expectedIsMap = $ExpectedNode -is [Collections.IDictionary] -or
+            $ExpectedNode -is [pscustomobject]
+        $actualIsMap = $ActualNode -is [Collections.IDictionary] -or
+            $ActualNode -is [pscustomobject]
+        if ($expectedIsMap -or $actualIsMap) {
+            if (-not ($expectedIsMap -and $actualIsMap)) {
+                [void]$differences.Add($NodePath)
+                return
+            }
+
+            $expectedNames = @($ExpectedNode.PSObject.Properties.Name | Sort-Object)
+            $actualNames = @($ActualNode.PSObject.Properties.Name | Sort-Object)
+            if (($expectedNames -join "`0") -cne ($actualNames -join "`0")) {
+                [void]$differences.Add("$NodePath.properties")
+                return
+            }
+
+            foreach ($name in $expectedNames) {
+                Compare-Node `
+                    -ExpectedNode $ExpectedNode.PSObject.Properties[$name].Value `
+                    -ActualNode $ActualNode.PSObject.Properties[$name].Value `
+                    -NodePath "$NodePath.$name"
+            }
+            return
+        }
+
+        $expectedIsList = $ExpectedNode -is [Collections.IEnumerable] -and
+            $ExpectedNode -isnot [string]
+        $actualIsList = $ActualNode -is [Collections.IEnumerable] -and
+            $ActualNode -isnot [string]
+        if ($expectedIsList -or $actualIsList) {
+            if (-not ($expectedIsList -and $actualIsList)) {
+                [void]$differences.Add($NodePath)
+                return
+            }
+
+            $expectedItems = @($ExpectedNode)
+            $actualItems = @($ActualNode)
+            if ($expectedItems.Count -ne $actualItems.Count) {
+                [void]$differences.Add("$NodePath.count")
+                return
+            }
+
+            for ($index = 0; $index -lt $expectedItems.Count; $index++) {
+                Compare-Node `
+                    -ExpectedNode $expectedItems[$index] `
+                    -ActualNode $actualItems[$index] `
+                    -NodePath "$NodePath[$index]"
+            }
+            return
+        }
+
+        $expectedTimestamp = ConvertTo-Arm64Timestamp $ExpectedNode
+        $actualTimestamp = ConvertTo-Arm64Timestamp $ActualNode
+        if ($null -ne $expectedTimestamp -or $null -ne $actualTimestamp) {
+            if ($null -eq $expectedTimestamp -or $null -eq $actualTimestamp -or
+                $expectedTimestamp -ne $actualTimestamp) {
+                [void]$differences.Add($NodePath)
+            }
+            return
+        }
+
+        if ($ExpectedNode.GetType() -ne $ActualNode.GetType() -or $ExpectedNode -cne $ActualNode) {
+            [void]$differences.Add($NodePath)
+        }
+    }
+
+    Compare-Node -ExpectedNode $Expected -ActualNode $Actual -NodePath $Path
+    return @($differences)
+}
+
+function ConvertTo-Arm64LexicalWindowsPath {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $normalized = $Path.Replace('/', '\')
+    if ($normalized -cnotmatch '^[A-Za-z]:\\') {
+        return $null
+    }
+
+    $segments = $normalized.Substring(3).Split(
+        '\',
+        [StringSplitOptions]::RemoveEmptyEntries
+    )
+    $clean = [Collections.Generic.List[string]]::new()
+    foreach ($segment in $segments) {
+        if ($segment -ceq '.') {
+            continue
+        }
+        if ($segment -ceq '..') {
+            if ($clean.Count -eq 0) {
+                return $null
+            }
+            $clean.RemoveAt($clean.Count - 1)
+            continue
+        }
+        $windowsSegment = $segment.TrimEnd([char[]]@(' ', '.'))
+        if ([string]::IsNullOrEmpty($windowsSegment)) {
+            return $null
+        }
+        [void]$clean.Add($windowsSegment)
+    }
+
+    $drive = $normalized.Substring(0, 1).ToUpperInvariant()
+    if ($clean.Count -eq 0) {
+        return "${drive}:\"
+    }
+    return "${drive}:\$($clean -join '\')"
+}
+
+function Test-Arm64WorkspaceEvidence {
+    param(
+        [Parameter(Mandatory)]
+        [object]$Workspace,
+        [Parameter(Mandatory)]
+        [object]$Policy
+    )
+
+    $errors = [Collections.Generic.List[string]]::new()
+    function Add-WorkspaceError {
+        param([string]$Code)
+
+        if (-not $errors.Contains($Code)) {
+            [void]$errors.Add($Code)
+        }
+    }
+
+    foreach ($path in @(
+            'input_path',
+            'canonical_path',
+            'exists',
+            'absolute',
+            'final_path_resolved',
+            'reparse_components',
+            'volume_id')) {
+        if ($null -eq (Get-Arm64Property -InputObject $Workspace -Name $path)) {
+            Add-WorkspaceError "workspace-missing:$path"
+        }
+    }
+    if ($errors.Count -ne 0) {
+        return @($errors)
+    }
+
+    $inputPath = $Workspace.input_path
+    $canonicalPath = $Workspace.canonical_path
+    if ($inputPath -isnot [string] -or [string]::IsNullOrWhiteSpace($inputPath)) {
+        Add-WorkspaceError 'workspace-input-not-string'
+        return @($errors)
+    }
+    if ($canonicalPath -isnot [string] -or [string]::IsNullOrWhiteSpace($canonicalPath)) {
+        Add-WorkspaceError 'workspace-canonical-not-string'
+        return @($errors)
+    }
+
+    if ($inputPath -match '^(?:(?:\\\\|//)[?.](?:\\|/)|\\\?\?\\)') {
+        Add-WorkspaceError 'workspace-device-namespace'
+    }
+    elseif ($inputPath -match '^(?:\\\\|//)') {
+        Add-WorkspaceError 'workspace-unc'
+    }
+
+    $isWindowsPath = $inputPath -match '^[A-Za-z]:[\\/]'
+    $isPosixPath = $inputPath.StartsWith('/', [StringComparison]::Ordinal)
+    if (-not ($isWindowsPath -or $isPosixPath)) {
+        Add-WorkspaceError 'workspace-relative'
+    }
+    if ($inputPath -match '(?i)(?:^|[\\/])[^\\/]*~[0-9]+(?:[\\/]|$)') {
+        Add-WorkspaceError 'workspace-short-name'
+    }
+
+    if ($Workspace.exists -isnot [bool] -or -not $Workspace.exists) {
+        Add-WorkspaceError 'workspace-not-existing'
+    }
+    if ($Workspace.absolute -isnot [bool] -or -not $Workspace.absolute) {
+        Add-WorkspaceError 'workspace-not-absolute'
+    }
+    if ($Workspace.final_path_resolved -isnot [bool] -or -not $Workspace.final_path_resolved) {
+        Add-WorkspaceError 'workspace-final-path-unresolved'
+    }
+    if ($Workspace.reparse_components -is [string] -or
+        $Workspace.reparse_components -isnot [Collections.IEnumerable]) {
+        Add-WorkspaceError 'workspace-reparse-evidence-invalid'
+    }
+    elseif (@($Workspace.reparse_components).Count -ne 0) {
+        Add-WorkspaceError 'workspace-reparse-component'
+    }
+    if ($Workspace.volume_id -isnot [string] -or
+        [string]::IsNullOrWhiteSpace($Workspace.volume_id)) {
+        Add-WorkspaceError 'workspace-volume-missing'
+    }
+
+    if ($isWindowsPath) {
+        $lexical = ConvertTo-Arm64LexicalWindowsPath -Path $inputPath
+        $canonicalLexical = ConvertTo-Arm64LexicalWindowsPath -Path $canonicalPath
+        if ($null -eq $lexical -or $null -eq $canonicalLexical -or
+            $canonicalPath.Contains('/', [StringComparison]::Ordinal) -or
+            $canonicalLexical -cne $canonicalPath) {
+            Add-WorkspaceError 'workspace-canonical-invalid'
+        }
+
+        $forbidden = ConvertTo-Arm64LexicalWindowsPath -Path $Policy.workspace.forbidden_canonical_root
+        foreach ($candidate in @($lexical, $canonicalLexical)) {
+            if ($null -ne $candidate -and
+                ($candidate.Equals($forbidden, [StringComparison]::OrdinalIgnoreCase) -or
+                    $candidate.StartsWith("$forbidden\", [StringComparison]::OrdinalIgnoreCase))) {
+                Add-WorkspaceError 'workspace-forbidden-root'
+            }
+        }
+    }
+    elseif ($canonicalPath -cne $inputPath -or $canonicalPath -match '/(?:\.{1,2})(?:/|$)') {
+        Add-WorkspaceError 'workspace-canonical-invalid'
+    }
+
+    return @($errors)
+}
+
+function Initialize-Arm64FinalPathResolver {
+    if (-not $IsWindows -or ('Arm64PathResolver' -as [type])) {
+        return
+    }
+
+    Add-Type -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Text;
+using Microsoft.Win32.SafeHandles;
+
+public static class Arm64PathResolver
+{
+    private const uint FILE_SHARE_READ = 1;
+    private const uint FILE_SHARE_WRITE = 2;
+    private const uint FILE_SHARE_DELETE = 4;
+    private const uint OPEN_EXISTING = 3;
+    private const uint FILE_FLAG_BACKUP_SEMANTICS = 0x02000000;
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern SafeFileHandle CreateFileW(
+        string name, uint access, uint share, IntPtr security, uint creation,
+        uint flags, IntPtr template);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern uint GetFinalPathNameByHandleW(
+        SafeFileHandle file, StringBuilder path, uint length, uint flags);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern bool GetVolumePathNameW(
+        string fileName, StringBuilder volumePath, uint length);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern bool GetVolumeNameForVolumeMountPointW(
+        string volumePath, StringBuilder volumeName, uint length);
+
+    public static string Resolve(string path)
+    {
+        using (SafeFileHandle handle = CreateFileW(
+            path, 0, FILE_SHARE_READ | FILE_SHARE_WRITE | FILE_SHARE_DELETE,
+            IntPtr.Zero, OPEN_EXISTING, FILE_FLAG_BACKUP_SEMANTICS, IntPtr.Zero))
+        {
+            if (handle.IsInvalid)
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            StringBuilder buffer = new StringBuilder(32768);
+            uint length = GetFinalPathNameByHandleW(handle, buffer, (uint)buffer.Capacity, 0);
+            if (length == 0 || length >= buffer.Capacity)
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            string result = buffer.ToString();
+            return result.StartsWith(@"\\?\") ? result.Substring(4) : result;
+        }
+    }
+
+    public static string GetVolumeId(string path)
+    {
+        StringBuilder volumePath = new StringBuilder(32768);
+        if (!GetVolumePathNameW(path, volumePath, (uint)volumePath.Capacity))
+            throw new Win32Exception(Marshal.GetLastWin32Error());
+        StringBuilder volumeName = new StringBuilder(32768);
+        if (!GetVolumeNameForVolumeMountPointW(
+            volumePath.ToString(), volumeName, (uint)volumeName.Capacity))
+            throw new Win32Exception(Marshal.GetLastWin32Error());
+        return volumeName.ToString();
+    }
+}
+'@
+}
+
+function Get-Arm64CanonicalWorkspaceEvidence {
+    param(
+        [Parameter(Mandatory)]
+        [object]$Path,
+        [Parameter(Mandatory)]
+        [object]$Policy
+    )
+
+    if ($Path -isnot [string] -or [string]::IsNullOrWhiteSpace($Path)) {
+        throw 'Workspace path must be a non-empty string from the trusted runner context.'
+    }
+    if ($Path -match '^(?:(?:\\\\|//)[?.](?:\\|/)|\\\?\?\\)') {
+        throw 'Workspace device namespaces are forbidden.'
+    }
+    if ($Path -match '^(?:\\\\|//)') {
+        throw 'UNC workspaces are forbidden.'
+    }
+    if ($Path -match '(?i)(?:^|[\\/])[^\\/]*~[0-9]+(?:[\\/]|$)') {
+        throw 'Workspace short-name aliases are forbidden.'
+    }
+    if (-not [IO.Path]::IsPathFullyQualified($Path)) {
+        throw 'Workspace path must be absolute.'
+    }
+    if ($Path -match '^[A-Za-z]:[\\/]') {
+        $lexical = ConvertTo-Arm64LexicalWindowsPath -Path $Path
+        $forbidden = ConvertTo-Arm64LexicalWindowsPath `
+            -Path $Policy.workspace.forbidden_canonical_root
+        if ($null -ne $lexical -and
+            ($lexical.Equals($forbidden, [StringComparison]::OrdinalIgnoreCase) -or
+                $lexical.StartsWith("$forbidden\", [StringComparison]::OrdinalIgnoreCase))) {
+            throw 'Workspace aliases the forbidden shared root.'
+        }
+    }
+
+    $fullPath = [IO.Path]::GetFullPath($Path)
+    if ($fullPath -match '^[A-Za-z]:[\\/]') {
+        $normalizedFullPath = ConvertTo-Arm64LexicalWindowsPath -Path $fullPath
+        $forbidden = ConvertTo-Arm64LexicalWindowsPath `
+            -Path $Policy.workspace.forbidden_canonical_root
+        if ($null -ne $normalizedFullPath -and
+            ($normalizedFullPath.Equals(
+                    $forbidden,
+                    [StringComparison]::OrdinalIgnoreCase
+                ) -or
+                $normalizedFullPath.StartsWith(
+                    "$forbidden\",
+                    [StringComparison]::OrdinalIgnoreCase
+                ))) {
+            throw 'Normalized workspace aliases the forbidden shared root.'
+        }
+    }
+
+    $reparseComponents = [Collections.Generic.List[string]]::new()
+    $root = [IO.Path]::GetPathRoot($fullPath)
+    $relative = $fullPath.Substring($root.Length)
+    $current = $root
+    foreach ($segment in $relative.Split(
+            [IO.Path]::DirectorySeparatorChar,
+            [StringSplitOptions]::RemoveEmptyEntries)) {
+        $current = Join-Path $current $segment
+        $item = Get-Item -LiteralPath $current -Force -ErrorAction Stop
+        if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            [void]$reparseComponents.Add($current)
+            break
+        }
+    }
+    if ($reparseComponents.Count -ne 0) {
+        throw "Workspace contains reparse components: $($reparseComponents -join ', ')"
+    }
+
+    if ($IsWindows) {
+        Initialize-Arm64FinalPathResolver
+        $finalPath = [Arm64PathResolver]::Resolve($fullPath).TrimEnd('\')
+        $volumeId = [Arm64PathResolver]::GetVolumeId($finalPath)
+    }
+    else {
+        $finalPath = (Resolve-Path -LiteralPath $fullPath).Path.TrimEnd('/')
+        $volumeId = [IO.Path]::GetPathRoot($finalPath)
+    }
+
+    $evidence = [pscustomobject][ordered]@{
+        input_path          = $Path
+        canonical_path      = $finalPath
+        exists             = $true
+        absolute           = $true
+        final_path_resolved = $true
+        reparse_components = @()
+        volume_id          = $volumeId
+    }
+    $errors = @(Test-Arm64WorkspaceEvidence -Workspace $evidence -Policy $Policy)
+    if ($errors.Count -ne 0) {
+        throw "Workspace rejected: $($errors -join ', ')"
+    }
+
+    return $evidence
+}
+
+function Test-Arm64AdmissionEvidence {
     [CmdletBinding()]
     param(
         [Parameter(Mandatory)]
-        [object]$Metadata,
+        [object]$Evidence,
         [Parameter(Mandatory)]
-        [object]$Policy
+        [object]$Policy,
+        [Parameter(Mandatory)]
+        [DateTimeOffset]$TrustedNow,
+        [Parameter(Mandatory)]
+        [ValidateSet('TrustedCollector', 'OfflineFixture')]
+        [string]$Mode
     )
 
     $errors = [Collections.Generic.List[string]]::new()
@@ -98,392 +532,238 @@ function Test-Arm64Admission {
         }
     }
 
-    $requiredPaths = @(
-        'schema_version',
-        'admission.mode',
-        'admission.evaluated_at',
-        'safety.network',
-        'safety.setup',
-        'safety.download',
-        'safety.install',
-        'safety.package',
-        'safety.build',
-        'safety.artifact_consumption',
-        'safety.payload_assembly',
-        'safety.native_execution',
-        'safety.release_publish',
-        'safety.release_settings_change',
-        'safety.candidate_output',
-        'baseline.repository',
-        'baseline.release.id',
-        'baseline.release.immutable',
-        'baseline.release.state',
-        'baseline.release.draft',
-        'baseline.release.prerelease',
-        'baseline.release.tag_name',
-        'baseline.tag.name',
-        'baseline.tag.object_type',
-        'baseline.tag.object_sha',
-        'baseline.tag.peeled_commit',
-        'baseline.asset.id',
-        'baseline.asset.name',
-        'baseline.asset.size',
-        'baseline.asset.sha256',
-        'producer.repository',
-        'producer.commit',
-        'producer.tree',
-        'producer.parents',
-        'producer.commit_message',
-        'workflow.path',
-        'workflow.blob',
-        'workflow.actions',
-        'workflow.actions.actions/checkout',
-        'workflow.actions.msys2/setup-msys2',
-        'workflow.actions.actions/upload-artifact',
-        'workflow.actions.actions/download-artifact',
-        'workflow.actions.actions/cache/restore',
-        'workflow.actions.actions/cache/save',
-        'workflow.actions.actions/upload-pages-artifact',
-        'workflow.actions.actions/configure-pages',
-        'workflow.actions.actions/deploy-pages',
-        'run.id',
-        'run.attempt',
-        'run.job',
-        'run.event_name',
-        'run.ref',
-        'run.head_sha',
-        'artifact.id',
-        'artifact.name',
-        'artifact.size',
-        'artifact.digest',
-        'artifact.expires_at',
-        'runtime.release.id',
-        'runtime.release.immutable',
-        'runtime.commit',
-        'runtime.ancestors',
-        'binutils.release.id',
-        'binutils.release.immutable',
-        'binutils.package_sha256',
-        'revocation_checks',
-        'revocation_checks.runtime_commit_and_descendants',
-        'revocation_checks.runtime_release',
-        'revocation_checks.binutils_release',
-        'revocation_checks.binutils_package_sha256',
-        'workspace.root',
-        'workspace.shared_root_observed',
-        'workspace.shared_root_transaction'
-    )
-
-    $values = @{}
-    foreach ($path in $requiredPaths) {
-        $result = Get-Arm64JsonPath -InputObject $Metadata -Path $path
-        $missing = -not $result.Exists -or $null -eq $result.Value
-        if (-not $missing -and $result.Value -is [string]) {
-            $missing = [string]::IsNullOrWhiteSpace($result.Value)
+    if ($Mode -ceq 'OfflineFixture') {
+        $fixtureOnly = Get-Arm64Property -InputObject $Policy -Name 'fixture_only'
+        if ($null -eq $fixtureOnly -or $fixtureOnly.Value -isnot [bool] -or
+            -not $fixtureOnly.Value) {
+            Add-AdmissionError 'fixture-policy-required'
         }
-
-        if ($missing) {
-            Add-AdmissionError "missing:$path"
+        if ($Evidence.authority.kind -cne 'offline-fixture' -or
+            $Evidence.authority.fixture_only -isnot [bool] -or
+            -not $Evidence.authority.fixture_only) {
+            Add-AdmissionError 'fixture-authority-required'
         }
-        else {
-            $values[$path] = $result.Value
+    }
+    else {
+        $fixtureOnly = Get-Arm64Property -InputObject $Policy -Name 'fixture_only'
+        if ($null -ne $fixtureOnly -and $fixtureOnly.Value) {
+            Add-AdmissionError 'fixture-policy-never-live'
+        }
+        if ($Policy.live_admission_enabled -isnot [bool] -or
+            -not $Policy.live_admission_enabled) {
+            Add-AdmissionError 'live-admission-bootstrap-disabled'
+        }
+        if ($Evidence.authority.kind -cne $Policy.trusted_collector.authority -or
+            $Evidence.authority.repository -cne $Policy.producer_repository -or
+            $Evidence.authority.protected_ref -cne $Policy.protected_ref -or
+            $Evidence.authority.workflow_ref -cne $Policy.trusted_collector.workflow_ref -or
+            $Evidence.authority.fixture_only -isnot [bool] -or
+            $Evidence.authority.fixture_only) {
+            Add-AdmissionError 'untrusted-authority'
         }
     }
 
-    if ($values.ContainsKey('schema_version') -and $values['schema_version'] -ne $Policy.schema_version) {
-        Add-AdmissionError 'invalid:schema_version'
+    if ($Evidence.schema_version -ne $Policy.schema_version) {
+        Add-AdmissionError 'schema-version-mismatch'
     }
 
-    if ($values.ContainsKey('admission.mode') -and $values['admission.mode'] -cne 'metadata-only') {
-        Add-AdmissionError 'invalid:admission.mode'
+    $collectedAt = ConvertTo-Arm64Timestamp $Evidence.authority.collected_at
+    if ($null -eq $collectedAt) {
+        Add-AdmissionError 'invalid-collected-at'
+    }
+    elseif ($collectedAt -gt $TrustedNow.ToUniversalTime() -or
+        $collectedAt -lt $TrustedNow.ToUniversalTime().AddMinutes(-5)) {
+        Add-AdmissionError 'collector-clock-out-of-window'
     }
 
-    $safetyPaths = @(
-        'safety.network',
-        'safety.setup',
-        'safety.download',
-        'safety.install',
-        'safety.package',
-        'safety.build',
-        'safety.artifact_consumption',
-        'safety.payload_assembly',
-        'safety.native_execution',
-        'safety.release_publish',
-        'safety.release_settings_change',
-        'safety.candidate_output'
-    )
-    foreach ($path in $safetyPaths) {
-        if ($values.ContainsKey($path) -and ($values[$path] -isnot [bool] -or $values[$path])) {
-            Add-AdmissionError "operation-not-metadata-only:$path"
-        }
+    foreach ($difference in Compare-Arm64ExactObject `
+            -Expected $Policy.accepted_baseline `
+            -Actual $Evidence.baseline `
+            -Path 'baseline') {
+        Add-AdmissionError "baseline-mismatch:$difference"
     }
 
-    $releasePaths = @('baseline.release', 'runtime.release', 'binutils.release')
-    foreach ($releasePath in $releasePaths) {
-        $immutablePath = "$releasePath.immutable"
-        if ($values.ContainsKey($immutablePath) -and
-            ($values[$immutablePath] -isnot [bool] -or -not $values[$immutablePath])) {
-            Add-AdmissionError "release-not-immutable:$releasePath"
-        }
+    if (-not (Test-Arm64Sha $Evidence.baseline.annotated_tag.object_sha) -or
+        -not (Test-Arm64Sha $Evidence.baseline.annotated_tag.peeled_commit)) {
+        Add-AdmissionError 'baseline-tag-invalid'
+    }
+    if (-not (Test-Arm64PositiveInteger $Evidence.baseline.asset_manifest.count) -or
+        -not (Test-Arm64Sha256 $Evidence.baseline.asset_manifest.sha256) -or
+        -not (Test-Arm64PositiveInteger $Evidence.baseline.asset_manifest.required_asset.id) -or
+        -not (Test-Arm64PositiveInteger $Evidence.baseline.asset_manifest.required_asset.size) -or
+        -not (Test-Arm64Digest $Evidence.baseline.asset_manifest.required_asset.digest)) {
+        Add-AdmissionError 'baseline-asset-manifest-invalid'
+    }
+    if ($Evidence.baseline.release.immutable -isnot [bool] -or
+        -not $Evidence.baseline.release.immutable -or
+        $Evidence.baseline.release.draft -isnot [bool] -or
+        $Evidence.baseline.release.draft -or
+        $Evidence.baseline.release.prerelease -isnot [bool] -or
+        $Evidence.baseline.release.prerelease) {
+        Add-AdmissionError 'baseline-release-not-immutable-final'
     }
 
-    if ($values.ContainsKey('baseline.repository') -and
-        $values['baseline.repository'] -cne $Policy.accepted_baseline.repository) {
-        Add-AdmissionError 'baseline-mismatch:repository'
+    $admissionId = $Evidence.candidate.admission_id
+    $admission = @($Policy.explicit_admissions | Where-Object {
+            $_.admission_id -ceq $admissionId
+        })
+    if ($admission.Count -ne 1) {
+        Add-AdmissionError 'candidate-not-explicitly-allowlisted'
     }
-    if ($values.ContainsKey('baseline.release.id')) {
-        if (-not (Test-Arm64PositiveInteger $values['baseline.release.id'])) {
-            Add-AdmissionError 'invalid:baseline.release.id'
-        }
-        elseif ([long]$values['baseline.release.id'] -ne [long]$Policy.accepted_baseline.release_id) {
-            Add-AdmissionError 'baseline-mismatch:release.id'
-        }
-    }
-    if ($values.ContainsKey('baseline.release.state') -and $values['baseline.release.state'] -cne 'released') {
-        Add-AdmissionError 'baseline-not-released'
-    }
-    if ($values.ContainsKey('baseline.release.draft') -and
-        ($values['baseline.release.draft'] -isnot [bool] -or $values['baseline.release.draft'])) {
-        Add-AdmissionError 'baseline-draft'
-    }
-    if ($values.ContainsKey('baseline.release.prerelease') -and
-        ($values['baseline.release.prerelease'] -isnot [bool] -or $values['baseline.release.prerelease'])) {
-        Add-AdmissionError 'baseline-prerelease'
-    }
-    foreach ($tagPath in @('baseline.release.tag_name', 'baseline.tag.name')) {
-        if ($values.ContainsKey($tagPath) -and $values[$tagPath] -cne $Policy.accepted_baseline.tag_name) {
-            Add-AdmissionError "baseline-mismatch:$tagPath"
-        }
-    }
-    if ($values.ContainsKey('baseline.tag.object_type') -and $values['baseline.tag.object_type'] -cne 'tag') {
-        Add-AdmissionError 'baseline-tag-not-annotated'
-    }
-    foreach ($shaPath in @('baseline.tag.object_sha', 'baseline.tag.peeled_commit')) {
-        if ($values.ContainsKey($shaPath) -and -not (Test-Arm64Sha $values[$shaPath])) {
-            Add-AdmissionError "invalid:$shaPath"
-        }
-    }
-    if ($values.ContainsKey('baseline.asset.id')) {
-        if (-not (Test-Arm64PositiveInteger $values['baseline.asset.id'])) {
-            Add-AdmissionError 'invalid:baseline.asset.id'
-        }
-        elseif ([long]$values['baseline.asset.id'] -ne [long]$Policy.accepted_baseline.asset_id) {
-            Add-AdmissionError 'baseline-mismatch:asset.id'
-        }
-    }
-    if ($values.ContainsKey('baseline.asset.size')) {
-        if (-not (Test-Arm64PositiveInteger $values['baseline.asset.size'])) {
-            Add-AdmissionError 'invalid:baseline.asset.size'
-        }
-        elseif ([long]$values['baseline.asset.size'] -ne [long]$Policy.accepted_baseline.asset_size) {
-            Add-AdmissionError 'baseline-mismatch:asset.size'
-        }
-    }
-    if ($values.ContainsKey('baseline.asset.sha256') -and
-        $values['baseline.asset.sha256'] -cne $Policy.accepted_baseline.asset_sha256) {
-        Add-AdmissionError 'baseline-mismatch:asset.sha256'
-    }
-
-    if ($values.ContainsKey('producer.repository') -and
-        $values['producer.repository'] -cne $Policy.producer_repository) {
-        Add-AdmissionError 'producer-repository-not-allowed'
-    }
-    foreach ($shaPath in @('producer.commit', 'producer.tree')) {
-        if ($values.ContainsKey($shaPath) -and -not (Test-Arm64Sha $values[$shaPath])) {
-            Add-AdmissionError "invalid:$shaPath"
-        }
-    }
-    if ($values.ContainsKey('producer.parents')) {
-        $parents = $values['producer.parents']
-        if ($parents -is [string] -or $parents -isnot [Collections.IEnumerable]) {
-            Add-AdmissionError 'invalid:producer.parents'
-        }
-        else {
-            $parentList = @($parents)
-            if ($parentList.Count -ne 1) {
-                Add-AdmissionError 'synthetic-merge:producer.parents'
-            }
-            elseif (-not (Test-Arm64Sha $parentList[0])) {
-                Add-AdmissionError 'invalid:producer.parents'
-            }
+    else {
+        foreach ($difference in Compare-Arm64ExactObject `
+                -Expected $admission[0].identity `
+                -Actual $Evidence.candidate.identity `
+                -Path 'candidate.identity') {
+            Add-AdmissionError "candidate-identity-mismatch:$difference"
         }
     }
 
-    if ($values.ContainsKey('producer.commit_message')) {
-        $message = $values['producer.commit_message'].Replace("`r`n", "`n")
-        if ($message.EndsWith("`n")) {
-            $message = $message.Substring(0, $message.Length - 1)
+    $identity = $Evidence.candidate.identity
+    foreach ($shaPath in @(
+            'producer.commit',
+            'producer.tree',
+            'workflow.blob',
+            'run.head_sha',
+            'runtime.commit')) {
+        $result = Get-Arm64PathValue -InputObject $identity -Path $shaPath
+        if (-not $result.Exists -or -not (Test-Arm64Sha $result.Value)) {
+            Add-AdmissionError "invalid-sha:$shaPath"
         }
-
-        $terminalPair = $Policy.owned_commit_terminal_trailers -join "`n"
-        $pairValid = $message.EndsWith($terminalPair, [StringComparison]::Ordinal)
-        if ($pairValid) {
-            $prefix = $message.Substring(0, $message.Length - $terminalPair.Length)
-            $pairValid = $prefix.EndsWith("`n`n", [StringComparison]::Ordinal)
+    }
+    foreach ($integerPath in @(
+            'run.id',
+            'run.attempt',
+            'artifact.id',
+            'artifact.size',
+            'runtime.release.id',
+            'binutils.release.id')) {
+        $result = Get-Arm64PathValue -InputObject $identity -Path $integerPath
+        if (-not $result.Exists -or -not (Test-Arm64PositiveInteger $result.Value)) {
+            Add-AdmissionError "invalid-integer:$integerPath"
         }
+    }
+    if (-not (Test-Arm64Digest $identity.artifact.digest) -or
+        -not (Test-Arm64Digest $identity.binutils.package_digest)) {
+        Add-AdmissionError 'invalid-candidate-digest'
+    }
+    if ($identity.artifact.size -le 1) {
+        Add-AdmissionError 'candidate-artifact-size-invalid'
+    }
+    foreach ($releaseName in @('runtime', 'binutils')) {
+        $release = $identity.$releaseName.release
+        if ($release.immutable -isnot [bool] -or -not $release.immutable -or
+            $release.draft -isnot [bool] -or $release.draft -or
+            $release.prerelease -isnot [bool] -or $release.prerelease) {
+            Add-AdmissionError 'candidate-release-not-immutable'
+        }
+        if (-not (Test-Arm64Sha $release.annotated_tag.object_sha) -or
+            -not (Test-Arm64Sha $release.annotated_tag.peeled_commit)) {
+            Add-AdmissionError "candidate-release-tag-invalid:$releaseName"
+        }
+        if (-not (Test-Arm64PositiveInteger $release.asset_manifest.count) -or
+            -not (Test-Arm64Sha256 $release.asset_manifest.sha256)) {
+            Add-AdmissionError "candidate-release-manifest-invalid:$releaseName"
+        }
+    }
+    if ($identity.runtime.release.annotated_tag.peeled_commit -cne $identity.runtime.commit -or
+        $identity.binutils.release.annotated_tag.peeled_commit -cne
+        $identity.binutils.source_commit) {
+        Add-AdmissionError 'candidate-release-peeled-commit-mismatch'
+    }
+    if (-not (Test-Arm64Sha $identity.binutils.source_commit) -or
+        $identity.binutils.asset.digest -cne $identity.binutils.package_digest) {
+        Add-AdmissionError 'candidate-binutils-identity-invalid'
+    }
 
+    $expiresAt = ConvertTo-Arm64Timestamp $identity.artifact.expires_at
+    if ($null -eq $expiresAt) {
+        Add-AdmissionError 'artifact-expiry-invalid'
+    }
+    elseif ($expiresAt -le $TrustedNow.ToUniversalTime()) {
+        Add-AdmissionError 'artifact-expired'
+    }
+
+    if ($identity.producer.repository -cne $Policy.producer_repository) {
+        Add-AdmissionError 'producer-repository-mismatch'
+    }
+    if (@($identity.producer.parents).Count -ne 1 -or
+        -not (Test-Arm64Sha @($identity.producer.parents)[0])) {
+        Add-AdmissionError 'synthetic-merge-producer'
+    }
+    if ($identity.run.ref -match '^refs/pull/[0-9]+/merge$' -or
+        $identity.run.ref -cne $Policy.protected_ref -or
+        $identity.run.head_sha -cne $identity.producer.commit) {
+        Add-AdmissionError 'run-context-mismatch'
+    }
+
+    $message = [string]$identity.producer.commit_message
+    $normalizedMessage = $message.Replace("`r`n", "`n").TrimEnd("`n")
+    $terminalPair = $Policy.owned_commit_terminal_trailers -join "`n"
+    if (-not $normalizedMessage.EndsWith($terminalPair, [StringComparison]::Ordinal)) {
+        Add-AdmissionError 'producer-terminal-trailers-invalid'
+    }
+    else {
+        $prefix = $normalizedMessage.Substring(0, $normalizedMessage.Length - $terminalPair.Length)
+        if (-not $prefix.EndsWith("`n`n", [StringComparison]::Ordinal)) {
+            Add-AdmissionError 'producer-terminal-trailers-invalid'
+        }
         foreach ($trailer in $Policy.owned_commit_terminal_trailers) {
-            $occurrences = @($message.Split("`n") | Where-Object { $_ -ceq $trailer }).Count
-            if ($occurrences -ne 1) {
-                $pairValid = $false
-            }
-        }
-
-        if (-not $pairValid) {
-            Add-AdmissionError 'producer-trailer-pair-invalid'
-        }
-    }
-
-    if ($values.ContainsKey('workflow.path') -and
-        $values['workflow.path'] -cne $Policy.admission_workflow.path) {
-        Add-AdmissionError 'workflow-mismatch:path'
-    }
-    if ($values.ContainsKey('workflow.blob')) {
-        if (-not (Test-Arm64Sha $values['workflow.blob'])) {
-            Add-AdmissionError 'invalid:workflow.blob'
-        }
-        elseif ($values['workflow.blob'] -cne $Policy.admission_workflow.blob) {
-            Add-AdmissionError 'workflow-mismatch:blob'
-        }
-    }
-    if ($values.ContainsKey('workflow.actions')) {
-        $metadataActions = $values['workflow.actions']
-        foreach ($expectedAction in $Policy.external_action_pins.PSObject.Properties) {
-            $actualAction = $metadataActions.PSObject.Properties[$expectedAction.Name]
-            if ($null -ne $actualAction -and $actualAction.Value -cne $expectedAction.Value) {
-                Add-AdmissionError "action-pin-mismatch:$($expectedAction.Name)"
-            }
-        }
-        foreach ($actualAction in $metadataActions.PSObject.Properties) {
-            if ($null -eq $Policy.external_action_pins.PSObject.Properties[$actualAction.Name]) {
-                Add-AdmissionError "action-unreviewed:$($actualAction.Name)"
+            if (@($normalizedMessage.Split("`n") | Where-Object { $_ -ceq $trailer }).Count -ne 1) {
+                Add-AdmissionError 'producer-terminal-trailers-invalid'
             }
         }
     }
 
-    foreach ($integerPath in @('run.id', 'run.attempt', 'artifact.id', 'artifact.size',
-            'runtime.release.id', 'binutils.release.id')) {
-        if ($values.ContainsKey($integerPath) -and -not (Test-Arm64PositiveInteger $values[$integerPath])) {
-            Add-AdmissionError "invalid:$integerPath"
-        }
-    }
-    if ($values.ContainsKey('run.job') -and $values['run.job'] -cne $Policy.admission_workflow.job) {
-        Add-AdmissionError 'run-mismatch:job'
-    }
-    if ($values.ContainsKey('run.event_name') -and $values['run.event_name'] -cne 'workflow_dispatch') {
-        Add-AdmissionError 'synthetic-merge:event'
-    }
-    if ($values.ContainsKey('run.ref')) {
-        if ($values['run.ref'] -match '^refs/pull/[0-9]+/merge$') {
-            Add-AdmissionError 'synthetic-merge:ref'
-        }
-        elseif ($values['run.ref'] -cne $Policy.admission_workflow.ref) {
-            Add-AdmissionError 'run-mismatch:ref'
-        }
-    }
-    if ($values.ContainsKey('run.head_sha')) {
-        if (-not (Test-Arm64Sha $values['run.head_sha'])) {
-            Add-AdmissionError 'invalid:run.head_sha'
-        }
-        elseif ($values.ContainsKey('producer.commit') -and
-            $values['run.head_sha'] -cne $values['producer.commit']) {
-            Add-AdmissionError 'producer-head-mismatch'
+    foreach ($action in $identity.workflow.actions.PSObject.Properties) {
+        $expectedPin = $Policy.external_action_pins.PSObject.Properties[$action.Name]
+        if ($null -eq $expectedPin -or $action.Value -cne $expectedPin.Value.commit) {
+            Add-AdmissionError "workflow-action-not-reviewed:$($action.Name)"
         }
     }
 
-    if ($values.ContainsKey('artifact.name') -and $values['artifact.name'] -cne $Policy.artifact_name) {
-        Add-AdmissionError 'artifact-mismatch:name'
+    if (@($Policy.revocations.runtime.release_ids) -contains [long]$identity.runtime.release.id) {
+        Add-AdmissionError 'revoked-runtime-release'
     }
-    if ($values.ContainsKey('artifact.digest') -and
-        ($values['artifact.digest'] -isnot [string] -or
-            $values['artifact.digest'] -cnotmatch '^sha256:[0-9a-f]{64}$')) {
-        Add-AdmissionError 'invalid:artifact.digest'
+    if (@($Policy.revocations.binutils.release_ids) -contains [long]$identity.binutils.release.id) {
+        Add-AdmissionError 'revoked-binutils-release'
     }
-    if ($values.ContainsKey('admission.evaluated_at') -and $values.ContainsKey('artifact.expires_at')) {
-        $evaluatedAt = ConvertTo-Arm64Timestamp $values['admission.evaluated_at']
-        $expiresAt = ConvertTo-Arm64Timestamp $values['artifact.expires_at']
-        if ($null -eq $evaluatedAt) {
-            Add-AdmissionError 'invalid:admission.evaluated_at'
+    if (@($Policy.revocations.binutils.package_sha256) -ccontains
+        $identity.binutils.package_digest.Substring(7)) {
+        Add-AdmissionError 'revoked-binutils-package'
+    }
+
+    $ancestryProperty = Get-Arm64Property `
+        -InputObject $Evidence.candidate `
+        -Name 'ancestry_checks'
+    $ancestryChecks = @(
+        if ($null -ne $ancestryProperty) {
+            $ancestryProperty.Value
         }
-        if ($null -eq $expiresAt) {
-            Add-AdmissionError 'invalid:artifact.expires_at'
+    )
+    $revokedRoots = @($Policy.revocations.runtime.commits_and_descendants)
+    if ($ancestryChecks.Count -ne $revokedRoots.Count) {
+        Add-AdmissionError 'runtime-ancestry-incomplete'
+    }
+    foreach ($revokedRoot in $revokedRoots) {
+        $matches = @($ancestryChecks | Where-Object {
+                $_.revoked_commit -ceq $revokedRoot -and
+                $_.candidate_commit -ceq $identity.runtime.commit
+            })
+        if ($matches.Count -ne 1 -or
+            $matches[0].query_complete -isnot [bool] -or
+            -not $matches[0].query_complete) {
+            Add-AdmissionError 'runtime-ancestry-incomplete'
         }
-        elseif ($null -ne $evaluatedAt -and $expiresAt -le $evaluatedAt) {
-            Add-AdmissionError 'artifact-expired'
+        elseif ($matches[0].is_descendant -isnot [bool] -or $matches[0].is_descendant) {
+            Add-AdmissionError 'revoked-runtime-commit-or-descendant'
         }
     }
 
-    if ($values.ContainsKey('runtime.commit')) {
-        if (-not (Test-Arm64Sha $values['runtime.commit'])) {
-            Add-AdmissionError 'invalid:runtime.commit'
-        }
-        elseif (@($Policy.revocations.runtime.commits_and_descendants) -ccontains $values['runtime.commit']) {
-            Add-AdmissionError 'revoked:runtime-commit'
-        }
-    }
-    if ($values.ContainsKey('runtime.ancestors')) {
-        $ancestors = $values['runtime.ancestors']
-        if ($ancestors -is [string] -or $ancestors -isnot [Collections.IEnumerable]) {
-            Add-AdmissionError 'invalid:runtime.ancestors'
-        }
-        else {
-            foreach ($ancestor in @($ancestors)) {
-                if (-not (Test-Arm64Sha $ancestor)) {
-                    Add-AdmissionError 'invalid:runtime.ancestors'
-                }
-                elseif (@($Policy.revocations.runtime.commits_and_descendants) -ccontains $ancestor) {
-                    Add-AdmissionError 'revoked:runtime-commit-descendant'
-                }
-            }
-        }
-    }
-    if ($values.ContainsKey('runtime.release.id') -and
-        (Test-Arm64PositiveInteger $values['runtime.release.id']) -and
-        @($Policy.revocations.runtime.release_ids) -contains [long]$values['runtime.release.id']) {
-        Add-AdmissionError 'revoked:runtime-release'
-    }
-    if ($values.ContainsKey('binutils.release.id') -and
-        (Test-Arm64PositiveInteger $values['binutils.release.id']) -and
-        @($Policy.revocations.binutils.release_ids) -contains [long]$values['binutils.release.id']) {
-        Add-AdmissionError 'revoked:binutils-release'
-    }
-    if ($values.ContainsKey('binutils.package_sha256')) {
-        if (-not (Test-Arm64Sha256 $values['binutils.package_sha256'])) {
-            Add-AdmissionError 'invalid:binutils.package_sha256'
-        }
-        elseif (@($Policy.revocations.binutils.package_sha256) -ccontains
-            $values['binutils.package_sha256']) {
-            Add-AdmissionError 'revoked:binutils-package'
-        }
-    }
-
-    foreach ($checkName in @(
-            'runtime_commit_and_descendants',
-            'runtime_release',
-            'binutils_release',
-            'binutils_package_sha256')) {
-        $checkPath = "revocation_checks.$checkName"
-        if ($values.ContainsKey($checkPath) -and
-            ($values[$checkPath] -isnot [bool] -or -not $values[$checkPath])) {
-            Add-AdmissionError "revocation-check-not-complete:$checkName"
-        }
-    }
-
-    if ($values.ContainsKey('workspace.root')) {
-        $escapedSharedRoot = [regex]::Escape($Policy.forbidden_shared_root)
-        if ($values['workspace.root'] -match "(?i)^$escapedSharedRoot(?:\\|$)") {
-            Add-AdmissionError 'shared-root:workspace'
-        }
-    }
-    if ($values.ContainsKey('workspace.shared_root_observed') -and
-        ($values['workspace.shared_root_observed'] -isnot [bool] -or
-            $values['workspace.shared_root_observed'])) {
-        Add-AdmissionError 'shared-root:observed'
-    }
-    if ($values.ContainsKey('workspace.shared_root_transaction') -and
-        ($values['workspace.shared_root_transaction'] -isnot [bool] -or
-            $values['workspace.shared_root_transaction'])) {
-        Add-AdmissionError 'shared-root:transaction'
+    foreach ($workspaceError in Test-Arm64WorkspaceEvidence `
+            -Workspace $Evidence.candidate.workspace `
+            -Policy $Policy) {
+        Add-AdmissionError $workspaceError
     }
 
     return [pscustomobject]@{
@@ -493,27 +773,28 @@ function Test-Arm64Admission {
 }
 
 if ($MyInvocation.InvocationName -ne '.') {
-    $hasPath = -not [string]::IsNullOrWhiteSpace($MetadataPath)
-    $hasJson = -not [string]::IsNullOrWhiteSpace($MetadataJson)
-    if ($hasPath -eq $hasJson) {
-        throw 'Specify exactly one of -MetadataPath or -MetadataJson.'
+    if (-not $OfflineFixture) {
+        throw 'Live admission has no caller-data interface. Only the protected authoritative collector may invoke it.'
+    }
+    if ([string]::IsNullOrWhiteSpace($EvidencePath) -or
+        [string]::IsNullOrWhiteSpace($FixturePolicyPath) -or
+        $TrustedNow -eq [DateTimeOffset]::MinValue) {
+        throw 'Offline fixtures require -EvidencePath, -FixturePolicyPath, and -TrustedNow.'
     }
 
-    $policy = Get-Content -LiteralPath $PolicyPath -Raw | ConvertFrom-Json -Depth 32
-    $metadata = if ($hasPath) {
-        Get-Content -LiteralPath $MetadataPath -Raw | ConvertFrom-Json -Depth 32
-    }
-    else {
-        $MetadataJson | ConvertFrom-Json -Depth 32
-    }
-
-    $result = Test-Arm64Admission -Metadata $metadata -Policy $policy
+    $evidence = Get-Content -LiteralPath $EvidencePath -Raw | ConvertFrom-Json -Depth 64
+    $policy = Get-Content -LiteralPath $FixturePolicyPath -Raw | ConvertFrom-Json -Depth 64
+    $result = Test-Arm64AdmissionEvidence `
+        -Evidence $evidence `
+        -Policy $policy `
+        -TrustedNow $TrustedNow `
+        -Mode OfflineFixture
     if (-not $result.Allowed) {
-        foreach ($code in $result.Errors) {
-            [Console]::Error.WriteLine("ARM64 admission denied: $code")
+        foreach ($errorCode in $result.Errors) {
+            [Console]::Error.WriteLine("Offline fixture denied: $errorCode")
         }
         exit 1
     }
 
-    Write-Output 'ARM64 admission metadata accepted.'
+    Write-Output 'Offline fixture accepted; this result has no live admission authority.'
 }

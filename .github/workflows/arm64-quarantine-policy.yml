@@ -1,33 +1,71 @@
-name: ARM64 quarantine policy diagnostics
+name: Protected ARM64 policy enforcement
 
 on:
-  pull_request:
-    paths:
-      - ".github/policies/arm64-quarantine-policy.json"
-      - ".github/scripts/arm64-admission.ps1"
-      - ".github/workflows/*.yml"
-      - "tests/arm64-admission/**"
-  push:
-    branches:
-      - main
-    paths:
-      - ".github/policies/arm64-quarantine-policy.json"
-      - ".github/scripts/arm64-admission.ps1"
-      - ".github/workflows/*.yml"
-      - "tests/arm64-admission/**"
-  workflow_dispatch:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
 
 permissions:
   contents: read
+  pull-requests: read
 
 jobs:
-  diagnostics:
-    name: Offline policy and fixture tests
+  preflight:
+    name: Validate protected context before network
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout source
-        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
-
-      - name: Run offline diagnostics
+      - name: Bind GitHub-owned event identity
         shell: pwsh
-        run: ./tests/arm64-admission/run.ps1
+        env:
+          EXPECTED_REPOSITORY: crutkas/msys2-woarm64-build
+          EXPECTED_REF: refs/heads/main
+          EXPECTED_WORKFLOW_REF: crutkas/msys2-woarm64-build/.github/workflows/arm64-quarantine-policy.yml@refs/heads/main
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $event = Get-Content -LiteralPath $env:GITHUB_EVENT_PATH -Raw |
+            ConvertFrom-Json -Depth 32
+          if ($env:GITHUB_EVENT_NAME -cne 'pull_request_target' -or
+              $env:GITHUB_REPOSITORY -cne $env:EXPECTED_REPOSITORY -or
+              $env:GITHUB_REF -cne $env:EXPECTED_REF -or
+              $env:GITHUB_WORKFLOW_REF -cne $env:EXPECTED_WORKFLOW_REF -or
+              $event.pull_request.base.repo.full_name -cne $env:EXPECTED_REPOSITORY -or
+              $event.pull_request.base.ref -cne 'main' -or
+              $event.pull_request.base.sha -notmatch '^[0-9a-f]{40}$' -or
+              $event.pull_request.head.sha -notmatch '^[0-9a-f]{40}$') {
+            throw 'Untrusted or incomplete protected verifier context.'
+          }
+          if ($event.pull_request.head.sha -ceq $event.pull_request.merge_commit_sha) {
+            throw 'Synthetic merge input is forbidden.'
+          }
+
+  audit:
+    name: Protected base policy and workflow audit
+    needs: preflight
+    runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Checkout exact protected base
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: verifier
+          persist-credentials: false
+
+      - name: Verify protected source identity
+        shell: pwsh
+        working-directory: verifier
+        run: ./.github/scripts/verify-protected-context.ps1
+
+      - name: Collect candidate files as API data
+        shell: pwsh
+        working-directory: verifier
+        run: ./.github/scripts/collect-pr-workflow-data.ps1
+
+      - name: Audit candidate data semantically
+        shell: pwsh
+        working-directory: verifier
+        run: ./.github/scripts/audit-arm64-workflows.ps1

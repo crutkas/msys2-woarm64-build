@@ -1,0 +1,161 @@
+{
+  "schema_version": 2,
+  "authority": {
+    "kind": "offline-fixture",
+    "repository": "fixture-only",
+    "protected_ref": "fixture-only",
+    "workflow_ref": "fixture-only",
+    "collected_at": "2026-08-27T22:00:00Z",
+    "fixture_only": true
+  },
+  "baseline": {
+    "repository": "git-for-windows/git",
+    "release": {
+      "id": 368726166,
+      "immutable": true,
+      "draft": false,
+      "prerelease": false,
+      "tag_name": "v2.55.0.windows.4",
+      "published_at": "2026-08-11T17:35:02Z"
+    },
+    "annotated_tag": {
+      "object_sha": "76e15f45d670eab29f6d55611c252b3f2b70188c",
+      "peeled_commit": "a93524749d7806870fd2b4b00a3812da1d6e5f4a"
+    },
+    "asset_manifest": {
+      "canonicalization": "id-ascending-compact-json-v1",
+      "fields": [
+        "id",
+        "name",
+        "size",
+        "digest",
+        "state"
+      ],
+      "count": 113,
+      "sha256": "a56945725efbd8599581c10a2e91cba089e2f09dfc248e643f3c31bea54762f8",
+      "required_asset": {
+        "id": 510402464,
+        "name": "Git-2.55.0.4-arm64.tar.bz2",
+        "size": 171467184,
+        "digest": "sha256:7cc28b4431c9448c310d0093fbba5646517cd702690a9b965014d7df85319ad9",
+        "state": "uploaded"
+      }
+    }
+  },
+  "candidate": {
+    "admission_id": "offline-fixture-only-candidate",
+    "identity": {
+      "producer": {
+        "repository": "crutkas/msys2-woarm64-build",
+        "commit": "3333333333333333333333333333333333333333",
+        "tree": "4444444444444444444444444444444444444444",
+        "parents": [
+          "5555555555555555555555555555555555555555"
+        ],
+        "commit_message": "Produce reviewed ARM64 metadata\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\nCopilot-Session: a854bea5-cd3c-46aa-a15b-517717c8e5df"
+      },
+      "workflow": {
+        "path": ".github/workflows/fixture-producer.yml",
+        "blob": "6666666666666666666666666666666666666666",
+        "actions": {
+          "actions/checkout": "11d5960a326750d5838078e36cf38b85af677262"
+        }
+      },
+      "run": {
+        "id": 123456789,
+        "attempt": 1,
+        "job": "produce-arm64-candidate",
+        "event_name": "workflow_dispatch",
+        "ref": "refs/heads/main",
+        "head_sha": "3333333333333333333333333333333333333333"
+      },
+      "artifact": {
+        "id": 987654321,
+        "name": "arm64-runtime-candidate",
+        "size": 1048576,
+        "digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+        "expires_at": "2026-09-03T00:00:00Z"
+      },
+      "runtime": {
+        "repository": "example/runtime-fixture",
+        "release": {
+          "id": 400000001,
+          "immutable": true,
+          "draft": false,
+          "prerelease": false,
+          "tag_name": "fixture-runtime",
+          "published_at": "2026-08-20T00:00:00Z",
+          "annotated_tag": {
+            "object_sha": "7777777777777777777777777777777777777777",
+            "peeled_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+          },
+          "asset_manifest": {
+            "canonicalization": "id-ascending-compact-json-v1",
+            "fields": [
+              "id",
+              "name",
+              "size",
+              "digest",
+              "state"
+            ],
+            "count": 1,
+            "sha256": "1212121212121212121212121212121212121212121212121212121212121212"
+          }
+        },
+        "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
+      },
+      "binutils": {
+        "repository": "example/binutils-fixture",
+        "release": {
+          "id": 400000002,
+          "immutable": true,
+          "draft": false,
+          "prerelease": false,
+          "tag_name": "fixture-binutils",
+          "published_at": "2026-08-20T00:00:00Z",
+          "annotated_tag": {
+            "object_sha": "8888888888888888888888888888888888888888",
+            "peeled_commit": "9999999999999999999999999999999999999999"
+          },
+          "asset_manifest": {
+            "canonicalization": "id-ascending-compact-json-v1",
+            "fields": [
+              "id",
+              "name",
+              "size",
+              "digest",
+              "state"
+            ],
+            "count": 1,
+            "sha256": "3434343434343434343434343434343434343434343434343434343434343434"
+          }
+        },
+        "source_commit": "9999999999999999999999999999999999999999",
+        "asset": {
+          "id": 400000003,
+          "name": "fixture-binutils.pkg.tar.zst",
+          "size": 2097152,
+          "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+        },
+        "package_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+      }
+    },
+    "ancestry_checks": [
+      {
+        "revoked_commit": "a527ace21c23b763bb96841745f0e2d8cd984f4a",
+        "candidate_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+        "query_complete": true,
+        "is_descendant": false
+      }
+    ],
+    "workspace": {
+      "input_path": "D:\\isolated\\arm64-admission",
+      "canonical_path": "D:\\isolated\\arm64-admission",
+      "exists": true,
+      "absolute": true,
+      "final_path_resolved": true,
+      "reparse_components": [],
+      "volume_id": "D:\\"
+    }
+  }
+}
