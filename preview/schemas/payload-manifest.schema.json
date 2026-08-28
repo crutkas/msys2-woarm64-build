@@ -1,0 +1,51 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARM64 preview payload manifest",
+  "type": "object",
+  "additionalProperties": false,
+  "required": ["schemaVersion", "lockSha256", "provenanceSha256", "scope", "entries"],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "lockSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "provenanceSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "scope": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["root", "excludedPrefixes"],
+      "properties": {
+        "root": { "const": "." },
+        "excludedPrefixes": {
+          "type": "array",
+          "prefixItems": [{ "const": "preview-evidence/" }],
+          "items": false
+        }
+      }
+    },
+    "entries": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "additionalProperties": false,
+        "required": [
+          "path",
+          "type",
+          "bytes",
+          "sha256",
+          "linkTarget"
+        ],
+        "properties": {
+          "path": { "type": "string", "minLength": 1 },
+          "type": { "enum": ["file", "directory", "symlink", "hardlink"] },
+          "linkTarget": { "type": ["string", "null"] },
+          "bytes": { "type": "integer", "minimum": 0 },
+          "sha256": {
+            "anyOf": [
+              { "type": "null" },
+              { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+            ]
+          }
+        }
+      }
+    }
+  }
+}

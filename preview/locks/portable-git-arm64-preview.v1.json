@@ -1,0 +1,456 @@
+{
+  "schemaVersion": 1,
+  "sourceDateEpoch": 1787842800,
+  "inputs": [
+    {
+      "id": "archive-extractor-7zr",
+      "role": "archive-extractor",
+      "status": "resolved",
+      "identity": {
+        "repository": "ip7z/7zip",
+        "tag": "26.02",
+        "commit": "f9d78aff31a5f2521ae7ddbdc97c4a8855808959"
+      },
+      "asset": {
+        "name": "7zr.exe",
+        "url": "https://github.com/ip7z/7zip/releases/download/26.02/7zr.exe",
+        "expectedBytes": 602112,
+        "sha256": "56b8cc9f4971cef253644fafe54063ed7fdca551d4dee0f8c6baa81b855acd72",
+        "format": "portable-executable",
+        "releaseAssetId": 458364144,
+        "license": "7-Zip license: LGPL-2.1-or-later; AES code BSD-3-Clause; unRAR restriction"
+      },
+      "package": null,
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "archive-extractor-7zip-extra",
+      "role": "archive-extractor",
+      "status": "resolved",
+      "identity": {
+        "repository": "ip7z/7zip",
+        "tag": "26.02",
+        "commit": "f9d78aff31a5f2521ae7ddbdc97c4a8855808959"
+      },
+      "asset": {
+        "name": "7z2602-extra.7z",
+        "url": "https://github.com/ip7z/7zip/releases/download/26.02/7z2602-extra.7z",
+        "expectedBytes": 1758916,
+        "sha256": "081df9e9311dfd9c9e0e98c1c80180b99bb51e4cb24156b5f3057fe3c259d70a",
+        "format": "file",
+        "releaseAssetId": 458363818,
+        "license": "7-Zip license: LGPL-2.1-or-later; AES code BSD-3-Clause; unRAR restriction",
+        "members": [
+          {
+            "path": "x64/7za.exe",
+            "expectedBytes": 1334784,
+            "sha256": "35d4d69d7cd6cb44558f208c3b1334268013f9daf82d2dda848893a1c30c59c2"
+          }
+        ]
+      },
+      "package": null,
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "portable-git-arm64-base",
+      "role": "base",
+      "status": "resolved",
+      "identity": {
+        "repository": "git-for-windows/git",
+        "tag": "v2.55.0.windows.4",
+        "commit": "a93524749d7806870fd2b4b00a3812da1d6e5f4a"
+      },
+      "asset": {
+        "name": "PortableGit-2.55.0.4-arm64.7z.exe",
+        "url": "https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.4/PortableGit-2.55.0.4-arm64.7z.exe",
+        "expectedBytes": 59191568,
+        "sha256": "d69d0c6a3c5445553565ef74f1d9e22a9869f57c246111db347dd96c252b4da5",
+        "format": "7z-sfx"
+      },
+      "package": null,
+      "overlay": {
+        "enabled": true,
+        "mappings": [
+          {
+            "source": ".",
+            "destination": ".",
+            "allowOverwrite": false
+          }
+        ]
+      }
+    },
+    {
+      "id": "scanner-host-portable-git-x64",
+      "role": "scanner-host",
+      "status": "resolved",
+      "identity": {
+        "repository": "git-for-windows/git",
+        "tag": "v2.55.0.windows.4",
+        "commit": "a93524749d7806870fd2b4b00a3812da1d6e5f4a"
+      },
+      "asset": {
+        "name": "PortableGit-2.55.0.4-64-bit.7z.exe",
+        "url": "https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.4/PortableGit-2.55.0.4-64-bit.7z.exe",
+        "expectedBytes": 58915456,
+        "sha256": "016e84230a3767f0c6b3788e79ba0c58a17377086801719d46700fca4f7b36b5",
+        "format": "7z-sfx"
+      },
+      "package": null,
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "runtime-headers",
+      "role": "build-support-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-runtime-pr10-a527-20260824",
+        "commit": "3f92608bfeea71102da9ee093c4db1d67f513a5c"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-headers-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-runtime-pr10-a527-20260824/mingw-w64-cross-msysarm64-headers-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 9319013,
+        "sha256": "263f8f7e3614ac41337ce3a223f2bb26b6459aef6f34670525cdd4c03ec3ae21",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-headers",
+        "version": "3.6.10.r0.ga527ace21-1",
+        "provides": [
+          "aarch64-pc-msys-headers=3.6.10.r0.ga527ace21",
+          "mingw-w64-cross-cygwinarm64-headers=3.6.10.r0.gee50e0223-1",
+          "mingw-w64-cross-msysarm64-headers=3.6.10.r0.gc7932d64f-1"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "runtime-default-manifest",
+      "role": "build-support-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-runtime-pr10-a527-20260824",
+        "commit": "3f92608bfeea71102da9ee093c4db1d67f513a5c"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-windows-default-manifest-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-runtime-pr10-a527-20260824/mingw-w64-cross-msysarm64-windows-default-manifest-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 4743,
+        "sha256": "33861708e7f981b4eef5b93ef135ab3a43d2757533f64df6f61a146d823c355f",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-windows-default-manifest",
+        "version": "3.6.10.r0.ga527ace21-1",
+        "provides": [
+          "aarch64-pc-msys-windows-default-manifest=3.6.10.r0.ga527ace21",
+          "mingw-w64-cross-cygwinarm64-windows-default-manifest=3.6.10.r0.gee50e0223-1",
+          "mingw-w64-cross-msysarm64-windows-default-manifest=3.6.10.r0.gc7932d64f-1"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "runtime-sysroot",
+      "role": "build-support-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-runtime-pr10-a527-20260824",
+        "commit": "3f92608bfeea71102da9ee093c4db1d67f513a5c"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-sysroot-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-runtime-pr10-a527-20260824/mingw-w64-cross-msysarm64-sysroot-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 86822,
+        "sha256": "e30609e09eab2fa07aba2e6196b05f34e5e9107abc4ab8832966684758c743ca",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-sysroot",
+        "version": "3.6.10.r0.ga527ace21-1",
+        "provides": [
+          "aarch64-pc-msys-sysroot=3.6.10.r0.ga527ace21",
+          "mingw-w64-cross-cygwinarm64-sysroot=3.6.10.r0.gee50e0223-1",
+          "mingw-w64-cross-msysarm64-sysroot=3.6.10.r0.gc7932d64f-1"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "runtime",
+      "role": "runtime-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-runtime-pr10-a527-20260824",
+        "commit": "3f92608bfeea71102da9ee093c4db1d67f513a5c"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-runtime-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-runtime-pr10-a527-20260824/mingw-w64-cross-msysarm64-runtime-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 9893043,
+        "sha256": "158c505f45025a466950faa7c85c9fd85e9d32384dd27b53586ffc75d71ca78e",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-runtime",
+        "version": "3.6.10.r0.ga527ace21-1",
+        "provides": [
+          "aarch64-pc-msys-runtime=3.6.10.r0.ga527ace21"
+        ]
+      },
+      "overlay": {
+        "enabled": true,
+        "mappings": [
+          {
+            "source": "opt/aarch64-pc-msys/bin/msys-2.0.dll",
+            "destination": "usr/bin/msys-2.0.dll",
+            "allowOverwrite": true
+          }
+        ]
+      }
+    },
+    {
+      "id": "runtime-devel",
+      "role": "build-support-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-runtime-pr10-a527-20260824",
+        "commit": "3f92608bfeea71102da9ee093c4db1d67f513a5c"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-runtime-devel-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-runtime-pr10-a527-20260824/mingw-w64-cross-msysarm64-runtime-devel-3.6.10.r0.ga527ace21-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 4426157,
+        "sha256": "c18b51e483991770b8e06cc2d8f7002d06784d3071ac213a8fee24bb831267d1",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-runtime-devel",
+        "version": "3.6.10.r0.ga527ace21-1",
+        "provides": [
+          "aarch64-pc-msys-runtime-devel=3.6.10.r0.ga527ace21"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "gcc-libstdcxx-headers",
+      "role": "build-support-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-gcc-pr13-support-20260826",
+        "commit": "42f1fb808363203a83c7f6f935ab7e4bdffbe127"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-libstdc++-headers-15.0.1dev-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-gcc-pr13-support-20260826/mingw-w64-cross-msysarm64-libstdc%2B%2B-headers-15.0.1dev-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 1520166,
+        "sha256": "9715aab6894379bf5ab936a3a559f286fb4aedbb64f0774d7457182e00648e08",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-libstdc++-headers",
+        "version": "15.0.1dev-1",
+        "provides": [
+          "aarch64-pc-msys-libstdc++-headers=15.0.1dev"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "gcc-w32api-runtime",
+      "role": "build-support-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "msysarm64-gcc-pr13-support-20260826",
+        "commit": "42f1fb808363203a83c7f6f935ab7e4bdffbe127"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-msysarm64-w32api-runtime-14.0.0.r0.g9b3dd0125-1-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/msysarm64-gcc-pr13-support-20260826/mingw-w64-cross-msysarm64-w32api-runtime-14.0.0.r0.g9b3dd0125-1-x86_64.pkg.tar.zst",
+        "expectedBytes": 2349635,
+        "sha256": "7727936f4212e5af04e9739eca60f157c0875796c1e82fcfb79fd4398b111e24",
+        "format": "pkg.tar.zst"
+      },
+      "package": {
+        "name": "mingw-w64-cross-msysarm64-w32api-runtime",
+        "version": "14.0.0.r0.g9b3dd0125-1",
+        "provides": [
+          "aarch64-pc-msys-w32api-runtime=14.0.0.r0.g9b3dd0125-1",
+          "mingw-w64-cross-cygwinarm64-w32api-runtime=14.0.0.r0.g9b3dd0125-1"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "fixed-binutils",
+      "role": "scanner-tool-package",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "tag": "cygwinarm64-binutils-pr21-3356eec-20260827",
+        "commit": "3356eec1411983cc252b04afac32bca5f3b8d824"
+      },
+      "asset": {
+        "name": "mingw-w64-cross-cygwinarm64-binutils-2.44.50-2-x86_64.pkg.tar.zst",
+        "url": "https://github.com/crutkas/MSYS2-packages/releases/download/cygwinarm64-binutils-pr21-3356eec-20260827/mingw-w64-cross-cygwinarm64-binutils-2.44.50-2-x86_64.pkg.tar.zst",
+        "expectedBytes": 6545114,
+        "sha256": "3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b",
+        "format": "pkg.tar.zst",
+        "members": [
+          {
+            "path": "opt/bin/aarch64-pc-cygwin-objdump.exe",
+            "expectedBytes": 2887699,
+            "sha256": "bb0d53db4128aff7f6b20c46be4e3625b1d82134476d7b03e58ed22015136e6e"
+          },
+          {
+            "path": "opt/bin/aarch64-pc-cygwin-nm.exe",
+            "expectedBytes": 1257877,
+            "sha256": "80b4716108b362ba05f48cd9228d20a4193897b4a5eeb8eb19e80f4c83e3e90a"
+          },
+          {
+            "path": "opt/bin/aarch64-pc-cygwin-ld.exe",
+            "expectedBytes": 1887140,
+            "sha256": "075ed377a430eb120a994dfdc7c3187e937331239204578d696f08ee1c72fb1f"
+          }
+        ]
+      },
+      "package": {
+        "name": "mingw-w64-cross-cygwinarm64-binutils",
+        "version": "2.44.50-2",
+        "provides": [
+          "aarch64-pc-cygwin-binutils=2.44.50",
+          "aarch64-pc-msys-binutils=2.44.50",
+          "mingw-w64-cross-cygwin-arm64-binutils=2.44.50"
+        ]
+      },
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "fixed-pseudo-reloc-scanner",
+      "role": "scanner-script",
+      "status": "resolved",
+      "identity": {
+        "repository": "crutkas/MSYS2-packages",
+        "sourcePath": ".ci/check-aarch64-pseudo-relocs.ps1",
+        "commit": "3356eec1411983cc252b04afac32bca5f3b8d824"
+      },
+      "asset": {
+        "name": "check-aarch64-pseudo-relocs.ps1",
+        "url": "https://raw.githubusercontent.com/crutkas/MSYS2-packages/3356eec1411983cc252b04afac32bca5f3b8d824/.ci/check-aarch64-pseudo-relocs.ps1",
+        "expectedBytes": 10569,
+        "sha256": "888939b57d1bce2e3c119e7c4824703e893bd449d49a5142f040dd935741ddb9",
+        "format": "file"
+      },
+      "package": null,
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "ncurses-runtime",
+      "role": "native-shell-package",
+      "status": "unresolved",
+      "identity": null,
+      "asset": null,
+      "package": null,
+      "overlay": {
+        "enabled": true,
+        "mappings": []
+      }
+    },
+    {
+      "id": "ncurses-devel",
+      "role": "build-support-package",
+      "status": "unresolved",
+      "identity": null,
+      "asset": null,
+      "package": null,
+      "overlay": {
+        "enabled": false,
+        "mappings": []
+      }
+    },
+    {
+      "id": "readline",
+      "role": "native-shell-package",
+      "status": "unresolved",
+      "identity": null,
+      "asset": null,
+      "package": null,
+      "overlay": {
+        "enabled": true,
+        "mappings": []
+      }
+    },
+    {
+      "id": "bash",
+      "role": "native-shell-package",
+      "status": "unresolved",
+      "identity": null,
+      "asset": null,
+      "package": null,
+      "overlay": {
+        "enabled": true,
+        "mappings": []
+      }
+    }
+  ],
+  "nativeShellClosure": [
+    "cmd/git.exe",
+    "usr/bin/bash.exe",
+    "usr/bin/sh.exe",
+    "usr/bin/uname.exe",
+    "usr/bin/tr.exe",
+    "usr/bin/touch.exe",
+    "usr/bin/grep.exe",
+    "usr/bin/mkdir.exe",
+    "usr/bin/rm.exe",
+    "usr/bin/ln.exe",
+    "usr/bin/cat.exe",
+    "usr/bin/chmod.exe",
+    "usr/bin/cygpath.exe",
+    "usr/bin/wc.exe",
+    "usr/bin/msys-2.0.dll",
+    "usr/bin/msys-ncursesw6.dll",
+    "usr/bin/msys-readline8.dll"
+  ]
+}

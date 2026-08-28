@@ -1,0 +1,24 @@
+name: Validate ARM64 preview harness
+
+on:
+  push:
+    paths:
+      - 'preview/**'
+      - '.github/workflows/preview-harness.yml'
+  pull_request:
+    paths:
+      - 'preview/**'
+      - '.github/workflows/preview-harness.yml'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  targeted-tests:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Run fail-closed assembler and evidence tests
+        shell: pwsh
+        run: ./preview/tests/Run-Tests.ps1

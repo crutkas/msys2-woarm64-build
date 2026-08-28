@@ -1,0 +1,105 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARM64 preview assembly run evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "previewId",
+    "sourceLockSha256",
+    "lockSha256",
+    "provenanceSha256",
+    "payloadManifestSha256",
+    "rootInventorySha256",
+    "staticReportSha256",
+    "host",
+    "observedUtc",
+    "externalObservation"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "previewId": { "type": "string", "pattern": "^[a-z0-9][a-z0-9.-]{0,127}$" },
+    "sourceLockSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "lockSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "provenanceSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "payloadManifestSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "rootInventorySha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "staticReportSha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" },
+    "host": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["os", "architecture", "processArchitecture"],
+      "properties": {
+        "os": { "const": "Windows" },
+        "architecture": { "enum": ["AMD64", "ARM64"] },
+        "processArchitecture": { "enum": ["AMD64", "ARM64"] }
+      }
+    },
+    "observedUtc": { "type": "string", "format": "date-time" },
+    "externalObservation": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rootPath",
+        "authoritative",
+        "usedAsInput",
+        "cutoffUtc",
+        "before",
+        "after",
+        "commands"
+      ],
+      "properties": {
+        "rootPath": { "const": "C:\\msys64" },
+        "authoritative": { "const": false },
+        "usedAsInput": { "const": false },
+        "cutoffUtc": { "type": "string", "format": "date-time" },
+        "before": { "$ref": "#/$defs/sharedSnapshot" },
+        "after": { "$ref": "#/$defs/sharedSnapshot" },
+        "commands": {
+          "type": "array",
+          "minItems": 4,
+          "maxItems": 4,
+          "uniqueItems": true,
+          "prefixItems": [
+            { "const": "enumerate-database-manifest" },
+            { "const": "hash-database-manifest" },
+            { "const": "hash-package-log" },
+            { "const": "stat-package-log" }
+          ],
+          "items": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "sharedSnapshot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["log", "database"],
+      "properties": {
+        "log": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["bytes", "sha256"],
+          "properties": {
+            "bytes": { "type": "integer", "minimum": 0 },
+            "sha256": { "type": "string", "pattern": "^[0-9a-f]{64}$" }
+          }
+        },
+        "database": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["files", "bytes", "canonicalManifestSha256"],
+          "properties": {
+            "files": { "type": "integer", "minimum": 0 },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "canonicalManifestSha256": {
+              "type": "string",
+              "pattern": "^[0-9a-f]{64}$"
+            }
+          }
+        }
+      }
+    }
+  }
+}
