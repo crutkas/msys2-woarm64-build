@@ -1,0 +1,477 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARM64 preview harness admission evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "repository",
+    "run",
+    "event",
+    "git",
+    "workflow",
+    "tests",
+    "changedFiles",
+    "sourceBlobs",
+    "commitTrailers",
+    "privatePathScan",
+    "sharedRoot",
+    "artifact"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "repository": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "nodeId", "name", "defaultBranch"],
+      "properties": {
+        "id": { "const": "1333319462" },
+        "nodeId": { "const": "R_kgDOT3jXJg" },
+        "name": { "const": "crutkas/msys2-woarm64-build" },
+        "defaultBranch": { "const": "main" }
+      }
+    },
+    "run": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["id", "attempt", "workflowRef", "producerJob", "artifactName"],
+      "properties": {
+        "id": { "type": "string", "pattern": "^[0-9]+$" },
+        "attempt": { "type": "integer", "minimum": 1 },
+        "workflowRef": { "type": "string", "minLength": 1 },
+        "producerJob": { "const": "admission-evidence" },
+        "artifactName": {
+          "type": "string",
+          "pattern": "^arm64-admission-(push|pull_request)-[0-9a-f]{40}-[0-9]+-[1-9][0-9]*$"
+        }
+      }
+    },
+    "event": {
+      "oneOf": [
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "ref", "branch", "githubSha", "pullRequest"],
+          "properties": {
+            "name": { "const": "push" },
+            "ref": { "type": "string", "pattern": "^refs/heads/.+$" },
+            "branch": { "type": "string", "minLength": 1 },
+            "githubSha": { "$ref": "#/$defs/gitObjectId" },
+            "pullRequest": { "type": "null" }
+          }
+        },
+        {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["name", "ref", "branch", "githubSha", "pullRequest"],
+          "properties": {
+            "name": { "const": "pull_request" },
+            "ref": { "type": "string", "pattern": "^refs/pull/[1-9][0-9]*/merge$" },
+            "branch": { "type": "string", "minLength": 1 },
+            "githubSha": { "$ref": "#/$defs/gitObjectId" },
+            "pullRequest": {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "number",
+                "headSha",
+                "baseSha",
+                "headRepositoryId",
+                "baseRepositoryId"
+              ],
+              "properties": {
+                "number": { "type": "integer", "minimum": 1 },
+                "headSha": { "$ref": "#/$defs/gitObjectId" },
+                "baseSha": { "$ref": "#/$defs/gitObjectId" },
+                "headRepositoryId": { "const": "1333319462" },
+                "baseRepositoryId": { "const": "1333319462" }
+              }
+            }
+          }
+        }
+      ]
+    },
+    "git": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "base",
+        "head",
+        "attachedHead",
+        "tree",
+        "parents",
+        "originHead",
+        "originBase",
+        "clean"
+      ],
+      "properties": {
+        "base": { "$ref": "#/$defs/gitObjectId" },
+        "head": { "$ref": "#/$defs/gitObjectId" },
+        "attachedHead": { "$ref": "#/$defs/gitObjectId" },
+        "tree": { "$ref": "#/$defs/gitObjectId" },
+        "parents": {
+          "type": "array",
+          "minItems": 1,
+          "maxItems": 1,
+          "items": { "$ref": "#/$defs/gitObjectId" }
+        },
+        "originHead": { "$ref": "#/$defs/originRef" },
+        "originBase": { "$ref": "#/$defs/originRef" },
+        "clean": { "const": true }
+      }
+    },
+    "workflow": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "blobId", "bytes", "sha256", "actionPins"],
+      "properties": {
+        "path": { "const": ".github/workflows/preview-harness.yml" },
+        "blobId": { "$ref": "#/$defs/gitObjectId" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" },
+        "actionPins": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "repository",
+                "tag",
+                "tagRef",
+                "commit",
+                "tree",
+                "verified"
+              ],
+              "properties": {
+                "repository": { "const": "actions/checkout" },
+                "tag": { "const": "v4.3.0" },
+                "tagRef": { "const": "refs/tags/v4.3.0" },
+                "commit": { "const": "08eba0b27e820071cde6df949e0beb9ba4906955" },
+                "tree": { "const": "1a393f9431c907405e5daacefe7884ab7131a657" },
+                "verified": { "const": true }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": [
+                "repository",
+                "tag",
+                "tagRef",
+                "commit",
+                "tree",
+                "verified"
+              ],
+              "properties": {
+                "repository": { "const": "actions/upload-artifact" },
+                "tag": { "const": "v4.6.2" },
+                "tagRef": { "const": "refs/tags/v4.6.2" },
+                "commit": { "const": "ea165f8d65b6e75b540449e92b4886f43607fa02" },
+                "tree": { "const": "90fba5b2fb462e7dd5b3b810757b73327d2d66bc" },
+                "verified": { "const": true }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "tests": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["assembler", "etw"],
+      "properties": {
+        "assembler": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "passed", "total", "log"],
+          "properties": {
+            "status": { "const": "passed" },
+            "passed": { "const": 26 },
+            "total": { "const": 26 },
+            "log": { "$ref": "#/$defs/fileRecord" }
+          }
+        },
+        "etw": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["status", "passed", "total", "log"],
+          "properties": {
+            "status": { "const": "passed" },
+            "passed": { "type": "integer", "minimum": 14 },
+            "total": { "type": "integer", "minimum": 14 },
+            "log": { "$ref": "#/$defs/fileRecord" }
+          }
+        }
+      }
+    },
+    "changedFiles": {
+      "type": "array",
+      "minItems": 17,
+      "uniqueItems": true,
+      "items": { "$ref": "#/$defs/changedFile" }
+    },
+    "sourceBlobs": {
+      "type": "array",
+      "minItems": 17,
+      "uniqueItems": true,
+      "contains": {
+        "type": "object",
+        "properties": {
+          "path": { "const": "preview/scripts/Collect-Arm64EtwEvidence.ps1" },
+          "role": { "const": "collector" }
+        },
+        "required": ["path", "role"]
+      },
+      "minContains": 1,
+      "maxContains": 1,
+      "items": { "$ref": "#/$defs/sourceBlob" }
+    },
+    "commitTrailers": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["terminal", "contiguous", "values"],
+      "properties": {
+        "terminal": { "const": true },
+        "contiguous": { "const": true },
+        "values": {
+          "type": "array",
+          "minItems": 3,
+          "maxItems": 3,
+          "prefixItems": [
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key": { "const": "Signed-off-by" },
+                "value": { "const": "Clint Rutkas <clint.rutkas@gmail.com>" }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key": { "const": "Co-authored-by" },
+                "value": {
+                  "const": "Copilot App <223556219+Copilot@users.noreply.github.com>"
+                }
+              }
+            },
+            {
+              "type": "object",
+              "additionalProperties": false,
+              "required": ["key", "value"],
+              "properties": {
+                "key": { "const": "Copilot-Session" },
+                "value": {
+                  "type": "string",
+                  "pattern": "^[0-9a-f]{8}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{4}-[0-9a-f]{12}$"
+                }
+              }
+            }
+          ],
+          "items": false
+        }
+      }
+    },
+    "privatePathScan": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["scope", "scannedSourceBlobs", "clean", "matches"],
+      "properties": {
+        "scope": { "const": "changed-git-blobs-and-commit-message" },
+        "scannedSourceBlobs": { "type": "integer", "minimum": 17 },
+        "clean": { "const": true },
+        "matches": {
+          "type": "array",
+          "maxItems": 0
+        }
+      }
+    },
+    "sharedRoot": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "unchanged", "before", "after", "beforeFile", "afterFile"],
+      "properties": {
+        "path": { "const": "C:\\msys64" },
+        "unchanged": { "const": true },
+        "before": { "$ref": "#/$defs/sharedRootSeal" },
+        "after": { "$ref": "#/$defs/sharedRootSeal" },
+        "beforeFile": { "$ref": "#/$defs/fileRecord" },
+        "afterFile": { "$ref": "#/$defs/fileRecord" }
+      }
+    },
+    "artifact": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["expectedFiles", "contentManifestIncludes", "sha256SumsIncludes"],
+      "properties": {
+        "expectedFiles": {
+          "type": "array",
+          "minItems": 8,
+          "maxItems": 8,
+          "prefixItems": [
+            { "const": "SHA256SUMS" },
+            { "const": "admission-evidence.schema.json" },
+            { "const": "admission-evidence.v1.json" },
+            { "const": "assembler-tests.log" },
+            { "const": "content-manifest.json" },
+            { "const": "etw-tests.log" },
+            { "const": "shared-root-after.json" },
+            { "const": "shared-root-before.json" }
+          ],
+          "items": false
+        },
+        "contentManifestIncludes": {
+          "type": "array",
+          "minItems": 6,
+          "maxItems": 6,
+          "prefixItems": [
+            { "const": "admission-evidence.schema.json" },
+            { "const": "admission-evidence.v1.json" },
+            { "const": "assembler-tests.log" },
+            { "const": "etw-tests.log" },
+            { "const": "shared-root-after.json" },
+            { "const": "shared-root-before.json" }
+          ],
+          "items": false
+        },
+        "sha256SumsIncludes": {
+          "type": "array",
+          "minItems": 7,
+          "maxItems": 7,
+          "prefixItems": [
+            { "const": "admission-evidence.schema.json" },
+            { "const": "admission-evidence.v1.json" },
+            { "const": "assembler-tests.log" },
+            { "const": "content-manifest.json" },
+            { "const": "etw-tests.log" },
+            { "const": "shared-root-after.json" },
+            { "const": "shared-root-before.json" }
+          ],
+          "items": false
+        }
+      }
+    }
+  },
+  "$defs": {
+    "gitObjectId": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{40}$"
+    },
+    "sha256": {
+      "type": "string",
+      "pattern": "^[0-9a-f]{64}$"
+    },
+    "fileRecord": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["bytes", "sha256"],
+      "properties": {
+        "bytes": { "type": "integer", "minimum": 0 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "originRef": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["ref", "sha"],
+      "properties": {
+        "ref": { "type": "string", "pattern": "^refs/remotes/origin/.+$" },
+        "sha": { "$ref": "#/$defs/gitObjectId" }
+      }
+    },
+    "sourceBlob": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": ["path", "role", "blobId", "bytes", "sha256"],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "role": { "enum": ["collector", "support"] },
+        "blobId": { "$ref": "#/$defs/gitObjectId" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "changedFile": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "path",
+        "status",
+        "additions",
+        "deletions",
+        "blobId",
+        "bytes",
+        "sha256"
+      ],
+      "properties": {
+        "path": { "type": "string", "minLength": 1 },
+        "status": { "enum": ["A", "M"] },
+        "additions": { "type": "integer", "minimum": 0 },
+        "deletions": { "type": "integer", "minimum": 0 },
+        "blobId": { "$ref": "#/$defs/gitObjectId" },
+        "bytes": { "type": "integer", "minimum": 1 },
+        "sha256": { "$ref": "#/$defs/sha256" }
+      }
+    },
+    "sharedRootSeal": {
+      "type": "object",
+      "additionalProperties": false,
+      "required": [
+        "rootPath",
+        "exists",
+        "observedPaths",
+        "log",
+        "database"
+      ],
+      "properties": {
+        "rootPath": { "const": "C:\\msys64" },
+        "exists": { "type": "boolean" },
+        "observedPaths": {
+          "type": "array",
+          "minItems": 2,
+          "maxItems": 2,
+          "prefixItems": [
+            { "const": "var/log/pacman.log" },
+            { "const": "var/lib/pacman/local" }
+          ],
+          "items": false
+        },
+        "log": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": ["exists", "bytes", "sha256"],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "bytes": { "type": "integer", "minimum": 0 },
+            "sha256": { "$ref": "#/$defs/sha256" }
+          }
+        },
+        "database": {
+          "type": "object",
+          "additionalProperties": false,
+          "required": [
+            "exists",
+            "directories",
+            "files",
+            "fileBytes",
+            "canonicalManifestSha256"
+          ],
+          "properties": {
+            "exists": { "type": "boolean" },
+            "directories": { "type": "integer", "minimum": 0 },
+            "files": { "type": "integer", "minimum": 0 },
+            "fileBytes": { "type": "integer", "minimum": 0 },
+            "canonicalManifestSha256": { "$ref": "#/$defs/sha256" }
+          }
+        }
+      }
+    }
+  }
+}
