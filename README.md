@@ -633,3 +633,53 @@ flowchart LR
         end
     end
 ```
+## Portable native ARM64 Git Bash preview preparation
+
+The `preview` directory contains a deterministic, fail-closed assembler and an
+ARM64 validation harness for a coworker test bundle. It does not publish a
+release and it currently refuses assembly because the admitted ncurses,
+readline, and Bash package pins do not exist yet.
+
+Validate the current lock state:
+
+```powershell
+pwsh -NoProfile -File .\preview\scripts\Assemble-Arm64Preview.ps1 `
+  -OutputRoot C:\private\PortableGit-arm64-preview `
+  -CacheDirectory C:\private\arm64-preview-cache `
+  -WorkDirectory C:\private\arm64-preview-work `
+  -ValidateLockOnly
+```
+
+After the four unresolved package entries have real immutable identities,
+assets, and package metadata—and each payload package has explicit overlay
+mappings—the coordinator runs:
+
+```powershell
+pwsh -NoProfile -File .\preview\scripts\Assemble-Arm64Preview.ps1 `
+  -LockPath .\preview\locks\portable-git-arm64-preview.v1.json `
+  -OutputRoot C:\private\PortableGit-arm64-preview `
+  -CacheDirectory C:\private\arm64-preview-cache `
+  -WorkDirectory C:\private\arm64-preview-work
+```
+
+The assembler derives the pinned authoritative validator from the lock; it does
+not accept a caller-supplied validator path.
+
+Run the targeted harness tests:
+
+```powershell
+pwsh -NoProfile -File .\preview\tests\Run-Tests.ps1
+```
+
+The dedicated preview workflow admits only the exact attached commit from this
+repository. Its checkout and upload actions are pinned to independently
+resolved release commits. Every successful exact-head push or same-repository
+pull-request run uploads a uniquely named, closed-schema evidence artifact
+containing the 26/26 assembler results, 14/14 ETW results, raw Git blob
+identities and SHA-256 values, commit trailers, changed-file manifest,
+workflow/action pins, origin-ref bindings, no-private-path result, and
+unchanged `C:\msys64` before/after seals. The run fails if the artifact upload
+or its API binding is absent.
+
+See [`preview/TESTING.md`](preview/TESTING.md) for the coworker extraction,
+validation, diagnostics, and rollback procedure.

@@ -1,0 +1,233 @@
+name: Validate ARM64 preview harness
+
+on:
+  push:
+    paths:
+      - 'preview/**'
+      - '.github/workflows/preview-harness.yml'
+  pull_request:
+    paths:
+      - 'preview/**'
+      - '.github/workflows/preview-harness.yml'
+
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: arm64-admission-${{ github.event_name }}-${{ github.event.pull_request.head.sha || github.sha }}
+  cancel-in-progress: false
+
+jobs:
+  admission-evidence:
+    name: ARM64 admission evidence
+    if: >-
+      github.repository == 'crutkas/msys2-woarm64-build' &&
+      github.event.repository.id == 1333319462 &&
+      (github.event_name == 'push' ||
+      (github.event_name == 'pull_request' &&
+      github.event.pull_request.head.repo.id == github.event.repository.id))
+    runs-on: windows-latest
+    timeout-minutes: 30
+    env:
+      ADMISSION_HEAD: ${{ github.event.pull_request.head.sha || github.sha }}
+      ADMISSION_BRANCH: ${{ github.event.pull_request.head.ref || github.ref_name }}
+      ADMISSION_BASE_SHA: 77f0d56cdf4c063c1b3af37f551e01c3a012c8bb
+      ADMISSION_BASE_BRANCH: main
+      ADMISSION_REPOSITORY_ID: ${{ github.event.repository.id }}
+      ADMISSION_REPOSITORY_NODE_ID: ${{ github.event.repository.node_id }}
+      ADMISSION_REPOSITORY_NAME: ${{ github.repository }}
+      ADMISSION_EVENT_NAME: ${{ github.event_name }}
+      ADMISSION_EVENT_REF: ${{ github.ref }}
+      ADMISSION_GITHUB_SHA: ${{ github.sha }}
+      ADMISSION_PR_NUMBER: ${{ github.event.pull_request.number || '' }}
+      ADMISSION_PR_HEAD_SHA: ${{ github.event.pull_request.head.sha || '' }}
+      ADMISSION_PR_BASE_SHA: ${{ github.event.pull_request.base.sha || '' }}
+      ADMISSION_PR_HEAD_REPOSITORY_ID: ${{ github.event.pull_request.head.repo.id || '' }}
+      ADMISSION_PR_BASE_REPOSITORY_ID: ${{ github.event.pull_request.base.repo.id || '' }}
+      ADMISSION_RUN_ID: ${{ github.run_id }}
+      ADMISSION_RUN_ATTEMPT: ${{ github.run_attempt }}
+      ADMISSION_WORKFLOW_REF: ${{ github.workflow_ref }}
+      ADMISSION_SESSION_ID: 2ac3e70b-1998-432b-8855-286a4de83d74
+      ADMISSION_ARTIFACT_NAME: arm64-admission-${{ github.event_name }}-${{ github.event.pull_request.head.sha || github.sha }}-${{ github.run_id }}-${{ github.run_attempt }}
+    steps:
+      - name: Checkout exact admitted head
+        uses: actions/checkout@08eba0b27e820071cde6df949e0beb9ba4906955 # v4.3.0
+        with:
+          fetch-depth: 0
+          persist-credentials: false
+          ref: ${{ env.ADMISSION_HEAD }}
+
+      - name: Fetch and bind origin refs
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $headRef = "refs/heads/$env:ADMISSION_BRANCH"
+          $headRemoteRef = "refs/remotes/origin/$env:ADMISSION_BRANCH"
+          $baseRef = "refs/heads/$env:ADMISSION_BASE_BRANCH"
+          $baseRemoteRef = "refs/remotes/origin/$env:ADMISSION_BASE_BRANCH"
+          git fetch --no-tags origin "+${headRef}:${headRemoteRef}"
+          if ($LASTEXITCODE -ne 0) {
+            throw "Could not fetch the exact origin head branch."
+          }
+          git fetch --no-tags origin "+${baseRef}:${baseRemoteRef}"
+          if ($LASTEXITCODE -ne 0) {
+            throw "Could not fetch the exact origin base branch."
+          }
+
+      - name: Capture shared root before tests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $inputs = Join-Path $env:RUNNER_TEMP 'arm64-admission-inputs'
+          if (Test-Path -LiteralPath $inputs) {
+            throw "Admission input directory already exists: $inputs"
+          }
+          $null = New-Item -ItemType Directory -Path $inputs
+          ./preview/scripts/Collect-AdmissionEvidence.ps1 `
+            -CaptureSharedRootSeal `
+            -SharedRootPath 'C:\msys64' `
+            -SealOutputPath (Join-Path $inputs 'shared-root-before.json')
+
+      - name: Run fail-closed assembler and ETW tests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          ./preview/tests/Run-Tests.ps1 `
+            -ResultsDirectory (Join-Path $env:RUNNER_TEMP 'arm64-admission-inputs')
+
+      - name: Capture shared root after tests
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          ./preview/scripts/Collect-AdmissionEvidence.ps1 `
+            -CaptureSharedRootSeal `
+            -SharedRootPath 'C:\msys64' `
+            -SealOutputPath (
+              Join-Path $env:RUNNER_TEMP 'arm64-admission-inputs\shared-root-after.json'
+            )
+
+      - name: Generate closed admission evidence
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $inputs = Join-Path $env:RUNNER_TEMP 'arm64-admission-inputs'
+          ./preview/scripts/Collect-AdmissionEvidence.ps1 `
+            -RepositoryRoot $env:GITHUB_WORKSPACE `
+            -OutputDirectory (Join-Path $env:RUNNER_TEMP 'arm64-admission-artifact') `
+            -ExpectedHead $env:ADMISSION_HEAD `
+            -BaseCommit $env:ADMISSION_BASE_SHA `
+            -RepositoryId $env:ADMISSION_REPOSITORY_ID `
+            -RepositoryNodeId $env:ADMISSION_REPOSITORY_NODE_ID `
+            -RepositoryName $env:ADMISSION_REPOSITORY_NAME `
+            -EventName $env:ADMISSION_EVENT_NAME `
+            -EventRef $env:ADMISSION_EVENT_REF `
+            -GitHubSha $env:ADMISSION_GITHUB_SHA `
+            -Branch $env:ADMISSION_BRANCH `
+            -BaseBranch $env:ADMISSION_BASE_BRANCH `
+            -PullRequestNumber ([string]$env:ADMISSION_PR_NUMBER) `
+            -PullRequestHead ([string]$env:ADMISSION_PR_HEAD_SHA) `
+            -PullRequestBase ([string]$env:ADMISSION_PR_BASE_SHA) `
+            -PullRequestHeadRepositoryId ([string]$env:ADMISSION_PR_HEAD_REPOSITORY_ID) `
+            -PullRequestBaseRepositoryId ([string]$env:ADMISSION_PR_BASE_REPOSITORY_ID) `
+            -RunId $env:ADMISSION_RUN_ID `
+            -RunAttempt ([int]$env:ADMISSION_RUN_ATTEMPT) `
+            -WorkflowRef $env:ADMISSION_WORKFLOW_REF `
+            -ArtifactName $env:ADMISSION_ARTIFACT_NAME `
+            -ExpectedSessionId $env:ADMISSION_SESSION_ID `
+            -AssemblerLogPath (Join-Path $inputs 'assembler-tests.log') `
+            -EtwLogPath (Join-Path $inputs 'etw-tests.log') `
+            -SharedRootPath 'C:\msys64' `
+            -SharedRootBeforePath (Join-Path $inputs 'shared-root-before.json') `
+            -SharedRootAfterPath (Join-Path $inputs 'shared-root-after.json')
+
+      - name: Upload exact admission evidence
+        id: upload
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4.6.2
+        with:
+          name: ${{ env.ADMISSION_ARTIFACT_NAME }}
+          path: ${{ runner.temp }}\arm64-admission-artifact
+          if-no-files-found: error
+          include-hidden-files: true
+          compression-level: 0
+          overwrite: false
+          retention-days: 90
+
+      - name: Verify durable artifact binding
+        if: always()
+        shell: pwsh
+        env:
+          GH_TOKEN: ${{ github.token }}
+          UPLOAD_ARTIFACT_ID: ${{ steps.upload.outputs.artifact-id }}
+          UPLOAD_ARTIFACT_URL: ${{ steps.upload.outputs.artifact-url }}
+          UPLOAD_ARTIFACT_DIGEST: ${{ steps.upload.outputs.artifact-digest }}
+        run: |
+          $ErrorActionPreference = 'Stop'
+          foreach ($value in @(
+              $env:UPLOAD_ARTIFACT_ID,
+              $env:UPLOAD_ARTIFACT_URL,
+              $env:UPLOAD_ARTIFACT_DIGEST
+            )) {
+            if ([string]::IsNullOrWhiteSpace($value)) {
+              throw "Admission artifact upload did not return a complete binding."
+            }
+          }
+
+          $headers = @{
+            Accept = 'application/vnd.github+json'
+            Authorization = "Bearer $env:GH_TOKEN"
+            'X-GitHub-Api-Version' = '2022-11-28'
+          }
+          $uri = "${{ github.api_url }}/repos/${{ github.repository }}/actions/runs/${{ github.run_id }}/artifacts?per_page=100"
+          $artifact = $null
+          for ($attempt = 0; $attempt -lt 6 -and $null -eq $artifact; $attempt++) {
+            $response = Invoke-RestMethod -Headers $headers -Uri $uri
+            $artifact = @($response.artifacts | Where-Object {
+              [string]::Equals(
+                [string]$_.id,
+                $env:UPLOAD_ARTIFACT_ID,
+                [StringComparison]::Ordinal
+              )
+            })
+            if ($artifact.Count -eq 0) {
+              $artifact = $null
+              Start-Sleep -Seconds 5
+            }
+          }
+          if ($null -eq $artifact -or @($artifact).Count -ne 1) {
+            throw "Uploaded admission artifact is not durably bound to this workflow run."
+          }
+          $artifact = @($artifact)[0]
+          $expected = @{
+            name = $env:ADMISSION_ARTIFACT_NAME
+            digest = "sha256:$env:UPLOAD_ARTIFACT_DIGEST"
+            runId = $env:ADMISSION_RUN_ID
+            runHead = $env:ADMISSION_HEAD
+          }
+          if (-not [string]::Equals(
+              [string]$artifact.name, $expected.name, [StringComparison]::Ordinal
+            ) -or
+            -not [string]::Equals(
+              [string]$artifact.digest, $expected.digest, [StringComparison]::Ordinal
+            ) -or
+            -not [string]::Equals(
+              [string]$artifact.workflow_run.id, $expected.runId, [StringComparison]::Ordinal
+            ) -or
+            -not [string]::Equals(
+              [string]$artifact.workflow_run.head_sha, $expected.runHead, [StringComparison]::Ordinal
+            ) -or
+            [string]::IsNullOrWhiteSpace([string]$artifact.node_id) -or
+            [int64]$artifact.size_in_bytes -le 0 -or
+            [bool]$artifact.expired) {
+            throw "Uploaded admission artifact API binding is incomplete or mismatched."
+          }
+
+          @"
+          Admission artifact ID: $($artifact.id)
+          Admission artifact node: $($artifact.node_id)
+          Admission artifact name: $($artifact.name)
+          Admission artifact size: $($artifact.size_in_bytes)
+          Admission artifact digest: $($artifact.digest)
+          Admission artifact URL: $env:UPLOAD_ARTIFACT_URL
+          Producer job: admission-evidence
+          "@ >> $env:GITHUB_STEP_SUMMARY
