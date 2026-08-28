@@ -1,0 +1,268 @@
+[
+  {
+    "name": "unknown candidate",
+    "path": "candidate.admission_id",
+    "value": "not-allowlisted",
+    "error": "candidate-not-explicitly-allowlisted"
+  },
+  {
+    "name": "one-byte artifact",
+    "path": "candidate.identity.artifact.size",
+    "value": 1,
+    "error": "candidate-artifact-size-invalid"
+  },
+  {
+    "name": "zero producer commit",
+    "path": "candidate.identity.producer.commit",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "invalid-sha:producer.commit"
+  },
+  {
+    "name": "zero producer tree",
+    "path": "candidate.identity.producer.tree",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "invalid-sha:producer.tree"
+  },
+  {
+    "name": "zero workflow blob",
+    "path": "candidate.identity.workflow.blob",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "invalid-sha:workflow.blob"
+  },
+  {
+    "name": "zero run head",
+    "path": "candidate.identity.run.head_sha",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "invalid-sha:run.head_sha"
+  },
+  {
+    "name": "zero runtime commit",
+    "path": "candidate.identity.runtime.commit",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "invalid-sha:runtime.commit"
+  },
+  {
+    "name": "zero artifact digest",
+    "path": "candidate.identity.artifact.digest",
+    "value": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "error": "invalid-candidate-digest"
+  },
+  {
+    "name": "zero package digest",
+    "path": "candidate.identity.binutils.package_digest",
+    "value": "sha256:0000000000000000000000000000000000000000000000000000000000000000",
+    "error": "invalid-candidate-digest"
+  },
+  {
+    "name": "backdated expiry",
+    "path": "candidate.identity.artifact.expires_at",
+    "value": "2026-08-27T21:59:59Z",
+    "error": "artifact-expired"
+  },
+  {
+    "name": "descendant ancestry omitted",
+    "remove": "candidate.ancestry_checks",
+    "error": "runtime-ancestry-incomplete"
+  },
+  {
+    "name": "revoked ancestor omitted",
+    "path": "candidate.ancestry_checks",
+    "value": [],
+    "error": "runtime-ancestry-incomplete"
+  },
+  {
+    "name": "revoked descendant",
+    "path": "candidate.ancestry_checks.0.is_descendant",
+    "value": true,
+    "error": "revoked-runtime-commit-or-descendant"
+  },
+  {
+    "name": "incomplete ancestry query",
+    "path": "candidate.ancestry_checks.0.query_complete",
+    "value": false,
+    "error": "runtime-ancestry-incomplete"
+  },
+  {
+    "name": "wrong baseline asset name",
+    "path": "baseline.asset_manifest.required_asset.name",
+    "value": "fabricated",
+    "error": "baseline-mismatch:baseline.asset_manifest.required_asset.name"
+  },
+  {
+    "name": "incomplete baseline manifest",
+    "path": "baseline.asset_manifest.count",
+    "value": 1,
+    "error": "baseline-mismatch:baseline.asset_manifest.count"
+  },
+  {
+    "name": "fabricated baseline manifest",
+    "path": "baseline.asset_manifest.sha256",
+    "value": "ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff",
+    "error": "baseline-mismatch:baseline.asset_manifest.sha256"
+  },
+  {
+    "name": "lightweight baseline tag",
+    "path": "baseline.annotated_tag.object_sha",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "baseline-tag-invalid"
+  },
+  {
+    "name": "mutable baseline",
+    "path": "baseline.release.immutable",
+    "value": false,
+    "error": "baseline-release-not-immutable-final"
+  },
+  {
+    "name": "mutable runtime",
+    "path": "candidate.identity.runtime.release.immutable",
+    "value": false,
+    "error": "candidate-release-not-immutable"
+  },
+  {
+    "name": "mutable binutils",
+    "path": "candidate.identity.binutils.release.immutable",
+    "value": false,
+    "error": "candidate-release-not-immutable"
+  },
+  {
+    "name": "runtime lightweight tag",
+    "path": "candidate.identity.runtime.release.annotated_tag.object_sha",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "candidate-release-tag-invalid:runtime"
+  },
+  {
+    "name": "binutils lightweight tag",
+    "path": "candidate.identity.binutils.release.annotated_tag.object_sha",
+    "value": "0000000000000000000000000000000000000000",
+    "error": "candidate-release-tag-invalid:binutils"
+  },
+  {
+    "name": "runtime peeled commit mismatch",
+    "path": "candidate.identity.runtime.release.annotated_tag.peeled_commit",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "error": "candidate-release-peeled-commit-mismatch"
+  },
+  {
+    "name": "binutils peeled commit mismatch",
+    "path": "candidate.identity.binutils.release.annotated_tag.peeled_commit",
+    "value": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "error": "candidate-release-peeled-commit-mismatch"
+  },
+  {
+    "name": "runtime incomplete asset manifest",
+    "path": "candidate.identity.runtime.release.asset_manifest.count",
+    "value": 0,
+    "error": "candidate-release-manifest-invalid:runtime"
+  },
+  {
+    "name": "binutils incomplete asset manifest",
+    "path": "candidate.identity.binutils.release.asset_manifest.count",
+    "value": 0,
+    "error": "candidate-release-manifest-invalid:binutils"
+  },
+  {
+    "name": "fabricated run id",
+    "path": "candidate.identity.run.id",
+    "value": 123456788,
+    "error": "candidate-identity-mismatch:candidate.identity.run.id"
+  },
+  {
+    "name": "fabricated run attempt",
+    "path": "candidate.identity.run.attempt",
+    "value": 2,
+    "error": "candidate-identity-mismatch:candidate.identity.run.attempt"
+  },
+  {
+    "name": "fabricated job",
+    "path": "candidate.identity.run.job",
+    "value": "other",
+    "error": "candidate-identity-mismatch:candidate.identity.run.job"
+  },
+  {
+    "name": "synthetic merge ref",
+    "path": "candidate.identity.run.ref",
+    "value": "refs/pull/4/merge",
+    "error": "run-context-mismatch"
+  },
+  {
+    "name": "fabricated artifact id",
+    "path": "candidate.identity.artifact.id",
+    "value": 987654320,
+    "error": "candidate-identity-mismatch:candidate.identity.artifact.id"
+  },
+  {
+    "name": "fabricated artifact name",
+    "path": "candidate.identity.artifact.name",
+    "value": "other",
+    "error": "candidate-identity-mismatch:candidate.identity.artifact.name"
+  },
+  {
+    "name": "fabricated artifact digest",
+    "path": "candidate.identity.artifact.digest",
+    "value": "sha256:aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa",
+    "error": "candidate-identity-mismatch:candidate.identity.artifact.digest"
+  },
+  {
+    "name": "fabricated producer repository",
+    "path": "candidate.identity.producer.repository",
+    "value": "example/other",
+    "error": "producer-repository-mismatch"
+  },
+  {
+    "name": "synthetic merge parents",
+    "path": "candidate.identity.producer.parents",
+    "value": [
+      "5555555555555555555555555555555555555555",
+      "7777777777777777777777777777777777777777"
+    ],
+    "error": "synthetic-merge-producer"
+  },
+  {
+    "name": "trailer content after pair",
+    "path": "candidate.identity.producer.commit_message",
+    "value": "Produce reviewed ARM64 metadata\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\nCopilot-Session: a854bea5-cd3c-46aa-a15b-517717c8e5df\nextra",
+    "error": "producer-terminal-trailers-invalid"
+  },
+  {
+    "name": "fabricated workflow pin",
+    "path": "candidate.identity.workflow.actions.actions/checkout",
+    "value": "9999999999999999999999999999999999999999",
+    "error": "workflow-action-not-reviewed:actions/checkout"
+  },
+  {
+    "name": "revoked runtime release",
+    "path": "candidate.identity.runtime.release.id",
+    "value": 376058416,
+    "error": "revoked-runtime-release"
+  },
+  {
+    "name": "revoked binutils release",
+    "path": "candidate.identity.binutils.release.id",
+    "value": 377908415,
+    "error": "revoked-binutils-release"
+  },
+  {
+    "name": "revoked binutils digest",
+    "path": "candidate.identity.binutils.package_digest",
+    "value": "sha256:3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b",
+    "error": "candidate-binutils-identity-invalid"
+  },
+  {
+    "name": "future collector clock",
+    "path": "authority.collected_at",
+    "value": "2026-08-27T22:00:01Z",
+    "error": "collector-clock-out-of-window"
+  },
+  {
+    "name": "stale collector clock",
+    "path": "authority.collected_at",
+    "value": "2026-08-27T21:54:59Z",
+    "error": "collector-clock-out-of-window"
+  },
+  {
+    "name": "caller authority",
+    "path": "authority.kind",
+    "value": "caller-json",
+    "error": "fixture-authority-required"
+  }
+]

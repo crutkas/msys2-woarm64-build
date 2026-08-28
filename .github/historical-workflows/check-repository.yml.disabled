@@ -1,4 +1,5 @@
-name: Check MSYS2 repository
+# Non-executable archive. Native execution and candidate artifacts remain disabled.
+name: "Historical: Check MSYS2 repository"
 
 on:
   workflow_dispatch:
@@ -16,7 +17,7 @@ jobs:
       FLAVOR: CROSS
 
     steps:
-      - uses: msys2/setup-msys2@v2
+      - uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884
         timeout-minutes: 10
         with:
           msystem: MSYS
@@ -25,7 +26,7 @@ jobs:
           cache: true
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Setup packages repository
         run: |
@@ -41,7 +42,7 @@ jobs:
           `cygpath "${{ github.workspace }}"`/.github/scripts/build-hello-world.sh
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: hello-world-cross
           path: hello-world.exe
@@ -52,7 +53,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: hello-world-cross
           path: ${{ github.workspace }}\artifacts
@@ -80,7 +81,7 @@ jobs:
           Remove-Item -Recurse -Force -ErrorAction SilentlyContinue -Path packages
           exit 0
 
-      - uses: Windows-on-ARM-Experiments/setup-msys2@main
+      - uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884
         timeout-minutes: 10
         with:
           msystem: MINGWARM64
@@ -89,7 +90,7 @@ jobs:
           cache: true
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Setup packages repository
         run: |
@@ -109,7 +110,7 @@ jobs:
           `cygpath "${{ github.workspace }}"`/.github/scripts/build-hello-world.sh
 
       - name: Upload artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: hello-world-native
           path: hello-world.exe
@@ -120,7 +121,7 @@ jobs:
 
     steps:
       - name: Download artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@d3f86a106a0bac45b974a628896c90dbdf5c8093
         with:
           name: hello-world-native
           path: ${{ github.workspace }}\artifacts

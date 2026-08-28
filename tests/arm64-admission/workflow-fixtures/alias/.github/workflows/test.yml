@@ -1,0 +1,9 @@
+name: Alias bypass
+x-attack: &attack
+  uses: actions/checkout@main
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - *attack

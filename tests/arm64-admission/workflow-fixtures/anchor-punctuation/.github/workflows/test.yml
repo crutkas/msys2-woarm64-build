@@ -1,0 +1,9 @@
+name: Punctuation anchor bypass
+x-attack: &@0/attack!
+  uses: actions/checkout@main
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - *@0/attack!

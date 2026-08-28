@@ -1,0 +1,8 @@
+name: Delegated script bypass
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: pwsh
+        run: ./scripts/build.ps1

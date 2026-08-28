@@ -1,0 +1,9 @@
+name: Dot anchor bypass
+x-attack: &.base
+  uses: actions/checkout@main
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - *.base

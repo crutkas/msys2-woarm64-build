@@ -1,0 +1,14 @@
+name: Near miss document markers
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: pwsh
+        run: |
+          ---not-a-marker
+          ----
+          ....
+          echo a && echo b
+          Get-ChildItem *.txt
+      - uses: actions/checkout@main

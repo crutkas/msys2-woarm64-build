@@ -1,10 +1,7 @@
-name: Build MinGW and MSYS2 toolchains
+# Non-executable archive. Re-enablement requires authoritative admission and protected approval.
+name: "Historical: Build MinGW and MSYS2 toolchains"
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
   workflow_dispatch:
     inputs:
       msys2_packages_branch:
@@ -74,7 +71,7 @@ jobs:
       GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
     steps:
-      - uses: msys2/setup-msys2@v2
+      - uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884
         timeout-minutes: 10
         with:
           msystem: MSYS
@@ -83,7 +80,7 @@ jobs:
           cache: true
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Install dependencies
         run: |
@@ -108,7 +105,7 @@ jobs:
           echo "<!DOCTYPE html><head></head><body></body>" > repository/index.html
 
       - name: Upload woarm64-msys2-repository
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@56afc609e74202658d3ffba0e8f6dda462b719fa
         with:
           name: woarm64-msys2-repository
           retention-days: 1
@@ -135,11 +132,11 @@ jobs:
 
     steps:
       - name: Setup GitHub Pages
-        uses: actions/configure-pages@v4
+        uses: actions/configure-pages@1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d
 
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e
         with:
           artifact_name: woarm64-msys2-repository
 

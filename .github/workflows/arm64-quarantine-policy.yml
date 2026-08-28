@@ -1,0 +1,66 @@
+name: Protected ARM64 policy enforcement
+
+on:
+  pull_request_target:
+    types:
+      - opened
+      - reopened
+      - synchronize
+      - ready_for_review
+
+permissions:
+  contents: read
+  pull-requests: read
+
+jobs:
+  governance:
+    name: arm64-governance
+    runs-on: windows-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
+    steps:
+      - name: Bind GitHub-owned event identity
+        shell: pwsh
+        env:
+          EXPECTED_REPOSITORY: crutkas/msys2-woarm64-build
+          EXPECTED_REF: refs/heads/main
+          EXPECTED_WORKFLOW_REF: crutkas/msys2-woarm64-build/.github/workflows/arm64-quarantine-policy.yml@refs/heads/main
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $event = Get-Content -LiteralPath $env:GITHUB_EVENT_PATH -Raw |
+            ConvertFrom-Json -Depth 32
+          if ($env:GITHUB_EVENT_NAME -cne 'pull_request_target' -or
+              $env:GITHUB_REPOSITORY -cne $env:EXPECTED_REPOSITORY -or
+              $env:GITHUB_REF -cne $env:EXPECTED_REF -or
+              $env:GITHUB_WORKFLOW_REF -cne $env:EXPECTED_WORKFLOW_REF -or
+              $event.pull_request.base.repo.full_name -cne $env:EXPECTED_REPOSITORY -or
+              $event.pull_request.base.ref -cne 'main' -or
+              $event.pull_request.base.sha -notmatch '^[0-9a-f]{40}$' -or
+              $event.pull_request.head.sha -notmatch '^[0-9a-f]{40}$') {
+            throw 'Untrusted or incomplete protected verifier context.'
+          }
+          if ($event.pull_request.head.sha -ceq $event.pull_request.merge_commit_sha) {
+            throw 'Synthetic merge input is forbidden.'
+          }
+
+      - name: Checkout exact protected base
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.base.sha }}
+          path: verifier
+          persist-credentials: false
+
+      - name: Verify protected source identity
+        shell: pwsh
+        working-directory: verifier
+        run: ./.github/scripts/verify-protected-context.ps1
+
+      - name: Collect candidate files as API data
+        shell: pwsh
+        working-directory: verifier
+        run: ./.github/scripts/collect-pr-workflow-data.ps1
+
+      - name: Audit candidate data semantically
+        shell: pwsh
+        working-directory: verifier
+        run: ./.github/scripts/audit-arm64-workflows.ps1

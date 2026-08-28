@@ -1,0 +1,5 @@
+name: Remote reusable bypass
+on: pull_request
+jobs:
+  delegate:
+    uses: example/build/.github/workflows/produce.yml@main

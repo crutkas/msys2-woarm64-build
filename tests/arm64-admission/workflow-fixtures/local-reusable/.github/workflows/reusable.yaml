@@ -1,0 +1,7 @@
+name: Reusable candidate producer
+on: workflow_call
+jobs:
+  produce:
+    runs-on: ubuntu-latest
+    steps:
+      - run: echo candidate

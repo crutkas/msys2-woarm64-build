@@ -1,0 +1,343 @@
+{
+  "schema_version": 2,
+  "policy_id": "arm64-quarantine-policy",
+  "mode": "deny-by-default",
+  "bootstrap_state": "blocked-pending-protected-main-installation",
+  "live_admission_enabled": false,
+  "producer_repository": "crutkas/msys2-woarm64-build",
+  "protected_ref": "refs/heads/main",
+  "trusted_collector": {
+    "authority": "github-rest-api",
+    "api_url": "https://api.github.com",
+    "event": "workflow_run",
+    "reserved_workflow_path": ".github/workflows/arm64-authoritative-admission.yml",
+    "workflow_ref": "crutkas/msys2-woarm64-build/.github/workflows/arm64-authoritative-admission.yml@refs/heads/main",
+    "candidate_input": "github-event-and-api-only",
+    "caller_json_allowed": false,
+    "trusted_clock": "collector-utc-now",
+    "fixture_authority": "offline-fixture-never-live"
+  },
+  "protected_verifier": {
+    "workflow_path": ".github/workflows/arm64-quarantine-policy.yml",
+    "event": "pull_request_target",
+    "workflow_ref": "crutkas/msys2-woarm64-build/.github/workflows/arm64-quarantine-policy.yml@refs/heads/main",
+    "source": "pull-request-base-sha",
+    "candidate_mode": "github-api-data-only",
+    "check_name": "arm64-governance",
+    "sources": {
+      ".github/workflows/arm64-quarantine-policy.yml": {
+        "path": ".github/workflows/arm64-quarantine-policy.yml",
+        "raw_path_utf8_base64": "LmdpdGh1Yi93b3JrZmxvd3MvYXJtNjQtcXVhcmFudGluZS1wb2xpY3kueW1s",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 2366,
+        "oid": "e65ba69d7f7e3c26c51923805de7c0fafb0391ff"
+      },
+      ".github/scripts/arm64-admission.ps1": {
+        "path": ".github/scripts/arm64-admission.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2FybTY0LWFkbWlzc2lvbi5wczE=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 32348,
+        "oid": "e50b3b262ba24c228b534de8a4b46327ec32cde6"
+      },
+      ".github/scripts/audit-arm64-workflows.ps1": {
+        "path": ".github/scripts/audit-arm64-workflows.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2F1ZGl0LWFybTY0LXdvcmtmbG93cy5wczE=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 103463,
+        "oid": "4a807ac57d05357f091b25893e121228f6364626"
+      },
+      ".github/scripts/collect-arm64-evidence.ps1": {
+        "path": ".github/scripts/collect-arm64-evidence.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2NvbGxlY3QtYXJtNjQtZXZpZGVuY2UucHMx",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 43811,
+        "oid": "53fcfca5eec1d744c5b67ee70e4e89983fface61"
+      },
+      ".github/scripts/collect-pr-workflow-data.ps1": {
+        "path": ".github/scripts/collect-pr-workflow-data.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2NvbGxlY3QtcHItd29ya2Zsb3ctZGF0YS5wczE=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 9445,
+        "oid": "66ba3d3bfe8377735437743cc4db083dc7b7fc63"
+      },
+      ".github/scripts/git-object-integrity.ps1": {
+        "path": ".github/scripts/git-object-integrity.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2dpdC1vYmplY3QtaW50ZWdyaXR5LnBzMQ==",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 36894,
+        "oid": "ce0c1c09b2111bd9e3073a15d442c04b481b2c11"
+      },
+      ".github/scripts/github-rest.ps1": {
+        "path": ".github/scripts/github-rest.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2dpdGh1Yi1yZXN0LnBzMQ==",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 16776,
+        "oid": "ef514b6f47fe12f9b1507665ecc2fca81f1612cf"
+      },
+      ".github/scripts/parse-yaml.rb": {
+        "path": ".github/scripts/parse-yaml.rb",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3BhcnNlLXlhbWwucmI=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 1797,
+        "oid": "eb2332a0fd8ae20658d0d0559fa34c5c5fc63805"
+      },
+      ".github/scripts/parse-yaml.ps1": {
+        "path": ".github/scripts/parse-yaml.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3BhcnNlLXlhbWwucHMx",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 6457,
+        "oid": "84cbd3dab4d0d47fc589d88f62fc28e1541281d3"
+      },
+      ".github/scripts/verify-protected-context.ps1": {
+        "path": ".github/scripts/verify-protected-context.ps1",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3ZlcmlmeS1wcm90ZWN0ZWQtY29udGV4dC5wczE=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 4107,
+        "oid": "2939fc238ba0b2815b28a19f28f3be48b00db93e"
+      }
+    }
+  },
+  "diagnostics": {
+    "workflow_path": ".github/workflows/arm64-bootstrap-diagnostics.yml",
+    "trusted": false,
+    "admission_authority": false,
+    "artifact_output_allowed": false
+  },
+  "accepted_baseline": {
+    "repository": "git-for-windows/git",
+    "release": {
+      "id": 368726166,
+      "immutable": true,
+      "draft": false,
+      "prerelease": false,
+      "tag_name": "v2.55.0.windows.4",
+      "published_at": "2026-08-11T17:35:02Z",
+      "target_commitish": "a93524749d7806870fd2b4b00a3812da1d6e5f4a"
+    },
+    "tag_ref": {
+      "type": "tag",
+      "sha": "76e15f45d670eab29f6d55611c252b3f2b70188c"
+    },
+    "annotated_tag": {
+      "object_sha": "76e15f45d670eab29f6d55611c252b3f2b70188c",
+      "peeled_commit": "a93524749d7806870fd2b4b00a3812da1d6e5f4a"
+    },
+    "asset_manifest": {
+      "canonicalization": "id-ascending-compact-json-v1",
+      "fields": [
+        "id",
+        "name",
+        "size",
+        "digest",
+        "state"
+      ],
+      "count": 113,
+      "sha256": "a56945725efbd8599581c10a2e91cba089e2f09dfc248e643f3c31bea54762f8",
+      "required_asset": {
+        "id": 510402464,
+        "name": "Git-2.55.0.4-arm64.tar.bz2",
+        "size": 171467184,
+        "digest": "sha256:7cc28b4431c9448c310d0093fbba5646517cd702690a9b965014d7df85319ad9",
+        "state": "uploaded"
+      }
+    }
+  },
+  "explicit_admissions": [],
+  "revocations": {
+    "runtime": {
+      "repository": "crutkas/msys2-runtime",
+      "commits_and_descendants": [
+        {
+          "commit": "a527ace21c23b763bb96841745f0e2d8cd984f4a",
+          "tree": "4223b53efdece52f9c99de20866820019536fb18"
+        }
+      ],
+      "releases": [
+        {
+          "repository": "crutkas/MSYS2-packages",
+          "id": 376058416,
+          "tag_name": "msysarm64-runtime-pr10-a527-20260824",
+          "immutable": false,
+          "draft": false,
+          "prerelease": true,
+          "published_at": "2026-08-25T00:04:42Z",
+          "target_commitish": "3f92608bfeea71102da9ee093c4db1d67f513a5c",
+          "tag_ref": {
+            "type": "commit",
+            "sha": "3f92608bfeea71102da9ee093c4db1d67f513a5c"
+          },
+          "asset_manifest": {
+            "count": 5,
+            "sha256": "f66fb4d7bf2b81fa35d0ccd31e02c5713f8c3fcf8b691d04834801eeab8cb34e"
+          }
+        }
+      ]
+    },
+    "binutils": {
+      "releases": [
+        {
+          "repository": "crutkas/MSYS2-packages",
+          "id": 377908415,
+          "tag_name": "cygwinarm64-binutils-pr21-3356eec-20260827",
+          "immutable": false,
+          "draft": false,
+          "prerelease": true,
+          "published_at": "2026-08-27T14:56:11Z",
+          "target_commitish": "master",
+          "tag_ref": {
+            "type": "tag",
+            "sha": "3e8c0d1b0b5aca3c54ebb9a05bfdcc022e4b289b"
+          },
+          "annotated_tag": {
+            "object_sha": "3e8c0d1b0b5aca3c54ebb9a05bfdcc022e4b289b",
+            "peeled_commit": "3356eec1411983cc252b04afac32bca5f3b8d824"
+          },
+          "asset_manifest": {
+            "count": 3,
+            "sha256": "8cdbf95884ee7eb17e5ef1bc2229ce239958fcb410730787b562136c621b9cf8"
+          }
+        }
+      ],
+      "package_sha256": [
+        {
+          "sha256": "3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b",
+          "repository": "crutkas/MSYS2-packages",
+          "release_id": 377908415,
+          "asset": {
+            "id": 532446043,
+            "name": "mingw-w64-cross-cygwinarm64-binutils-2.44.50-2-x86_64.pkg.tar.zst",
+            "size": 6545114,
+            "digest": "sha256:3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b",
+            "state": "uploaded"
+          }
+        }
+      ]
+    }
+  },
+  "workspace": {
+    "forbidden_canonical_root": "C:\\msys64",
+    "require_existing_directory": true,
+    "require_absolute": true,
+    "require_final_path_resolution": true,
+    "reject_device_namespace": true,
+    "reject_unc": true,
+    "reject_short_names": true,
+    "reject_reparse_components": true
+  },
+  "publication": {
+    "enabled": false,
+    "protected_environment_confirmed": false,
+    "mode": "unconditional-deny",
+    "reenablement_requires": "separately-reviewed-protected-base-change"
+  },
+  "forbidden_msystems": [
+    "MINGWARM64"
+  ],
+  "external_action_pins": {
+    "actions/checkout": {
+      "commit": "11d5960a326750d5838078e36cf38b85af677262",
+      "tree": "f8a7b72dc00648d050099727d25ca92a43ad1162",
+      "verification": "valid"
+    }
+  },
+  "active_workflows": {
+    ".github/workflows/arm64-quarantine-policy.yml": {
+      "authority": "protected-base",
+      "source": {
+        "path": ".github/workflows/arm64-quarantine-policy.yml",
+        "raw_path_utf8_base64": "LmdpdGh1Yi93b3JrZmxvd3MvYXJtNjQtcXVhcmFudGluZS1wb2xpY3kueW1s",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 2366,
+        "oid": "e65ba69d7f7e3c26c51923805de7c0fafb0391ff"
+      },
+      "allowed_events": [
+        "pull_request_target"
+      ],
+      "allowed_shells": [
+        "pwsh"
+      ],
+      "allowed_local_shell_entrypoints": [
+        ".github/scripts/verify-protected-context.ps1",
+        ".github/scripts/collect-pr-workflow-data.ps1",
+        ".github/scripts/audit-arm64-workflows.ps1"
+      ],
+      "allowed_local_shell_sources": {
+        ".github/scripts/verify-protected-context.ps1": {
+          "path": ".github/scripts/verify-protected-context.ps1",
+          "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3ZlcmlmeS1wcm90ZWN0ZWQtY29udGV4dC5wczE=",
+          "mode": "100644",
+          "object_type": "blob",
+          "byte_length": 4107,
+          "oid": "2939fc238ba0b2815b28a19f28f3be48b00db93e"
+        },
+        ".github/scripts/collect-pr-workflow-data.ps1": {
+          "path": ".github/scripts/collect-pr-workflow-data.ps1",
+          "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2NvbGxlY3QtcHItd29ya2Zsb3ctZGF0YS5wczE=",
+          "mode": "100644",
+          "object_type": "blob",
+          "byte_length": 9445,
+          "oid": "66ba3d3bfe8377735437743cc4db083dc7b7fc63"
+        },
+        ".github/scripts/audit-arm64-workflows.ps1": {
+          "path": ".github/scripts/audit-arm64-workflows.ps1",
+          "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2F1ZGl0LWFybTY0LXdvcmtmbG93cy5wczE=",
+          "mode": "100644",
+          "object_type": "blob",
+          "byte_length": 103463,
+          "oid": "4a807ac57d05357f091b25893e121228f6364626"
+        }
+      },
+      "allowed_inline_shell_sha256": [
+        "6736969b6688fcb1f59d378eda7818931af10ebfca5154eeb20a1071cdb1427c"
+      ]
+    },
+    ".github/workflows/arm64-bootstrap-diagnostics.yml": {
+      "authority": "untrusted-diagnostic",
+      "source": {
+        "path": ".github/workflows/arm64-bootstrap-diagnostics.yml",
+        "raw_path_utf8_base64": "LmdpdGh1Yi93b3JrZmxvd3MvYXJtNjQtYm9vdHN0cmFwLWRpYWdub3N0aWNzLnltbA==",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 752,
+        "oid": "f02ce3e5c368895bca230c587a81a193d2d04aad"
+      },
+      "allowed_events": [
+        "pull_request"
+      ],
+      "allowed_shells": [
+        "pwsh"
+      ],
+      "allowed_local_shell_entrypoints": [
+        "tests/arm64-admission/run.ps1"
+      ],
+      "allowed_local_shell_sources": {
+        "tests/arm64-admission/run.ps1": {
+          "path": "tests/arm64-admission/run.ps1",
+          "raw_path_utf8_base64": "dGVzdHMvYXJtNjQtYWRtaXNzaW9uL3J1bi5wczE=",
+          "mode": "100644",
+          "object_type": "blob",
+          "byte_length": 137792,
+          "oid": "3e5594c59166ca877cdd6c537ff4024f89f0617d"
+        }
+      },
+      "allowed_inline_shell_sha256": [
+      ]
+    }
+  },
+  "allowed_container_images": {},
+  "owned_commit_terminal_trailers": [
+    "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>",
+    "Copilot-Session: e35694a1-f4b4-4eee-bbea-0ba1ba5e07d1"
+  ]
+}

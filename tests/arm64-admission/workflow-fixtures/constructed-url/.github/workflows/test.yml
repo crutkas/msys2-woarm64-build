@@ -1,0 +1,8 @@
+name: Constructed URL bypass
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: pwsh
+        run: ./scripts/check.ps1

