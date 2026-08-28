@@ -1,11 +1,19 @@
 require "json"
 require "psych"
 
-abort "usage: parse-yaml.rb PATH" unless ARGV.length == 1
+abort "usage: parse-yaml.rb (YAML is read from standard input)" unless ARGV.empty?
 abort "unapproved Ruby version" unless RUBY_VERSION == "3.2.3"
 abort "unapproved Psych version" unless Psych::VERSION == "5.1.2"
 
-text = File.binread(ARGV[0]).force_encoding(Encoding::UTF_8)
+MAX_INPUT_BYTES = 1_048_576
+STDIN.binmode
+STDOUT.binmode
+raw = STDIN.read(MAX_INPUT_BYTES + 1).to_s
+abort "YAML exceeds the byte limit" if raw.bytesize > MAX_INPUT_BYTES
+
+# The caller supplies the exact bytes it already validated on standard input; no path is
+# reopened here, so the parsed bytes cannot drift from the validated bytes.
+text = raw.force_encoding(Encoding::UTF_8)
 abort "YAML is not strict UTF-8" unless text.valid_encoding?
 abort "YAML BOM is forbidden" if text.start_with?("\uFEFF")
 

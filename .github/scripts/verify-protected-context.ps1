@@ -46,6 +46,7 @@ $checkedOutHead = (& git rev-parse HEAD).Trim()
 if ($LASTEXITCODE -ne 0 -or $checkedOutHead -cne $event.pull_request.base.sha) {
     throw 'Verifier checkout is not the exact pull request base SHA.'
 }
+[void](Assert-Arm64GitObjectFormat -RepositoryRoot $repositoryRoot)
 
 $trustedBindings = @(Get-Arm64ProtectedGitSourceBindings `
         -RepositoryRoot $repositoryRoot `

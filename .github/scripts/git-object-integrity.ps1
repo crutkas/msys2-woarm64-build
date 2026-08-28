@@ -4,6 +4,38 @@ param()
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+function Assert-Arm64GitObjectFormatValue {
+    param([AllowNull()][object]$Output)
+
+    $values = @(@($Output) |
+            Where-Object { $null -ne $_ } |
+            ForEach-Object { ([string]$_).Trim() } |
+            Where-Object { $_.Length -gt 0 })
+    if ($values.Count -ne 1) {
+        throw 'Git object format is absent or ambiguous.'
+    }
+    $format = $values[0]
+    if ($format -cnotmatch '^[a-z0-9]{1,16}$') {
+        throw 'Git object format is not a recognizable identifier.'
+    }
+    if ($format -cne 'sha1') {
+        # Every binding in this policy is a 40-hex SHA-1 object ID. A sha256 (or future)
+        # repository is not supported and must fail closed rather than be misread.
+        throw "Git object format is not sha1: $format"
+    }
+    return $format
+}
+
+function Assert-Arm64GitObjectFormat {
+    param([Parameter(Mandatory)][string]$RepositoryRoot)
+
+    $output = @(& git -C $RepositoryRoot rev-parse --show-object-format)
+    if ($LASTEXITCODE -ne 0) {
+        throw 'Git object format could not be determined.'
+    }
+    return Assert-Arm64GitObjectFormatValue -Output $output
+}
+
 function Test-Arm64GitObjectId {
     param([AllowNull()][object]$Value)
 
@@ -211,6 +243,7 @@ function Get-Arm64LocalGitTreeEntries {
     if ($Revision -cnotmatch '^(?:HEAD|[0-9a-f]{40})$') {
         throw "Invalid Git revision for source binding: $Revision"
     }
+    [void](Assert-Arm64GitObjectFormat -RepositoryRoot $RepositoryRoot)
     $topLevel = (& git -C $RepositoryRoot rev-parse --show-toplevel).Trim()
     if ($LASTEXITCODE -ne 0 -or
         [IO.Path]::GetFullPath($topLevel) -cne [IO.Path]::GetFullPath($RepositoryRoot)) {

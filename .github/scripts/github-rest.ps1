@@ -370,6 +370,36 @@ function ConvertFrom-GitHubRestResponse {
     }
 }
 
+function New-GitHubRestHandler {
+    [CmdletBinding()]
+    param()
+
+    $handler = [Net.Http.HttpClientHandler]::new()
+    $handler.AllowAutoRedirect = $false
+    $handler.UseCookies = $false
+    $handler.AutomaticDecompression = [Net.DecompressionMethods]::None
+    # Transport must be a direct TLS connection to api.github.com. Ambient proxy configuration
+    # (HTTP_PROXY/HTTPS_PROXY/ALL_PROXY, WinHTTP, or WPAD) must never be able to observe or
+    # redirect an authorized request, so proxy use is disabled explicitly and unconditionally.
+    $handler.UseProxy = $false
+    $handler.Proxy = $null
+    return $handler
+}
+
+function Assert-GitHubRestHandler {
+    [CmdletBinding()]
+    param([Parameter(Mandatory)][Net.Http.HttpClientHandler]$Handler)
+
+    if ($Handler.AllowAutoRedirect -or
+        $Handler.UseCookies -or
+        $Handler.UseProxy -or
+        $null -ne $Handler.Proxy -or
+        $Handler.AutomaticDecompression -ne [Net.DecompressionMethods]::None) {
+        throw 'GitHub REST transport handler is not restricted to a direct, non-proxied GET.'
+    }
+    return $Handler
+}
+
 function Invoke-GitHubRestGet {
     [CmdletBinding()]
     param(
@@ -397,10 +427,7 @@ function Invoke-GitHubRestGet {
         throw 'The GitHub token has an invalid transport format.'
     }
 
-    $handler = [Net.Http.HttpClientHandler]::new()
-    $handler.AllowAutoRedirect = $false
-    $handler.UseCookies = $false
-    $handler.AutomaticDecompression = [Net.DecompressionMethods]::None
+    $handler = Assert-GitHubRestHandler -Handler (New-GitHubRestHandler)
     $HttpClient = [Net.Http.HttpClient]::new($handler, $true)
     $HttpClient.Timeout = [TimeSpan]::FromSeconds(30)
     $message = [Net.Http.HttpRequestMessage]::new([Net.Http.HttpMethod]::Get, $uri)

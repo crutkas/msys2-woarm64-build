@@ -34,12 +34,38 @@ workflow and an exact candidate identity is separately allowlisted.
 The only ordinary `pull_request` workflow is explicitly untrusted bootstrap diagnostics. Its
 result is never admission authority, it has read-only permissions, and it uploads no artifacts.
 Workflow auditing uses only PowerShell-Yaml 0.4.12 or the locked Ruby 3.2.3/Psych 5.1.2 pair for
-both `.yml` and `.yaml`. It rejects anchors, aliases, merge keys, multiple documents, unreviewed
-actions, reusable workflows, local/Docker actions,
-containers, delegated scripts, URLs, git operations, and unsupported `MINGWARM64` setup before
-execution. Parser availability is fail-closed. The hosted runner toolchain is mutable, so a
-runner image changing those exact parser versions is an operational availability limitation,
-not permission to fall back.
+both `.yml` and `.yaml`. Candidate YAML is first accepted as raw bytes: over-size input, any BOM,
+non-UTF-8 bytes, and NUL are refused. Before any line-anchored check, every line break form a
+YAML parser may honour (CRLF, lone CR, NEL, LS, PS) is folded to LF, so a separator the check
+does not understand cannot smuggle a second document past it. It then rejects every explicit
+document marker, `---` or `...` at a line start followed by separation or end of line, so
+inline-content and second documents are refused while ordinary text such as `---not-a-marker`
+is not. Anchors, aliases, and
+merge keys are rejected across the full YAML anchor-name surface, including names beginning with
+`.` or other punctuation. Anchors and aliases are located by a single scan that tracks whether a
+plain scalar is currently open, together with flow nesting and block scalar bodies, all carried
+across lines: `&`, `*`, and quotes count as indicators only at a genuine node position, so
+ordinary shell text such as `cp *.txt out/`, `echo a, "b" && ls`, or a quoted `- "{*.md,*.txt}"`
+entry stays admissible while every real node property is caught. Because aliases never reach the
+parser, recursive alias expansion cannot be used to exhaust the audit. Each of those
+refusals reports its own distinct `semantic-yaml-*` code, and only genuinely unexpected backend
+faults collapse to the stable generic code, never echoing candidate text. The Ruby helper parses
+the exact bytes already validated, delivered on standard input under bounded input, output, error,
+and exit-status handling, so re-reading or mutating a path cannot change what is parsed. Inline
+run-body identity is the SHA-256 of the exact text bytes, with CRLF folded to LF and no other
+normalization, so leading or trailing whitespace changes identity. The audit also rejects
+unreviewed actions, reusable workflows, local/Docker actions, containers, delegated scripts, URLs,
+git operations, and unsupported `MINGWARM64` setup before execution. Parser availability is
+fail-closed. The hosted runner toolchain is mutable, so a runner image changing those exact parser
+versions is an operational availability limitation, not permission to fall back.
+
+Every object binding in this policy is a 40-hex SHA-1 Git object ID, so the protected checkout and
+object-integrity entrypoints prove the repository object format is exactly `sha1` before reading a
+tree and fail closed on an absent, `sha256`, unexpected, or ambiguous answer. SHA-256 repositories
+are not supported rather than silently misread. The read-only GitHub transport is a direct
+`GET` to `api.github.com` with redirects, cookies, and automatic decompression disabled and proxy
+use disabled explicitly, so ambient `HTTP_PROXY`, `HTTPS_PROXY`, or `ALL_PROXY` configuration
+cannot observe or redirect an authorized request.
 
 Publication, releases, Pages, and artifact upload/download routes are unconditionally denied.
 The policy fields remain `publication.enabled=false` and

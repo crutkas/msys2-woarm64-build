@@ -406,8 +406,12 @@ Assert-Arm64 ($resolverSource.IndexOf(
 
 $semanticCases = @(
     @{ Name = 'yaml-inline'; Error = 'workflow-trigger-not-allowlisted:.github/workflows/test.yaml' },
-    @{ Name = 'alias'; Error = 'semantic-yaml-parse-failed:.github/workflows/test.yml' },
-    @{ Name = 'yaml-merge'; Error = 'semantic-yaml-parse-failed:.github/workflows/test.yml' },
+    @{ Name = 'alias'; Error = 'semantic-yaml-anchor-alias-merge-forbidden:.github/workflows/test.yml' },
+    @{ Name = 'yaml-merge'; Error = 'semantic-yaml-anchor-alias-merge-forbidden:.github/workflows/test.yml' },
+    @{ Name = 'anchor-dot-name'; Error = 'semantic-yaml-anchor-alias-merge-forbidden:.github/workflows/test.yml' },
+    @{ Name = 'anchor-punctuation'; Error = 'semantic-yaml-anchor-alias-merge-forbidden:.github/workflows/test.yml' },
+    @{ Name = 'document-marker-inline'; Error = 'semantic-yaml-explicit-document-marker-forbidden:.github/workflows/test.yml' },
+    @{ Name = 'document-marker-second'; Error = 'semantic-yaml-explicit-document-marker-forbidden:.github/workflows/test.yml' },
     @{ Name = 'quoted-uses'; ErrorLike = 'remote-uses-not-commit-pinned:' },
     @{ Name = 'local-action'; ErrorLike = 'local-action-not-allowlisted:' },
     @{ Name = 'local-reusable'; Error = 'workflow-not-allowlisted:.github/workflows/reusable.yaml' },
@@ -491,6 +495,718 @@ foreach ($case in $semanticCases) {
             "semantic bypass '$($case.Name)' missed '$errorLike': $($result.Errors -join ', ')"
     }
 }
+
+$nearMissRoot = Join-Path $workflowFixtureRoot 'document-nonmarker'
+$nearMissResult = Test-Arm64WorkflowTree `
+    -Root $nearMissRoot `
+    -Policy (New-WorkflowFixturePolicy -Root $nearMissRoot) `
+    -Backend $semanticBackend `
+    -SkipAuthoritativeSnapshot
+foreach ($nearMissCode in @(
+        'semantic-yaml-explicit-document-marker-forbidden:.github/workflows/test.yml',
+        'semantic-yaml-anchor-alias-merge-forbidden:.github/workflows/test.yml',
+        'semantic-yaml-parse-failed:.github/workflows/test.yml')) {
+    Assert-Arm64 ($nearMissResult.Errors -cnotcontains $nearMissCode) `
+        "near-miss document/anchor text was rejected as $nearMissCode"
+}
+Assert-Arm64 (@($nearMissResult.Errors | Where-Object {
+            $_.StartsWith('remote-uses-not-commit-pinned:', [StringComparison]::Ordinal)
+        }).Count -gt 0) 'near-miss fixture did not reach semantic uses analysis'
+
+$utf8Strict = [Text.UTF8Encoding]::new($false, $true)
+$utf8Plain = [Text.UTF8Encoding]::new($false)
+$yamlProbeRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    'arm64-yaml-' + [Guid]::NewGuid().ToString('n')
+)
+[void](New-Item -ItemType Directory -Path $yamlProbeRoot -Force)
+function Get-Arm64YamlRejection {
+    param(
+        [Parameter(Mandatory)][byte[]]$Bytes,
+        [Parameter(Mandatory)][string]$Name
+    )
+
+    $probePath = Join-Path $script:yamlProbeRoot $Name
+    [IO.File]::WriteAllBytes($probePath, $Bytes)
+    try {
+        [void](Get-Arm64YamlText -Path $probePath)
+        return 'accepted'
+    }
+    catch {
+        return [string]$_.Exception.Message
+    }
+    finally {
+        Remove-Item -LiteralPath $probePath -Force -ErrorAction SilentlyContinue
+    }
+}
+
+try {
+    $script:yamlProbeRoot = $yamlProbeRoot
+
+    # Each deliberate rejection must surface its own distinct code so that one denial can
+    # never stand in for another.
+    $yamlCodeCases = @(
+        @{ Name = 'byte-limit.yml'
+            Bytes = $utf8Plain.GetBytes('a: ' + ('b' * 1048600))
+            Code = 'semantic-yaml-byte-limit-exceeded' },
+        @{ Name = 'bom-utf8.yml'
+            Bytes = [byte[]](@(0xef, 0xbb, 0xbf) + $utf8Plain.GetBytes("a: 1`n"))
+            Code = 'semantic-yaml-bom-forbidden' },
+        @{ Name = 'bom-utf16le.yml'
+            Bytes = [byte[]](@(0xff, 0xfe) + $utf8Plain.GetBytes("a: 1`n"))
+            Code = 'semantic-yaml-bom-forbidden' },
+        @{ Name = 'bom-utf16be.yml'
+            Bytes = [byte[]](@(0xfe, 0xff) + $utf8Plain.GetBytes("a: 1`n"))
+            Code = 'semantic-yaml-bom-forbidden' },
+        @{ Name = 'utf8-invalid.yml'
+            Bytes = [byte[]]@(0x61, 0x3a, 0x20, 0xc3, 0x28, 0x0a)
+            Code = 'semantic-yaml-utf8-invalid' },
+        @{ Name = 'nul.yml'
+            Bytes = [byte[]]@(0x61, 0x3a, 0x20, 0x00, 0x0a)
+            Code = 'semantic-yaml-nul-forbidden' },
+        @{ Name = 'marker-bare.yml'
+            Bytes = $utf8Plain.GetBytes("---`na: 1`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-first-inline.yml'
+            Bytes = $utf8Plain.GetBytes("--- {a: 1}`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-second-inline.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n--- {b: 2}`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-second-block.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n--- b: 2`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-end-bare.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n...`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-end-inline.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n... trailing`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-indented.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n  --- b`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-crlf.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`r`n---`r`nb: 2`r`n")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-lone-cr.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`r---`rb: 2")
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-next-line.yml'
+            Bytes = $utf8Plain.GetBytes(
+                'a: 1' + [char]0x85 + '---' + [char]0x85 + 'b: 2')
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-line-separator.yml'
+            Bytes = $utf8Plain.GetBytes(
+                'a: 1' + [char]0x2028 + '---' + [char]0x2028 + 'b: 2')
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'marker-paragraph-separator.yml'
+            Bytes = $utf8Plain.GetBytes(
+                'a: 1' + [char]0x2029 + '---' + [char]0x2029 + 'b: 2')
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'anchor-line-separator.yml'
+            Bytes = $utf8Plain.GetBytes('a: 1' + [char]0x2028 + 'b: &k 1')
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-next-line.yml'
+            Bytes = $utf8Plain.GetBytes('a: 1' + [char]0x85 + 'b: &.k 1')
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'alias-paragraph-separator.yml'
+            Bytes = $utf8Plain.GetBytes('a: &k 1' + [char]0x2029 + 'b: *k')
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-dot.yml'
+            Bytes = $utf8Plain.GetBytes("a: &.base 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'alias-dot.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`nb: *.base`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-ampersand.yml'
+            Bytes = $utf8Plain.GetBytes("a: &&x 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'alias-ampersand.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`nb: *&x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-star.yml'
+            Bytes = $utf8Plain.GetBytes("a: &*x 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-sequence.yml'
+            Bytes = $utf8Plain.GetBytes("a:`n  - &@0/x! 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow.yml'
+            Bytes = $utf8Plain.GetBytes("a: {b: &%x 1}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-explicit-key.yml'
+            Bytes = $utf8Plain.GetBytes("a:`n  ? &k 1`n  : 2`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'alias-explicit-key.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`nb:`n  ? *k`n  : 2`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-explicit-key-sequence.yml'
+            Bytes = $utf8Plain.GetBytes("a:`n  - ? &k 1`n    : 2`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-after-tag.yml'
+            Bytes = $utf8Plain.GetBytes("a: !!str &t 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-after-local-tag.yml'
+            Bytes = $utf8Plain.GetBytes("a: !foo &t 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-before-tag.yml'
+            Bytes = $utf8Plain.GetBytes("a: &t !!str 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-explicit-key.yml'
+            Bytes = $utf8Plain.GetBytes("a: {? &k : 1}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-bare-entry-continuation-quote.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nlist:`n  - abc`n    `"x`njobs:`n  - a`n  - &p b`n  - *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-bare-entry-continuation-bracket.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nlist:`n  - abc`n    [x`njobs:`n  - a`n  - &p b`n  - *p`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-bare-entry-zero-indent.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nlist:`n- abc`n  `"x`njobs:`n- a`n- &p b`n- *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-nested-sequence-continuation.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nlist:`n  - - abc`n      [x`njobs:`n  - a`n  - &p b`n  - *p`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-explicit-key-continuation.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nlist:`n  ? abc`n    [x`njobs:`n  - a`n  - &p b`n  - *p`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-paths-entry-continuation-workflow.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "name: CI`non:`n  push:`n    paths:`n      - src/**`n        `"extra`n" +
+                "jobs:`n  build:`n    runs-on: ubuntu-latest`n    steps:`n" +
+                "      - uses: actions/checkout@v4`n      - &poison`n        name: setup`n" +
+                "        run: echo attacker`n      - *poison`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-blank-line-continuation-quote.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "name: CI`n`n  `"x`non: push`njobs:`n  build:`n    runs-on: ubuntu-latest`n" +
+                "    steps:`n      - uses: actions/checkout@v4`n      - &poison`n" +
+                "        run: echo attacker`n      - *poison`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-blank-line-continuation-bracket.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: abc`n`n  [x`njobs:`n- a`n- &p b`n- *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-whitespace-line-continuation.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: abc`n   `n  [x`njobs:`n- a`n- &p b`n- *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-continuation-bracket.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nname: build`n  [x`nlist:`n  - a`n  - &p b`n  - *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-continuation-brace.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nname: build`n  {x`nlist:`n  - a`n  - &p b`n  - *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-continuation-quote.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nname: build`n  `"x`nlist:`n  - a`n  - &p b`n  - *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-continuation-apostrophe.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nname: build`n  'x`nlist:`n  - a`n  - &p b`n  - *p")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-continuation-workflow.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "name: build`n  [wip`non: push`njobs:`n  build:`n    runs-on: ubuntu-latest`n" +
+                "    steps:`n      - uses: actions/checkout@v4`n      - &poison`n" +
+                "        name: setup`n        run: echo attacker`n      - *poison`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-sequence-sibling.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nlist:`n  - a`n  - &x b`n  - *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-top-level-key.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`n&x k: v`njobs:`n  b: c`n  *x : d`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-sequence-flow-sibling.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nlist:`n  - a`n  - [b, &x c]`n  - [d, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-sequence-amplification.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nlist:`n  - seed`n  - &a [1,1,1]`n  - &b [*a,*a,*a]`n" +
+                "  - &c [*b,*b,*b]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-mapping-sibling.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nm:`n  a: 1`n  b: &x g`n  c: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-after-block-scalar-sibling.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`na: |`n  body`nlist:`n  - x`n  - &y g`n  - *y`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-comma-quote-key.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc, `"def: &x g`nhij, `"klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-comma-quote-tight.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc,`"def: &x g`nhij,`"klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-bracket-quote.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc[ `"def: &x g`nhij[ `"klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-brace-quote.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc{ `"def: &x g`nhij{ `"klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-comma-quote-sequence.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nsteps:`n  - k, `"v: &x g`n  - k, `"w: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'merge-plain-comma-quote.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nb, `"z: &x {A: 1}`nq, `"z2: {<<: *x}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-after-block-scalar-exit.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`na: |`n  body`nb, `"c: &x g`nd, `"e: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-comma-quote-workflow.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "name: demo`non: push`njobs:`n  build:`n    runs-on: ubuntu-latest`n" +
+                "    steps:`n      - shell, `"a: &poison`n          run: echo x`n" +
+                "        name: first`n      - shell, `"b: *poison`n        name: second`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote-key.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc- `"def: &x g`nhij- `"klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-question-quote-key.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nok? `"y: &x g`nno? `"z: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-apostrophe-key.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc- 'def: &x g`nhij- 'klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-tab-quote.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nabc-`t`"def: &x g`nhij-`t`"klm: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote-sequence.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nsteps:`n  - k- `"v: &x g`n  - k- `"w: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote-flow.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: [abc- `"def, &x g]`nj: [hij- `"klm, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'merge-plain-dash-quote-flow.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nk: [abc- `"def, &x {a: 1}]`nj: [hij- `"klm, <<: *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote-nested-flow.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: {p: [q- `"r, &x g]}`nj: {p: [s- `"t, *x]}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote-continuation.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nk: [abc-`n  `"def, &x g]`nj: [hij-`n  `"klm, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote-workflow.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "name: demo`non: push`njobs:`n  build:`n    runs-on: ubuntu-latest`n" +
+                "    steps:`n      - shell- `"a: &poison`n          run: echo x`n" +
+                "        name: first`n      - shell- `"b: *poison`n        name: second`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-alias-expansion.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nq- `"z: &a [x,x,x]`nr- `"z: &b [*a,*a,*a]`ns- `"z: &c [*b,*b,*b]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-continuation-colon.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`na: {`n  b:&x 1`n}`nc: {`n  d:*x`n}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-continuation-question.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`na: {`n  ?&x : 1`n}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-nested-continuation.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`na: {b: {`n  c:&x 1`n}}`nd: {e: {`n  f:*x`n}}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-continuation-sequence.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`na: [`n  1,`n  &x 2`n]`nb: [`n  *x`n]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-fake-header-comma.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`njobs:`n  b:`n    steps:`n      - run: echo hi, |`n" +
+                "        env: &x`n          A: 1`n        with:`n          <<: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-fake-header-bracket.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`njobs:`n  b:`n    steps:`n      - run: echo [ |`n" +
+                "        env: &x`n          A: 1`n        with: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-fake-header-chomp.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`njobs:`n  b:`n    steps:`n      - run: echo a, |-`n" +
+                "        env: &x`n          A: 1`n        with: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-dash-quote.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: pull_request`njobs:`n  build:`n" +
+                "    runs-on: [self-`"hosted, &poison ubuntu-latest]`n    steps:`n" +
+                "      - uses: [actions-`"checkout, *poison]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-colon-quote.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: [a:`"b, &x g]`nj: [c:`"d, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-continuation-quote.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`nk: [abc`n  `"def, &x g]`nj: [hij`n  `"klm, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-explicit-key-sequence-order.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`na:`n  ? - &x v`n  : 1`nb:`n  ? - *x`n  : 2`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-colon-no-space.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: {a:&x 1}`nj: {b:*x}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-flow-question-no-space.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: {?&x : 1}`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-fake-folded-header.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`njobs:`n  b:`n    steps:`n      - name: pipe >`n" +
+                "        env: &x`n          A: 1`n        with:`n          <<: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-fake-literal-header.yml'
+            Bytes = $utf8Plain.GetBytes(
+                "on: push`njobs:`n  b:`n    steps:`n      - run: echo a |`n" +
+                "        env: &x`n          A: 1`n        with: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-colon-key.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`na:b: &x hidden`nc:d: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-apostrophe.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: [don't, &x bar]`nj: [it's, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-plain-double-quote.yml'
+            Bytes = $utf8Plain.GetBytes("on: push`nk: [a`"b, &x bar]`nj: [c`"d, *x]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-hash-key.yml'
+            Bytes = $utf8Plain.GetBytes("a#b: &x 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'alias-hash-key.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`nc#d: *x`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-comma-key.yml'
+            Bytes = $utf8Plain.GetBytes("a,b: &x 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-quoted-colon-key.yml'
+            Bytes = $utf8Plain.GetBytes("`"a:b`": &x 1`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'anchor-multiline-flow.yml'
+            Bytes = $utf8Plain.GetBytes("a: [`n  &x 1,`n  *x`n]`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'merge-key.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n<<: *base`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'merge-key-plain.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n<<: b`n")
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' }
+    )
+    foreach ($yamlCase in $yamlCodeCases) {
+        $observed = Get-Arm64YamlRejection -Bytes $yamlCase.Bytes -Name $yamlCase.Name
+        Assert-Arm64 ($observed -ceq $yamlCase.Code) `
+            "YAML case '$($yamlCase.Name)' produced '$observed' instead of '$($yamlCase.Code)'"
+    }
+
+    # Near-miss text must stay admissible so the gate cannot be satisfied by prefix accidents.
+    $yamlAcceptCases = @(
+        @{ Name = 'nonmarker-prefix.yml'; Text = "---not-a-marker: 1`n" },
+        @{ Name = 'nonmarker-four-dash.yml'; Text = "a: 1`n----`n" },
+        @{ Name = 'nonmarker-four-dot.yml'; Text = "a: 1`n....`n" },
+        @{ Name = 'nonmarker-dotted-key.yml'; Text = "...key: 1`n" },
+        @{ Name = 'shell-and.yml'; Text = "jobs:`n  run: cmd1 && cmd2`n" },
+        @{ Name = 'shell-glob.yml'; Text = "jobs:`n  run: cp *.txt out/`n" },
+        @{ Name = 'quoted-glob.yml'; Text = "paths:`n  - `".github/workflows/*.yml`"`n" },
+        @{ Name = 'block-scalar-and.yml'; Text = "run: |`n  a && b`n  c *.txt`n" },
+        @{ Name = 'folded-scalar-and.yml'; Text = "runs-on: >-`n  x`n    && y`n    || z`n" },
+        @{ Name = 'comment-anchor.yml'; Text = "a: 1 # &anchor *alias`n" },
+        @{ Name = 'question-in-run.yml'; Text = "jobs:`n  run: is this ok? *.txt`n" },
+        @{ Name = 'bang-in-run.yml'; Text = "jobs:`n  run: echo !important *.txt`n" },
+        @{ Name = 'dash-in-run.yml'; Text = "jobs:`n  run: cmd --flag && other`n" },
+        @{ Name = 'apostrophe-run.yml'; Text = "jobs:`n  run: don't stop && go`n" },
+        @{ Name = 'quoted-name.yml'; Text = "name: `"Build the thing`"`n" },
+        @{ Name = 'real-folded-header.yml'
+            Text = "runs-on: >-`n  x`n    && y`n    || z`nsteps: 1`n" },
+        @{ Name = 'real-literal-header.yml'
+            Text = "jobs:`n  a:`n    run: |`n      echo x && y`n  b: 1`n" },
+        @{ Name = 'quoted-key.yml'; Text = "on:`n  `"push`": null`n" },
+        @{ Name = 'sequence-quoted.yml'; Text = "steps:`n  - `"a`"`n  - `"b`"`n" },
+        @{ Name = 'flow-sequence.yml'; Text = "runs-on: [self-hosted, linux]`n" },
+        @{ Name = 'expression-and.yml'
+            Text = "env:`n  F: `${{ (a == 'x') && 'y' || 'z' }}`n" },
+        @{ Name = 'expression-glob.yml'
+            Text = "env:`n  P: `${{ github.workspace }}/x/*.zst`n" },
+        @{ Name = 'sequence-quoted-glob.yml'
+            Text = "paths:`n  - `"a/**`"`n  - `"b/*.yml`"`n" },
+        @{ Name = 'sequence-quoted-comma-glob.yml'; Text = "paths:`n  - `"*.md, *.txt`"`n" },
+        @{ Name = 'sequence-quoted-brace-glob.yml'; Text = "paths:`n  - `"{*.md,*.txt}`"`n" },
+        @{ Name = 'sequence-quoted-brace-args.yml'
+            Text = "args:`n  - `"rm -rf build/{*.o,*.a}`"`n" },
+        @{ Name = 'sequence-quoted-comma-args.yml'; Text = "args:`n  - `"cp a.txt,*.md d/`"`n" },
+        @{ Name = 'run-comma-quote-and.yml'; Text = "run: echo a, `"b`" && ls`n" },
+        @{ Name = 'cron-quoted.yml'
+            Text = "on:`n  schedule:`n    - cron: `"30 5,17 * * *`"`n" },
+        @{ Name = 'matrix-flow-quoted.yml'; Text = "os: [`"ubuntu-latest`",`"windows-latest`"]`n" },
+        @{ Name = 'name-quoted-ampersand.yml'
+            Text = "steps:`n  - name: `"Build, test & package`"`n" },
+        @{ Name = 'path-quoted-expression.yml'
+            Text = "path: `"`${{ github.workspace }}/dist/*.zst`"`n" },
+        @{ Name = 'run-git-log-format.yml'
+            Text = "run: git log --pretty=format:`"%h, %s`" && echo ok`n" },
+        @{ Name = 'run-find-quoted.yml'
+            Text = "run: find . -name `"*.log`" -delete && echo done`n" },
+        @{ Name = 'run-cp-brace.yml'; Text = "run: cp -r src/{a,b} dist/ && ls dist/*`n" },
+        @{ Name = 'run-jq-quoted.yml'; Text = "run: jq -r '.a[0], .b' f.json && echo ok`n" },
+        @{ Name = 'sequence-brace-globstar.yml'; Text = "paths:`n  - `"**/{docs,ex}/**`"`n" },
+        @{ Name = 'quoted-sequence-nested-glob.yml'
+            Text = "on:`n  push:`n    paths:`n      - `"a`"`n      - `"b: *.md`"`n" },
+        @{ Name = 'quoted-key-with-ampersand.yml'; Text = "a: 1`n`"b: &c`": 2`n" },
+        @{ Name = 'merge-text-in-quoted-scalar.yml'; Text = "- run: echo `"a <<: b`"`n" },
+        @{ Name = 'merge-text-in-comment.yml'
+            Text = "# note: <<: merge keys are banned`na: 1`n" },
+        @{ Name = 'merge-text-in-block-scalar.yml'
+            Text = "- run: |`n    echo `"x <<: y`"`n" },
+        @{ Name = 'plain-continuation-ampersand.yml'; Text = "name: a`n  && b`non: push`n" },
+        @{ Name = 'plain-continuation-glob.yml'; Text = "name: a`n  *.txt`non: push`n" },
+        @{ Name = 'quoted-scalar-blank-line.yml'; Text = "name: `"a`n`n  b`"`non: push`n" },
+        @{ Name = 'step-sibling-after-comment.yml'
+            Text = "steps:`n  - name: x   # comment`n    run: y`n" },
+        @{ Name = 'nested-job-steps.yml'
+            Text = "jobs:`n  build:`n    runs-on: ubuntu-latest`n    steps:`n" +
+            "      - uses: a/b@c`n      - run: echo hi`n" },
+        @{ Name = 'blank-line-between-steps.yml'
+            Text = "steps:`n  - name: A`n    run: x`n`n  - name: B`n    run: z`n" },
+        @{ Name = 'sequence-entry-continuation.yml'
+            Text = "paths:`n  - src/**`n    more`non: push`n" }
+    )
+    foreach ($yamlCase in $yamlAcceptCases) {
+        $observed = Get-Arm64YamlRejection `
+            -Bytes $utf8Plain.GetBytes($yamlCase.Text) `
+            -Name $yamlCase.Name
+        Assert-Arm64 ($observed -ceq 'accepted') `
+            "near-miss YAML '$($yamlCase.Name)' was rejected as '$observed'"
+    }
+
+    # A genuinely unexpected backend fault stays generic and never echoes candidate text.
+    $backendFailure = 'accepted'
+    try {
+        [void](Invoke-Arm64YamlBackend -Text "a: [1, 2`n" -Backend $semanticBackend)
+    }
+    catch {
+        $backendFailure = [string]$_.Exception.Message
+    }
+    Assert-Arm64 ($backendFailure -ceq 'semantic-yaml-backend-parse-failed') `
+        "malformed backend input produced '$backendFailure'"
+
+    $syntheticError = [Management.Automation.ErrorRecord]::new(
+        [Exception]::new(
+            'curl https' + [char]58 + '//example.invalid/payload leaked from the backend'
+        ),
+        'synthetic',
+        [Management.Automation.ErrorCategory]::NotSpecified,
+        $null
+    )
+    $mappedGeneric = Resolve-Arm64YamlErrorCode `
+        -ErrorRecord $syntheticError `
+        -Relative '.github/workflows/test.yml'
+    Assert-Arm64 ($mappedGeneric -ceq 'semantic-yaml-parse-failed:.github/workflows/test.yml') `
+        'unexpected backend failures are not reduced to the stable generic code'
+    Assert-Arm64 (-not $mappedGeneric.Contains('example.invalid', [StringComparison]::Ordinal)) `
+        'unexpected backend failure text leaked into the audit error stream'
+    foreach ($deliberateCode in @(
+            'semantic-yaml-bom-forbidden',
+            'semantic-yaml-nul-forbidden',
+            'semantic-yaml-byte-limit-exceeded',
+            'semantic-yaml-utf8-invalid',
+            'semantic-yaml-explicit-document-marker-forbidden',
+            'semantic-yaml-anchor-alias-merge-forbidden',
+            'semantic-yaml-backend-parse-failed',
+            'semantic-parser-unavailable')) {
+        $mapped = Resolve-Arm64YamlErrorCode `
+            -ErrorRecord ([Management.Automation.ErrorRecord]::new(
+                [Exception]::new($deliberateCode),
+                'deliberate',
+                [Management.Automation.ErrorCategory]::NotSpecified,
+                $null)) `
+            -Relative '.github/workflows/test.yml'
+        Assert-Arm64 ($mapped -ceq "${deliberateCode}:.github/workflows/test.yml") `
+            "deliberate code '$deliberateCode' was not propagated structurally"
+    }
+    $mappedPrefixed = Resolve-Arm64YamlErrorCode `
+        -ErrorRecord ([Management.Automation.ErrorRecord]::new(
+            [Exception]::new('semantic-parser-differential:C:\candidate\test.yml'),
+            'deliberate',
+            [Management.Automation.ErrorCategory]::NotSpecified,
+            $null)) `
+        -Relative '.github/workflows/test.yml'
+    Assert-Arm64 ($mappedPrefixed -ceq
+        'semantic-parser-differential:.github/workflows/test.yml') `
+        'differential rejection did not keep its structural code and relative path'
+
+    # The Ruby backend parses the exact validated bytes, so mutating or re-reading the source
+    # path after validation cannot change what the parser sees.
+    $pwshPath = (Get-Process -Id $PID).Path
+    $mutationPath = Join-Path $yamlProbeRoot 'mutation.yml'
+    [IO.File]::WriteAllBytes($mutationPath, $utf8Plain.GetBytes("name: original`n"))
+    $validatedText = Get-Arm64YamlText -Path $mutationPath
+    [IO.File]::WriteAllBytes($mutationPath, $utf8Plain.GetBytes("name: mutated-after-validation`n"))
+    $echoResult = Invoke-Arm64BoundedProcess `
+        -FilePath $pwshPath `
+        -ArgumentList @(
+            '-NoProfile',
+            '-NonInteractive',
+            '-Command',
+            '$i=[Console]::OpenStandardInput();$o=[Console]::OpenStandardOutput();' +
+            '$i.CopyTo($o);$o.Flush()'
+        ) `
+        -InputBytes $utf8Strict.GetBytes($validatedText)
+    Assert-Arm64 ($echoResult.ExitCode -eq 0) 'bounded parser transport did not exit cleanly'
+    $echoedText = $utf8Strict.GetString($echoResult.OutputBytes)
+    Assert-Arm64 ($echoedText -ceq "name: original`n") `
+        'bounded parser input was re-read from the mutated path instead of validated bytes'
+    Assert-Arm64 ((Get-Content -LiteralPath $mutationPath -Raw) -cnotmatch 'original') `
+        'path mutation probe did not actually change the file on disk'
+    Remove-Item -LiteralPath $mutationPath -Force -ErrorAction SilentlyContinue
+
+    $boundedCases = @(
+        @{ Name = 'input-cap'
+            Arguments = @('-NoProfile', '-NonInteractive', '-Command', 'exit 0')
+            Bytes = [byte[]]::new(4096)
+            Limits = @{ MaximumInputBytes = 1024 }
+            Code = 'semantic-parser-input-limit-exceeded' },
+        @{ Name = 'output-cap'
+            Arguments = @('-NoProfile', '-NonInteractive', '-Command',
+                '$o=[Console]::OpenStandardOutput();$b=[byte[]]::new(262144);' +
+                '$o.Write($b,0,$b.Length);$o.Flush()')
+            Bytes = [byte[]]::new(0)
+            Limits = @{ MaximumOutputBytes = 1024 }
+            Code = 'semantic-parser-output-limit-exceeded' },
+        @{ Name = 'error-cap'
+            Arguments = @('-NoProfile', '-NonInteractive', '-Command',
+                '$e=[Console]::OpenStandardError();$b=[byte[]]::new(262144);' +
+                '$e.Write($b,0,$b.Length);$e.Flush()')
+            Bytes = [byte[]]::new(0)
+            Limits = @{ MaximumErrorBytes = 1024 }
+            Code = 'semantic-parser-output-limit-exceeded' }
+    )
+    foreach ($boundedCase in $boundedCases) {
+        $boundedOutcome = 'completed'
+        try {
+            $arguments = @{
+                FilePath = $pwshPath
+                ArgumentList = $boundedCase.Arguments
+                InputBytes = $boundedCase.Bytes
+            }
+            foreach ($limitName in $boundedCase.Limits.Keys) {
+                $arguments[$limitName] = $boundedCase.Limits[$limitName]
+            }
+            [void](Invoke-Arm64BoundedProcess @arguments)
+        }
+        catch {
+            $boundedOutcome = [string]$_.Exception.Message
+        }
+        Assert-Arm64 ($boundedOutcome -ceq $boundedCase.Code) `
+            "bounded process case '$($boundedCase.Name)' produced '$boundedOutcome'"
+    }
+
+    $exitResult = Invoke-Arm64BoundedProcess `
+        -FilePath $pwshPath `
+        -ArgumentList @('-NoProfile', '-NonInteractive', '-Command', 'exit 7') `
+        -InputBytes ([byte[]]::new(0))
+    Assert-Arm64 ($exitResult.ExitCode -eq 7) 'bounded process exit status was not observed'
+}
+finally {
+    Remove-Item -LiteralPath $yamlProbeRoot -Recurse -Force -ErrorAction SilentlyContinue
+}
+Assert-Arm64 (-not (Test-Path -LiteralPath $yamlProbeRoot)) `
+    'YAML probe scratch directory left residue behind'
+
+if ($null -eq (Get-Command ruby -ErrorAction SilentlyContinue)) {
+    $rubyUnavailable = 'accepted'
+    try {
+        [void](Invoke-Arm64YamlBackend -Text "a: 1`n" -Backend 'RubyPsych')
+    }
+    catch {
+        $rubyUnavailable = [string]$_.Exception.Message
+    }
+    Assert-Arm64 ($rubyUnavailable -ceq 'semantic-parser-unavailable') `
+        "absent Ruby backend produced '$rubyUnavailable' instead of failing closed"
+}
+
+$backendParameters = @((Get-Command Invoke-Arm64YamlBackend).Parameters.Keys)
+Assert-Arm64 ($backendParameters -cnotcontains 'Path') `
+    'the YAML backend can still reopen a candidate path instead of parsing validated bytes'
+$rubyParserSource = Get-Content `
+    -LiteralPath (Join-Path $repoRoot '.github\scripts\parse-yaml.rb') `
+    -Raw
+Assert-Arm64 (-not $rubyParserSource.Contains('File.binread', [StringComparison]::Ordinal)) `
+    'the Ruby parser still reads YAML from a path'
+Assert-Arm64 (-not $rubyParserSource.Contains('ARGV[0]', [StringComparison]::Ordinal)) `
+    'the Ruby parser still accepts a path argument'
+foreach ($rubyFragment in @(
+        'ARGV.empty?',
+        'STDIN.binmode',
+        'STDIN.read(MAX_INPUT_BYTES + 1)',
+        'RUBY_VERSION == "3.2.3"',
+        'Psych::VERSION == "5.1.2"',
+        'aliases: false')) {
+    Assert-Arm64 ($rubyParserSource.Contains($rubyFragment, [StringComparison]::Ordinal)) `
+        "the Ruby parser no longer pins '$rubyFragment'"
+}
+
+# Line-ending policy is explicit and identity is byte-exact: whitespace is significant.
+Assert-Arm64 ((Get-Arm64Sha256Text -Text "a`r`nb") -ceq (Get-Arm64Sha256Text -Text "a`nb")) `
+    'CRLF and LF run bodies do not share an identity'
+foreach ($whitespaceVariant in @(' x', 'x ', "`nx", "x`n", "`tx", "x`t", ' x ')) {
+    Assert-Arm64 ((Get-Arm64Sha256Text -Text $whitespaceVariant) -cne
+        (Get-Arm64Sha256Text -Text 'x')) `
+        "leading or trailing whitespace variant '$whitespaceVariant' collapsed to the same identity"
+}
+Assert-Arm64 ((Get-Arm64Sha256Text -Text 'x') -ceq
+    '2d711642b726b04401627ca9fbac32f5c8530fb1903cc4db02258717921a4881') `
+    'run-body identity is not the SHA-256 of its exact UTF-8 bytes'
+$sha256Start = $auditSource.IndexOf(
+    'function Get-Arm64Sha256Text',
+    [StringComparison]::Ordinal
+)
+$sha256Body = $auditSource.Substring($sha256Start, 600)
+Assert-Arm64 (-not $sha256Body.Contains('.Trim()', [StringComparison]::Ordinal)) `
+    'run-body identity still trims whitespace before hashing'
+
+# Every binding in this policy is a 40-hex SHA-1 object ID, so the object format is explicit.
+Assert-Arm64 ((Assert-Arm64GitObjectFormat -RepositoryRoot $repoRoot) -ceq 'sha1') `
+    'the repository object format is not verified as sha1'
+$objectFormatCases = @(
+    @{ Name = 'absent'; Output = @() },
+    @{ Name = 'null'; Output = $null },
+    @{ Name = 'blank'; Output = @('   ') },
+    @{ Name = 'sha256'; Output = @('sha256') },
+    @{ Name = 'multiple'; Output = @('sha1', 'sha256') },
+    @{ Name = 'duplicate'; Output = @('sha1', 'sha1') },
+    @{ Name = 'uppercase'; Output = @('SHA1') },
+    @{ Name = 'unexpected'; Output = @('sha1 --exec') },
+    @{ Name = 'future'; Output = @('blake3') }
+)
+foreach ($objectFormatCase in $objectFormatCases) {
+    $objectFormatRejected = $false
+    try {
+        [void](Assert-Arm64GitObjectFormatValue -Output $objectFormatCase.Output)
+    }
+    catch {
+        $objectFormatRejected = $true
+    }
+    Assert-Arm64 $objectFormatRejected `
+        "object format case '$($objectFormatCase.Name)' was accepted"
+}
+Assert-Arm64 ((Assert-Arm64GitObjectFormatValue -Output @("sha1`n")) -ceq 'sha1') `
+    'a well-formed sha1 object format line was rejected'
+$integritySource = Get-Content `
+    -LiteralPath (Join-Path $repoRoot '.github\scripts\git-object-integrity.ps1') `
+    -Raw
+Assert-Arm64 ($integritySource.IndexOf(
+        'Assert-Arm64GitObjectFormat -RepositoryRoot $RepositoryRoot',
+        [StringComparison]::Ordinal
+    ) -lt $integritySource.IndexOf(
+        'ls-tree -r -t -l --full-tree',
+        [StringComparison]::Ordinal
+    )) 'the Git tree is enumerated before its object format is proven to be sha1'
+$verifierSource = Get-Content `
+    -LiteralPath (Join-Path $repoRoot '.github\scripts\verify-protected-context.ps1') `
+    -Raw
+Assert-Arm64 ($verifierSource.Contains(
+        'Assert-Arm64GitObjectFormat -RepositoryRoot $repositoryRoot',
+        [StringComparison]::Ordinal
+    )) 'the protected checkout does not assert a sha1 object format'
 
 $historicalActionPins = [ordered]@{
     'msys2/setup-msys2' = '66cd2cce69caa17b53920067426061ca1de3a884'
@@ -1291,6 +2007,80 @@ Assert-Arm64 ($transportSource.Contains(
         '$handler.AllowAutoRedirect = $false',
         [StringComparison]::Ordinal
     )) 'GitHub REST authorization can follow redirects'
+foreach ($transportFragment in @(
+        '$handler.UseProxy = $false',
+        '$handler.Proxy = $null',
+        '$handler.UseCookies = $false',
+        '$handler.AutomaticDecompression = [Net.DecompressionMethods]::None')) {
+    Assert-Arm64 ($transportSource.Contains($transportFragment, [StringComparison]::Ordinal)) `
+        "GitHub REST transport no longer pins '$transportFragment'"
+}
+Assert-Arm64 ($transportSource.Contains(
+        'Assert-GitHubRestHandler -Handler (New-GitHubRestHandler)',
+        [StringComparison]::Ordinal
+    )) 'GitHub REST transport does not verify its own handler before sending'
+
+# Ambient proxy configuration must never be able to observe or redirect an authorized GET.
+$proxyVariables = @('HTTP_PROXY', 'HTTPS_PROXY', 'ALL_PROXY', 'http_proxy', 'https_proxy')
+$proxyProbeUrl = 'http' + [char]58 + '//127.0.0.1:9'
+$savedProxyValues = @{}
+foreach ($proxyVariable in $proxyVariables) {
+    $savedProxyValues[$proxyVariable] = [Environment]::GetEnvironmentVariable($proxyVariable)
+}
+try {
+    foreach ($proxyVariable in $proxyVariables) {
+        [Environment]::SetEnvironmentVariable($proxyVariable, $proxyProbeUrl)
+    }
+    $restHandler = New-GitHubRestHandler
+    try {
+        Assert-Arm64 (-not $restHandler.UseProxy) 'REST transport can use an ambient proxy'
+        Assert-Arm64 ($null -eq $restHandler.Proxy) 'REST transport carries a proxy instance'
+        Assert-Arm64 (-not $restHandler.AllowAutoRedirect) 'REST transport can follow redirects'
+        Assert-Arm64 (-not $restHandler.UseCookies) 'REST transport can carry cookies'
+        Assert-Arm64 ($restHandler.AutomaticDecompression -eq
+            [Net.DecompressionMethods]::None) 'REST transport can auto-decompress'
+        [void](Assert-GitHubRestHandler -Handler $restHandler)
+    }
+    finally {
+        $restHandler.Dispose()
+    }
+
+    foreach ($handlerMutation in @('UseProxy', 'Proxy', 'AllowAutoRedirect', 'UseCookies',
+            'AutomaticDecompression')) {
+        $mutatedHandler = New-GitHubRestHandler
+        try {
+            switch ($handlerMutation) {
+                'UseProxy' { $mutatedHandler.UseProxy = $true }
+                'Proxy' { $mutatedHandler.Proxy = [Net.WebProxy]::new($proxyProbeUrl) }
+                'AllowAutoRedirect' { $mutatedHandler.AllowAutoRedirect = $true }
+                'UseCookies' { $mutatedHandler.UseCookies = $true }
+                'AutomaticDecompression' {
+                    $mutatedHandler.AutomaticDecompression = [Net.DecompressionMethods]::GZip
+                }
+            }
+            $handlerRejected = $false
+            try {
+                [void](Assert-GitHubRestHandler -Handler $mutatedHandler)
+            }
+            catch {
+                $handlerRejected = $true
+            }
+            Assert-Arm64 $handlerRejected `
+                "weakened REST transport handler '$handlerMutation' was accepted"
+        }
+        finally {
+            $mutatedHandler.Dispose()
+        }
+    }
+}
+finally {
+    foreach ($proxyVariable in $proxyVariables) {
+        [Environment]::SetEnvironmentVariable(
+            $proxyVariable,
+            $savedProxyValues[$proxyVariable]
+        )
+    }
+}
 Assert-Arm64 ($transportSource -notmatch '(?i)Write-(?:Output|Host|Verbose|Debug).*(?:Token|Authorization)') `
     'GitHub REST transport can log authorization material'
 
