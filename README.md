@@ -5,6 +5,30 @@ with `aarch64-w64-mingw32` and `aarch64-pc-msys` targets inside MSYS2 environmen
 their Pacman packages overlay repositories to GitHub Pages environment of this repository.
 It also serves as a documentation of the necessary steps to build them.
 
+## ARM64 quarantine and admission
+
+The fail-closed policy in
+[`.github/policies/arm64-quarantine-policy.json`](.github/policies/arm64-quarantine-policy.json)
+is the only admission authority for ARM64 candidate metadata. It records the revoked runtime
+commit lineage and releases, revoked binutils package identity, accepted immutable
+Git-for-Windows baseline, exact producer trailers, reviewed Action pins, and the isolated
+workspace rule. Admission is metadata-only: it cannot authorize network, setup, download,
+installation, packaging, builds, artifact consumption, payload assembly, native execution,
+candidate output, publication, or release-setting changes.
+
+The manually dispatched
+[ARM64 admission workflow](.github/workflows/arm64-admission.yml) rejects incomplete metadata
+before checkout, then evaluates provenance and revocations without consuming an artifact. The
+old build workflows are marked historical and have no `push` or `pull_request` entry point.
+Ordinary pull requests run only the offline diagnostic fixture suite and do not schedule ARM64
+runners or upload candidate artifacts.
+
+Run the deterministic tests with the repository's existing PowerShell runtime:
+
+```powershell
+./tests/arm64-admission/run.ps1
+```
+
 The actual MSYS2 packages recipes dwells in `woarm64` branches of
 [Windows-on-ARM-Experiments/MSYS2-packages](https://github.com/Windows-on-ARM-Experiments/MSYS2-packages)
 and [Windows-on-ARM-Experiments/MINGW-packages](https://github.com/Windows-on-ARM-Experiments/MINGW-packages)

@@ -1,0 +1,634 @@
+{
+  "missing_paths": [
+    "schema_version",
+    "admission.mode",
+    "admission.evaluated_at",
+    "safety.network",
+    "safety.setup",
+    "safety.download",
+    "safety.install",
+    "safety.package",
+    "safety.build",
+    "safety.artifact_consumption",
+    "safety.payload_assembly",
+    "safety.native_execution",
+    "safety.release_publish",
+    "safety.release_settings_change",
+    "safety.candidate_output",
+    "baseline.repository",
+    "baseline.release.id",
+    "baseline.release.immutable",
+    "baseline.release.state",
+    "baseline.release.draft",
+    "baseline.release.prerelease",
+    "baseline.release.tag_name",
+    "baseline.tag.name",
+    "baseline.tag.object_type",
+    "baseline.tag.object_sha",
+    "baseline.tag.peeled_commit",
+    "baseline.asset.id",
+    "baseline.asset.name",
+    "baseline.asset.size",
+    "baseline.asset.sha256",
+    "producer.repository",
+    "producer.commit",
+    "producer.tree",
+    "producer.parents",
+    "producer.commit_message",
+    "workflow.path",
+    "workflow.blob",
+    "workflow.actions",
+    "workflow.actions.actions/checkout",
+    "workflow.actions.msys2/setup-msys2",
+    "workflow.actions.actions/upload-artifact",
+    "workflow.actions.actions/download-artifact",
+    "workflow.actions.actions/cache/restore",
+    "workflow.actions.actions/cache/save",
+    "workflow.actions.actions/upload-pages-artifact",
+    "workflow.actions.actions/configure-pages",
+    "workflow.actions.actions/deploy-pages",
+    "run.id",
+    "run.attempt",
+    "run.job",
+    "run.event_name",
+    "run.ref",
+    "run.head_sha",
+    "artifact.id",
+    "artifact.name",
+    "artifact.size",
+    "artifact.digest",
+    "artifact.expires_at",
+    "runtime.release.id",
+    "runtime.release.immutable",
+    "runtime.commit",
+    "runtime.ancestors",
+    "binutils.release.id",
+    "binutils.release.immutable",
+    "binutils.package_sha256",
+    "revocation_checks",
+    "revocation_checks.runtime_commit_and_descendants",
+    "revocation_checks.runtime_release",
+    "revocation_checks.binutils_release",
+    "revocation_checks.binutils_package_sha256",
+    "workspace.root",
+    "workspace.shared_root_observed",
+    "workspace.shared_root_transaction"
+  ],
+  "mutations": [
+    {
+      "name": "wrong schema version",
+      "set": {
+        "schema_version": 2
+      },
+      "error": "invalid:schema_version"
+    },
+    {
+      "name": "non-metadata admission mode",
+      "set": {
+        "admission.mode": "consume"
+      },
+      "error": "invalid:admission.mode"
+    },
+    {
+      "name": "invalid evaluation timestamp",
+      "set": {
+        "admission.evaluated_at": "not-a-timestamp"
+      },
+      "error": "invalid:admission.evaluated_at"
+    },
+    {
+      "name": "network operation requested",
+      "set": {
+        "safety.network": true
+      },
+      "error": "operation-not-metadata-only:safety.network"
+    },
+    {
+      "name": "setup operation requested",
+      "set": {
+        "safety.setup": true
+      },
+      "error": "operation-not-metadata-only:safety.setup"
+    },
+    {
+      "name": "download operation requested",
+      "set": {
+        "safety.download": true
+      },
+      "error": "operation-not-metadata-only:safety.download"
+    },
+    {
+      "name": "install operation requested",
+      "set": {
+        "safety.install": true
+      },
+      "error": "operation-not-metadata-only:safety.install"
+    },
+    {
+      "name": "package operation requested",
+      "set": {
+        "safety.package": true
+      },
+      "error": "operation-not-metadata-only:safety.package"
+    },
+    {
+      "name": "build operation requested",
+      "set": {
+        "safety.build": true
+      },
+      "error": "operation-not-metadata-only:safety.build"
+    },
+    {
+      "name": "artifact consumption requested",
+      "set": {
+        "safety.artifact_consumption": true
+      },
+      "error": "operation-not-metadata-only:safety.artifact_consumption"
+    },
+    {
+      "name": "payload assembly requested",
+      "set": {
+        "safety.payload_assembly": true
+      },
+      "error": "operation-not-metadata-only:safety.payload_assembly"
+    },
+    {
+      "name": "native execution requested",
+      "set": {
+        "safety.native_execution": true
+      },
+      "error": "operation-not-metadata-only:safety.native_execution"
+    },
+    {
+      "name": "release publication requested",
+      "set": {
+        "safety.release_publish": true
+      },
+      "error": "operation-not-metadata-only:safety.release_publish"
+    },
+    {
+      "name": "release settings change requested",
+      "set": {
+        "safety.release_settings_change": true
+      },
+      "error": "operation-not-metadata-only:safety.release_settings_change"
+    },
+    {
+      "name": "candidate output requested",
+      "set": {
+        "safety.candidate_output": true
+      },
+      "error": "operation-not-metadata-only:safety.candidate_output"
+    },
+    {
+      "name": "baseline release mutable",
+      "set": {
+        "baseline.release.immutable": false
+      },
+      "error": "release-not-immutable:baseline.release"
+    },
+    {
+      "name": "runtime release mutable",
+      "set": {
+        "runtime.release.immutable": false
+      },
+      "error": "release-not-immutable:runtime.release"
+    },
+    {
+      "name": "binutils release mutable",
+      "set": {
+        "binutils.release.immutable": false
+      },
+      "error": "release-not-immutable:binutils.release"
+    },
+    {
+      "name": "wrong baseline repository",
+      "set": {
+        "baseline.repository": "example/other"
+      },
+      "error": "baseline-mismatch:repository"
+    },
+    {
+      "name": "wrong baseline release",
+      "set": {
+        "baseline.release.id": 368726167
+      },
+      "error": "baseline-mismatch:release.id"
+    },
+    {
+      "name": "baseline not released",
+      "set": {
+        "baseline.release.state": "draft"
+      },
+      "error": "baseline-not-released"
+    },
+    {
+      "name": "baseline is draft",
+      "set": {
+        "baseline.release.draft": true
+      },
+      "error": "baseline-draft"
+    },
+    {
+      "name": "baseline is prerelease",
+      "set": {
+        "baseline.release.prerelease": true
+      },
+      "error": "baseline-prerelease"
+    },
+    {
+      "name": "wrong release tag",
+      "set": {
+        "baseline.release.tag_name": "v2.55.0.windows.3"
+      },
+      "error": "baseline-mismatch:baseline.release.tag_name"
+    },
+    {
+      "name": "wrong annotated tag name",
+      "set": {
+        "baseline.tag.name": "v2.55.0.windows.3"
+      },
+      "error": "baseline-mismatch:baseline.tag.name"
+    },
+    {
+      "name": "lightweight tag",
+      "set": {
+        "baseline.tag.object_type": "commit"
+      },
+      "error": "baseline-tag-not-annotated"
+    },
+    {
+      "name": "invalid tag object",
+      "set": {
+        "baseline.tag.object_sha": "not-a-sha"
+      },
+      "error": "invalid:baseline.tag.object_sha"
+    },
+    {
+      "name": "invalid peeled commit",
+      "set": {
+        "baseline.tag.peeled_commit": "not-a-sha"
+      },
+      "error": "invalid:baseline.tag.peeled_commit"
+    },
+    {
+      "name": "wrong baseline asset",
+      "set": {
+        "baseline.asset.id": 510402465
+      },
+      "error": "baseline-mismatch:asset.id"
+    },
+    {
+      "name": "wrong baseline asset size",
+      "set": {
+        "baseline.asset.size": 171467185
+      },
+      "error": "baseline-mismatch:asset.size"
+    },
+    {
+      "name": "wrong baseline asset digest",
+      "set": {
+        "baseline.asset.sha256": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+      },
+      "error": "baseline-mismatch:asset.sha256"
+    },
+    {
+      "name": "wrong producer repository",
+      "set": {
+        "producer.repository": "example/other"
+      },
+      "error": "producer-repository-not-allowed"
+    },
+    {
+      "name": "invalid producer commit",
+      "set": {
+        "producer.commit": "not-a-sha"
+      },
+      "error": "invalid:producer.commit"
+    },
+    {
+      "name": "invalid producer tree",
+      "set": {
+        "producer.tree": "not-a-sha"
+      },
+      "error": "invalid:producer.tree"
+    },
+    {
+      "name": "producer root commit",
+      "set": {
+        "producer.parents": []
+      },
+      "error": "synthetic-merge:producer.parents"
+    },
+    {
+      "name": "producer merge commit",
+      "set": {
+        "producer.parents": [
+          "5555555555555555555555555555555555555555",
+          "6666666666666666666666666666666666666666"
+        ]
+      },
+      "error": "synthetic-merge:producer.parents"
+    },
+    {
+      "name": "invalid producer parent",
+      "set": {
+        "producer.parents": [
+          "not-a-sha"
+        ]
+      },
+      "error": "invalid:producer.parents"
+    },
+    {
+      "name": "reversed terminal trailers",
+      "set": {
+        "producer.commit_message": "Produce reviewed ARM64 metadata\n\nCopilot-Session: cbc02d21-36e2-4cf3-84cd-76e5bff6920c\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>"
+      },
+      "error": "producer-trailer-pair-invalid"
+    },
+    {
+      "name": "duplicate terminal trailer",
+      "set": {
+        "producer.commit_message": "Produce reviewed ARM64 metadata\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\nCopilot-Session: cbc02d21-36e2-4cf3-84cd-76e5bff6920c"
+      },
+      "error": "producer-trailer-pair-invalid"
+    },
+    {
+      "name": "content after terminal trailers",
+      "set": {
+        "producer.commit_message": "Produce reviewed ARM64 metadata\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\nCopilot-Session: cbc02d21-36e2-4cf3-84cd-76e5bff6920c\nunexpected"
+      },
+      "error": "producer-trailer-pair-invalid"
+    },
+    {
+      "name": "wrong workflow path",
+      "set": {
+        "workflow.path": ".github/workflows/other.yml"
+      },
+      "error": "workflow-mismatch:path"
+    },
+    {
+      "name": "wrong workflow blob",
+      "set": {
+        "workflow.blob": "9999999999999999999999999999999999999999"
+      },
+      "error": "workflow-mismatch:blob"
+    },
+    {
+      "name": "wrong checkout pin",
+      "set": {
+        "workflow.actions.actions/checkout": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/checkout"
+    },
+    {
+      "name": "wrong setup pin",
+      "set": {
+        "workflow.actions.msys2/setup-msys2": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:msys2/setup-msys2"
+    },
+    {
+      "name": "wrong upload pin",
+      "set": {
+        "workflow.actions.actions/upload-artifact": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/upload-artifact"
+    },
+    {
+      "name": "wrong download pin",
+      "set": {
+        "workflow.actions.actions/download-artifact": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/download-artifact"
+    },
+    {
+      "name": "wrong cache restore pin",
+      "set": {
+        "workflow.actions.actions/cache/restore": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/cache/restore"
+    },
+    {
+      "name": "wrong cache save pin",
+      "set": {
+        "workflow.actions.actions/cache/save": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/cache/save"
+    },
+    {
+      "name": "wrong pages upload pin",
+      "set": {
+        "workflow.actions.actions/upload-pages-artifact": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/upload-pages-artifact"
+    },
+    {
+      "name": "wrong pages configuration pin",
+      "set": {
+        "workflow.actions.actions/configure-pages": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/configure-pages"
+    },
+    {
+      "name": "wrong pages deployment pin",
+      "set": {
+        "workflow.actions.actions/deploy-pages": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-pin-mismatch:actions/deploy-pages"
+    },
+    {
+      "name": "unreviewed action",
+      "set": {
+        "workflow.actions.example/unreviewed": "9999999999999999999999999999999999999999"
+      },
+      "error": "action-unreviewed:example/unreviewed"
+    },
+    {
+      "name": "invalid run id",
+      "set": {
+        "run.id": 0
+      },
+      "error": "invalid:run.id"
+    },
+    {
+      "name": "invalid run attempt",
+      "set": {
+        "run.attempt": 0
+      },
+      "error": "invalid:run.attempt"
+    },
+    {
+      "name": "wrong job",
+      "set": {
+        "run.job": "other"
+      },
+      "error": "run-mismatch:job"
+    },
+    {
+      "name": "pull request event",
+      "set": {
+        "run.event_name": "pull_request"
+      },
+      "error": "synthetic-merge:event"
+    },
+    {
+      "name": "synthetic merge ref",
+      "set": {
+        "run.ref": "refs/pull/42/merge"
+      },
+      "error": "synthetic-merge:ref"
+    },
+    {
+      "name": "non-main ref",
+      "set": {
+        "run.ref": "refs/heads/topic"
+      },
+      "error": "run-mismatch:ref"
+    },
+    {
+      "name": "head does not match producer",
+      "set": {
+        "run.head_sha": "7777777777777777777777777777777777777777"
+      },
+      "error": "producer-head-mismatch"
+    },
+    {
+      "name": "invalid artifact id",
+      "set": {
+        "artifact.id": 0
+      },
+      "error": "invalid:artifact.id"
+    },
+    {
+      "name": "wrong artifact name",
+      "set": {
+        "artifact.name": "other"
+      },
+      "error": "artifact-mismatch:name"
+    },
+    {
+      "name": "invalid artifact size",
+      "set": {
+        "artifact.size": 0
+      },
+      "error": "invalid:artifact.size"
+    },
+    {
+      "name": "invalid artifact digest",
+      "set": {
+        "artifact.digest": "eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee"
+      },
+      "error": "invalid:artifact.digest"
+    },
+    {
+      "name": "invalid artifact expiry",
+      "set": {
+        "artifact.expires_at": "not-a-timestamp"
+      },
+      "error": "invalid:artifact.expires_at"
+    },
+    {
+      "name": "expired artifact",
+      "set": {
+        "artifact.expires_at": "2026-08-26T00:00:00Z"
+      },
+      "error": "artifact-expired"
+    },
+    {
+      "name": "revoked runtime commit",
+      "set": {
+        "runtime.commit": "a527ace21c23b763bb96841745f0e2d8cd984f4a"
+      },
+      "error": "revoked:runtime-commit"
+    },
+    {
+      "name": "descendant of revoked runtime",
+      "set": {
+        "runtime.ancestors": [
+          "a527ace21c23b763bb96841745f0e2d8cd984f4a"
+        ]
+      },
+      "error": "revoked:runtime-commit-descendant"
+    },
+    {
+      "name": "invalid runtime ancestry",
+      "set": {
+        "runtime.ancestors": [
+          "not-a-sha"
+        ]
+      },
+      "error": "invalid:runtime.ancestors"
+    },
+    {
+      "name": "revoked runtime release",
+      "set": {
+        "runtime.release.id": 376058416
+      },
+      "error": "revoked:runtime-release"
+    },
+    {
+      "name": "revoked binutils release",
+      "set": {
+        "binutils.release.id": 377908415
+      },
+      "error": "revoked:binutils-release"
+    },
+    {
+      "name": "revoked binutils package",
+      "set": {
+        "binutils.package_sha256": "3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b"
+      },
+      "error": "revoked:binutils-package"
+    },
+    {
+      "name": "runtime ancestry check incomplete",
+      "set": {
+        "revocation_checks.runtime_commit_and_descendants": false
+      },
+      "error": "revocation-check-not-complete:runtime_commit_and_descendants"
+    },
+    {
+      "name": "runtime release check incomplete",
+      "set": {
+        "revocation_checks.runtime_release": false
+      },
+      "error": "revocation-check-not-complete:runtime_release"
+    },
+    {
+      "name": "binutils release check incomplete",
+      "set": {
+        "revocation_checks.binutils_release": false
+      },
+      "error": "revocation-check-not-complete:binutils_release"
+    },
+    {
+      "name": "binutils digest check incomplete",
+      "set": {
+        "revocation_checks.binutils_package_sha256": false
+      },
+      "error": "revocation-check-not-complete:binutils_package_sha256"
+    },
+    {
+      "name": "shared root workspace",
+      "set": {
+        "workspace.root": "C:\\msys64\\candidate"
+      },
+      "error": "shared-root:workspace"
+    },
+    {
+      "name": "shared root observed",
+      "set": {
+        "workspace.shared_root_observed": true
+      },
+      "error": "shared-root:observed"
+    },
+    {
+      "name": "shared root transaction",
+      "set": {
+        "workspace.shared_root_transaction": true
+      },
+      "error": "shared-root:transaction"
+    }
+  ]
+}

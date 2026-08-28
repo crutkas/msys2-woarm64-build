@@ -1,0 +1,33 @@
+name: ARM64 quarantine policy diagnostics
+
+on:
+  pull_request:
+    paths:
+      - ".github/policies/arm64-quarantine-policy.json"
+      - ".github/scripts/arm64-admission.ps1"
+      - ".github/workflows/*.yml"
+      - "tests/arm64-admission/**"
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/policies/arm64-quarantine-policy.json"
+      - ".github/scripts/arm64-admission.ps1"
+      - ".github/workflows/*.yml"
+      - "tests/arm64-admission/**"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  diagnostics:
+    name: Offline policy and fixture tests
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout source
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+
+      - name: Run offline diagnostics
+        shell: pwsh
+        run: ./tests/arm64-admission/run.ps1

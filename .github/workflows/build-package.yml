@@ -1,4 +1,4 @@
-name: Build MSYS2 package
+name: "Historical: Build MSYS2 package"
 
 on:
   workflow_call:
@@ -58,7 +58,7 @@ jobs:
           Remove-Item -Recurse -Force -ErrorAction SilentlyContinue -Path packages
           exit 0
 
-      - uses: Windows-on-ARM-Experiments/setup-msys2@main
+      - uses: msys2/setup-msys2@66cd2cce69caa17b53920067426061ca1de3a884
         timeout-minutes: 10
         with:
           msystem: >-
@@ -70,10 +70,10 @@ jobs:
           cache: true
 
       - name: Checkout repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
 
       - name: Checkout ${{ inputs.packages_repository }} repository
-        uses: actions/checkout@v4
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:
           repository: ${{ inputs.packages_repository }}
           ref: ${{ ((inputs.runner_arch == 'aarch64') && !inputs.build_with_native) && format('{0}-cross', inputs.packages_branch) || inputs.packages_branch }}
@@ -118,7 +118,7 @@ jobs:
           `cygpath "${{ github.workspace }}"`/.github/scripts/enable-ccache.sh
 
       - name: Restore Ccache
-        uses: actions/cache/restore@v4
+        uses: actions/cache/restore@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ github.workspace }}/ccache
           key: ${{ inputs.package_name }}-ccache-${{ steps.enable-ccache.outputs.timestamp }}
@@ -133,13 +133,13 @@ jobs:
 
       - name: Save Ccache
         if: always()
-        uses: actions/cache/save@v4
+        uses: actions/cache/save@0057852bfaa89a56745cba8c7296529d2fc39830
         with:
           path: ${{ github.workspace }}/ccache
           key: ${{ inputs.package_name }}-ccache-${{ steps.enable-ccache.outputs.timestamp }}
 
       - name: Upload ${{ inputs.package_name }}
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ${{ inputs.package_name }}
           retention-days: 3
@@ -147,7 +147,7 @@ jobs:
 
       - name: Upload build folder
         if: failure()
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02
         with:
           name: ${{ inputs.package_name }}-build
           retention-days: 1

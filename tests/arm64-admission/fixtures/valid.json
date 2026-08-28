@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "admission": {
+    "mode": "metadata-only",
+    "evaluated_at": "2026-08-27T00:00:00Z"
+  },
+  "safety": {
+    "network": false,
+    "setup": false,
+    "download": false,
+    "install": false,
+    "package": false,
+    "build": false,
+    "artifact_consumption": false,
+    "payload_assembly": false,
+    "native_execution": false,
+    "release_publish": false,
+    "release_settings_change": false,
+    "candidate_output": false
+  },
+  "baseline": {
+    "repository": "git-for-windows/git",
+    "release": {
+      "id": 368726166,
+      "immutable": true,
+      "state": "released",
+      "draft": false,
+      "prerelease": false,
+      "tag_name": "v2.55.0.windows.4"
+    },
+    "tag": {
+      "name": "v2.55.0.windows.4",
+      "object_type": "tag",
+      "object_sha": "1111111111111111111111111111111111111111",
+      "peeled_commit": "2222222222222222222222222222222222222222"
+    },
+    "asset": {
+      "id": 510402464,
+      "name": "accepted-baseline-asset",
+      "size": 171467184,
+      "sha256": "7cc28b4431c9448c310d0093fbba5646517cd702690a9b965014d7df85319ad9"
+    }
+  },
+  "producer": {
+    "repository": "crutkas/msys2-woarm64-build",
+    "commit": "3333333333333333333333333333333333333333",
+    "tree": "4444444444444444444444444444444444444444",
+    "parents": [
+      "5555555555555555555555555555555555555555"
+    ],
+    "commit_message": "Produce reviewed ARM64 metadata\n\nCo-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>\nCopilot-Session: cbc02d21-36e2-4cf3-84cd-76e5bff6920c"
+  },
+  "workflow": {
+    "path": ".github/workflows/arm64-admission.yml",
+    "blob": "c02a77a37c916df8ec328bf9d77abaaf3b025df9",
+    "actions": {
+      "actions/checkout": "11d5960a326750d5838078e36cf38b85af677262",
+      "msys2/setup-msys2": "66cd2cce69caa17b53920067426061ca1de3a884",
+      "actions/upload-artifact": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+      "actions/download-artifact": "d3f86a106a0bac45b974a628896c90dbdf5c8093",
+      "actions/cache/restore": "0057852bfaa89a56745cba8c7296529d2fc39830",
+      "actions/cache/save": "0057852bfaa89a56745cba8c7296529d2fc39830",
+      "actions/upload-pages-artifact": "56afc609e74202658d3ffba0e8f6dda462b719fa",
+      "actions/configure-pages": "1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d",
+      "actions/deploy-pages": "d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e"
+    }
+  },
+  "run": {
+    "id": 123456789,
+    "attempt": 1,
+    "job": "arm64-admission",
+    "event_name": "workflow_dispatch",
+    "ref": "refs/heads/main",
+    "head_sha": "3333333333333333333333333333333333333333"
+  },
+  "artifact": {
+    "id": 987654321,
+    "name": "arm64-runtime-candidate",
+    "size": 1048576,
+    "digest": "sha256:eeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeeee",
+    "expires_at": "2026-09-03T00:00:00Z"
+  },
+  "runtime": {
+    "release": {
+      "id": 400000001,
+      "immutable": true
+    },
+    "commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+    "ancestors": [
+      "cccccccccccccccccccccccccccccccccccccccc"
+    ]
+  },
+  "binutils": {
+    "release": {
+      "id": 400000002,
+      "immutable": true
+    },
+    "package_sha256": "dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+  },
+  "revocation_checks": {
+    "runtime_commit_and_descendants": true,
+    "runtime_release": true,
+    "binutils_release": true,
+    "binutils_package_sha256": true
+  },
+  "workspace": {
+    "root": "D:\\isolated\\arm64-admission",
+    "shared_root_observed": false,
+    "shared_root_transaction": false
+  }
+}

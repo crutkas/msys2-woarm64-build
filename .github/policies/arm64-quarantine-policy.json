@@ -1,0 +1,55 @@
+{
+  "schema_version": 1,
+  "policy_id": "arm64-quarantine-policy",
+  "mode": "deny-by-default",
+  "producer_repository": "crutkas/msys2-woarm64-build",
+  "accepted_baseline": {
+    "repository": "git-for-windows/git",
+    "release_id": 368726166,
+    "tag_name": "v2.55.0.windows.4",
+    "asset_id": 510402464,
+    "asset_size": 171467184,
+    "asset_sha256": "7cc28b4431c9448c310d0093fbba5646517cd702690a9b965014d7df85319ad9"
+  },
+  "revocations": {
+    "runtime": {
+      "commits_and_descendants": [
+        "a527ace21c23b763bb96841745f0e2d8cd984f4a"
+      ],
+      "release_ids": [
+        376058416
+      ]
+    },
+    "binutils": {
+      "release_ids": [
+        377908415
+      ],
+      "package_sha256": [
+        "3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b"
+      ]
+    }
+  },
+  "owned_commit_terminal_trailers": [
+    "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>",
+    "Copilot-Session: cbc02d21-36e2-4cf3-84cd-76e5bff6920c"
+  ],
+  "external_action_pins": {
+    "actions/checkout": "11d5960a326750d5838078e36cf38b85af677262",
+    "msys2/setup-msys2": "66cd2cce69caa17b53920067426061ca1de3a884",
+    "actions/upload-artifact": "ea165f8d65b6e75b540449e92b4886f43607fa02",
+    "actions/download-artifact": "d3f86a106a0bac45b974a628896c90dbdf5c8093",
+    "actions/cache/restore": "0057852bfaa89a56745cba8c7296529d2fc39830",
+    "actions/cache/save": "0057852bfaa89a56745cba8c7296529d2fc39830",
+    "actions/upload-pages-artifact": "56afc609e74202658d3ffba0e8f6dda462b719fa",
+    "actions/configure-pages": "1f0c5cde4bc74cd7e1254d0cb4de8d49e9068c7d",
+    "actions/deploy-pages": "d6db90164ac5ed86f2b6aed7e0febac5b3c0c03e"
+  },
+  "admission_workflow": {
+    "path": ".github/workflows/arm64-admission.yml",
+    "blob": "c02a77a37c916df8ec328bf9d77abaaf3b025df9",
+    "job": "arm64-admission",
+    "ref": "refs/heads/main"
+  },
+  "artifact_name": "arm64-runtime-candidate",
+  "forbidden_shared_root": "C:\\msys64"
+}
