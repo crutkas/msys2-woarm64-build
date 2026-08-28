@@ -2,7 +2,7 @@ require "json"
 require "psych"
 
 abort "usage: parse-yaml.rb (YAML is read from standard input)" unless ARGV.empty?
-abort "unapproved Ruby version" unless RUBY_VERSION == "3.2.3"
+abort "unapproved Ruby version" unless RUBY_VERSION == "3.3.0"
 abort "unapproved Psych version" unless Psych::VERSION == "5.1.2"
 
 MAX_INPUT_BYTES = 1_048_576
@@ -31,7 +31,8 @@ reject_duplicate_keys = lambda do |node|
       reject_duplicate_keys.call(value)
     end
   else
-    node.children.each { |child| reject_duplicate_keys.call(child) } if node.respond_to?(:children)
+    children = node.respond_to?(:children) ? node.children : nil
+    children&.each { |child| reject_duplicate_keys.call(child) }
   end
 end
 reject_duplicate_keys.call(stream)

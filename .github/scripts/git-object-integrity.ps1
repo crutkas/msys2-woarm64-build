@@ -4,6 +4,412 @@ param()
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+$script:arm64GitIdentity = $null
+$script:arm64GitPin = [pscustomobject][ordered]@{
+    LauncherSha256 = '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364'
+    EngineSha256 = '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9'
+    RuntimeTreeSha256 = '20c9c179dd4e9fddaf0b885fc1f3990345a4ad649b82e6a8818521e56b6b4862'
+    RuntimeManifestSha256 =
+        'cd63c854cb26a8c1140685726374a82405cda7ea813ed86804d7145ecd33ba8c'
+    SignerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
+}
+
+function Initialize-Arm64RuntimePathResolver {
+    if ('Arm64RuntimePathResolverV1' -as [type]) {
+        return
+    }
+    if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
+        throw 'Runtime path provenance is unavailable.'
+    }
+    Add-Type -Language CSharp -TypeDefinition @'
+using System;
+using System.ComponentModel;
+using System.Runtime.InteropServices;
+using System.Text;
+using Microsoft.Win32.SafeHandles;
+
+public static class Arm64RuntimePathResolverV1
+{
+    private const uint FileShareRead = 1;
+    private const uint FileShareWrite = 2;
+    private const uint FileShareDelete = 4;
+    private const uint OpenExisting = 3;
+    private const uint FileFlagBackupSemantics = 0x02000000;
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern SafeFileHandle CreateFileW(
+        string name,
+        uint access,
+        uint share,
+        IntPtr security,
+        uint creation,
+        uint flags,
+        IntPtr template);
+
+    [DllImport("kernel32.dll", CharSet = CharSet.Unicode, SetLastError = true)]
+    private static extern uint GetFinalPathNameByHandleW(
+        SafeFileHandle file,
+        StringBuilder path,
+        uint length,
+        uint flags);
+
+    public static string Resolve(string path)
+    {
+        using (SafeFileHandle handle = CreateFileW(
+            path,
+            0,
+            FileShareRead | FileShareWrite | FileShareDelete,
+            IntPtr.Zero,
+            OpenExisting,
+            FileFlagBackupSemantics,
+            IntPtr.Zero))
+        {
+            if (handle.IsInvalid)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            StringBuilder buffer = new StringBuilder(32768);
+            uint length = GetFinalPathNameByHandleW(
+                handle,
+                buffer,
+                (uint)buffer.Capacity,
+                0);
+            if (length == 0 || length >= buffer.Capacity)
+            {
+                throw new Win32Exception(Marshal.GetLastWin32Error());
+            }
+            string result = buffer.ToString();
+            return result.StartsWith(@"\\?\", StringComparison.Ordinal)
+                ? result.Substring(4)
+                : result;
+        }
+    }
+}
+'@
+}
+
+function Resolve-Arm64CanonicalRuntimePath {
+    param([Parameter(Mandatory)][string]$Path)
+
+    if (-not [IO.Path]::IsPathFullyQualified($Path)) {
+        throw 'Runtime path provenance is not approved.'
+    }
+    $fullPath = [IO.Path]::GetFullPath($Path)
+    $root = [IO.Path]::GetPathRoot($fullPath)
+    $current = $root
+    foreach ($segment in $fullPath.Substring($root.Length).Split(
+            [IO.Path]::DirectorySeparatorChar,
+            [StringSplitOptions]::RemoveEmptyEntries)) {
+        $current = Join-Path $current $segment
+        $item = Get-Item -LiteralPath $current -Force -ErrorAction Stop
+        if (($item.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw 'Runtime path provenance is not approved.'
+        }
+    }
+    Initialize-Arm64RuntimePathResolver
+    $finalPath = [Arm64RuntimePathResolverV1]::Resolve($fullPath)
+    if (-not $finalPath.Equals($fullPath, [StringComparison]::OrdinalIgnoreCase)) {
+        throw 'Runtime path provenance is not approved.'
+    }
+    return $finalPath
+}
+
+function Get-Arm64GitFileSha256 {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $stream = [IO.File]::Open(
+        $Path,
+        [IO.FileMode]::Open,
+        [IO.FileAccess]::Read,
+        [IO.FileShare]::Read
+    )
+    $sha256 = [Security.Cryptography.SHA256]::Create()
+    try {
+        return -join ($sha256.ComputeHash($stream) | ForEach-Object {
+                $_.ToString('x2')
+            })
+    }
+    finally {
+        $sha256.Dispose()
+        $stream.Dispose()
+    }
+}
+
+function Get-Arm64GitDirectoryTreeSha256 {
+    param([Parameter(Mandatory)][string]$Root)
+
+    $rootFull = [IO.Path]::GetFullPath($Root).TrimEnd(
+        [IO.Path]::DirectorySeparatorChar,
+        [IO.Path]::AltDirectorySeparatorChar
+    )
+    $paths = [Collections.Generic.Dictionary[string, string]]::new(
+        [StringComparer]::Ordinal
+    )
+    foreach ($file in Get-ChildItem -LiteralPath $rootFull -File -Recurse -Force) {
+        if (($file.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw 'Git runtime provenance is not approved.'
+        }
+        $relative = $file.FullName.Substring($rootFull.Length + 1).Replace(
+            [IO.Path]::DirectorySeparatorChar,
+            '/'
+        )
+        if (-not $paths.TryAdd($relative, $file.FullName)) {
+            throw 'Git runtime provenance is not approved.'
+        }
+    }
+    $ordered = [string[]]@($paths.Keys)
+    [Array]::Sort($ordered, [StringComparer]::Ordinal)
+    $hash = [Security.Cryptography.IncrementalHash]::CreateHash(
+        [Security.Cryptography.HashAlgorithmName]::SHA256
+    )
+    try {
+        foreach ($relative in $ordered) {
+            $stream = [IO.File]::Open(
+                $paths[$relative],
+                [IO.FileMode]::Open,
+                [IO.FileAccess]::Read,
+                [IO.FileShare]::Read
+            )
+            try {
+                $metadata = [Text.UTF8Encoding]::new($false, $true).GetBytes(
+                    "$relative`0$($stream.Length)`0"
+                )
+                $hash.AppendData($metadata)
+                $buffer = [byte[]]::new(65536)
+                while (($read = $stream.Read($buffer, 0, $buffer.Length)) -gt 0) {
+                    $hash.AppendData($buffer, 0, $read)
+                }
+            }
+            finally {
+                $stream.Dispose()
+            }
+        }
+        return [Convert]::ToHexString($hash.GetHashAndReset()).ToLowerInvariant()
+    }
+    finally {
+        $hash.Dispose()
+    }
+}
+
+function Get-Arm64GitDirectoryManifestSha256 {
+    param([Parameter(Mandatory)][string]$Root)
+
+    $rootFull = Resolve-Arm64CanonicalRuntimePath -Path $Root
+    $paths = [Collections.Generic.Dictionary[string, long]]::new(
+        [StringComparer]::Ordinal
+    )
+    foreach ($file in Get-ChildItem -LiteralPath $rootFull -File -Recurse -Force) {
+        if (($file.Attributes -band [IO.FileAttributes]::ReparsePoint) -ne 0) {
+            throw 'Git runtime provenance is not approved.'
+        }
+        $relative = $file.FullName.Substring($rootFull.Length + 1).Replace(
+            [IO.Path]::DirectorySeparatorChar,
+            '/'
+        )
+        if (-not $paths.TryAdd($relative, [long]$file.Length)) {
+            throw 'Git runtime provenance is not approved.'
+        }
+    }
+    $ordered = [string[]]@($paths.Keys)
+    [Array]::Sort($ordered, [StringComparer]::Ordinal)
+    $hash = [Security.Cryptography.IncrementalHash]::CreateHash(
+        [Security.Cryptography.HashAlgorithmName]::SHA256
+    )
+    try {
+        foreach ($relative in $ordered) {
+            $metadata = [Text.UTF8Encoding]::new($false, $true).GetBytes(
+                "$relative`0$($paths[$relative])`0"
+            )
+            $hash.AppendData($metadata)
+        }
+        return [Convert]::ToHexString($hash.GetHashAndReset()).ToLowerInvariant()
+    }
+    finally {
+        $hash.Dispose()
+    }
+}
+
+function Reset-Arm64GitRuntimeIdentity {
+    if ($null -ne $script:arm64GitIdentity -and
+        $null -ne $script:arm64GitIdentity.PSObject.Properties['Locks']) {
+        Close-Arm64GitRuntimeLocks -Locks $script:arm64GitIdentity.Locks
+    }
+    $script:arm64GitIdentity = $null
+}
+
+function Assert-Arm64GitRuntimeIdentity {
+    param(
+        [Parameter(Mandatory)][object]$Identity,
+        [switch]$ManifestOnly
+    )
+
+    $launcher = Resolve-Arm64CanonicalRuntimePath -Path $Identity.ExecutablePath
+    $root = Resolve-Arm64CanonicalRuntimePath -Path $Identity.Root
+    $engine = Resolve-Arm64CanonicalRuntimePath `
+        -Path (Join-Path $root 'mingw64\bin\git.exe')
+    $runtimeRoot = Resolve-Arm64CanonicalRuntimePath `
+        -Path (Join-Path $root 'mingw64\bin')
+    if (-not $launcher.Equals(
+            (Join-Path $root 'cmd\git.exe'),
+            [StringComparison]::OrdinalIgnoreCase
+        ) -or
+        (Get-Arm64GitFileSha256 -Path $launcher) -cne
+            $script:arm64GitPin.LauncherSha256 -or
+        (Get-Arm64GitFileSha256 -Path $engine) -cne
+            $script:arm64GitPin.EngineSha256) {
+        throw 'Git runtime provenance is not approved.'
+    }
+    if ($ManifestOnly) {
+        if ((Get-Arm64GitDirectoryManifestSha256 -Root $runtimeRoot) -cne
+            $script:arm64GitPin.RuntimeManifestSha256) {
+            throw 'Git runtime provenance is not approved.'
+        }
+    }
+    elseif ((Get-Arm64GitDirectoryTreeSha256 -Root $runtimeRoot) -cne
+        $script:arm64GitPin.RuntimeTreeSha256) {
+        throw 'Git runtime provenance is not approved.'
+    }
+    $signatures = @(
+        Microsoft.PowerShell.Security\Get-AuthenticodeSignature `
+            -LiteralPath $launcher
+        Microsoft.PowerShell.Security\Get-AuthenticodeSignature `
+            -LiteralPath $engine
+    )
+    if (@($signatures | Where-Object {
+                $_.Status -ne [Management.Automation.SignatureStatus]::Valid -or
+                $null -eq $_.SignerCertificate -or
+                $_.SignerCertificate.Thumbprint.ToLowerInvariant() -cne
+                    $script:arm64GitPin.SignerThumbprint
+            }).Count -ne 0) {
+        throw 'Git runtime provenance is not approved.'
+    }
+    return $true
+}
+
+function Resolve-Arm64GitExecutable {
+    if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
+        throw 'Git runtime provenance is unavailable.'
+    }
+    if ($null -ne $script:arm64GitIdentity) {
+        try {
+            [void](Assert-Arm64GitRuntimeIdentity `
+                    -Identity $script:arm64GitIdentity `
+                    -ManifestOnly)
+            return $script:arm64GitIdentity
+        }
+        catch {
+            Reset-Arm64GitRuntimeIdentity
+            throw 'Git runtime provenance is not approved.'
+        }
+    }
+
+    $candidates = [Collections.Generic.HashSet[string]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    $configured = [Environment]::GetEnvironmentVariable('ARM64_GIT_EXECUTABLE')
+    if (-not [string]::IsNullOrWhiteSpace($configured) -and
+        [IO.Path]::IsPathFullyQualified($configured)) {
+        [void]$candidates.Add([IO.Path]::GetFullPath($configured))
+    }
+    if ([string]::IsNullOrWhiteSpace($configured)) {
+        $programFiles = [Environment]::GetFolderPath(
+            [Environment+SpecialFolder]::ProgramFiles
+        )
+        [void]$candidates.Add([IO.Path]::GetFullPath((
+                    Join-Path $programFiles 'Git\cmd\git.exe'
+                )))
+    }
+
+    $existing = @($candidates | Where-Object {
+            Test-Path -LiteralPath $_ -PathType Leaf
+        })
+    $approved = [Collections.Generic.List[object]]::new()
+    foreach ($launcher in $existing) {
+        try {
+            $launcher = Resolve-Arm64CanonicalRuntimePath -Path $launcher
+            $root = Resolve-Arm64CanonicalRuntimePath -Path (
+                Join-Path (Split-Path $launcher -Parent) '..'
+            )
+        }
+        catch {
+            continue
+        }
+        $candidateIdentity = [pscustomobject][ordered]@{
+            ExecutablePath = $launcher
+            Root = $root
+            Locks = $null
+        }
+        $locks = $null
+        try {
+            $locks = Open-Arm64GitRuntimeLocks -Identity $candidateIdentity
+            $candidateIdentity.Locks = $locks
+            [void](Assert-Arm64GitRuntimeIdentity -Identity $candidateIdentity)
+            [void]$approved.Add($candidateIdentity)
+            $locks = $null
+        }
+        catch {
+            Write-Verbose 'Git runtime candidate provenance did not match.'
+        }
+        finally {
+            Close-Arm64GitRuntimeLocks -Locks $locks
+        }
+    }
+    if ($approved.Count -ne 1) {
+        foreach ($identity in $approved) {
+            Close-Arm64GitRuntimeLocks -Locks $identity.Locks
+        }
+        throw 'Git runtime provenance is not approved.'
+    }
+    $script:arm64GitIdentity = $approved[0]
+    return $script:arm64GitIdentity
+}
+
+function Open-Arm64GitRuntimeLocks {
+    param([Parameter(Mandatory)][object]$Identity)
+
+    $paths = [Collections.Generic.HashSet[string]]::new(
+        [StringComparer]::OrdinalIgnoreCase
+    )
+    [void]$paths.Add([IO.Path]::GetFullPath($Identity.ExecutablePath))
+    foreach ($file in Get-ChildItem `
+            -LiteralPath (Join-Path $Identity.Root 'mingw64\bin') `
+            -File `
+            -Recurse `
+            -Force) {
+        [void]$paths.Add($file.FullName)
+    }
+    $ordered = [string[]]@($paths)
+    [Array]::Sort($ordered, [StringComparer]::OrdinalIgnoreCase)
+    $locks = [Collections.Generic.List[IO.FileStream]]::new()
+    try {
+        foreach ($path in $ordered) {
+            [void]$locks.Add([IO.File]::Open(
+                    $path,
+                    [IO.FileMode]::Open,
+                    [IO.FileAccess]::Read,
+                    [IO.FileShare]::Read
+                ))
+        }
+        return , $locks
+    }
+    catch {
+        foreach ($stream in $locks) {
+            $stream.Dispose()
+        }
+        throw 'Git runtime provenance is not approved.'
+    }
+}
+
+function Close-Arm64GitRuntimeLocks {
+    param([AllowNull()][object]$Locks)
+
+    if ($null -ne $Locks) {
+        foreach ($stream in $Locks) {
+            $stream.Dispose()
+        }
+    }
+}
+
 function Invoke-Arm64Git {
     param(
         [Parameter(Mandatory)][string]$RepositoryRoot,
@@ -13,64 +419,77 @@ function Invoke-Arm64Git {
     # Git is invoked with a scrubbed environment and hardened configuration so that ambient
     # Git variables, system or global config, hooks, replacement objects, or a poisoned
     # fsmonitor cannot influence what bytes an object read returns.
-    $startInfo = [Diagnostics.ProcessStartInfo]::new()
-    $startInfo.FileName = 'git'
-    foreach ($argument in @(
-            '--no-replace-objects',
-            '-c', 'core.hooksPath=',
-            '-c', 'core.fsmonitor=false',
-            '-c', 'core.symlinks=false',
-            '-c', 'core.quotePath=false',
-            '-c', 'protocol.allow=never',
-            '-C', $RepositoryRoot) + $GitArguments) {
-        $startInfo.ArgumentList.Add($argument)
-    }
-    $startInfo.RedirectStandardOutput = $true
-    $startInfo.RedirectStandardError = $true
-    $startInfo.UseShellExecute = $false
-    $startInfo.CreateNoWindow = $true
-
-    $startInfo.Environment.Clear()
-    foreach ($name in @('SystemRoot', 'windir', 'PATH', 'PATHEXT', 'TEMP', 'TMP',
-            'PROCESSOR_ARCHITECTURE', 'COMSPEC')) {
-        $value = [Environment]::GetEnvironmentVariable($name)
-        if (-not [string]::IsNullOrEmpty($value)) {
-            $startInfo.Environment[$name] = $value
-        }
-    }
-    $startInfo.Environment['GIT_CONFIG_NOSYSTEM'] = '1'
-    $startInfo.Environment['GIT_CONFIG_GLOBAL'] = [IO.Path]::GetFullPath(
-        (Join-Path ([IO.Path]::GetTempPath()) 'arm64-absent-git-config')
-    )
-    $startInfo.Environment['GIT_NO_REPLACE_OBJECTS'] = '1'
-    $startInfo.Environment['GIT_TERMINAL_PROMPT'] = '0'
-    $startInfo.Environment['GIT_OPTIONAL_LOCKS'] = '0'
-    $startInfo.Environment['GIT_ATTR_NOSYSTEM'] = '1'
-    $startInfo.Environment['GIT_FLUSH'] = '1'
-    $startInfo.Environment['LC_ALL'] = 'C'
-
-    $process = [Diagnostics.Process]::new()
-    $process.StartInfo = $startInfo
+    $gitIdentity = Resolve-Arm64GitExecutable
+    $runtimeLocks = Open-Arm64GitRuntimeLocks -Identity $gitIdentity
     try {
-        [void]$process.Start()
-        $standardOutput = $process.StandardOutput.ReadToEnd()
-        [void]$process.StandardError.ReadToEnd()
-        if (-not $process.WaitForExit(120000)) {
-            try {
-                $process.Kill($true)
-            }
-            catch {
-                Write-Verbose 'Hardened Git process could not be terminated.'
-            }
-            throw 'Hardened Git invocation timed out.'
+        $verifiedIdentity = Resolve-Arm64GitExecutable
+        if ($verifiedIdentity.ExecutablePath -cne $gitIdentity.ExecutablePath) {
+            throw 'Git runtime provenance is not approved.'
         }
-        return [pscustomobject]@{
-            ExitCode = [int]$process.ExitCode
-            Lines    = @($standardOutput -split "`r?`n" | Where-Object { $_.Length -gt 0 })
+
+        $startInfo = [Diagnostics.ProcessStartInfo]::new()
+        $startInfo.FileName = $verifiedIdentity.ExecutablePath
+        foreach ($argument in @(
+                '--no-replace-objects',
+                '-c', 'core.hooksPath=',
+                '-c', 'core.fsmonitor=false',
+                '-c', 'core.symlinks=false',
+                '-c', 'core.quotePath=false',
+                '-c', 'protocol.allow=never',
+                '-C', $RepositoryRoot) + $GitArguments) {
+            $startInfo.ArgumentList.Add($argument)
+        }
+        $startInfo.RedirectStandardOutput = $true
+        $startInfo.RedirectStandardError = $true
+        $startInfo.UseShellExecute = $false
+        $startInfo.CreateNoWindow = $true
+
+        $startInfo.Environment.Clear()
+        foreach ($name in @('SystemRoot', 'windir', 'TEMP', 'TMP',
+                'PROCESSOR_ARCHITECTURE', 'COMSPEC')) {
+            $value = [Environment]::GetEnvironmentVariable($name)
+            if (-not [string]::IsNullOrEmpty($value)) {
+                $startInfo.Environment[$name] = $value
+            }
+        }
+        $startInfo.Environment['GIT_CONFIG_NOSYSTEM'] = '1'
+        $startInfo.Environment['GIT_CONFIG_GLOBAL'] = [IO.Path]::GetFullPath(
+            (Join-Path ([IO.Path]::GetTempPath()) 'arm64-absent-git-config')
+        )
+        $startInfo.Environment['GIT_NO_REPLACE_OBJECTS'] = '1'
+        $startInfo.Environment['GIT_TERMINAL_PROMPT'] = '0'
+        $startInfo.Environment['GIT_OPTIONAL_LOCKS'] = '0'
+        $startInfo.Environment['GIT_ATTR_NOSYSTEM'] = '1'
+        $startInfo.Environment['GIT_FLUSH'] = '1'
+        $startInfo.Environment['LC_ALL'] = 'C'
+
+        $process = [Diagnostics.Process]::new()
+        $process.StartInfo = $startInfo
+        try {
+            [void]$process.Start()
+            $standardOutput = $process.StandardOutput.ReadToEnd()
+            [void]$process.StandardError.ReadToEnd()
+            if (-not $process.WaitForExit(120000)) {
+                try {
+                    $process.Kill($true)
+                }
+                catch {
+                    Write-Verbose 'Hardened Git process could not be terminated.'
+                }
+                throw 'Hardened Git invocation timed out.'
+            }
+            return [pscustomobject]@{
+                ExitCode = [int]$process.ExitCode
+                Lines    = @($standardOutput -split "`r?`n" |
+                        Where-Object { $_.Length -gt 0 })
+            }
+        }
+        finally {
+            $process.Dispose()
         }
     }
     finally {
-        $process.Dispose()
+        Close-Arm64GitRuntimeLocks -Locks $runtimeLocks
     }
 }
 
@@ -194,6 +613,7 @@ function Get-Arm64GitBlobOid {
         [Parameter(Mandatory, ParameterSetName = 'Stream')]
         [long]$Length,
         [Parameter(Mandatory, ParameterSetName = 'Bytes')]
+        [AllowEmptyCollection()]
         [byte[]]$Bytes
     )
 

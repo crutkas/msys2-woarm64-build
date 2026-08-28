@@ -33,39 +33,55 @@ workflow and an exact candidate identity is separately allowlisted.
 
 The only ordinary `pull_request` workflow is explicitly untrusted bootstrap diagnostics. Its
 result is never admission authority, it has read-only permissions, and it uploads no artifacts.
-Workflow auditing uses only PowerShell-Yaml 0.4.12 or the locked Ruby 3.2.3/Psych 5.1.2 pair for
-both `.yml` and `.yaml`. Candidate YAML is first accepted as raw bytes: over-size input, any BOM,
-non-UTF-8 bytes, and NUL are refused. It is then scanned at the pinned backend's own token layer,
-which tokenizes without composing nodes or resolving aliases. Anchors, aliases, merge keys, and
-explicit document markers are refused as tokens, so a forbidden construct is rejected before any
-object model exists and recursive alias expansion is unreachable. Because the decision is made by
-the same scanner the backend uses, cloaked plain-scalar continuations that defeat hand-written
-lexers cannot disagree with it. The scan is bounded by token count and wall clock, an unclassifiable
-stream fails closed, and an absent or ambiguous token layer denies rather than falls back.
+Both active workflows use Windows runners so parser children can be assigned to native Job
+Objects. Workflow auditing supports only the exact PowerShell-Yaml 0.4.12 package tree and the
+exact RubyInstaller 3.3.0/Psych 5.1.2 runtime for both `.yml` and `.yaml`; both object backends
+are mandatory, and any absence or mismatch denies the audit. The module manifest,
+module code, serializer, and YamlDotNet assembly are hash-bound; YamlDotNet must be the
+strong-named 16.0.0.0 assembly at the pinned module path, and the scanner type must come from that
+exact assembly instance. The complete module tree is held under read locks before it is loaded.
+Ruby's complete executable/DLL directory and standard-library load root are likewise hash-bound
+and held under read locks before Ruby starts. Names, reported versions, `PATH`, and `PSModulePath`
+precedence have no authority.
+
+Candidate YAML is first accepted as raw bytes: over-size input, any BOM, non-UTF-8 bytes, and NUL
+are refused. It is then scanned at the pinned backend's own token layer, which tokenizes without
+composing nodes or resolving aliases. Anchors, aliases, merge keys, and explicit document markers
+are refused as tokens, so a forbidden construct is rejected before any object model exists and
+recursive alias expansion is unreachable. Because the decision is made by the same scanner the
+backend uses, cloaked plain-scalar continuations that defeat hand-written lexers cannot disagree
+with it. The scan is bounded by token count and wall clock, an unclassifiable stream fails closed,
+and an absent or ambiguous token layer denies rather than falls back. A single scanner
+`MoveNext()` call is not interruptible; the 15-second check runs immediately before and after each
+call, so one malformed file can consume that full interval and aggregate worst-case time remains
+linear in the number of workflow files.
 
 Object parsing itself never happens in the auditing process. Both backends run as bounded child
 processes that receive the exact already-validated bytes on standard input under a literal
 executable, script, and argument list, a scrubbed environment, byte caps on input, output, and
-error, a timeout, and process-tree termination. No candidate path is passed or reopened, so a
-post-validation mutation cannot change what is parsed, and a runaway parse cannot consume the
-audit. Each refusal reports its own distinct `semantic-yaml-*` code; only genuinely unexpected
-backend faults collapse to a stable generic code, and no candidate text ever reaches the error
-stream. Inline run-body identity is the SHA-256 of the exact UTF-8 bytes the parser produced, with
-nothing trimmed and no line ending normalized, so leading and trailing whitespace, a terminal
-newline, and CRLF versus LF each produce a distinct identity. The audit also rejects unreviewed
-actions, reusable workflows, local/Docker actions, containers, delegated scripts, URLs, git
-operations, and unsupported `MINGWARM64` setup before execution. Parser availability is
-fail-closed. The hosted runner toolchain is mutable, so a runner image changing those exact parser
-versions is an operational availability limitation, not permission to fall back.
+error, a timeout, strict duplicate-free JSON output, and process-tree termination. Each child is
+placed in a kill-on-close Windows Job Object with a 256 MiB per-process and 384 MiB aggregate
+memory limit, including descendants that outlive a cleanly exiting parent. No candidate path is
+passed or reopened, so a post-validation mutation cannot change what is parsed. Each refusal
+reports its own distinct `semantic-yaml-*` code; only genuinely unexpected backend faults collapse
+to a stable generic code, and no candidate text ever reaches the error stream. Inline run-body
+identity is the SHA-256 of the exact UTF-8 bytes the parser produced, with nothing trimmed and no
+line ending normalized, so leading and trailing whitespace, a terminal newline, and CRLF versus
+LF each produce a distinct identity. The audit also rejects unreviewed actions, reusable workflows,
+local/Docker actions, containers, delegated scripts, URLs, git operations, and unsupported
+`MINGWARM64` setup before execution. Parser availability and provenance are fail-closed.
 
 Every object binding in this policy is a 40-hex SHA-1 Git object ID, so the protected checkout and
 object-integrity entrypoints prove the repository object format is exactly `sha1` before reading a
 tree and fail closed on an absent, `sha256`, unexpected, or ambiguous answer. SHA-256 repositories
-are not supported rather than silently misread. Git itself is invoked with a scrubbed environment
-and hardened configuration: replacement objects are disabled, system and global configuration,
-hooks, and fsmonitor are suppressed, and grafts, object alternates, replacement references, and
-`GIT_*` directory or object overrides are refused, so a poisoned repository cannot change which
-bytes an object read returns. The read-only GitHub transport is a direct `GET` to `api.github.com`
+are not supported rather than silently misread. Git is selected by an absolute path only after its
+signed launcher, engine, signer certificate, and complete runtime binary tree match protected
+hashes and are held under read locks; `PATH` does not select it. It is then invoked with a scrubbed
+environment and hardened
+configuration: replacement objects are disabled, system and global configuration, hooks, and
+fsmonitor are suppressed, and grafts, object alternates, replacement references, and `GIT_*`
+directory or object overrides are refused, so a poisoned repository cannot change which bytes an
+object read returns. The read-only GitHub transport is a direct `GET` to `api.github.com`
 with redirects, cookies, and automatic decompression disabled and proxy use disabled explicitly, so
 ambient `HTTP_PROXY`, `HTTPS_PROXY`, or `ALL_PROXY` configuration cannot observe or redirect an
 authorized request.
@@ -88,6 +104,13 @@ Run the deterministic tests with the repository's existing PowerShell runtime:
 ```powershell
 ./tests/arm64-admission/run.ps1
 ```
+
+The test host must provide the exact pinned Git for Windows 2.55.0.windows.3 installation,
+PowerShell-Yaml package, and RubyInstaller 3.3.0-1 x64 runtime. The default dedicated module and
+Ruby locations are under `%LOCALAPPDATA%\Programs`; alternate absolute locations may be supplied
+with `ARM64_POWERSHELL_YAML_MANIFEST`, `ARM64_RUBY_EXECUTABLE`, and
+`ARM64_GIT_EXECUTABLE`, but their protected hashes still must match. A hosted image update is an
+availability event that requires a separately reviewed pin change, never permission to fall back.
 
 The actual MSYS2 packages recipes dwells in `woarm64` branches of
 [Windows-on-ARM-Experiments/MSYS2-packages](https://github.com/Windows-on-ARM-Experiments/MSYS2-packages)
