@@ -18,7 +18,12 @@
       "draft": false,
       "prerelease": false,
       "tag_name": "v2.55.0.windows.4",
-      "published_at": "2026-08-11T17:35:02Z"
+      "published_at": "2026-08-11T17:35:02Z",
+      "target_commitish": "a93524749d7806870fd2b4b00a3812da1d6e5f4a"
+    },
+    "tag_ref": {
+      "type": "tag",
+      "sha": "76e15f45d670eab29f6d55611c252b3f2b70188c"
     },
     "annotated_tag": {
       "object_sha": "76e15f45d670eab29f6d55611c252b3f2b70188c",
@@ -82,12 +87,18 @@
         "runtime": {
           "repository": "example/runtime-fixture",
           "release": {
+            "repository": "example/releases-fixture",
             "id": 400000001,
             "immutable": true,
             "draft": false,
             "prerelease": false,
             "tag_name": "fixture-runtime",
             "published_at": "2026-08-20T00:00:00Z",
+            "target_commitish": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb",
+            "tag_ref": {
+              "type": "tag",
+              "sha": "7777777777777777777777777777777777777777"
+            },
             "annotated_tag": {
               "object_sha": "7777777777777777777777777777777777777777",
               "peeled_commit": "bbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb"
@@ -110,12 +121,18 @@
         "binutils": {
           "repository": "example/binutils-fixture",
           "release": {
+            "repository": "example/releases-fixture",
             "id": 400000002,
             "immutable": true,
             "draft": false,
             "prerelease": false,
             "tag_name": "fixture-binutils",
             "published_at": "2026-08-20T00:00:00Z",
+            "target_commitish": "9999999999999999999999999999999999999999",
+            "tag_ref": {
+              "type": "tag",
+              "sha": "8888888888888888888888888888888888888888"
+            },
             "annotated_tag": {
               "object_sha": "8888888888888888888888888888888888888888",
               "peeled_commit": "9999999999999999999999999999999999999999"
@@ -138,7 +155,8 @@
             "id": 400000003,
             "name": "fixture-binutils.pkg.tar.zst",
             "size": 2097152,
-            "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
+            "digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd",
+            "state": "uploaded"
           },
           "package_digest": "sha256:dddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddddd"
         }
@@ -147,19 +165,40 @@
   ],
   "revocations": {
     "runtime": {
+      "repository": "example/runtime-fixture",
       "commits_and_descendants": [
-        "a527ace21c23b763bb96841745f0e2d8cd984f4a"
+        {
+          "commit": "a527ace21c23b763bb96841745f0e2d8cd984f4a",
+          "tree": "aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa"
+        }
       ],
-      "release_ids": [
-        376058416
+      "releases": [
+        {
+          "repository": "example/releases-fixture",
+          "id": 376058416
+        }
       ]
     },
     "binutils": {
-      "release_ids": [
-        377908415
+      "releases": [
+        {
+          "repository": "example/releases-fixture",
+          "id": 377908415
+        }
       ],
       "package_sha256": [
-        "3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b"
+        {
+          "sha256": "3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b",
+          "repository": "example/releases-fixture",
+          "release_id": 377908415,
+          "asset": {
+            "id": 532446043,
+            "name": "revoked.pkg.tar.zst",
+            "size": 6545114,
+            "digest": "sha256:3c7b47529181dab726d22cf6ed045184260af915eea583488c13c07e478ac02b",
+            "state": "uploaded"
+          }
+        }
       ]
     }
   },
@@ -170,6 +209,11 @@
     "actions/checkout": {
       "commit": "11d5960a326750d5838078e36cf38b85af677262"
     }
+  },
+  "publication": {
+    "enabled": false,
+    "protected_environment_confirmed": false,
+    "mode": "unconditional-deny"
   },
   "owned_commit_terminal_trailers": [
     "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>",

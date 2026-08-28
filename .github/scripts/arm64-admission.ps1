@@ -563,6 +563,16 @@ function Test-Arm64AdmissionEvidence {
         }
     }
 
+    $publication = Get-Arm64Property -InputObject $Policy -Name 'publication'
+    if ($null -eq $publication -or
+        $publication.Value.enabled -isnot [bool] -or
+        $publication.Value.enabled -or
+        $publication.Value.protected_environment_confirmed -isnot [bool] -or
+        $publication.Value.protected_environment_confirmed -or
+        $publication.Value.mode -cne 'unconditional-deny') {
+        Add-AdmissionError 'publication-policy-must-remain-unconditionally-disabled'
+    }
+
     if ($Evidence.schema_version -ne $Policy.schema_version) {
         Add-AdmissionError 'schema-version-mismatch'
     }
@@ -584,7 +594,9 @@ function Test-Arm64AdmissionEvidence {
     }
 
     if (-not (Test-Arm64Sha $Evidence.baseline.annotated_tag.object_sha) -or
-        -not (Test-Arm64Sha $Evidence.baseline.annotated_tag.peeled_commit)) {
+        -not (Test-Arm64Sha $Evidence.baseline.annotated_tag.peeled_commit) -or
+        $Evidence.baseline.tag_ref.type -cne 'tag' -or
+        $Evidence.baseline.tag_ref.sha -cne $Evidence.baseline.annotated_tag.object_sha) {
         Add-AdmissionError 'baseline-tag-invalid'
     }
     if (-not (Test-Arm64PositiveInteger $Evidence.baseline.asset_manifest.count) -or
@@ -637,7 +649,9 @@ function Test-Arm64AdmissionEvidence {
             'artifact.id',
             'artifact.size',
             'runtime.release.id',
-            'binutils.release.id')) {
+            'binutils.release.id',
+            'binutils.asset.id',
+            'binutils.asset.size')) {
         $result = Get-Arm64PathValue -InputObject $identity -Path $integerPath
         if (-not $result.Exists -or -not (Test-Arm64PositiveInteger $result.Value)) {
             Add-AdmissionError "invalid-integer:$integerPath"
@@ -646,6 +660,16 @@ function Test-Arm64AdmissionEvidence {
     if (-not (Test-Arm64Digest $identity.artifact.digest) -or
         -not (Test-Arm64Digest $identity.binutils.package_digest)) {
         Add-AdmissionError 'invalid-candidate-digest'
+    }
+    foreach ($releaseName in @('runtime', 'binutils')) {
+        $releaseRepository = Get-Arm64PathValue `
+            -InputObject $identity `
+            -Path "$releaseName.release.repository"
+        if (-not $releaseRepository.Exists -or
+            $releaseRepository.Value -isnot [string] -or
+            $releaseRepository.Value -cnotmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$') {
+            Add-AdmissionError "candidate-release-repository-invalid:$releaseName"
+        }
     }
     if ($identity.artifact.size -le 1) {
         Add-AdmissionError 'candidate-artifact-size-invalid'
@@ -658,7 +682,11 @@ function Test-Arm64AdmissionEvidence {
             Add-AdmissionError 'candidate-release-not-immutable'
         }
         if (-not (Test-Arm64Sha $release.annotated_tag.object_sha) -or
-            -not (Test-Arm64Sha $release.annotated_tag.peeled_commit)) {
+            -not (Test-Arm64Sha $release.annotated_tag.peeled_commit) -or
+            $release.tag_ref.type -cne 'tag' -or
+            $release.tag_ref.sha -cne $release.annotated_tag.object_sha -or
+            $release.target_commitish -isnot [string] -or
+            [string]::IsNullOrWhiteSpace($release.target_commitish)) {
             Add-AdmissionError "candidate-release-tag-invalid:$releaseName"
         }
         if (-not (Test-Arm64PositiveInteger $release.asset_manifest.count) -or
@@ -672,7 +700,8 @@ function Test-Arm64AdmissionEvidence {
         Add-AdmissionError 'candidate-release-peeled-commit-mismatch'
     }
     if (-not (Test-Arm64Sha $identity.binutils.source_commit) -or
-        $identity.binutils.asset.digest -cne $identity.binutils.package_digest) {
+        $identity.binutils.asset.digest -cne $identity.binutils.package_digest -or
+        $identity.binutils.asset.state -cne 'uploaded') {
         Add-AdmissionError 'candidate-binutils-identity-invalid'
     }
 
@@ -720,16 +749,36 @@ function Test-Arm64AdmissionEvidence {
         if ($null -eq $expectedPin -or $action.Value -cne $expectedPin.Value.commit) {
             Add-AdmissionError "workflow-action-not-reviewed:$($action.Name)"
         }
+        if ($action.Name -match '(?i)(?:^|/)(?:upload-artifact|download-artifact|upload-pages-artifact|configure-pages|deploy-pages|release|pages)(?:$|/)') {
+            Add-AdmissionError "publication-action-forbidden:$($action.Name)"
+        }
     }
 
-    if (@($Policy.revocations.runtime.release_ids) -contains [long]$identity.runtime.release.id) {
+    if ($identity.runtime.repository -cne $Policy.revocations.runtime.repository) {
+        Add-AdmissionError 'runtime-authoritative-repository-mismatch'
+    }
+    if (@($Policy.revocations.runtime.releases | Where-Object {
+                $_.repository -ceq $identity.runtime.release.repository -and
+                $_.id -eq [long]$identity.runtime.release.id
+            }).Count -ne 0) {
         Add-AdmissionError 'revoked-runtime-release'
     }
-    if (@($Policy.revocations.binutils.release_ids) -contains [long]$identity.binutils.release.id) {
+    if (@($Policy.revocations.binutils.releases | Where-Object {
+                $_.repository -ceq $identity.binutils.release.repository -and
+                $_.id -eq [long]$identity.binutils.release.id
+            }).Count -ne 0) {
         Add-AdmissionError 'revoked-binutils-release'
     }
-    if (@($Policy.revocations.binutils.package_sha256) -ccontains
-        $identity.binutils.package_digest.Substring(7)) {
+    if (@($Policy.revocations.binutils.package_sha256 | Where-Object {
+                $_.sha256 -ceq $identity.binutils.package_digest.Substring(7) -and
+                $_.repository -ceq $identity.binutils.release.repository -and
+                $_.release_id -eq [long]$identity.binutils.release.id -and
+                $_.asset.id -eq [long]$identity.binutils.asset.id -and
+                $_.asset.name -ceq $identity.binutils.asset.name -and
+                $_.asset.size -eq [long]$identity.binutils.asset.size -and
+                $_.asset.digest -ceq $identity.binutils.asset.digest -and
+                $_.asset.state -ceq $identity.binutils.asset.state
+            }).Count -ne 0) {
         Add-AdmissionError 'revoked-binutils-package'
     }
 
@@ -747,7 +796,9 @@ function Test-Arm64AdmissionEvidence {
     }
     foreach ($revokedRoot in $revokedRoots) {
         $matches = @($ancestryChecks | Where-Object {
-                $_.revoked_commit -ceq $revokedRoot -and
+                $_.repository -ceq $Policy.revocations.runtime.repository -and
+                $_.revoked_commit -ceq $revokedRoot.commit -and
+                $_.revoked_tree -ceq $revokedRoot.tree -and
                 $_.candidate_commit -ceq $identity.runtime.commit
             })
         if ($matches.Count -ne 1 -or

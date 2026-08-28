@@ -13,9 +13,11 @@ permissions:
   pull-requests: read
 
 jobs:
-  preflight:
-    name: Validate protected context before network
+  governance:
+    name: arm64-governance
     runs-on: ubuntu-latest
+    env:
+      GITHUB_TOKEN: ${{ github.token }}
     steps:
       - name: Bind GitHub-owned event identity
         shell: pwsh
@@ -41,13 +43,6 @@ jobs:
             throw 'Synthetic merge input is forbidden.'
           }
 
-  audit:
-    name: Protected base policy and workflow audit
-    needs: preflight
-    runs-on: ubuntu-latest
-    env:
-      GITHUB_TOKEN: ${{ github.token }}
-    steps:
       - name: Checkout exact protected base
         uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
         with:

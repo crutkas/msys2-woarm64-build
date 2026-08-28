@@ -10,6 +10,8 @@ param(
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+. (Join-Path $PSScriptRoot 'git-object-integrity.ps1')
+
 function Get-Arm64MapProperty {
     param(
         [AllowNull()][object]$Map,
@@ -62,7 +64,36 @@ function Get-Arm64MapNames {
     if ($Map -is [Collections.IDictionary]) {
         return @($Map.Keys | ForEach-Object { [string]$_ })
     }
-    return @($Map.PSObject.Properties.Name)
+    return @($Map.PSObject.Properties | ForEach-Object { $_.Name })
+}
+
+function Get-Arm64ApprovedYamlBackends {
+    $backends = [Collections.Generic.List[string]]::new()
+    $powershellYaml = Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue
+    if ($null -ne $powershellYaml -and
+        $null -ne $powershellYaml.Module -and
+        $powershellYaml.Module.Version.ToString() -ceq '0.4.12') {
+        [void]$backends.Add('PowerShellYaml')
+    }
+
+    $ruby = Get-Command ruby -ErrorAction SilentlyContinue
+    if ($null -ne $ruby) {
+        $versions = & ruby -r json -r psych -e `
+            'STDOUT.write(JSON.generate({"ruby"=>RUBY_VERSION,"psych"=>Psych::VERSION}))'
+        if ($LASTEXITCODE -eq 0) {
+            try {
+                $parsedVersions = $versions | ConvertFrom-Json
+                if ($parsedVersions.ruby -ceq '3.2.3' -and
+                    $parsedVersions.psych -ceq '5.1.2') {
+                    [void]$backends.Add('RubyPsych')
+                }
+            }
+            catch {
+                throw 'semantic-parser-version-output-invalid'
+            }
+        }
+    }
+    return @($backends)
 }
 
 function Resolve-Arm64YamlBackend {
@@ -71,25 +102,77 @@ function Resolve-Arm64YamlBackend {
     if ($Requested -ceq 'Unavailable') {
         throw 'semantic-parser-unavailable'
     }
-    if ($Requested -in @('Auto', 'PowerShellYaml') -and
-        $null -ne (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue)) {
-        return 'PowerShellYaml'
+    $approved = @(Get-Arm64ApprovedYamlBackends)
+    if ($Requested -ceq 'PowerShellYaml') {
+        $command = Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue
+        if ($null -eq $command) {
+            throw 'semantic-parser-unavailable'
+        }
+        if ($command.Module.Version.ToString() -cne '0.4.12') {
+            throw 'semantic-parser-version-unapproved:PowerShellYaml'
+        }
     }
-    if ($Requested -in @('Auto', 'RubyPsych') -and
-        $null -ne (Get-Command ruby -ErrorAction SilentlyContinue)) {
-        return 'RubyPsych'
+    if ($Requested -ceq 'RubyPsych' -and
+        $null -ne (Get-Command ruby -ErrorAction SilentlyContinue) -and
+        $approved -cnotcontains 'RubyPsych') {
+        throw 'semantic-parser-version-unapproved:RubyPsych'
+    }
+    foreach ($candidate in @(
+            if ($Requested -ceq 'Auto') {
+                'PowerShellYaml'
+                'RubyPsych'
+            }
+            else {
+                $Requested
+            })) {
+        if ($approved -ccontains $candidate) {
+            return $candidate
+        }
     }
     throw 'semantic-parser-unavailable'
 }
 
-function ConvertFrom-Arm64YamlFile {
+function Get-Arm64YamlText {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $bytes = [IO.File]::ReadAllBytes($Path)
+    if ($bytes.LongLength -gt 1048576) {
+        throw 'semantic-yaml-byte-limit-exceeded'
+    }
+    if (($bytes.Length -ge 2 -and
+            (($bytes[0] -eq 0xff -and $bytes[1] -eq 0xfe) -or
+                ($bytes[0] -eq 0xfe -and $bytes[1] -eq 0xff))) -or
+        ($bytes.Length -ge 3 -and $bytes[0] -eq 0xef -and
+            $bytes[1] -eq 0xbb -and $bytes[2] -eq 0xbf)) {
+        throw 'semantic-yaml-bom-forbidden'
+    }
+    try {
+        $text = [Text.UTF8Encoding]::new($false, $true).GetString($bytes)
+    }
+    catch {
+        throw 'semantic-yaml-utf8-invalid'
+    }
+    if ($text.Contains("`0", [StringComparison]::Ordinal)) {
+        throw 'semantic-yaml-nul-forbidden'
+    }
+    if ($text -match '(?m)^\s*(?:---|\.\.\.)\s*(?:#.*)?$') {
+        throw 'semantic-yaml-explicit-document-marker-forbidden'
+    }
+    if ($text -match '(?m)(?:^|[\s\[\]{},:])(?:[&*][A-Za-z0-9_-]+|<<\s*:)') {
+        throw 'semantic-yaml-anchor-alias-merge-forbidden'
+    }
+    return $text
+}
+
+function Invoke-Arm64YamlBackend {
     param(
         [Parameter(Mandatory)][string]$Path,
+        [Parameter(Mandatory)][string]$Text,
         [Parameter(Mandatory)][string]$Backend
     )
 
     if ($Backend -ceq 'PowerShellYaml') {
-        return Get-Content -LiteralPath $Path -Raw | ConvertFrom-Yaml
+        return $Text | ConvertFrom-Yaml
     }
 
     $parserPath = Join-Path $PSScriptRoot 'parse-yaml.rb'
@@ -103,22 +186,31 @@ function ConvertFrom-Arm64YamlFile {
     return $json | ConvertFrom-Json -Depth 64
 }
 
+function ConvertFrom-Arm64YamlFile {
+    param(
+        [Parameter(Mandatory)][string]$Path,
+        [Parameter(Mandatory)][string]$Backend
+    )
+
+    $text = Get-Arm64YamlText -Path $Path
+    $document = Invoke-Arm64YamlBackend -Path $Path -Text $text -Backend $Backend
+    $approved = @(Get-Arm64ApprovedYamlBackends)
+    if ($approved.Count -gt 1) {
+        $representations = @($approved | ForEach-Object {
+                Invoke-Arm64YamlBackend -Path $Path -Text $text -Backend $_ |
+                    ConvertTo-Json -Compress -Depth 64
+            } | Sort-Object -Unique)
+        if ($representations.Count -ne 1) {
+            throw "semantic-parser-differential:$Path"
+        }
+    }
+    return $document
+}
+
 function Get-Arm64GitBlobHash {
     param([Parameter(Mandatory)][string]$Path)
 
-    $text = [IO.File]::ReadAllText($Path).Replace("`r`n", "`n")
-    $content = [Text.UTF8Encoding]::new($false).GetBytes($text)
-    $prefix = [Text.Encoding]::UTF8.GetBytes("blob $($content.Length)`0")
-    $payload = [byte[]]::new($prefix.Length + $content.Length)
-    [Array]::Copy($prefix, 0, $payload, 0, $prefix.Length)
-    [Array]::Copy($content, 0, $payload, $prefix.Length, $content.Length)
-    $sha1 = [Security.Cryptography.SHA1]::Create()
-    try {
-        return -join ($sha1.ComputeHash($payload) | ForEach-Object { $_.ToString('x2') })
-    }
-    finally {
-        $sha1.Dispose()
-    }
+    return (Get-Arm64FileBlobIdentity -Path $Path).oid
 }
 
 function Get-Arm64Sha256Text {
@@ -166,15 +258,43 @@ function Test-Arm64AuthoritativeSnapshot {
         throw 'authoritative-snapshot-missing'
     }
     $snapshot = Get-Content -LiteralPath $snapshotPath -Raw | ConvertFrom-Json -Depth 64
-    if ($snapshot.authority -cne 'github-rest-api' -or
+    $snapshotProperties = @($snapshot.PSObject.Properties.Name | Sort-Object)
+    $expectedSnapshotProperties = @(
+        'authority',
+        'repository',
+        'commit',
+        'tree',
+        'complete',
+        'files'
+    ) | Sort-Object
+    if (($snapshotProperties -join "`0") -cne ($expectedSnapshotProperties -join "`0") -or
+        $snapshot.authority -cne 'github-rest-api' -or
         $snapshot.complete -isnot [bool] -or -not $snapshot.complete -or
         $snapshot.repository -notmatch '^[A-Za-z0-9_.-]+/[A-Za-z0-9_.-]+$' -or
-        $snapshot.commit -notmatch '^[0-9a-f]{40}$' -or
-        $snapshot.tree -notmatch '^[0-9a-f]{40}$') {
+        -not (Test-Arm64GitObjectId $snapshot.commit) -or
+        -not (Test-Arm64GitObjectId $snapshot.tree) -or
+        $snapshot.files -is [string] -or
+        $snapshot.files -isnot [Collections.IEnumerable]) {
         throw 'authoritative-snapshot-invalid'
     }
 
-    $expectedPaths = @($snapshot.files | ForEach-Object { [string]$_.path } | Sort-Object)
+    $expectedPaths = [Collections.Generic.List[string]]::new()
+    $exactPaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    $aliasPaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)
+    foreach ($file in @($snapshot.files)) {
+        Assert-Arm64SourceBinding -Binding $file -Label 'authoritative snapshot file'
+        if (-not $exactPaths.Add([string]$file.path)) {
+            throw "authoritative-snapshot-duplicate-path:$($file.path)"
+        }
+        $aliasKey = ([string]$file.path).Normalize(
+            [Text.NormalizationForm]::FormC
+        ).ToUpperInvariant()
+        if (-not $aliasPaths.Add($aliasKey)) {
+            throw "authoritative-snapshot-path-alias:$($file.path)"
+        }
+        [void]$expectedPaths.Add([string]$file.path)
+    }
+    $expectedPaths = @($expectedPaths | Sort-Object)
     $actualPaths = @(Get-ChildItem -LiteralPath $Root -File -Recurse -Force | Where-Object {
             $_.FullName -cne $snapshotPath
         } | ForEach-Object {
@@ -186,13 +306,18 @@ function Test-Arm64AuthoritativeSnapshot {
     }
     foreach ($file in $snapshot.files) {
         $path = Resolve-Arm64DataPath -Root $Root -RelativePath $file.path
-        if ($file.mode -cne '100644' -and $file.mode -cne '100755') {
-            throw "authoritative-snapshot-mode-invalid:$($file.path)"
-        }
-        if ((Get-Arm64GitBlobHash -Path $path) -cne $file.blob) {
-            throw "authoritative-snapshot-blob-mismatch:$($file.path)"
+        $identity = Get-Arm64FileBlobIdentity -Path $path
+        $actualBinding = New-Arm64SourceBinding `
+            -Path $file.path `
+            -Mode $file.mode `
+            -ObjectType 'blob' `
+            -ByteLength $identity.byte_length `
+            -Oid $identity.oid
+        if (-not (Test-Arm64SourceBindingEqual -Expected $file -Actual $actualBinding)) {
+            throw "authoritative-snapshot-source-binding-mismatch:$($file.path)"
         }
     }
+    return $snapshot
 }
 
 function Test-Arm64WorkflowTree {
@@ -214,6 +339,7 @@ function Test-Arm64WorkflowTree {
     $visitedScripts = [Collections.Generic.HashSet[string]]::new(
         [StringComparer]::Ordinal
     )
+    $governanceCheckLocations = [Collections.Generic.List[string]]::new()
     function Add-AuditError {
         param([string]$Code)
 
@@ -235,10 +361,25 @@ function Test-Arm64WorkflowTree {
         }
     }
 
+    $publicationProperty = Get-Arm64MapProperty -Map $Policy -Name 'publication'
+    if ($null -eq $publicationProperty -or
+        $publicationProperty.Value.enabled -isnot [bool] -or
+        $publicationProperty.Value.enabled -or
+        $publicationProperty.Value.protected_environment_confirmed -isnot [bool] -or
+        $publicationProperty.Value.protected_environment_confirmed -or
+        $publicationProperty.Value.mode -cne 'unconditional-deny') {
+        Add-AuditError 'publication-policy-must-remain-unconditionally-disabled'
+    }
+    $actionNames = @(Get-Arm64MapNames -Map $Policy.external_action_pins | Sort-Object)
+    if (($actionNames -join "`0") -cne 'actions/checkout') {
+        Add-AuditError 'active-action-allowlist-not-minimal'
+    }
+
     $rootFull = [IO.Path]::GetFullPath($Root)
+    $authoritativeSnapshot = $null
     if (-not $SkipAuthoritativeSnapshot) {
         try {
-            Test-Arm64AuthoritativeSnapshot -Root $rootFull
+            $authoritativeSnapshot = Test-Arm64AuthoritativeSnapshot -Root $rootFull
         }
         catch {
             Add-AuditError $_.Exception.Message
@@ -249,9 +390,13 @@ function Test-Arm64WorkflowTree {
             -not (Test-Path -LiteralPath $candidatePolicyPath -PathType Leaf)) {
             Add-AuditError 'protected-policy-data-missing'
         }
-        elseif ((Get-Arm64GitBlobHash -Path $TrustedPolicyPath) -cne
-            (Get-Arm64GitBlobHash -Path $candidatePolicyPath)) {
-            Add-AuditError 'protected-policy-change-requires-bootstrap'
+        else {
+            $trustedPolicy = Get-Arm64FileBlobIdentity -Path $TrustedPolicyPath
+            $candidatePolicy = Get-Arm64FileBlobIdentity -Path $candidatePolicyPath
+            if ($trustedPolicy.byte_length -ne $candidatePolicy.byte_length -or
+                $trustedPolicy.oid -cne $candidatePolicy.oid) {
+                Add-AuditError 'protected-policy-source-binding-mismatch'
+            }
         }
     }
 
@@ -259,32 +404,64 @@ function Test-Arm64WorkflowTree {
         -Map $Policy `
         -Name 'protected_verifier'
     if ($null -ne $protectedVerifierProperty) {
-        $protectedScriptsProperty = Get-Arm64MapProperty `
+        $protectedSourcesProperty = Get-Arm64MapProperty `
             -Map $protectedVerifierProperty.Value `
-            -Name 'scripts'
-        if ($null -eq $protectedScriptsProperty) {
+            -Name 'sources'
+        if ($null -eq $protectedSourcesProperty) {
             Add-AuditError 'protected-source-allowlist-missing'
         }
         else {
-            foreach ($protectedPath in Get-Arm64MapNames -Map $protectedScriptsProperty.Value) {
+            foreach ($protectedPath in Get-Arm64MapNames -Map $protectedSourcesProperty.Value) {
                 try {
                     $resolvedProtectedPath = Resolve-Arm64DataPath `
                         -Root $rootFull `
                         -RelativePath $protectedPath
-                    $expectedProtectedBlob = (
+                    $expectedProtectedBinding = (
                         Get-Arm64MapProperty `
-                            -Map $protectedScriptsProperty.Value `
+                            -Map $protectedSourcesProperty.Value `
                             -Name $protectedPath
                     ).Value
-                    if (-not (Test-Path -LiteralPath $resolvedProtectedPath -PathType Leaf) -or
-                        (Get-Arm64GitBlobHash -Path $resolvedProtectedPath) -cne
-                        [string]$expectedProtectedBlob) {
-                        Add-AuditError "protected-source-blob-mismatch:$protectedPath"
+                    Assert-Arm64SourceBinding `
+                        -Binding $expectedProtectedBinding `
+                        -Label $protectedPath
+                    $identity = Get-Arm64FileBlobIdentity -Path $resolvedProtectedPath
+                    $actualProtectedBinding = New-Arm64SourceBinding `
+                        -Path $protectedPath `
+                        -Mode $expectedProtectedBinding.mode `
+                        -ObjectType 'blob' `
+                        -ByteLength $identity.byte_length `
+                        -Oid $identity.oid
+                    if (-not (Test-Arm64SourceBindingEqual `
+                            -Expected $expectedProtectedBinding `
+                            -Actual $actualProtectedBinding)) {
+                        Add-AuditError "protected-source-binding-mismatch:$protectedPath"
                     }
                 }
                 catch {
                     Add-AuditError "protected-source-invalid:$protectedPath"
                 }
+            }
+        }
+        if (-not $SkipAuthoritativeSnapshot -and $null -ne $authoritativeSnapshot -and
+            -not [string]::IsNullOrWhiteSpace($TrustedPolicyPath)) {
+            try {
+                $trustedRoot = [IO.Path]::GetFullPath((
+                        Join-Path (Split-Path $TrustedPolicyPath -Parent) '..\..'
+                    ))
+                $trustedSources = @(Get-Arm64ProtectedGitSourceBindings `
+                        -RepositoryRoot $trustedRoot)
+                $candidateSources = @($authoritativeSnapshot.files | Where-Object {
+                        $_.path.StartsWith('.github/workflows/', [StringComparison]::Ordinal) -or
+                        $_.path.StartsWith('.github/scripts/', [StringComparison]::Ordinal) -or
+                        $_.path.StartsWith('.github/policies/', [StringComparison]::Ordinal)
+                    } | Sort-Object path)
+                Assert-Arm64SourceBindingSetsEqual `
+                    -Expected $trustedSources `
+                    -Actual $candidateSources `
+                    -Label 'protected-source'
+            }
+            catch {
+                Add-AuditError $_.Exception.Message
             }
         }
     }
@@ -344,17 +521,38 @@ function Test-Arm64WorkflowTree {
             return
         }
 
-        $allowedBlobsProperty = Get-Arm64MapProperty `
+        $allowedSourcesProperty = Get-Arm64MapProperty `
             -Map $WorkflowRule `
-            -Name 'allowed_local_shell_blobs'
-        if ($null -eq $allowedBlobsProperty) {
-            Add-AuditError "delegated-script-blob-allowlist-missing:$relative"
+            -Name 'allowed_local_shell_sources'
+        if ($null -eq $allowedSourcesProperty) {
+            Add-AuditError "delegated-script-source-allowlist-missing:$relative"
             return
         }
-        $expectedBlob = Get-Arm64MapProperty -Map $allowedBlobsProperty.Value -Name $relative
-        if ($null -eq $expectedBlob -or
-            (Get-Arm64GitBlobHash -Path $ScriptPath) -cne [string]$expectedBlob.Value) {
-            Add-AuditError "delegated-script-blob-mismatch:$relative"
+        $expectedSource = Get-Arm64MapProperty `
+            -Map $allowedSourcesProperty.Value `
+            -Name $relative
+        if ($null -eq $expectedSource) {
+            Add-AuditError "delegated-script-source-not-allowlisted:$relative"
+            return
+        }
+        try {
+            Assert-Arm64SourceBinding -Binding $expectedSource.Value -Label $relative
+            $identity = Get-Arm64FileBlobIdentity -Path $ScriptPath
+            $actualSource = New-Arm64SourceBinding `
+                -Path $relative `
+                -Mode $expectedSource.Value.mode `
+                -ObjectType 'blob' `
+                -ByteLength $identity.byte_length `
+                -Oid $identity.oid
+            if (-not (Test-Arm64SourceBindingEqual `
+                    -Expected $expectedSource.Value `
+                    -Actual $actualSource)) {
+                Add-AuditError "delegated-script-source-binding-mismatch:$relative"
+                return
+            }
+        }
+        catch {
+            Add-AuditError "delegated-script-source-invalid:$relative"
             return
         }
 
@@ -370,7 +568,12 @@ function Test-Arm64WorkflowTree {
             return
         }
 
-        $authority = [string](Get-Arm64MapProperty -Map $WorkflowRule -Name 'authority').Value
+        $authorityProperty = Get-Arm64MapProperty -Map $WorkflowRule -Name 'authority'
+        if ($null -eq $authorityProperty) {
+            Add-AuditError "delegated-script-authority-missing:$relative"
+            return
+        }
+        $authority = [string]$authorityProperty.Value
         if ($authority -ceq 'untrusted-diagnostic') {
             $forbiddenCommands = @(
                 'invoke-webrequest',
@@ -577,9 +780,27 @@ function Test-Arm64WorkflowTree {
         }
         $action = $Uses.Substring(0, $separator)
         $reference = $Uses.Substring($separator + 1)
+        if ($action -match '(?i)(?:^|/)(?:upload-artifact|download-artifact|upload-pages-artifact|configure-pages|deploy-pages|release|pages)(?:$|/)') {
+            Add-AuditError "publication-action-forbidden:$Location"
+            return
+        }
         if ($reference -cnotmatch '^[0-9a-f]{40}$') {
             Add-AuditError "remote-uses-not-commit-pinned:${Location}:$action"
             return
+        }
+        if ($action -ceq 'msys2/setup-msys2') {
+            $withProperty = Get-Arm64MapProperty -Map $Owner -Name 'with'
+            $msystemProperty = if ($null -eq $withProperty) {
+                $null
+            }
+            else {
+                Get-Arm64MapProperty -Map $withProperty.Value -Name 'msystem'
+            }
+            if ($null -eq $msystemProperty -or
+                $msystemProperty.Value -isnot [string] -or
+                @($Policy.forbidden_msystems) -ccontains $msystemProperty.Value) {
+                Add-AuditError "unsupported-msystem-before-setup:$Location"
+            }
         }
         $pin = Get-Arm64ExactMapProperty -Map $Policy.external_action_pins -Name $action
         if ($null -eq $pin) {
@@ -591,21 +812,6 @@ function Test-Arm64WorkflowTree {
             Add-AuditError "remote-uses-pin-mismatch:${Location}:$action"
         }
 
-        if ($action -ceq 'msys2/setup-msys2') {
-            $withProperty = Get-Arm64MapProperty -Map $Owner -Name 'with'
-            $msystemProperty = if ($null -eq $withProperty) {
-                $null
-            }
-            else {
-                Get-Arm64MapProperty -Map $withProperty.Value -Name 'msystem'
-            }
-            if ($null -eq $msystemProperty -or
-                $msystemProperty.Value -isnot [string] -or
-                @($Policy.setup_msys2.supported_msystems) -cnotcontains $msystemProperty.Value -or
-                @($Policy.setup_msys2.forbidden_msystems) -ccontains $msystemProperty.Value) {
-                Add-AuditError "unsupported-msystem-before-setup:$Location"
-            }
-        }
     }
 
     function Test-Steps {
@@ -634,6 +840,10 @@ function Test-Arm64WorkflowTree {
                     -Location "${Location}:step[$index]"
             }
             elseif ($null -ne $runProperty) {
+                if ($runProperty.Value -is [string] -and
+                    $runProperty.Value -match '(?i)(?:\bgh\s+release\b|/releases(?:/|\b)|\bartifact(?:s)?\b|\bpages\b)') {
+                    Add-AuditError "publication-shell-route-forbidden:${Location}:step[$index]"
+                }
                 $shellProperty = Get-Arm64MapProperty -Map $step -Name 'shell'
                 $allowedShellsProperty = Get-Arm64MapProperty `
                     -Map $WorkflowRule `
@@ -711,7 +921,7 @@ function Test-Arm64WorkflowTree {
             $workflowRule = [pscustomobject]@{
                 allowed_events = @()
                 allowed_local_shell_entrypoints = @()
-                allowed_local_shell_blobs = [pscustomobject]@{}
+                allowed_local_shell_sources = [pscustomobject]@{}
                 allowed_inline_shell_sha256 = @()
                 allowed_shells = @()
                 authority = 'unknown'
@@ -719,13 +929,33 @@ function Test-Arm64WorkflowTree {
         }
         else {
             $workflowRule = $ruleProperty.Value
-            $workflowBlobProperty = Get-Arm64MapProperty `
+            $workflowSourceProperty = Get-Arm64MapProperty `
                 -Map $workflowRule `
-                -Name 'workflow_blob'
-            if ($null -ne $workflowBlobProperty -and
-                (Get-Arm64GitBlobHash -Path $WorkflowPath) -cne
-                [string]$workflowBlobProperty.Value) {
-                Add-AuditError "workflow-blob-mismatch:$relative"
+                -Name 'source'
+            if ($null -eq $workflowSourceProperty) {
+                Add-AuditError "workflow-source-binding-missing:$relative"
+            }
+            else {
+                try {
+                    Assert-Arm64SourceBinding `
+                        -Binding $workflowSourceProperty.Value `
+                        -Label $relative
+                    $identity = Get-Arm64FileBlobIdentity -Path $WorkflowPath
+                    $actualSource = New-Arm64SourceBinding `
+                        -Path $relative `
+                        -Mode $workflowSourceProperty.Value.mode `
+                        -ObjectType 'blob' `
+                        -ByteLength $identity.byte_length `
+                        -Oid $identity.oid
+                    if (-not (Test-Arm64SourceBindingEqual `
+                            -Expected $workflowSourceProperty.Value `
+                            -Actual $actualSource)) {
+                        Add-AuditError "workflow-source-binding-mismatch:$relative"
+                    }
+                }
+                catch {
+                    Add-AuditError "workflow-source-binding-invalid:$relative"
+                }
             }
         }
 
@@ -777,6 +1007,27 @@ function Test-Arm64WorkflowTree {
             if (($actualEvents -join "`0") -cne ($allowedEvents -join "`0")) {
                 Add-AuditError "workflow-trigger-not-allowlisted:$relative"
             }
+            if (@($actualEvents | Where-Object {
+                        $_ -match '^(?i:release|pages_build|workflow_dispatch)$'
+                    }).Count -ne 0) {
+                Add-AuditError "publication-trigger-forbidden:$relative"
+            }
+        }
+
+        $workflowPermissions = Get-Arm64MapProperty -Map $workflow -Name 'permissions'
+        if ($null -ne $workflowPermissions -and
+            @('write', 'write-all') -ccontains [string]$workflowPermissions.Value) {
+            Add-AuditError "publication-permissions-forbidden:$relative"
+        }
+        elseif ($null -ne $workflowPermissions) {
+            foreach ($permissionName in Get-Arm64MapNames -Map $workflowPermissions.Value) {
+                $permission = Get-Arm64MapProperty `
+                    -Map $workflowPermissions.Value `
+                    -Name $permissionName
+                if ($null -ne $permission -and $permission.Value -ceq 'write') {
+                    Add-AuditError "publication-permissions-forbidden:${relative}:$permissionName"
+                }
+            }
         }
 
         $jobsProperty = Get-Arm64MapProperty -Map $workflow -Name 'jobs'
@@ -787,6 +1038,50 @@ function Test-Arm64WorkflowTree {
         foreach ($jobName in Get-Arm64MapNames -Map $jobsProperty.Value) {
             $job = (Get-Arm64MapProperty -Map $jobsProperty.Value -Name $jobName).Value
             $location = "${relative}:job[$jobName]"
+            $jobNameProperty = Get-Arm64MapProperty -Map $job -Name 'name'
+            $displayName = if ($null -eq $jobNameProperty) {
+                [string]$jobName
+            }
+            else {
+                [string]$jobNameProperty.Value
+            }
+            if ($displayName -ceq 'arm64-governance') {
+                [void]$governanceCheckLocations.Add($location)
+                $ifProperty = Get-Arm64MapProperty -Map $job -Name 'if'
+                $needsProperty = Get-Arm64MapProperty -Map $job -Name 'needs'
+                if ($null -ne $ifProperty -or $null -ne $needsProperty) {
+                    Add-AuditError "governance-check-can-be-skipped:$location"
+                }
+            }
+            elseif ($displayName.StartsWith(
+                    'arm64-governance',
+                    [StringComparison]::OrdinalIgnoreCase
+                ) -or
+                'arm64-governance'.StartsWith(
+                    $displayName,
+                    [StringComparison]::OrdinalIgnoreCase
+                )) {
+                Add-AuditError "governance-check-name-alias:$location"
+            }
+            $environmentProperty = Get-Arm64MapProperty -Map $job -Name 'environment'
+            if ($null -ne $environmentProperty) {
+                Add-AuditError "publication-environment-forbidden:$location"
+            }
+            $jobPermissions = Get-Arm64MapProperty -Map $job -Name 'permissions'
+            if ($null -ne $jobPermissions -and
+                @('write', 'write-all') -ccontains [string]$jobPermissions.Value) {
+                Add-AuditError "publication-permissions-forbidden:$location"
+            }
+            elseif ($null -ne $jobPermissions) {
+                foreach ($permissionName in Get-Arm64MapNames -Map $jobPermissions.Value) {
+                    $permission = Get-Arm64MapProperty `
+                        -Map $jobPermissions.Value `
+                        -Name $permissionName
+                    if ($null -ne $permission -and $permission.Value -ceq 'write') {
+                        Add-AuditError "publication-permissions-forbidden:${location}:$permissionName"
+                    }
+                }
+            }
             $jobDefaults = Get-Arm64MapProperty -Map $job -Name 'defaults'
             if ($null -ne $jobDefaults -and
                 $null -ne (Get-Arm64MapProperty -Map $jobDefaults.Value -Name 'run')) {
@@ -853,6 +1148,15 @@ function Test-Arm64WorkflowTree {
             } | Sort-Object)
         if (($expectedWorkflows -join "`0") -cne ($actualWorkflows -join "`0")) {
             Add-AuditError 'active-workflow-set-mismatch'
+        }
+    }
+
+    if ($null -ne $protectedVerifierProperty) {
+        if ($protectedVerifierProperty.Value.check_name -cne 'arm64-governance') {
+            Add-AuditError 'protected-check-name-invalid'
+        }
+        if ($governanceCheckLocations.Count -ne 1) {
+            Add-AuditError 'protected-check-name-not-unique'
         }
     }
 

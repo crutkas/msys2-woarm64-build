@@ -1,0 +1,9 @@
+name: YAML merge rejection
+on: pull_request
+jobs:
+  defaults: &job_defaults
+    runs-on: ubuntu-latest
+  audit:
+    <<: *job_defaults
+    steps:
+      - uses: actions/checkout@main

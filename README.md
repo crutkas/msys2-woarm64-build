@@ -10,13 +10,16 @@ and GitHub Pages definitions are quarantined as non-executable files under
 The deny-by-default
 [policy](.github/policies/arm64-quarantine-policy.json) has no live admissions. It commits to
 the complete immutable Git-for-Windows baseline asset manifest, exact annotated tag and peeled
-commit, explicit runtime and binutils revocations, reviewed Action commits, and canonical
+commit, repository-bound runtime and binutils revocations, the sole active
+`actions/checkout` commit, and canonical
 workspace requirements. Unknown candidates cannot pass.
 
 After this bootstrap change is installed on protected `main`, the
 [protected verifier](.github/workflows/arm64-quarantine-policy.yml) runs only as
 `pull_request_target`. Its first job validates GitHub-owned base context before checkout or API
-access. It then checks out the exact base SHA, verifies every trusted verifier blob, collects
+access. Its single required-check identity is exactly `arm64-governance`; no diagnostic job
+shares that name. It then checks out the exact base SHA, verifies path, raw path identity, mode,
+object type, byte length, and raw-byte Git blob OID for every trusted verifier source, collects
 candidate files through the read-only GitHub API, and parses those files strictly as data. It
 never checks out or executes candidate code. A pull request changing the verifier therefore
 continues to run the previous protected-base implementation.
@@ -30,15 +33,26 @@ workflow and an exact candidate identity is separately allowlisted.
 
 The only ordinary `pull_request` workflow is explicitly untrusted bootstrap diagnostics. Its
 result is never admission authority, it has read-only permissions, and it uploads no artifacts.
-Workflow auditing uses a semantic YAML parser for both `.yml` and `.yaml`, resolves aliases and
-flow syntax, and rejects unreviewed actions, reusable workflows, local/Docker actions,
+Workflow auditing uses only PowerShell-Yaml 0.4.12 or the locked Ruby 3.2.3/Psych 5.1.2 pair for
+both `.yml` and `.yaml`. It rejects anchors, aliases, merge keys, multiple documents, unreviewed
+actions, reusable workflows, local/Docker actions,
 containers, delegated scripts, URLs, git operations, and unsupported `MINGWARM64` setup before
-execution. The mandated `setup-msys2` commit does not support `MINGWARM64`, so every such
-operational path remains disabled.
+execution. Parser availability is fail-closed. The hosted runner toolchain is mutable, so a
+runner image changing those exact parser versions is an operational availability limitation,
+not permission to fall back.
 
-Publication remains disabled. Re-enablement requires authoritative admission plus a separately
-configured protected `arm64-publication-approval` environment; this repository does not claim
-that environment is currently protected.
+Publication, releases, Pages, and artifact upload/download routes are unconditionally denied.
+The policy fields remain `publication.enabled=false` and
+`protected_environment_confirmed=false`; flipping either field cannot enable publication.
+Re-enablement requires a separately reviewed protected-base change that introduces and binds a
+publication workflow, exact admission identity, artifact/release locks, the exact
+`arm64-publication-approval` environment, independently verified environment protection, and a
+final approval gate.
+
+No branch protection or ruleset currently requires `arm64-governance`. That exact check name
+must be required only after these trusted bytes are installed on `main`. This repository does
+not currently require DCO; the bootstrap commits are not represented as DCO-complete, and any
+future mandatory-DCO policy would require a fresh signed successor rather than rewriting them.
 
 Run the deterministic tests with the repository's existing PowerShell runtime:
 
