@@ -4,6 +4,130 @@ param()
 Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
+function Invoke-Arm64Git {
+    param(
+        [Parameter(Mandatory)][string]$RepositoryRoot,
+        [Parameter(Mandatory)][AllowEmptyCollection()][string[]]$GitArguments
+    )
+
+    # Git is invoked with a scrubbed environment and hardened configuration so that ambient
+    # Git variables, system or global config, hooks, replacement objects, or a poisoned
+    # fsmonitor cannot influence what bytes an object read returns.
+    $startInfo = [Diagnostics.ProcessStartInfo]::new()
+    $startInfo.FileName = 'git'
+    foreach ($argument in @(
+            '--no-replace-objects',
+            '-c', 'core.hooksPath=',
+            '-c', 'core.fsmonitor=false',
+            '-c', 'core.symlinks=false',
+            '-c', 'core.quotePath=false',
+            '-c', 'protocol.allow=never',
+            '-C', $RepositoryRoot) + $GitArguments) {
+        $startInfo.ArgumentList.Add($argument)
+    }
+    $startInfo.RedirectStandardOutput = $true
+    $startInfo.RedirectStandardError = $true
+    $startInfo.UseShellExecute = $false
+    $startInfo.CreateNoWindow = $true
+
+    $startInfo.Environment.Clear()
+    foreach ($name in @('SystemRoot', 'windir', 'PATH', 'PATHEXT', 'TEMP', 'TMP',
+            'PROCESSOR_ARCHITECTURE', 'COMSPEC')) {
+        $value = [Environment]::GetEnvironmentVariable($name)
+        if (-not [string]::IsNullOrEmpty($value)) {
+            $startInfo.Environment[$name] = $value
+        }
+    }
+    $startInfo.Environment['GIT_CONFIG_NOSYSTEM'] = '1'
+    $startInfo.Environment['GIT_CONFIG_GLOBAL'] = [IO.Path]::GetFullPath(
+        (Join-Path ([IO.Path]::GetTempPath()) 'arm64-absent-git-config')
+    )
+    $startInfo.Environment['GIT_NO_REPLACE_OBJECTS'] = '1'
+    $startInfo.Environment['GIT_TERMINAL_PROMPT'] = '0'
+    $startInfo.Environment['GIT_OPTIONAL_LOCKS'] = '0'
+    $startInfo.Environment['GIT_ATTR_NOSYSTEM'] = '1'
+    $startInfo.Environment['GIT_FLUSH'] = '1'
+    $startInfo.Environment['LC_ALL'] = 'C'
+
+    $process = [Diagnostics.Process]::new()
+    $process.StartInfo = $startInfo
+    try {
+        [void]$process.Start()
+        $standardOutput = $process.StandardOutput.ReadToEnd()
+        [void]$process.StandardError.ReadToEnd()
+        if (-not $process.WaitForExit(120000)) {
+            try {
+                $process.Kill($true)
+            }
+            catch {
+                Write-Verbose 'Hardened Git process could not be terminated.'
+            }
+            throw 'Hardened Git invocation timed out.'
+        }
+        return [pscustomobject]@{
+            ExitCode = [int]$process.ExitCode
+            Lines    = @($standardOutput -split "`r?`n" | Where-Object { $_.Length -gt 0 })
+        }
+    }
+    finally {
+        $process.Dispose()
+    }
+}
+
+function Assert-Arm64GitRepositoryHygiene {
+    param([Parameter(Mandatory)][string]$RepositoryRoot)
+
+    foreach ($variable in @('GIT_DIR', 'GIT_OBJECT_DIRECTORY',
+            'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_COMMON_DIR', 'GIT_WORK_TREE',
+            'GIT_INDEX_FILE', 'GIT_NAMESPACE', 'GIT_GRAFT_FILE', 'GIT_REPLACE_REF_BASE',
+            'GIT_CEILING_DIRECTORIES')) {
+        if (-not [string]::IsNullOrEmpty([Environment]::GetEnvironmentVariable($variable))) {
+            throw "Git environment override is not permitted: $variable"
+        }
+    }
+
+    $directories = Invoke-Arm64Git `
+        -RepositoryRoot $RepositoryRoot `
+        -GitArguments @('rev-parse', '--absolute-git-dir', '--git-common-dir')
+    if ($directories.ExitCode -ne 0 -or $directories.Lines.Count -lt 1) {
+        throw 'Git repository directories could not be resolved.'
+    }
+
+    $resolved = [Collections.Generic.List[string]]::new()
+    foreach ($line in $directories.Lines) {
+        $candidate = $line
+        if (-not [IO.Path]::IsPathRooted($candidate)) {
+            $candidate = Join-Path $RepositoryRoot $candidate
+        }
+        [void]$resolved.Add([IO.Path]::GetFullPath($candidate))
+    }
+
+    foreach ($directory in @($resolved | Sort-Object -Unique)) {
+        foreach ($poison in @(
+                (Join-Path $directory 'info\grafts'),
+                (Join-Path $directory 'objects\info\alternates'),
+                (Join-Path $directory 'commondir'))) {
+            if ($poison.EndsWith('commondir', [StringComparison]::Ordinal)) {
+                continue
+            }
+            if (Test-Path -LiteralPath $poison -PathType Leaf) {
+                throw "Git object poisoning artifact is present: $(Split-Path $poison -Leaf)"
+            }
+        }
+    }
+
+    $replacements = Invoke-Arm64Git `
+        -RepositoryRoot $RepositoryRoot `
+        -GitArguments @('for-each-ref', '--format=%(refname)', 'refs/replace/')
+    if ($replacements.ExitCode -ne 0) {
+        throw 'Git replacement references could not be enumerated.'
+    }
+    if ($replacements.Lines.Count -ne 0) {
+        throw 'Git replacement references are not permitted.'
+    }
+    return $true
+}
+
 function Assert-Arm64GitObjectFormatValue {
     param([AllowNull()][object]$Output)
 
@@ -29,11 +153,13 @@ function Assert-Arm64GitObjectFormatValue {
 function Assert-Arm64GitObjectFormat {
     param([Parameter(Mandatory)][string]$RepositoryRoot)
 
-    $output = @(& git -C $RepositoryRoot rev-parse --show-object-format)
-    if ($LASTEXITCODE -ne 0) {
+    $result = Invoke-Arm64Git `
+        -RepositoryRoot $RepositoryRoot `
+        -GitArguments @('rev-parse', '--show-object-format')
+    if ($result.ExitCode -ne 0) {
         throw 'Git object format could not be determined.'
     }
-    return Assert-Arm64GitObjectFormatValue -Output $output
+    return Assert-Arm64GitObjectFormatValue -Output $result.Lines
 }
 
 function Test-Arm64GitObjectId {
@@ -244,17 +370,24 @@ function Get-Arm64LocalGitTreeEntries {
         throw "Invalid Git revision for source binding: $Revision"
     }
     [void](Assert-Arm64GitObjectFormat -RepositoryRoot $RepositoryRoot)
-    $topLevel = (& git -C $RepositoryRoot rev-parse --show-toplevel).Trim()
-    if ($LASTEXITCODE -ne 0 -or
-        [IO.Path]::GetFullPath($topLevel) -cne [IO.Path]::GetFullPath($RepositoryRoot)) {
+    [void](Assert-Arm64GitRepositoryHygiene -RepositoryRoot $RepositoryRoot)
+    $topLevelResult = Invoke-Arm64Git `
+        -RepositoryRoot $RepositoryRoot `
+        -GitArguments @('rev-parse', '--show-toplevel')
+    if ($topLevelResult.ExitCode -ne 0 -or $topLevelResult.Lines.Count -ne 1) {
         throw 'Git source-binding root must be the exact repository top level.'
     }
-    $lines = @(
-        & git -C $RepositoryRoot -c core.quotePath=false ls-tree -r -t -l --full-tree $Revision
-    )
-    if ($LASTEXITCODE -ne 0) {
+    $topLevel = $topLevelResult.Lines[0].Trim()
+    if ([IO.Path]::GetFullPath($topLevel) -cne [IO.Path]::GetFullPath($RepositoryRoot)) {
+        throw 'Git source-binding root must be the exact repository top level.'
+    }
+    $treeResult = Invoke-Arm64Git `
+        -RepositoryRoot $RepositoryRoot `
+        -GitArguments @('ls-tree', '-r', '-t', '-l', '--full-tree', $Revision)
+    if ($treeResult.ExitCode -ne 0) {
         throw "Unable to enumerate Git tree: $Revision"
     }
+    $lines = @($treeResult.Lines)
 
     $entries = [Collections.Generic.List[object]]::new()
     $exactPaths = [Collections.Generic.HashSet[string]]::new([StringComparer]::Ordinal)

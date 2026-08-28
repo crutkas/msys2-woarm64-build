@@ -74,6 +74,7 @@ $requiredSources = @(
     '.github/scripts/git-object-integrity.ps1',
     '.github/scripts/github-rest.ps1',
     '.github/scripts/parse-yaml.rb',
+    '.github/scripts/parse-yaml.ps1',
     '.github/scripts/verify-protected-context.ps1'
 ) | Sort-Object
 $declaredSources = @($policy.protected_verifier.sources.PSObject.Properties.Name | Sort-Object)

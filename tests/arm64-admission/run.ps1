@@ -581,9 +581,7 @@ try {
         @{ Name = 'marker-end-inline.yml'
             Bytes = $utf8Plain.GetBytes("a: 1`n... trailing`n")
             Code = 'semantic-yaml-explicit-document-marker-forbidden' },
-        @{ Name = 'marker-indented.yml'
-            Bytes = $utf8Plain.GetBytes("a: 1`n  --- b`n")
-            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+
         @{ Name = 'marker-crlf.yml'
             Bytes = $utf8Plain.GetBytes("a: 1`r`n---`r`nb: 2`r`n")
             Code = 'semantic-yaml-explicit-document-marker-forbidden' },
@@ -801,16 +799,9 @@ try {
             Bytes = $utf8Plain.GetBytes(
                 "on: push`nq- `"z: &a [x,x,x]`nr- `"z: &b [*a,*a,*a]`ns- `"z: &c [*b,*b,*b]`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
-        @{ Name = 'anchor-flow-continuation-colon.yml'
-            Bytes = $utf8Plain.GetBytes("on: push`na: {`n  b:&x 1`n}`nc: {`n  d:*x`n}`n")
-            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
-        @{ Name = 'anchor-flow-continuation-question.yml'
-            Bytes = $utf8Plain.GetBytes("on: push`na: {`n  ?&x : 1`n}`n")
-            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
-        @{ Name = 'anchor-flow-nested-continuation.yml'
-            Bytes = $utf8Plain.GetBytes(
-                "on: push`na: {b: {`n  c:&x 1`n}}`nd: {e: {`n  f:*x`n}}`n")
-            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+
+
+
         @{ Name = 'anchor-flow-continuation-sequence.yml'
             Bytes = $utf8Plain.GetBytes("on: push`na: [`n  1,`n  &x 2`n]`nb: [`n  *x`n]`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
@@ -845,12 +836,8 @@ try {
         @{ Name = 'anchor-explicit-key-sequence-order.yml'
             Bytes = $utf8Plain.GetBytes("on: push`na:`n  ? - &x v`n  : 1`nb:`n  ? - *x`n  : 2`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
-        @{ Name = 'anchor-flow-colon-no-space.yml'
-            Bytes = $utf8Plain.GetBytes("on: push`nk: {a:&x 1}`nj: {b:*x}`n")
-            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
-        @{ Name = 'anchor-flow-question-no-space.yml'
-            Bytes = $utf8Plain.GetBytes("on: push`nk: {?&x : 1}`n")
-            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+
+
         @{ Name = 'anchor-fake-folded-header.yml'
             Bytes = $utf8Plain.GetBytes(
                 "on: push`njobs:`n  b:`n    steps:`n      - name: pipe >`n" +
@@ -888,6 +875,17 @@ try {
         @{ Name = 'merge-key.yml'
             Bytes = $utf8Plain.GetBytes("a: 1`n<<: *base`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        # Malformed streams the pinned backend also refuses. The token scan cannot classify
+        # them, so they fail closed rather than reaching an object backend.
+        @{ Name = 'malformed-four-dash.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n----`n")
+            Code = 'semantic-yaml-token-scan-failed' },
+        @{ Name = 'malformed-four-dot.yml'
+            Bytes = $utf8Plain.GetBytes("a: 1`n....`n")
+            Code = 'semantic-yaml-token-scan-failed' },
+        @{ Name = 'malformed-quoted-merge-text.yml'
+            Bytes = $utf8Plain.GetBytes("- run: echo `"a <<: b`"`n")
+            Code = 'semantic-yaml-token-scan-failed' },
         @{ Name = 'merge-key-plain.yml'
             Bytes = $utf8Plain.GetBytes("a: 1`n<<: b`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' }
@@ -901,8 +899,17 @@ try {
     # Near-miss text must stay admissible so the gate cannot be satisfied by prefix accidents.
     $yamlAcceptCases = @(
         @{ Name = 'nonmarker-prefix.yml'; Text = "---not-a-marker: 1`n" },
-        @{ Name = 'nonmarker-four-dash.yml'; Text = "a: 1`n----`n" },
-        @{ Name = 'nonmarker-four-dot.yml'; Text = "a: 1`n....`n" },
+        # The pinned backend treats each of these as ordinary scalar content, not as a
+        # document marker or a node property, so the gate must admit them too.
+        @{ Name = 'indented-dashes.yml'; Text = "a: 1`n  --- b`n" },
+        @{ Name = 'flow-plain-colon-key.yml'; Text = "on: push`nk: {a:&x 1}`nj: {b:*x}`n" },
+        @{ Name = 'flow-plain-question-key.yml'; Text = "on: push`nk: {?&x : 1}`n" },
+        @{ Name = 'flow-continuation-plain-key.yml'
+            Text = "on: push`na: {`n  b:&x 1`n}`nc: {`n  d:*x`n}`n" },
+        @{ Name = 'flow-continuation-question-key.yml'
+            Text = "on: push`na: {`n  ?&x : 1`n}`n" },
+        @{ Name = 'flow-nested-plain-key.yml'
+            Text = "on: push`na: {b: {`n  c:&x 1`n}}`nd: {e: {`n  f:*x`n}}`n" },
         @{ Name = 'nonmarker-dotted-key.yml'; Text = "...key: 1`n" },
         @{ Name = 'shell-and.yml'; Text = "jobs:`n  run: cmd1 && cmd2`n" },
         @{ Name = 'shell-glob.yml'; Text = "jobs:`n  run: cp *.txt out/`n" },
@@ -951,7 +958,7 @@ try {
         @{ Name = 'quoted-sequence-nested-glob.yml'
             Text = "on:`n  push:`n    paths:`n      - `"a`"`n      - `"b: *.md`"`n" },
         @{ Name = 'quoted-key-with-ampersand.yml'; Text = "a: 1`n`"b: &c`": 2`n" },
-        @{ Name = 'merge-text-in-quoted-scalar.yml'; Text = "- run: echo `"a <<: b`"`n" },
+
         @{ Name = 'merge-text-in-comment.yml'
             Text = "# note: <<: merge keys are banned`na: 1`n" },
         @{ Name = 'merge-text-in-block-scalar.yml'
@@ -1111,6 +1118,181 @@ finally {
 Assert-Arm64 (-not (Test-Path -LiteralPath $yamlProbeRoot)) `
     'YAML probe scratch directory left residue behind'
 
+# --- Token-layer gate: nothing forbidden may ever reach an object backend ---------------
+$forbiddenTokenCases = [Collections.Generic.List[hashtable]]::new()
+foreach ($base in @(
+        @{ Name = 'anchor'; Text = "a: &x 1`nb: *x`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'punctuation-anchor'; Text = "a: &.base 1`nb: *.base`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'ampersand-anchor'; Text = "a: &&x 1`nb: *&x`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'flow-alias'; Text = "a: &x 1`nb: [*x]`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'merge-key'; Text = "a: 1`n<<: *b`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'merge-key-plain'; Text = "a: 1`n<<: b`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'document-marker'; Text = "a: 1`n--- {b: 2}`n"
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'document-end'; Text = "a: 1`n...`n"
+            Code = 'semantic-yaml-explicit-document-marker-forbidden' },
+        @{ Name = 'alias-amplification'
+            Text = "a: &a [1,1,1,1,1,1,1,1,1]`nb: &b [*a,*a,*a,*a,*a,*a,*a,*a,*a]`n" +
+            "c: &c [*b,*b,*b,*b,*b,*b,*b,*b,*b]`nd: &d [*c,*c,*c,*c,*c,*c,*c,*c,*c]`n" +
+            "e: &e [*d,*d,*d,*d,*d,*d,*d,*d,*d]`nf: [*e,*e,*e,*e,*e,*e,*e,*e,*e]`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
+        @{ Name = 'cloaked-amplification'
+            Text = "on: push`nq:`n  bcd`n  `"x`na: &a [1,1,1,1,1,1,1,1,1]`n" +
+            "b: &b [*a,*a,*a,*a,*a,*a,*a,*a,*a]`nc: &c [*b,*b,*b,*b,*b,*b,*b,*b,*b]`n" +
+            "d: &d [*c,*c,*c,*c,*c,*c,*c,*c,*c]`ne: [*d,*d,*d,*d,*d,*d,*d,*d,*d]`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden' })) {
+    [void]$forbiddenTokenCases.Add($base)
+}
+# The eight cloak families from the independent differential audit. Each hides a real anchor
+# and alias behind a plain-scalar continuation that a hand-rolled lexer mis-tracked.
+foreach ($cloak in @(
+        @{ Name = 'own-line-double-quote'; Head = "a:`n  bcd`n  `"x`n" },
+        @{ Name = 'own-line-single-quote'; Head = "a:`n  bcd`n  'x`n" },
+        @{ Name = 'equal-indent'; Head = "a: bcd`n  `"x`n" },
+        @{ Name = 'deep-indent'; Head = "a:`n  bcd`n      `"x`n" },
+        @{ Name = 'nested'; Head = "m:`n  a:`n    bcd`n    `"x`n" },
+        @{ Name = 'blank-between'; Head = "a: bcd`n`n  `"x`n" },
+        @{ Name = 'blank-deep'; Head = "a:`n  bcd`n`n     `"x`n" },
+        @{ Name = 'sequence-entry'; Head = "a:`n  - bcd`n    `"x`n" })) {
+    [void]$forbiddenTokenCases.Add(@{
+            Name = "cloak-$($cloak.Name)"
+            Text = "on: push`n$($cloak.Head)j:`n  - p`n  - &z q`n  - *z`n"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden'
+        })
+}
+foreach ($separator in @("`n", "`r`n", "`r", [string][char]0x85, [string][char]0x2028,
+        [string][char]0x2029)) {
+    [void]$forbiddenTokenCases.Add(@{
+            Name = 'separator-marker'
+            Text = "a: 1$separator---${separator}b: 2"
+            Code = 'semantic-yaml-explicit-document-marker-forbidden'
+        })
+    [void]$forbiddenTokenCases.Add(@{
+            Name = 'separator-anchor'
+            Text = "a: &x 1${separator}b: *x"
+            Code = 'semantic-yaml-anchor-alias-merge-forbidden'
+        })
+}
+
+$tokenProbeRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    'arm64-token-' + [Guid]::NewGuid().ToString('n')
+)
+[void](New-Item -ItemType Directory -Path $tokenProbeRoot -Force)
+try {
+    foreach ($tokenCase in $forbiddenTokenCases) {
+        $observed = 'accepted'
+        try {
+            [void](Assert-Arm64YamlTokenPolicy -Text $tokenCase.Text)
+        }
+        catch {
+            $observed = [string]$_.Exception.Message
+        }
+        Assert-Arm64 ($observed -ceq $tokenCase.Code) `
+            "token case '$($tokenCase.Name)' produced '$observed' not '$($tokenCase.Code)'"
+
+        $probePath = Join-Path $tokenProbeRoot 'candidate.yml'
+        [IO.File]::WriteAllBytes($probePath, $utf8Plain.GetBytes($tokenCase.Text))
+        $script:arm64BackendInvocationCount = 0
+        $routed = 'accepted'
+        try {
+            [void](ConvertFrom-Arm64YamlFile -Path $probePath -Backend $semanticBackend)
+        }
+        catch {
+            $routed = [string]$_.Exception.Message
+        }
+        Remove-Item -LiteralPath $probePath -Force -ErrorAction SilentlyContinue
+        Assert-Arm64 ($routed -ceq $tokenCase.Code) `
+            "routed token case '$($tokenCase.Name)' produced '$routed'"
+        Assert-Arm64 ($script:arm64BackendInvocationCount -eq 0) `
+            "token case '$($tokenCase.Name)' reached a backend $($script:arm64BackendInvocationCount) time(s)"
+    }
+
+    # A permitted document must still reach exactly one backend, so the counter is meaningful.
+    $permittedPath = Join-Path $tokenProbeRoot 'permitted.yml'
+    [IO.File]::WriteAllBytes(
+        $permittedPath,
+        $utf8Plain.GetBytes("on: push`njobs:`n  build:`n    runs-on: ubuntu-latest`n")
+    )
+    $script:arm64BackendInvocationCount = 0
+    $permitted = ConvertFrom-Arm64YamlFile -Path $permittedPath -Backend $semanticBackend
+    Assert-Arm64 ($script:arm64BackendInvocationCount -ge 1) `
+        'a permitted document never reached an object backend'
+    Assert-Arm64 ((Get-Arm64MapProperty -Map $permitted -Name 'on').Value -ceq 'push') `
+        'the bounded backend did not return a usable document'
+    Remove-Item -LiteralPath $permittedPath -Force -ErrorAction SilentlyContinue
+}
+finally {
+    Remove-Item -LiteralPath $tokenProbeRoot -Recurse -Force -ErrorAction SilentlyContinue
+}
+
+# An absent token layer is not an excuse to admit anything.
+$scannerlessRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    'arm64-noscanner-' + [Guid]::NewGuid().ToString('n')
+)
+[void](New-Item -ItemType Directory -Path $scannerlessRoot -Force)
+try {
+    $auditScriptPath = Join-Path $repoRoot '.github\scripts\audit-arm64-workflows.ps1'
+    $scannerlessCommand =
+    "`$env:PSModulePath = '$scannerlessRoot'; . '$auditScriptPath'; " +
+    "try { [void](Assert-Arm64YamlTokenPolicy -Text 'a: 1'); [Console]::Out.Write('accepted') } " +
+    "catch { [Console]::Out.Write([string]`$_.Exception.Message) }"
+    $scannerlessResult = Invoke-Arm64BoundedProcess `
+        -FilePath (Get-Process -Id $PID).Path `
+        -ArgumentList @('-NoProfile', '-NonInteractive', '-Command', $scannerlessCommand) `
+        -InputBytes ([byte[]]::new(0))
+    $scannerlessText = $utf8Strict.GetString($scannerlessResult.OutputBytes)
+    Assert-Arm64 ($scannerlessText.Contains('semantic-yaml-token-scanner-unavailable',
+            [StringComparison]::Ordinal)) `
+        "an absent token scanner did not fail closed: $scannerlessText"
+}
+finally {
+    Remove-Item -LiteralPath $scannerlessRoot -Recurse -Force -ErrorAction SilentlyContinue
+}
+
+# The bounded child must not inherit ambient proxy, Git, or module configuration.
+$scrubVariables = @('HTTPS_PROXY', 'HTTP_PROXY', 'ALL_PROXY', 'GIT_DIR',
+    'GIT_ALTERNATE_OBJECT_DIRECTORIES')
+$scrubSaved = @{}
+foreach ($scrubName in $scrubVariables) {
+    $scrubSaved[$scrubName] = [Environment]::GetEnvironmentVariable($scrubName)
+}
+try {
+    foreach ($scrubName in $scrubVariables) {
+        [Environment]::SetEnvironmentVariable($scrubName, 'arm64-must-not-propagate')
+    }
+    $scrubCommand = '[Console]::Out.Write((@(' +
+    "'HTTPS_PROXY','HTTP_PROXY','ALL_PROXY','GIT_DIR','GIT_ALTERNATE_OBJECT_DIRECTORIES'" +
+    ') | ForEach-Object { [Environment]::GetEnvironmentVariable($_) }) -join ''|'')'
+    $scrubResult = Invoke-Arm64BoundedProcess `
+        -FilePath (Get-Process -Id $PID).Path `
+        -ArgumentList @('-NoProfile', '-NonInteractive', '-Command', $scrubCommand) `
+        -InputBytes ([byte[]]::new(0))
+    $scrubText = $utf8Strict.GetString($scrubResult.OutputBytes)
+    Assert-Arm64 (-not $scrubText.Contains('arm64-must-not-propagate',
+            [StringComparison]::Ordinal)) `
+        "the bounded child inherited scrubbed environment values: $scrubText"
+}
+finally {
+    foreach ($scrubName in $scrubVariables) {
+        [Environment]::SetEnvironmentVariable($scrubName, $scrubSaved[$scrubName])
+    }
+}
+
+# Exact run-body identity: nothing is trimmed and no line ending is normalized.
+$identityVariants = @('x', ' x', 'x ', ' x ', "x`n", "`nx", "x`r`n", "a`r`nb", "a`nb", "x`t")
+$identityDigests = @($identityVariants | ForEach-Object { Get-Arm64Sha256Text -Text $_ })
+Assert-Arm64 (@($identityDigests | Sort-Object -Unique).Count -eq $identityVariants.Count) `
+    'distinct run-body byte sequences collapsed to the same identity'
+Assert-Arm64 ((Get-Arm64Sha256Text -Text '') -ceq
+    'e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855') `
+    'run-body identity is not the SHA-256 of its exact UTF-8 bytes'
+
 if ($null -eq (Get-Command ruby -ErrorAction SilentlyContinue)) {
     $rubyUnavailable = 'accepted'
     try {
@@ -1144,9 +1326,11 @@ foreach ($rubyFragment in @(
         "the Ruby parser no longer pins '$rubyFragment'"
 }
 
-# Line-ending policy is explicit and identity is byte-exact: whitespace is significant.
-Assert-Arm64 ((Get-Arm64Sha256Text -Text "a`r`nb") -ceq (Get-Arm64Sha256Text -Text "a`nb")) `
-    'CRLF and LF run bodies do not share an identity'
+# Line-ending policy is explicit and identity is byte-exact: nothing is trimmed or normalized.
+Assert-Arm64 ((Get-Arm64Sha256Text -Text "a`r`nb") -cne (Get-Arm64Sha256Text -Text "a`nb")) `
+    'CRLF and LF run bodies collapse to the same identity'
+Assert-Arm64 ((Get-Arm64Sha256Text -Text "a`n") -cne (Get-Arm64Sha256Text -Text 'a')) `
+    'a terminal newline does not change run-body identity'
 foreach ($whitespaceVariant in @(' x', 'x ', "`nx", "x`n", "`tx", "x`t", ' x ')) {
     Assert-Arm64 ((Get-Arm64Sha256Text -Text $whitespaceVariant) -cne
         (Get-Arm64Sha256Text -Text 'x')) `
@@ -1197,9 +1381,16 @@ Assert-Arm64 ($integritySource.IndexOf(
         'Assert-Arm64GitObjectFormat -RepositoryRoot $RepositoryRoot',
         [StringComparison]::Ordinal
     ) -lt $integritySource.IndexOf(
-        'ls-tree -r -t -l --full-tree',
+        "'ls-tree', '-r', '-t', '-l', '--full-tree'",
         [StringComparison]::Ordinal
     )) 'the Git tree is enumerated before its object format is proven to be sha1'
+Assert-Arm64 ($integritySource.IndexOf(
+        'Assert-Arm64GitRepositoryHygiene -RepositoryRoot $RepositoryRoot',
+        [StringComparison]::Ordinal
+    ) -lt $integritySource.IndexOf(
+        "'ls-tree', '-r', '-t', '-l', '--full-tree'",
+        [StringComparison]::Ordinal
+    )) 'the Git tree is enumerated before repository poisoning is ruled out'
 $verifierSource = Get-Content `
     -LiteralPath (Join-Path $repoRoot '.github\scripts\verify-protected-context.ps1') `
     -Raw
@@ -1207,6 +1398,170 @@ Assert-Arm64 ($verifierSource.Contains(
         'Assert-Arm64GitObjectFormat -RepositoryRoot $repositoryRoot',
         [StringComparison]::Ordinal
     )) 'the protected checkout does not assert a sha1 object format'
+
+# --- Git object poisoning: replacement, grafts, alternates, and environment overrides ----
+foreach ($hardening in @(
+        "'--no-replace-objects'",
+        "'core.hooksPath='",
+        "'core.fsmonitor=false'",
+        "GIT_CONFIG_NOSYSTEM",
+        "GIT_CONFIG_GLOBAL",
+        "GIT_NO_REPLACE_OBJECTS",
+        '$startInfo.Environment.Clear()')) {
+    Assert-Arm64 ($integritySource.Contains($hardening, [StringComparison]::Ordinal)) `
+        "hardened Git invocation no longer pins '$hardening'"
+}
+
+foreach ($gitOverride in @('GIT_DIR', 'GIT_OBJECT_DIRECTORY',
+        'GIT_ALTERNATE_OBJECT_DIRECTORIES', 'GIT_COMMON_DIR', 'GIT_WORK_TREE',
+        'GIT_INDEX_FILE', 'GIT_NAMESPACE', 'GIT_GRAFT_FILE', 'GIT_REPLACE_REF_BASE')) {
+    $savedOverride = [Environment]::GetEnvironmentVariable($gitOverride)
+    try {
+        [Environment]::SetEnvironmentVariable($gitOverride, 'arm64-poison')
+        $overrideRejected = $false
+        try {
+            [void](Assert-Arm64GitRepositoryHygiene -RepositoryRoot $repoRoot)
+        }
+        catch {
+            $overrideRejected = $true
+        }
+        Assert-Arm64 $overrideRejected "Git environment override '$gitOverride' was accepted"
+    }
+    finally {
+        [Environment]::SetEnvironmentVariable($gitOverride, $savedOverride)
+    }
+}
+
+$syntheticRepoRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    'arm64-gitprobe-' + [Guid]::NewGuid().ToString('n')
+)
+[void](New-Item -ItemType Directory -Path $syntheticRepoRoot -Force)
+try {
+    $initResult = Invoke-Arm64Git `
+        -RepositoryRoot $syntheticRepoRoot `
+        -GitArguments @('init', '--quiet', '--initial-branch=main')
+    Assert-Arm64 ($initResult.ExitCode -eq 0) 'synthetic probe repository could not be created'
+    Assert-Arm64 (Assert-Arm64GitRepositoryHygiene -RepositoryRoot $syntheticRepoRoot) `
+        'a clean synthetic repository was reported as poisoned'
+
+    $syntheticGitDir = Join-Path $syntheticRepoRoot '.git'
+    foreach ($poison in @(
+            @{ Name = 'grafts'; Path = 'info\grafts'
+                Body = ('0' * 39) + '1 ' + ('0' * 39) + '2' },
+            @{ Name = 'alternates'; Path = 'objects\info\alternates'
+                Body = $syntheticRepoRoot },
+            @{ Name = 'replace-ref'; Path = 'refs\replace\' + ('a' * 40)
+                Body = ('b' * 40) })) {
+        $poisonPath = Join-Path $syntheticGitDir $poison.Path
+        [void](New-Item -ItemType Directory -Force -Path (Split-Path $poisonPath -Parent))
+        [IO.File]::WriteAllText($poisonPath, $poison.Body + "`n",
+            [Text.UTF8Encoding]::new($false))
+        $poisonRejected = $false
+        try {
+            [void](Assert-Arm64GitRepositoryHygiene -RepositoryRoot $syntheticRepoRoot)
+        }
+        catch {
+            $poisonRejected = $true
+        }
+        Remove-Item -LiteralPath $poisonPath -Force -ErrorAction SilentlyContinue
+        Assert-Arm64 $poisonRejected "Git poisoning artifact '$($poison.Name)' was accepted"
+    }
+
+    Assert-Arm64 (Assert-Arm64GitRepositoryHygiene -RepositoryRoot $syntheticRepoRoot) `
+        'the synthetic repository stayed poisoned after cleanup'
+
+    # A hostile repository-local config must not change what the hardened invocation reports.
+    [IO.File]::WriteAllText(
+        (Join-Path $syntheticGitDir 'config'),
+        "[core]`n`trepositoryformatversion = 0`n[uploadpack]`n`tallowFilter = true`n",
+        [Text.UTF8Encoding]::new($false)
+    )
+    $syntheticFormat = Assert-Arm64GitObjectFormat -RepositoryRoot $syntheticRepoRoot
+    Assert-Arm64 ($syntheticFormat -ceq 'sha1') `
+        'the hardened Git invocation did not report a sha1 object format'
+}
+finally {
+    Remove-Item -LiteralPath $syntheticRepoRoot -Recurse -Force -ErrorAction SilentlyContinue
+}
+Assert-Arm64 (-not (Test-Path -LiteralPath $syntheticRepoRoot)) `
+    'synthetic Git probe repository left residue behind'
+
+# --- Mutation tests: every new token guard must be the thing that catches its attack ------
+$mutationRoot = Join-Path ([IO.Path]::GetTempPath()) (
+    'arm64-mutation-' + [Guid]::NewGuid().ToString('n')
+)
+[void](New-Item -ItemType Directory -Path $mutationRoot -Force)
+try {
+    Copy-Item -LiteralPath (Join-Path $repoRoot '.github\scripts\git-object-integrity.ps1') `
+        -Destination $mutationRoot
+    $mutationCases = @(
+        @{ Name = 'anchor-guard'
+            From = "if (`$kind -ceq 'Anchor' -or `$kind -ceq 'AnchorAlias') {"
+            To = "if (`$false) {"
+            Attack = "on: push`na:`n  bcd`n  `"x`nj:`n  - p`n  - &z q`n  - *z`n" },
+        @{ Name = 'document-marker-guard'
+            From = "if (`$kind -ceq 'DocumentStart' -or `$kind -ceq 'DocumentEnd') {"
+            To = "if (`$false) {"
+            Attack = "a: 1`n--- {b: 2}`n" },
+        @{ Name = 'error-token-guard'
+            From = "if (`$kind -ceq 'Error') {"
+            To = "if (`$false) {"
+            Attack = "a: 1`n....`n" },
+        @{ Name = 'merge-guard'
+            From = "[string]`$token.Value -ceq '<<' -and"
+            To = "`$false -and"
+            Attack = "a: 1`n<<: b`n" },
+        @{ Name = 'scanner-unavailable-guard'
+            From = "throw 'semantic-yaml-token-scanner-unavailable'"
+            To = "return"
+            ModulePathOverride = $true
+            Attack = "a: &x 1`nb: *x`n" }
+    )
+    $auditSourceText = [IO.File]::ReadAllText(
+        (Join-Path $repoRoot '.github\scripts\audit-arm64-workflows.ps1')
+    )
+    foreach ($mutation in $mutationCases) {
+        Assert-Arm64 ($auditSourceText.Contains($mutation.From, [StringComparison]::Ordinal)) `
+            "mutation target for '$($mutation.Name)' is no longer present in the source"
+        $mutatedPath = Join-Path $mutationRoot 'audit-arm64-workflows.ps1'
+        [IO.File]::WriteAllText(
+            $mutatedPath,
+            $auditSourceText.Replace($mutation.From, $mutation.To),
+            [Text.UTF8Encoding]::new($false)
+        )
+        $mutationPrefix = ''
+        if ($mutation.ContainsKey('ModulePathOverride')) {
+            # This guard only matters when no token scanner can be loaded at all.
+            $mutationPrefix = "`$env:PSModulePath = '$mutationRoot'; "
+        }
+        $mutationCommand = $mutationPrefix + ". '$mutatedPath'; try { " +
+        "[void](Assert-Arm64YamlTokenPolicy -Text `$([Console]::In.ReadToEnd())); " +
+        "[Console]::Out.Write('accepted') } catch { [Console]::Out.Write('rejected') }"
+        $mutationResult = Invoke-Arm64BoundedProcess `
+            -FilePath (Get-Process -Id $PID).Path `
+            -ArgumentList @('-NoProfile', '-NonInteractive', '-Command', $mutationCommand) `
+            -InputBytes ($utf8Strict.GetBytes($mutation.Attack))
+        $mutationText = $utf8Strict.GetString($mutationResult.OutputBytes)
+        Assert-Arm64 ($mutationText.Contains('accepted', [StringComparison]::Ordinal)) `
+            "removing the '$($mutation.Name)' guard did not admit its attack, so the guard is not load-bearing: $mutationText"
+
+        # The unmutated source must still refuse the same attack.
+        $intact = 'accepted'
+        try {
+            [void](Assert-Arm64YamlTokenPolicy -Text $mutation.Attack)
+        }
+        catch {
+            $intact = 'rejected'
+        }
+        Assert-Arm64 ($intact -ceq 'rejected') `
+            "the intact gate did not refuse the '$($mutation.Name)' attack"
+    }
+}
+finally {
+    Remove-Item -LiteralPath $mutationRoot -Recurse -Force -ErrorAction SilentlyContinue
+}
+Assert-Arm64 (-not (Test-Path -LiteralPath $mutationRoot)) `
+    'mutation scratch directory left residue behind'
 
 $historicalActionPins = [ordered]@{
     'msys2/setup-msys2' = '66cd2cce69caa17b53920067426061ca1de3a884'

@@ -141,6 +141,10 @@ $script:arm64DeliberateYamlCodes = @(
     'semantic-yaml-nul-forbidden',
     'semantic-yaml-explicit-document-marker-forbidden',
     'semantic-yaml-anchor-alias-merge-forbidden',
+    'semantic-yaml-token-scanner-unavailable',
+    'semantic-yaml-token-scan-failed',
+    'semantic-yaml-token-scan-timeout',
+    'semantic-yaml-token-limit-exceeded',
     'semantic-yaml-backend-parse-failed',
     'semantic-parser-differential',
     'semantic-parser-helper-missing',
@@ -151,6 +155,15 @@ $script:arm64DeliberateYamlCodes = @(
     'semantic-parser-output-limit-exceeded',
     'semantic-parser-timeout'
 )
+
+# Bounds for the non-composing token scan. A malformed stream can make the scanner emit an
+# unbounded run of Error tokens, so the scan is capped by both token count and wall clock.
+$script:arm64YamlMaximumTokens = 200000
+$script:arm64YamlScanTimeoutMilliseconds = 15000
+
+# Counts every object-backend invocation so tests can prove a forbidden token never reaches
+# a backend.
+$script:arm64BackendInvocationCount = 0
 
 function Resolve-Arm64YamlErrorCode {
     param(
@@ -170,258 +183,92 @@ function Resolve-Arm64YamlErrorCode {
     return "semantic-yaml-parse-failed:$Relative"
 }
 
-function ConvertTo-Arm64YamlLineFeeds {
-    param([Parameter(Mandatory)][string]$Text)
-
-    # Every line break form a YAML parser may honour is folded to LF before any line-anchored
-    # policy check, so a CR, NEL, LS, or PS separator cannot hide a document marker or a node
-    # property from a check that only understands LF. The parsed text itself is unchanged.
-    return $Text.
-        Replace("`r`n", "`n").
-        Replace("`r", "`n").
-        Replace([string][char]0x85, "`n").
-        Replace([string][char]0x2028, "`n").
-        Replace([string][char]0x2029, "`n")
-}
-
-function Get-Arm64YamlQuotedScalarEnd {
-    param(
-        [Parameter(Mandatory)][AllowEmptyString()][string]$Line,
-        [Parameter(Mandatory)][int]$Start,
-        [Parameter(Mandatory)][char]$Quote
-    )
-
-    # $Start is the first index of scalar content, after the opening quote when present.
-    $index = $Start
-    while ($index -lt $Line.Length) {
-        $character = $Line[$index]
-        if ($Quote -ceq '"' -and $character -ceq '\') {
-            $index += 2
-            continue
+function Resolve-Arm64YamlScannerType {
+    # The pinned backend's own scanner. It tokenizes only: it never composes nodes and never
+    # resolves aliases, so a forbidden token is refused before any object model is built and
+    # recursive alias expansion is unreachable from this layer.
+    $assembly = @([AppDomain]::CurrentDomain.GetAssemblies() |
+            Where-Object { $_.GetName().Name -ceq 'YamlDotNet' })
+    if ($assembly.Count -eq 0) {
+        if ($null -ne (Get-Command ConvertFrom-Yaml -ErrorAction SilentlyContinue)) {
+            $assembly = @([AppDomain]::CurrentDomain.GetAssemblies() |
+                    Where-Object { $_.GetName().Name -ceq 'YamlDotNet' })
         }
-        if ($character -ceq $Quote) {
-            if ($Quote -ceq "'" -and $index + 1 -lt $Line.Length -and
-                $Line[$index + 1] -ceq "'") {
-                $index += 2
-                continue
-            }
-            return [pscustomobject]@{ End = $index + 1; Closed = $true }
-        }
-        $index++
     }
-    return [pscustomobject]@{ End = $Line.Length; Closed = $false }
+    if ($assembly.Count -ne 1) {
+        return $null
+    }
+    return $assembly[0].GetType('YamlDotNet.Core.Scanner')
 }
 
-function Assert-Arm64YamlNodeProperties {
-    param([Parameter(Mandatory)][string]$Text)
+function Assert-Arm64YamlTokenPolicy {
+    param([Parameter(Mandatory)][AllowEmptyString()][string]$Text)
 
-    # A single left-to-right scan that tracks whether a plain scalar is currently open. An
-    # anchor, alias, tag, quote, or block scalar header is an indicator only at a genuine node
-    # position; once a plain scalar is open, `&`, `*`, `'`, `"`, `,`, `[`, `{`, `-`, `?`, `|`,
-    # and `>` are ordinary content. Deciding this from scalar state rather than from the single
-    # preceding character is what keeps ordinary shell text such as `echo a, "b" && ls` or
-    # `cp *.txt out/` admissible while still catching every real node property.
-    $lines = (ConvertTo-Arm64YamlLineFeeds -Text $Text).Split("`n")
-    $blockIndent = -1
-    $atNodeStart = $true
-    $flowDepth = 0
-    $openQuote = [char]0
-    # Indentation of the block node whose plain scalar is still open at end of line, or -1.
-    $plainIndent = -1
-    $nodeColumn = 0
-    $tokenColumn = 0
-    $keyPending = $true
-    foreach ($line in $lines) {
-        $indent = 0
-        while ($indent -lt $line.Length -and
-            ($line[$indent] -ceq ' ' -or $line[$indent] -ceq "`t")) {
-            $indent++
+    $scannerType = Resolve-Arm64YamlScannerType
+    if ($null -eq $scannerType) {
+        # No trustworthy token layer means no admission decision can be made safely.
+        throw 'semantic-yaml-token-scanner-unavailable'
+    }
+
+    $reader = [IO.StringReader]::new($Text)
+    $timer = [Diagnostics.Stopwatch]::StartNew()
+    try {
+        try {
+            $scanner = [Activator]::CreateInstance(
+                $scannerType,
+                [object[]]@([IO.TextReader]$reader, $true)
+            )
         }
-        if ($blockIndent -ge 0) {
-            if ($indent -ge $line.Length -or $indent -gt $blockIndent) {
-                continue
-            }
-            $blockIndent = -1
-            $atNodeStart = $true
-            $flowDepth = 0
-            $openQuote = [char]0
-            $plainIndent = -1
+        catch {
+            throw 'semantic-yaml-token-scanner-unavailable'
         }
 
-        $index = $indent
-        if ($openQuote -cne [char]0) {
-            # A quoted scalar left open on the previous line continues here as content.
-            $resumed = Get-Arm64YamlQuotedScalarEnd -Line $line -Start 0 -Quote $openQuote
-            if (-not $resumed.Closed) {
-                continue
+        $count = 0
+        while ($true) {
+            $advanced = $false
+            try {
+                $advanced = $scanner.MoveNext()
             }
-            $openQuote = [char]0
-            $index = $resumed.End
-            $atNodeStart = $false
-        }
-        elseif ($plainIndent -ge 0 -and
-            ($indent -ge $line.Length -or $indent -gt $plainIndent)) {
-            # Continuation content of an open plain scalar: either a more indented line, or a
-            # blank line that YAML folds into the scalar. Neither begins a node.
-            continue
-        }
-        elseif ($flowDepth -eq 0) {
-            # In block context every line begins a new node. Inside an open flow collection it
-            # does not, so node position there stays governed by `,`, `[`, and `{`.
-            $atNodeStart = $true
-        }
-        $plainIndent = -1
-        $nodeColumn = $indent
-        $tokenColumn = $indent
-        $keyPending = $true
-
-        while ($index -lt $line.Length) {
-            $character = $line[$index]
-            if ($character -ceq ' ' -or $character -ceq "`t") {
-                $index++
-                continue
+            catch {
+                # A malformed stream is not classifiable, so it is refused rather than handed
+                # to an object backend.
+                throw 'semantic-yaml-token-scan-failed'
             }
-            if ($character -ceq '#' -and
-                ($index -eq 0 -or $line[$index - 1] -ceq ' ' -or $line[$index - 1] -ceq "`t")) {
+            if (-not $advanced) {
                 break
             }
-            $next = if ($index + 1 -lt $line.Length) { $line[$index + 1] } else { [char]0 }
-            $separated = $next -ceq [char]0 -or $next -ceq ' ' -or $next -ceq "`t"
-            if ($atNodeStart -and $keyPending) {
-                # A plain scalar continues onto lines indented past its enclosing block
-                # collection, which is the last `-`/`?` indicator column for a bare entry and
-                # the key token's column once a `key:` arms a value.
-                $tokenColumn = $index
+
+            $count++
+            if ($count -gt $script:arm64YamlMaximumTokens) {
+                throw 'semantic-yaml-token-limit-exceeded'
+            }
+            if ($timer.ElapsedMilliseconds -gt $script:arm64YamlScanTimeoutMilliseconds) {
+                throw 'semantic-yaml-token-scan-timeout'
             }
 
-            if ($atNodeStart) {
-                # An anchor or alias name is any run of printable characters that are neither
-                # space nor a flow indicator, so `&.base`, `*&x`, and `&@0/x!` all count.
-                if (($character -ceq '&' -or $character -ceq '*') -and
-                    -not $separated -and ',[]{}'.IndexOf($next) -lt 0) {
-                    throw 'semantic-yaml-anchor-alias-merge-forbidden'
-                }
-                # A merge key is only a merge key as a real key token, never inside a comment,
-                # a quoted scalar, or a block scalar body.
-                if ($character -ceq '<' -and $next -ceq '<' -and
-                    $line.Substring($index) -cmatch '^<<[ \t]*:') {
-                    throw 'semantic-yaml-anchor-alias-merge-forbidden'
-                }
-                if ($character -ceq '"' -or $character -ceq "'") {
-                    $quoted = Get-Arm64YamlQuotedScalarEnd `
-                        -Line $line `
-                        -Start ($index + 1) `
-                        -Quote $character
-                    if (-not $quoted.Closed) {
-                        $openQuote = $character
-                        break
-                    }
-                    $index = $quoted.End
-                    $atNodeStart = $false
-                    continue
-                }
-                if ($character -ceq '!') {
-                    while ($index -lt $line.Length -and
-                        $line[$index] -cne ' ' -and $line[$index] -cne "`t") {
-                        $index++
-                    }
-                    continue
-                }
-                if (($character -ceq '|' -or $character -ceq '>') -and
-                    $line.Substring($index) -cmatch '^[|>][0-9+-]{0,2}[ \t]*(?:#.*)?$') {
-                    $blockIndent = $indent
-                    break
-                }
-                if (($character -ceq '-' -or $character -ceq '?') -and
-                    ($separated -or ($character -ceq '?' -and $flowDepth -gt 0))) {
-                    # A bare entry's plain scalar is enclosed by this indicator's column, so
-                    # the indicator column stays the continuation threshold until a `key:`
-                    # promotes the key token's column instead.
-                    $nodeColumn = $index
-                    $index++
-                    continue
-                }
-                if ($character -ceq '[' -or $character -ceq '{') {
-                    $flowDepth++
-                    $index++
-                    continue
-                }
+            $token = $scanner.Current
+            $kind = $token.GetType().Name
+            if ($kind -ceq 'Anchor' -or $kind -ceq 'AnchorAlias') {
+                throw 'semantic-yaml-anchor-alias-merge-forbidden'
             }
-
-            if ($character -ceq ']' -or $character -ceq '}') {
-                if ($flowDepth -gt 0) {
-                    $flowDepth--
-                }
-                $atNodeStart = $false
-                $index++
-                continue
+            if ($kind -ceq 'DocumentStart' -or $kind -ceq 'DocumentEnd') {
+                throw 'semantic-yaml-explicit-document-marker-forbidden'
             }
-            if ($character -ceq ',' -and $flowDepth -gt 0) {
-                $atNodeStart = $true
-                $index++
-                continue
+            if ($kind -ceq 'Error') {
+                throw 'semantic-yaml-token-scan-failed'
             }
-            if ($character -ceq ':') {
-                # In flow context `:` needs no separation only after a JSON-like key, that is
-                # one ending in a quote or a closed flow collection. After a plain key, `a:"b`
-                # is still one plain scalar.
-                $jsonLikeKey = $false
-                if ($flowDepth -gt 0) {
-                    $scan = $index - 1
-                    while ($scan -ge 0 -and
-                        ($line[$scan] -ceq ' ' -or $line[$scan] -ceq "`t")) {
-                        $scan--
-                    }
-                    if ($scan -ge 0) {
-                        $jsonLikeKey = '"'']}'.IndexOf($line[$scan]) -ge 0
-                    }
-                }
-                if ($separated -or $jsonLikeKey) {
-                    $atNodeStart = $true
-                    if ($keyPending) {
-                        $nodeColumn = $tokenColumn
-                        $keyPending = $false
-                    }
-                    $index++
-                    continue
-                }
-                # After a plain flow key `a:&x` is one scalar to the pinned backend, so this is
-                # not a node start for quoting purposes. A node property here is still refused
-                # so that a backend which disagrees cannot admit an anchor or alias.
-                if ($flowDepth -gt 0 -and ($next -ceq '&' -or $next -ceq '*')) {
-                    $after = if ($index + 2 -lt $line.Length) { $line[$index + 2] } else { [char]0 }
-                    if ($after -cne [char]0 -and $after -cne ' ' -and $after -cne "`t" -and
-                        ',[]{}'.IndexOf($after) -lt 0) {
-                        throw 'semantic-yaml-anchor-alias-merge-forbidden'
-                    }
-                }
+            if ($kind -ceq 'Scalar' -and
+                [string]$token.Value -ceq '<<' -and
+                [string]$token.Style -ceq 'Plain') {
+                throw 'semantic-yaml-anchor-alias-merge-forbidden'
             }
-            $atNodeStart = $false
-            $index++
-        }
-
-        # A plain scalar still open at end of line may continue onto following lines that are
-        # indented past this node's key column.
-        if ($blockIndent -lt 0 -and $openQuote -ceq [char]0 -and $flowDepth -eq 0 -and
-            -not $atNodeStart) {
-            $plainIndent = $nodeColumn
         }
     }
-}
-
-function Assert-Arm64YamlLexicalPolicy {
-    param([Parameter(Mandatory)][string]$Text)
-
-    # A document marker is `---` or `...` at a line start after optional indentation that is
-    # followed by separation or the end of the line. That covers inline-content documents such
-    # as `--- {a: b}` and second documents, while `---not-a-marker` stays an ordinary scalar.
-    $lineFolded = ConvertTo-Arm64YamlLineFeeds -Text $Text
-    if ($lineFolded -cmatch '(?m)^[ \t]*(?:---|\.\.\.)(?=[ \t\n]|$)') {
-        throw 'semantic-yaml-explicit-document-marker-forbidden'
+    finally {
+        $timer.Stop()
+        $reader.Dispose()
     }
-    Assert-Arm64YamlNodeProperties -Text $Text
 }
-
 function Get-Arm64YamlText {
     param([Parameter(Mandatory)][string]$Path)
 
@@ -445,7 +292,7 @@ function Get-Arm64YamlText {
     if ($text.Contains("`0", [StringComparison]::Ordinal)) {
         throw 'semantic-yaml-nul-forbidden'
     }
-    Assert-Arm64YamlLexicalPolicy -Text $text
+    Assert-Arm64YamlTokenPolicy -Text $text
     return $text
 }
 
@@ -527,6 +374,22 @@ function Invoke-Arm64BoundedProcess {
     $startInfo.RedirectStandardError = $true
     $startInfo.UseShellExecute = $false
     $startInfo.CreateNoWindow = $true
+    $startInfo.WorkingDirectory = [IO.Path]::GetTempPath()
+
+    # The child runs with a scrubbed environment: only the variables needed to start a shell
+    # are forwarded, so ambient proxy, Git, culture, or module-path settings cannot reach the
+    # parser or redirect anything it does.
+    $startInfo.Environment.Clear()
+    foreach ($name in @('SystemRoot', 'windir', 'PATH', 'PATHEXT', 'TEMP', 'TMP',
+            'NUMBER_OF_PROCESSORS', 'PROCESSOR_ARCHITECTURE', 'COMSPEC')) {
+        $value = [Environment]::GetEnvironmentVariable($name)
+        if (-not [string]::IsNullOrEmpty($value)) {
+            $startInfo.Environment[$name] = $value
+        }
+    }
+    $startInfo.Environment['DOTNET_CLI_TELEMETRY_OPTOUT'] = '1'
+    $startInfo.Environment['POWERSHELL_TELEMETRY_OPTOUT'] = '1'
+    $startInfo.Environment['POWERSHELL_UPDATECHECK'] = 'Off'
 
     $timer = [Diagnostics.Stopwatch]::StartNew()
     $process = [Diagnostics.Process]::new()
@@ -576,32 +439,52 @@ function Invoke-Arm64YamlBackend {
         [Parameter(Mandatory)][string]$Backend
     )
 
+    # Every object backend runs as a bounded child process on validated bytes. Nothing in this
+    # process ever composes a candidate document, so alias expansion cannot consume the audit.
+    $script:arm64BackendInvocationCount++
+    $inputBytes = [Text.UTF8Encoding]::new($false, $true).GetBytes($Text)
+
     if ($Backend -ceq 'PowerShellYaml') {
-        try {
-            return $Text | ConvertFrom-Yaml
+        $helperPath = Join-Path $PSScriptRoot 'parse-yaml.ps1'
+        if (-not (Test-Path -LiteralPath $helperPath -PathType Leaf)) {
+            throw 'semantic-parser-helper-missing'
         }
-        catch {
-            throw 'semantic-yaml-backend-parse-failed'
+        $module = @(Get-Module -ListAvailable -Name powershell-yaml |
+                Where-Object { $_.Version.ToString() -ceq '0.4.12' })
+        if ($module.Count -ne 1) {
+            throw 'semantic-parser-unavailable'
         }
+        $shell = @(Get-Process -Id $PID).Path
+        if ([string]::IsNullOrWhiteSpace($shell)) {
+            throw 'semantic-parser-unavailable'
+        }
+        $result = Invoke-Arm64BoundedProcess `
+            -FilePath $shell `
+            -ArgumentList @(
+                '-NoProfile',
+                '-NonInteractive',
+                '-ExecutionPolicy', 'Bypass',
+                '-File', $helperPath,
+                '-ModuleManifest', $module[0].Path
+            ) `
+            -InputBytes $inputBytes
+    }
+    else {
+        $parserPath = Join-Path $PSScriptRoot 'parse-yaml.rb'
+        if (-not (Test-Path -LiteralPath $parserPath -PathType Leaf)) {
+            throw 'semantic-parser-helper-missing'
+        }
+        $ruby = Get-Command ruby -CommandType Application -ErrorAction SilentlyContinue |
+            Select-Object -First 1
+        if ($null -eq $ruby) {
+            throw 'semantic-parser-unavailable'
+        }
+        $result = Invoke-Arm64BoundedProcess `
+            -FilePath $ruby.Source `
+            -ArgumentList @($parserPath) `
+            -InputBytes $inputBytes
     }
 
-    $parserPath = Join-Path $PSScriptRoot 'parse-yaml.rb'
-    if (-not (Test-Path -LiteralPath $parserPath -PathType Leaf)) {
-        throw 'semantic-parser-helper-missing'
-    }
-    $ruby = Get-Command ruby -CommandType Application -ErrorAction SilentlyContinue |
-        Select-Object -First 1
-    if ($null -eq $ruby) {
-        throw 'semantic-parser-unavailable'
-    }
-
-    # The helper parses the exact bytes that Get-Arm64YamlText already validated. The source
-    # path is never reopened, so a post-validation mutation of the file cannot change what is
-    # parsed.
-    $result = Invoke-Arm64BoundedProcess `
-        -FilePath $ruby.Source `
-        -ArgumentList @($parserPath) `
-        -InputBytes ([Text.UTF8Encoding]::new($false, $true).GetBytes($Text))
     if ($result.ExitCode -ne 0) {
         throw 'semantic-yaml-backend-parse-failed'
     }
@@ -611,12 +494,52 @@ function Invoke-Arm64YamlBackend {
     catch {
         throw 'semantic-yaml-backend-parse-failed'
     }
+    if ([string]::IsNullOrWhiteSpace($json)) {
+        throw 'semantic-yaml-backend-parse-failed'
+    }
     try {
         return $json | ConvertFrom-Json -Depth 64
     }
     catch {
         throw 'semantic-yaml-backend-parse-failed'
     }
+}
+
+function ConvertTo-Arm64CanonicalJson {
+    param([AllowNull()][object]$Value)
+
+    # Key order is not semantic and is not stable across backends or hashtable enumerations,
+    # so the cross-backend differential compares a canonical, key-sorted rendering.
+    if ($null -eq $Value) {
+        return 'null'
+    }
+    if ($Value -is [string]) {
+        return $Value | ConvertTo-Json -Compress -Depth 2
+    }
+    if ($Value -is [Collections.IDictionary]) {
+        $parts = @(@($Value.Keys | ForEach-Object { [string]$_ } | Sort-Object -CaseSensitive) |
+                ForEach-Object {
+                    ($_ | ConvertTo-Json -Compress -Depth 2) + ':' +
+                    (ConvertTo-Arm64CanonicalJson -Value $Value[$_])
+                })
+        return '{' + ($parts -join ',') + '}'
+    }
+    if ($Value -is [psobject] -and $null -ne $Value.PSObject.Properties -and
+        @($Value.PSObject.Properties).Count -gt 0 -and
+        $Value -isnot [Collections.IEnumerable] -and
+        $Value.GetType().Name -ceq 'PSCustomObject') {
+        $parts = @(@($Value.PSObject.Properties | Sort-Object -Property Name -CaseSensitive) |
+                ForEach-Object {
+                    ($_.Name | ConvertTo-Json -Compress -Depth 2) + ':' +
+                    (ConvertTo-Arm64CanonicalJson -Value $_.Value)
+                })
+        return '{' + ($parts -join ',') + '}'
+    }
+    if ($Value -is [Collections.IEnumerable]) {
+        $parts = @(@($Value) | ForEach-Object { ConvertTo-Arm64CanonicalJson -Value $_ })
+        return '[' + ($parts -join ',') + ']'
+    }
+    return $Value | ConvertTo-Json -Compress -Depth 2
 }
 
 function ConvertFrom-Arm64YamlFile {
@@ -630,8 +553,9 @@ function ConvertFrom-Arm64YamlFile {
     $approved = @(Get-Arm64ApprovedYamlBackends)
     if ($approved.Count -gt 1) {
         $representations = @($approved | ForEach-Object {
-                Invoke-Arm64YamlBackend -Text $text -Backend $_ |
-                    ConvertTo-Json -Compress -Depth 64
+                ConvertTo-Arm64CanonicalJson -Value (
+                    Invoke-Arm64YamlBackend -Text $text -Backend $_
+                )
             } | Sort-Object -Unique)
         if ($representations.Count -ne 1) {
             throw "semantic-parser-differential:$Path"
@@ -647,15 +571,14 @@ function Get-Arm64GitBlobHash {
 }
 
 function Get-Arm64Sha256Text {
-    param([Parameter(Mandatory)][string]$Text)
+    param([Parameter(Mandatory)][AllowEmptyString()][string]$Text)
 
-    # Identity is the exact intended text. Only CRLF is folded to LF, so a checkout's
-    # line-ending policy cannot change identity; no other normalization is applied and
-    # leading or trailing whitespace is significant.
-    $exact = $Text.Replace("`r`n", "`n")
+    # Identity is the exact UTF-8 bytes of the run body as the parser produced it. Nothing is
+    # trimmed and no line ending is normalized, so leading and trailing whitespace, a terminal
+    # newline, and CRLF versus LF each produce a distinct identity.
     return -join (
         [Security.Cryptography.SHA256]::HashData(
-            [Text.UTF8Encoding]::new($false, $true).GetBytes($exact)
+            [Text.UTF8Encoding]::new($false, $true).GetBytes($Text)
         ) | ForEach-Object { $_.ToString('x2') }
     )
 }
@@ -1111,7 +1034,9 @@ function Test-Arm64WorkflowTree {
             -Map $WorkflowRule `
             -Name 'allowed_inline_shell_sha256'
         $allowedInline = if ($null -eq $inlineProperty) { @() } else { @($inlineProperty.Value) }
-        $hash = Get-Arm64Sha256Text -Text $normalized
+        # The allowlist binds the exact run-body bytes the parser produced, not a trimmed or
+        # line-ending-normalized rendering of them.
+        $hash = Get-Arm64Sha256Text -Text $Run
         if ($allowedInline -cnotcontains $hash) {
             Add-AuditError "inline-shell-not-allowlisted:$Location"
         }
