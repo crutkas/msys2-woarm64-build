@@ -1,0 +1,52 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "ARM64 preview native validation evidence",
+  "type": "object",
+  "additionalProperties": false,
+  "required": [
+    "schemaVersion",
+    "previewId",
+    "collectedAtUtc",
+    "machine",
+    "processes",
+    "modules",
+    "processObservationErrors",
+    "processObservationWarnings",
+    "commandClosure",
+    "tests",
+    "artifacts",
+    "leakage",
+    "pty",
+    "result"
+  ],
+  "properties": {
+    "schemaVersion": { "const": 1 },
+    "previewId": { "type": "string", "minLength": 1 },
+    "collectedAtUtc": { "type": "string", "format": "date-time" },
+    "machine": { "type": "object" },
+    "processes": { "type": "array" },
+    "modules": { "type": "array" },
+    "processObservationErrors": { "type": "array" },
+    "processObservationWarnings": { "type": "array" },
+    "commandClosure": { "type": "array" },
+    "tests": {
+      "type": "array",
+      "minItems": 10,
+      "items": {
+        "type": "object",
+        "required": ["id", "passed", "exitCode", "stdout", "stderr"]
+      }
+    },
+    "artifacts": {
+      "type": "array",
+      "minItems": 3,
+      "items": {
+        "type": "object",
+        "required": ["kind", "path", "bytes", "sha256"]
+      }
+    },
+    "leakage": { "type": "object" },
+    "pty": { "type": "object" },
+    "result": { "enum": ["pass", "fail"] }
+  }
+}
