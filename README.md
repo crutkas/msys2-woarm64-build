@@ -34,30 +34,28 @@ workflow and an exact candidate identity is separately allowlisted.
 The only ordinary `pull_request` workflow is explicitly untrusted bootstrap diagnostics. Its
 result is never admission authority, it has read-only permissions, and it uploads no artifacts.
 Both active workflows use Windows runners so parser children can be assigned to native Job
-Objects. Workflow auditing supports only the exact PowerShell-Yaml 0.4.12 package tree and the
-exact RubyInstaller 3.3.0/Psych 5.1.2 runtime for both `.yml` and `.yaml`; both object backends
-are mandatory, and any absence or mismatch denies the audit. The module manifest,
-module code, serializer, and YamlDotNet assembly are hash-bound; YamlDotNet must be the
-strong-named 16.0.0.0 assembly at the pinned module path, and the scanner type must come from that
-exact assembly instance. The complete module tree is held under read locks before it is loaded.
-Ruby's complete executable/DLL directory and standard-library load root are likewise hash-bound
-and held under read locks before Ruby starts. Names, reported versions, `PATH`, and `PSModulePath`
+Objects. Workflow auditing uses a single provenance-bound js-yaml 4.3.2 backend via a pinned
+`parse-yaml.js` helper for both `.yml` and `.yaml`. The helper script and the complete
+`node_modules/js-yaml` package tree are hash-bound and held under read locks before Node.js
+starts. The helper verifies the js-yaml version at startup (exit code 11 on mismatch), patches
+the internal loader to reject anchors and aliases at the same code path that parses, and refuses
+merge keys, explicit document markers, BOM, NUL, and non-UTF-8 input before any object model
+exists. The Node.js host is an execution substrate, while the parser helper and dependency bytes
+carry the semantic-parser identity; package names, reported package versions, and module-search
 precedence have no authority.
 
 Candidate YAML is first accepted as raw bytes: over-size input, any BOM, non-UTF-8 bytes, and NUL
-are refused. It is then scanned at the pinned backend's own token layer, which tokenizes without
-composing nodes or resolving aliases. Anchors, aliases, merge keys, and explicit document markers
-are refused as tokens, so a forbidden construct is rejected before any object model exists and
-recursive alias expansion is unreachable. Because the decision is made by the same scanner the
-backend uses, cloaked plain-scalar continuations that defeat hand-written lexers cannot disagree
-with it. The scan is bounded by token count and wall clock, an unclassifiable stream fails closed,
-and an absent or ambiguous token layer denies rather than falls back. A single scanner
-`MoveNext()` call is not interruptible; the 15-second check runs immediately before and after each
-call, so one malformed file can consume that full interval and aggregate worst-case time remains
-linear in the number of workflow files.
+are refused. It is then scanned by the provenance-bound `parse-yaml.js` helper in `--scan-only`
+mode, which runs as a bounded child process. The helper checks document markers with a line-by-line
+regex that matches the YAML specification's column-0 rule, then patches the pinned js-yaml
+loader to reject anchors and aliases at the same internal `readAnchorProperty`/`readAlias`
+call sites the parser uses. Merge keys (`<<`) are denied by a post-parse tree walk. Because the
+admission decision uses the same patched loader the backend parses with, cloaked plain-scalar
+continuations that defeat hand-written lexers cannot disagree. The scan is bounded by timeout,
+and an absent or ambiguous runtime denies rather than falls back.
 
-Object parsing itself never happens in the auditing process. Both backends run as bounded child
-processes that receive the exact already-validated bytes on standard input under a literal
+Object parsing itself never happens in the auditing process. The backend runs as a bounded child
+process that receives the exact already-validated bytes on standard input under a literal
 executable, script, and argument list, a scrubbed environment, byte caps on input, output, and
 error, a timeout, strict duplicate-free JSON output, and process-tree termination. Each child is
 placed in a kill-on-close Windows Job Object with a 256 MiB per-process and 384 MiB aggregate
@@ -105,12 +103,20 @@ Run the deterministic tests with the repository's existing PowerShell runtime:
 ./tests/arm64-admission/run.ps1
 ```
 
-The test host must provide the exact pinned Git for Windows 2.55.0.windows.3 installation,
-PowerShell-Yaml package, and RubyInstaller 3.3.0-1 x64 runtime. The default dedicated module and
-Ruby locations are under `%LOCALAPPDATA%\Programs`; alternate absolute locations may be supplied
-with `ARM64_POWERSHELL_YAML_MANIFEST`, `ARM64_RUBY_EXECUTABLE`, and
-`ARM64_GIT_EXECUTABLE`, but their protected hashes still must match. A hosted image update is an
-availability event that requires a separately reviewed pin change, never permission to fall back.
+The test host must provide an architecture-matched Git for Windows 2.55.0.windows.3 runtime
+and Node.js (any recent version) with `npm ci` run in the repository root to install
+js-yaml 4.3.2. The diagnostic workflow downloads the immutable release's x64 tarball from
+`git-for-windows/git`, verifies the x64 tarball SHA-256
+`4ee071816e424f928f493c4b42e5486d05344a371665c82f1802ebcecaa1d19a`, rejects unsafe archive
+paths, and extracts it under `RUNNER_TEMP` with Windows System32 `bsdtar`. It then verifies the
+pinned launcher, engine, version, signatures (signer thumbprint
+`3e9627155b7a6f29856321ee56d7fc25cf808407`), and complete runtime tree before the harness uses
+it. ARM64 hosts may instead extract
+`Git-2.55.0.3-arm64.tar.bz2` (SHA-256
+`ff753aa49b9baeafda33470128ee799b19e48b06736d3c555585bc926dc13b2d`) into an isolated root;
+the harness separately pins its AA64 launcher, engine, and `clangarm64/bin` tree. Set
+`ARM64_GIT_EXECUTABLE` to that root's `cmd/git.exe`. The Node.js executable location may be
+supplied with `ARM64_NODE_EXECUTABLE`.
 
 The actual MSYS2 packages recipes dwells in `woarm64` branches of
 [Windows-on-ARM-Experiments/MSYS2-packages](https://github.com/Windows-on-ARM-Experiments/MSYS2-packages)
@@ -173,15 +179,46 @@ package recipes repository is already cloned in the parent folder of this reposi
 it must be executed from `MSYS` environment.
 
 In case one would like to build all the native toolchain packages locally, there is
-a `build-native.sh` script. It expects that the
+a `build-native-with-native.sh` script. It expects that the
 [Windows-on-ARM-Experiments/MINGW-packages](https://github.com/Windows-on-ARM-Experiments/MINGW-packages)
 package recipes repositories is already cloned in the parent folder of this repository's folder and
-it must be executed from `MINGWARM64` environment.
+it must be executed from `MINGWARM64` environment. Set `MINGW_PACKAGES_ROOT` to use an isolated
+checkout elsewhere.
 
-Until the `MINGWARM64` environment will be available in the upstream MSYS2 installation, one can
-patch the MSYS2 installation to add the `MINGWARM64` environment using
+This is a mixed bootstrap, not an all-native build claim. Stage-0 Bash, Pacman, Autotools, and
+other MSYS orchestration tools are AMD64 binaries running under emulation. Tool executables
+downloaded from the `woarm64-native` and `CLANGARM64` repositories are copied native ARM64 inputs
+until the corresponding package has been rebuilt from source.
+
+Shell tools must receive POSIX paths such as `/c/work/src`; native MinGW tools such as
+`mingw32-make.exe` and `gcc.exe` must receive Windows paths such as `C:/work/src`. Build-driver
+code must use the shared
+`.github/scripts/lib/path-boundary.sh` helpers instead of open-coding path replacements:
+
+```bash
+source .github/scripts/lib/path-boundary.sh
+source_for_shell=$(to_msys_path "$source_path")
+source_for_native_tool=$(to_native_path "$source_path")
+```
+
+Until the `MINGWARM64` environment is available in the upstream MSYS2 installation, one can
+configure the modular MSYS2 environment using
 [`.github/scripts/setup-mingwarm64.sh`](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/scripts/setup-mingwarm64.sh)
 script.
+
+Run the focused portable-bootstrap regression tests from the same MSYS2 root with native
+CLANGARM64 Make installed:
+
+```bash
+./tests/bootstrap/run.sh
+```
+
+After native ARM64 GCC is installed, validate the PE compiler boundary, Windows argument quoting,
+redirected diagnostics, environment selection, and exit-code propagation:
+
+```bash
+./tests/bootstrap/run-native-launcher.sh
+```
 
 ## MingGW Cross-Compilation Toolchain CI
 

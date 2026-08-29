@@ -3,23 +3,29 @@
 export FLAVOR=NATIVE_WITH_NATIVE
 export CLEAN_BUILD=1
 
-source `dirname ${BASH_SOURCE[0]}`/config.sh
+source "$(dirname "${BASH_SOURCE[0]}")/config.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/.github/scripts/lib/path-boundary.sh"
 
 if [[ "$MSYSTEM" != "MINGWARM64" ]]; then
   echo "This script must be run in the MSYS2 MINGWARM64 shell"
   exit 1
 fi
 
-ROOT_DIR=`dirname ${BASH_SOURCE[0]}`
-ROOT_DIR=`realpath $ROOT_DIR`
+ROOT_DIR=$(to_msys_path "$(realpath "$(dirname "${BASH_SOURCE[0]}")")")
+export WOARM64_ROOT_MSYS="$ROOT_DIR"
+export WOARM64_ROOT_NATIVE
+WOARM64_ROOT_NATIVE=$(to_native_path "$ROOT_DIR")
+MINGW_PACKAGES_ROOT=$(to_msys_path "${MINGW_PACKAGES_ROOT:-"$ROOT_DIR/../MINGW-packages"}")
+
+echo "::notice::Mixed bootstrap: stage-0 Bash/Pacman orchestration is AMD64-emulated; downloaded woarm64/CLANGARM64 executables are copied native inputs until rebuilt."
 
 function build_package () {
   PACKAGE=$1
   REPOSITORY=${2:-MINGW}
   echo "::group::Build $PACKAGE"
-    pushd ../$REPOSITORY-packages/$PACKAGE
+    pushd "$MINGW_PACKAGES_ROOT/$PACKAGE"
       INSTALL_PACKAGE=1 \
-        $ROOT_DIR/.github/scripts/build-package.sh $REPOSITORY
+        "$WOARM64_ROOT_MSYS/.github/scripts/build-package.sh" "$REPOSITORY"
     popd
   echo "::endgroup::"
 }

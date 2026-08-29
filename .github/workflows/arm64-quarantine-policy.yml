@@ -50,6 +50,87 @@ jobs:
           path: verifier
           persist-credentials: false
 
+      - name: Provision provenance-bound Git
+        shell: pwsh
+        working-directory: verifier
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $assetUrl = 'https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.3/Git-2.55.0.3-64-bit.tar.bz2'
+          $assetSha256 = '4ee071816e424f928f493c4b42e5486d05344a371665c82f1802ebcecaa1d19a'
+          $signerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
+          $launcherSha256 = '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364'
+          $engineSha256 = '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9'
+          $assetPath = Join-Path $env:RUNNER_TEMP 'Git-2.55.0.3-64-bit.tar.bz2'
+          $gitRoot = Join-Path $env:RUNNER_TEMP 'Git-2.55.0.3-x64'
+
+          Invoke-WebRequest -Uri $assetUrl -OutFile $assetPath
+          if ((Get-FileHash -LiteralPath $assetPath -Algorithm SHA256).Hash.ToLowerInvariant() -cne
+              $assetSha256) {
+              throw 'Git-for-Windows release asset digest mismatch.'
+          }
+          if (Test-Path -LiteralPath $gitRoot) {
+              throw 'Isolated Git-for-Windows destination already exists.'
+          }
+          $tarPath = Join-Path $env:SystemRoot 'System32\tar.exe'
+          if (-not (Test-Path -LiteralPath $tarPath -PathType Leaf) -or
+              -not ((& $tarPath --version | Select-Object -First 1) -match '^bsdtar ')) {
+              throw 'Trusted Windows bsdtar is unavailable.'
+          }
+          $archiveEntries = @(& $tarPath -tjf $assetPath)
+          if ($LASTEXITCODE -ne 0 -or $archiveEntries.Count -eq 0) {
+              throw 'Git-for-Windows release archive could not be listed.'
+          }
+          foreach ($entry in $archiveEntries) {
+              if ([string]::IsNullOrWhiteSpace($entry) -or
+                  $entry.StartsWith('/') -or
+                  $entry.StartsWith('\') -or
+                  $entry.Contains('\') -or
+                  $entry -match '^[A-Za-z]:' -or
+                  @($entry.Split('/') | Where-Object { $_ -eq '..' }).Count -ne 0) {
+                  throw 'Git-for-Windows release archive contains an unsafe path.'
+              }
+          }
+          [void](New-Item -ItemType Directory -Path $gitRoot)
+          & $tarPath -xjf $assetPath -C $gitRoot `
+              --exclude=dev/fd `
+              --exclude=dev/stdin `
+              --exclude=dev/stdout `
+              --exclude=dev/stderr `
+              --exclude=etc/mtab
+          if ($LASTEXITCODE -ne 0) {
+              throw "Git-for-Windows extraction exited with code $LASTEXITCODE."
+          }
+          $launcherPath = Join-Path $gitRoot 'cmd\git.exe'
+          $enginePath = Join-Path $gitRoot 'mingw64\bin\git.exe'
+          foreach ($identity in @(
+                  @{ Path = $launcherPath; Sha256 = $launcherSha256 },
+                  @{ Path = $enginePath; Sha256 = $engineSha256 })) {
+              if (-not (Test-Path -LiteralPath $identity.Path -PathType Leaf) -or
+                  (Get-FileHash -LiteralPath $identity.Path -Algorithm SHA256).Hash.ToLowerInvariant() -cne
+                      $identity.Sha256 -or
+                  [Diagnostics.FileVersionInfo]::GetVersionInfo($identity.Path).ProductVersion -cne
+                      '2.55.0.windows.3') {
+                  throw 'Installed Git-for-Windows runtime identity mismatch.'
+              }
+              $signature = Get-AuthenticodeSignature -LiteralPath $identity.Path
+              if ($signature.Status -ne 'Valid' -or
+                  $null -eq $signature.SignerCertificate -or
+                  $signature.SignerCertificate.Thumbprint.ToLowerInvariant() -cne
+                      $signerThumbprint) {
+                  throw 'Installed Git-for-Windows runtime signature mismatch.'
+              }
+          }
+          Add-Content -LiteralPath $env:GITHUB_ENV -Value "ARM64_GIT_EXECUTABLE=$launcherPath"
+          $env:ARM64_GIT_EXECUTABLE = $launcherPath
+          . ./.github/scripts/git-object-integrity.ps1
+          [void](Resolve-Arm64GitExecutable)
+          Reset-Arm64GitRuntimeIdentity
+
+      - name: Install parser dependencies
+        shell: pwsh
+        working-directory: verifier
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
       - name: Verify protected source identity
         shell: pwsh
         working-directory: verifier

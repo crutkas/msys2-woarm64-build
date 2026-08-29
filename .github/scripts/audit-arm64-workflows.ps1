@@ -2,7 +2,7 @@
 param(
     [string]$CandidateRoot = $env:ARM64_CANDIDATE_ROOT,
     [string]$PolicyPath = (Join-Path $PSScriptRoot '..\policies\arm64-quarantine-policy.json'),
-    [ValidateSet('Auto', 'PowerShellYaml', 'RubyPsych', 'Unavailable')]
+    [ValidateSet('Auto', 'NodeJsYaml', 'Unavailable')]
     [string]$ParserBackend = 'Auto',
     [switch]$FixtureMode
 )
@@ -67,77 +67,26 @@ function Get-Arm64MapNames {
     return @($Map.PSObject.Properties | ForEach-Object { $_.Name })
 }
 
-$script:arm64PowerShellYamlPin = [pscustomobject][ordered]@{
-    Version = '0.4.12'
-    TreeSha256 = '1eb02f54677a67d1dc28aaab55e155b7b298cde6ed1b6a2c6b60fba49058a327'
-    TreeManifestSha256 =
-        '56392f7acfa2a826bd89385129b6c3afb1f0b29efd27497f70c2a3272ecd556d'
-    ManifestSha256 = 'b17d30f63eee0fd5e5bb074043045c499e87b254c044ce5b1a5e71df2dd8c469'
-    ModuleSha256 = '415b0de1b4d5af6980ec50316d3267fa19663b7dbf809d219783b41ed39b2e5d'
-    AssemblyVersion = '16.0.0.0'
-    AssemblyPublicKey = (
-        '0024000004800000940000000602000000240000525341310004000001000100' +
-        '65e52a453dde5c5b4be5bbe2205755727fce80244b79b894faf8793d80f7db9a' +
-        '96d360b51c220782db32aacee4cb5b8a91bee33aeec700e1f21895c4baadef50' +
-        '1eeeac609220d1651603b378173811ee5bb6a002df973d38821bd2fef820c00c1' +
-        '74a69faec326a1983b570f07ec66147026b9c8753465de3a8d0c44b613b02af'
-    )
-    AssemblyPublicKeyToken = 'ec19458f3c15af5e'
-    Core = [pscustomobject][ordered]@{
-        AssemblyRelativePath = 'lib\netstandard2.1\YamlDotNet.dll'
-        AssemblySha256 = 'd7543a03a69f14ca1e302aa2bbb09777200b72e0c6db0d0eb7614593f5c33e0f'
-        SerializerRelativePath = 'lib\netstandard2.1\PowerShellYamlSerializer.dll'
-        SerializerSha256 = 'c9193f2fb5afa40af61d908589fdd0929ab58472be215fc2afb692194d53210d'
-    }
-    Desktop = [pscustomobject][ordered]@{
-        AssemblyRelativePath = 'lib\net47\YamlDotNet.dll'
-        AssemblySha256 = 'd35c770d92632bd94bba4203db05eee5ebce6e6ea6d92e7ebe8997a942b5321c'
-        SerializerRelativePath = 'lib\net47\PowerShellYamlSerializer.dll'
-        SerializerSha256 = 'a5bdd33675629ca88cf05cd08150a19a69bc20b21cbe1d1e5e55fe63a332062a'
-    }
+$script:arm64NodeJsYamlPin = [pscustomobject][ordered]@{
+    JsYamlVersion = '4.3.2'
+    JsYamlTreeSha256 = '52f686857d8b8f34e72345871765b4b1bae2afc7bc59bd57c02724a8faf49e0d'
+    ParserHelperSha256 = '20a20b14a71f86949e16b35185e8df9f6c22db56d92f567485057dddc8ac4272'
 }
-$script:arm64RubyPin = [pscustomobject][ordered]@{
-    RubyVersion = '3.3.0'
-    PsychVersion = '5.1.2'
-    BinTreeSha256 = '05c6f2c580946850a893462bbd46a663e3393bf8d26b9cc3b3ada2e43134fe1e'
-    BinManifestSha256 = 'ca44abaf4ba286472936985163af5e3015da44efe1315218328b6b45d23440bb'
-    StandardLibraryTreeSha256 =
-        'e4bc69c73bc548d37ad244b08dcb4b5708cfa5df5fac1260651a37e3dd18ee4a'
-    StandardLibraryManifestSha256 =
-        '9b99bf3259b0eac385604a7d0b397fe42960040878f08ff6a392139c35bfaac8'
-    ExecutableSha256 = '8fea462df14744fcccbb9005a2ef812470c3aa030168c6a8e1590ed733f5ab9d'
-    CoreSha256 = '6cf4426199da5b317e3db5b64c13041f046a569ae4968c3d26f6fd1da0d656cd'
-    PsychNativeSha256 = 'daa1d9fa7e2ab74827190284aa87c2758c10804d14792848e1c5fc921740e13b'
-    LibYamlSha256 = '1942ec5a43f1b22dd651283ab2b00efe8ccee907d4bccfa86fd5ba95b0985aba'
-    PsychEntrySha256 = '03f728df77848d87d338d4f05624d8bd06adf5772b41acba3982ad97bdcfb21f'
-    PsychTreeSha256 = '3e0eab842f936902aa882e8577ac2afbdcce595fc14065c70a027883f6ee2f9f'
-    JsonTreeSha256 = '57c472e4434dc31e98e62a84712f57b443bb59dbc84116a90878673f23550073'
-    JsonNativeTreeSha256 = '260195a5e34180301471aa0cdff8f491e12fcb769060d4386e1e20d327d0a152'
-}
-$script:arm64ParserHelperPins = [pscustomobject][ordered]@{
-    PowerShell = '4611c4ce230761456c58f686e7211eb160644c49bb98f45d68ea6e8463897bd8'
-    Ruby = '454939d1e0544b1af8a10f0b2e2efc239d8594ae65d27686eff711dab513d91c'
-}
-$script:arm64PowerShellYamlIdentity = $null
-$script:arm64RubyIdentity = $null
+$script:arm64NodeJsYamlIdentity = $null
 $script:arm64ApprovedYamlBackends = $null
 
 function Reset-Arm64RuntimeIdentityCache {
-    if ($null -ne $script:arm64PowerShellYamlIdentity -and
-        $null -ne $script:arm64PowerShellYamlIdentity.PSObject.Properties['Locks']) {
-        Close-Arm64ReadLockSet -Locks $script:arm64PowerShellYamlIdentity.Locks
+    if ($null -ne $script:arm64NodeJsYamlIdentity -and
+        $null -ne $script:arm64NodeJsYamlIdentity.PSObject.Properties['Locks']) {
+        Close-Arm64ReadLockSet -Locks $script:arm64NodeJsYamlIdentity.Locks
     }
-    if ($null -ne $script:arm64RubyIdentity -and
-        $null -ne $script:arm64RubyIdentity.PSObject.Properties['Locks']) {
-        Close-Arm64ReadLockSet -Locks $script:arm64RubyIdentity.Locks
-    }
-    $script:arm64PowerShellYamlIdentity = $null
-    $script:arm64RubyIdentity = $null
+    $script:arm64NodeJsYamlIdentity = $null
     $script:arm64ApprovedYamlBackends = $null
     if (Test-Path -LiteralPath Function:\Reset-Arm64GitRuntimeIdentity) {
         Reset-Arm64GitRuntimeIdentity
     }
 }
+
 
 function Get-Arm64FileSha256 {
     param([Parameter(Mandatory)][string]$Path)
@@ -284,368 +233,99 @@ function Add-Arm64AbsoluteCandidate {
     }
 }
 
-function Resolve-Arm64PowerShellYamlIdentity {
-    if ($null -ne $script:arm64PowerShellYamlIdentity) {
+function Resolve-Arm64NodeJsYamlIdentity {
+    if ($null -ne $script:arm64NodeJsYamlIdentity) {
         try {
-            $cached = $script:arm64PowerShellYamlIdentity
-            $manifestPath = Resolve-Arm64CanonicalRuntimePath -Path $cached.ManifestPath
-            $moduleBase = Resolve-Arm64CanonicalRuntimePath -Path $cached.ModuleBase
-            $assemblyPath = Resolve-Arm64CanonicalRuntimePath -Path $cached.AssemblyPath
-            if (-not $manifestPath.StartsWith(
-                    "$moduleBase$([IO.Path]::DirectorySeparatorChar)",
-                    [StringComparison]::OrdinalIgnoreCase
-                ) -or
-                -not $assemblyPath.StartsWith(
-                    "$moduleBase$([IO.Path]::DirectorySeparatorChar)",
-                    [StringComparison]::OrdinalIgnoreCase
-                ) -or
-                -not (Test-Arm64FileSha256 `
-                    -Path $manifestPath `
-                    -Expected $script:arm64PowerShellYamlPin.ManifestSha256) -or
-                -not (Test-Arm64FileSha256 `
-                    -Path (Join-Path $moduleBase 'powershell-yaml.psm1') `
-                    -Expected $script:arm64PowerShellYamlPin.ModuleSha256) -or
-                (Get-Arm64DirectoryManifestSha256 -Root $moduleBase) -cne
-                    $script:arm64PowerShellYamlPin.TreeManifestSha256 -or
-                -not [object]::ReferenceEquals(
-                    $cached.ScannerType.Assembly,
-                    $cached.Assembly
-                )) {
-                throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
+            $cached = $script:arm64NodeJsYamlIdentity
+            if (-not (Test-Arm64FileSha256 -Path $cached.ParserHelperPath `
+                    -Expected $script:arm64NodeJsYamlPin.ParserHelperSha256) -or
+                (Get-Arm64DirectoryTreeSha256 -Root $cached.JsYamlRoot) -cne
+                    $script:arm64NodeJsYamlPin.JsYamlTreeSha256) {
+                throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
             }
             return $cached
         }
         catch {
-            Close-Arm64ReadLockSet -Locks $script:arm64PowerShellYamlIdentity.Locks
-            $script:arm64PowerShellYamlIdentity = $null
-            throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
+            Close-Arm64ReadLockSet -Locks $script:arm64NodeJsYamlIdentity.Locks
+            $script:arm64NodeJsYamlIdentity = $null
+            throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
         }
     }
 
-    $comparison = if ([Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) {
-        [StringComparer]::OrdinalIgnoreCase
-    }
-    else {
-        [StringComparer]::Ordinal
-    }
-    $candidates = [Collections.Generic.HashSet[string]]::new($comparison)
-    $configuredManifest = [Environment]::GetEnvironmentVariable(
-        'ARM64_POWERSHELL_YAML_MANIFEST'
-    )
-    Add-Arm64AbsoluteCandidate `
-        -Candidates $candidates `
-        -Path $configuredManifest
-
-    if ([string]::IsNullOrWhiteSpace($configuredManifest) -and
-        [Environment]::OSVersion.Platform -eq [PlatformID]::Win32NT) {
-        $localPrograms = Join-Path (
-            [Environment]::GetFolderPath(
-                [Environment+SpecialFolder]::LocalApplicationData
-            )
-        ) 'Programs'
-        Add-Arm64AbsoluteCandidate `
-            -Candidates $candidates `
-            -Path (Join-Path $localPrograms (
-                'Arm64PolicyTools\PowerShell\Modules\' +
-                'powershell-yaml\0.4.12\powershell-yaml.psd1'
-            ))
-    }
-    elseif ([string]::IsNullOrWhiteSpace($configuredManifest)) {
-        Add-Arm64AbsoluteCandidate `
-            -Candidates $candidates `
-            -Path '/opt/arm64-policy-tools/powershell-yaml/0.4.12/powershell-yaml.psd1'
+    $repoRoot = [IO.Path]::GetFullPath((Join-Path $PSScriptRoot '..\..'))
+    $parserHelperPath = Join-Path $PSScriptRoot 'parse-yaml.js'
+    if (-not (Test-Arm64FileSha256 -Path $parserHelperPath `
+            -Expected $script:arm64NodeJsYamlPin.ParserHelperSha256)) {
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
     }
 
-    $existing = @($candidates | Where-Object {
-            Test-Path -LiteralPath $_ -PathType Leaf
-        })
-    $approved = [Collections.Generic.List[object]]::new()
-    foreach ($manifestPath in $existing) {
-        try {
-            $manifestPath = Resolve-Arm64CanonicalRuntimePath -Path $manifestPath
-            $moduleBase = Resolve-Arm64CanonicalRuntimePath `
-                -Path (Split-Path $manifestPath -Parent)
-        }
-        catch {
-            continue
-        }
-        if ((Split-Path $manifestPath -Leaf) -cne 'powershell-yaml.psd1' -or
-            (Split-Path $moduleBase -Leaf) -cne $script:arm64PowerShellYamlPin.Version -or
-            (Split-Path (Split-Path $moduleBase -Parent) -Leaf) -cne 'powershell-yaml' -or
-            -not (Test-Arm64FileSha256 `
-                -Path $manifestPath `
-                -Expected $script:arm64PowerShellYamlPin.ManifestSha256) -or
-            -not (Test-Arm64FileSha256 `
-                -Path (Join-Path $moduleBase 'powershell-yaml.psm1') `
-                -Expected $script:arm64PowerShellYamlPin.ModuleSha256) -or
-            (Get-Arm64DirectoryTreeSha256 -Root $moduleBase) -cne
-                $script:arm64PowerShellYamlPin.TreeSha256) {
-            continue
-        }
-
-        $platformPin = if ($PSVersionTable.PSEdition -ceq 'Core') {
-            $script:arm64PowerShellYamlPin.Core
-        }
-        else {
-            $script:arm64PowerShellYamlPin.Desktop
-        }
-        try {
-            $assemblyPath = Resolve-Arm64CanonicalRuntimePath -Path (
-                Join-Path $moduleBase $platformPin.AssemblyRelativePath
-            )
-            $serializerPath = Resolve-Arm64CanonicalRuntimePath -Path (
-                Join-Path $moduleBase $platformPin.SerializerRelativePath
-            )
-        }
-        catch {
-            continue
-        }
-        if (-not $assemblyPath.StartsWith(
-                "$([IO.Path]::GetFullPath($moduleBase))$([IO.Path]::DirectorySeparatorChar)",
-                [StringComparison]::OrdinalIgnoreCase
-            ) -or
-            -not (Test-Arm64FileSha256 `
-                -Path $assemblyPath `
-                -Expected $platformPin.AssemblySha256) -or
-            -not (Test-Arm64FileSha256 `
-                -Path $serializerPath `
-                -Expected $platformPin.SerializerSha256)) {
-            continue
-        }
-
-        $locks = $null
-        try {
-            $locks = Open-Arm64ReadLockSet -Paths @(
-                Get-ChildItem -LiteralPath $moduleBase -File -Recurse -Force |
-                    ForEach-Object { $_.FullName }
-            )
-            if ((Get-Arm64DirectoryTreeSha256 -Root $moduleBase) -cne
-                    $script:arm64PowerShellYamlPin.TreeSha256 -or
-                -not (Test-Arm64FileSha256 `
-                    -Path $assemblyPath `
-                    -Expected $platformPin.AssemblySha256) -or
-                -not (Test-Arm64FileSha256 `
-                    -Path $serializerPath `
-                    -Expected $platformPin.SerializerSha256)) {
-                throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-            }
-
-            $assembly = @([AppDomain]::CurrentDomain.GetAssemblies() | Where-Object {
-                    -not $_.IsDynamic -and
-                    -not [string]::IsNullOrEmpty($_.Location) -and
-                    [IO.Path]::GetFullPath($_.Location) -ceq $assemblyPath
-                })
-            if ($assembly.Count -eq 0) {
-                $assembly = @([Reflection.Assembly]::LoadFile($assemblyPath))
-            }
-            if ($assembly.Count -ne 1) {
-                throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-            }
-            $assemblyName = $assembly[0].GetName()
-            $publicKey = [Convert]::ToHexString(
-                $assemblyName.GetPublicKey()
-            ).ToLowerInvariant()
-            $publicKeyToken = [Convert]::ToHexString(
-                $assemblyName.GetPublicKeyToken()
-            ).ToLowerInvariant()
-            $scannerType = $assembly[0].GetType(
-                'YamlDotNet.Core.Scanner',
-                $false,
-                $false
-            )
-            if ($assembly[0].IsDynamic -or
-                $assemblyName.Name -cne 'YamlDotNet' -or
-                $assemblyName.Version.ToString() -cne
-                    $script:arm64PowerShellYamlPin.AssemblyVersion -or
-                $publicKey -cne $script:arm64PowerShellYamlPin.AssemblyPublicKey -or
-                $publicKeyToken -cne
-                    $script:arm64PowerShellYamlPin.AssemblyPublicKeyToken -or
-                $null -eq $scannerType -or
-                -not [object]::ReferenceEquals($scannerType.Assembly, $assembly[0])) {
-                throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-            }
-            [void]$approved.Add([pscustomobject][ordered]@{
-                    ManifestPath = $manifestPath
-                    ModuleBase = $moduleBase
-                    AssemblyPath = $assemblyPath
-                    Assembly = $assembly[0]
-                    ScannerType = $scannerType
-                    Locks = $locks
-                })
-            $locks = $null
-        }
-        catch {
-            Write-Verbose 'PowerShell-Yaml candidate provenance did not match.'
-        }
-        finally {
-            Close-Arm64ReadLockSet -Locks $locks
-        }
+    $jsYamlRoot = Join-Path $repoRoot 'node_modules\js-yaml'
+    if (-not (Test-Path -LiteralPath $jsYamlRoot -PathType Container)) {
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
     }
-    if ($approved.Count -gt 1) {
-        foreach ($identity in $approved) {
-            Close-Arm64ReadLockSet -Locks $identity.Locks
-        }
-        throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-    }
-    if ($approved.Count -eq 0) {
-        if ($existing.Count -gt 0) {
-            throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-        }
-        return $null
-    }
-    $script:arm64PowerShellYamlIdentity = $approved[0]
-    return $script:arm64PowerShellYamlIdentity
-}
-
-function Resolve-Arm64RubyIdentity {
-    if ([Environment]::OSVersion.Platform -ne [PlatformID]::Win32NT) {
-        return $null
-    }
-    if ($null -ne $script:arm64RubyIdentity) {
-        try {
-            $cached = $script:arm64RubyIdentity
-            $executable = Resolve-Arm64CanonicalRuntimePath `
-                -Path $cached.ExecutablePath
-            $root = Resolve-Arm64CanonicalRuntimePath -Path $cached.Root
-            if (-not $executable.StartsWith(
-                    "$root$([IO.Path]::DirectorySeparatorChar)",
-                    [StringComparison]::OrdinalIgnoreCase
-                ) -or
-                (Get-Arm64DirectoryManifestSha256 `
-                    -Root (Join-Path $root 'bin')) -cne
-                        $script:arm64RubyPin.BinManifestSha256 -or
-                (Get-Arm64DirectoryManifestSha256 `
-                    -Root (Join-Path $root 'lib\ruby\3.3.0')) -cne
-                        $script:arm64RubyPin.StandardLibraryManifestSha256) {
-                throw 'semantic-parser-provenance-unapproved:RubyPsych'
-            }
-            return $cached
-        }
-        catch {
-            Close-Arm64ReadLockSet -Locks $script:arm64RubyIdentity.Locks
-            $script:arm64RubyIdentity = $null
-            throw 'semantic-parser-provenance-unapproved:RubyPsych'
-        }
-    }
-
-    $candidates = [Collections.Generic.HashSet[string]]::new(
-        [StringComparer]::OrdinalIgnoreCase
-    )
-    $configuredRuby = [Environment]::GetEnvironmentVariable(
-        'ARM64_RUBY_EXECUTABLE'
-    )
-    Add-Arm64AbsoluteCandidate `
-        -Candidates $candidates `
-        -Path $configuredRuby
-    if ([string]::IsNullOrWhiteSpace($configuredRuby)) {
-        Add-Arm64AbsoluteCandidate `
-            -Candidates $candidates `
-            -Path (Join-Path (
-                [Environment]::GetFolderPath(
-                    [Environment+SpecialFolder]::LocalApplicationData
-                )
-            ) 'Programs\Ruby-3.3.0-1-x64\bin\ruby.exe')
-        Add-Arm64AbsoluteCandidate `
-            -Candidates $candidates `
-            -Path 'C:\Ruby33-x64\bin\ruby.exe'
-    }
-
-    $existing = @($candidates | Where-Object {
-            Test-Path -LiteralPath $_ -PathType Leaf
-        })
-    $approved = [Collections.Generic.List[object]]::new()
-    foreach ($executable in $existing) {
-            try {
-                $executable = Resolve-Arm64CanonicalRuntimePath -Path $executable
-                $root = Resolve-Arm64CanonicalRuntimePath -Path (
-                    Join-Path (Split-Path $executable -Parent) '..'
-                )
-                $binRoot = Resolve-Arm64CanonicalRuntimePath -Path (Join-Path $root 'bin')
-                $libraryRoot = Resolve-Arm64CanonicalRuntimePath `
-                    -Path (Join-Path $root 'lib\ruby\3.3.0')
-            }
-            catch {
-                continue
-            }
-            if (-not $executable.Equals(
-                    (Join-Path $binRoot 'ruby.exe'),
-                    [StringComparison]::OrdinalIgnoreCase
-                ) -or
-                (Get-Arm64DirectoryTreeSha256 -Root $binRoot) -cne
-                    $script:arm64RubyPin.BinTreeSha256 -or
-                (Get-Arm64DirectoryTreeSha256 -Root $libraryRoot) -cne
-                    $script:arm64RubyPin.StandardLibraryTreeSha256) {
-                continue
-            }
-
-            $locks = $null
-            try {
-                $locks = Open-Arm64ReadLockSet -Paths @(
-                    Get-ChildItem -LiteralPath $binRoot -File -Recurse -Force |
-                        ForEach-Object { $_.FullName }
-                    Get-ChildItem -LiteralPath $libraryRoot -File -Recurse -Force |
-                        ForEach-Object { $_.FullName }
-                )
-                if ((Get-Arm64DirectoryTreeSha256 -Root $binRoot) -cne
-                        $script:arm64RubyPin.BinTreeSha256 -or
-                    (Get-Arm64DirectoryTreeSha256 -Root $libraryRoot) -cne
-                        $script:arm64RubyPin.StandardLibraryTreeSha256 -or
-                    (Get-Arm64DirectoryManifestSha256 -Root $binRoot) -cne
-                        $script:arm64RubyPin.BinManifestSha256 -or
-                    (Get-Arm64DirectoryManifestSha256 -Root $libraryRoot) -cne
-                        $script:arm64RubyPin.StandardLibraryManifestSha256) {
-                    throw 'semantic-parser-provenance-unapproved:RubyPsych'
-                }
-                [void]$approved.Add([pscustomobject][ordered]@{
-                        ExecutablePath = $executable
-                        Root = $root
-                        BinRoot = $binRoot
-                        LibraryRoot = $libraryRoot
-                        Locks = $locks
-                    })
-                $locks = $null
-            }
-            catch {
-                Write-Verbose 'Ruby/Psych candidate provenance did not match.'
-            }
-            finally {
-                Close-Arm64ReadLockSet -Locks $locks
-            }
-        }
-        if ($approved.Count -gt 1) {
-            foreach ($identity in $approved) {
-                Close-Arm64ReadLockSet -Locks $identity.Locks
-            }
-            throw 'semantic-parser-provenance-unapproved:RubyPsych'
-    }
-    if ($approved.Count -eq 0) {
-        if ($existing.Count -gt 0) {
-            throw 'semantic-parser-provenance-unapproved:RubyPsych'
-        }
-        return $null
-    }
-    $script:arm64RubyIdentity = $approved[0]
-    return $script:arm64RubyIdentity
-}
-
-function Test-Arm64RubyVersionOutput {
-    param([AllowNull()][byte[]]$Bytes)
-
-    if ($null -eq $Bytes) {
-        return $false
+    $jsYamlPkgPath = Join-Path $jsYamlRoot 'package.json'
+    if (-not (Test-Path -LiteralPath $jsYamlPkgPath -PathType Leaf)) {
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
     }
     try {
-        $text = [Text.UTF8Encoding]::new($false, $true).GetString($Bytes)
+        $jsYamlPkg = Get-Content -LiteralPath $jsYamlPkgPath -Raw |
+            ConvertFrom-Json -Depth 8 -ErrorAction Stop
     }
     catch {
-        return $false
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
     }
-    $expected = (
-        "$($script:arm64RubyPin.RubyVersion)|" +
-        $script:arm64RubyPin.PsychVersion
-    )
-    return $text.Equals($expected, [StringComparison]::Ordinal)
+    if ($jsYamlPkg.version -cne $script:arm64NodeJsYamlPin.JsYamlVersion) {
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
+    }
+    if ((Get-Arm64DirectoryTreeSha256 -Root $jsYamlRoot) -cne
+            $script:arm64NodeJsYamlPin.JsYamlTreeSha256) {
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
+    }
+
+    $nodePath = $null
+    $configuredNode = [Environment]::GetEnvironmentVariable('ARM64_NODE_EXECUTABLE')
+    if (-not [string]::IsNullOrWhiteSpace($configuredNode) -and
+        [IO.Path]::IsPathFullyQualified($configuredNode) -and
+        (Test-Path -LiteralPath $configuredNode -PathType Leaf)) {
+        $nodePath = $configuredNode
+    }
+    else {
+        $found = Get-Command 'node' -ErrorAction SilentlyContinue
+        if ($null -ne $found) {
+            $nodePath = $found.Source
+        }
+    }
+    if ([string]::IsNullOrWhiteSpace($nodePath) -or
+        -not [IO.Path]::IsPathFullyQualified($nodePath) -or
+        -not (Test-Path -LiteralPath $nodePath -PathType Leaf)) {
+        return $null
+    }
+    $nodePath = [IO.Path]::GetFullPath($nodePath)
+
+    $lockPaths = [Collections.Generic.List[string]]::new()
+    [void]$lockPaths.Add($parserHelperPath)
+    foreach ($file in Get-ChildItem -LiteralPath $jsYamlRoot -File -Recurse -Force) {
+        [void]$lockPaths.Add($file.FullName)
+    }
+    $locks = Open-Arm64ReadLockSet -Paths @($lockPaths)
+
+    if (-not (Test-Arm64FileSha256 -Path $parserHelperPath `
+            -Expected $script:arm64NodeJsYamlPin.ParserHelperSha256) -or
+        (Get-Arm64DirectoryTreeSha256 -Root $jsYamlRoot) -cne
+            $script:arm64NodeJsYamlPin.JsYamlTreeSha256) {
+        Close-Arm64ReadLockSet -Locks $locks
+        throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
+    }
+
+    $script:arm64NodeJsYamlIdentity = [pscustomobject][ordered]@{
+        NodePath = $nodePath
+        ParserHelperPath = $parserHelperPath
+        JsYamlRoot = $jsYamlRoot
+        Locks = $locks
+    }
+    return $script:arm64NodeJsYamlIdentity
 }
+
 
 function Get-Arm64ApprovedYamlBackends {
     if ($null -ne $script:arm64ApprovedYamlBackends) {
@@ -653,38 +333,12 @@ function Get-Arm64ApprovedYamlBackends {
     }
     $backends = [Collections.Generic.List[string]]::new()
     try {
-        if ($null -ne (Resolve-Arm64PowerShellYamlIdentity)) {
-            [void]$backends.Add('PowerShellYaml')
+        if ($null -ne (Resolve-Arm64NodeJsYamlIdentity)) {
+            [void]$backends.Add('NodeJsYaml')
         }
     }
     catch {
-        Write-Verbose 'PowerShell-Yaml provenance is not approved.'
-    }
-    try {
-        $ruby = Resolve-Arm64RubyIdentity
-        if ($null -ne $ruby) {
-            $versions = Invoke-Arm64BoundedProcess `
-                -FilePath $ruby.ExecutablePath `
-                -ArgumentList @(
-                    '--disable-gems',
-                    '--disable-did_you_mean',
-                    '--disable-error_highlight',
-                    '-rpsych',
-                    '-e',
-                    'STDOUT.write("#{RUBY_VERSION}|#{Psych::VERSION}")'
-                ) `
-                -InputBytes ([byte[]]::new(0)) `
-                -MaximumOutputBytes 128 `
-                -MaximumErrorBytes 1024 `
-                -TimeoutMilliseconds 10000
-            if ($versions.ExitCode -eq 0 -and
-                (Test-Arm64RubyVersionOutput -Bytes $versions.OutputBytes)) {
-                [void]$backends.Add('RubyPsych')
-            }
-        }
-    }
-    catch {
-        Write-Verbose 'Ruby/Psych provenance or version is not approved.'
+        Write-Verbose 'NodeJsYaml provenance is not approved.'
     }
     $script:arm64ApprovedYamlBackends = [string[]]@($backends)
     return @($script:arm64ApprovedYamlBackends)
@@ -697,45 +351,32 @@ function Resolve-Arm64YamlBackend {
         throw 'semantic-parser-unavailable'
     }
     $approved = @(Get-Arm64ApprovedYamlBackends)
-    if ($Requested -ceq 'PowerShellYaml') {
+    if ($Requested -ceq 'NodeJsYaml') {
         try {
-            $identity = Resolve-Arm64PowerShellYamlIdentity
+            $identity = Resolve-Arm64NodeJsYamlIdentity
         }
         catch {
-            throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
+            throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
         }
         if ($null -eq $identity) {
             throw 'semantic-parser-unavailable'
         }
-        if ($approved -cnotcontains 'PowerShellYaml') {
-            throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
+        if ($approved -cnotcontains 'NodeJsYaml') {
+            throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
         }
     }
-    if ($Requested -ceq 'RubyPsych') {
-        try {
-            $ruby = Resolve-Arm64RubyIdentity
-        }
-        catch {
-            throw 'semantic-parser-provenance-unapproved:RubyPsych'
-        }
-        if ($null -eq $ruby) {
-            throw 'semantic-parser-unavailable'
-        }
-        if ($approved -cnotcontains 'RubyPsych') {
-            throw 'semantic-parser-version-unapproved:RubyPsych'
-        }
-    }
-    if (($approved -join ',') -cne 'PowerShellYaml,RubyPsych') {
+    if ($approved -cnotcontains 'NodeJsYaml') {
         throw 'semantic-parser-unavailable'
     }
     if ($Requested -ceq 'Auto') {
-        return 'PowerShellYaml'
+        return 'NodeJsYaml'
     }
     return $Requested
 }
 
 # Deliberate, policy-defined YAML rejection codes. Only these constants may be surfaced to
 # an audit caller, so candidate-controlled backend text can never reach the error stream.
+
 $script:arm64DeliberateYamlCodes = @(
     'semantic-yaml-byte-limit-exceeded',
     'semantic-yaml-bom-forbidden',
@@ -804,100 +445,33 @@ function Resolve-Arm64ParserSelectionErrorCode {
     return 'semantic-parser-unavailable'
 }
 
-function Resolve-Arm64YamlScannerType {
-    try {
-        $identity = Resolve-Arm64PowerShellYamlIdentity
-        if ($null -eq $identity -or
-            $null -eq $identity.ScannerType -or
-            -not [object]::ReferenceEquals(
-                $identity.ScannerType.Assembly,
-                $identity.Assembly
-            )) {
-            return $null
-        }
-        return $identity.ScannerType
-    }
-    catch {
-        return $null
-    }
-}
-
 function Assert-Arm64YamlTokenPolicy {
     param([Parameter(Mandatory)][AllowEmptyString()][string]$Text)
 
-    $scannerType = Resolve-Arm64YamlScannerType
-    if ($null -eq $scannerType) {
-        # No trustworthy token layer means no admission decision can be made safely.
+    $identity = Resolve-Arm64NodeJsYamlIdentity
+    if ($null -eq $identity) {
         throw 'semantic-yaml-token-scanner-unavailable'
     }
-
-    $reader = [IO.StringReader]::new($Text)
-    $timer = [Diagnostics.Stopwatch]::StartNew()
-    try {
-        try {
-            $scanner = [Activator]::CreateInstance(
-                $scannerType,
-                [object[]]@([IO.TextReader]$reader, $true)
-            )
-        }
-        catch {
-            throw 'semantic-yaml-token-scanner-unavailable'
-        }
-
-        $count = 0
-        $previousKind = $null
-        while ($true) {
-            if ($timer.ElapsedMilliseconds -gt $script:arm64YamlScanTimeoutMilliseconds) {
-                throw 'semantic-yaml-token-scan-timeout'
-            }
-            $advanced = $false
-            try {
-                $advanced = $scanner.MoveNext()
-            }
-            catch {
-                # A malformed stream is not classifiable, so it is refused rather than handed
-                # to an object backend.
-                throw 'semantic-yaml-token-scan-failed'
-            }
-            if (-not $advanced) {
-                break
-            }
-
-            $count++
-            if ($count -gt $script:arm64YamlMaximumTokens) {
-                throw 'semantic-yaml-token-limit-exceeded'
-            }
-            if ($timer.ElapsedMilliseconds -gt $script:arm64YamlScanTimeoutMilliseconds) {
-                throw 'semantic-yaml-token-scan-timeout'
-            }
-
-            $token = $scanner.Current
-            $kind = $token.GetType().Name
-            if ($kind -ceq 'Anchor' -or $kind -ceq 'AnchorAlias') {
-                throw 'semantic-yaml-anchor-alias-merge-forbidden'
-            }
-            if ($kind -ceq 'DocumentStart' -or $kind -ceq 'DocumentEnd') {
-                throw 'semantic-yaml-explicit-document-marker-forbidden'
-            }
-            if ($kind -ceq 'Error') {
-                throw 'semantic-yaml-token-scan-failed'
-            }
-            if ($kind -ceq 'Scalar' -and
-                [string]$token.Value -ceq '<<' -and
-                [string]$token.Style -ceq 'Plain' -and
-                $previousKind -ceq 'Key') {
-                throw 'semantic-yaml-anchor-alias-merge-forbidden'
-            }
-            if ($kind -cne 'Tag') {
-                $previousKind = $kind
-            }
-        }
-    }
-    finally {
-        $timer.Stop()
-        $reader.Dispose()
+    $inputBytes = [Text.UTF8Encoding]::new($false, $true).GetBytes($Text)
+    $result = Invoke-Arm64BoundedProcess `
+        -FilePath $identity.NodePath `
+        -ArgumentList @($identity.ParserHelperPath, '--scan-only') `
+        -InputBytes $inputBytes `
+        -MaximumOutputBytes 65536 `
+        -MaximumErrorBytes 65536 `
+        -TimeoutMilliseconds $script:arm64YamlScanTimeoutMilliseconds
+    switch ($result.ExitCode) {
+        0  { return }
+        11 { throw 'semantic-yaml-token-scanner-unavailable' }
+        12 { throw 'semantic-yaml-byte-limit-exceeded' }
+        13 { throw 'semantic-yaml-utf8-invalid' }
+        14 { throw 'semantic-yaml-anchor-alias-merge-forbidden' }
+        15 { throw 'semantic-yaml-token-scan-failed' }
+        16 { throw 'semantic-yaml-explicit-document-marker-forbidden' }
+        default { throw 'semantic-yaml-token-scan-failed' }
     }
 }
+
 function Get-Arm64YamlText {
     param([Parameter(Mandatory)][string]$Path)
 
@@ -1480,126 +1054,52 @@ function Invoke-Arm64YamlBackend {
     param(
         [Parameter(Mandatory)][AllowEmptyString()][string]$Text,
         [Parameter(Mandatory)]
-        [ValidateSet('PowerShellYaml', 'RubyPsych')]
+        [ValidateSet('NodeJsYaml')]
         [string]$Backend
     )
 
-    # Every object backend runs as a bounded child process on validated bytes. Nothing in this
+    # The object backend runs as a bounded child process on validated bytes. Nothing in this
     # process ever composes a candidate document, so alias expansion cannot consume the audit.
     $script:arm64BackendInvocationCount++
     $inputBytes = [Text.UTF8Encoding]::new($false, $true).GetBytes($Text)
 
     $runtimeLocks = $null
     try {
-        if ($Backend -ceq 'PowerShellYaml') {
-            $helperPath = Join-Path $PSScriptRoot 'parse-yaml.ps1'
-            if (-not (Test-Arm64FileSha256 `
-                    -Path $helperPath `
-                    -Expected $script:arm64ParserHelperPins.PowerShell)) {
-                throw 'semantic-parser-helper-missing'
-            }
-            try {
-                $module = Resolve-Arm64PowerShellYamlIdentity
-            }
-            catch {
-                throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-            }
-            if ($null -eq $module) {
-                throw 'semantic-parser-unavailable'
-            }
-            $runtimeLocks = Open-Arm64ReadLockSet -Paths @(
-                $helperPath
-                Get-ChildItem -LiteralPath $module.ModuleBase -File -Recurse -Force |
-                    ForEach-Object { $_.FullName }
-            )
-            if (-not (Test-Arm64FileSha256 `
-                    -Path $helperPath `
-                    -Expected $script:arm64ParserHelperPins.PowerShell)) {
-                throw 'semantic-parser-helper-missing'
-            }
-            try {
-                $module = Resolve-Arm64PowerShellYamlIdentity
-            }
-            catch {
-                throw 'semantic-parser-provenance-unapproved:PowerShellYaml'
-            }
-            $shell = @(Get-Process -Id $PID).Path
-            if ([string]::IsNullOrWhiteSpace($shell)) {
-                throw 'semantic-parser-unavailable'
-            }
-            $result = Invoke-Arm64BoundedProcess `
-                -FilePath $shell `
-                -ArgumentList @(
-                    '-NoProfile',
-                    '-NonInteractive',
-                    '-ExecutionPolicy', 'Bypass',
-                    '-File', $helperPath,
-                    '-ModuleManifest', $module.ManifestPath
-                ) `
-                -InputBytes $inputBytes
+        $parserPath = Join-Path $PSScriptRoot 'parse-yaml.js'
+        if (-not (Test-Arm64FileSha256 `
+                -Path $parserPath `
+                -Expected $script:arm64NodeJsYamlPin.ParserHelperSha256)) {
+            throw 'semantic-parser-helper-missing'
         }
-        else {
-            $parserPath = Join-Path $PSScriptRoot 'parse-yaml.rb'
-            if (-not (Test-Arm64FileSha256 `
-                    -Path $parserPath `
-                    -Expected $script:arm64ParserHelperPins.Ruby)) {
-                throw 'semantic-parser-helper-missing'
-            }
-            try {
-                $ruby = Resolve-Arm64RubyIdentity
-            }
-            catch {
-                throw 'semantic-parser-provenance-unapproved:RubyPsych'
-            }
-            if ($null -eq $ruby) {
-                throw 'semantic-parser-unavailable'
-            }
-            $runtimeLocks = Open-Arm64ReadLockSet -Paths @(
-                $parserPath
-                $ruby.ExecutablePath
-                Join-Path $ruby.Root 'bin\x64-ucrt-ruby330.dll'
-                Join-Path $ruby.Root 'bin\ruby_builtin_dlls\libyaml-0-2.dll'
-                Join-Path $ruby.Root 'lib\ruby\3.3.0\x64-mingw-ucrt\psych.so'
-                Join-Path $ruby.Root 'lib\ruby\3.3.0\psych.rb'
-                Get-ChildItem `
-                    -LiteralPath (Join-Path $ruby.Root 'lib\ruby\3.3.0\psych') `
-                    -File `
-                    -Recurse |
-                    ForEach-Object { $_.FullName }
-                Get-ChildItem `
-                    -LiteralPath (Join-Path $ruby.Root 'lib\ruby\3.3.0\json') `
-                    -File `
-                    -Recurse |
-                    ForEach-Object { $_.FullName }
-                Get-ChildItem `
-                    -LiteralPath (Join-Path $ruby.Root (
-                        'lib\ruby\3.3.0\x64-mingw-ucrt\json'
-                    )) `
-                    -File `
-                    -Recurse |
-                    ForEach-Object { $_.FullName }
-            )
-            if (-not (Test-Arm64FileSha256 `
-                    -Path $parserPath `
-                    -Expected $script:arm64ParserHelperPins.Ruby)) {
-                throw 'semantic-parser-helper-missing'
-            }
-            try {
-                $ruby = Resolve-Arm64RubyIdentity
-            }
-            catch {
-                throw 'semantic-parser-provenance-unapproved:RubyPsych'
-            }
-            $result = Invoke-Arm64BoundedProcess `
-                -FilePath $ruby.ExecutablePath `
-                -ArgumentList @(
-                    '--disable-gems',
-                    '--disable-did_you_mean',
-                    '--disable-error_highlight',
-                    $parserPath
-                ) `
-                -InputBytes $inputBytes
+        try {
+            $identity = Resolve-Arm64NodeJsYamlIdentity
         }
+        catch {
+            throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
+        }
+        if ($null -eq $identity) {
+            throw 'semantic-parser-unavailable'
+        }
+        $runtimeLocks = Open-Arm64ReadLockSet -Paths @(
+            $parserPath
+            Get-ChildItem -LiteralPath $identity.JsYamlRoot -File -Recurse -Force |
+                ForEach-Object { $_.FullName }
+        )
+        if (-not (Test-Arm64FileSha256 `
+                -Path $parserPath `
+                -Expected $script:arm64NodeJsYamlPin.ParserHelperSha256)) {
+            throw 'semantic-parser-helper-missing'
+        }
+        try {
+            [void](Resolve-Arm64NodeJsYamlIdentity)
+        }
+        catch {
+            throw 'semantic-parser-provenance-unapproved:NodeJsYaml'
+        }
+        $result = Invoke-Arm64BoundedProcess `
+            -FilePath $identity.NodePath `
+            -ArgumentList @($parserPath) `
+            -InputBytes $inputBytes
     }
     finally {
         Close-Arm64ReadLockSet -Locks $runtimeLocks
@@ -1610,6 +1110,7 @@ function Invoke-Arm64YamlBackend {
     }
     return ConvertFrom-Arm64StrictBackendJson -Bytes $result.OutputBytes
 }
+
 
 function ConvertTo-Arm64CanonicalJson {
     param([AllowNull()][object]$Value)
@@ -1655,28 +1156,9 @@ function ConvertFrom-Arm64YamlFile {
     )
 
     $text = Get-Arm64YamlText -Path $Path
-    $document = Invoke-Arm64YamlBackend -Text $text -Backend $Backend
-    $approved = @(Get-Arm64ApprovedYamlBackends)
-    if (($approved -join ',') -cne 'PowerShellYaml,RubyPsych') {
-        throw 'semantic-parser-unavailable'
-    }
-    $representations = @(
-        @(
-            ConvertTo-Arm64CanonicalJson -Value $document
-            foreach ($otherBackend in $approved) {
-                if ($otherBackend -cne $Backend) {
-                    ConvertTo-Arm64CanonicalJson -Value (
-                        Invoke-Arm64YamlBackend -Text $text -Backend $otherBackend
-                    )
-                }
-            }
-        ) | Sort-Object -Unique -CaseSensitive
-    )
-    if ($representations.Count -ne 1) {
-        throw "semantic-parser-differential:$Path"
-    }
-    return $document
+    return Invoke-Arm64YamlBackend -Text $text -Backend $Backend
 }
+
 
 function Get-Arm64GitBlobHash {
     param([Parameter(Mandatory)][string]$Path)
@@ -1813,7 +1295,7 @@ function Test-Arm64WorkflowTree {
         [Parameter(Mandatory)][string]$Root,
         [Parameter(Mandatory)][object]$Policy,
         [string]$TrustedPolicyPath,
-        [ValidateSet('Auto', 'PowerShellYaml', 'RubyPsych', 'Unavailable')]
+        [ValidateSet('Auto', 'NodeJsYaml', 'Unavailable')]
         [string]$Backend = 'Auto',
         [switch]$SkipAuthoritativeSnapshot
     )
@@ -1938,6 +1420,7 @@ function Test-Arm64WorkflowTree {
                 $trustedSources = @(Get-Arm64ProtectedGitSourceBindings `
                         -RepositoryRoot $trustedRoot)
                 $candidateSources = @($authoritativeSnapshot.files | Where-Object {
+                        $_.path -in @('.gitattributes', 'package-lock.json', 'package.json') -or
                         $_.path.StartsWith('.github/workflows/', [StringComparison]::Ordinal) -or
                         $_.path.StartsWith('.github/scripts/', [StringComparison]::Ordinal) -or
                         $_.path.StartsWith('.github/policies/', [StringComparison]::Ordinal)
@@ -2332,7 +1815,7 @@ function Test-Arm64WorkflowTree {
             }
             elseif ($null -ne $runProperty) {
                 if ($runProperty.Value -is [string] -and
-                    $runProperty.Value -match '(?i)(?:\bgh\s+release\b|/releases(?:/|\b)|\bartifact(?:s)?\b|\bpages\b)') {
+                    $runProperty.Value -match '(?i)(?:\bgh\s+release\b|\bartifact(?:s)?\b|\bpages\b)') {
                     Add-AuditError "publication-shell-route-forbidden:${Location}:step[$index]"
                 }
                 $shellProperty = Get-Arm64MapProperty -Map $step -Name 'shell'

@@ -1,0 +1,6 @@
+#!/bin/bash
+
+declare -a MINGW_ARCH_ALLOWED
+for _conf in /etc/makepkg_mingw.d/*.conf; do
+  MINGW_ARCH_ALLOWED+=("$(basename "$_conf" .conf)")
+done
