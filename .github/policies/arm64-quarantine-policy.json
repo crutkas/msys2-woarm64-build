@@ -25,13 +25,21 @@
     "candidate_mode": "github-api-data-only",
     "check_name": "arm64-governance",
     "sources": {
+      ".gitattributes": {
+        "path": ".gitattributes",
+        "raw_path_utf8_base64": "LmdpdGF0dHJpYnV0ZXM=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 217,
+        "oid": "ae1ed86285f0737cb53eaf3577d1722f443db89c"
+      },
       ".github/workflows/arm64-quarantine-policy.yml": {
         "path": ".github/workflows/arm64-quarantine-policy.yml",
         "raw_path_utf8_base64": "LmdpdGh1Yi93b3JrZmxvd3MvYXJtNjQtcXVhcmFudGluZS1wb2xpY3kueW1s",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 2366,
-        "oid": "e65ba69d7f7e3c26c51923805de7c0fafb0391ff"
+        "byte_length": 5642,
+        "oid": "6c506ce1c38c887101bb676a55c9aa897de95335"
       },
       ".github/scripts/arm64-admission.ps1": {
         "path": ".github/scripts/arm64-admission.ps1",
@@ -46,8 +54,8 @@
         "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2F1ZGl0LWFybTY0LXdvcmtmbG93cy5wczE=",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 103463,
-        "oid": "4a807ac57d05357f091b25893e121228f6364626"
+        "byte_length": 81967,
+        "oid": "515216530400a32774bae3d05631aa59861ddc20"
       },
       ".github/scripts/collect-arm64-evidence.ps1": {
         "path": ".github/scripts/collect-arm64-evidence.ps1",
@@ -62,16 +70,16 @@
         "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2NvbGxlY3QtcHItd29ya2Zsb3ctZGF0YS5wczE=",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 9445,
-        "oid": "66ba3d3bfe8377735437743cc4db083dc7b7fc63"
+        "byte_length": 9524,
+        "oid": "835bf98becc0e9067d153e73f70f5a2ba2401e8c"
       },
       ".github/scripts/git-object-integrity.ps1": {
         "path": ".github/scripts/git-object-integrity.ps1",
         "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2dpdC1vYmplY3QtaW50ZWdyaXR5LnBzMQ==",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 36894,
-        "oid": "ce0c1c09b2111bd9e3073a15d442c04b481b2c11"
+        "byte_length": 39651,
+        "oid": "72f7a4f387f17faf5bef7feb4adb5b316e64bcb8"
       },
       ".github/scripts/github-rest.ps1": {
         "path": ".github/scripts/github-rest.ps1",
@@ -81,29 +89,37 @@
         "byte_length": 16776,
         "oid": "ef514b6f47fe12f9b1507665ecc2fca81f1612cf"
       },
-      ".github/scripts/parse-yaml.rb": {
-        "path": ".github/scripts/parse-yaml.rb",
-        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3BhcnNlLXlhbWwucmI=",
-        "mode": "100644",
-        "object_type": "blob",
-        "byte_length": 1797,
-        "oid": "eb2332a0fd8ae20658d0d0559fa34c5c5fc63805"
-      },
-      ".github/scripts/parse-yaml.ps1": {
-        "path": ".github/scripts/parse-yaml.ps1",
-        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3BhcnNlLXlhbWwucHMx",
-        "mode": "100644",
-        "object_type": "blob",
-        "byte_length": 6457,
-        "oid": "84cbd3dab4d0d47fc589d88f62fc28e1541281d3"
-      },
       ".github/scripts/verify-protected-context.ps1": {
         "path": ".github/scripts/verify-protected-context.ps1",
         "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3ZlcmlmeS1wcm90ZWN0ZWQtY29udGV4dC5wczE=",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 4107,
-        "oid": "2939fc238ba0b2815b28a19f28f3be48b00db93e"
+        "byte_length": 4136,
+        "oid": "3e641fa0b09f2067e86a32d52ac3adf70652681c"
+      },
+      ".github/scripts/parse-yaml.js": {
+        "path": ".github/scripts/parse-yaml.js",
+        "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3BhcnNlLXlhbWwuanM=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 6157,
+        "oid": "c24b228d5df148f00e59c907024a9369c93006d7"
+      },
+      "package-lock.json": {
+        "path": "package-lock.json",
+        "raw_path_utf8_base64": "cGFja2FnZS1sb2NrLmpzb24=",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 1156,
+        "oid": "4faa6509397fca3c6964d7ac6f45fb8cea3655ed"
+      },
+      "package.json": {
+        "path": "package.json",
+        "raw_path_utf8_base64": "cGFja2FnZS5qc29u",
+        "mode": "100644",
+        "object_type": "blob",
+        "byte_length": 112,
+        "oid": "3967c71e53667c51cecc4122c43b7a77c92dc335"
       }
     }
   },
@@ -258,8 +274,8 @@
         "raw_path_utf8_base64": "LmdpdGh1Yi93b3JrZmxvd3MvYXJtNjQtcXVhcmFudGluZS1wb2xpY3kueW1s",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 2366,
-        "oid": "e65ba69d7f7e3c26c51923805de7c0fafb0391ff"
+        "byte_length": 5642,
+        "oid": "6c506ce1c38c887101bb676a55c9aa897de95335"
       },
       "allowed_events": [
         "pull_request_target"
@@ -278,28 +294,30 @@
           "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL3ZlcmlmeS1wcm90ZWN0ZWQtY29udGV4dC5wczE=",
           "mode": "100644",
           "object_type": "blob",
-          "byte_length": 4107,
-          "oid": "2939fc238ba0b2815b28a19f28f3be48b00db93e"
+          "byte_length": 4136,
+          "oid": "3e641fa0b09f2067e86a32d52ac3adf70652681c"
         },
         ".github/scripts/collect-pr-workflow-data.ps1": {
           "path": ".github/scripts/collect-pr-workflow-data.ps1",
           "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2NvbGxlY3QtcHItd29ya2Zsb3ctZGF0YS5wczE=",
           "mode": "100644",
           "object_type": "blob",
-          "byte_length": 9445,
-          "oid": "66ba3d3bfe8377735437743cc4db083dc7b7fc63"
+          "byte_length": 9524,
+          "oid": "835bf98becc0e9067d153e73f70f5a2ba2401e8c"
         },
         ".github/scripts/audit-arm64-workflows.ps1": {
           "path": ".github/scripts/audit-arm64-workflows.ps1",
           "raw_path_utf8_base64": "LmdpdGh1Yi9zY3JpcHRzL2F1ZGl0LWFybTY0LXdvcmtmbG93cy5wczE=",
           "mode": "100644",
           "object_type": "blob",
-          "byte_length": 103463,
-          "oid": "4a807ac57d05357f091b25893e121228f6364626"
+          "byte_length": 81967,
+          "oid": "515216530400a32774bae3d05631aa59861ddc20"
         }
       },
       "allowed_inline_shell_sha256": [
-        "6736969b6688fcb1f59d378eda7818931af10ebfca5154eeb20a1071cdb1427c"
+        "5032da86a56280b29b425d4b1374aaa5ae07774cfd0d22592ba16df4b9e50489",
+        "6736969b6688fcb1f59d378eda7818931af10ebfca5154eeb20a1071cdb1427c",
+        "9514b3517c824a0127f135c25784c58557b6a032b154a5a28b501578c90fc70e"
       ]
     },
     ".github/workflows/arm64-bootstrap-diagnostics.yml": {
@@ -309,8 +327,8 @@
         "raw_path_utf8_base64": "LmdpdGh1Yi93b3JrZmxvd3MvYXJtNjQtYm9vdHN0cmFwLWRpYWdub3N0aWNzLnltbA==",
         "mode": "100644",
         "object_type": "blob",
-        "byte_length": 752,
-        "oid": "f02ce3e5c368895bca230c587a81a193d2d04aad"
+        "byte_length": 3956,
+        "oid": "446d810a5b06a11e7487a77e106811369ddb574e"
       },
       "allowed_events": [
         "pull_request"
@@ -327,11 +345,13 @@
           "raw_path_utf8_base64": "dGVzdHMvYXJtNjQtYWRtaXNzaW9uL3J1bi5wczE=",
           "mode": "100644",
           "object_type": "blob",
-          "byte_length": 137792,
-          "oid": "3e5594c59166ca877cdd6c537ff4024f89f0617d"
+          "byte_length": 130466,
+          "oid": "c93170be94eab2634f1da0c9fbf3eabf82156703"
         }
       },
       "allowed_inline_shell_sha256": [
+        "5032da86a56280b29b425d4b1374aaa5ae07774cfd0d22592ba16df4b9e50489",
+        "9514b3517c824a0127f135c25784c58557b6a032b154a5a28b501578c90fc70e"
       ]
     }
   },

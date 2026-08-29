@@ -24,6 +24,64 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           persist-credentials: false
 
+      - name: Provision provenance-bound Git
+        shell: pwsh
+        run: |
+          $ErrorActionPreference = 'Stop'
+          $assetUrl = 'https://github.com/git-for-windows/git/releases/download/v2.55.0.windows.3/Git-2.55.0.3-64-bit.exe'
+          $assetSha256 = 'af12577d0fdff74243a5988197aa49b957d5044edc17004f6ddf0768996f1dca'
+          $signerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
+          $launcherSha256 = '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364'
+          $engineSha256 = '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9'
+          $assetPath = Join-Path $env:RUNNER_TEMP 'Git-2.55.0.3-64-bit.exe'
+          $gitRoot = Join-Path $env:RUNNER_TEMP 'Git-2.55.0.3-x64'
+
+          Invoke-WebRequest -Uri $assetUrl -OutFile $assetPath
+          if ((Get-FileHash -LiteralPath $assetPath -Algorithm SHA256).Hash.ToLowerInvariant() -cne
+              $assetSha256) {
+              throw 'Git-for-Windows release asset digest mismatch.'
+          }
+          $assetSignature = Get-AuthenticodeSignature -LiteralPath $assetPath
+          if ($assetSignature.Status -ne 'Valid' -or
+              $null -eq $assetSignature.SignerCertificate -or
+              $assetSignature.SignerCertificate.Thumbprint.ToLowerInvariant() -cne
+                  $signerThumbprint) {
+              throw 'Git-for-Windows release asset signature mismatch.'
+          }
+          if (Test-Path -LiteralPath $gitRoot) {
+              throw 'Isolated Git-for-Windows destination already exists.'
+          }
+
+          & $assetPath /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /SP- /NOICONS /CURRENTUSER "/DIR=$gitRoot"
+          if ($LASTEXITCODE -ne 0) {
+              throw "Git-for-Windows installer exited with code $LASTEXITCODE."
+          }
+          $launcherPath = Join-Path $gitRoot 'cmd\git.exe'
+          $enginePath = Join-Path $gitRoot 'mingw64\bin\git.exe'
+          foreach ($identity in @(
+                  @{ Path = $launcherPath; Sha256 = $launcherSha256 },
+                  @{ Path = $enginePath; Sha256 = $engineSha256 })) {
+              if (-not (Test-Path -LiteralPath $identity.Path -PathType Leaf) -or
+                  (Get-FileHash -LiteralPath $identity.Path -Algorithm SHA256).Hash.ToLowerInvariant() -cne
+                      $identity.Sha256 -or
+                  [Diagnostics.FileVersionInfo]::GetVersionInfo($identity.Path).ProductVersion -cne
+                      '2.55.0.windows.3') {
+                  throw 'Installed Git-for-Windows runtime identity mismatch.'
+              }
+              $signature = Get-AuthenticodeSignature -LiteralPath $identity.Path
+              if ($signature.Status -ne 'Valid' -or
+                  $null -eq $signature.SignerCertificate -or
+                  $signature.SignerCertificate.Thumbprint.ToLowerInvariant() -cne
+                      $signerThumbprint) {
+                  throw 'Installed Git-for-Windows runtime signature mismatch.'
+              }
+          }
+          Add-Content -LiteralPath $env:GITHUB_ENV -Value "ARM64_GIT_EXECUTABLE=$launcherPath"
+
+      - name: Install parser dependencies
+        shell: pwsh
+        run: npm ci --ignore-scripts --no-audit --no-fund
+
       - name: Run untrusted offline diagnostics
         shell: pwsh
         run: ./tests/arm64-admission/run.ps1

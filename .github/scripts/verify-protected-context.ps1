@@ -66,6 +66,7 @@ if ($env:GITHUB_EVENT_NAME -cne $policy.protected_verifier.event -or
 }
 
 $requiredSources = @(
+    '.gitattributes',
     '.github/workflows/arm64-quarantine-policy.yml',
     '.github/scripts/arm64-admission.ps1',
     '.github/scripts/audit-arm64-workflows.ps1',
@@ -73,9 +74,10 @@ $requiredSources = @(
     '.github/scripts/collect-pr-workflow-data.ps1',
     '.github/scripts/git-object-integrity.ps1',
     '.github/scripts/github-rest.ps1',
-    '.github/scripts/parse-yaml.rb',
-    '.github/scripts/parse-yaml.ps1',
-    '.github/scripts/verify-protected-context.ps1'
+    '.github/scripts/parse-yaml.js',
+    '.github/scripts/verify-protected-context.ps1',
+    'package-lock.json',
+    'package.json'
 ) | Sort-Object
 $declaredSources = @($policy.protected_verifier.sources.PSObject.Properties.Name | Sort-Object)
 if (($requiredSources -join "`0") -cne ($declaredSources -join "`0")) {

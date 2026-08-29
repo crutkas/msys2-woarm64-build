@@ -50,7 +50,8 @@ function Invoke-CandidateApi {
 function Test-CandidateSelectedPath {
     param([Parameter(Mandatory)][string]$Path)
 
-    return $Path -match '^(?:\.github/(?:workflows|actions|scripts|policies)/|tests/arm64-admission/)' -or
+    return $Path -in @('.gitattributes', 'package-lock.json', 'package.json') -or
+        $Path -match '^(?:\.github/(?:workflows|actions|scripts|policies)/|tests/arm64-admission/)' -or
         $Path -match '(?i)(?:^|/)(?:action|Dockerfile)\.ya?ml$' -or
         $Path -match '(?i)\.(?:ps1|psm1|sh|bash|cmd|bat|js|cjs|mjs|ts|py|rb)$'
 }

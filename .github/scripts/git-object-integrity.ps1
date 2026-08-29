@@ -5,14 +5,32 @@ Set-StrictMode -Version Latest
 $ErrorActionPreference = 'Stop'
 
 $script:arm64GitIdentity = $null
-$script:arm64GitPin = [pscustomobject][ordered]@{
-    LauncherSha256 = '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364'
-    EngineSha256 = '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9'
-    RuntimeTreeSha256 = '20c9c179dd4e9fddaf0b885fc1f3990345a4ad649b82e6a8818521e56b6b4862'
-    RuntimeManifestSha256 =
-        'cd63c854cb26a8c1140685726374a82405cda7ea813ed86804d7145ecd33ba8c'
-    SignerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
-}
+$script:arm64GitPins = @(
+    [pscustomobject][ordered]@{
+        Architecture = 'x64'
+        PeMachine = 0x8664
+        Version = '2.55.0.windows.3'
+        RuntimeBinRelativePath = 'mingw64\bin'
+        LauncherSha256 = '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364'
+        EngineSha256 = '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9'
+        RuntimeTreeSha256 = '20c9c179dd4e9fddaf0b885fc1f3990345a4ad649b82e6a8818521e56b6b4862'
+        RuntimeManifestSha256 =
+            'cd63c854cb26a8c1140685726374a82405cda7ea813ed86804d7145ecd33ba8c'
+        SignerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
+    },
+    [pscustomobject][ordered]@{
+        Architecture = 'arm64'
+        PeMachine = 0xAA64
+        Version = '2.55.0.windows.3'
+        RuntimeBinRelativePath = 'clangarm64\bin'
+        LauncherSha256 = 'b05b2d7eb80933c602272b5ddf132adf288cf78ad8e32a7a47ca7e200076b9f3'
+        EngineSha256 = '4cbb8ef70f1201e534fc3fab8f52b83080748a7115793d957d1b399e1ff55ad7'
+        RuntimeTreeSha256 = 'ae2dae0b859e7266b06894dbf377ecb30f04aeffe4b1e45e6d88f50fa8f1bbc0'
+        RuntimeManifestSha256 =
+            '721d63474d9f16be89a9aa3a00abf1415bd4848616f789d505db3cef1ab5dd4c'
+        SignerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
+    }
+)
 
 function Initialize-Arm64RuntimePathResolver {
     if ('Arm64RuntimePathResolverV1' -as [type]) {
@@ -135,6 +153,56 @@ function Get-Arm64GitFileSha256 {
     }
 }
 
+function Get-Arm64GitPeMachine {
+    param([Parameter(Mandatory)][string]$Path)
+
+    $stream = [IO.File]::Open(
+        $Path,
+        [IO.FileMode]::Open,
+        [IO.FileAccess]::Read,
+        [IO.FileShare]::Read
+    )
+    $reader = [IO.BinaryReader]::new($stream)
+    try {
+        if ($stream.Length -lt 64 -or $reader.ReadUInt16() -ne 0x5A4D) {
+            throw 'Git runtime provenance is not approved.'
+        }
+        $stream.Position = 0x3C
+        $peOffset = $reader.ReadUInt32()
+        if ($peOffset -gt $stream.Length - 6) {
+            throw 'Git runtime provenance is not approved.'
+        }
+        $stream.Position = $peOffset
+        if ($reader.ReadUInt32() -ne 0x00004550) {
+            throw 'Git runtime provenance is not approved.'
+        }
+        return [int]$reader.ReadUInt16()
+    }
+    finally {
+        $reader.Dispose()
+        $stream.Dispose()
+    }
+}
+
+function Resolve-Arm64GitRuntimePin {
+    param([Parameter(Mandatory)][string]$LauncherPath)
+
+    $launcherSha256 = Get-Arm64GitFileSha256 -Path $LauncherPath
+    $peMachine = Get-Arm64GitPeMachine -Path $LauncherPath
+    $version = [Diagnostics.FileVersionInfo]::GetVersionInfo(
+        $LauncherPath
+    ).ProductVersion
+    $matches = @($script:arm64GitPins | Where-Object {
+            $_.LauncherSha256 -ceq $launcherSha256 -and
+            $_.PeMachine -eq $peMachine -and
+            $_.Version -ceq $version
+        })
+    if ($matches.Count -ne 1) {
+        throw 'Git runtime provenance is not approved.'
+    }
+    return $matches[0]
+}
+
 function Get-Arm64GitDirectoryTreeSha256 {
     param([Parameter(Mandatory)][string]$Root)
 
@@ -245,28 +313,32 @@ function Assert-Arm64GitRuntimeIdentity {
 
     $launcher = Resolve-Arm64CanonicalRuntimePath -Path $Identity.ExecutablePath
     $root = Resolve-Arm64CanonicalRuntimePath -Path $Identity.Root
-    $engine = Resolve-Arm64CanonicalRuntimePath `
-        -Path (Join-Path $root 'mingw64\bin\git.exe')
+    $pin = Resolve-Arm64GitRuntimePin -LauncherPath $launcher
     $runtimeRoot = Resolve-Arm64CanonicalRuntimePath `
-        -Path (Join-Path $root 'mingw64\bin')
+        -Path (Join-Path $root $pin.RuntimeBinRelativePath)
+    $engine = Resolve-Arm64CanonicalRuntimePath `
+        -Path (Join-Path $runtimeRoot 'git.exe')
     if (-not $launcher.Equals(
             (Join-Path $root 'cmd\git.exe'),
             [StringComparison]::OrdinalIgnoreCase
         ) -or
         (Get-Arm64GitFileSha256 -Path $launcher) -cne
-            $script:arm64GitPin.LauncherSha256 -or
+            $pin.LauncherSha256 -or
         (Get-Arm64GitFileSha256 -Path $engine) -cne
-            $script:arm64GitPin.EngineSha256) {
+            $pin.EngineSha256 -or
+        (Get-Arm64GitPeMachine -Path $engine) -ne $pin.PeMachine -or
+        [Diagnostics.FileVersionInfo]::GetVersionInfo($engine).ProductVersion -cne
+            $pin.Version) {
         throw 'Git runtime provenance is not approved.'
     }
     if ($ManifestOnly) {
         if ((Get-Arm64GitDirectoryManifestSha256 -Root $runtimeRoot) -cne
-            $script:arm64GitPin.RuntimeManifestSha256) {
+            $pin.RuntimeManifestSha256) {
             throw 'Git runtime provenance is not approved.'
         }
     }
     elseif ((Get-Arm64GitDirectoryTreeSha256 -Root $runtimeRoot) -cne
-        $script:arm64GitPin.RuntimeTreeSha256) {
+        $pin.RuntimeTreeSha256) {
         throw 'Git runtime provenance is not approved.'
     }
     $signatures = @(
@@ -279,7 +351,7 @@ function Assert-Arm64GitRuntimeIdentity {
                 $_.Status -ne [Management.Automation.SignatureStatus]::Valid -or
                 $null -eq $_.SignerCertificate -or
                 $_.SignerCertificate.Thumbprint.ToLowerInvariant() -cne
-                    $script:arm64GitPin.SignerThumbprint
+                    $pin.SignerThumbprint
             }).Count -ne 0) {
         throw 'Git runtime provenance is not approved.'
     }
@@ -371,8 +443,9 @@ function Open-Arm64GitRuntimeLocks {
         [StringComparer]::OrdinalIgnoreCase
     )
     [void]$paths.Add([IO.Path]::GetFullPath($Identity.ExecutablePath))
+    $pin = Resolve-Arm64GitRuntimePin -LauncherPath $Identity.ExecutablePath
     foreach ($file in Get-ChildItem `
-            -LiteralPath (Join-Path $Identity.Root 'mingw64\bin') `
+            -LiteralPath (Join-Path $Identity.Root $pin.RuntimeBinRelativePath) `
             -File `
             -Recurse `
             -Force) {
@@ -949,13 +1022,14 @@ function Get-Arm64ProtectedGitSourceBindings {
 
     $protectedPrefixes = @('.github/workflows/', '.github/scripts/', '.github/policies/')
     $directoryNamespaces = @('.github/workflows', '.github/scripts', '.github/policies')
+    $protectedRootFiles = @('.gitattributes', 'package-lock.json', 'package.json')
     $bindings = [Collections.Generic.List[object]]::new()
     foreach ($entry in Get-Arm64LocalGitTreeEntries `
             -RepositoryRoot $RepositoryRoot `
             -Revision $Revision) {
         $isProtected = @($protectedPrefixes | Where-Object {
                 $entry.path.StartsWith($_, [StringComparison]::Ordinal)
-            }).Count -gt 0
+            }).Count -gt 0 -or $protectedRootFiles -ccontains $entry.path
         if (-not $isProtected -and $directoryNamespaces -cnotcontains $entry.path) {
             continue
         }

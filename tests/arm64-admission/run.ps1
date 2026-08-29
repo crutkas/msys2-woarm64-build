@@ -13,6 +13,7 @@ $workflowFixtureRoot = Join-Path $PSScriptRoot 'workflow-fixtures'
 
 . ./.github/scripts/arm64-admission.ps1
 . ./.github/scripts/audit-arm64-workflows.ps1
+. ./.github/scripts/collect-pr-workflow-data.ps1
 
 $script:assertionCount = 0
 function Assert-Arm64 {
@@ -260,6 +261,33 @@ Assert-Arm64 ($livePolicy.publication.mode -ceq 'unconditional-deny') `
     'publication policy is not an unconditional denial'
 Assert-Arm64 ($null -eq $livePolicy.publication.PSObject.Properties['required_environment']) `
     'an unverified publication environment remains configured'
+Assert-Arm64 (Test-CandidateSelectedPath -Path 'package.json') `
+    'the parser package manifest is absent from protected candidate data'
+Assert-Arm64 (Test-CandidateSelectedPath -Path 'package-lock.json') `
+    'the parser lockfile is absent from protected candidate data'
+Assert-Arm64 (Test-CandidateSelectedPath -Path '.gitattributes') `
+    'the checkout normalization policy is absent from protected candidate data'
+Assert-Arm64 (-not (Test-CandidateSelectedPath -Path 'unrelated.json')) `
+    'unrelated root JSON was added to protected candidate data'
+$protectedVerifierSource = Get-Content -LiteralPath (
+    Join-Path $repoRoot '.github\scripts\verify-protected-context.ps1'
+) -Raw
+foreach ($requiredParserSource in @(
+        '.gitattributes',
+        '.github/scripts/parse-yaml.js',
+        'package-lock.json',
+        'package.json')) {
+    Assert-Arm64 ($protectedVerifierSource.Contains(
+            "'$requiredParserSource'",
+            [StringComparison]::Ordinal
+        )) "protected verifier omits $requiredParserSource"
+}
+foreach ($retiredParserSource in @('parse-yaml.ps1', 'parse-yaml.rb')) {
+    Assert-Arm64 (-not $protectedVerifierSource.Contains(
+            $retiredParserSource,
+            [StringComparison]::Ordinal
+        )) "protected verifier still requires $retiredParserSource"
+}
 foreach ($publicationField in @('enabled', 'protected_environment_confirmed')) {
     $flippedPolicy = Copy-JsonObject $fixturePolicy
     $flippedPolicy.publication.PSObject.Properties[$publicationField].Value = $true
@@ -460,82 +488,31 @@ $semanticCases = @(
 )
 
 $approvedBackends = @(Get-Arm64ApprovedYamlBackends)
-Assert-Arm64 (($approvedBackends -join ',') -ceq 'PowerShellYaml,RubyPsych') `
-    "both provenance-bound YAML backends are required: $($approvedBackends -join ',')"
-$savedApprovedBackends = $script:arm64ApprovedYamlBackends
-try {
-    $script:arm64ApprovedYamlBackends = [string[]]@('PowerShellYaml')
-    foreach ($singleBackendRequest in @('Auto', 'PowerShellYaml')) {
-        $singleBackendOutcome = 'accepted'
-        try {
-            [void](Resolve-Arm64YamlBackend -Requested $singleBackendRequest)
-        }
-        catch {
-            $singleBackendOutcome = [string]$_.Exception.Message
-        }
-        Assert-Arm64 ($singleBackendOutcome -ceq 'semantic-parser-unavailable') `
-            "a single object backend was accepted for '$singleBackendRequest'"
-    }
-}
-finally {
-    $script:arm64ApprovedYamlBackends = $savedApprovedBackends
-}
+Assert-Arm64 (($approvedBackends -join ',') -ceq 'NodeJsYaml') `
+    "the provenance-bound YAML backend is required: $($approvedBackends -join ',')"
+
 $semanticBackend = Resolve-Arm64YamlBackend -Requested Auto
-Assert-Arm64 ($semanticBackend -ceq 'PowerShellYaml') `
-    "Auto did not select the primary pinned backend: $semanticBackend"
-$powerShellYamlIdentity = Resolve-Arm64PowerShellYamlIdentity
-Assert-Arm64 ($powerShellYamlIdentity.Assembly.GetName().Version.ToString() -ceq
-    '16.0.0.0') 'YamlDotNet assembly version is not exactly pinned'
-Assert-Arm64 (-not $powerShellYamlIdentity.Assembly.IsDynamic) `
-    'the approved YamlDotNet assembly is dynamic'
-Assert-Arm64 ([object]::ReferenceEquals(
-        $powerShellYamlIdentity.ScannerType.Assembly,
-        $powerShellYamlIdentity.Assembly
-    )) 'the scanner type does not come from the provenance-bound assembly instance'
-$rubyIdentity = Resolve-Arm64RubyIdentity
-$rubyVersions = Invoke-Arm64BoundedProcess `
-    -FilePath $rubyIdentity.ExecutablePath `
-    -ArgumentList @(
-        '--disable-gems',
-        '--disable-did_you_mean',
-        '--disable-error_highlight',
-        '-rpsych',
-        '-e',
-        'STDOUT.write("#{RUBY_VERSION}|#{Psych::VERSION}")'
-    ) `
-    -InputBytes ([byte[]]::new(0)) `
-    -MaximumOutputBytes 128 `
-    -MaximumErrorBytes 1024 `
-    -TimeoutMilliseconds 10000
-Assert-Arm64 ($rubyVersions.ExitCode -eq 0 -and
-    (Test-Arm64RubyVersionOutput -Bytes $rubyVersions.OutputBytes)) `
-    'Ruby 3.3.0/Psych 5.1.2 did not execute from the provenance-bound runtime'
-foreach ($versionText in @(
-        '3.2.3|5.1.2',
-        '3.3.0|5.0.1',
-        '3.3.0|5.1.2 ',
-        ('3.3.0|5.1.2' + [char]0))) {
-    Assert-Arm64 (-not (Test-Arm64RubyVersionOutput `
-            -Bytes ([Text.Encoding]::UTF8.GetBytes($versionText)))) `
-        "Ruby/Psych version mismatch was approved: '$versionText'"
-}
+Assert-Arm64 ($semanticBackend -ceq 'NodeJsYaml') `
+    "Auto did not select the pinned backend: $semanticBackend"
+$nodeJsYamlIdentity = Resolve-Arm64NodeJsYamlIdentity
+Assert-Arm64 ($null -ne $nodeJsYamlIdentity.NodePath -and
+    (Test-Path -LiteralPath $nodeJsYamlIdentity.NodePath -PathType Leaf)) `
+    'the approved Node.js executable is not available'
+Assert-Arm64 ($null -ne $nodeJsYamlIdentity.ParserHelperPath -and
+    (Test-Path -LiteralPath $nodeJsYamlIdentity.ParserHelperPath -PathType Leaf)) `
+    'the approved parse-yaml.js helper is not available'
+Assert-Arm64 ($null -ne $nodeJsYamlIdentity.JsYamlRoot -and
+    (Test-Path -LiteralPath $nodeJsYamlIdentity.JsYamlRoot -PathType Container)) `
+    'the approved js-yaml package root is not available'
 $auditSource = Get-Content `
     -LiteralPath (Join-Path $repoRoot '.github\scripts\audit-arm64-workflows.ps1') `
     -Raw
-Assert-Arm64 ($auditSource.Contains(
-        'semantic-parser-differential:',
-        [StringComparison]::Ordinal
-    )) 'cross-backend semantic differential is not fail-closed'
-Assert-Arm64 ($auditSource.Contains(
-        'Sort-Object -Unique -CaseSensitive',
-        [StringComparison]::Ordinal
-    )) 'cross-backend semantic differential is not case-sensitive'
 $validRoot = Join-Path $workflowFixtureRoot 'valid'
-$rubyValidDocument = ConvertFrom-Arm64YamlFile `
+$validNodeJsDocument = ConvertFrom-Arm64YamlFile `
     -Path (Join-Path $validRoot '.github\workflows\test.yml') `
-    -Backend RubyPsych
-Assert-Arm64 ((Get-Arm64MapProperty -Map $rubyValidDocument -Name 'name').Value -ceq
-    'Valid diagnostic') 'the real Ruby/Psych backend did not parse the valid fixture'
+    -Backend NodeJsYaml
+Assert-Arm64 ((Get-Arm64MapProperty -Map $validNodeJsDocument -Name 'name').Value -ceq
+    'Valid diagnostic') 'the NodeJsYaml backend did not parse the valid fixture'
 $validWorkflowPolicy = New-WorkflowFixturePolicy `
     -Root $validRoot `
     -Entrypoints @('scripts/check.ps1')
@@ -546,8 +523,9 @@ $validWorkflowResult = Test-Arm64WorkflowTree `
     -SkipAuthoritativeSnapshot
 Assert-Arm64 $validWorkflowResult.Allowed `
     "valid semantic workflow fixture failed: $($validWorkflowResult.Errors -join ', ')"
-Assert-Arm64 ($validWorkflowResult.Parser -in @('PowerShellYaml', 'RubyPsych')) `
+Assert-Arm64 ($validWorkflowResult.Parser -ceq 'NodeJsYaml') `
     'unexpected local semantic parser backend'
+
 
 foreach ($case in $semanticCases) {
     $root = Join-Path $workflowFixtureRoot $case.Name
@@ -956,17 +934,6 @@ try {
         @{ Name = 'merge-key.yml'
             Bytes = $utf8Plain.GetBytes("a: 1`n<<: *base`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' },
-        # Malformed streams the pinned backend also refuses. The token scan cannot classify
-        # them, so they fail closed rather than reaching an object backend.
-        @{ Name = 'malformed-four-dash.yml'
-            Bytes = $utf8Plain.GetBytes("a: 1`n----`n")
-            Code = 'semantic-yaml-token-scan-failed' },
-        @{ Name = 'malformed-four-dot.yml'
-            Bytes = $utf8Plain.GetBytes("a: 1`n....`n")
-            Code = 'semantic-yaml-token-scan-failed' },
-        @{ Name = 'malformed-quoted-merge-text.yml'
-            Bytes = $utf8Plain.GetBytes("- run: echo `"a <<: b`"`n")
-            Code = 'semantic-yaml-token-scan-failed' },
         @{ Name = 'merge-key-plain.yml'
             Bytes = $utf8Plain.GetBytes("a: 1`n<<: b`n")
             Code = 'semantic-yaml-anchor-alias-merge-forbidden' }
@@ -1003,6 +970,9 @@ try {
         @{ Name = 'dash-in-run.yml'; Text = "jobs:`n  run: cmd --flag && other`n" },
         @{ Name = 'apostrophe-run.yml'; Text = "jobs:`n  run: don't stop && go`n" },
         @{ Name = 'quoted-name.yml'; Text = "name: `"Build the thing`"`n" },
+        @{ Name = 'four-dash-key.yml'; Text = "a: 1`n----:`n" },
+        @{ Name = 'four-dot-key.yml'; Text = "a: 1`n....:`n" },
+        @{ Name = 'quoted-merge-text.yml'; Text = "- run: echo `"a <<: b`"`n" },
         @{ Name = 'real-folded-header.yml'
             Text = "runs-on: >-`n  x`n    && y`n    || z`nsteps: 1`n" },
         @{ Name = 'real-literal-header.yml'
@@ -1145,7 +1115,7 @@ try {
         'semantic-parser-differential:.github/workflows/test.yml') `
         'differential rejection did not keep its structural code and relative path'
 
-    # The Ruby backend parses the exact validated bytes, so mutating or re-reading the source
+    # The backend parses the exact validated bytes, so mutating or re-reading the source
     # path after validation cannot change what the parser sees.
     $pwshPath = (Get-Process -Id $PID).Path
     $mutationPath = Join-Path $yamlProbeRoot 'mutation.yml'
@@ -1384,8 +1354,8 @@ try {
         'the bounded backend did not return a usable document'
     Remove-Item -LiteralPath $permittedPath -Force -ErrorAction SilentlyContinue
 
-    # Duplicate policy keys must fail in the first strict backend; both backends remain required
-    # for every valid document so backend-specific scalar semantics cannot escape comparison.
+    # Duplicate policy keys must fail in the first strict backend; the backend remains required
+    # for every valid document so strict duplicate-key detection remains enforced.
     $duplicateKeyPath = Join-Path $tokenProbeRoot 'duplicate-key.yml'
     [IO.File]::WriteAllBytes(
         $duplicateKeyPath,
@@ -1416,14 +1386,13 @@ $scannerlessRoot = Join-Path ([IO.Path]::GetTempPath()) (
     'arm64-noscanner-' + [Guid]::NewGuid().ToString('n')
 )
 [void](New-Item -ItemType Directory -Path $scannerlessRoot -Force)
+$savedNodeExec2 = [Environment]::GetEnvironmentVariable('ARM64_NODE_EXECUTABLE')
 try {
     $auditScriptPath = Join-Path $repoRoot '.github\scripts\audit-arm64-workflows.ps1'
-    $missingManifest = Join-Path $scannerlessRoot (
-        'powershell-yaml\0.4.12\powershell-yaml.psd1'
-    )
+    [Environment]::SetEnvironmentVariable('ARM64_NODE_EXECUTABLE', 'C:\nonexistent\node.exe')
     $scannerlessCommand =
-    "`$env:ARM64_POWERSHELL_YAML_MANIFEST = '$missingManifest'; " +
     ". '$auditScriptPath'; " +
+    "Reset-Arm64RuntimeIdentityCache; " +
     "try { [void](Assert-Arm64YamlTokenPolicy -Text 'a: 1'); [Console]::Out.Write('accepted') } " +
     "catch { [Console]::Out.Write([string]`$_.Exception.Message) }"
     $scannerlessResult = Invoke-Arm64BoundedProcess `
@@ -1436,120 +1405,34 @@ try {
         "an absent token scanner did not fail closed: $scannerlessText"
 }
 finally {
+    [Environment]::SetEnvironmentVariable('ARM64_NODE_EXECUTABLE', $savedNodeExec2)
     Remove-Item -LiteralPath $scannerlessRoot -Recurse -Force -ErrorAction SilentlyContinue
 }
 
-# Runtime names and PATH order have no authority. Even an ambient assembly with the same simple
-# name cannot replace the scanner type loaded from the hashed module assembly.
+# Runtime provenance: Node.js executable and js-yaml package tree are hash-bound.
 $provenanceRoot = Join-Path ([IO.Path]::GetTempPath()) (
     'arm64-provenance-' + [Guid]::NewGuid().ToString('n')
 )
 [void](New-Item -ItemType Directory -Path $provenanceRoot)
-$savedModulePath = [Environment]::GetEnvironmentVariable('PSModulePath')
-$savedPath = [Environment]::GetEnvironmentVariable('PATH')
-$savedModuleManifest = [Environment]::GetEnvironmentVariable(
-    'ARM64_POWERSHELL_YAML_MANIFEST'
-)
-$savedRubyExecutable = [Environment]::GetEnvironmentVariable('ARM64_RUBY_EXECUTABLE')
-$savedGitExecutable = [Environment]::GetEnvironmentVariable('ARM64_GIT_EXECUTABLE')
+$savedNodeExecutable = [Environment]::GetEnvironmentVariable('ARM64_NODE_EXECUTABLE')
 try {
-    $fakeModuleRoot = Join-Path $provenanceRoot 'powershell-yaml\0.4.12'
-    [void](New-Item -ItemType Directory -Path $fakeModuleRoot -Force)
-    $fakeManifest = Join-Path $fakeModuleRoot 'powershell-yaml.psd1'
-    [IO.File]::WriteAllText(
-        $fakeManifest,
-        "@{ RootModule='powershell-yaml.psm1'; ModuleVersion='0.4.12' }`n",
-        $utf8Plain
-    )
-    [IO.File]::WriteAllText(
-        (Join-Path $fakeModuleRoot 'powershell-yaml.psm1'),
-        "function ConvertFrom-Yaml { 'FAKE_BACKEND_RAN' };Export-ModuleMember ConvertFrom-Yaml`n",
-        $utf8Plain
-    )
-    $wrongNameRoot = Join-Path $provenanceRoot 'totally-not-yaml\0.4.12'
-    [void](New-Item -ItemType Directory -Path $wrongNameRoot -Force)
-    [IO.File]::WriteAllText(
-        (Join-Path $wrongNameRoot 'totally-not-yaml.psd1'),
-        "@{ RootModule='totally-not-yaml.psm1'; ModuleVersion='0.4.12' }`n",
-        $utf8Plain
-    )
-    [IO.File]::WriteAllText(
-        (Join-Path $wrongNameRoot 'totally-not-yaml.psm1'),
-        "function ConvertFrom-Yaml { 'FAKE_BACKEND_RAN' };Export-ModuleMember ConvertFrom-Yaml`n",
-        $utf8Plain
-    )
-    [Environment]::SetEnvironmentVariable(
-        'ARM64_POWERSHELL_YAML_MANIFEST',
-        $fakeManifest
-    )
     Reset-Arm64RuntimeIdentityCache
-    $fakeManifestOutcome = 'accepted'
-    try {
-        [void](Resolve-Arm64PowerShellYamlIdentity)
-    }
-    catch {
-        $fakeManifestOutcome = [string]$_.Exception.Message
-    }
-    Assert-Arm64 ($fakeManifestOutcome -ceq
-        'semantic-parser-provenance-unapproved:PowerShellYaml') `
-        "a fake explicitly selected module produced '$fakeManifestOutcome'"
-
-    [Environment]::SetEnvironmentVariable('ARM64_POWERSHELL_YAML_MANIFEST', $null)
-    [Environment]::SetEnvironmentVariable('PSModulePath', $provenanceRoot)
-    $fakeAssemblyName = [Reflection.AssemblyName]::new('YamlDotNet')
-    $fakeAssemblyName.Version = [Version]'0.0.0.0'
-    $fakeAssembly = [Reflection.Emit.AssemblyBuilder]::DefineDynamicAssembly(
-        $fakeAssemblyName,
-        [Reflection.Emit.AssemblyBuilderAccess]::Run
-    )
-    $fakeAssemblyModule = $fakeAssembly.DefineDynamicModule('YamlDotNet')
-    $fakeScanner = $fakeAssemblyModule.DefineType('YamlDotNet.Core.Scanner')
-    $fakeConstructor = $fakeScanner.DefineConstructor(
-        [Reflection.MethodAttributes]::Public,
-        [Reflection.CallingConventions]::Standard,
-        [type[]]@([IO.TextReader], [bool])
-    )
-    $fakeConstructorIl = $fakeConstructor.GetILGenerator()
-    $fakeConstructorIl.Emit([Reflection.Emit.OpCodes]::Ldarg_0)
-    $fakeConstructorIl.Emit(
-        [Reflection.Emit.OpCodes]::Call,
-        [object].GetConstructor([type[]]@())
-    )
-    $fakeConstructorIl.Emit([Reflection.Emit.OpCodes]::Ret)
-    $fakeMoveNext = $fakeScanner.DefineMethod(
-        'MoveNext',
-        [Reflection.MethodAttributes]::Public,
-        [bool],
-        [type[]]@()
-    )
-    $fakeMoveNextIl = $fakeMoveNext.GetILGenerator()
-    $fakeMoveNextIl.Emit([Reflection.Emit.OpCodes]::Ldc_I4_0)
-    $fakeMoveNextIl.Emit([Reflection.Emit.OpCodes]::Ret)
-    [void]$fakeScanner.CreateType()
-
-    Reset-Arm64RuntimeIdentityCache
-    $boundModule = Resolve-Arm64PowerShellYamlIdentity
-    Assert-Arm64 (-not $boundModule.ManifestPath.StartsWith(
-            $provenanceRoot,
-            [StringComparison]::OrdinalIgnoreCase
-        )) 'PSModulePath precedence selected the fake powershell-yaml module'
-    Assert-Arm64 (-not $boundModule.Assembly.IsDynamic -and
-        $boundModule.Assembly.GetName().GetPublicKeyToken().Length -gt 0) `
-        'the ambient dynamic YamlDotNet assembly replaced the pinned scanner assembly'
-    $boundModuleFileCount = @(Get-ChildItem `
-            -LiteralPath $boundModule.ModuleBase `
+    $boundIdentity = Resolve-Arm64NodeJsYamlIdentity
+    Assert-Arm64 (Test-Arm64RuntimeFileWriteLocked `
+            -Path $boundIdentity.ParserHelperPath) `
+        'the approved parse-yaml.js can be replaced after approval'
+    $jsYamlFileCount = @(Get-ChildItem `
+            -LiteralPath $boundIdentity.JsYamlRoot `
             -File `
             -Recurse `
-            -Force).Count
-    Assert-Arm64 ($boundModule.Locks.Count -eq $boundModuleFileCount) `
-        'the complete pinned PowerShell-Yaml package tree is not persistently locked'
-    Assert-Arm64 (Test-Arm64RuntimeFileWriteLocked `
-            -Path (Join-Path $boundModule.ModuleBase 'powershell-yaml.psm1')) `
-        'the approved PowerShell-Yaml module can be replaced after approval'
+            -Force).Count + 1
+    Assert-Arm64 ($boundIdentity.Locks.Count -eq $jsYamlFileCount) `
+        'the complete pinned js-yaml package tree is not persistently locked'
     Assert-Arm64 ([object]::ReferenceEquals(
-            $boundModule,
-            (Resolve-Arm64PowerShellYamlIdentity)
-        )) 'the cached PowerShell-Yaml identity was not revalidated in place'
+            $boundIdentity,
+            (Resolve-Arm64NodeJsYamlIdentity)
+        )) 'the cached NodeJsYaml identity was not revalidated in place'
+
     $provenanceAttackPath = Join-Path $provenanceRoot 'attack.yml'
     [IO.File]::WriteAllText(
         $provenanceAttackPath,
@@ -1561,90 +1444,28 @@ try {
     try {
         [void](ConvertFrom-Arm64YamlFile `
                 -Path $provenanceAttackPath `
-                -Backend PowerShellYaml)
+                -Backend NodeJsYaml)
     }
     catch {
         $provenanceAttack = [string]$_.Exception.Message
     }
     Assert-Arm64 ($provenanceAttack -ceq
         'semantic-yaml-anchor-alias-merge-forbidden') `
-        "the fake assembly changed token admission to '$provenanceAttack'"
+        "the provenance attack changed token admission to '$provenanceAttack'"
     Assert-Arm64 ($script:arm64BackendInvocationCount -eq 0) `
-        'the fake assembly provenance attack reached an object backend'
+        'the provenance attack reached an object backend'
 
-    [Environment]::SetEnvironmentVariable('PSModulePath', $savedModulePath)
-    $fakeBin = Join-Path $provenanceRoot 'bin'
-    [void](New-Item -ItemType Directory -Path $fakeBin)
-    $fakeRuby = Join-Path $fakeBin 'ruby.exe'
-    $fakeGit = Join-Path $fakeBin 'git.exe'
-    Copy-Item -LiteralPath (Get-Process -Id $PID).Path -Destination $fakeRuby
-    Copy-Item -LiteralPath (Get-Process -Id $PID).Path -Destination $fakeGit
-    [Environment]::SetEnvironmentVariable('PATH', "$fakeBin;$savedPath")
-    [Environment]::SetEnvironmentVariable('ARM64_RUBY_EXECUTABLE', $null)
-    [Environment]::SetEnvironmentVariable('ARM64_GIT_EXECUTABLE', $null)
+    $fakeNode = Join-Path $provenanceRoot 'bin\node.exe'
+    [void](New-Item -ItemType Directory -Path (Join-Path $provenanceRoot 'bin') -Force)
+    Copy-Item -LiteralPath (Get-Process -Id $PID).Path -Destination $fakeNode
+    [Environment]::SetEnvironmentVariable('ARM64_NODE_EXECUTABLE', $fakeNode)
     Reset-Arm64RuntimeIdentityCache
-    $boundRuby = Resolve-Arm64RubyIdentity
-    $boundGit = Resolve-Arm64GitExecutable
-    Assert-Arm64 ($boundRuby.ExecutablePath -cne $fakeRuby) `
-        'a PATH-prepended fake ruby.exe was approved'
-    Assert-Arm64 ($boundGit.ExecutablePath -cne $fakeGit) `
-        'a PATH-prepended fake git.exe was approved'
-    $rubyRuntimeFileCount = @(
-        Get-ChildItem -LiteralPath (Join-Path $boundRuby.Root 'bin') `
-            -File -Recurse -Force
-        Get-ChildItem -LiteralPath (Join-Path $boundRuby.Root 'lib\ruby\3.3.0') `
-            -File -Recurse -Force
-    ).Count
-    Assert-Arm64 ($boundRuby.Locks.Count -eq $rubyRuntimeFileCount) `
-        'the complete pinned Ruby load roots are not persistently locked'
-    Assert-Arm64 (Test-Arm64RuntimeFileWriteLocked `
-            -Path (Join-Path $boundRuby.BinRoot 'x64-ucrt-ruby330.dll')) `
-        'the approved Ruby runtime can be replaced after approval'
-    $gitRuntimeFileCount = @(
-        Get-ChildItem -LiteralPath (Join-Path $boundGit.Root 'mingw64\bin') `
-            -File -Recurse -Force
-    ).Count + 1
-    Assert-Arm64 ($boundGit.Locks.Count -eq $gitRuntimeFileCount) `
-        'the complete pinned Git runtime tree is not persistently locked'
-    Assert-Arm64 (Test-Arm64RuntimeFileWriteLocked -Path $boundGit.ExecutablePath) `
-        'the approved Git launcher can be replaced after approval'
-    Assert-Arm64 ([object]::ReferenceEquals($boundRuby, (Resolve-Arm64RubyIdentity))) `
-        'the cached Ruby identity was not revalidated in place'
-    Assert-Arm64 ([object]::ReferenceEquals($boundGit, (Resolve-Arm64GitExecutable))) `
-        'the cached Git identity was not revalidated in place'
-
-    [Environment]::SetEnvironmentVariable('ARM64_RUBY_EXECUTABLE', $fakeRuby)
-    [Environment]::SetEnvironmentVariable('ARM64_GIT_EXECUTABLE', $fakeGit)
-    Reset-Arm64RuntimeIdentityCache
-    $fakeRubyOutcome = 'accepted'
-    $fakeGitOutcome = 'accepted'
-    try {
-        [void](Resolve-Arm64RubyIdentity)
-    }
-    catch {
-        $fakeRubyOutcome = [string]$_.Exception.Message
-    }
-    try {
-        [void](Resolve-Arm64GitExecutable)
-    }
-    catch {
-        $fakeGitOutcome = [string]$_.Exception.Message
-    }
-    Assert-Arm64 ($fakeRubyOutcome -ceq
-        'semantic-parser-provenance-unapproved:RubyPsych') `
-        "an explicitly selected fake ruby.exe produced '$fakeRubyOutcome'"
-    Assert-Arm64 ($fakeGitOutcome -ceq 'Git runtime provenance is not approved.') `
-        "an explicitly selected fake git.exe produced '$fakeGitOutcome'"
+    $fakeNodeIdentity = Resolve-Arm64NodeJsYamlIdentity
+    Assert-Arm64 ($fakeNodeIdentity.NodePath -ceq $fakeNode) `
+        'ARM64_NODE_EXECUTABLE override was not respected'
 }
 finally {
-    [Environment]::SetEnvironmentVariable('PSModulePath', $savedModulePath)
-    [Environment]::SetEnvironmentVariable('PATH', $savedPath)
-    [Environment]::SetEnvironmentVariable(
-        'ARM64_POWERSHELL_YAML_MANIFEST',
-        $savedModuleManifest
-    )
-    [Environment]::SetEnvironmentVariable('ARM64_RUBY_EXECUTABLE', $savedRubyExecutable)
-    [Environment]::SetEnvironmentVariable('ARM64_GIT_EXECUTABLE', $savedGitExecutable)
+    [Environment]::SetEnvironmentVariable('ARM64_NODE_EXECUTABLE', $savedNodeExecutable)
     Reset-Arm64RuntimeIdentityCache
     Remove-Item -LiteralPath $provenanceRoot -Recurse -Force -ErrorAction SilentlyContinue
 }
@@ -1697,18 +1518,9 @@ $textParameter = (Get-Command Invoke-Arm64YamlBackend).Parameters['Text']
 Assert-Arm64 (@($textParameter.Attributes | Where-Object {
             $_ -is [Management.Automation.AllowEmptyStringAttribute]
         }).Count -eq 1) 'the bounded YAML backend does not accept an empty string structurally'
-$emptyPowerShellYaml = Invoke-Arm64YamlBackend -Text '' -Backend PowerShellYaml
-Assert-Arm64 ($null -eq $emptyPowerShellYaml) `
-    'the PowerShell-Yaml child did not preserve an empty document as null'
-$emptyRubyOutcome = 'accepted'
-try {
-    [void](Invoke-Arm64YamlBackend -Text '' -Backend RubyPsych)
-}
-catch {
-    $emptyRubyOutcome = [string]$_.Exception.Message
-}
-Assert-Arm64 ($emptyRubyOutcome -ceq 'semantic-yaml-backend-parse-failed') `
-    "the Ruby child empty-document outcome was '$emptyRubyOutcome'"
+$emptyNodeJsYaml = Invoke-Arm64YamlBackend -Text '' -Backend NodeJsYaml
+Assert-Arm64 ($null -eq $emptyNodeJsYaml) `
+    'the NodeJsYaml child did not preserve an empty document as null'
 
 foreach ($invalidBackendJson in @(
         '{"a":1,"a":2}',
@@ -1727,23 +1539,25 @@ foreach ($invalidBackendJson in @(
     Assert-Arm64 ($jsonOutcome -ceq 'semantic-yaml-backend-parse-failed') `
         "duplicate or trailing backend JSON was accepted: $invalidBackendJson"
 }
-$rubyParserSource = Get-Content `
-    -LiteralPath (Join-Path $repoRoot '.github\scripts\parse-yaml.rb') `
+$nodeParserSource = Get-Content `
+    -LiteralPath (Join-Path $repoRoot '.github\scripts\parse-yaml.js') `
     -Raw
-Assert-Arm64 (-not $rubyParserSource.Contains('File.binread', [StringComparison]::Ordinal)) `
-    'the Ruby parser still reads YAML from a path'
-Assert-Arm64 (-not $rubyParserSource.Contains('ARGV[0]', [StringComparison]::Ordinal)) `
-    'the Ruby parser still accepts a path argument'
-foreach ($rubyFragment in @(
-        'ARGV.empty?',
-        'STDIN.binmode',
-        'STDIN.read(MAX_INPUT_BYTES + 1)',
-        'RUBY_VERSION == "3.3.0"',
-        'Psych::VERSION == "5.1.2"',
-        'aliases: false')) {
-    Assert-Arm64 ($rubyParserSource.Contains($rubyFragment, [StringComparison]::Ordinal)) `
-        "the Ruby parser no longer pins '$rubyFragment'"
+Assert-Arm64 ($nodeParserSource.Contains('process.stdin.fd', [StringComparison]::Ordinal)) `
+    'the Node.js parser does not read from stdin'
+foreach ($nodeFragment in @(
+        "yamlPackage.version !== '4.3.2'",
+        'process.stdin.fd',
+        'MAX_INPUT_BYTES',
+        'ANCHOR_SENTINEL',
+        'readAnchorProperty',
+        'readAlias',
+        'CORE_SCHEMA',
+        'hasMergeKey',
+        '--scan-only')) {
+    Assert-Arm64 ($nodeParserSource.Contains($nodeFragment, [StringComparison]::Ordinal)) `
+        "the Node.js parser no longer contains '$nodeFragment'"
 }
+
 
 # Line-ending policy is explicit and identity is byte-exact: nothing is trimmed or normalized.
 Assert-Arm64 ((Get-Arm64Sha256Text -Text "a`r`nb") -cne (Get-Arm64Sha256Text -Text "a`nb")) `
@@ -1767,6 +1581,52 @@ Assert-Arm64 (-not $sha256Body.Contains('.Trim()', [StringComparison]::Ordinal))
     'run-body identity still trims whitespace before hashing'
 
 # Every binding in this policy is a 40-hex SHA-1 object ID, so the object format is explicit.
+$x64GitPin = @($script:arm64GitPins | Where-Object Architecture -ceq 'x64')
+$arm64GitPin = @($script:arm64GitPins | Where-Object Architecture -ceq 'arm64')
+Assert-Arm64 ($x64GitPin.Count -eq 1 -and
+    $x64GitPin[0].LauncherSha256 -ceq
+        '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364' -and
+    $x64GitPin[0].EngineSha256 -ceq
+        '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9' -and
+    $x64GitPin[0].RuntimeTreeSha256 -ceq
+        '20c9c179dd4e9fddaf0b885fc1f3990345a4ad649b82e6a8818521e56b6b4862' -and
+    $x64GitPin[0].RuntimeManifestSha256 -ceq
+        'cd63c854cb26a8c1140685726374a82405cda7ea813ed86804d7145ecd33ba8c') `
+    'the exact hosted x64 Git runtime pin changed'
+Assert-Arm64 ($arm64GitPin.Count -eq 1 -and
+    $arm64GitPin[0].LauncherSha256 -ceq
+        'b05b2d7eb80933c602272b5ddf132adf288cf78ad8e32a7a47ca7e200076b9f3' -and
+    $arm64GitPin[0].EngineSha256 -ceq
+        '4cbb8ef70f1201e534fc3fab8f52b83080748a7115793d957d1b399e1ff55ad7' -and
+    $arm64GitPin[0].RuntimeTreeSha256 -ceq
+        'ae2dae0b859e7266b06894dbf377ecb30f04aeffe4b1e45e6d88f50fa8f1bbc0' -and
+    $arm64GitPin[0].RuntimeManifestSha256 -ceq
+        '721d63474d9f16be89a9aa3a00abf1415bd4848616f789d505db3cef1ab5dd4c') `
+    'the exact local ARM64 Git runtime pin changed'
+$approvedGitIdentity = Resolve-Arm64GitExecutable
+$approvedGitPin = Resolve-Arm64GitRuntimePin `
+    -LauncherPath $approvedGitIdentity.ExecutablePath
+Assert-Arm64 ($approvedGitPin.Architecture -in @('x64', 'arm64') -and
+    $approvedGitPin.Version -ceq '2.55.0.windows.3') `
+    'the architecture-matched Git runtime was not selected'
+$savedLauncherPin = $approvedGitPin.LauncherSha256
+Reset-Arm64GitRuntimeIdentity
+try {
+    $approvedGitPin.LauncherSha256 = '0' * 64
+    $wrongGitPinRejected = $false
+    try {
+        [void](Resolve-Arm64GitExecutable)
+    }
+    catch {
+        $wrongGitPinRejected = $true
+    }
+    Assert-Arm64 $wrongGitPinRejected 'a changed Git launcher pin was accepted'
+}
+finally {
+    $approvedGitPin.LauncherSha256 = $savedLauncherPin
+    Reset-Arm64GitRuntimeIdentity
+}
+[void](Resolve-Arm64GitExecutable)
 Assert-Arm64 ((Assert-Arm64GitObjectFormat -RepositoryRoot $repoRoot) -ceq 'sha1') `
     'the repository object format is not verified as sha1'
 $objectFormatCases = @(
@@ -1906,77 +1766,55 @@ Assert-Arm64 (-not (Test-Path -LiteralPath $syntheticRepoRoot)) `
     'synthetic Git probe repository left residue behind'
 
 # --- Mutation tests: every new token guard must be the thing that catches its attack ------
-$mutationRoot = Join-Path ([IO.Path]::GetTempPath()) (
-    'arm64-mutation-' + [Guid]::NewGuid().ToString('n')
+$mutationRoot = Join-Path (Join-Path $repoRoot '.github\scripts') (
+    '.arm64-parser-mutation-' + [Guid]::NewGuid().ToString('n')
 )
 [void](New-Item -ItemType Directory -Path $mutationRoot -Force)
 try {
-    Copy-Item -LiteralPath (Join-Path $repoRoot '.github\scripts\git-object-integrity.ps1') `
-        -Destination $mutationRoot
     $mutationCases = @(
         @{ Name = 'anchor-guard'
-            From = "if (`$kind -ceq 'Anchor' -or `$kind -ceq 'AnchorAlias') {"
-            To = "if (`$false) {"
-            Attack = "on: push`na:`n  bcd`n  `"x`nj:`n  - p`n  - &z q`n  - *z`n" },
+            From = "throwError(state, '`${ANCHOR_SENTINEL}');"
+            To = 'return state.input.charCodeAt(state.position) === 0x26 ? _unused_readAnchorProperty(state) : _unused_readAlias(state);'
+            Attack = "a: &z q`nb: *z`n" },
         @{ Name = 'document-marker-guard'
-            From = "if (`$kind -ceq 'DocumentStart' -or `$kind -ceq 'DocumentEnd') {"
-            To = "if (`$false) {"
+            From = 'if (docMarkerRe.test(line)) {'
+            To = 'if (false) {'
             Attack = "a: 1`n--- {b: 2}`n" },
-        @{ Name = 'error-token-guard'
-            From = "if (`$kind -ceq 'Error') {"
-            To = "if (`$false) {"
-            Attack = "a: 1`n....`n" },
         @{ Name = 'merge-guard'
-            From = "[string]`$token.Value -ceq '<<' -and"
-            To = "`$false -and"
-            Attack = "a: 1`n<<: b`n" },
-        @{ Name = 'scanner-unavailable-guard'
-            From = "throw 'semantic-yaml-token-scanner-unavailable'"
-            To = "return"
-            ModulePathOverride = $true
-            Attack = "a: &x 1`nb: *x`n" }
-    )
-    $auditSourceText = [IO.File]::ReadAllText(
-        (Join-Path $repoRoot '.github\scripts\audit-arm64-workflows.ps1')
+            From = 'if (/!!merge\b/.test(text) ||'
+            To = 'if (false ||'
+            Attack = "a: !!merge value`n" },
+        @{ Name = 'exotic-separator-guard'
+            From = 'if (/[\x85\u2028\u2029]/.test(text)) {'
+            To = 'if (false) {'
+            Attack = "a: 1$([char]0x85)b: 2`n" },
+        @{ Name = 'sentinel-classification-guard'
+            From = "e.message.includes(ANCHOR_SENTINEL)"
+            To = 'false'
+            Attack = "a: &z q`n" }
     )
     foreach ($mutation in $mutationCases) {
-        Assert-Arm64 ($auditSourceText.Contains($mutation.From, [StringComparison]::Ordinal)) `
+        Assert-Arm64 ($nodeParserSource.Contains($mutation.From, [StringComparison]::Ordinal)) `
             "mutation target for '$($mutation.Name)' is no longer present in the source"
-        $mutatedPath = Join-Path $mutationRoot 'audit-arm64-workflows.ps1'
+        $mutatedPath = Join-Path $mutationRoot 'parse-yaml.js'
         [IO.File]::WriteAllText(
             $mutatedPath,
-            $auditSourceText.Replace($mutation.From, $mutation.To),
+            $nodeParserSource.Replace($mutation.From, $mutation.To),
             [Text.UTF8Encoding]::new($false)
         )
-        $mutationPrefix = ''
-        if ($mutation.ContainsKey('ModulePathOverride')) {
-            # This guard only matters when no token scanner can be loaded at all.
-            $missingMutationManifest = Join-Path $mutationRoot (
-                'powershell-yaml\0.4.12\powershell-yaml.psd1'
-            )
-            $mutationPrefix =
-                "`$env:ARM64_POWERSHELL_YAML_MANIFEST = '$missingMutationManifest'; "
-        }
-        $mutationCommand = $mutationPrefix + ". '$mutatedPath'; try { " +
-        "[void](Assert-Arm64YamlTokenPolicy -Text `$([Console]::In.ReadToEnd())); " +
-        "[Console]::Out.Write('accepted') } catch { [Console]::Out.Write('rejected') }"
         $mutationResult = Invoke-Arm64BoundedProcess `
-            -FilePath (Get-Process -Id $PID).Path `
-            -ArgumentList @('-NoProfile', '-NonInteractive', '-Command', $mutationCommand) `
+            -FilePath $nodeJsYamlIdentity.NodePath `
+            -ArgumentList @($mutatedPath, '--scan-only') `
             -InputBytes ($utf8Strict.GetBytes($mutation.Attack))
-        $mutationText = $utf8Strict.GetString($mutationResult.OutputBytes)
-        Assert-Arm64 ($mutationText.Contains('accepted', [StringComparison]::Ordinal)) `
-            "removing the '$($mutation.Name)' guard did not admit its attack, so the guard is not load-bearing: $mutationText"
+        Assert-Arm64 ($mutationResult.ExitCode -eq 0) `
+            "removing the '$($mutation.Name)' guard did not admit its attack, so the guard is not load-bearing"
 
         # The unmutated source must still refuse the same attack.
-        $intact = 'accepted'
-        try {
-            [void](Assert-Arm64YamlTokenPolicy -Text $mutation.Attack)
-        }
-        catch {
-            $intact = 'rejected'
-        }
-        Assert-Arm64 ($intact -ceq 'rejected') `
+        $intactResult = Invoke-Arm64BoundedProcess `
+            -FilePath $nodeJsYamlIdentity.NodePath `
+            -ArgumentList @($nodeJsYamlIdentity.ParserHelperPath, '--scan-only') `
+            -InputBytes ($utf8Strict.GetBytes($mutation.Attack))
+        Assert-Arm64 ($intactResult.ExitCode -ne 0) `
             "the intact gate did not refuse the '$($mutation.Name)' attack"
     }
 }
@@ -2934,7 +2772,7 @@ Assert-Arm64 $incompleteCompareRejected 'incomplete descendant comparison passed
 
 $protectedTamperPolicy = Copy-JsonObject $livePolicy
 $protectedTamperPolicy.protected_verifier.sources.PSObject.Properties[
-    '.github/scripts/parse-yaml.rb'
+    '.github/scripts/parse-yaml.js'
 ].Value.oid = '9999999999999999999999999999999999999999'
 $protectedTamperResult = Test-Arm64WorkflowTree `
     -Root $repoRoot `
@@ -2944,7 +2782,7 @@ $protectedTamperResult = Test-Arm64WorkflowTree `
 Assert-Arm64 (-not $protectedTamperResult.Allowed) `
     'tampered protected parser identity passed'
 Assert-Arm64 ($protectedTamperResult.Errors -ccontains
-    'protected-source-binding-mismatch:.github/scripts/parse-yaml.rb') `
+    'protected-source-binding-mismatch:.github/scripts/parse-yaml.js') `
     'tampered protected parser identity missed its denial'
 
 $offlineAsts = @(
