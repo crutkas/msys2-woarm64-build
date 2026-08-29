@@ -173,15 +173,46 @@ package recipes repository is already cloned in the parent folder of this reposi
 it must be executed from `MSYS` environment.
 
 In case one would like to build all the native toolchain packages locally, there is
-a `build-native.sh` script. It expects that the
+a `build-native-with-native.sh` script. It expects that the
 [Windows-on-ARM-Experiments/MINGW-packages](https://github.com/Windows-on-ARM-Experiments/MINGW-packages)
 package recipes repositories is already cloned in the parent folder of this repository's folder and
-it must be executed from `MINGWARM64` environment.
+it must be executed from `MINGWARM64` environment. Set `MINGW_PACKAGES_ROOT` to use an isolated
+checkout elsewhere.
 
-Until the `MINGWARM64` environment will be available in the upstream MSYS2 installation, one can
-patch the MSYS2 installation to add the `MINGWARM64` environment using
+This is a mixed bootstrap, not an all-native build claim. Stage-0 Bash, Pacman, Autotools, and
+other MSYS orchestration tools are AMD64 binaries running under emulation. Tool executables
+downloaded from the `woarm64-native` and `CLANGARM64` repositories are copied native ARM64 inputs
+until the corresponding package has been rebuilt from source.
+
+Shell tools must receive POSIX paths such as `/c/work/src`; native MinGW tools such as
+`mingw32-make.exe` and `gcc.exe` must receive Windows paths such as `C:/work/src`. Build-driver
+code must use the shared
+`.github/scripts/lib/path-boundary.sh` helpers instead of open-coding path replacements:
+
+```bash
+source .github/scripts/lib/path-boundary.sh
+source_for_shell=$(to_msys_path "$source_path")
+source_for_native_tool=$(to_native_path "$source_path")
+```
+
+Until the `MINGWARM64` environment is available in the upstream MSYS2 installation, one can
+configure the modular MSYS2 environment using
 [`.github/scripts/setup-mingwarm64.sh`](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/scripts/setup-mingwarm64.sh)
 script.
+
+Run the focused portable-bootstrap regression tests from the same MSYS2 root with native
+CLANGARM64 Make installed:
+
+```bash
+./tests/bootstrap/run.sh
+```
+
+After native ARM64 GCC is installed, validate the PE compiler boundary, Windows argument quoting,
+redirected diagnostics, environment selection, and exit-code propagation:
+
+```bash
+./tests/bootstrap/run-native-launcher.sh
+```
 
 ## MingGW Cross-Compilation Toolchain CI
 

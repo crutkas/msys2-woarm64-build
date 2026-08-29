@@ -1,0 +1,7 @@
+export MSYSTEM="${MSYSTEM:-MSYS}"
+
+if [ -e "/etc/msystem.d/${MSYSTEM}" ]; then
+    source "/etc/msystem.d/${MSYSTEM}"
+else
+    source "/etc/msystem.d/MSYS"
+fi
