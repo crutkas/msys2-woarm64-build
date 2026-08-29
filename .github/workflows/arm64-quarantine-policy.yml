@@ -79,9 +79,17 @@ jobs:
               throw 'Isolated Git-for-Windows destination already exists.'
           }
 
-          & $assetPath /VERYSILENT /NORESTART /SUPPRESSMSGBOXES /SP- /NOICONS /CURRENTUSER "/DIR=$gitRoot"
-          if ($LASTEXITCODE -ne 0) {
-              throw "Git-for-Windows installer exited with code $LASTEXITCODE."
+          $installer = Start-Process -FilePath $assetPath -ArgumentList @(
+              '/VERYSILENT',
+              '/NORESTART',
+              '/SUPPRESSMSGBOXES',
+              '/SP-',
+              '/NOICONS',
+              '/CURRENTUSER',
+              "/DIR=$gitRoot"
+          ) -Wait -PassThru
+          if ($installer.ExitCode -ne 0) {
+              throw "Git-for-Windows installer exited with code $($installer.ExitCode)."
           }
           $launcherPath = Join-Path $gitRoot 'cmd\git.exe'
           $enginePath = Join-Path $gitRoot 'mingw64\bin\git.exe'
