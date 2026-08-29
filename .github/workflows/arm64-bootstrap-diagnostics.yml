@@ -55,10 +55,10 @@ jobs:
           $installer = Start-Process -FilePath $assetPath -ArgumentList @(
               '/VERYSILENT',
               '/NORESTART',
+              '/NOCANCEL',
               '/SUPPRESSMSGBOXES',
               '/SP-',
               '/NOICONS',
-              '/CURRENTUSER',
               "/DIR=$gitRoot"
           ) -Wait -PassThru
           if ($installer.ExitCode -ne 0) {
