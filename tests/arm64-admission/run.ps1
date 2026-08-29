@@ -490,6 +490,14 @@ $semanticCases = @(
 $approvedBackends = @(Get-Arm64ApprovedYamlBackends)
 Assert-Arm64 (($approvedBackends -join ',') -ceq 'NodeJsYaml') `
     "the provenance-bound YAML backend is required: $($approvedBackends -join ',')"
+Assert-Arm64 ($script:arm64NodeJsYamlPin.JsYamlVersion -ceq '4.3.2') `
+    'the exact js-yaml version pin changed'
+Assert-Arm64 ($script:arm64NodeJsYamlPin.JsYamlTreeSha256 -ceq
+    '52f686857d8b8f34e72345871765b4b1bae2afc7bc59bd57c02724a8faf49e0d') `
+    'the exact js-yaml package tree pin changed'
+Assert-Arm64 ($script:arm64NodeJsYamlPin.ParserHelperSha256 -ceq
+    '20a20b14a71f86949e16b35185e8df9f6c22db56d92f567485057dddc8ac4272') `
+    'the exact YAML parser helper pin changed'
 
 $semanticBackend = Resolve-Arm64YamlBackend -Requested Auto
 Assert-Arm64 ($semanticBackend -ceq 'NodeJsYaml') `
@@ -1589,9 +1597,9 @@ Assert-Arm64 ($x64GitPin.Count -eq 1 -and
     $x64GitPin[0].EngineSha256 -ceq
         '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9' -and
     $x64GitPin[0].RuntimeTreeSha256 -ceq
-        '20c9c179dd4e9fddaf0b885fc1f3990345a4ad649b82e6a8818521e56b6b4862' -and
+        '2eb72e40c3c41bc81189978a1f57de026966465ae94dfe91035494806be45d09' -and
     $x64GitPin[0].RuntimeManifestSha256 -ceq
-        'cd63c854cb26a8c1140685726374a82405cda7ea813ed86804d7145ecd33ba8c') `
+        '31b6158cc71e3078f97fa2ba0d1700f354bd9dafd9c2c9983fd6eff73c6ffde6') `
     'the exact hosted x64 Git runtime pin changed'
 Assert-Arm64 ($arm64GitPin.Count -eq 1 -and
     $arm64GitPin[0].LauncherSha256 -ceq

@@ -13,9 +13,9 @@ $script:arm64GitPins = @(
         RuntimeBinRelativePath = 'mingw64\bin'
         LauncherSha256 = '7b7971dd13f0c3a284e538601f2f9770b3a87dfaccb5fb52d68141c67ed22364'
         EngineSha256 = '1a0043555d254618f2d56c936c3d9a1fbfb878bc878416a133c346bc7835eda9'
-        RuntimeTreeSha256 = '20c9c179dd4e9fddaf0b885fc1f3990345a4ad649b82e6a8818521e56b6b4862'
+        RuntimeTreeSha256 = '2eb72e40c3c41bc81189978a1f57de026966465ae94dfe91035494806be45d09'
         RuntimeManifestSha256 =
-            'cd63c854cb26a8c1140685726374a82405cda7ea813ed86804d7145ecd33ba8c'
+            '31b6158cc71e3078f97fa2ba0d1700f354bd9dafd9c2c9983fd6eff73c6ffde6'
         SignerThumbprint = '3e9627155b7a6f29856321ee56d7fc25cf808407'
     },
     [pscustomobject][ordered]@{

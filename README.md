@@ -105,12 +105,13 @@ Run the deterministic tests with the repository's existing PowerShell runtime:
 
 The test host must provide an architecture-matched Git for Windows 2.55.0.windows.3 runtime
 and Node.js (any recent version) with `npm ci` run in the repository root to install
-js-yaml 4.3.2. The diagnostic workflow downloads the immutable release's x64 installer from
-`git-for-windows/git`, verifies asset SHA-256
-`af12577d0fdff74243a5988197aa49b957d5044edc17004f6ddf0768996f1dca` and signer thumbprint
-`3e9627155b7a6f29856321ee56d7fc25cf808407` before execution, and installs it under
-`RUNNER_TEMP`. It then verifies the pinned launcher, engine, version, signatures, and complete
-runtime tree before the harness uses it. ARM64 hosts may instead extract
+js-yaml 4.3.2. The diagnostic workflow downloads the immutable release's x64 tarball from
+`git-for-windows/git`, verifies the x64 tarball SHA-256
+`4ee071816e424f928f493c4b42e5486d05344a371665c82f1802ebcecaa1d19a`, rejects unsafe archive
+paths, and extracts it under `RUNNER_TEMP` with Windows System32 `bsdtar`. It then verifies the
+pinned launcher, engine, version, signatures (signer thumbprint
+`3e9627155b7a6f29856321ee56d7fc25cf808407`), and complete runtime tree before the harness uses
+it. ARM64 hosts may instead extract
 `Git-2.55.0.3-arm64.tar.bz2` (SHA-256
 `ff753aa49b9baeafda33470128ee799b19e48b06736d3c555585bc926dc13b2d`) into an isolated root;
 the harness separately pins its AA64 launcher, engine, and `clangarm64/bin` tree. Set
