@@ -220,6 +220,21 @@ redirected diagnostics, environment selection, and exit-code propagation:
 ./tests/bootstrap/run-native-launcher.sh
 ```
 
+Native MinGW builds whose recipe roots leave less than 160 characters below the legacy Win32 path
+boundary use a temporary native drive alias. This keeps deep libtool archive members addressable
+without changing package sources or disabling parallel builds. Validate the failing long-path
+control, native ARM64 archive member table, fixed extraction, parallel alias acquisition, signal and
+failure cleanup with:
+
+```bash
+./tests/bootstrap/run-native-libtool-archive.sh
+```
+
+The helper skips pre-existing aliases and removes only an alias that still resolves to its exact
+recipe root. Success, command failure, child crash, and `HUP`/`INT`/`TERM` clean up automatically.
+A non-trappable host or helper crash can leave an alias; later builds skip it rather than reclaiming
+an unverified mapping.
+
 ## MingGW Cross-Compilation Toolchain CI
 
 The [mingw-cross-toolchain.yml](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/workflows/mingw-cross-toolchain.yml)

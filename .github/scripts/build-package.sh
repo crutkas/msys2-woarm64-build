@@ -3,6 +3,7 @@
 source "$(dirname "${BASH_SOURCE[0]}")/../../config.sh"
 source "$(dirname "${BASH_SOURCE[0]}")/lib/stage0-git.sh"
 source "$(dirname "${BASH_SOURCE[0]}")/lib/native-tooling.sh"
+source "$(dirname "${BASH_SOURCE[0]}")/lib/native-recipe-root.sh"
 
 PACKAGE_REPOSITORY=$1
 
@@ -30,7 +31,23 @@ fi
 
 echo "::group::Build package"
     if [[ "$PACKAGE_REPOSITORY" == *MINGW* ]]; then
-        makepkg-mingw $ARGUMENTS
+        USE_SHORT_NATIVE_RECIPE_ROOT=0
+        if [[ "$FLAVOR" == "NATIVE_WITH_NATIVE" ]]; then
+            if native_recipe_root_needs_alias; then
+                USE_SHORT_NATIVE_RECIPE_ROOT=1
+            else
+                ALIAS_STATUS=$?
+                if [[ $ALIAS_STATUS -ne 1 ]]; then
+                    exit "$ALIAS_STATUS"
+                fi
+            fi
+        fi
+
+        if [[ $USE_SHORT_NATIVE_RECIPE_ROOT -eq 1 ]]; then
+            with_short_native_recipe_root makepkg-mingw $ARGUMENTS
+        else
+            makepkg-mingw $ARGUMENTS
+        fi
     else
         makepkg $ARGUMENTS
     fi
