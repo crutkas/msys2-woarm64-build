@@ -54,13 +54,18 @@ jobs:
             exit 1
           fi
 
-          mapfile -t shell_scripts < <(
+          shell_discovery=''
+          if ! shell_discovery=$(
             find . -path ./.git -prune -o -type f -name '*.sh' -print
-          )
-          if (( ${#shell_scripts[@]} == 0 )); then
+          ); then
+            echo 'Shell test discovery failed.' >&2
+            exit 1
+          fi
+          if [[ -z "$shell_discovery" ]]; then
             echo 'Shell test discovery returned zero scripts.' >&2
             exit 1
           fi
+          mapfile -t shell_scripts <<< "$shell_discovery"
           syntax_failures=0
           for script in "${shell_scripts[@]}"; do
             if ! bash -n "$script"; then
@@ -74,10 +79,18 @@ jobs:
             exit 1
           fi
 
-          mapfile -t boundary_suites < <(
+          boundary_discovery=''
+          if ! boundary_discovery=$(
             find tests/bootstrap -maxdepth 1 -type f \
               -name 'run-native-boundary.sh' -print
-          )
+          ); then
+            echo 'Host-independent boundary suite discovery failed.' >&2
+            exit 1
+          fi
+          boundary_suites=()
+          if [[ -n "$boundary_discovery" ]]; then
+            mapfile -t boundary_suites <<< "$boundary_discovery"
+          fi
           if (( ${#boundary_suites[@]} != 1 )); then
             printf 'Expected exactly one host-independent boundary suite; discovered %s.\n' \
               "${#boundary_suites[@]}" >&2
