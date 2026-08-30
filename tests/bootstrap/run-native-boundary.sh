@@ -416,9 +416,30 @@ mkdir -p "$residue_root/mingwarm64/lib"
 printf 'libdir=/mingwarm64/lib\n' > "$residue_root/mingwarm64/lib/clean.la"
 assert_ok 'a clean staged tree passes the residue scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
+
+# gettext bakes its homepage and bug-report URLs into staged artifacts. An
+# unanchored "<letter>:/" match finds "p:/" inside "http://" and "s:/" inside
+# "https://", so both of those candidate drives would fail a perfectly good
+# build. Keep these before the positive case so a regression cannot hide.
+printf 'PACKAGE_URL="https://www.gnu.org/software/gettext/"\n' \
+  > "$residue_root/mingwarm64/lib/urls.la"
+printf 'PACKAGE_BUGREPORT="http://example.invalid/bugs"\n' \
+  >> "$residue_root/mingwarm64/lib/urls.la"
+assert_ok 'an https URL does not look like alias residue on drive s' \
+  assert_no_native_recipe_alias_residue s "$residue_root"
+assert_ok 'an http URL does not look like alias residue on drive p' \
+  assert_no_native_recipe_alias_residue p "$residue_root"
+
 printf "libdir='W:/src/build/.libs'\n" > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'alias residue in staged output fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'libdir=W:\\src\\build\\.libs\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'backslash alias residue in staged output fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'W:/src/build/.libs\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'alias residue at the start of a line fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+rm -f "$residue_root/mingwarm64/lib/dirty.la"
 assert_ok 'a residue scan of a missing tree is a no-op' \
   assert_no_native_recipe_alias_residue w "$root/residue/absent"
 

@@ -177,6 +177,7 @@ assert_no_native_recipe_alias_residue() {
   local drive_letter=$1
   local root=$2
   local -a matches=()
+  local pattern
 
   if [[ -z "$drive_letter" || -z "$root" ]]; then
     echo "assert_no_native_recipe_alias_residue requires a drive letter and a root" >&2
@@ -190,8 +191,14 @@ assert_no_native_recipe_alias_residue() {
     return 0
   fi
 
+  # The drive letter must not be preceded by another letter. An unanchored
+  # "<letter>:/" matches inside ordinary URLs, and both collisions land on
+  # candidate drives: "http://" contains "p:/" and "https://" contains "s:/".
+  # gettext bakes its homepage and bug-report URLs into staged artifacts, so the
+  # unanchored form would fail exactly the build this alias exists to enable.
+  pattern="(^|[^A-Za-z])${drive_letter}:[/\\\\]"
   mapfile -t matches < <(
-    grep -r -l -a -i -e "${drive_letter}:/" -e "${drive_letter}:\\\\" -- "$root" 2>/dev/null
+    grep -r -l -a -i -E -e "$pattern" -- "$root" 2>/dev/null
   )
   if [[ ${#matches[@]} -gt 0 ]]; then
     echo "Native recipe alias ${drive_letter^^}: leaked into staged build output:" >&2
