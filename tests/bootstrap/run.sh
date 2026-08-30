@@ -96,10 +96,21 @@ assert_equal "$before_wrapper" \
   'setup does not patch makepkg-mingw'
 
 fixture_gcc_native=$(to_native_path "$fixture_root/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe")
-unset CC CXX
+unset CC CXX AR AS DLLTOOL LD NM OBJCOPY OBJDUMP RANLIB RC STRIP WINDRES
 source "$fixture_root/etc/makepkg_mingw.d/mingwarm64.conf"
 assert_equal "$fixture_gcc_native" "$CC" \
   'makepkg config preserves the native compiler launcher path'
+
+# Every binutils tool must be an absolute native path. Leaving them unset turned
+# each one into a bare-name PATH lookup that an emulated AMD64 tool could win.
+for tool_assignment in AR=ar AS=as DLLTOOL=dlltool LD=ld NM=nm OBJCOPY=objcopy \
+    OBJDUMP=objdump RANLIB=ranlib RC=windres STRIP=strip WINDRES=windres; do
+  tool_variable=${tool_assignment%%=*}
+  tool_name=${tool_assignment#*=}
+  assert_equal "$(to_native_path "/mingwarm64/bin/$tool_name.exe")" \
+    "${!tool_variable}" \
+    "makepkg config pins $tool_variable to an absolute native ARM64 tool"
+done
 assert_file_contains "$fixture_root/etc/msystem.d/MINGWARM64" "MSYSTEM_PREFIX='/mingwarm64'"
 if [[ ! -x "$fixture_root/usr/local/libexec/msys2-woarm64/woarm64-gcc" ]]; then
   echo "Assertion failed: native compiler boundary is not executable" >&2

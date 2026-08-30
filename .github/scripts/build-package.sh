@@ -9,6 +9,16 @@ PACKAGE_REPOSITORY=$1
 
 configure_stage0_git
 if [[ "$FLAVOR" == "NATIVE_WITH_NATIVE" ]]; then
+    # The MSYS2 runtime rewrites POSIX-looking arguments on the way into a
+    # native PE. Exclude exactly the forms native-compiler.sh converts itself,
+    # so the payload dialects have one explicit, testable owner instead of an
+    # unauditable heuristic.
+    export MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL"
+
+    echo "::group::Verify native ARM64 tool closure"
+        verify_native_tool_closure
+    echo "::endgroup::"
+
     ensure_native_compiler_launchers
 fi
 
@@ -52,6 +62,14 @@ echo "::group::Build package"
         makepkg $ARGUMENTS
     fi
 echo "::endgroup::"
+
+# The alias drive letter is whichever candidate happened to be free, so any path
+# recorded under it is both dangling and irreproducible across runs.
+if [[ -n "$WOARM64_LAST_RECIPE_ALIAS_LETTER" ]]; then
+    echo "::group::Scan staged output for native recipe alias residue"
+        assert_no_native_recipe_alias_residue "$WOARM64_LAST_RECIPE_ALIAS_LETTER" "$PWD/pkg"
+    echo "::endgroup::"
+fi
 
 if command -v ccache &> /dev/null; then
     echo "::group::Ccache statistics after build"

@@ -45,8 +45,12 @@ chmod 0755 "$fake_compiler"
 ensure_native_compiler_launchers
 launcher=/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe
 [[ -x "$launcher" ]]
+assert_native_arm64_pe "$launcher" 'installed native compiler launcher'
+grep -Fq 'launcher-identity-v2' \
+  /usr/local/libexec/msys2-woarm64/native-compiler-launcher.identity
 
-export MSYS2_ARG_CONV_EXCL='*'
+# Production runs under the pinned policy, not with conversion switched off.
+export MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL"
 export WOARM64_NATIVE_COMPILER="$fake_compiler"
 export WOARM64_LAUNCHER_CAPTURE="$capture"
 export WOARM64_NATIVE_COMPILER_NAME=woarm64-g++
@@ -85,5 +89,54 @@ if [[ $launcher_status -ne 37 ]]; then
   echo "Launcher did not preserve compiler exit code 37: $launcher_status" >&2
   exit 1
 fi
+unset WOARM64_FAKE_COMPILER_STATUS
+
+# The payload dialects have to survive the real MSYS2 -> native PE boundary
+# identically under the production policy and with the runtime heuristic fully
+# enabled. Anything that depends on which of the two is active would be a latent
+# gettext link failure.
+payload_root="$temporary_root/payload"
+mkdir -p "$payload_root/.libs"
+printf 'archive\n' > "$payload_root/.libs/libgettextlib.a"
+payload_native=$(to_native_path "$payload_root")
+
+collect_payload_arguments() {
+  local excl_mode=$1
+  shift
+
+  if [[ "$excl_mode" == "policy" ]]; then
+    MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL" "$launcher" "$@" >/dev/null 2>&1
+  else
+    env -u MSYS2_ARG_CONV_EXCL "$launcher" "$@" >/dev/null 2>&1
+  fi
+  grep '^arg=' "$capture"
+}
+
+payload_arguments=(
+  "-Wl,--out-implib,$payload_root/.libs/libgettextlib.a"
+  "-Wl,--whole-archive"
+  "-Wl,--wrap,malloc"
+  "-Xlinker" "--out-implib" "-Xlinker" "$payload_root/.libs/libgettextlib.a"
+  "-Wp,-MD,$payload_root/.libs/scratch.d"
+  "-Wa,-I,$payload_root/.libs"
+  "-specs=$payload_root/native.specs"
+)
+
+policy_capture=$(collect_payload_arguments policy "${payload_arguments[@]}")
+converted_capture=$(collect_payload_arguments converted "${payload_arguments[@]}")
+
+if [[ "$policy_capture" != "$converted_capture" ]]; then
+  echo "Payload conversion differs between the production policy and full runtime conversion" >&2
+  printf 'policy:\n%s\nconverted:\n%s\n' "$policy_capture" "$converted_capture" >&2
+  exit 1
+fi
+grep -Fx "arg=-Wl,--out-implib,$payload_native/.libs/libgettextlib.a" \
+  <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wl,--whole-archive" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wl,--wrap,malloc" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=$payload_native/.libs/libgettextlib.a" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wp,-MD,$payload_native/.libs/scratch.d" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wa,-I,$payload_native/.libs" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-specs=$payload_native/native.specs" <<< "$policy_capture" >/dev/null
 
 echo "native compiler launcher tests passed"

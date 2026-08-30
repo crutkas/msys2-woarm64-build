@@ -220,6 +220,64 @@ redirected diagnostics, environment selection, and exit-code propagation:
 ./tests/bootstrap/run-native-launcher.sh
 ```
 
+The identity, cleanup and argument-conversion rules do not need an ARM64 toolchain. They are covered
+by a suite that builds synthetic PE fixtures and needs only Bash, coreutils and `subst`, so it runs
+on any Windows host:
+
+```bash
+./tests/bootstrap/run-native-boundary.sh
+```
+
+### Native tool closure
+
+`NATIVE_WITH_NATIVE` pins every build tool to an absolute path in
+`/etc/makepkg_mingw.d/mingwarm64.conf`: `CC` and `CXX` point at the private launchers, and `AR`,
+`AS`, `DLLTOOL`, `LD`, `NM`, `OBJCOPY`, `OBJDUMP`, `RANLIB`, `RC`, `STRIP` and `WINDRES` point into
+`/mingwarm64/bin`. Nothing in this lane reaches a build tool through a `PATH` search.
+
+Before a package builds, `build-package.sh` verifies that closure. Each tool must exist, must be a
+pure ARM64 image, and must report a version, and the bare name must resolve on `PATH` to the same
+file. Architecture is decided by reading `IMAGE_FILE_HEADER.Machine` out of the PE itself and
+requiring exactly `0xAA64`. `0xA641` (ARM64EC) and `0xA64E` (ARM64X) are rejected by name: both carry
+x86-64 ABI code, and both are described as "ARM64" by tools that print a human-readable summary. The
+SHA-256 and version of every tool is recorded; set `WOARM64_TOOL_MANIFEST` to also write that record
+to a file.
+
+### Private launcher identity
+
+The `woarm64-gcc.exe` and `woarm64-g++.exe` launchers are built locally from
+`native-compiler-launcher.c` by the native compiler, which means the native assembler and linker
+produce their bytes. Their cache is therefore keyed on the launcher source **and** on the digests of
+the native compiler and the whole tool closure. Replacing binutils changes the key even though the
+`.c` file is untouched, so a launcher emitted by a superseded or revoked toolchain can never survive
+the replacement. The stamp is written to `native-compiler-launcher.identity` and carries a
+`launcher-identity-v2` prefix, so a stamp written by the earlier source-only scheme never matches.
+
+Rebuilds take a `mkdir` lock, re-check the identity under it, delete the stamp before touching any
+image, install each launcher through a staged rename that retries while the old image is still
+mapped, verify the installed images are pure ARM64, and only then write the stamp. An interrupted
+rebuild leaves an obviously invalid cache rather than launchers that silently disagree with it.
+
+### Argument conversion policy
+
+The launchers are native executables, so the MSYS2 runtime rewrites POSIX-looking arguments before
+they arrive. That heuristic does not understand the comma payloads of `-Wl,`, `-Wp,` and `-Wa,`, the
+two-argument `-Xlinker` form, `-specs=`, or the contents of an `@response` file, which are exactly
+the forms libtool emits for gettext. `build-package.sh` therefore exports
+
+```
+MSYS2_ARG_CONV_EXCL='-Wl,;-Xlinker;-Wp,;-Wa,;-specs=;@'
+```
+
+and `native-compiler.sh` converts those forms itself from an explicit allow-list of path-bearing
+options. Flags, symbol names and numeric values are passed through untouched, so
+`-Wl,--whole-archive`, `-Wl,--wrap,malloc` and `-Wl,--exclude-libs,ALL` survive intact. Every
+conversion is idempotent, so the boundary produces the same result whether or not the runtime
+converted an argument first; both suites assert that equivalence directly.
+
+A response file whose quoting cannot be round-tripped exactly is passed through unmodified rather
+than rewritten, and any rewritten copy is removed after the compiler exits.
+
 Native MinGW builds whose recipe roots leave less than 160 characters below the legacy Win32 path
 boundary use a temporary native drive alias. This keeps deep libtool archive members addressable
 without changing package sources or disabling parallel builds. Validate the failing long-path
@@ -232,8 +290,32 @@ failure cleanup with:
 
 The helper skips pre-existing aliases and removes only an alias that still resolves to its exact
 recipe root. Success, command failure, child crash, and `HUP`/`INT`/`TERM` clean up automatically.
-A non-trappable host or helper crash can leave an alias; later builds skip it rather than reclaiming
-an unverified mapping.
+Every failure path, including an alias that stops resolving to its recipe root and a run that finds
+no free drive letter, releases alias ownership and restores the caller's traps before returning, so a
+failure cannot silently strand a mapped drive and exhaust the candidate letters. A non-trappable host
+or helper crash can still leave an alias; later builds skip it rather than reclaiming an unverified
+mapping.
+
+Because the alias drive letter is whichever candidate happened to be free, any absolute path recorded
+under it is both dangling and irreproducible. After an aliased build, `build-package.sh` scans the
+staged `pkg` tree for that drive letter and fails the build if it finds any, which can be overridden
+with `WOARM64_SKIP_ALIAS_RESIDUE_SCAN=1` when a match is understood to be spurious.
+
+Note that the helper restores a caller's `EXIT` trap by re-installing it. If the helper is called
+inside a `( )` subshell, that makes an otherwise dormant inherited `EXIT` trap active for the
+remainder of the subshell.
+
+### Continuous integration
+
+The ARM64 admission policy is deny-by-default over `.github/workflows`:
+`audit-arm64-workflows.ps1` rejects any workflow that is not already a key of `active_workflows`, and
+rejects a candidate `arm64-quarantine-policy.json` that is not byte-identical to the protected base
+copy. A new workflow, an edit to an existing one, or a policy edit would fail the `arm64-governance`
+required check. The boundary job is therefore staged as
+[`.github/historical-workflows/native-boundary-tests.yml.disabled`](.github/historical-workflows/native-boundary-tests.yml.disabled),
+which the auditor does not scan. That file documents the exact `active_workflows` delta needed to
+activate it as a separately reviewed protected-base change.
+
 
 ## MingGW Cross-Compilation Toolchain CI
 

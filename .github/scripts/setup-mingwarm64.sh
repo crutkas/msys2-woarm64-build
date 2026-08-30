@@ -111,6 +111,25 @@ if [[ "$FLAVOR" == "NATIVE_WITH_NATIVE" ]]; then
   GXX_LAUNCHER_NATIVE="$(to_native_path "$MSYS2_ROOT_PREFIX/usr/local/libexec/msys2-woarm64/woarm64-g++.exe")"
   printf -v GCC_LAUNCHER_SHELL '%q' "$GCC_LAUNCHER_NATIVE"
   printf -v GXX_LAUNCHER_SHELL '%q' "$GXX_LAUNCHER_NATIVE"
+
+  # Pin the whole native tool closure to absolute paths. Leaving these unset
+  # made every binutils tool a bare-name PATH lookup, which is how an emulated
+  # AMD64 strip or objdump can reach an ARM64 package. Identity of the pinned
+  # binaries is verified separately, in build-package.sh, because the toolchain
+  # is not installed yet when this configuration is written.
+  NATIVE_TOOL_BIN="${WOARM64_NATIVE_BIN:-/mingwarm64/bin}"
+  NATIVE_TOOL_LINES=
+  for TOOL_ASSIGNMENT in AR=ar AS=as DLLTOOL=dlltool LD=ld NM=nm \
+      OBJCOPY=objcopy OBJDUMP=objdump RANLIB=ranlib RC=windres STRIP=strip \
+      WINDRES=windres; do
+    TOOL_VARIABLE="${TOOL_ASSIGNMENT%%=*}"
+    TOOL_NAME="${TOOL_ASSIGNMENT#*=}"
+    printf -v TOOL_SHELL '%q' \
+      "$(to_native_path "$NATIVE_TOOL_BIN/$TOOL_NAME.exe")"
+    NATIVE_TOOL_LINES+="$TOOL_VARIABLE=$TOOL_SHELL"$'\n'
+  done
+  NATIVE_TOOL_LINES="${NATIVE_TOOL_LINES%$'\n'}"
+
   write_managed_file "$MSYS2_ROOT_PREFIX/etc/makepkg_mingw.d/mingwarm64.conf" <<EOF
 CARCH="aarch64"
 CHOST="aarch64-w64-mingw32"
@@ -119,6 +138,7 @@ MINGW_PREFIX="/mingwarm64"
 MINGW_PACKAGE_PREFIX="mingw-w64-aarch64"
 CC=$GCC_LAUNCHER_SHELL
 CXX=$GXX_LAUNCHER_SHELL
+$NATIVE_TOOL_LINES
 CPPFLAGS=
 CFLAGS="-march=armv8-a -mtune=generic -O2 -pipe -Wp,-D_FORTIFY_SOURCE=2 -fstack-protector-strong -Wp,-D__USE_MINGW_ANSI_STDIO=1"
 CXXFLAGS="\$CFLAGS -static-libstdc++"

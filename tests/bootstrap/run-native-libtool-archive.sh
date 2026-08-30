@@ -6,6 +6,7 @@ export PATH="/usr/bin:/bin:/mingwarm64/bin${PATH:+:$PATH}"
 repo_root=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")
 source "$repo_root/.github/scripts/lib/path-boundary.sh"
 source "$repo_root/.github/scripts/lib/native-recipe-root.sh"
+source "$repo_root/tests/bootstrap/lib/native-fixtures.sh"
 
 native_ar=/mingwarm64/bin/ar.exe
 if [[ ! -x "$native_ar" ]]; then
@@ -37,7 +38,7 @@ trap cleanup_test_root EXIT
 recipe_root="$temporary_root/mingw-w64-gettext"
 while :; do
   recipe_root_native=$(to_native_path "$recipe_root")
-  if (( ${#recipe_root_native} + 160 > 259 )); then
+  if (( ${#recipe_root_native} + WOARM64_NATIVE_RECIPE_PATH_RESERVE_DEFAULT > 259 )); then
     break
   fi
   recipe_root="${recipe_root}x"
@@ -252,21 +253,68 @@ printf 'cwd=%s\n' "$(cygpath -am .)" > "$DRIVER_CAPTURE"
 printf 'arg=%s\n' "$@" >> "$DRIVER_CAPTURE"
 EOF
 chmod +x "$fake_bin/ccache" "$fake_bin/makepkg-mingw"
+
+# The driver now gates on the pinned tool closure and on a launcher whose cache
+# identity covers that closure. Give it synthetic ARM64 fixtures so this test
+# keeps exercising the alias plumbing rather than the host toolchain.
+driver_tool_bin="$temporary_root/driver-bin"
+driver_launcher_dir="$temporary_root/driver-libexec"
+driver_fake_compiler="$temporary_root/driver-gcc"
+driver_compiler_calls="$temporary_root/driver-gcc.calls"
+make_native_tool_fixtures "$driver_tool_bin" aa64
+mkdir -p "$driver_launcher_dir"
+cp -f "$repo_root/.github/scripts/lib/native-compiler-launcher.c" \
+  "$driver_launcher_dir/native-compiler-launcher.c"
+make_fake_launcher_compiler "$driver_fake_compiler" "$driver_compiler_calls"
+
+driver_environment=(
+  PATH="$driver_tool_bin:$fake_bin:$PATH"
+  DRIVER_CAPTURE="$driver_capture"
+  FLAVOR=NATIVE_WITH_NATIVE
+  CLEAN_BUILD=1
+  INSTALL_PACKAGE=1
+  WOARM64_SUBST_DRIVES=Z
+  WOARM64_NATIVE_BIN="$driver_tool_bin"
+  WOARM64_TOOL_VERSION_PROBE=0
+  WOARM64_LAUNCHER_INSTALL_DIR="$driver_launcher_dir"
+  WOARM64_NATIVE_LAUNCHER_COMPILER="$driver_fake_compiler"
+  WOARM64_FAKE_COMPILER_COUNTER="$driver_compiler_calls"
+)
+
 (
   cd "$recipe_root"
-  PATH="$fake_bin:$PATH" \
-    DRIVER_CAPTURE="$driver_capture" \
-    FLAVOR=NATIVE_WITH_NATIVE \
-    CLEAN_BUILD=1 \
-    INSTALL_PACKAGE=1 \
-    WOARM64_SUBST_DRIVES=Z \
-    "$repo_root/.github/scripts/build-package.sh" MINGW
+  env "${driver_environment[@]}" "$repo_root/.github/scripts/build-package.sh" MINGW
 )
 grep -Fx 'cwd=Z:/' "$driver_capture" >/dev/null
 grep -Fx 'arg=--cleanbuild' "$driver_capture" >/dev/null
 grep -Fx 'arg=--install' "$driver_capture" >/dev/null
 if [[ -e /z ]]; then
   echo "Native package driver did not remove its recipe alias" >&2
+  exit 1
+fi
+if [[ ! -x "$driver_launcher_dir/woarm64-gcc.exe" ]]; then
+  echo "Native package driver did not provision its compiler launchers" >&2
+  exit 1
+fi
+
+# Alias residue in staged output has to fail the driver: the drive letter is
+# whichever candidate was free, so the recorded path is irreproducible.
+mkdir -p "$recipe_root/pkg/mingwarm64/lib"
+printf "libdir='Z:/src/build/.libs'\n" > "$recipe_root/pkg/mingwarm64/lib/leak.la"
+set +e
+(
+  cd "$recipe_root"
+  env "${driver_environment[@]}" "$repo_root/.github/scripts/build-package.sh" MINGW
+) >/dev/null 2>&1
+residue_status=$?
+set -e
+if [[ $residue_status -eq 0 ]]; then
+  echo "Native package driver accepted staged output containing alias residue" >&2
+  exit 1
+fi
+rm -rf "$recipe_root/pkg"
+if [[ -e /z ]]; then
+  echo "Native package driver did not remove its recipe alias after residue detection" >&2
   exit 1
 fi
 
