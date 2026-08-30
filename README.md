@@ -307,14 +307,77 @@ remainder of the subshell.
 
 ### Continuous integration
 
-The ARM64 admission policy is deny-by-default over `.github/workflows`:
-`audit-arm64-workflows.ps1` rejects any workflow that is not already a key of `active_workflows`, and
-rejects a candidate `arm64-quarantine-policy.json` that is not byte-identical to the protected base
-copy. A new workflow, an edit to an existing one, or a policy edit would fail the `arm64-governance`
-required check. The boundary job is therefore staged as
-[`.github/historical-workflows/native-boundary-tests.yml.disabled`](.github/historical-workflows/native-boundary-tests.yml.disabled),
-which the auditor does not scan. That file documents the exact `active_workflows` delta needed to
-activate it as a separately reviewed protected-base change.
+The boundary job below is documented here rather than committed as a file, because both plausible
+locations are gated:
+
+* `.github/workflows` is deny-by-default. `audit-arm64-workflows.ps1` enumerates that directory and
+  rejects any workflow that is not already a key of `active_workflows`, and it rejects a candidate
+  `arm64-quarantine-policy.json` that is not byte-identical to the protected base copy. Its
+  `allowed_shells` is `pwsh` only. A new workflow, an edit to an existing one, or a policy edit would
+  each fail the `arm64-governance` required check.
+* `.github/historical-workflows` is size-checked. `tests/arm64-admission/run.ps1` asserts that
+  directory holds exactly the five archived operational workflows, so a staged sixth file fails the
+  untrusted diagnostics job.
+
+Activating this job is therefore a separately reviewed protected-base change. It needs the file
+below written to `.github/workflows/native-boundary-tests.yml`, plus an `active_workflows` entry
+keyed `".github/workflows/native-boundary-tests.yml"` with `authority: untrusted-diagnostic`, the
+blob binding (`path`, `raw_path_utf8_base64`, `mode` `100644`, `object_type` `blob`, `byte_length`,
+`oid`) of the written file as `source`, `allowed_events: ["pull_request"]`, `allowed_shells:
+["bash"]`, `allowed_local_shell_entrypoints: ["tests/bootstrap/run-native-boundary.sh"]`,
+`allowed_local_shell_sources` carrying that script's blob binding, and
+`allowed_inline_shell_sha256` carrying the digests of the two inline `run` blocks. Every other
+`active_workflows` entry must be left untouched so the existing required check keeps its bindings.
+
+```yaml
+name: Native toolchain boundary tests
+
+on:
+  pull_request:
+    paths:
+      - ".github/scripts/build-package.sh"
+      - ".github/scripts/setup-mingwarm64.sh"
+      - ".github/scripts/lib/**"
+      - "build-native-with-native.sh"
+      - "config.sh"
+      - "tests/bootstrap/**"
+
+permissions:
+  contents: read
+
+jobs:
+  boundary:
+    name: Diagnostic only - never admission
+    runs-on: windows-latest
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: Check shell syntax
+        shell: bash
+        run: |
+          set -euo pipefail
+          status=0
+          while IFS= read -r script; do
+            if ! bash -n "$script"; then
+              echo "Syntax error in $script" >&2
+              status=1
+            fi
+          done < <(find . -path ./.git -prune -o -name '*.sh' -print)
+          exit "$status"
+
+      - name: Run native boundary regressions
+        shell: bash
+        run: ./tests/bootstrap/run-native-boundary.sh
+```
+
+The suite it runs needs only Bash, coreutils and the Windows `subst` command, so it gives real
+coverage of the identity, cleanup and argument conversion rules on an AMD64 runner while an admitted
+ARM64 binutils release does not exist yet. It never builds a package and never consumes a toolchain
+artifact.
 
 
 ## MingGW Cross-Compilation Toolchain CI
