@@ -2303,7 +2303,7 @@ $activeWorkflowNames = @(Get-ChildItem (Join-Path $repoRoot '.github\workflows')
         ForEach-Object { $_.Name } |
         Sort-Object)
 Assert-Arm64 (($activeWorkflowNames -join ',') -ceq
-    'arm64-bootstrap-diagnostics.yml,arm64-quarantine-policy.yml') `
+    'arm64-bootstrap-diagnostics.yml,arm64-quarantine-policy.yml,native-boundary-tests.yml') `
     "unexpected active workflow set: $($activeWorkflowNames -join ', ')"
 
 $protectedWorkflow = ConvertFrom-Arm64YamlFile `
@@ -2346,8 +2346,176 @@ $bootstrapEvents = @(Get-Arm64MapNames `
     -Map (Get-Arm64MapProperty -Map $bootstrapWorkflow -Name 'on').Value)
 Assert-Arm64 (($bootstrapEvents -join ',') -ceq 'pull_request') `
     'bootstrap diagnostic has a non-PR trigger'
+$nativeWorkflowPath = Join-Path $repoRoot '.github\workflows\native-boundary-tests.yml'
+$nativeWorkflow = ConvertFrom-Arm64YamlFile `
+    -Path $nativeWorkflowPath `
+    -Backend $semanticBackend
+$nativeEvents = @(Get-Arm64MapNames `
+    -Map (Get-Arm64MapProperty -Map $nativeWorkflow -Name 'on').Value)
+Assert-Arm64 (($nativeEvents -join ',') -ceq 'pull_request') `
+    'native boundary diagnostic has a non-PR trigger'
+$nativeBoundaryJob = (Get-Arm64MapProperty `
+        -Map (Get-Arm64MapProperty -Map $nativeWorkflow -Name 'jobs').Value `
+        -Name 'boundary').Value
+Assert-Arm64 ((Get-Arm64MapProperty -Map $nativeBoundaryJob -Name 'name').Value -ceq
+    'PRE-BINUTILS / DIAGNOSTIC - never admission (${{ matrix.runner }})') `
+    'native boundary job does not carry the exact diagnostic classification'
+Assert-Arm64 ((Get-Arm64MapProperty -Map $nativeBoundaryJob -Name 'runs-on').Value -ceq
+    '${{ matrix.runner }}') 'native boundary job bypasses its reviewed runner matrix'
+$nativeRunnerMatrix = @((Get-Arm64MapProperty `
+            -Map (Get-Arm64MapProperty `
+                -Map (Get-Arm64MapProperty -Map $nativeBoundaryJob -Name 'strategy').Value `
+                -Name 'matrix').Value `
+            -Name 'runner').Value)
+Assert-Arm64 (($nativeRunnerMatrix -join ',') -ceq 'windows-latest,windows-11-arm') `
+    "native boundary runner matrix changed: $($nativeRunnerMatrix -join ', ')"
+$nativeSteps = @((Get-Arm64MapProperty -Map $nativeBoundaryJob -Name 'steps').Value)
+$nativeCheckoutSteps = @($nativeSteps | Where-Object {
+        $usesProperty = Get-Arm64MapProperty -Map $_ -Name 'uses'
+        $null -ne $usesProperty -and
+        $usesProperty.Value -ceq
+            'actions/checkout@11d5960a326750d5838078e36cf38b85af677262'
+    })
+Assert-Arm64 ($nativeCheckoutSteps.Count -eq 1) `
+    'native boundary diagnostic lacks its single reviewed checkout pin'
+$nativeRunBodies = @($nativeSteps | ForEach-Object {
+        $runProperty = Get-Arm64MapProperty -Map $_ -Name 'run'
+        if ($null -ne $runProperty) {
+            [string]$runProperty.Value
+        }
+    })
+Assert-Arm64 ($nativeRunBodies.Count -eq 2) `
+    'native boundary diagnostic does not have exactly two governed run blocks'
+$hostIndependentRun = @($nativeRunBodies | Where-Object {
+        $_.Contains(
+            'suite_output=$(./tests/bootstrap/run-native-boundary.sh 2>&1)',
+            [StringComparison]::Ordinal
+        )
+    })
+Assert-Arm64 ($hostIndependentRun.Count -eq 1) `
+    'native boundary diagnostic does not invoke the real host-independent suite exactly once'
+Assert-Arm64 ($hostIndependentRun[0].Contains(
+        "check_count == 0 || failure_count != 0",
+        [StringComparison]::Ordinal
+    )) 'native boundary diagnostic does not fail closed on zero checks or failures'
+$nativeGateRun = @($nativeRunBodies | Where-Object {
+        $_.Contains('status=NOT-RUN', [StringComparison]::Ordinal)
+    })
+Assert-Arm64 ($nativeGateRun.Count -eq 1) `
+    'native boundary diagnostic lacks its real ARM64 NOT-RUN gate'
+foreach ($blockedSuite in @(
+        'tests/bootstrap/run-native-launcher.sh',
+        'tests/bootstrap/run-native-libtool-archive.sh')) {
+    Assert-Arm64 ($nativeGateRun[0].Contains($blockedSuite, [StringComparison]::Ordinal)) `
+        "native boundary NOT-RUN gate omits $blockedSuite"
+}
+$nativeWorkflowText = Get-Content -LiteralPath $nativeWorkflowPath -Raw
+foreach ($forbiddenText in @(
+        'actions/upload-artifact',
+        'actions/download-artifact',
+        'build-native-with-native.sh ',
+        'mingw-w64-gettext')) {
+    Assert-Arm64 (-not $nativeWorkflowText.Contains(
+            $forbiddenText,
+            [StringComparison]::OrdinalIgnoreCase
+        )) "native boundary diagnostic contains forbidden production input: $forbiddenText"
+}
+
+$nativeWorkflowRule = $livePolicy.active_workflows.PSObject.Properties[
+    '.github/workflows/native-boundary-tests.yml'
+].Value
+Assert-Arm64 ($null -ne $nativeWorkflowRule) `
+    'native boundary workflow is active but absent from policy'
+Assert-Arm64 ($nativeWorkflowRule.authority -ceq 'untrusted-diagnostic') `
+    'native boundary workflow gained admission authority'
+Assert-Arm64 (($nativeWorkflowRule.allowed_events -join ',') -ceq 'pull_request') `
+    'native boundary workflow policy admits a non-PR event'
+Assert-Arm64 (($nativeWorkflowRule.allowed_shells -join ',') -ceq 'bash') `
+    'native boundary workflow policy admits an unexpected shell'
+Assert-Arm64 (@($nativeWorkflowRule.allowed_local_shell_entrypoints).Count -eq 0) `
+    'native boundary workflow policy delegates to an unparsed shell entrypoint'
+$nativeWorkflowIdentity = Get-Arm64FileBlobIdentity -Path $nativeWorkflowPath
+$nativeWorkflowBinding = New-Arm64SourceBinding `
+    -Path '.github/workflows/native-boundary-tests.yml' `
+    -Mode '100644' `
+    -ObjectType 'blob' `
+    -ByteLength $nativeWorkflowIdentity.byte_length `
+    -Oid $nativeWorkflowIdentity.oid
+Assert-Arm64 (Test-Arm64SourceBindingEqual `
+        -Expected $nativeWorkflowRule.source `
+        -Actual $nativeWorkflowBinding) 'native boundary workflow policy binding is stale'
+$expectedNativeInlineHashes = @($nativeRunBodies | ForEach-Object {
+        Get-Arm64Sha256Text -Text $_
+    } | Sort-Object)
+$actualNativeInlineHashes = @(
+    $nativeWorkflowRule.allowed_inline_shell_sha256 | Sort-Object
+)
+Assert-Arm64 (($expectedNativeInlineHashes -join ',') -ceq
+    ($actualNativeInlineHashes -join ',')) `
+    'native boundary workflow run blocks are not exactly hash-governed'
+
+$workflowMutationRoot = Join-Path ([IO.Path]::GetTempPath()) "native-workflow-mutation-$PID"
+try {
+    if (Test-Path -LiteralPath $workflowMutationRoot) {
+        Remove-Item -LiteralPath $workflowMutationRoot -Recurse -Force
+    }
+    [void](New-Item -ItemType Directory -Path $workflowMutationRoot)
+    Copy-Item `
+        -LiteralPath (Join-Path $repoRoot '.github') `
+        -Destination (Join-Path $workflowMutationRoot '.github') `
+        -Recurse
+    foreach ($rootFile in @('.gitattributes', 'package.json', 'package-lock.json')) {
+        Copy-Item `
+            -LiteralPath (Join-Path $repoRoot $rootFile) `
+            -Destination (Join-Path $workflowMutationRoot $rootFile)
+    }
+    $mutationTestRoot = Join-Path $workflowMutationRoot 'tests\arm64-admission'
+    [void](New-Item -ItemType Directory -Path $mutationTestRoot -Force)
+    Copy-Item `
+        -LiteralPath (Join-Path $repoRoot 'tests\arm64-admission\run.ps1') `
+        -Destination (Join-Path $mutationTestRoot 'run.ps1')
+    $mutatedWorkflowPath = Join-Path (
+        Join-Path $workflowMutationRoot '.github\workflows'
+    ) 'native-boundary-tests.yml'
+    $invocationTarget = 'suite_output=$(./tests/bootstrap/run-native-boundary.sh 2>&1)'
+    foreach ($invocationMutation in @(
+            'suite_output=$(./tests/bootstrap/run.sh 2>&1)',
+            "suite_output='0 checks, 0 failures'")) {
+        $mutatedWorkflowText = $nativeWorkflowText.Replace(
+            $invocationTarget,
+            $invocationMutation
+        )
+        Assert-Arm64 ($mutatedWorkflowText -cne $nativeWorkflowText) `
+            'native boundary invocation mutation target disappeared'
+        [IO.File]::WriteAllText(
+            $mutatedWorkflowPath,
+            $mutatedWorkflowText,
+            [Text.UTF8Encoding]::new($false)
+        )
+        $mutationResult = Test-Arm64WorkflowTree `
+            -Root $workflowMutationRoot `
+            -Policy $livePolicy `
+            -Backend $semanticBackend `
+            -SkipAuthoritativeSnapshot
+        Assert-Arm64 (-not $mutationResult.Allowed) `
+            "native boundary invocation mutation passed policy: $invocationMutation"
+        Assert-Arm64 (@($mutationResult.Errors | Where-Object {
+                    $_.StartsWith(
+                        'inline-shell-not-allowlisted:.github/workflows/native-boundary-tests.yml:',
+                        [StringComparison]::Ordinal
+                    )
+                }).Count -gt 0) `
+            "native boundary invocation mutation missed its exact run-block denial: $invocationMutation"
+    }
+}
+finally {
+    if (Test-Path -LiteralPath $workflowMutationRoot) {
+        Remove-Item -LiteralPath $workflowMutationRoot -Recurse -Force
+    }
+}
+
 $activeJobNames = @(
-    foreach ($workflow in @($protectedWorkflow, $bootstrapWorkflow)) {
+    foreach ($workflow in @($protectedWorkflow, $bootstrapWorkflow, $nativeWorkflow)) {
         $jobs = (Get-Arm64MapProperty -Map $workflow -Name 'jobs').Value
         foreach ($jobKey in Get-Arm64MapNames -Map $jobs) {
             $job = (Get-Arm64MapProperty -Map $jobs -Name $jobKey).Value

@@ -1,0 +1,168 @@
+name: PRE-BINUTILS / DIAGNOSTIC - Native gettext boundary
+
+on:
+  pull_request:
+    paths:
+      - ".github/policies/arm64-quarantine-policy.json"
+      - ".github/scripts/build-package.sh"
+      - ".github/scripts/setup-mingwarm64.sh"
+      - ".github/scripts/lib/**"
+      - ".github/workflows/native-boundary-tests.yml"
+      - "build-native-with-native.sh"
+      - "config.sh"
+      - "tests/arm64-admission/run.ps1"
+      - "tests/bootstrap/**"
+
+permissions:
+  contents: read
+
+jobs:
+  boundary:
+    name: PRE-BINUTILS / DIAGNOSTIC - never admission (${{ matrix.runner }})
+    runs-on: ${{ matrix.runner }}
+    timeout-minutes: 20
+    strategy:
+      fail-fast: false
+      matrix:
+        runner:
+          - windows-latest
+          - windows-11-arm
+    steps:
+      - name: Checkout pull request head
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          persist-credentials: false
+
+      - name: Run counted host-independent boundary regressions
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          required_tools=(
+            bash cygpath find grep head mktemp od realpath sed sha256sum subst.exe wc
+          )
+          missing_tools=()
+          for tool in "${required_tools[@]}"; do
+            if ! command -v "$tool" >/dev/null 2>&1; then
+              missing_tools+=("$tool")
+            fi
+          done
+          if (( ${#missing_tools[@]} != 0 )); then
+            printf 'Missing required host-independent test tools: %s\n' \
+              "${missing_tools[*]}" >&2
+            exit 1
+          fi
+
+          mapfile -t shell_scripts < <(
+            find . -path ./.git -prune -o -type f -name '*.sh' -print
+          )
+          if (( ${#shell_scripts[@]} == 0 )); then
+            echo 'Shell test discovery returned zero scripts.' >&2
+            exit 1
+          fi
+          syntax_failures=0
+          for script in "${shell_scripts[@]}"; do
+            if ! bash -n "$script"; then
+              printf 'Syntax error in %s\n' "$script" >&2
+              syntax_failures=$((syntax_failures + 1))
+            fi
+          done
+          printf 'Shell syntax discovery: %s scripts, %s failures\n' \
+            "${#shell_scripts[@]}" "$syntax_failures"
+          if (( syntax_failures != 0 )); then
+            exit 1
+          fi
+
+          mapfile -t boundary_suites < <(
+            find tests/bootstrap -maxdepth 1 -type f \
+              -name 'run-native-boundary.sh' -print
+          )
+          if (( ${#boundary_suites[@]} != 1 )); then
+            printf 'Expected exactly one host-independent boundary suite; discovered %s.\n' \
+              "${#boundary_suites[@]}" >&2
+            exit 1
+          fi
+          if [[ "${boundary_suites[0]}" != 'tests/bootstrap/run-native-boundary.sh' ||
+              ! -x ./tests/bootstrap/run-native-boundary.sh ]]; then
+            printf 'Boundary suite discovery returned an unexpected or non-executable path: %s\n' \
+              "${boundary_suites[0]}" >&2
+            exit 1
+          fi
+
+          set +e
+          suite_output=$(./tests/bootstrap/run-native-boundary.sh 2>&1)
+          suite_status=$?
+          set -e
+          printf '%s\n' "$suite_output"
+          if (( suite_status != 0 )); then
+            printf 'Host-independent boundary suite exited with status %s.\n' \
+              "$suite_status" >&2
+            exit "$suite_status"
+          fi
+
+          mapfile -t count_lines < <(
+            grep -E '^[0-9]+ checks, [0-9]+ failures$' <<< "$suite_output"
+          )
+          if (( ${#count_lines[@]} != 1 )); then
+            printf 'Expected one boundary count line; found %s.\n' \
+              "${#count_lines[@]}" >&2
+            exit 1
+          fi
+          if [[ ! "${count_lines[0]}" =~ ^([0-9]+)\ checks,\ ([0-9]+)\ failures$ ]]; then
+            echo 'Boundary count line is malformed.' >&2
+            exit 1
+          fi
+          check_count=${BASH_REMATCH[1]}
+          failure_count=${BASH_REMATCH[2]}
+          if (( check_count == 0 || failure_count != 0 )); then
+            printf 'Boundary count rejected: %s checks, %s failures.\n' \
+              "$check_count" "$failure_count" >&2
+            exit 1
+          fi
+          if ! grep -Fx 'native boundary regression tests passed' \
+              <<< "$suite_output" >/dev/null; then
+            echo 'Boundary pass marker is missing.' >&2
+            exit 1
+          fi
+          printf 'PRE-BINUTILS host-independent result: %s checks, %s failures\n' \
+            "$check_count" "$failure_count"
+
+      - name: Record real native ARM64 production-boundary gate
+        shell: bash
+        run: |
+          set -euo pipefail
+
+          blocked_suites=(
+            tests/bootstrap/run-native-launcher.sh
+            tests/bootstrap/run-native-libtool-archive.sh
+          )
+          for suite in "${blocked_suites[@]}"; do
+            if [[ ! -x "$suite" ]]; then
+              printf 'Required real-native suite is missing or not executable: %s\n' \
+                "$suite" >&2
+              exit 1
+            fi
+          done
+
+          gate_record="$RUNNER_TEMP/native-arm64-production-boundary.NOT-RUN.txt"
+          {
+            echo 'status=NOT-RUN'
+            echo 'classification=PRE-BINUTILS / DIAGNOSTIC - never admission'
+            echo "runner=$RUNNER_NAME"
+            echo "runner_arch=$RUNNER_ARCH"
+            echo 'required_environment=real native ARM64 MSYS2'
+            echo 'required_toolchain=corrected and admitted native ARM64 Binutils'
+            echo 'blocked_suite=tests/bootstrap/run-native-launcher.sh'
+            echo 'blocked_suite=tests/bootstrap/run-native-libtool-archive.sh'
+            echo 'reason=no corrected admitted Binutils is available; external toolchain inputs are forbidden here'
+            echo 'production_boundary_proof=false'
+          } | tee "$gate_record"
+          {
+            echo '### Real native ARM64 production-boundary gate: NOT-RUN'
+            echo
+            echo 'This PRE-BINUTILS / DIAGNOSTIC job is never final gettext or toolchain admission.'
+            echo 'The launcher and libtool archive suites require a real native ARM64 MSYS2'
+            echo 'environment plus corrected, admitted native ARM64 Binutils. This workflow'
+            echo 'does not consume Binutils, GCC, or CRT inputs and does not build gettext.'
+          } >> "$GITHUB_STEP_SUMMARY"
