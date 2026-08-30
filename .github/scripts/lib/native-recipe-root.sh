@@ -191,12 +191,13 @@ assert_no_native_recipe_alias_residue() {
     return 0
   fi
 
-  # The drive letter must not be preceded by another letter. An unanchored
-  # "<letter>:/" matches inside ordinary URLs, and both collisions land on
-  # candidate drives: "http://" contains "p:/" and "https://" contains "s:/".
-  # gettext bakes its homepage and bug-report URLs into staged artifacts, so the
-  # unanchored form would fail exactly the build this alias exists to enable.
-  pattern="(^|[^A-Za-z])${drive_letter}:[/\\\\]"
+  # Discriminate the URL false positive by its double slash rather than by a
+  # preceding letter. "http://" and "https://" contain "p://" and "s://", and
+  # both letters are candidate drives, but a real alias path never has two
+  # slashes after the colon. Anchoring on a preceding non-letter instead would
+  # miss the joined option forms libtool writes into .la files, such as
+  # -LW:/src/gettext/gnulib-lib/.libs.
+  pattern="${drive_letter}"':(\\|/([^/]|$))'
   mapfile -t matches < <(
     grep -r -l -a -i -E -e "$pattern" -- "$root" 2>/dev/null
   )

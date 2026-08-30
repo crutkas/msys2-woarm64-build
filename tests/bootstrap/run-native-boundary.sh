@@ -496,6 +496,20 @@ assert_fails 'backslash alias residue in staged output fails the scan' \
 printf 'W:/src/build/.libs\n' > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'alias residue at the start of a line fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
+
+# libtool writes the joined form into .la dependency_libs, with no separator
+# before the drive letter. A scan anchored on a preceding non-letter would miss
+# exactly this and ship a package with a dangling build path.
+printf "dependency_libs=' -LW:/src/gettext/gnulib-lib/.libs -lintl'\n" \
+  > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'joined -L alias residue fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf -- '-IW:/src/gettext/include\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'joined -I alias residue fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'builddir = W:/\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'alias residue at end of line fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
 rm -f "$residue_root/mingwarm64/lib/dirty.la"
 
 # makepkg writes .BUILDINFO into the staged tree before it tars the package, and
@@ -777,7 +791,10 @@ if [[ -x "$powershell_exe" ]]; then
     "-Wl,--out-implib,$convert_root/.libs/libgettextlib.a")
 
   if [[ -z "$observed" ]]; then
-    report ok 'runtime representation probe skipped: the observer produced no output'
+    # PowerShell is present, so an empty capture means the observer broke rather
+    # than that the probe is unavailable. Failing here keeps a real runtime
+    # conversion regression from being silently tolerated.
+    report fail 'the runtime representation observer produced output'
   else
     assert_contains "$observed" "-I$native_convert_root/.libs" \
       'the runtime converts a joined include path under the production policy'
