@@ -112,7 +112,17 @@ collect_payload_arguments() {
   grep '^arg=' "$capture"
 }
 
+# The full production matrix, not just the payload dialects. The simple classes
+# are converted by the MSYS2 runtime under both settings; the payload dialects
+# are excluded under the production policy and converted by the boundary. Either
+# way the compiler must see the same thing.
 payload_arguments=(
+  "-I$payload_root/.libs"
+  "-L$payload_root/.libs"
+  "-DLOCALEDIR=\"$payload_root/.libs\""
+  "$payload_root/.libs/libgettextlib.a"
+  "bare-object.o"
+  "-o" "$payload_root/.libs/out.o"
   "-Wl,--out-implib,$payload_root/.libs/libgettextlib.a"
   "-Wl,--whole-archive"
   "-Wl,--wrap,malloc"
@@ -126,15 +136,25 @@ policy_capture=$(collect_payload_arguments policy "${payload_arguments[@]}")
 converted_capture=$(collect_payload_arguments converted "${payload_arguments[@]}")
 
 if [[ "$policy_capture" != "$converted_capture" ]]; then
-  echo "Payload conversion differs between the production policy and full runtime conversion" >&2
+  echo "Argument conversion differs between the production policy and full runtime conversion" >&2
   printf 'policy:\n%s\nconverted:\n%s\n' "$policy_capture" "$converted_capture" >&2
   exit 1
 fi
+
+# Simple classes: the runtime is the intended owner, so assert the compiler
+# really does receive the native form.
+grep -Fx "arg=-I$payload_native/.libs" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-L$payload_native/.libs" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-DLOCALEDIR=\"$payload_native/.libs\"" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=$payload_native/.libs/libgettextlib.a" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=bare-object.o" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=$payload_native/.libs/out.o" <<< "$policy_capture" >/dev/null
+
+# Payload dialects: the boundary is the intended owner.
 grep -Fx "arg=-Wl,--out-implib,$payload_native/.libs/libgettextlib.a" \
   <<< "$policy_capture" >/dev/null
 grep -Fx "arg=-Wl,--whole-archive" <<< "$policy_capture" >/dev/null
 grep -Fx "arg=-Wl,--wrap,malloc" <<< "$policy_capture" >/dev/null
-grep -Fx "arg=$payload_native/.libs/libgettextlib.a" <<< "$policy_capture" >/dev/null
 grep -Fx "arg=-Wp,-MD,$payload_native/.libs/scratch.d" <<< "$policy_capture" >/dev/null
 grep -Fx "arg=-Wa,-I,$payload_native/.libs" <<< "$policy_capture" >/dev/null
 grep -Fx "arg=-specs=$payload_native/native.specs" <<< "$policy_capture" >/dev/null

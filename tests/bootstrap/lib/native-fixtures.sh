@@ -44,8 +44,10 @@ make_native_tool_fixtures() {
   local tool
 
   mkdir -p "$bindir"
-  make_pe_image "$bindir/gcc.exe" "$machine"
-  perturb_pe_image "$bindir/gcc.exe" 'gcc'
+  for tool in gcc g++; do
+    make_pe_image "$bindir/$tool.exe" "$machine"
+    perturb_pe_image "$bindir/$tool.exe" "$tool"
+  done
   for tool in "${WOARM64_FIXTURE_TOOLS[@]}"; do
     make_pe_image "$bindir/$tool.exe" "$machine"
     perturb_pe_image "$bindir/$tool.exe" "$tool"
@@ -124,6 +126,25 @@ if [[ -n "${WOARM64_RESPONSE_CAPTURE:-}" ]]; then
     fi
   done
 fi
+exit "${WOARM64_FAKE_COMPILER_STATUS:-0}"
 EOF
   chmod 0755 "$path"
+}
+
+# Observes what the MSYS2 runtime actually delivered across the boundary into a
+# native PE. Windows PowerShell is used because [Environment]::GetCommandLineArgs
+# parses with CommandLineToArgvW, exactly like native-compiler-launcher.c does.
+# A shell or WScript observer parses differently and would misreport quoting.
+make_commandline_observer() {
+  local path=$1
+
+  mkdir -p "$(dirname "$path")"
+  cat > "$path" <<'EOF'
+$raw = [Environment]::GetCommandLineArgs()
+$index = 0
+while ($index -lt $raw.Count -and -not $raw[$index].EndsWith('.ps1')) { $index++ }
+$raw |
+  Select-Object -Skip ($index + 1) |
+  Set-Content -LiteralPath $env:WOARM64_PROBE_OUT -Encoding ascii
+EOF
 }

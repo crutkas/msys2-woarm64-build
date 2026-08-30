@@ -316,7 +316,10 @@ with_short_native_recipe_root() {
   fi
 
   if ! cleanup_short_native_recipe_root; then
-    command_status=1
+    # Never overwrite a real failure from the build with the cleanup status.
+    if [[ $command_status -eq 0 ]]; then
+      command_status=1
+    fi
   fi
   restore_native_recipe_traps
   _woarm64_recipe_release_state

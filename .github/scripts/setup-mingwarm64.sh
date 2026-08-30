@@ -119,6 +119,7 @@ if [[ "$FLAVOR" == "NATIVE_WITH_NATIVE" ]]; then
   # is not installed yet when this configuration is written.
   NATIVE_TOOL_BIN="${WOARM64_NATIVE_BIN:-/mingwarm64/bin}"
   NATIVE_TOOL_LINES=
+  NATIVE_TOOL_EXPORTS='CC CXX'
   for TOOL_ASSIGNMENT in AR=ar AS=as DLLTOOL=dlltool LD=ld NM=nm \
       OBJCOPY=objcopy OBJDUMP=objdump RANLIB=ranlib RC=windres STRIP=strip \
       WINDRES=windres; do
@@ -127,8 +128,12 @@ if [[ "$FLAVOR" == "NATIVE_WITH_NATIVE" ]]; then
     printf -v TOOL_SHELL '%q' \
       "$(to_native_path "$NATIVE_TOOL_BIN/$TOOL_NAME.exe")"
     NATIVE_TOOL_LINES+="$TOOL_VARIABLE=$TOOL_SHELL"$'\n'
+    NATIVE_TOOL_EXPORTS+=" $TOOL_VARIABLE"
   done
-  NATIVE_TOOL_LINES="${NATIVE_TOOL_LINES%$'\n'}"
+  # makepkg's buildenv only exports CC, CXX, CHOST and MAKEFLAGS, so without an
+  # explicit export the pinned binutils never reach configure or make and every
+  # AC_CHECK_TOOL falls back to a bare-name PATH probe.
+  NATIVE_TOOL_LINES+="export $NATIVE_TOOL_EXPORTS"
 
   write_managed_file "$MSYS2_ROOT_PREFIX/etc/makepkg_mingw.d/mingwarm64.conf" <<EOF
 CARCH="aarch64"

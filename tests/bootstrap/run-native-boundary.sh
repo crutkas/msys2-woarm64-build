@@ -117,6 +117,22 @@ assert_fails 'AMD64 image is rejected' assert_native_arm64_pe "$root/pe/amd64.ex
 assert_fails 'non-PE payload is rejected' assert_native_arm64_pe "$root/pe/text.bin"
 assert_fails 'truncated image is rejected' assert_native_arm64_pe "$root/pe/truncated.exe"
 
+# e_lfanew must be validated against the real file size, otherwise the machine
+# word is read from an unchecked offset.
+make_pe_image "$root/pe/farheader.exe" aa64
+printf '\xff\xff\xff\x7f' | dd of="$root/pe/farheader.exe" bs=1 seek=60 conv=notrunc status=none
+assert_fails 'an out-of-range PE header offset is rejected' \
+  assert_native_arm64_pe "$root/pe/farheader.exe"
+make_pe_image "$root/pe/badsig.exe" aa64
+printf 'XX' | dd of="$root/pe/badsig.exe" bs=1 seek=64 conv=notrunc status=none
+assert_fails 'a bad PE signature is rejected' \
+  assert_native_arm64_pe "$root/pe/badsig.exe"
+make_pe_image "$root/pe/badmz.exe" aa64
+printf 'XX' | dd of="$root/pe/badmz.exe" bs=1 seek=0 conv=notrunc status=none
+assert_fails 'a bad MZ signature is rejected' \
+  assert_native_arm64_pe "$root/pe/badmz.exe"
+assert_fails 'a directory is rejected' assert_native_arm64_pe "$root/pe"
+
 printf '== native tool closure ==\n'
 
 tool_bin="$root/closure/bin"
@@ -145,8 +161,10 @@ manifest="$root/closure/manifest.txt"
   export PATH="$tool_bin:$PATH"
   verify_native_tool_closure
 ) >/dev/null
-assert_equal '10' "$(wc -l < "$manifest" | tr -d ' ')" 'the closure manifest records every tool'
+assert_equal '12' "$(wc -l < "$manifest" | tr -d ' ')" \
+  'the closure manifest records both drivers and every tool'
 assert_contains "$(cat "$manifest")" 'objdump ' 'the closure manifest records objdump'
+assert_contains "$(cat "$manifest")" 'g++.exe ' 'the closure manifest records the C++ driver'
 
 hybrid_bin="$root/hybrid/bin"
 make_native_tool_fixtures "$hybrid_bin" aa64
@@ -195,6 +213,7 @@ launcher_run() (
   export WOARM64_LAUNCHER_INSTALL_DIR="$install_dir"
   export WOARM64_NATIVE_BIN="$launcher_bin"
   export WOARM64_NATIVE_LAUNCHER_COMPILER="$fake_compiler"
+  export WOARM64_NATIVE_CXX="$fake_compiler"
   export WOARM64_FAKE_COMPILER_COUNTER="$counter"
   export WOARM64_FAKE_COMPILER_FAIL="${1:-0}"
   ensure_native_compiler_launchers
@@ -246,6 +265,44 @@ else
 fi
 assert_equal '0' "$(ls "$install_dir" | grep -c 'staged' || true)" \
   'a failed launcher build leaves no staged images'
+
+# Partial install recovery: one launcher was replaced and the other was not, so
+# the cache must be treated as invalid even if a stamp were present.
+assert_ok 'the launcher build recovers after a failure' launcher_run
+recovery_calls=$(fake_compiler_call_count "$counter")
+rm -f "$install_dir/woarm64-g++.exe"
+assert_ok 'a half-installed launcher pair still builds' launcher_run
+assert_equal "$(( recovery_calls + 2 ))" "$(fake_compiler_call_count "$counter")" \
+  'a missing second launcher forces a rebuild'
+assert_ok 'the recovered g++ launcher is a pure ARM64 image' \
+  assert_native_arm64_pe "$install_dir/woarm64-g++.exe"
+
+# A lock left behind by a killed builder must be reclaimed once it is stale,
+# and a fresh lock must fail on a bounded timeout instead of hanging.
+mkdir -p "$install_dir/.launcher-lock"
+touch -d '2000-01-01' "$install_dir/.launcher-lock" 2>/dev/null || true
+rm -f "$stamp_file"
+stale_lock_status=0
+( export WOARM64_LAUNCHER_LOCK_STALE=1; launcher_run ) || stale_lock_status=$?
+assert_equal '0' "$stale_lock_status" 'a stale launcher lock is reclaimed'
+if [[ -d "$install_dir/.launcher-lock" ]]; then
+  report fail 'a reclaimed launcher lock is released'
+else
+  report ok 'a reclaimed launcher lock is released'
+fi
+
+mkdir -p "$install_dir/.launcher-lock"
+rm -f "$stamp_file"
+held_lock_status=0
+(
+  export WOARM64_LAUNCHER_LOCK_TIMEOUT=1
+  export WOARM64_LAUNCHER_LOCK_STALE=100000
+  launcher_run
+) >/dev/null 2>&1 || held_lock_status=$?
+assert_equal '1' "$held_lock_status" \
+  'a held launcher lock fails on a bounded timeout instead of hanging'
+rm -rf "$install_dir/.launcher-lock"
+assert_ok 'the launcher build succeeds once the lock is gone' launcher_run
 
 printf '== recipe root alias ==\n'
 
@@ -440,6 +497,27 @@ printf 'W:/src/build/.libs\n' > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'alias residue at the start of a line fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
 rm -f "$residue_root/mingwarm64/lib/dirty.la"
+
+# makepkg writes .BUILDINFO into the staged tree before it tars the package, and
+# it records the build directory. That is the metadata most likely to capture
+# the alias, so it has to be inside the scanned scope.
+printf 'builddir = W:/\npkgname = mingw-w64-aarch64-gettext\n' \
+  > "$residue_root/.BUILDINFO"
+assert_fails 'alias residue in staged package metadata fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'builddir = /build\npkgname = mingw-w64-aarch64-gettext\n' \
+  > "$residue_root/.BUILDINFO"
+assert_ok 'clean staged package metadata passes the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+
+# Binary content has to be searched too: debug information and .pc files are not
+# guaranteed to be text.
+printf 'prefix=W:/mingwarm64\x00\x01\x02binary tail\n' \
+  > "$residue_root/mingwarm64/lib/binary.pc"
+assert_fails 'alias residue inside binary content fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+rm -f "$residue_root/mingwarm64/lib/binary.pc"
+
 assert_ok 'a residue scan of a missing tree is a no-op' \
   assert_no_native_recipe_alias_residue w "$root/residue/absent"
 
@@ -468,6 +546,18 @@ run_boundary() {
       "$repo_root/.github/scripts/lib/native-compiler.sh" "$@"
   )
   cat "$capture"
+}
+
+# Same invocation, but reporting the boundary's own exit status rather than the
+# status of reading the capture file.
+run_boundary_status() {
+  (
+    cd "$convert_root"
+    WOARM64_NATIVE_COMPILER_NAME=woarm64-gcc \
+      WOARM64_NATIVE_COMPILER="$capturing_compiler" \
+      WOARM64_ARGUMENT_CAPTURE="$capture" \
+      "$repo_root/.github/scripts/lib/native-compiler.sh" "$@"
+  )
 }
 
 native_convert_root=$(to_native_path "$convert_root")
@@ -602,7 +692,127 @@ printf -- "--out-implib '%s/.libs/q.a'\n" "$convert_root" > "$quoted_response"
 quoted_output=$(run_boundary "@$quoted_response" 2>/dev/null)
 assert_equal "@$(to_native_path "$quoted_response")" "$quoted_output" \
   'an unrewritable response file is passed through untouched'
+
+nested_response="$convert_root/nested.rsp"
+printf -- '--out-implib %s/.libs/n.a\n@%s\n' "$convert_root" "$response" > "$nested_response"
+nested_output=$(run_boundary "@$nested_response" 2>/dev/null)
+assert_equal "@$(to_native_path "$nested_response")" "$nested_output" \
+  'a nested response file is rejected rather than flattened'
+
+crlf_response="$convert_root/crlf.rsp"
+printf -- '--out-implib %s/.libs/c.a\r\n%s/.libs/libgettextlib.a\r\n' \
+  "$convert_root" "$convert_root" > "$crlf_response"
+crlf_before=$(sha256sum "$crlf_response" | cut -d' ' -f1)
+run_boundary "@$crlf_response" >/dev/null
+crlf_body=$(cat "$response_capture" 2>/dev/null || true)
+assert_contains "$crlf_body" "\"$native_convert_root/.libs/c.a\"" \
+  'a CRLF response file converts without trapping the carriage return'
+assert_contains "$crlf_body" "\"$native_convert_root/.libs/libgettextlib.a\"" \
+  'a CRLF response file converts every line'
+if [[ "$crlf_body" == *$'\r'* ]]; then
+  report fail 'a rewritten response file carries no carriage returns'
+else
+  report ok 'a rewritten response file carries no carriage returns'
+fi
+assert_equal "$crlf_before" "$(sha256sum "$crlf_response" | cut -d' ' -f1)" \
+  'the caller response file is never mutated'
+
+# A rewritten response file must not leak, and cleaning it up must not rewrite
+# the compiler status.
+before_temps=$(find "${TMPDIR:-/tmp}" -maxdepth 1 -name 'woarm64-response.*' 2>/dev/null | wc -l)
+export WOARM64_FAKE_COMPILER_STATUS=41
+response_status=0
+run_boundary_status "@$response" >/dev/null 2>&1 || response_status=$?
+assert_equal '41' "$response_status" \
+  'a rewritten response file preserves a failing compiler status'
+after_temps=$(find "${TMPDIR:-/tmp}" -maxdepth 1 -name 'woarm64-response.*' 2>/dev/null | wc -l)
+assert_equal "$before_temps" "$after_temps" \
+  'a failing compile removes its rewritten response file'
+unset WOARM64_FAKE_COMPILER_STATUS
+success_status=0
+run_boundary_status "@$response" >/dev/null 2>&1 || success_status=$?
+assert_equal '0' "$success_status" \
+  'a successful compile through a response file still reports success'
+assert_equal "$before_temps" \
+  "$(find "${TMPDIR:-/tmp}" -maxdepth 1 -name 'woarm64-response.*' 2>/dev/null | wc -l)" \
+  'a successful compile removes its rewritten response file'
 unset WOARM64_RESPONSE_CAPTURE
+
+printf '== MSYS to native PE argument representation ==\n'
+
+# The production policy deliberately leaves the simple argument classes to the
+# MSYS2 runtime and owns only the payload dialects. That split is only safe if
+# the runtime really does convert the simple classes, so pin the behaviour here
+# rather than assuming it.
+observer_ps1="$root/observer/dump.ps1"
+powershell_exe=/c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe
+observer_out="$root/observer/out.txt"
+if [[ -x "$powershell_exe" ]]; then
+  make_commandline_observer "$observer_ps1"
+  observe_arguments() {
+    local mode=$1
+    shift
+
+    rm -f "$observer_out"
+    if [[ "$mode" == "policy" ]]; then
+      WOARM64_PROBE_OUT=$(to_native_path "$observer_out") \
+        MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL" \
+        "$powershell_exe" -NoProfile -File "$(to_native_path "$observer_ps1")" "$@" \
+        >/dev/null 2>&1 || true
+    else
+      WOARM64_PROBE_OUT=$(to_native_path "$observer_out") \
+        env -u MSYS2_ARG_CONV_EXCL \
+        "$powershell_exe" -NoProfile -File "$(to_native_path "$observer_ps1")" "$@" \
+        >/dev/null 2>&1 || true
+    fi
+    tr -d '\r' < "$observer_out" 2>/dev/null || true
+  }
+
+  observed=$(observe_arguments policy \
+    "-I$convert_root/.libs" \
+    "-DLOCALEDIR=\"$convert_root/.libs\"" \
+    "$convert_root/.libs/libgettextlib.a" \
+    -o "$convert_root/out.o" \
+    -Xlinker "$convert_root/.libs/libgettextlib.a" \
+    "-Wl,--out-implib,$convert_root/.libs/libgettextlib.a")
+
+  if [[ -z "$observed" ]]; then
+    report ok 'runtime representation probe skipped: the observer produced no output'
+  else
+    assert_contains "$observed" "-I$native_convert_root/.libs" \
+      'the runtime converts a joined include path under the production policy'
+    assert_contains "$observed" "-DLOCALEDIR=\"$native_convert_root/.libs\"" \
+      'the runtime converts a quoted define and preserves its quotes'
+    assert_contains "$observed" "$native_convert_root/.libs/libgettextlib.a" \
+      'the runtime converts a bare path operand'
+    assert_contains "$observed" "$native_convert_root/out.o" \
+      'the runtime converts an output operand'
+    # This is the assertion that proves the exclusion list is in force: the
+    # payload stays POSIX so native-compiler.sh is its single explicit owner.
+    assert_contains "$observed" "-Wl,--out-implib,$convert_root/.libs/libgettextlib.a" \
+      'the production policy leaves the linker payload for the boundary to convert'
+
+    # Composition: what the runtime delivers, fed through the boundary, must
+    # reach the compiler in the intended native form.
+    mapfile -t observed_arguments <<< "$observed"
+    composed=$(run_boundary "${observed_arguments[@]}")
+    assert_contains "$composed" "-I$native_convert_root/.libs" \
+      'the boundary leaves an already-converted include path alone'
+    assert_contains "$composed" "-DLOCALEDIR=\"$native_convert_root/.libs\"" \
+      'the boundary leaves an already-converted quoted define alone'
+    assert_contains "$composed" "-Wl,--out-implib,$native_convert_root/.libs/libgettextlib.a" \
+      'the boundary converts the linker payload the runtime left alone'
+  fi
+else
+  report ok 'runtime representation probe skipped: Windows PowerShell is unavailable'
+fi
+
+# Documents why the policy is a prefix list and not '*': the boundary
+# deliberately does not rewrite -D values, so disabling runtime conversion
+# entirely would bake a POSIX path into the compiled artefact.
+define_output=$(run_boundary "-DLOCALEDIR=\"/mingwarm64/share/locale\"")
+assert_equal '-DLOCALEDIR="/mingwarm64/share/locale"' "$define_output" \
+  'the boundary relies on the runtime for defines and never rewrites them'
 
 printf '\n%s checks, %s failures\n' "$checks" "$failures"
 if [[ $failures -ne 0 ]]; then

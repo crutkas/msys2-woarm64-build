@@ -278,6 +278,7 @@ driver_environment=(
   WOARM64_TOOL_VERSION_PROBE=0
   WOARM64_LAUNCHER_INSTALL_DIR="$driver_launcher_dir"
   WOARM64_NATIVE_LAUNCHER_COMPILER="$driver_fake_compiler"
+  WOARM64_NATIVE_CXX="$driver_fake_compiler"
   WOARM64_FAKE_COMPILER_COUNTER="$driver_compiler_calls"
 )
 

@@ -233,15 +233,21 @@ on any Windows host:
 `NATIVE_WITH_NATIVE` pins every build tool to an absolute path in
 `/etc/makepkg_mingw.d/mingwarm64.conf`: `CC` and `CXX` point at the private launchers, and `AR`,
 `AS`, `DLLTOOL`, `LD`, `NM`, `OBJCOPY`, `OBJDUMP`, `RANLIB`, `RC`, `STRIP` and `WINDRES` point into
-`/mingwarm64/bin`. Nothing in this lane reaches a build tool through a `PATH` search.
+`/mingwarm64/bin`. The drop-in exports them itself, because makepkg's own build environment exports
+only `CC`, `CXX`, `CHOST` and `MAKEFLAGS`, and without the export every `AC_CHECK_TOOL` in a
+configure script falls back to a bare-name `PATH` probe. Nothing in this lane reaches a build tool
+through a `PATH` search.
 
-Before a package builds, `build-package.sh` verifies that closure. Each tool must exist, must be a
-pure ARM64 image, and must report a version, and the bare name must resolve on `PATH` to the same
-file. Architecture is decided by reading `IMAGE_FILE_HEADER.Machine` out of the PE itself and
-requiring exactly `0xAA64`. `0xA641` (ARM64EC) and `0xA64E` (ARM64X) are rejected by name: both carry
-x86-64 ABI code, and both are described as "ARM64" by tools that print a human-readable summary. The
-SHA-256 and version of every tool is recorded; set `WOARM64_TOOL_MANIFEST` to also write that record
-to a file.
+Before a package builds, `build-package.sh` verifies that closure. Both compiler drivers and each
+binutils tool must exist, be a pure ARM64 image, and report a version, and each tool's bare name must
+resolve on `PATH` to that same file. Only the first effective resolution is checked, so a later
+`/usr/bin` entry of the same name is not an error once the pinned tool already wins. Architecture is
+decided by reading `IMAGE_FILE_HEADER.Machine` out of the PE itself and requiring exactly `0xAA64`.
+`0xA641` (ARM64EC) and `0xA64E` (ARM64X) are rejected by name: both carry x86-64 ABI code, and both
+are described as "ARM64" by tools that print a human-readable summary. Every offset the parser reads
+is bounds-checked against the real file size, so a truncated image, a bad `MZ` or `PE\0\0` signature,
+or an out-of-range `e_lfanew` is rejected rather than silently parsed. The SHA-256 and version of
+every driver and tool is recorded; set `WOARM64_TOOL_MANIFEST` to also write that record to a file.
 
 ### Private launcher identity
 
@@ -261,22 +267,40 @@ rebuild leaves an obviously invalid cache rather than launchers that silently di
 ### Argument conversion policy
 
 The launchers are native executables, so the MSYS2 runtime rewrites POSIX-looking arguments before
-they arrive. That heuristic does not understand the comma payloads of `-Wl,`, `-Wp,` and `-Wa,`, the
-two-argument `-Xlinker` form, `-specs=`, or the contents of an `@response` file, which are exactly
-the forms libtool emits for gettext. `build-package.sh` therefore exports
+they arrive. Ownership of that rewriting is split deliberately, and `build-package.sh` exports
 
 ```
 MSYS2_ARG_CONV_EXCL='-Wl,;-Xlinker;-Wp,;-Wa,;-specs=;@'
 ```
 
-and `native-compiler.sh` converts those forms itself from an explicit allow-list of path-bearing
-options. Flags, symbol names and numeric values are passed through untouched, so
-`-Wl,--whole-archive`, `-Wl,--wrap,malloc` and `-Wl,--exclude-libs,ALL` survive intact. Every
-conversion is idempotent, so the boundary produces the same result whether or not the runtime
-converted an argument first; both suites assert that equivalence directly.
+**The runtime owns the simple classes.** `-I/...`, `-L/...`, `-D<name>=/...` including a quoted
+`-DLOCALEDIR="/mingwarm64/share/locale"`, bare path operands, the operand after `-o`, and the operand
+after `-Xlinker` are *not* excluded, so the runtime converts them. It does this correctly: the path
+is rewritten, surrounding quotes are preserved, and the argument stays a single argument even when
+the converted path contains a space. `tests/bootstrap/run-native-boundary.sh` pins that behaviour by
+observing the real boundary with a `CommandLineToArgvW` parser rather than assuming it, and
+`run-native-launcher.sh` asserts the same matrix through the real launcher on an ARM64 host.
 
-A response file whose quoting cannot be round-tripped exactly is passed through unmodified rather
-than rewritten, and any rewritten copy is removed after the compiler exits.
+**The boundary owns the payload dialects.** The comma payloads of `-Wl,`, `-Wp,` and `-Wa,`,
+`-specs=`, and `@response` files are excluded, and `native-compiler.sh` converts them from an
+explicit allow-list of path-bearing options. Flags, symbol names and numeric values are passed
+through untouched, so `-Wl,--whole-archive`, `-Wl,--wrap,malloc` and `-Wl,--exclude-libs,ALL` survive
+intact.
+
+The policy is a prefix list rather than `'*'` on purpose. Excluding everything would leave
+`-DLOCALEDIR="/mingwarm64/share/locale"` in POSIX form, and the boundary deliberately does not
+rewrite `-D` values, so the POSIX path would be compiled into the artefact. `'*'` would also break
+direct native tool invocations elsewhere in a recipe that rely on the runtime, which is why it is
+never set globally.
+
+Every conversion the boundary performs is idempotent, so it produces the same result whether or not
+the runtime converted an argument first. Both suites assert that equivalence directly.
+
+A response file whose quoting cannot be round-tripped exactly, or that nests a further `@response`,
+is passed through unmodified rather than rewritten. Rewriting only ever writes a temporary copy; the
+caller's file is read-only. The temporary copy is removed on success, on failure and on `HUP`, `INT`
+or `TERM`, and the compiler's exit status is reported unchanged, so cleanup can never turn a failed
+compile into a successful one.
 
 Native MinGW builds whose recipe roots leave less than 160 characters below the legacy Win32 path
 boundary use a temporary native drive alias. This keeps deep libtool archive members addressable
@@ -307,8 +331,12 @@ remainder of the subshell.
 
 ### Continuous integration
 
-The boundary job below is documented here rather than committed as a file, because both plausible
-locations are gated:
+**This job is activation-ready coverage, not active CI.** The regression suite it runs is committed
+and can be run by hand today, but no workflow executes it yet, so continuous coverage of the native
+boundary remains an open gap until the protected-base change below lands.
+
+The job is documented here rather than committed as a file because both plausible locations are
+gated:
 
 * `.github/workflows` is deny-by-default. `audit-arm64-workflows.ps1` enumerates that directory and
   rejects any workflow that is not already a key of `active_workflows`, and it rejects a candidate
@@ -319,15 +347,16 @@ locations are gated:
   directory holds exactly the five archived operational workflows, so a staged sixth file fails the
   untrusted diagnostics job.
 
-Activating this job is therefore a separately reviewed protected-base change. It needs the file
-below written to `.github/workflows/native-boundary-tests.yml`, plus an `active_workflows` entry
-keyed `".github/workflows/native-boundary-tests.yml"` with `authority: untrusted-diagnostic`, the
-blob binding (`path`, `raw_path_utf8_base64`, `mode` `100644`, `object_type` `blob`, `byte_length`,
-`oid`) of the written file as `source`, `allowed_events: ["pull_request"]`, `allowed_shells:
-["bash"]`, `allowed_local_shell_entrypoints: ["tests/bootstrap/run-native-boundary.sh"]`,
-`allowed_local_shell_sources` carrying that script's blob binding, and
-`allowed_inline_shell_sha256` carrying the digests of the two inline `run` blocks. Every other
-`active_workflows` entry must be left untouched so the existing required check keeps its bindings.
+Activating this job is therefore a separately reviewable protected-base change, and it must not
+weaken or bypass the existing required check. It needs the file below written to
+`.github/workflows/native-boundary-tests.yml`, plus an `active_workflows` entry keyed
+`".github/workflows/native-boundary-tests.yml"` with `authority: untrusted-diagnostic`, the blob
+binding (`path`, `raw_path_utf8_base64`, `mode` `100644`, `object_type` `blob`, `byte_length`, `oid`)
+of the written file as `source`, `allowed_events: ["pull_request"]`, `allowed_shells: ["bash"]`,
+`allowed_local_shell_entrypoints: ["tests/bootstrap/run-native-boundary.sh"]`,
+`allowed_local_shell_sources` carrying that script's blob binding, and `allowed_inline_shell_sha256`
+carrying the digests of the two inline `run` blocks. Every other `active_workflows` entry must be
+left untouched so the existing required check keeps its bindings.
 
 ```yaml
 name: Native toolchain boundary tests

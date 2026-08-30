@@ -43,7 +43,20 @@ woarm64_cleanup() {
     rm -f -- "${response_temporaries[@]}"
   fi
 }
+
+# A rewritten response file must not outlive this process on any path, and a
+# signal must not be reported as a clean exit.
+woarm64_on_signal() {
+  local status=$1
+
+  trap - EXIT HUP INT TERM
+  woarm64_cleanup
+  exit "$status"
+}
 trap woarm64_cleanup EXIT
+trap 'woarm64_on_signal 129' HUP
+trap 'woarm64_on_signal 130' INT
+trap 'woarm64_on_signal 143' TERM
 
 woarm64_is_listed() {
   local needle=$1
@@ -160,9 +173,10 @@ woarm64_convert_payload() {
   _woarm64_payload="$prefix$(IFS=','; printf '%s' "${result[*]}")"
 }
 
-# Rewrites the *contents* of a response file. Converting only the @file name
-# leaves every path inside it in POSIX form. Files using quoting this rewriter
-# cannot round-trip exactly are passed through untouched rather than corrupted.
+# Rewrites the *contents* of a response file into a temporary copy. The caller's
+# file is only ever read. Files using quoting this rewriter cannot round-trip
+# exactly, and files that nest a further @response, are passed through untouched
+# rather than corrupted or silently flattened.
 _woarm64_response=
 woarm64_convert_response_file() {
   local original=$1
@@ -180,6 +194,10 @@ woarm64_convert_response_file() {
     echo "::warning::Response file uses quoting this boundary cannot rewrite; passing it through: $original" >&2
     return 0
   fi
+  if grep -q -E '(^|[[:space:]])@' -- "$original"; then
+    echo "::warning::Response file nests a further response file; passing it through: $original" >&2
+    return 0
+  fi
   if ! converted_file=$(mktemp "${TMPDIR:-/tmp}/woarm64-response.XXXXXX"); then
     return 0
   fi
@@ -190,6 +208,9 @@ woarm64_convert_response_file() {
   # boundaries, because --out-implib and its value are often on separate lines.
   _woarm64_expect_path=0
   while IFS= read -r line || [[ -n "$line" ]]; do
+    # A response file written by a native tool can use CRLF. A trailing carriage
+    # return would otherwise become part of the last token on the line.
+    line=${line%$'\r'}
     tokens=()
     rest=$line
     while [[ -n "$rest" ]]; do
@@ -328,7 +349,7 @@ export PATH="/mingwarm64/bin:$PATH"
 # exec would skip the cleanup of any rewritten response file, so only take that
 # path when there is nothing to remove.
 if [[ ${#response_temporaries[@]} -eq 0 ]]; then
-  trap - EXIT
+  trap - EXIT HUP INT TERM
   exec "$compiler" "${converted[@]}"
 fi
 
@@ -336,4 +357,6 @@ set +e
 "$compiler" "${converted[@]}"
 compiler_status=$?
 set -e
+# Cleanup runs from the EXIT trap. An explicit exit status is what the shell
+# reports, so a failing rm can never turn a failed compile into a success.
 exit "$compiler_status"

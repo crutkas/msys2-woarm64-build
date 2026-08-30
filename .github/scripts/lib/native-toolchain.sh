@@ -36,11 +36,14 @@ native_launcher_compiler_path() {
 }
 
 # Reads IMAGE_FILE_HEADER.Machine straight out of the PE image instead of
-# trusting a human-readable tool description.
+# trusting a human-readable tool description. Every offset is bounds-checked
+# against the real file size, so a truncated or hostile image cannot make the
+# machine word be read from an unchecked location.
 native_pe_machine() {
   local image=$1
   local -a header=()
   local lfanew
+  local size
 
   if [[ $# -ne 1 || -z "$image" ]]; then
     echo "native_pe_machine requires one image path" >&2
@@ -49,6 +52,14 @@ native_pe_machine() {
   if [[ ! -f "$image" ]]; then
     echo "Not a regular file: $image" >&2
     return 2
+  fi
+  if ! size=$(stat -c %s -- "$image") || [[ ! "$size" =~ ^[0-9]+$ ]]; then
+    echo "Unable to size the image: $image" >&2
+    return 1
+  fi
+  if (( size < 64 )); then
+    echo "Truncated image, smaller than a DOS header: $image" >&2
+    return 1
   fi
 
   read -r -a header <<< "$(od -An -tx1 -j 0 -N 2 -- "$image")"
@@ -63,8 +74,9 @@ native_pe_machine() {
     return 1
   fi
   lfanew=$((16#${header[3]}${header[2]}${header[1]}${header[0]}))
-  if (( lfanew < 4 )); then
-    echo "Invalid PE header offset in $image" >&2
+  # The PE signature and the two machine bytes must both be inside the file.
+  if (( lfanew < 4 || lfanew > size - 6 )); then
+    echo "PE header offset $lfanew is outside $image" >&2
     return 1
   fi
 
@@ -131,7 +143,8 @@ native_tool_version() {
 # Rejects an AMD64 or otherwise foreign tool that would win a bare-name lookup.
 # makepkg internals and configure scripts still call `strip`, `objdump` and
 # friends by bare name, so pinning the drop-in variables is not sufficient on
-# its own.
+# its own. Only the first effective resolution matters: a later /usr/bin entry
+# of the same name is harmless once the pinned tool already wins.
 assert_native_tool_unshadowed() {
   local tool=$1
   local pinned=$2
@@ -143,18 +156,48 @@ assert_native_tool_unshadowed() {
     return 1
   fi
   if [[ ! "$resolved" -ef "$pinned" ]]; then
-    echo "PATH resolves $tool to $resolved instead of the pinned $pinned" >&2
+    echo "PATH resolves $tool to $resolved before the pinned $pinned" >&2
     return 1
   fi
+}
+
+# Both compiler drivers are gated as well as the binutils closure: a launcher
+# built by a foreign g++ is just as unusable as one built by a foreign gcc.
+native_compiler_drivers() {
+  printf '%s\n' "$(native_launcher_compiler_path)"
+  printf '%s\n' "${WOARM64_NATIVE_CXX:-$(native_tool_bindir)/g++.exe}"
 }
 
 # Fails closed on the first problem but keeps going so one run reports the whole
 # broken closure instead of one tool at a time.
 verify_native_tool_closure() {
   local manifest=${WOARM64_TOOL_MANIFEST:-}
-  local tool path digest version
+  local tool path digest version driver
   local status=0
   local -a records=()
+
+  while IFS= read -r driver; do
+    if [[ ! -f "$driver" ]]; then
+      echo "Native compiler driver is missing: $driver" >&2
+      status=1
+      continue
+    fi
+    if ! assert_native_arm64_pe "$driver" "$driver"; then
+      status=1
+      continue
+    fi
+    if ! digest=$(sha256sum -- "$driver" | cut -d' ' -f1) || [[ -z "$digest" ]]; then
+      echo "Unable to digest the native compiler driver: $driver" >&2
+      status=1
+      continue
+    fi
+    if ! version=$(native_tool_version "$driver"); then
+      echo "Native compiler driver did not report a version: $driver" >&2
+      status=1
+      continue
+    fi
+    records+=("${driver##*/} $digest $version")
+  done < <(native_compiler_drivers)
 
   for tool in "${WOARM64_NATIVE_TOOLS[@]}"; do
     path=$(native_tool_path "$tool")
@@ -200,16 +243,18 @@ verify_native_tool_closure() {
 }
 
 # Composite identity of everything that can change the bytes of a locally built
-# private tool: the native compiler driver plus the full binutils closure it
-# calls through. Binding the launcher cache to this is what stops a launcher
+# private tool: both native compiler drivers plus the full binutils closure they
+# call through. Binding the launcher cache to this is what stops a launcher
 # emitted by a revoked assembler or linker from surviving a toolchain swap.
 native_toolchain_identity_digest() {
-  local tool entry name path digest
+  local tool entry name path digest driver
   local -a inputs=()
   local material=
   local result
 
-  inputs+=("gcc:$(native_launcher_compiler_path)")
+  while IFS= read -r driver; do
+    inputs+=("driver:$driver")
+  done < <(native_compiler_drivers)
   for tool in "${WOARM64_NATIVE_TOOLS[@]}"; do
     inputs+=("$tool:$(native_tool_path "$tool")")
   done
@@ -227,7 +272,7 @@ native_toolchain_identity_digest() {
       echo "Unable to digest the toolchain identity input: $path" >&2
       return 1
     fi
-    material+="$name=$digest"$'\n'
+    material+="$name/${path##*/}=$digest"$'\n'
   done
 
   if ! result=$(printf '%s' "$material" | sha256sum | cut -d' ' -f1) || [[ -z "$result" ]]; then

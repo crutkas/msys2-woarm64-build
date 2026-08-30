@@ -111,6 +111,10 @@ for tool_assignment in AR=ar AS=as DLLTOOL=dlltool LD=ld NM=nm OBJCOPY=objcopy \
     "${!tool_variable}" \
     "makepkg config pins $tool_variable to an absolute native ARM64 tool"
 done
+# makepkg only exports CC, CXX, CHOST and MAKEFLAGS, so the drop-in has to
+# export the pinned binutils itself or configure never sees them.
+assert_file_contains "$fixture_root/etc/makepkg_mingw.d/mingwarm64.conf" \
+  'export CC CXX AR AS DLLTOOL LD NM OBJCOPY OBJDUMP RANLIB RC STRIP WINDRES'
 assert_file_contains "$fixture_root/etc/msystem.d/MINGWARM64" "MSYSTEM_PREFIX='/mingwarm64'"
 if [[ ! -x "$fixture_root/usr/local/libexec/msys2-woarm64/woarm64-gcc" ]]; then
   echo "Assertion failed: native compiler boundary is not executable" >&2

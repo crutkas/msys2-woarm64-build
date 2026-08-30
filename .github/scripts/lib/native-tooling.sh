@@ -192,6 +192,13 @@ woarm64_build_and_install_launchers() {
     return 1
   fi
 
+  # Verify what is actually on disk, not just what was built. A partial install
+  # that replaced one launcher and not the other must not reach the stamp.
+  if ! assert_native_arm64_pe "$gcc_launcher" 'installed woarm64-gcc.exe' ||
+      ! assert_native_arm64_pe "$gxx_launcher" 'installed woarm64-g++.exe'; then
+    return 1
+  fi
+
   if ! printf '%s\n' "$identity" > "$stamp_file.staged.$$" ||
       ! mv -f -- "$stamp_file.staged.$$" "$stamp_file"; then
     rm -f -- "$stamp_file.staged.$$"
