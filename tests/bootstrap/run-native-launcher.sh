@@ -49,7 +49,7 @@ EOF
 chmod 0755 "$fake_compiler"
 
 assert_native_arm64_pe "$launcher" 'installed native compiler launcher'
-grep -Fq 'launcher-identity-v3' \
+grep -Fq 'launcher-identity-v4' \
   /usr/local/libexec/msys2-woarm64/native-compiler-launcher.identity
 
 # Production runs under the pinned policy, not with conversion switched off.

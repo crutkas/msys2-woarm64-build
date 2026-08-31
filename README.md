@@ -184,6 +184,9 @@ a `build-native-with-native.sh` script. It expects that the
 package recipes repositories is already cloned in the parent folder of this repository's folder and
 it must be executed from `MINGWARM64` environment. Set `MINGW_PACKAGES_ROOT` to use an isolated
 checkout elsewhere.
+Native package builds accept exactly `MINGW_ARCH=mingwarm64`; multi-architecture
+makepkg invocation is rejected so every configured output destination is covered
+by the post-build residue scan.
 
 This is a mixed bootstrap, not an all-native build claim. Stage-0 Bash, Pacman, Autotools, and
 other MSYS orchestration tools are AMD64 binaries running under emulation. Tool executables
@@ -268,14 +271,18 @@ produce their bytes. Their cache is therefore keyed on the launcher source **and
 the native compiler and the whole tool closure. Replacing binutils changes the key even though the
 `.c` file is untouched, so a launcher emitted by a superseded or revoked toolchain can never survive
 the replacement. The stamp is written to `native-compiler-launcher.identity` and carries a
-`launcher-identity-v3` prefix, so a stamp written by an earlier scheme never matches. The stamp also
-records the SHA-256 and byte size of both installed launcher images, so a different valid ARM64 image
-cannot reuse a stale cache entry.
+`launcher-identity-v4` prefix, so a stamp written by an earlier scheme never matches. The stamp
+records one shared SHA-256 and byte size for both installed launcher images, so a different valid
+ARM64 image or a forged mixed pair cannot reuse a stale cache entry.
 
 Rebuilds take a `mkdir` lock, re-check the identity under it, delete the stamp before touching any
 image, install each launcher through a staged rename that retries while the old image is still
 mapped, verify the installed images are pure ARM64, and only then write the stamp. An interrupted
-rebuild leaves an obviously invalid cache rather than launchers that silently disagree with it.
+rebuild leaves an obviously invalid cache rather than launchers that silently disagree with it. An
+unowned or live-owned lock is never stale-reclaimed, closing the `mkdir`-to-owner-marker interval
+and preventing a paused owner from being fenced by elapsed time. Stale reclaim first requires a
+dead owner PID and atomically claims that precise owner marker; cache mutations also revalidate
+ownership.
 
 ### Argument conversion policy
 

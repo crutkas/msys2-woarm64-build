@@ -15,6 +15,11 @@ WOARM64_NATIVE_RECIPE_PATH_RESERVE_DEFAULT=160
 # Survives state release so a caller can scan build output for residue from the
 # alias drive that was actually used.
 WOARM64_LAST_RECIPE_ALIAS_LETTER=
+WOARM64_RECIPE_OUTPUT_SCAN_ROOTS=()
+WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS=()
+WOARM64_RECIPE_OUTPUT_DESTINATION_NAMES=(
+  PKGDEST SRCDEST SRCPKGDEST LOGDEST BUILDDIR
+)
 
 # Alias bookkeeping lives in namespaced globals rather than in locals of
 # with_short_native_recipe_root. The EXIT trap can fire long after that function
@@ -63,9 +68,28 @@ native_recipe_root_needs_alias() {
   (( ${#recipe_root_native} + path_reserve > 259 ))
 }
 
-# Refuses to remove a mapping that no longer resolves to the recipe root it was
-# created for, but always releases ownership so the deferred EXIT trap cannot
-# re-report or wedge later builds.
+_woarm64_remove_native_recipe_alias_mapping() {
+  local timeout=${WOARM64_ALIAS_CLEANUP_WAIT_SECONDS:-10}
+  local status
+
+  if [[ ! "$timeout" =~ ^[1-9][0-9]*$ ]]; then
+    echo "WOARM64_ALIAS_CLEANUP_WAIT_SECONDS must be a positive integer" >&2
+    return 2
+  fi
+  if timeout --foreground --kill-after=2s "${timeout}s" \
+      env MSYS2_ARG_CONV_EXCL='*' \
+      "$_WOARM64_ALIAS_SUBST_TOOL" "$_WOARM64_ALIAS_DRIVE" /D >/dev/null; then
+    return 0
+  else
+    status=$?
+  fi
+  echo "Failed to remove native recipe alias $_WOARM64_ALIAS_DRIVE (status $status)" >&2
+  return 1
+}
+
+# The mapping itself is the owned resource. Its original target can disappear
+# during a failed build, but that must never prevent the stored mapping from
+# being removed.
 cleanup_short_native_recipe_root() {
   local status=0
 
@@ -74,17 +98,12 @@ cleanup_short_native_recipe_root() {
   fi
 
   # A mapped drive cannot be removed while the shell is sitting on it. Prefer
-  # the physical recipe root, but still try to get off the alias if that root
-  # was unexpectedly removed by the build.
-  cd "$_WOARM64_ALIAS_RECIPE_ROOT" 2>/dev/null || cd / || status=1
-  if [[ "$_WOARM64_ALIAS_ROOT" -ef "$_WOARM64_ALIAS_RECIPE_ROOT" ]]; then
-    if ! MSYS2_ARG_CONV_EXCL='*' \
-        "$_WOARM64_ALIAS_SUBST_TOOL" "$_WOARM64_ALIAS_DRIVE" /D >/dev/null; then
-      echo "Failed to remove native recipe alias $_WOARM64_ALIAS_DRIVE" >&2
-      status=1
-    fi
-  else
-    echo "Refusing to remove changed native recipe alias $_WOARM64_ALIAS_DRIVE" >&2
+  # the original root, but move to / if that root was deleted by the build.
+  if ! cd "$_WOARM64_ALIAS_RECIPE_ROOT" 2>/dev/null && ! cd /; then
+    echo "Failed to leave the native recipe alias before cleanup" >&2
+    status=1
+  fi
+  if ! _woarm64_remove_native_recipe_alias_mapping; then
     status=1
   fi
 
@@ -168,10 +187,10 @@ _woarm64_wait_for_native_recipe_child() {
     return 2
   fi
   deadline=$((SECONDS + timeout))
-  while kill -0 "$pid" 2>/dev/null; do
+  while kill -0 -- "-$pid" 2>/dev/null; do
     if (( SECONDS >= deadline )); then
-      echo "Timed out waiting for native recipe child $pid after $timeout seconds; terminating it" >&2
-      kill -KILL "$pid" 2>/dev/null || true
+      echo "Timed out waiting for native recipe process group $pid after $timeout seconds; terminating it" >&2
+      kill -KILL -- "-$pid" 2>/dev/null || true
       break
     fi
     sleep 1
@@ -185,7 +204,7 @@ forward_native_recipe_signal() {
 
   trap - HUP INT TERM
   if [[ -n "$_WOARM64_ALIAS_COMMAND_PID" ]]; then
-    kill -s "$signal" "$_WOARM64_ALIAS_COMMAND_PID" 2>/dev/null || true
+    kill -s "$signal" -- "-$_WOARM64_ALIAS_COMMAND_PID" 2>/dev/null || true
     _woarm64_wait_for_native_recipe_child "$_WOARM64_ALIAS_COMMAND_PID" || true
   fi
   # Signal status is the caller-visible contract. Cleanup errors are reported
@@ -220,10 +239,11 @@ _woarm64_file_has_native_recipe_alias_residue() {
   local utf16le_pattern
   local scan_status
 
-  # Keep URL schemes and identifier fragments out of scope while accepting the
-  # joined -I/-L forms that libtool emits and a bare, bounded drive token.
-  ascii_pattern="(^|[^[:alnum:]_]|-[IL])${drive_letter}:($|[^[:alnum:]_])"
-  utf16le_pattern="(?:^|(?:[^A-Za-z0-9_]\x00)|(?:-\x00[IL]\x00))${drive_letter}\x00:\x00(?:$|[^A-Za-z0-9_]\x00)"
+  # Keep URL schemes and identifier fragments out of scope while accepting all
+  # joined compiler path forms native-compiler.sh supports, plus a bare bounded
+  # drive token. Libtool can emit both short (-B) and long (-isystem) forms.
+  ascii_pattern="(^|[^[:alnum:]_]|-([ILB]|iquote|isystem|idirafter|include|imacros|o|MF))${drive_letter}:($|[^[:alnum:]_])"
+  utf16le_pattern="(?:^|(?:[^A-Za-z0-9_]\x00)|(?:-\x00(?:[ILB]\x00|i\x00q\x00u\x00o\x00t\x00e\x00|i\x00s\x00y\x00s\x00t\x00e\x00m\x00|i\x00d\x00i\x00r\x00a\x00f\x00t\x00e\x00r\x00|i\x00n\x00c\x00l\x00u\x00d\x00e\x00|i\x00m\x00a\x00c\x00r\x00o\x00s\x00|o\x00|M\x00F\x00)))${drive_letter}\x00:\x00(?:$|[^A-Za-z0-9_]\x00)"
 
   if LC_ALL=C grep -a -i -E -q -- "$ascii_pattern" "$file"; then
     return 0
@@ -258,8 +278,10 @@ _woarm64_archive_has_native_recipe_alias_residue() {
   if ! member_list=$(mktemp "${TMPDIR:-/tmp}/woarm64-archive-members.XXXXXX"); then
     return 2
   fi
-  if ! tar -tf -- "$archive" > "$member_list"; then
-    rm -f -- "$member_list" || true
+  if ! tar --list --file="$archive" > "$member_list"; then
+    if ! rm -f -- "$member_list"; then
+      echo "Unable to remove failed native recipe archive member list: $member_list" >&2
+    fi
     echo "Unable to list archive for native recipe alias residue: $archive" >&2
     return 2
   fi
@@ -269,18 +291,25 @@ _woarm64_archive_has_native_recipe_alias_residue() {
       status=2
       break
     fi
-    if ! tar -xOf -- "$archive" "$member" > "$extracted"; then
-      rm -f -- "$extracted" || true
+    if ! tar --extract --to-stdout --file="$archive" -- "$member" > "$extracted"; then
+      if ! rm -f -- "$extracted"; then
+        echo "Unable to remove failed native recipe archive extraction: $extracted" >&2
+      fi
       echo "Unable to extract archive member for native recipe alias residue: $archive:$member" >&2
       status=2
       break
     fi
     if _woarm64_file_has_native_recipe_alias_residue "$extracted" "$drive_letter"; then
-      rm -f -- "$extracted" || true
-      status=0
+      if ! rm -f -- "$extracted"; then
+        echo "Unable to remove native recipe archive extraction: $extracted" >&2
+        status=2
+      else
+        status=0
+      fi
       break
+    else
+      scan_status=$?
     fi
-    scan_status=$?
     if ! rm -f -- "$extracted"; then
       status=2
       break
@@ -303,6 +332,143 @@ _woarm64_path_is_scannable_archive() {
       ;;
   esac
   return 1
+}
+
+_woarm64_append_recipe_output_scan_root() {
+  local candidate=$1
+  local existing
+
+  for existing in "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}"; do
+    if [[ "$candidate" -ef "$existing" ]]; then
+      return 0
+    fi
+  done
+  WOARM64_RECIPE_OUTPUT_SCAN_ROOTS+=("$candidate")
+}
+
+load_native_makepkg_output_destinations() {
+  local makepkg_config=$1
+  local destination_values
+  local value
+  local cleanup_status=0
+
+  if [[ $# -ne 1 || -z "$makepkg_config" || ! -f "$makepkg_config" ]]; then
+    echo "load_native_makepkg_output_destinations requires one readable makepkg configuration" >&2
+    return 2
+  fi
+  if [[ -z "${MSYSTEM:-}" ]]; then
+    echo "MSYSTEM is required to resolve native makepkg output destinations" >&2
+    return 2
+  fi
+  if ! destination_values=$(mktemp "${TMPDIR:-/tmp}/woarm64-makepkg-destinations.XXXXXX"); then
+    return 2
+  fi
+  if ! bash -c '
+      set -e
+      config=$1
+      shift
+      source "$config"
+      for destination_name in "$@"; do
+        printf "%s\0" "${!destination_name:-}" >&3
+      done
+    ' native-makepkg-output-destinations "$makepkg_config" \
+      "${WOARM64_RECIPE_OUTPUT_DESTINATION_NAMES[@]}" \
+      3> "$destination_values" >/dev/null; then
+    if ! rm -f -- "$destination_values"; then
+      cleanup_status=1
+    fi
+    echo "Unable to load native makepkg output destinations: $makepkg_config" >&2
+    return "$(( cleanup_status == 0 ? 2 : cleanup_status ))"
+  fi
+  WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS=()
+  while IFS= read -r -d '' value; do
+    WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS+=("$value")
+  done < "$destination_values"
+  if ! rm -f -- "$destination_values"; then
+    echo "Unable to remove native makepkg destination capture: $destination_values" >&2
+    return 2
+  fi
+  if [[ ${#WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS[@]} -ne \
+      ${#WOARM64_RECIPE_OUTPUT_DESTINATION_NAMES[@]} ]]; then
+    echo "Native makepkg destination capture is incomplete: $makepkg_config" >&2
+    return 2
+  fi
+}
+
+# Resolves only output locations explicitly selected for this makepkg run. The
+# recipe root is scanned recursively because it contains build, stage and
+# metadata trees. External destinations are constrained to a real non-root
+# directory that the user explicitly named; they are scanned only as artifact
+# destinations, never by walking a broad host parent.
+resolve_native_recipe_output_scan_roots() {
+  local recipe_root=$1
+  shift
+  local canonical_recipe_root
+  local configured
+  local configured_name
+  local configured_index
+  local candidate
+  local canonical_candidate
+
+  WOARM64_RECIPE_OUTPUT_SCAN_ROOTS=()
+  if [[ -z "$recipe_root" || ! -d "$recipe_root" ]]; then
+    echo "resolve_native_recipe_output_scan_roots requires one existing recipe root" >&2
+    return 2
+  fi
+  if [[ $# -ne 0 && $# -ne ${#WOARM64_RECIPE_OUTPUT_DESTINATION_NAMES[@]} ]]; then
+    echo "resolve_native_recipe_output_scan_roots requires either no destinations or every configured destination" >&2
+    return 2
+  fi
+  if ! canonical_recipe_root=$(cd "$recipe_root" && pwd -P); then
+    echo "Unable to canonicalize native recipe output root: $recipe_root" >&2
+    return 2
+  fi
+  _woarm64_append_recipe_output_scan_root "$canonical_recipe_root"
+
+  for configured_index in "${!WOARM64_RECIPE_OUTPUT_DESTINATION_NAMES[@]}"; do
+    configured_name=${WOARM64_RECIPE_OUTPUT_DESTINATION_NAMES[$configured_index]}
+    if [[ $# -eq 0 ]]; then
+      configured=${!configured_name:-}
+    else
+      configured=${1:-}
+      shift
+    fi
+    [[ -n "$configured" ]] || continue
+    case "$configured" in
+      /*|[A-Za-z]:[\\/]*|\\\\*)
+        candidate=$configured
+        ;;
+      *)
+        candidate="$canonical_recipe_root/$configured"
+        ;;
+    esac
+    if ! candidate=$(to_msys_path "$candidate"); then
+      echo "Unable to resolve $configured_name for native recipe residue scanning" >&2
+      return 2
+    fi
+    # A destination that was never created cannot contain an artifact. Existing
+    # non-directories, however, make the scan incomplete and fail closed.
+    [[ -e "$candidate" ]] || continue
+    if [[ ! -d "$candidate" ]]; then
+      echo "Configured native recipe artifact destination is not a directory: $configured_name=$candidate" >&2
+      return 2
+    fi
+    if ! canonical_candidate=$(cd "$candidate" && pwd -P); then
+      echo "Unable to canonicalize $configured_name for native recipe residue scanning: $candidate" >&2
+      return 2
+    fi
+    case "$canonical_candidate" in
+      /|/[A-Za-z])
+        echo "Refusing to broadly scan host root configured by $configured_name: $canonical_candidate" >&2
+        return 2
+        ;;
+    esac
+    if [[ "$(dirname "$canonical_candidate")" == / ]]; then
+      echo "Refusing to broadly scan host top-level directory configured by $configured_name: $canonical_candidate" >&2
+      return 2
+    fi
+    _woarm64_append_recipe_output_scan_root "$canonical_candidate"
+  done
 }
 
 # Fails the build when the temporary alias drive leaked into build trees,
@@ -392,6 +558,7 @@ with_short_native_recipe_root() {
   local status
   local abort_status
   local trap_state_file
+  local monitor_was_enabled=0
 
   if [[ $# -eq 0 ]]; then
     echo "with_short_native_recipe_root requires a command" >&2
@@ -489,11 +656,20 @@ with_short_native_recipe_root() {
     _woarm64_recipe_abort "$abort_status"
     return $?
   fi
+  if [[ "$-" == *m* ]]; then
+    monitor_was_enabled=1
+  elif ! set -m; then
+    echo "Bash job control is required for native recipe signal handling" >&2
+    abort_status=1
+    _woarm64_recipe_abort "$abort_status"
+    return $?
+  fi
   env --default-signal=HUP,INT,TERM bash -c '
     child_pid=
     child_starting=0
     pending_signal=
     relay_pid=$BASHPID
+    set -m
 
     wait_for_child() {
       local pid=$1
@@ -501,9 +677,9 @@ with_short_native_recipe_root() {
       local deadline
       [[ "$timeout" =~ ^[1-9][0-9]*$ ]] || exit 2
       deadline=$((SECONDS + timeout))
-      while kill -0 "$pid" 2>/dev/null; do
+      while kill -0 -- "-$pid" 2>/dev/null; do
         if (( SECONDS >= deadline )); then
-          kill -KILL "$pid" 2>/dev/null || true
+          kill -KILL -- "-$pid" 2>/dev/null || true
           break
         fi
         sleep 1
@@ -516,7 +692,7 @@ with_short_native_recipe_root() {
       local status=$2
       trap - HUP INT TERM
       if [[ -n "$child_pid" ]]; then
-        kill -s "$signal" "$child_pid" 2>/dev/null || true
+        kill -s "$signal" -- "-$child_pid" 2>/dev/null || true
         wait_for_child "$child_pid"
       fi
       exit "$status"
@@ -552,6 +728,9 @@ with_short_native_recipe_root() {
     exit "$child_status"
   ' native-recipe-signal-relay "$@" <&0 &
   _WOARM64_ALIAS_COMMAND_PID=$!
+  if [[ $monitor_was_enabled -eq 0 ]]; then
+    set +m
+  fi
   _WOARM64_ALIAS_COMMAND_STARTING=0
   if [[ -n "$_WOARM64_ALIAS_PENDING_SIGNAL" ]]; then
     read -r signal status <<< "$_WOARM64_ALIAS_PENDING_SIGNAL"

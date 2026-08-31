@@ -237,12 +237,10 @@ launcher_run() (
 assert_ok 'the first launcher build succeeds' launcher_run
 assert_equal '2' "$(fake_compiler_call_count "$counter")" 'the first build compiles and links once'
 stamp_file="$install_dir/native-compiler-launcher.identity"
-assert_contains "$(cat "$stamp_file")" 'launcher-identity-v3' 'the stamp is versioned'
+assert_contains "$(cat "$stamp_file")" 'launcher-identity-v4' 'the stamp is versioned'
 assert_contains "$(cat "$stamp_file")" 'toolchain=' 'the stamp binds the toolchain identity'
-assert_contains "$(cat "$stamp_file")" 'woarm64-gcc.exe size=' \
-  'the stamp binds the installed GCC launcher bytes and size'
-assert_contains "$(cat "$stamp_file")" 'woarm64-g++.exe size=' \
-  'the stamp binds the installed G++ launcher bytes and size'
+assert_contains "$(cat "$stamp_file")" 'launcher-pair size=' \
+  'the stamp binds one identical generated launcher pair'
 assert_ok 'the installed gcc launcher is a pure ARM64 image' \
   assert_native_arm64_pe "$install_dir/woarm64-gcc.exe"
 assert_ok 'the installed g++ launcher is a pure ARM64 image' \
@@ -309,17 +307,34 @@ assert_equal "$(( revalidation_calls + 2 ))" "$(fake_compiler_call_count "$count
 assert_ok 'the revalidated gcc launcher is a pure ARM64 image' \
   assert_native_arm64_pe "$install_dir/woarm64-gcc.exe"
 
-# The output stamp binds more than architecture: another structurally valid
-# ARM64 image with different bytes must force the same complete rebuild.
+# A forged stamp cannot authorize a mixed pair. Both images can be individually
+# valid ARM64 PEs and the stamp can name one of them, but launchers are generated
+# from the same output and must be byte-for-byte identical.
 output_identity_calls=$(fake_compiler_call_count "$counter")
 perturb_pe_image "$install_dir/woarm64-g++.exe" 'unexpected-valid-arm64-bytes'
-assert_ok 'a different valid ARM64 launcher image rebuilds' launcher_run
+forge_mixed_launcher_stamp() (
+  export WOARM64_LAUNCHER_INSTALL_DIR="$install_dir"
+  export WOARM64_NATIVE_BIN="$launcher_bin"
+  export WOARM64_NATIVE_LAUNCHER_COMPILER="$fake_compiler"
+  export WOARM64_NATIVE_CXX="$fake_compiler"
+  identity=$(native_launcher_identity "$install_dir")
+  printf '%s\nlauncher-pair size=%s sha256=%s\n' "$identity" \
+    "$(stat -c %s -- "$install_dir/woarm64-g++.exe")" \
+    "$(sha256sum -- "$install_dir/woarm64-g++.exe" | cut -d' ' -f1)" > "$stamp_file"
+)
+assert_ok 'a forged mixed launcher stamp rebuilds the pair' launcher_run
 assert_equal "$(( output_identity_calls + 2 ))" "$(fake_compiler_call_count "$counter")" \
-  'a changed valid ARM64 launcher cannot reuse the output stamp'
+  'a mixed valid ARM64 launcher pair cannot reuse a forged output stamp'
 
 # A lock left behind by a killed builder must be reclaimed once it is stale,
 # and a fresh lock must fail on a bounded timeout instead of hanging.
+( exit 0 ) &
+dead_owner_pid=$!
+wait "$dead_owner_pid"
+dead_owner_token="${dead_owner_pid}:0:0"
 mkdir -p "$install_dir/.launcher-lock"
+printf '%s\n' "$dead_owner_token" \
+  > "$install_dir/.launcher-lock/owner.${dead_owner_token//:/_}"
 touch -d '2000-01-01' "$install_dir/.launcher-lock" 2>/dev/null || true
 rm -f "$stamp_file"
 stale_lock_status=0
@@ -344,23 +359,76 @@ assert_equal '1' "$held_lock_status" \
 rm -rf "$install_dir/.launcher-lock"
 assert_ok 'the launcher build succeeds once the lock is gone' launcher_run
 
+# The interval between mkdir and marker creation cannot be safely distinguished
+# from a paused owner. It must fail closed instead of reclaiming that directory
+# and allowing the paused owner to join a later lock.
+incomplete_lock="$root/launcher/incomplete-lock"
+mkdir "$incomplete_lock"
+touch -d '2000-01-01' "$incomplete_lock" 2>/dev/null || true
+incomplete_lock_status=0
+(
+  export WOARM64_LAUNCHER_LOCK_TIMEOUT=0
+  export WOARM64_LAUNCHER_LOCK_STALE=1
+  woarm64_acquire_launcher_lock "$incomplete_lock"
+) >/dev/null 2>&1 || incomplete_lock_status=$?
+assert_equal '1' "$incomplete_lock_status" \
+  'an unowned stale launcher lock is not reclaimed'
+if [[ -d "$incomplete_lock" ]]; then
+  report ok 'an incomplete launcher lock remains diagnosable'
+else
+  report fail 'an incomplete launcher lock remains diagnosable'
+fi
+rmdir "$incomplete_lock"
+
+live_owner_lock="$root/launcher/live-owner-lock"
+live_owner_token="${BASHPID}:0:0"
+mkdir "$live_owner_lock"
+printf '%s\n' "$live_owner_token" \
+  > "$live_owner_lock/owner.${live_owner_token//:/_}"
+touch -d '2000-01-01' "$live_owner_lock" 2>/dev/null || true
+live_owner_status=0
+(
+  export WOARM64_LAUNCHER_LOCK_TIMEOUT=0
+  export WOARM64_LAUNCHER_LOCK_STALE=1
+  woarm64_acquire_launcher_lock "$live_owner_lock"
+) >/dev/null 2>&1 || live_owner_status=$?
+assert_equal '1' "$live_owner_status" \
+  'a live stale launcher owner is not reclaimed'
+if [[ -d "$live_owner_lock" &&
+      -f "$live_owner_lock/owner.${live_owner_token//:/_}" ]]; then
+  report ok 'a live stale launcher lock remains owned'
+else
+  report fail 'a live stale launcher lock remains owned'
+fi
+rm -f -- "$live_owner_lock/owner.${live_owner_token//:/_}"
+rmdir "$live_owner_lock"
+
 printf '== launcher lock ownership ==\n'
 
-# A builder whose lock was reclaimed as stale while it was paused must never
-# delete the lock a new owner has since taken. Ownership is checked on release
-# instead of removing the directory unconditionally.
+# A builder whose lock was reclaimed while paused must never delete the lock a
+# new owner acquired after the atomic rename. The old ownership marker is moved
+# out with the stale directory before the new lock exists.
 ownership_lock="$root/launcher/ownership-lock"
-mkdir -p "$ownership_lock"
-printf 'new-owner\n' > "$ownership_lock/owner"
-_WOARM64_LAUNCHER_LOCK_TOKEN='paused-old-owner'
-woarm64_release_launcher_lock "$ownership_lock" 2>/dev/null
+woarm64_acquire_launcher_lock "$ownership_lock"
+stale_ownership_lock="${ownership_lock}.stale"
+mv -- "$ownership_lock" "$stale_ownership_lock"
+woarm64_remove_stale_launcher_lock "$stale_ownership_lock"
+mkdir "$ownership_lock"
+printf 'new-owner\n' > "$ownership_lock/owner.new-owner"
+assert_fails 'a reclaimed owner loses the right to publish launcher output' \
+  woarm64_launcher_lock_is_owned "$ownership_lock"
+woarm64_release_launcher_lock "$ownership_lock"
 if [[ -d "$ownership_lock" ]]; then
   report ok 'a reclaimed lock is left for its new owner'
 else
   report fail 'a reclaimed lock is left for its new owner'
 fi
-printf 'paused-old-owner\n' > "$ownership_lock/owner"
-_WOARM64_LAUNCHER_LOCK_TOKEN='paused-old-owner'
+if [[ -f "$ownership_lock/owner.new-owner" ]]; then
+  report ok 'a paused owner cannot remove a new ownership marker'
+else
+  report fail 'a paused owner cannot remove a new ownership marker'
+fi
+_WOARM64_LAUNCHER_LOCK_TOKEN='new-owner'
 woarm64_release_launcher_lock "$ownership_lock"
 if [[ -d "$ownership_lock" ]]; then
   report fail 'the true owner releases its own lock'
@@ -368,6 +436,160 @@ else
   report ok 'the true owner releases its own lock'
 fi
 _WOARM64_LAUNCHER_LOCK_TOKEN=
+
+acquire_interleave_lock="$root/launcher/acquire-interleave-lock"
+acquire_interleave_bin="$root/launcher/acquire-interleave-bin"
+mkdir -p "$acquire_interleave_lock" "$acquire_interleave_bin"
+acquire_interleave_token="${dead_owner_pid}:1:1"
+acquire_interleave_marker=\
+"$acquire_interleave_lock/owner.${acquire_interleave_token//:/_}"
+printf '%s\n' "$acquire_interleave_token" > "$acquire_interleave_marker"
+touch -d '2000-01-01' "$acquire_interleave_lock" 2>/dev/null || true
+real_mv=$(command -v mv)
+real_mkdir=$(command -v mkdir)
+real_rm=$(command -v rm)
+real_rmdir=$(command -v rmdir)
+cat > "$acquire_interleave_bin/mv" <<'EOF'
+#!/bin/bash
+for argument in "$@"; do
+  if [[ "$argument" == "$WOARM64_ACQUIRE_INTERLEAVE_MARKER" ]]; then
+    "$WOARM64_REAL_RM" -f -- "$argument"
+    "$WOARM64_REAL_RMDIR" -- "$WOARM64_ACQUIRE_INTERLEAVE_LOCK"
+    "$WOARM64_REAL_MKDIR" -- "$WOARM64_ACQUIRE_INTERLEAVE_LOCK"
+    printf 'new-owner\n' > "$WOARM64_ACQUIRE_INTERLEAVE_LOCK/owner.new-owner"
+    exit 1
+  fi
+done
+exec "$WOARM64_REAL_MV" "$@"
+EOF
+chmod +x "$acquire_interleave_bin/mv"
+acquire_interleave_status=0
+(
+  export PATH="$acquire_interleave_bin:$PATH"
+  export WOARM64_REAL_MV="$real_mv"
+  export WOARM64_REAL_MKDIR="$real_mkdir"
+  export WOARM64_REAL_RM="$real_rm"
+  export WOARM64_REAL_RMDIR="$real_rmdir"
+  export WOARM64_ACQUIRE_INTERLEAVE_LOCK="$acquire_interleave_lock"
+  export WOARM64_ACQUIRE_INTERLEAVE_MARKER="$acquire_interleave_marker"
+  export WOARM64_LAUNCHER_LOCK_TIMEOUT=0
+  export WOARM64_LAUNCHER_LOCK_STALE=1
+  woarm64_acquire_launcher_lock "$acquire_interleave_lock"
+) >/dev/null 2>&1 || acquire_interleave_status=$?
+assert_equal '1' "$acquire_interleave_status" \
+  'a stale-reclaim interleaving cannot claim a new owner lock'
+if [[ -d "$acquire_interleave_lock" &&
+      -f "$acquire_interleave_lock/owner.new-owner" ]]; then
+  report ok 'a reclaim contender leaves the interleaved new lock intact'
+else
+  report fail 'a reclaim contender leaves the interleaved new lock intact'
+fi
+"$real_rm" -f -- "$acquire_interleave_lock/owner.new-owner"
+"$real_rmdir" -- "$acquire_interleave_lock"
+
+lock_failure_bin="$root/launcher/lock-failure-bin"
+mkdir -p "$lock_failure_bin"
+cat > "$lock_failure_bin/rm" <<'EOF'
+#!/bin/bash
+for argument in "$@"; do
+  if [[ -n "${WOARM64_RELEASE_INTERLEAVE_HOOK:-}" && "$argument" == */owner.* ]]; then
+    "$WOARM64_RELEASE_INTERLEAVE_HOOK" || exit 1
+  fi
+  if [[ "${WOARM64_INJECT_RM_FAILURE:-}" == 1 && "$argument" == */owner.* ]]; then
+    exit 1
+  fi
+done
+exec "$WOARM64_REAL_RM" "$@"
+EOF
+cat > "$lock_failure_bin/rmdir" <<'EOF'
+#!/bin/bash
+exit 1
+EOF
+chmod +x "$lock_failure_bin/rm" "$lock_failure_bin/rmdir"
+
+release_interleave_lock="$root/launcher/release-interleave-lock"
+release_interleave_hook="$root/launcher/release-interleave-hook"
+woarm64_acquire_launcher_lock "$release_interleave_lock"
+cat > "$release_interleave_hook" <<'EOF'
+#!/bin/bash
+mv -- "$WOARM64_INTERLEAVE_LOCK" "${WOARM64_INTERLEAVE_LOCK}.stale"
+mkdir -- "$WOARM64_INTERLEAVE_LOCK"
+printf 'new-owner\n' > "$WOARM64_INTERLEAVE_LOCK/owner.new-owner"
+EOF
+chmod +x "$release_interleave_hook"
+release_interleave_status=0
+PATH="$lock_failure_bin:$PATH" WOARM64_REAL_RM="$real_rm" \
+  WOARM64_INTERLEAVE_LOCK="$release_interleave_lock" \
+  WOARM64_RELEASE_INTERLEAVE_HOOK="$release_interleave_hook" \
+  woarm64_release_launcher_lock "$release_interleave_lock" ||
+  release_interleave_status=$?
+assert_equal '1' "$release_interleave_status" \
+  'an interleaved reclaim makes the old marker unlink fail closed'
+if [[ -d "$release_interleave_lock" &&
+      -f "$release_interleave_lock/owner.new-owner" ]]; then
+  report ok 'an old owner cannot remove a lock acquired during its release'
+else
+  report fail 'an old owner cannot remove a lock acquired during its release'
+fi
+"$real_rm" -f -- "$release_interleave_lock.stale"/owner.*
+"$real_rmdir" -- "$release_interleave_lock.stale"
+_WOARM64_LAUNCHER_LOCK_TOKEN='new-owner'
+woarm64_release_launcher_lock "$release_interleave_lock"
+
+rm_failure_lock="$root/launcher/rm-failure-lock"
+woarm64_acquire_launcher_lock "$rm_failure_lock"
+rm_failure_marker="${rm_failure_lock}/owner.${_WOARM64_LAUNCHER_LOCK_TOKEN//:/_}"
+rm_failure_status=0
+PATH="$lock_failure_bin:$PATH" WOARM64_INJECT_RM_FAILURE=1 WOARM64_REAL_RM="$real_rm" \
+  woarm64_release_launcher_lock "$rm_failure_lock" || rm_failure_status=$?
+assert_equal '1' "$rm_failure_status" \
+  'a failed ownership-marker removal returns a nonzero cleanup status'
+if [[ -d "$rm_failure_lock" && -f "$rm_failure_marker" ]]; then
+  report ok 'a failed ownership-marker removal retains a diagnosable lock'
+else
+  report fail 'a failed ownership-marker removal retains a diagnosable lock'
+fi
+"$real_rm" -f -- "$rm_failure_marker"
+"$real_rmdir" -- "$rm_failure_lock"
+
+rm -f "$stamp_file"
+launcher_release_failure_status=0
+(
+  export WOARM64_LAUNCHER_INSTALL_DIR="$install_dir"
+  export WOARM64_NATIVE_BIN="$launcher_bin"
+  export WOARM64_NATIVE_LAUNCHER_COMPILER="$fake_compiler"
+  export WOARM64_NATIVE_CXX="$fake_compiler"
+  export WOARM64_FAKE_COMPILER_COUNTER="$counter"
+  export WOARM64_FAKE_COMPILER_FAIL=0
+  export PATH="$lock_failure_bin:$PATH"
+  export WOARM64_INJECT_RM_FAILURE=1
+  export WOARM64_REAL_RM="$real_rm"
+  ensure_native_compiler_launchers
+) || launcher_release_failure_status=$?
+assert_equal '1' "$launcher_release_failure_status" \
+  'launcher provisioning propagates an ownership-marker cleanup failure'
+if [[ -d "$install_dir/.launcher-lock" ]] &&
+    find "$install_dir/.launcher-lock" -maxdepth 1 -name 'owner.*' -print -quit | grep -q .; then
+  report ok 'a launcher cleanup failure leaves its lock diagnosable'
+else
+  report fail 'a launcher cleanup failure leaves its lock diagnosable'
+fi
+"$real_rm" -f -- "$install_dir/.launcher-lock"/owner.*
+"$real_rmdir" -- "$install_dir/.launcher-lock"
+
+rmdir_failure_lock="$root/launcher/rmdir-failure-lock"
+woarm64_acquire_launcher_lock "$rmdir_failure_lock"
+rmdir_failure_status=0
+PATH="$lock_failure_bin:$PATH" WOARM64_REAL_RM="$real_rm" \
+  woarm64_release_launcher_lock "$rmdir_failure_lock" || rmdir_failure_status=$?
+assert_equal '1' "$rmdir_failure_status" \
+  'a failed lock-directory removal returns a nonzero cleanup status'
+if [[ -d "$rmdir_failure_lock" ]]; then
+  report ok 'a failed lock-directory removal retains a diagnosable lock'
+else
+  report fail 'a failed lock-directory removal retains a diagnosable lock'
+fi
+"$real_rmdir" -- "$rmdir_failure_lock"
 
 printf '== recipe root alias ==\n'
 
@@ -464,6 +686,11 @@ cd "$alias_probe_root"
 WOARM64_SUBST_DRIVES=Z with_short_native_recipe_root bash -c '
   trap "exit 0" HUP INT TERM
   echo "\$\$" > "\$WOARM64_SIGNAL_CHILD"
+  bash -c '"'"'
+    trap "" HUP INT TERM
+    echo "\$\$" > "\$WOARM64_SIGNAL_GRANDCHILD"
+    while :; do sleep 1; done
+  '"'"' &
   kill -s "\$WOARM64_SIGNAL" "\$MSYS2_WOARM64_RECIPE_HELPER_PID"
   while :; do sleep 1; done
 '
@@ -472,9 +699,12 @@ chmod +x "$signal_probe"
 for signal_spec in 'HUP 129' 'INT 130' 'TERM 143'; do
   read -r signal expected_status <<< "$signal_spec"
   signal_child="$root/$signal.child"
+  signal_grandchild="$root/$signal.grandchild"
   signal_status=0
   WOARM64_SIGNAL="$signal" WOARM64_SIGNAL_CHILD="$signal_child" \
-    timeout --foreground --kill-after=2s 12s "$signal_probe" >/dev/null 2>&1 ||
+    WOARM64_SIGNAL_GRANDCHILD="$signal_grandchild" \
+    WOARM64_ALIAS_SIGNAL_WAIT_SECONDS=2 \
+    timeout --foreground --kill-after=2s 8s "$signal_probe" >/dev/null 2>&1 ||
     signal_status=$?
   assert_equal "$expected_status" "$signal_status" \
     "the alias helper forwards $signal and returns its exact status"
@@ -489,7 +719,41 @@ for signal_spec in 'HUP 129' 'INT 130' 'TERM 143'; do
   else
     report ok "the alias child does not survive $signal"
   fi
+  if [[ -f "$signal_grandchild" ]] && kill -0 "$(< "$signal_grandchild")" 2>/dev/null; then
+    report fail "the signal-ignoring alias grandchild does not survive $signal"
+  else
+    report ok "the signal-ignoring alias grandchild does not survive $signal"
+  fi
 done
+
+# A command can remove the physical recipe root before its alias cleanup runs.
+# The stored SUBST mapping is still owned and must be removed unconditionally.
+deleted_alias_root="$root/deleted-alias"
+mkdir -p "$deleted_alias_root"
+delete_root_probe="$root/delete-root.probe"
+cat > "$delete_root_probe" <<EOF
+#!/bin/bash
+set -e
+source "$repo_root/.github/scripts/lib/native-recipe-root.sh"
+cd "$deleted_alias_root"
+WOARM64_SUBST_DRIVES=Z with_short_native_recipe_root bash -c '
+  cd /
+  rm -rf -- "\$WOARM64_DELETE_RECIPE_ROOT"
+'
+EOF
+chmod +x "$delete_root_probe"
+delete_root_status=0
+WOARM64_DELETE_RECIPE_ROOT="$deleted_alias_root" \
+  WOARM64_ALIAS_CLEANUP_WAIT_SECONDS=2 \
+  "$delete_root_probe" >/dev/null 2>&1 || delete_root_status=$?
+assert_equal '1' "$delete_root_status" \
+  'a deleted recipe root reports its failed caller-directory restoration'
+if [[ -e /z ]]; then
+  report fail 'a deleted recipe root still removes its stored alias mapping'
+  MSYS2_ARG_CONV_EXCL='*' "$subst_tool" Z: /D >/dev/null 2>&1 || true
+else
+  report ok 'a deleted recipe root still removes its stored alias mapping'
+fi
 
 # Traps belonging to the caller must survive the helper.
 trap_probe="$root/trap.probe"
@@ -628,6 +892,15 @@ assert_fails 'joined -L alias residue fails the scan' \
 printf -- '-IW:/src/gettext/include\n' > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'joined -I alias residue fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
+printf -- '-BW:/src/gettext/tool-prefix\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'joined -B alias residue fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf -- '-isystemW:/src/gettext/system-include\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'joined -isystem alias residue fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf -- '-isystem/usr/include\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_ok 'a joined compiler path without the alias drive passes the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
 printf 'builddir = W:/\n' > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'alias residue at end of line fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
@@ -659,12 +932,111 @@ rm -f "$residue_root/mingwarm64/lib/utf16le.pc"
 
 archive_root="$root/residue/archive"
 mkdir -p "$archive_root"
-printf 'builddir = W:/archived\n' > "$archive_root/.BUILDINFO"
-tar -cf "$residue_root/gettext.pkg.tar" -C "$archive_root" .
-assert_fails 'alias residue inside a package archive fails the scan' \
+printf 'builddir = /clean/archive\n' > "$archive_root/.BUILDINFO"
+tar --create --gzip --file="$residue_root/clean.pkg.tar.gz" -C "$archive_root" .
+assert_ok 'a clean compressed package archive passes the member scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
-rm -f "$residue_root/gettext.pkg.tar"
+printf 'builddir = W:/hidden-in-compressed-member\n' > "$archive_root/.BUILDINFO"
+tar --create --gzip --file="$residue_root/gettext.pkg.tar.gz" -C "$archive_root" .
+assert_fails 'alias residue hidden in a compressed archive member fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+rm -f "$residue_root/clean.pkg.tar.gz" "$residue_root/gettext.pkg.tar.gz"
 rm -rf "$archive_root"
+
+archive_error_root="$root/residue/archive-errors"
+archive_tar_stub="$root/residue/tar-stub"
+archive_tar_capture="$root/residue/tar-capture"
+mkdir -p "$archive_error_root" "$archive_tar_stub"
+printf 'opaque archive bytes\n' > "$archive_error_root/error.pkg.tar"
+cat > "$archive_tar_stub/tar" <<'EOF'
+#!/bin/bash
+printf '%s\n' "$*" >> "$WOARM64_TAR_CAPTURE"
+case "$WOARM64_TAR_MODE" in
+  list-fail)
+    exit 1
+    ;;
+  extract-fail)
+    if [[ "$*" == *'--list'* ]]; then
+      printf 'hidden-member\n'
+      exit 0
+    fi
+    exit 1
+    ;;
+esac
+exit 2
+EOF
+chmod +x "$archive_tar_stub/tar"
+archive_list_error_status=0
+PATH="$archive_tar_stub:$PATH" WOARM64_TAR_CAPTURE="$archive_tar_capture" \
+  WOARM64_TAR_MODE=list-fail \
+  assert_no_native_recipe_alias_residue w "$archive_error_root" >/dev/null 2>&1 ||
+  archive_list_error_status=$?
+assert_equal '2' "$archive_list_error_status" \
+  'a package archive traversal-list error fails the scan'
+archive_extract_error_status=0
+PATH="$archive_tar_stub:$PATH" WOARM64_TAR_CAPTURE="$archive_tar_capture" \
+  WOARM64_TAR_MODE=extract-fail \
+  assert_no_native_recipe_alias_residue w "$archive_error_root" >/dev/null 2>&1 ||
+  archive_extract_error_status=$?
+assert_equal '2' "$archive_extract_error_status" \
+  'a package archive member-extract error fails the scan'
+assert_contains "$(cat "$archive_tar_capture")" '--file=' \
+  'archive traversal passes the archive through an explicit file option'
+
+external_pkgdest="$root/residue-external/pkgdest"
+external_srcdest="$root/residue-external/srcdest"
+mkdir -p "$external_pkgdest" "$external_srcdest"
+effective_destination_config="$root/residue-external/makepkg_mingw.conf"
+{
+  printf 'PKGDEST=%q\n' "$external_pkgdest"
+  printf 'SRCDEST=%q\n' "$external_srcdest"
+  printf 'SRCPKGDEST=%q\n' ''
+  printf 'LOGDEST=%q\n' ''
+  printf 'BUILDDIR=%q\n' ''
+} > "$effective_destination_config"
+MSYSTEM=MINGWARM64 load_native_makepkg_output_destinations \
+  "$effective_destination_config"
+assert_equal "$external_pkgdest" \
+  "${WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS[0]}" \
+  'effective makepkg configuration supplies PKGDEST for scanning'
+assert_equal "$external_srcdest" \
+  "${WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS[1]}" \
+  'effective makepkg configuration supplies SRCDEST for scanning'
+resolve_native_recipe_output_scan_roots \
+  "$residue_root" "${WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS[@]}"
+resolved_config_destinations=$(printf '%s\n' "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}")
+assert_contains "$resolved_config_destinations" "$(cd "$external_pkgdest" && pwd -P)" \
+  'configured PKGDEST is resolved as a residue scan root'
+assert_contains "$resolved_config_destinations" "$(cd "$external_srcdest" && pwd -P)" \
+  'configured SRCDEST is resolved as a residue scan root'
+
+PKGDEST="$external_pkgdest"
+SRCDEST="$external_srcdest"
+resolve_native_recipe_output_scan_roots "$residue_root"
+resolved_destinations=$(printf '%s\n' "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}")
+assert_contains "$resolved_destinations" "$(cd "$external_pkgdest" && pwd -P)" \
+  'an external PKGDEST is an explicit residue scan root'
+assert_contains "$resolved_destinations" "$(cd "$external_srcdest" && pwd -P)" \
+  'an external SRCDEST is an explicit residue scan root'
+assert_ok 'clean external artifact destinations pass the residue scan' \
+  assert_no_native_recipe_alias_residue w "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}"
+printf 'builddir = W:/external-package\n' > "$external_pkgdest/gettext.pkg.tar.zst"
+assert_fails 'alias residue in external PKGDEST fails the scan' \
+  assert_no_native_recipe_alias_residue w "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}"
+rm -f "$external_pkgdest/gettext.pkg.tar.zst"
+printf 'source evidence W:/external-source\n' > "$external_srcdest/gettext.tar.xz"
+assert_fails 'alias residue in external SRCDEST fails the scan' \
+  assert_no_native_recipe_alias_residue w "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}"
+rm -f "$external_srcdest/gettext.tar.xz"
+external_destination_error="$root/residue-external/not-a-directory"
+printf 'not a directory\n' > "$external_destination_error"
+PKGDEST="$external_destination_error"
+destination_error_status=0
+resolve_native_recipe_output_scan_roots "$residue_root" >/dev/null 2>&1 ||
+  destination_error_status=$?
+assert_equal '2' "$destination_error_status" \
+  'a non-directory external artifact destination fails the scan setup'
+unset PKGDEST SRCDEST
 
 printf 'prefix=W:/cannot-bypass\n' > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'WOARM64_SKIP_ALIAS_RESIDUE_SCAN cannot bypass a real leak' \
@@ -683,6 +1055,15 @@ assert_equal '-Wl,;-Xlinker;-Wp,;-Wa,;-specs=' "$WOARM64_MSYS2_ARG_CONV_EXCL" \
 assert_contains "$(cat "$repo_root/.github/scripts/build-package.sh")" \
   'export MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL"' \
   'the package driver exports the production policy'
+assert_contains "$(cat "$repo_root/.github/scripts/build-package.sh")" \
+  'load_native_makepkg_output_destinations /etc/makepkg_mingw.conf' \
+  'the package driver loads effective makepkg output destinations'
+multi_arch_status=0
+MINGW_ARCH='mingwarm64 mingw64' \
+  bash "$repo_root/.github/scripts/build-package.sh" "$root/no-such-repository" \
+  >/dev/null 2>&1 || multi_arch_status=$?
+assert_equal '2' "$multi_arch_status" \
+  'the package driver rejects unscannable multi-architecture native builds'
 
 capture="$root/args/capture.txt"
 capturing_compiler="$root/args/compiler"

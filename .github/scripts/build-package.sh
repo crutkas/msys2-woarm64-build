@@ -9,6 +9,17 @@ PACKAGE_REPOSITORY=$1
 
 configure_stage0_git
 if [[ "$FLAVOR" == "NATIVE_WITH_NATIVE" ]]; then
+    case "${MINGW_ARCH:-mingwarm64}" in
+        [Mm][Ii][Nn][Gg][Ww][Aa][Rr][Mm]64)
+            export MINGW_ARCH=mingwarm64
+            export MSYSTEM=MINGWARM64
+            ;;
+        *)
+            echo "Native package builds require exactly MINGW_ARCH=mingwarm64" >&2
+            exit 2
+            ;;
+    esac
+
     # The MSYS2 runtime rewrites POSIX-looking arguments on the way into a
     # native PE. Exclude exactly the forms native-compiler.sh converts itself,
     # so the payload dialects have one explicit, testable owner instead of an
@@ -81,14 +92,25 @@ makepkg_status=0
 echo "::endgroup::"
 
 # The alias drive letter is whichever candidate happened to be free, so scan
-# the complete recipe root: build trees, staged payloads, metadata and produced
-# archives all count as ship or support surfaces. Scan even after makepkg fails
-# so a partial output cannot hide a residue incident.
+# the complete resolved output set: the recipe root's build/stage/metadata trees
+# plus explicitly configured makepkg artifact destinations. Scan even after
+# makepkg fails so a partial output cannot hide a residue incident.
 residue_status=0
 if [[ -n "$WOARM64_LAST_RECIPE_ALIAS_LETTER" ]]; then
-    echo "::group::Scan staged output for native recipe alias residue"
-        assert_no_native_recipe_alias_residue "$WOARM64_LAST_RECIPE_ALIAS_LETTER" "$PWD" ||
+    echo "::group::Scan native recipe output for alias residue"
+    if load_native_makepkg_output_destinations /etc/makepkg_mingw.conf &&
+        resolve_native_recipe_output_scan_roots \
+            "$PWD" "${WOARM64_RECIPE_EFFECTIVE_OUTPUT_DESTINATIONS[@]}"; then
+        if assert_no_native_recipe_alias_residue \
+            "$WOARM64_LAST_RECIPE_ALIAS_LETTER" \
+            "${WOARM64_RECIPE_OUTPUT_SCAN_ROOTS[@]}"; then
+            :
+        else
             residue_status=$?
+        fi
+    else
+        residue_status=$?
+    fi
     echo "::endgroup::"
 fi
 
