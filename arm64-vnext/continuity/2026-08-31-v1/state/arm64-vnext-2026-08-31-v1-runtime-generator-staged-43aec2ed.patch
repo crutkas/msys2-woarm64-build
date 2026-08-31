@@ -1,0 +1,118 @@
+diff --git a/.github/workflows/build.yaml b/.github/workflows/build.yaml
+index 4e219c3cea02d82b787b5f2ab08834ea81bdfb5b..813e45d82ac6804d5a870dc62291646cee30773f 100644
+--- a/.github/workflows/build.yaml
++++ b/.github/workflows/build.yaml
+@@ -23,9 +23,10 @@ jobs:
+       - name: Build
+         shell: msys2 {0}
+         run: |
++          ./winsup/tests/autogen-contract.sh
+           (cd winsup && ./autogen.sh)
+           ./configure --disable-dependency-tracking --with-msys2-runtime-commit="$GITHUB_SHA"
+-          make -j8
++          make -j20
+ 
+       - name: Install
+         shell: msys2 {0}
+diff --git a/winsup/autogen.sh b/winsup/autogen.sh
+index 22036d976b160debb8d080617ac409eaaaf1b133..ef8cc86e39d743c31a89a49ac61f034646487f88 100755
+--- a/winsup/autogen.sh
++++ b/winsup/autogen.sh
+@@ -1,7 +1,13 @@
+ #!/bin/sh
+ set -e
+-cd $(dirname $0)
+-/usr/bin/aclocal --force
+-/usr/bin/autoconf -f
+-/usr/bin/automake -ac
+-/bin/rm -rf autom4te.cache
++cd "$(dirname "$0")"
++
++ACLOCAL=${ACLOCAL:-/usr/bin/aclocal}
++AUTOCONF=${AUTOCONF:-/usr/bin/autoconf}
++AUTOMAKE=${AUTOMAKE:-/usr/bin/automake}
++RM=${RM:-/bin/rm}
++
++"$ACLOCAL" --force
++"$AUTOCONF" -f
++"$AUTOMAKE" -ac
++"$RM" -rf autom4te.cache
+diff --git a/winsup/tests/autogen-contract.sh b/winsup/tests/autogen-contract.sh
+new file mode 100755
+index 0000000000000000000000000000000000000000..473548bc41809af958cac0ccc97db2a47a749905
+--- /dev/null
++++ b/winsup/tests/autogen-contract.sh
+@@ -0,0 +1,73 @@
++#!/bin/sh
++set -eu
++
++test_dir=$(cd "$(dirname "$0")" && pwd)
++autogen=$test_dir/../autogen.sh
++tmp_root=${TMPDIR:-/tmp}/autogen-contract.$$
++case_dir=$tmp_root/'script dir $literal'
++tool_dir=$tmp_root/'tool dir $literal'
++log=$tmp_root/commands.log
++
++cleanup ()
++{
++  rm -rf "$tmp_root"
++}
++trap cleanup EXIT HUP INT TERM
++
++mkdir -p "$case_dir" "$tool_dir"
++case_dir=$(cd "$case_dir" && pwd)
++tool_dir=$(cd "$tool_dir" && pwd)
++cp "$autogen" "$case_dir/autogen.sh"
++
++cp "$autogen" "$tmp_root/fake-tool"
++cat > "$tmp_root/fake-tool" <<'EOF'
++#!/bin/sh
++name=${0##*/}
++printf '%s|%s' "$name" "$PWD" >> "$COMMAND_LOG"
++for arg
++do
++  printf '|%s' "$arg" >> "$COMMAND_LOG"
++done
++printf '\n' >> "$COMMAND_LOG"
++
++if test "${FAIL_TOOL-}" = "$name"
++then
++  exit "${FAIL_STATUS-1}"
++fi
++EOF
++
++for tool in aclocal autoconf automake rm
++do
++  cp "$tmp_root/fake-tool" "$tool_dir/$tool tool \$literal"
++done
++
++run_autogen ()
++{
++  COMMAND_LOG=$log \
++  ACLOCAL=$tool_dir/'aclocal tool $literal' \
++  AUTOCONF=$tool_dir/'autoconf tool $literal' \
++  AUTOMAKE=$tool_dir/'automake tool $literal' \
++  RM=$tool_dir/'rm tool $literal' \
++    "${TEST_SHELL:-/bin/sh}" "$case_dir/autogen.sh"
++}
++
++run_autogen
++cat > "$tmp_root/expected.log" <<EOF
++aclocal tool \$literal|$case_dir|--force
++autoconf tool \$literal|$case_dir|-f
++automake tool \$literal|$case_dir|-ac
++rm tool \$literal|$case_dir|-rf|autom4te.cache
++EOF
++cmp "$tmp_root/expected.log" "$log"
++
++: > "$log"
++set +e
++FAIL_TOOL='autoconf tool $literal' FAIL_STATUS=47 run_autogen
++status=$?
++set -e
++test "$status" -eq 47
++cat > "$tmp_root/expected-failure.log" <<EOF
++aclocal tool \$literal|$case_dir|--force
++autoconf tool \$literal|$case_dir|-f
++EOF
++cmp "$tmp_root/expected-failure.log" "$log"

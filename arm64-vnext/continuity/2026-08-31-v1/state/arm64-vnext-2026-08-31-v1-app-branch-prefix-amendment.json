@@ -1,0 +1,60 @@
+{
+  "schema": "arm64-vnext-app-branch-prefix-amendment-v1",
+  "epoch": "2026-08-31-v1",
+  "captured_at": "2026-08-31T18:30:40.0066206Z",
+  "requested_logical_prefix": "arm64-vnext/",
+  "effective_app_native_prefix": "crutkas-arm64-vnext/",
+  "reason": "The app-native rename_branch operation always prepends the configured owner prefix `crutkas-`; raw Git branch renaming is prohibited in app-owned sessions, so the requested physical ref cannot be created through the mandated app-native workflow.",
+  "evidence": [
+    {
+      "repo": "crutkas/busybox-w32",
+      "requested_branch": "arm64-vnext/busybox-w32/bootstrap-tools",
+      "actual_branch": "crutkas-arm64-vnext/busybox-w32/bootstrap-tools",
+      "receipt_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\4a203e57-e1e1-4c9f-a7fe-ad86d2c49149\\files\\arm64-vnext-2026-08-31-v1-busybox-session-start-diagnostic-receipt.json",
+      "receipt_sha256": "92b0bb2f8736c750e0e1182c516798e9bd1af21167ea9755c79bedb3f8aa2628",
+      "failure_only": "actual_branch",
+      "authorization_granted": false,
+      "source_edits": 0
+    },
+    {
+      "repo": "crutkas/build-extra",
+      "requested_branch": "arm64-vnext/build-extra/ownership-sdk",
+      "actual_branch": "crutkas-arm64-vnext/build-extra/ownership-sdk",
+      "receipt_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\4605a44f-0643-4f66-b8d4-f85d0e119c60\\files\\arm64-vnext-2026-08-31-v1-build-extra-session-start-receipt.json",
+      "receipt_sha256": "71058813fc2a01be70f4bba80ad196047d9b7accd832e149b0a9b4f0d292e2dd",
+      "failure_only": "actual_branch",
+      "authorization_granted": false,
+      "source_edits": 0
+    }
+  ],
+  "rules": {
+    "physical_branch_must_begin": "crutkas-arm64-vnext/",
+    "logical_suffix_must_begin": "arm64-vnext/",
+    "allowed_mapping": "crutkas- + arm64-vnext/<repo>/<layer>",
+    "other_prefixes_permitted": false,
+    "pr_title_prefix": "[ARM64 vNext]",
+    "artifact_prefix": "arm64-vnext-2026-08-31-v1-",
+    "evidence_prefix": "arm64-vnext/2026-08-31-v1/",
+    "old_world_mutation_permitted": false,
+    "raw_git_branch_bypass_permitted": false
+  },
+  "required_regeneration": [
+    "arm64-vnext-boundary.json",
+    "arm64-vnext-release-graph.json",
+    "candidate contexts",
+    "boundary verifier",
+    "independent review",
+    "phase-scoped verdict"
+  ],
+  "verdict": {
+    "amendment_scope": "physical app-native branch prefix only",
+    "implementation_go": false,
+    "review_required": true
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 2179,
+    "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+  }
+}
