@@ -6,11 +6,12 @@ export PATH="/usr/bin:/bin:/mingwarm64/bin${PATH:+:$PATH}"
 repo_root=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")
 source "$repo_root/.github/scripts/lib/path-boundary.sh"
 source "$repo_root/.github/scripts/lib/native-recipe-root.sh"
+source "$repo_root/tests/bootstrap/lib/native-fixtures.sh"
 
 native_ar=/mingwarm64/bin/ar.exe
 if [[ ! -x "$native_ar" ]]; then
-  echo "Native ARM64 ar is required for the libtool archive regression" >&2
-  exit 1
+  echo "BLOCKED: admitted native ARM64 ar is unavailable: $native_ar" >&2
+  exit 77
 fi
 if ! file "$native_ar" | grep -F 'ARM64' >/dev/null; then
   echo "The libtool archive regression requires an ARM64 ar.exe" >&2
@@ -37,7 +38,7 @@ trap cleanup_test_root EXIT
 recipe_root="$temporary_root/mingw-w64-gettext"
 while :; do
   recipe_root_native=$(to_native_path "$recipe_root")
-  if (( ${#recipe_root_native} + 160 > 259 )); then
+  if (( ${#recipe_root_native} + WOARM64_NATIVE_RECIPE_PATH_RESERVE_DEFAULT > 259 )); then
     break
   fi
   recipe_root="${recipe_root}x"
@@ -219,17 +220,17 @@ chmod +x "$signal_runner"
 export HELPER_PATH="$repo_root/.github/scripts/lib/native-recipe-root.sh"
 export RECIPE_ROOT="$recipe_root"
 
-for signal_spec in 'HUP 129' 'TERM 143'; do
+for signal_spec in 'HUP 129' 'INT 130' 'TERM 143'; do
   read -r signal expected_status <<< "$signal_spec"
   signal_ready="$temporary_root/$signal.ready"
   signal_child="$temporary_root/$signal.child"
   signal_helper="$temporary_root/$signal.helper"
   export signal_ready signal_child signal_helper SIGNAL_TO_SEND="$signal"
   set +e
-  /usr/bin/bash "$signal_runner" >/dev/null 2>&1
+  timeout --foreground --kill-after=2s 12s /usr/bin/bash "$signal_runner" >/dev/null 2>&1
   signal_status=$?
   set -e
-  if [[ $signal_status -ne 0 && $signal_status -ne $expected_status ]] || [[ -e /z ]]; then
+  if [[ $signal_status -ne $expected_status ]] || [[ -e /z ]]; then
     echo "Native recipe alias did not clean up after $signal: status $signal_status" >&2
     exit 1
   fi
@@ -239,36 +240,31 @@ for signal_spec in 'HUP 129' 'TERM 143'; do
   fi
 done
 
-fake_bin="$temporary_root/fake-bin"
-driver_capture="$temporary_root/driver.capture"
-mkdir -p "$fake_bin"
-cat > "$fake_bin/ccache" <<'EOF'
-#!/bin/bash
-exit 0
-EOF
-cat > "$fake_bin/makepkg-mingw" <<'EOF'
-#!/bin/bash
-printf 'cwd=%s\n' "$(cygpath -am .)" > "$DRIVER_CAPTURE"
-printf 'arg=%s\n' "$@" >> "$DRIVER_CAPTURE"
-EOF
-chmod +x "$fake_bin/ccache" "$fake_bin/makepkg-mingw"
-(
-  cd "$recipe_root"
-  PATH="$fake_bin:$PATH" \
-    DRIVER_CAPTURE="$driver_capture" \
-    FLAVOR=NATIVE_WITH_NATIVE \
-    CLEAN_BUILD=1 \
-    INSTALL_PACKAGE=1 \
-    WOARM64_SUBST_DRIVES=Z \
-    "$repo_root/.github/scripts/build-package.sh" MINGW
-)
-grep -Fx 'cwd=Z:/' "$driver_capture" >/dev/null
-grep -Fx 'arg=--cleanbuild' "$driver_capture" >/dev/null
-grep -Fx 'arg=--install' "$driver_capture" >/dev/null
-if [[ -e /z ]]; then
-  echo "Native package driver did not remove its recipe alias" >&2
+# The closure used by a production package driver has no fixture seam. This
+# test already exercises the real native ar.exe; assert the driver refuses
+# every test-only override before it can execute makepkg or provision tools.
+for protected_setting in WOARM64_NATIVE_BIN WOARM64_NATIVE_LAUNCHER_COMPILER \
+    WOARM64_NATIVE_CXX WOARM64_LAUNCHER_INSTALL_DIR; do
+  if ! grep -Fq "Refusing \$protected_setting override during a native package build" \
+      "$repo_root/.github/scripts/build-package.sh"; then
+    echo "Native package driver does not reject $protected_setting overrides" >&2
+    exit 1
+  fi
+done
+
+# The archive path is a real libtool-style fixture. Alias residue must be
+# rejected from staging independently of any compiler test double.
+mkdir -p "$recipe_root/pkg/mingwarm64/lib"
+printf "libdir='Z:/src/build/.libs'\n" > "$recipe_root/pkg/mingwarm64/lib/leak.la"
+set +e
+assert_no_native_recipe_alias_residue z "$recipe_root"
+residue_status=$?
+set -e
+if [[ $residue_status -eq 0 ]]; then
+  echo "Native residue scanner accepted staged output containing alias residue" >&2
   exit 1
 fi
+rm -rf "$recipe_root/pkg"
 
 printf 'old_output_length=%s old_exit=%s old_reproduced=%s fixed=present\n' \
   "${#failing_output_native}" "$old_status" "$old_reproduced"

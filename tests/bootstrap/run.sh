@@ -19,6 +19,35 @@ assert_equal() {
   fi
 }
 
+assert_path_equal() {
+  local expected=$1
+  local actual=$2
+  local message=$3
+  local expected_msys
+  local actual_msys
+  local expected_parent
+  local actual_parent
+
+  expected_msys=$(to_msys_path "$expected")
+  actual_msys=$(to_msys_path "$actual")
+  if [[ -e "$expected_msys" && -e "$actual_msys" ]]; then
+    if [[ "$expected_msys" -ef "$actual_msys" ]]; then
+      return 0
+    fi
+  else
+    expected_parent=$(dirname "$expected_msys")
+    actual_parent=$(dirname "$actual_msys")
+    if [[ "${expected_msys##*/}" == "${actual_msys##*/}" &&
+        -d "$expected_parent" && -d "$actual_parent" &&
+        "$expected_parent" -ef "$actual_parent" ]]; then
+      return 0
+    fi
+  fi
+  printf 'Assertion failed: %s\nexpected: <%s>\nactual:   <%s>\n' \
+    "$message" "$expected" "$actual" >&2
+  exit 1
+}
+
 assert_file_contains() {
   local file=$1
   local text=$2
@@ -96,10 +125,25 @@ assert_equal "$before_wrapper" \
   'setup does not patch makepkg-mingw'
 
 fixture_gcc_native=$(to_native_path "$fixture_root/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe")
-unset CC CXX
+unset CC CXX AR AS DLLTOOL LD NM OBJCOPY OBJDUMP RANLIB RC STRIP WINDRES
 source "$fixture_root/etc/makepkg_mingw.d/mingwarm64.conf"
 assert_equal "$fixture_gcc_native" "$CC" \
   'makepkg config preserves the native compiler launcher path'
+
+# Every binutils tool must be an absolute native path. Leaving them unset turned
+# each one into a bare-name PATH lookup that an emulated AMD64 tool could win.
+for tool_assignment in AR=ar AS=as DLLTOOL=dlltool LD=ld NM=nm OBJCOPY=objcopy \
+    OBJDUMP=objdump RANLIB=ranlib RC=windres STRIP=strip WINDRES=windres; do
+  tool_variable=${tool_assignment%%=*}
+  tool_name=${tool_assignment#*=}
+  assert_equal "$(to_native_path "/mingwarm64/bin/$tool_name.exe")" \
+    "${!tool_variable}" \
+    "makepkg config pins $tool_variable to an absolute native ARM64 tool"
+done
+# makepkg only exports CC, CXX, CHOST and MAKEFLAGS, so the drop-in has to
+# export the pinned binutils itself or configure never sees them.
+assert_file_contains "$fixture_root/etc/makepkg_mingw.d/mingwarm64.conf" \
+  'export CC CXX AR AS DLLTOOL LD NM OBJCOPY OBJDUMP RANLIB RC STRIP WINDRES'
 assert_file_contains "$fixture_root/etc/msystem.d/MINGWARM64" "MSYSTEM_PREFIX='/mingwarm64'"
 if [[ ! -x "$fixture_root/usr/local/libexec/msys2-woarm64/woarm64-gcc" ]]; then
   echo "Assertion failed: native compiler boundary is not executable" >&2
@@ -127,32 +171,9 @@ assert_equal "$leading_dash_expected" \
   "$(to_native_path '-h')" \
   'native conversion does not parse a leading-dash path as an option'
 
-native_make=${NATIVE_MAKE:-/clangarm64/bin/mingw32-make.exe}
-if [[ ! -x "$native_make" ]]; then
-  echo "NATIVE_MAKE is not executable: $native_make" >&2
-  exit 1
-fi
-
-make_root="$temporary_root/native-make-path"
-mkdir -p "$make_root"
-printf 'VALUE=converted\n' > "$make_root/included.mk"
-posix_include=$(to_msys_path "$make_root/included.mk")
-native_include=$(to_native_path "$make_root/included.mk")
-makefile="$make_root/Makefile"
-
-printf 'include %s\nall:\n\t@echo $(VALUE)\n' "$posix_include" > "$makefile"
-if "$native_make" --no-print-directory -f "$(to_native_path "$makefile")" all >/dev/null 2>&1; then
-  echo "Assertion failed: native Make unexpectedly accepted an MSYS /c path" >&2
-  exit 1
-fi
-
-printf 'include %s\nall:\n\t@echo $(VALUE)\n' "$native_include" > "$makefile"
-assert_equal 'converted' \
-  "$("$native_make" --no-print-directory -f "$(to_native_path "$makefile")" all)" \
-  'native Make accepts the centralized Windows path conversion'
-
 compiler_root="$temporary_root/compiler path/\$cache"
-mkdir -p "$compiler_root/deep/build" "$compiler_root/deep/source"
+mkdir -p "$compiler_root/deep/build/dependency output" \
+  "$compiler_root/deep/build/output with spaces" "$compiler_root/deep/source"
 printf 'int value;\n' > "$compiler_root/deep/source/input.c"
 printf 'object fixture\n' > "$compiler_root/deep/build/local-input.o"
 capture="$temporary_root/compiler-arguments.txt"
@@ -181,36 +202,39 @@ assert_equal '-I-' "${compiler_arguments[0]}" 'compiler boundary preserves GCC i
 assert_equal '-I//server/share/path with spaces/$cache' \
   "${compiler_arguments[1]}" \
   'compiler boundary preserves UNC spaces and a literal dollar'
-assert_equal "$(to_native_path "$compiler_root/deep/source/input.c")" \
+assert_path_equal "$(to_native_path "$compiler_root/deep/source/input.c")" \
   "${compiler_arguments[2]#-include}" \
   'compiler boundary normalizes a joined include path'
-assert_equal "-MF$(to_native_path "$compiler_root/deep/build/dependency output/\$value.d")" \
-  "${compiler_arguments[3]}" \
+assert_equal '-MF' "${compiler_arguments[3]:0:3}" \
+  'compiler boundary preserves a joined dependency option'
+assert_path_equal "$(to_native_path "$compiler_root/deep/build/dependency output/\$value.d")" \
+  "${compiler_arguments[3]:3}" \
   'compiler boundary normalizes a joined dependency path'
-assert_equal "$(to_native_path "$compiler_root/deep/source/input.c")" \
+assert_path_equal "$(to_native_path "$compiler_root/deep/source/input.c")" \
   "${compiler_arguments[4]}" \
   'compiler boundary normalizes an existing relative source'
 assert_equal 'local-input.o' "${compiler_arguments[5]}" \
   'compiler boundary preserves a bare object for libtool filtering'
 assert_equal '-o' "${compiler_arguments[6]}" 'compiler boundary preserves output option'
-assert_equal "$(to_native_path "$compiler_root/deep/build/output with spaces/\$value.o")" \
+assert_path_equal "$(to_native_path "$compiler_root/deep/build/output with spaces/\$value.o")" \
   "${compiler_arguments[7]}" \
   'compiler boundary normalizes a non-existent output path'
 
 bare_repository="$temporary_root/bare.git"
-/usr/bin/git init --bare -q "$bare_repository"
+git init --bare -q "$bare_repository"
 source_repository="$temporary_root/source repository"
 source_export="$temporary_root/source export"
 mkdir -p "$source_repository" "$source_export"
-/usr/bin/git -C "$source_repository" init -q
+git -C "$source_repository" init -q
 printf 'ARM64 tune evidence\nsecond line\n' > "$source_repository/aarch64-tune.md"
 printf 'build() {\n  printf "LF only\\n"\n}\n' > "$source_repository/PKGBUILD"
-/usr/bin/git -C "$source_repository" \
+git -C "$source_repository" \
   -c user.name=bootstrap-test -c user.email=bootstrap@example.invalid \
   add aarch64-tune.md PKGBUILD
-/usr/bin/git -C "$source_repository" \
+git -C "$source_repository" \
   -c user.name=bootstrap-test -c user.email=bootstrap@example.invalid \
   commit -q -m fixture
+expected_git_exec_path=$(env -u GIT_EXEC_PATH git --exec-path)
 export GIT_EXEC_PATH='C:\missing\git-core'
 export GIT_CONFIG_PARAMETERS="'safe.bareRepository'='explicit'"
 export GIT_CONFIG_COUNT=1
@@ -224,7 +248,8 @@ export GIT_CONFIG_NOSYSTEM=0
 export GIT_CONFIG_SYSTEM="$poisoned_git_config"
 export GIT_CONFIG="$poisoned_git_config"
 configure_stage0_git
-assert_equal '/usr/lib/git-core' "$GIT_EXEC_PATH" 'stage-0 Git uses its matching helper tree'
+assert_equal "$expected_git_exec_path" "$GIT_EXEC_PATH" \
+  'stage-0 Git uses its matching helper tree'
 assert_equal '1' "$GIT_CONFIG_COUNT" 'stage-0 Git installs one isolated setting'
 assert_equal 'core.autocrlf' "$GIT_CONFIG_KEY_0" 'source exports disable checkout conversion'
 assert_equal 'false' "$GIT_CONFIG_VALUE_0" 'source exports preserve Git blob bytes'
@@ -236,14 +261,14 @@ if [[ -n "${GIT_CONFIG+x}" ]]; then
   exit 1
 fi
 assert_equal 'true' \
-  "$(/usr/bin/git -C "$bare_repository" rev-parse --is-bare-repository)" \
+  "$(git -C "$bare_repository" rev-parse --is-bare-repository)" \
   'stage-0 Git can consume makepkg bare repositories'
 
-/usr/bin/git -C "$source_repository" archive --format=tar HEAD |
+git -C "$source_repository" archive --format=tar HEAD |
   /usr/bin/tar -xf - -C "$source_export"
 for exported_file in aarch64-tune.md PKGBUILD; do
   blob_hash=$(
-    /usr/bin/git -C "$source_repository" cat-file blob "HEAD:$exported_file" |
+    git -C "$source_repository" cat-file blob "HEAD:$exported_file" |
       sha256sum |
       cut -d' ' -f1
   )

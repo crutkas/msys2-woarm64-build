@@ -6,9 +6,15 @@ export PATH="/usr/bin:/bin${PATH:+:$PATH}"
 repo_root=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")
 source "$repo_root/.github/scripts/lib/native-tooling.sh"
 
-if [[ ! -x /mingwarm64/bin/gcc.exe ]]; then
-  echo "Native ARM64 GCC is required for launcher tests" >&2
-  exit 1
+if ! verify_native_tool_closure; then
+  echo "BLOCKED: admitted native ARM64 tool closure is unavailable" >&2
+  exit 77
+fi
+
+launcher=/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe
+if [[ ! -x "$launcher" ]]; then
+  echo "BLOCKED: admitted native compiler launcher is unavailable: $launcher" >&2
+  exit 77
 fi
 
 temporary_root=$(mktemp -d)
@@ -42,11 +48,12 @@ exit "${WOARM64_FAKE_COMPILER_STATUS:-0}"
 EOF
 chmod 0755 "$fake_compiler"
 
-ensure_native_compiler_launchers
-launcher=/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe
-[[ -x "$launcher" ]]
+assert_native_arm64_pe "$launcher" 'installed native compiler launcher'
+grep -Fq 'launcher-identity-v4' \
+  /usr/local/libexec/msys2-woarm64/native-compiler-launcher.identity
 
-export MSYS2_ARG_CONV_EXCL='*'
+# Production runs under the pinned policy, not with conversion switched off.
+export MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL"
 export WOARM64_NATIVE_COMPILER="$fake_compiler"
 export WOARM64_LAUNCHER_CAPTURE="$capture"
 export WOARM64_NATIVE_COMPILER_NAME=woarm64-g++
@@ -85,5 +92,74 @@ if [[ $launcher_status -ne 37 ]]; then
   echo "Launcher did not preserve compiler exit code 37: $launcher_status" >&2
   exit 1
 fi
+unset WOARM64_FAKE_COMPILER_STATUS
+
+# The payload dialects have to survive the real MSYS2 -> native PE boundary
+# identically under the production policy and with the runtime heuristic fully
+# enabled. Anything that depends on which of the two is active would be a latent
+# gettext link failure.
+payload_root="$temporary_root/payload"
+mkdir -p "$payload_root/.libs"
+printf 'archive\n' > "$payload_root/.libs/libgettextlib.a"
+payload_native=$(to_native_path "$payload_root")
+
+collect_payload_arguments() {
+  local excl_mode=$1
+  shift
+
+  if [[ "$excl_mode" == "policy" ]]; then
+    MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL" "$launcher" "$@" >/dev/null 2>&1
+  else
+    env -u MSYS2_ARG_CONV_EXCL "$launcher" "$@" >/dev/null 2>&1
+  fi
+  grep '^arg=' "$capture"
+}
+
+# The full production matrix, not just the payload dialects. The simple classes
+# are converted by the MSYS2 runtime under both settings; the payload dialects
+# are excluded under the production policy and converted by the boundary. Either
+# way the compiler must see the same thing.
+payload_arguments=(
+  "-I$payload_root/.libs"
+  "-L$payload_root/.libs"
+  "-DLOCALEDIR=\"$payload_root/.libs\""
+  "$payload_root/.libs/libgettextlib.a"
+  "bare-object.o"
+  "-o" "$payload_root/.libs/out.o"
+  "-Wl,--out-implib,$payload_root/.libs/libgettextlib.a"
+  "-Wl,--whole-archive"
+  "-Wl,--wrap,malloc"
+  "-Xlinker" "--out-implib" "-Xlinker" "$payload_root/.libs/libgettextlib.a"
+  "-Wp,-MD,$payload_root/.libs/scratch.d"
+  "-Wa,-I,$payload_root/.libs"
+  "-specs=$payload_root/native.specs"
+)
+
+policy_capture=$(collect_payload_arguments policy "${payload_arguments[@]}")
+converted_capture=$(collect_payload_arguments converted "${payload_arguments[@]}")
+
+if [[ "$policy_capture" != "$converted_capture" ]]; then
+  echo "Argument conversion differs between the production policy and full runtime conversion" >&2
+  printf 'policy:\n%s\nconverted:\n%s\n' "$policy_capture" "$converted_capture" >&2
+  exit 1
+fi
+
+# Simple classes: the runtime is the intended owner, so assert the compiler
+# really does receive the native form.
+grep -Fx "arg=-I$payload_native/.libs" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-L$payload_native/.libs" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-DLOCALEDIR=\"$payload_native/.libs\"" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=$payload_native/.libs/libgettextlib.a" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=bare-object.o" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=$payload_native/.libs/out.o" <<< "$policy_capture" >/dev/null
+
+# Payload dialects: the boundary is the intended owner.
+grep -Fx "arg=-Wl,--out-implib,$payload_native/.libs/libgettextlib.a" \
+  <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wl,--whole-archive" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wl,--wrap,malloc" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wp,-MD,$payload_native/.libs/scratch.d" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-Wa,-I,$payload_native/.libs" <<< "$policy_capture" >/dev/null
+grep -Fx "arg=-specs=$payload_native/native.specs" <<< "$policy_capture" >/dev/null
 
 echo "native compiler launcher tests passed"
