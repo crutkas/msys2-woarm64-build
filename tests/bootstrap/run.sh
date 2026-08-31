@@ -154,6 +154,7 @@ assert_equal 'converted' \
 compiler_root="$temporary_root/compiler path/\$cache"
 mkdir -p "$compiler_root/deep/build" "$compiler_root/deep/source"
 printf 'int value;\n' > "$compiler_root/deep/source/input.c"
+printf 'object fixture\n' > "$compiler_root/deep/build/local-input.o"
 capture="$temporary_root/compiler-arguments.txt"
 fake_compiler="$temporary_root/fake-compiler"
 cat > "$fake_compiler" <<'EOF'
@@ -172,6 +173,7 @@ chmod +x "$fake_compiler"
       '-include../source/input.c' \
       '-MFdependency output/$value.d' \
       ../source/input.c \
+      local-input.o \
       -o 'output with spaces/$value.o'
 )
 mapfile -t compiler_arguments < "$capture"
@@ -188,9 +190,11 @@ assert_equal "-MF$(to_native_path "$compiler_root/deep/build/dependency output/\
 assert_equal "$(to_native_path "$compiler_root/deep/source/input.c")" \
   "${compiler_arguments[4]}" \
   'compiler boundary normalizes an existing relative source'
-assert_equal '-o' "${compiler_arguments[5]}" 'compiler boundary preserves output option'
+assert_equal 'local-input.o' "${compiler_arguments[5]}" \
+  'compiler boundary preserves a bare object for libtool filtering'
+assert_equal '-o' "${compiler_arguments[6]}" 'compiler boundary preserves output option'
 assert_equal "$(to_native_path "$compiler_root/deep/build/output with spaces/\$value.o")" \
-  "${compiler_arguments[6]}" \
+  "${compiler_arguments[7]}" \
   'compiler boundary normalizes a non-existent output path'
 
 bare_repository="$temporary_root/bare.git"

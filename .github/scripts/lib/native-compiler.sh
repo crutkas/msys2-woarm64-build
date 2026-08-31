@@ -74,12 +74,15 @@ while [[ $# -gt 0 ]]; do
     -*)
       converted+=("$argument")
       ;;
-    *)
+    *[\\/]*)
       if [[ -e "$argument" ]]; then
         converted+=("$(to_native_path "$argument")")
       else
         converted+=("$argument")
       fi
+      ;;
+    *)
+      converted+=("$argument")
       ;;
   esac
 done

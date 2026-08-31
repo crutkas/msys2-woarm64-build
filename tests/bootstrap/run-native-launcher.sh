@@ -18,6 +18,7 @@ fake_compiler="$temporary_root/fake compiler"
 injection_marker="$temporary_root/injected"
 launcher_stdout="$temporary_root/launcher.stdout"
 launcher_stderr="$temporary_root/launcher.stderr"
+printf 'object fixture\n' > "$temporary_root/relative-input.o"
 
 assert_capture() {
   local expected=$1
@@ -52,13 +53,16 @@ export WOARM64_NATIVE_COMPILER_NAME=woarm64-g++
 injection_argument="-DVALUE=literal;touch $injection_marker"
 quoted_argument='-DQUOTED="value with space"\'
 
-"$launcher" \
-  -I'//server/share/path with spaces/$cache' \
-  "$injection_argument" \
-  "$quoted_argument" \
-  '' \
-  -o "$temporary_root/output with spaces/\$value.o" \
-  >"$launcher_stdout" 2>"$launcher_stderr"
+(
+  cd "$temporary_root"
+  "$launcher" \
+    -I'//server/share/path with spaces/$cache' \
+    "$injection_argument" \
+    "$quoted_argument" \
+    '' \
+    relative-input.o \
+    -o "$temporary_root/output with spaces/\$value.o"
+) >"$launcher_stdout" 2>"$launcher_stderr"
 
 grep -Fx 'fake compiler stdout' "$launcher_stdout" >/dev/null
 grep -Fx 'fake compiler stderr' "$launcher_stderr" >/dev/null
@@ -67,6 +71,7 @@ assert_capture 'arg=-I//server/share/path with spaces/$cache'
 assert_capture "arg=$injection_argument"
 assert_capture "arg=$quoted_argument"
 assert_capture 'arg='
+assert_capture 'arg=relative-input.o'
 assert_capture "arg=$(to_native_path "$temporary_root/output with spaces/\$value.o")"
 grep -E '^tmp=[A-Za-z]:/' "$capture" >/dev/null
 [[ ! -e "$injection_marker" ]]
