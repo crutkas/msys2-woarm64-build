@@ -74,14 +74,18 @@ native_pe_machine() {
     return 1
   fi
   lfanew=$((16#${header[3]}${header[2]}${header[1]}${header[0]}))
-  # The PE signature and the two machine bytes must both be inside the file.
-  if (( lfanew < 4 || lfanew > size - 6 )); then
+  # e_lfanew must point past the 64-byte DOS header it lives in, and the full PE
+  # signature plus the complete 20-byte COFF header must fit inside the file.
+  # Requiring only the 4-byte signature and the 2 machine bytes let a file that
+  # was truncated one byte into IMAGE_FILE_HEADER read a Machine word the loader
+  # would never trust.
+  if (( lfanew < 64 || lfanew > size - 24 )); then
     echo "PE header offset $lfanew is outside $image" >&2
     return 1
   fi
 
-  read -r -a header <<< "$(od -An -tx1 -j "$lfanew" -N 6 -- "$image")"
-  if [[ ${#header[@]} -ne 6 ]]; then
+  read -r -a header <<< "$(od -An -tx1 -w32 -j "$lfanew" -N 24 -- "$image")"
+  if [[ ${#header[@]} -ne 24 ]]; then
     echo "Truncated PE header: $image" >&2
     return 1
   fi
@@ -90,6 +94,8 @@ native_pe_machine() {
     return 1
   fi
 
+  # Machine is the first field of IMAGE_FILE_HEADER, immediately after the
+  # 4-byte PE signature.
   printf '0x%04x\n' "$((16#${header[5]}${header[4]}))"
 }
 

@@ -58,7 +58,15 @@ woarm64_launcher_cache_is_valid() {
   [[ -x "$install_dir/woarm64-gcc.exe" &&
      -x "$install_dir/woarm64-g++.exe" &&
      -f "$stamp_file" &&
-     "$(< "$stamp_file")" == "$identity" ]]
+     "$(< "$stamp_file")" == "$identity" ]] || return 1
+
+  # A matching stamp only proves the *inputs* are unchanged. Re-verify both
+  # installed launchers are still pure ARM64 PEs on every hit, so a launcher that
+  # was truncated, replaced with an AMD64 image or otherwise corrupted after the
+  # stamp was written invalidates the cache and forces one clean rebuild instead
+  # of silently re-emulating every compile.
+  assert_native_arm64_pe "$install_dir/woarm64-gcc.exe" 'installed woarm64-gcc.exe' 2>/dev/null &&
+    assert_native_arm64_pe "$install_dir/woarm64-g++.exe" 'installed woarm64-g++.exe' 2>/dev/null
 }
 
 woarm64_path_age_seconds() {
@@ -72,7 +80,10 @@ woarm64_path_age_seconds() {
 
 # mkdir is atomic on every filesystem this lane runs on, so it serialises
 # concurrent package builds that would otherwise race to replace a launcher one
-# of them is currently executing.
+# of them is currently executing. Each acquisition stamps the lock with a unique
+# owner token so release can tell an abandoned lock it reclaimed from a lock a
+# newer owner has since taken.
+_WOARM64_LAUNCHER_LOCK_TOKEN=
 woarm64_acquire_launcher_lock() {
   local lock_dir=$1
   local timeout=${WOARM64_LAUNCHER_LOCK_TIMEOUT:-300}
@@ -80,6 +91,7 @@ woarm64_acquire_launcher_lock() {
   local waited=0
   local reclaimed=0
   local age
+  local token="$BASHPID:$(date +%s):${RANDOM}${RANDOM}"
 
   while ! mkdir "$lock_dir" 2>/dev/null; do
     if [[ $reclaimed -eq 0 ]] && age=$(woarm64_path_age_seconds "$lock_dir") &&
@@ -97,7 +109,34 @@ woarm64_acquire_launcher_lock() {
     waited=$(( waited + 1 ))
   done
 
-  printf '%s\n' "$BASHPID" > "$lock_dir/owner" 2>/dev/null || true
+  # Recording ownership must succeed: without it release cannot prove this shell
+  # still holds the lock, so a failure here releases the directory and fails.
+  _WOARM64_LAUNCHER_LOCK_TOKEN=$token
+  if ! printf '%s\n' "$token" > "$lock_dir/owner"; then
+    echo "Unable to record ownership of the native launcher lock: $lock_dir" >&2
+    rm -rf -- "$lock_dir"
+    _WOARM64_LAUNCHER_LOCK_TOKEN=
+    return 1
+  fi
+}
+
+# Only the shell that still owns the lock may remove it. A builder whose lock was
+# reclaimed as stale while it was paused must never delete the lock a new owner
+# has since taken, which unconditional rm -rf would do.
+woarm64_release_launcher_lock() {
+  local lock_dir=$1
+  local recorded
+
+  if [[ -z "$_WOARM64_LAUNCHER_LOCK_TOKEN" ]]; then
+    return 0
+  fi
+  recorded=$(cat "$lock_dir/owner" 2>/dev/null) || recorded=
+  if [[ "$recorded" == "$_WOARM64_LAUNCHER_LOCK_TOKEN" ]]; then
+    rm -rf -- "$lock_dir"
+  else
+    echo "::warning::Native launcher lock changed owner before release; leaving it for its new owner: $lock_dir" >&2
+  fi
+  _WOARM64_LAUNCHER_LOCK_TOKEN=
 }
 
 # Windows refuses to replace a mapped image, so a launcher being executed by a
@@ -245,6 +284,6 @@ ensure_native_compiler_launchers() {
     status=1
   fi
 
-  rm -rf -- "$lock_dir"
+  woarm64_release_launcher_lock "$lock_dir"
   return "$status"
 }

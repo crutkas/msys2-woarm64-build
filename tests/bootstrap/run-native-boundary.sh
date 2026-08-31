@@ -133,6 +133,19 @@ assert_fails 'a bad MZ signature is rejected' \
   assert_native_arm64_pe "$root/pe/badmz.exe"
 assert_fails 'a directory is rejected' assert_native_arm64_pe "$root/pe"
 
+# The whole 20-byte COFF header, not just the 4-byte signature and the machine
+# word, must be present before the machine is trusted. A file cut short one field
+# into IMAGE_FILE_HEADER must not yield a Machine value the loader would reject.
+head -c 70 "$root/pe/arm64.exe" > "$root/pe/shortcoff.exe"
+assert_fails 'a truncated COFF header is rejected' \
+  assert_native_arm64_pe "$root/pe/shortcoff.exe"
+# e_lfanew that points back inside the 64-byte DOS header is rejected instead of
+# reading the machine word from an overlapping offset.
+make_pe_image "$root/pe/dosoverlap.exe" aa64
+printf '\x04\x00\x00\x00' | dd of="$root/pe/dosoverlap.exe" bs=1 seek=60 conv=notrunc status=none
+assert_fails 'a PE header offset inside the DOS header is rejected' \
+  assert_native_arm64_pe "$root/pe/dosoverlap.exe"
+
 printf '== native tool closure ==\n'
 
 tool_bin="$root/closure/bin"
@@ -277,6 +290,19 @@ assert_equal "$(( recovery_calls + 2 ))" "$(fake_compiler_call_count "$counter")
 assert_ok 'the recovered g++ launcher is a pure ARM64 image' \
   assert_native_arm64_pe "$install_dir/woarm64-g++.exe"
 
+# A cache hit must re-verify the installed launchers are still pure ARM64 PEs
+# rather than trust a matching stamp. A launcher swapped for an AMD64 image after
+# the stamp was written has to invalidate the cache and force one clean rebuild.
+revalidation_calls=$(fake_compiler_call_count "$counter")
+printf '\x64\x86' | dd of="$install_dir/woarm64-gcc.exe" bs=1 seek=68 conv=notrunc status=none
+assert_fails 'a launcher swapped to AMD64 is detected as non-ARM64' \
+  assert_native_arm64_pe "$install_dir/woarm64-gcc.exe"
+assert_ok 'a cache hit revalidates the installed launchers' launcher_run
+assert_equal "$(( revalidation_calls + 2 ))" "$(fake_compiler_call_count "$counter")" \
+  'an installed launcher swapped to AMD64 forces a rebuild'
+assert_ok 'the revalidated gcc launcher is a pure ARM64 image' \
+  assert_native_arm64_pe "$install_dir/woarm64-gcc.exe"
+
 # A lock left behind by a killed builder must be reclaimed once it is stale,
 # and a fresh lock must fail on a bounded timeout instead of hanging.
 mkdir -p "$install_dir/.launcher-lock"
@@ -303,6 +329,31 @@ assert_equal '1' "$held_lock_status" \
   'a held launcher lock fails on a bounded timeout instead of hanging'
 rm -rf "$install_dir/.launcher-lock"
 assert_ok 'the launcher build succeeds once the lock is gone' launcher_run
+
+printf '== launcher lock ownership ==\n'
+
+# A builder whose lock was reclaimed as stale while it was paused must never
+# delete the lock a new owner has since taken. Ownership is checked on release
+# instead of removing the directory unconditionally.
+ownership_lock="$root/launcher/ownership-lock"
+mkdir -p "$ownership_lock"
+printf 'new-owner\n' > "$ownership_lock/owner"
+_WOARM64_LAUNCHER_LOCK_TOKEN='paused-old-owner'
+woarm64_release_launcher_lock "$ownership_lock" 2>/dev/null
+if [[ -d "$ownership_lock" ]]; then
+  report ok 'a reclaimed lock is left for its new owner'
+else
+  report fail 'a reclaimed lock is left for its new owner'
+fi
+printf 'paused-old-owner\n' > "$ownership_lock/owner"
+_WOARM64_LAUNCHER_LOCK_TOKEN='paused-old-owner'
+woarm64_release_launcher_lock "$ownership_lock"
+if [[ -d "$ownership_lock" ]]; then
+  report fail 'the true owner releases its own lock'
+else
+  report ok 'the true owner releases its own lock'
+fi
+_WOARM64_LAUNCHER_LOCK_TOKEN=
 
 printf '== recipe root alias ==\n'
 
