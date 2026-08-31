@@ -206,19 +206,30 @@ configure the modular MSYS2 environment using
 [`.github/scripts/setup-mingwarm64.sh`](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/scripts/setup-mingwarm64.sh)
 script.
 
-Run the focused portable-bootstrap regression tests from the same MSYS2 root with native
-CLANGARM64 Make installed:
+Run the host-independent portable-bootstrap regression tests:
 
 ```bash
 ./tests/bootstrap/run.sh
 ```
 
-After native ARM64 GCC is installed, validate the PE compiler boundary, Windows argument quoting,
-redirected diagnostics, environment selection, and exit-code propagation:
+The native Make conversion fixture is an explicitly separate ARM64-runtime capability. It returns
+status 77 with a `BLOCKED` message when no admitted native Make is available; it is not a green
+substitute for an admission check:
+
+```bash
+./tests/bootstrap/run-native-make.sh
+```
+
+With an admitted, already-provisioned native ARM64 tool closure and compiler launchers, validate the
+PE compiler boundary, Windows argument quoting, redirected diagnostics, environment selection, and
+exit-code propagation:
 
 ```bash
 ./tests/bootstrap/run-native-launcher.sh
 ```
+
+This fixture does not install or rebuild compiler launchers. It returns status 77 with a `BLOCKED`
+message until that admitted runtime capability is present.
 
 The identity, cleanup and argument-conversion rules do not need an ARM64 toolchain. They are covered
 by a suite that builds synthetic PE fixtures and needs only Bash, coreutils and `subst`, so it runs
@@ -257,7 +268,9 @@ produce their bytes. Their cache is therefore keyed on the launcher source **and
 the native compiler and the whole tool closure. Replacing binutils changes the key even though the
 `.c` file is untouched, so a launcher emitted by a superseded or revoked toolchain can never survive
 the replacement. The stamp is written to `native-compiler-launcher.identity` and carries a
-`launcher-identity-v2` prefix, so a stamp written by the earlier source-only scheme never matches.
+`launcher-identity-v3` prefix, so a stamp written by an earlier scheme never matches. The stamp also
+records the SHA-256 and byte size of both installed launcher images, so a different valid ARM64 image
+cannot reuse a stale cache entry.
 
 Rebuilds take a `mkdir` lock, re-check the identity under it, delete the stamp before touching any
 image, install each launcher through a staged rename that retries while the old image is still
@@ -270,7 +283,7 @@ The launchers are native executables, so the MSYS2 runtime rewrites POSIX-lookin
 they arrive. Ownership of that rewriting is split deliberately, and `build-package.sh` exports
 
 ```
-MSYS2_ARG_CONV_EXCL='-Wl,;-Xlinker;-Wp,;-Wa,;-specs=;@'
+MSYS2_ARG_CONV_EXCL='-Wl,;-Xlinker;-Wp,;-Wa,;-specs='
 ```
 
 **The runtime owns the simple classes.** `-I/...`, `-L/...`, `-D<name>=/...` including a quoted
@@ -281,9 +294,11 @@ the converted path contains a space. `tests/bootstrap/run-native-boundary.sh` pi
 observing the real boundary with a `CommandLineToArgvW` parser rather than assuming it, and
 `run-native-launcher.sh` asserts the same matrix through the real launcher on an ARM64 host.
 
-**The boundary owns the payload dialects.** The comma payloads of `-Wl,`, `-Wp,` and `-Wa,`,
-`-specs=`, and `@response` files are excluded, and `native-compiler.sh` converts them from an
-explicit allow-list of path-bearing options. Flags, symbol names and numeric values are passed
+**The boundary owns the payload dialects.** The comma payloads of `-Wl,`, `-Wp,` and `-Wa,` and
+`-specs=` are excluded, and `native-compiler.sh` converts them from an explicit allow-list of
+path-bearing options. `@response` stays under normal runtime conversion so direct native Binutils
+tools receive a usable Windows response path; the compiler boundary converts that outer path back
+only to read and rewrite the response contents. Flags, symbol names and numeric values are passed
 through untouched, so `-Wl,--whole-archive`, `-Wl,--wrap,malloc` and `-Wl,--exclude-libs,ALL` survive
 intact.
 
@@ -296,11 +311,10 @@ never set globally.
 Every conversion the boundary performs is idempotent, so it produces the same result whether or not
 the runtime converted an argument first. Both suites assert that equivalence directly.
 
-A response file whose quoting cannot be round-tripped exactly, or that nests a further `@response`,
-is passed through unmodified rather than rewritten. Rewriting only ever writes a temporary copy; the
+A response file with unsupported single-quoted syntax, an unterminated double quote, or a nested
+`@response` is rejected before the compiler starts. Rewriting only ever writes a temporary copy; the
 caller's file is read-only. The temporary copy is removed on success, on failure and on `HUP`, `INT`
-or `TERM`, and the compiler's exit status is reported unchanged, so cleanup can never turn a failed
-compile into a successful one.
+or `TERM`, and the compiler's exit status is reported unchanged.
 
 Native MinGW builds whose recipe roots leave less than 160 characters below the legacy Win32 path
 boundary use a temporary native drive alias. This keeps deep libtool archive members addressable
@@ -322,8 +336,10 @@ mapping.
 
 Because the alias drive letter is whichever candidate happened to be free, any absolute path recorded
 under it is both dangling and irreproducible. After an aliased build, `build-package.sh` scans the
-staged `pkg` tree for that drive letter and fails the build if it finds any, which can be overridden
-with `WOARM64_SKIP_ALIAS_RESIDUE_SCAN=1` when a match is understood to be spurious.
+complete recipe root: build and staging trees, package metadata, binary files, and the contents of
+produced tar/package archives. ASCII and UTF-16LE drive spellings, repeated separators, and bounded
+bare drive tokens are all rejected. The scan has no production bypass; scanner or archive errors fail
+the build rather than producing incomplete evidence.
 
 Note that the helper restores a caller's `EXIT` trap by re-installing it. If the helper is called
 inside a `( )` subshell, that makes an otherwise dormant inherited `EXIT` trap active for the

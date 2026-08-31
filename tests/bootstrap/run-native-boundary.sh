@@ -150,6 +150,12 @@ printf '== native tool closure ==\n'
 
 tool_bin="$root/closure/bin"
 make_native_tool_fixtures "$tool_bin" aa64
+disable_fixture_execution() {
+  local bindir=$1
+
+  chmod 0644 "$bindir"/*.exe
+}
+disable_fixture_execution "$tool_bin"
 assert_equal '10' "${#WOARM64_NATIVE_TOOLS[@]}" 'the pinned closure covers ten tools'
 
 closure_probe() {
@@ -158,35 +164,29 @@ closure_probe() {
 
   (
     export WOARM64_NATIVE_BIN="$bindir"
-    export WOARM64_TOOL_VERSION_PROBE=0
     export PATH="$bindir:$PATH"
     verify_native_tool_closure "$@"
   )
 }
 
-assert_ok 'a complete ARM64 closure verifies' closure_probe "$tool_bin"
-
-manifest="$root/closure/manifest.txt"
-(
-  export WOARM64_NATIVE_BIN="$tool_bin"
-  export WOARM64_TOOL_VERSION_PROBE=0
-  export WOARM64_TOOL_MANIFEST="$manifest"
-  export PATH="$tool_bin:$PATH"
-  verify_native_tool_closure
-) >/dev/null
-assert_equal '12' "$(wc -l < "$manifest" | tr -d ' ')" \
-  'the closure manifest records both drivers and every tool'
-assert_contains "$(cat "$manifest")" 'objdump ' 'the closure manifest records objdump'
-assert_contains "$(cat "$manifest")" 'g++.exe ' 'the closure manifest records the C++ driver'
+# Synthetic PE headers deliberately cannot execute. They exercise the
+# structural gate, but must never impersonate an admitted closure.
+assert_fails 'a non-executable synthetic closure is rejected' closure_probe "$tool_bin"
+assert_ok 'the synthetic GCC image passes the structural ARM64 gate' \
+  assert_native_arm64_pe "$tool_bin/gcc.exe"
+assert_ok 'the synthetic g++ image passes the structural ARM64 gate' \
+  assert_native_arm64_pe "$tool_bin/g++.exe"
 
 hybrid_bin="$root/hybrid/bin"
 make_native_tool_fixtures "$hybrid_bin" aa64
 make_pe_image "$hybrid_bin/strip.exe" a641
+disable_fixture_execution "$hybrid_bin"
 assert_fails 'an ARM64EC tool fails the closure' closure_probe "$hybrid_bin"
 
 missing_bin="$root/missing/bin"
 make_native_tool_fixtures "$missing_bin" aa64
 rm -f "$missing_bin/dlltool.exe"
+disable_fixture_execution "$missing_bin"
 assert_fails 'a missing tool fails the closure' closure_probe "$missing_bin"
 
 shadow_bin="$root/shadow/bin"
@@ -194,21 +194,23 @@ shadow_front="$root/shadow/front"
 make_native_tool_fixtures "$shadow_bin" aa64
 mkdir -p "$shadow_front"
 make_pe_image "$shadow_front/strip.exe" 8664
+disable_fixture_execution "$shadow_bin"
+disable_fixture_execution "$shadow_front"
 shadowed_probe() (
   export WOARM64_NATIVE_BIN="$shadow_bin"
-  export WOARM64_TOOL_VERSION_PROBE=0
   export PATH="$shadow_front:$shadow_bin:$PATH"
   verify_native_tool_closure
 )
 assert_fails 'a PATH shadow fails the closure' shadowed_probe
 
-version_probe() (
+disabled_version_probe() (
   export WOARM64_NATIVE_BIN="$tool_bin"
-  export WOARM64_TOOL_VERSION_PROBE=1
+  export WOARM64_TOOL_VERSION_PROBE=0
   export PATH="$tool_bin:$PATH"
   verify_native_tool_closure
 )
-assert_fails 'a tool that cannot report a version fails the closure' version_probe
+assert_fails 'WOARM64_TOOL_VERSION_PROBE cannot bypass version verification' \
+  disabled_version_probe
 
 printf '== launcher cache identity ==\n'
 
@@ -235,8 +237,12 @@ launcher_run() (
 assert_ok 'the first launcher build succeeds' launcher_run
 assert_equal '2' "$(fake_compiler_call_count "$counter")" 'the first build compiles and links once'
 stamp_file="$install_dir/native-compiler-launcher.identity"
-assert_contains "$(cat "$stamp_file")" 'launcher-identity-v2' 'the stamp is versioned'
+assert_contains "$(cat "$stamp_file")" 'launcher-identity-v3' 'the stamp is versioned'
 assert_contains "$(cat "$stamp_file")" 'toolchain=' 'the stamp binds the toolchain identity'
+assert_contains "$(cat "$stamp_file")" 'woarm64-gcc.exe size=' \
+  'the stamp binds the installed GCC launcher bytes and size'
+assert_contains "$(cat "$stamp_file")" 'woarm64-g++.exe size=' \
+  'the stamp binds the installed G++ launcher bytes and size'
 assert_ok 'the installed gcc launcher is a pure ARM64 image' \
   assert_native_arm64_pe "$install_dir/woarm64-gcc.exe"
 assert_ok 'the installed g++ launcher is a pure ARM64 image' \
@@ -302,6 +308,14 @@ assert_equal "$(( revalidation_calls + 2 ))" "$(fake_compiler_call_count "$count
   'an installed launcher swapped to AMD64 forces a rebuild'
 assert_ok 'the revalidated gcc launcher is a pure ARM64 image' \
   assert_native_arm64_pe "$install_dir/woarm64-gcc.exe"
+
+# The output stamp binds more than architecture: another structurally valid
+# ARM64 image with different bytes must force the same complete rebuild.
+output_identity_calls=$(fake_compiler_call_count "$counter")
+perturb_pe_image "$install_dir/woarm64-g++.exe" 'unexpected-valid-arm64-bytes'
+assert_ok 'a different valid ARM64 launcher image rebuilds' launcher_run
+assert_equal "$(( output_identity_calls + 2 ))" "$(fake_compiler_call_count "$counter")" \
+  'a changed valid ARM64 launcher cannot reuse the output stamp'
 
 # A lock left behind by a killed builder must be reclaimed once it is stale,
 # and a fresh lock must fail on a bounded timeout instead of hanging.
@@ -393,7 +407,21 @@ if ln -s "$long_root" "$root/link" 2>/dev/null && [[ -L "$root/link" && -d "$roo
   assert_equal '0' "$symlink_status" \
     'the alias decision follows the physical recipe root through a symlink'
 else
-  report ok 'symlink probe skipped: this host cannot create directory symlinks'
+  rm -rf "$root/link"
+  if WOARM64_JUNCTION_LINK=$(cygpath -aw "$root/link") \
+      WOARM64_JUNCTION_TARGET=$(cygpath -aw "$long_root") \
+      MSYS2_ARG_CONV_EXCL='*' \
+      /c/Windows/System32/WindowsPowerShell/v1.0/powershell.exe \
+        -NoProfile -NonInteractive -Command \
+        '$ErrorActionPreference = "Stop"; New-Item -ItemType Junction -Path $env:WOARM64_JUNCTION_LINK -Target $env:WOARM64_JUNCTION_TARGET | Out-Null' \
+      >/dev/null 2>&1 && [[ -d "$root/link" ]]; then
+    symlink_status=0
+    ( cd "$root/link" && native_recipe_root_needs_alias ) || symlink_status=$?
+    assert_equal '0' "$symlink_status" \
+      'the alias decision follows the physical recipe root through a junction'
+  else
+    report fail 'a symlink or non-privileged junction is required for the physical-root test'
+  fi
 fi
 
 alias_probe_root="$root/alias"
@@ -426,6 +454,42 @@ if [[ -e /y ]]; then
 else
   report ok 'the alias is removed after a failing command'
 fi
+
+signal_probe="$root/signal.probe"
+cat > "$signal_probe" <<EOF
+#!/bin/bash
+set -e
+source "$repo_root/.github/scripts/lib/native-recipe-root.sh"
+cd "$alias_probe_root"
+WOARM64_SUBST_DRIVES=Z with_short_native_recipe_root bash -c '
+  trap "exit 0" HUP INT TERM
+  echo "\$\$" > "\$WOARM64_SIGNAL_CHILD"
+  kill -s "\$WOARM64_SIGNAL" "\$MSYS2_WOARM64_RECIPE_HELPER_PID"
+  while :; do sleep 1; done
+'
+EOF
+chmod +x "$signal_probe"
+for signal_spec in 'HUP 129' 'INT 130' 'TERM 143'; do
+  read -r signal expected_status <<< "$signal_spec"
+  signal_child="$root/$signal.child"
+  signal_status=0
+  WOARM64_SIGNAL="$signal" WOARM64_SIGNAL_CHILD="$signal_child" \
+    timeout --foreground --kill-after=2s 12s "$signal_probe" >/dev/null 2>&1 ||
+    signal_status=$?
+  assert_equal "$expected_status" "$signal_status" \
+    "the alias helper forwards $signal and returns its exact status"
+  if [[ -e /z ]]; then
+    report fail "the alias is removed after $signal"
+    MSYS2_ARG_CONV_EXCL='*' "$subst_tool" Z: /D >/dev/null 2>&1 || true
+  else
+    report ok "the alias is removed after $signal"
+  fi
+  if [[ -f "$signal_child" ]] && kill -0 "$(< "$signal_child")" 2>/dev/null; then
+    report fail "the alias child does not survive $signal"
+  else
+    report ok "the alias child does not survive $signal"
+  fi
+done
 
 # Traps belonging to the caller must survive the helper.
 trap_probe="$root/trap.probe"
@@ -547,6 +611,12 @@ assert_fails 'backslash alias residue in staged output fails the scan' \
 printf 'W:/src/build/.libs\n' > "$residue_root/mingwarm64/lib/dirty.la"
 assert_fails 'alias residue at the start of a line fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'W://src/build/.libs\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'alias residue with repeated separators fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'builddir = W:\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'a bare bounded alias drive token fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
 
 # libtool writes the joined form into .la dependency_libs, with no separator
 # before the drive letter. A scan anchored on a preceding non-letter would miss
@@ -581,14 +651,34 @@ printf 'prefix=W:/mingwarm64\x00\x01\x02binary tail\n' \
   > "$residue_root/mingwarm64/lib/binary.pc"
 assert_fails 'alias residue inside binary content fails the scan' \
   assert_no_native_recipe_alias_residue w "$residue_root"
+printf 'W\0:\0/\0s\0r\0c\0\n' > "$residue_root/mingwarm64/lib/utf16le.pc"
+assert_fails 'alias residue inside UTF-16LE content fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
 rm -f "$residue_root/mingwarm64/lib/binary.pc"
+rm -f "$residue_root/mingwarm64/lib/utf16le.pc"
+
+archive_root="$root/residue/archive"
+mkdir -p "$archive_root"
+printf 'builddir = W:/archived\n' > "$archive_root/.BUILDINFO"
+tar -cf "$residue_root/gettext.pkg.tar" -C "$archive_root" .
+assert_fails 'alias residue inside a package archive fails the scan' \
+  assert_no_native_recipe_alias_residue w "$residue_root"
+rm -f "$residue_root/gettext.pkg.tar"
+rm -rf "$archive_root"
+
+printf 'prefix=W:/cannot-bypass\n' > "$residue_root/mingwarm64/lib/dirty.la"
+assert_fails 'WOARM64_SKIP_ALIAS_RESIDUE_SCAN cannot bypass a real leak' \
+  env WOARM64_SKIP_ALIAS_RESIDUE_SCAN=1 \
+    bash -c 'source "$1"; assert_no_native_recipe_alias_residue w "$2"' \
+    bash "$repo_root/.github/scripts/lib/native-recipe-root.sh" "$residue_root"
+rm -f "$residue_root/mingwarm64/lib/dirty.la"
 
 assert_ok 'a residue scan of a missing tree is a no-op' \
   assert_no_native_recipe_alias_residue w "$root/residue/absent"
 
 printf '== argument conversion policy ==\n'
 
-assert_equal '-Wl,;-Xlinker;-Wp,;-Wa,;-specs=;@' "$WOARM64_MSYS2_ARG_CONV_EXCL" \
+assert_equal '-Wl,;-Xlinker;-Wp,;-Wa,;-specs=' "$WOARM64_MSYS2_ARG_CONV_EXCL" \
   'the production argument conversion policy is exact'
 assert_contains "$(cat "$repo_root/.github/scripts/build-package.sh")" \
   'export MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL"' \
@@ -603,14 +693,17 @@ printf 'archive\n' > "$convert_root/.libs/libgettextlib.a"
 printf 'script\n' > "$convert_root/version.map"
 
 run_boundary() {
+  local status=0
+
   (
     cd "$convert_root"
     WOARM64_NATIVE_COMPILER_NAME=woarm64-gcc \
       WOARM64_NATIVE_COMPILER="$capturing_compiler" \
       WOARM64_ARGUMENT_CAPTURE="$capture" \
       "$repo_root/.github/scripts/lib/native-compiler.sh" "$@"
-  )
+  ) || status=$?
   cat "$capture"
+  return "$status"
 }
 
 # Same invocation, but reporting the boundary's own exit status rather than the
@@ -754,15 +847,53 @@ fi
 
 quoted_response="$convert_root/quoted.rsp"
 printf -- "--out-implib '%s/.libs/q.a'\n" "$convert_root" > "$quoted_response"
-quoted_output=$(run_boundary "@$quoted_response" 2>/dev/null)
-assert_equal "@$(to_native_path "$quoted_response")" "$quoted_output" \
-  'an unrewritable response file is passed through untouched'
+quoted_status=0
+: > "$capture"
+quoted_output=$(run_boundary "@$quoted_response" 2>/dev/null) || quoted_status=$?
+assert_equal '2' "$quoted_status" \
+  'a single-quoted response file fails before compiler invocation'
+assert_equal '' "$quoted_output" \
+  'a single-quoted response file is never passed through'
 
 nested_response="$convert_root/nested.rsp"
 printf -- '--out-implib %s/.libs/n.a\n@%s\n' "$convert_root" "$response" > "$nested_response"
-nested_output=$(run_boundary "@$nested_response" 2>/dev/null)
-assert_equal "@$(to_native_path "$nested_response")" "$nested_output" \
-  'a nested response file is rejected rather than flattened'
+nested_status=0
+: > "$capture"
+nested_output=$(run_boundary "@$nested_response" 2>/dev/null) || nested_status=$?
+assert_equal '2' "$nested_status" \
+  'a nested response file fails before compiler invocation'
+assert_equal '' "$nested_output" \
+  'a nested response file is never passed through'
+
+missing_tmp_status=0
+TMPDIR="$root/does-not-exist/child" \
+  run_boundary_status "@$response" >/dev/null 2>&1 || missing_tmp_status=$?
+assert_equal '2' "$missing_tmp_status" \
+  'a response rewrite mktemp failure fails before compiler invocation'
+
+cleanup_failure_bin="$root/args/cleanup-failure-bin"
+cleanup_failure_marker="$root/args/cleanup-failure-marker"
+real_rm=$(command -v rm)
+mkdir -p "$cleanup_failure_bin"
+cat > "$cleanup_failure_bin/rm" <<'EOF'
+#!/bin/bash
+if [[ ! -e "$WOARM64_RM_FAILURE_MARKER" ]]; then
+  : > "$WOARM64_RM_FAILURE_MARKER"
+  exit 1
+fi
+exec "$WOARM64_REAL_RM" "$@"
+EOF
+chmod +x "$cleanup_failure_bin/rm"
+cleanup_failure_status=0
+: > "$capture"
+PATH="$cleanup_failure_bin:$PATH" \
+  WOARM64_REAL_RM="$real_rm" \
+  WOARM64_RM_FAILURE_MARKER="$cleanup_failure_marker" \
+  run_boundary_status "@$response" >/dev/null 2>&1 || cleanup_failure_status=$?
+assert_equal '2' "$cleanup_failure_status" \
+  'a response cleanup failure fails before compiler invocation'
+assert_equal '' "$(cat "$capture")" \
+  'a response cleanup failure is never passed to the compiler'
 
 crlf_response="$convert_root/crlf.rsp"
 printf -- '--out-implib %s/.libs/c.a\r\n%s/.libs/libgettextlib.a\r\n' \
@@ -782,8 +913,19 @@ fi
 assert_equal "$crlf_before" "$(sha256sum "$crlf_response" | cut -d' ' -f1)" \
   'the caller response file is never mutated'
 
-# A rewritten response file must not leak, and cleaning it up must not rewrite
-# the compiler status.
+# Parse failures must be rejected before the compiler can observe the original
+# response file, and a rewritten response file must not leak or rewrite status.
+unterminated_response="$convert_root/unterminated.rsp"
+printf -- '--out-implib "%s/.libs/u.a\n' "$convert_root" > "$unterminated_response"
+unterminated_status=0
+: > "$capture"
+unterminated_output=$(run_boundary "@$unterminated_response" 2>/dev/null) ||
+  unterminated_status=$?
+assert_equal '2' "$unterminated_status" \
+  'an unterminated response quote fails before compiler invocation'
+assert_equal '' "$unterminated_output" \
+  'an unterminated response file is never passed through'
+
 before_temps=$(find "${TMPDIR:-/tmp}" -maxdepth 1 -name 'woarm64-response.*' 2>/dev/null | wc -l)
 export WOARM64_FAKE_COMPILER_STATUS=41
 response_status=0
@@ -823,25 +965,26 @@ if [[ -x "$powershell_exe" ]]; then
       WOARM64_PROBE_OUT=$(to_native_path "$observer_out") \
         MSYS2_ARG_CONV_EXCL="$WOARM64_MSYS2_ARG_CONV_EXCL" \
         "$powershell_exe" -NoProfile -File "$(to_native_path "$observer_ps1")" "$@" \
-        >/dev/null 2>&1 || true
+        >/dev/null 2>&1 || return 1
     else
       WOARM64_PROBE_OUT=$(to_native_path "$observer_out") \
         env -u MSYS2_ARG_CONV_EXCL \
         "$powershell_exe" -NoProfile -File "$(to_native_path "$observer_ps1")" "$@" \
-        >/dev/null 2>&1 || true
+        >/dev/null 2>&1 || return 1
     fi
-    tr -d '\r' < "$observer_out" 2>/dev/null || true
+    [[ -f "$observer_out" ]] || return 1
+    tr -d '\r' < "$observer_out"
   }
 
-  observed=$(observe_arguments policy \
-    "-I$convert_root/.libs" \
-    "-DLOCALEDIR=\"$convert_root/.libs\"" \
-    "$convert_root/.libs/libgettextlib.a" \
-    -o "$convert_root/out.o" \
-    -Xlinker "$convert_root/.libs/libgettextlib.a" \
-    "-Wl,--out-implib,$convert_root/.libs/libgettextlib.a")
-
-  if [[ -z "$observed" ]]; then
+  if ! observed=$(observe_arguments policy \
+      "-I$convert_root/.libs" \
+      "-DLOCALEDIR=\"$convert_root/.libs\"" \
+      "$convert_root/.libs/libgettextlib.a" \
+      -o "$convert_root/out.o" \
+      -Xlinker "$convert_root/.libs/libgettextlib.a" \
+      "-Wl,--out-implib,$convert_root/.libs/libgettextlib.a"); then
+    report fail 'the runtime representation observer executes successfully'
+  elif [[ -z "$observed" ]]; then
     # PowerShell is present, so an empty capture means the observer broke rather
     # than that the probe is unavailable. Failing here keeps a real runtime
     # conversion regression from being silently tolerated.
@@ -870,9 +1013,21 @@ if [[ -x "$powershell_exe" ]]; then
       'the boundary leaves an already-converted quoted define alone'
     assert_contains "$composed" "-Wl,--out-implib,$native_convert_root/.libs/libgettextlib.a" \
       'the boundary converts the linker payload the runtime left alone'
+
+    # @ remains under ordinary MSYS conversion so direct native tools do not
+    # inherit a POSIX path. The compiler boundary converts it back only to read
+    # and rewrite its contents.
+    direct_response=$(observe_arguments policy "@$response") ||
+      direct_response=
+    if [[ -z "$direct_response" ]]; then
+      report fail 'the direct native response observer produced output'
+    else
+      assert_contains "$direct_response" "@$(to_native_path "$response")" \
+        'a direct native tool receives a usable Windows response path'
+    fi
   fi
 else
-  report ok 'runtime representation probe skipped: Windows PowerShell is unavailable'
+  report fail 'Windows PowerShell is required for the runtime representation observer'
 fi
 
 # Documents why the policy is a prefix list and not '*': the boundary

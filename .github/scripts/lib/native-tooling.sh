@@ -9,14 +9,17 @@ source "$(dirname "${BASH_SOURCE[0]}")/native-toolchain.sh"
 # POSIX-looking arguments before they are ever seen. That heuristic is fine for
 # plain operands but it does not understand the comma payloads of -Wl,, -Wp, and
 # -Wa,, the two-argument -Xlinker form, -specs= or @response files. Those are
-# exactly the forms libtool emits for gettext, so this lane excludes them from
-# the runtime heuristic and converts them in native-compiler.sh instead, where
-# the rules are explicit and testable.
+# exactly the forms libtool emits for gettext, so this lane excludes those
+# payload dialects from the runtime heuristic and converts them in
+# native-compiler.sh instead, where the rules are explicit and testable. Keep
+# @response arguments under normal MSYS conversion: the compiler launcher turns
+# the resulting Windows path back into an MSYS path before reading it, while
+# direct native Binutils consumers must never inherit an unusable MSYS @ path.
 #
 # Every conversion in native-compiler.sh is idempotent, because cygpath -am on
 # an already-native path is a no-op. The boundary therefore produces identical
 # output whether or not the runtime already converted an argument.
-WOARM64_MSYS2_ARG_CONV_EXCL='-Wl,;-Xlinker;-Wp,;-Wa,;-specs=;@'
+WOARM64_MSYS2_ARG_CONV_EXCL='-Wl,;-Xlinker;-Wp,;-Wa,;-specs='
 
 woarm64_launcher_install_dir() {
   printf '%s\n' "${WOARM64_LAUNCHER_INSTALL_DIR:-/usr/local/libexec/msys2-woarm64}"
@@ -46,27 +49,60 @@ native_launcher_identity() {
     return 1
   fi
 
-  printf 'launcher-identity-v2 source=%s toolchain=%s\n' \
+  printf 'launcher-identity-v3 source=%s toolchain=%s\n' \
     "$source_digest" "$toolchain_digest"
+}
+
+woarm64_launcher_output_identity() {
+  local install_dir=$1
+  local image
+  local size
+  local digest
+
+  for image in "$install_dir/woarm64-gcc.exe" "$install_dir/woarm64-g++.exe"; do
+    if ! assert_native_arm64_pe "$image" "installed ${image##*/}" >/dev/null; then
+      return 1
+    fi
+    if ! size=$(stat -c %s -- "$image") || [[ ! "$size" =~ ^[1-9][0-9]*$ ]]; then
+      echo "Unable to size installed native compiler launcher: $image" >&2
+      return 1
+    fi
+    if ! digest=$(sha256sum -- "$image" | cut -d' ' -f1) || [[ -z "$digest" ]]; then
+      echo "Unable to digest installed native compiler launcher: $image" >&2
+      return 1
+    fi
+    printf '%s size=%s sha256=%s\n' "${image##*/}" "$size" "$digest"
+  done
+}
+
+woarm64_launcher_stamp() {
+  local install_dir=$1
+  local identity=$2
+  local output_identity
+
+  if ! output_identity=$(woarm64_launcher_output_identity "$install_dir"); then
+    return 1
+  fi
+  printf '%s\n%s\n' "$identity" "$output_identity"
 }
 
 woarm64_launcher_cache_is_valid() {
   local install_dir=$1
   local identity=$2
   local stamp_file="$install_dir/native-compiler-launcher.identity"
+  local expected_stamp
 
   [[ -x "$install_dir/woarm64-gcc.exe" &&
      -x "$install_dir/woarm64-g++.exe" &&
-     -f "$stamp_file" &&
-     "$(< "$stamp_file")" == "$identity" ]] || return 1
+     -f "$stamp_file" ]] || return 1
 
-  # A matching stamp only proves the *inputs* are unchanged. Re-verify both
-  # installed launchers are still pure ARM64 PEs on every hit, so a launcher that
-  # was truncated, replaced with an AMD64 image or otherwise corrupted after the
-  # stamp was written invalidates the cache and forces one clean rebuild instead
-  # of silently re-emulating every compile.
-  assert_native_arm64_pe "$install_dir/woarm64-gcc.exe" 'installed woarm64-gcc.exe' 2>/dev/null &&
-    assert_native_arm64_pe "$install_dir/woarm64-g++.exe" 'installed woarm64-g++.exe' 2>/dev/null
+  # A matching input identity only proves the compiler and source are unchanged.
+  # Bind the stamp to the exact output bytes and sizes as well, so either a
+  # foreign replacement or a different-but-valid ARM64 launcher forces rebuild.
+  if ! expected_stamp=$(woarm64_launcher_stamp "$install_dir" "$identity"); then
+    return 1
+  fi
+  [[ "$(< "$stamp_file")" == "$expected_stamp" ]]
 }
 
 woarm64_path_age_seconds() {
@@ -92,13 +128,19 @@ woarm64_acquire_launcher_lock() {
   local reclaimed=0
   local age
   local token="$BASHPID:$(date +%s):${RANDOM}${RANDOM}"
+  local reclaim_dir
 
   while ! mkdir "$lock_dir" 2>/dev/null; do
     if [[ $reclaimed -eq 0 ]] && age=$(woarm64_path_age_seconds "$lock_dir") &&
         (( age > stale )); then
       echo "::warning::Reclaiming a stale native launcher lock after ${age}s: $lock_dir"
       reclaimed=1
-      rm -rf -- "$lock_dir" || return 1
+      reclaim_dir="${lock_dir}.stale.${token//:/_}"
+      # Rename is atomic. Unlike rm -rf, it cannot remove a new lock acquired
+      # after the stale age was measured by this contender.
+      if mv -- "$lock_dir" "$reclaim_dir" 2>/dev/null; then
+        rm -rf -- "$reclaim_dir" || return 1
+      fi
       continue
     fi
     if (( waited >= timeout )); then
@@ -182,6 +224,7 @@ woarm64_build_and_install_launchers() {
   local build_directory
   local built
   local status=0
+  local stamp
 
   compiler=$(native_launcher_compiler_path)
   if ! build_directory=$(mktemp -d "${TMPDIR:-/tmp}/wl.XXXXXX"); then
@@ -233,12 +276,11 @@ woarm64_build_and_install_launchers() {
 
   # Verify what is actually on disk, not just what was built. A partial install
   # that replaced one launcher and not the other must not reach the stamp.
-  if ! assert_native_arm64_pe "$gcc_launcher" 'installed woarm64-gcc.exe' ||
-      ! assert_native_arm64_pe "$gxx_launcher" 'installed woarm64-g++.exe'; then
+  if ! stamp=$(woarm64_launcher_stamp "$install_dir" "$identity"); then
     return 1
   fi
 
-  if ! printf '%s\n' "$identity" > "$stamp_file.staged.$$" ||
+  if ! printf '%s' "$stamp" > "$stamp_file.staged.$$" ||
       ! mv -f -- "$stamp_file.staged.$$" "$stamp_file"; then
     rm -f -- "$stamp_file.staged.$$"
     return 1

@@ -131,11 +131,6 @@ native_tool_version() {
   local image=$1
   local output
 
-  if [[ "${WOARM64_TOOL_VERSION_PROBE:-1}" != "1" ]]; then
-    printf 'version-probe-disabled\n'
-    return 0
-  fi
-
   output=$("$image" --version 2>/dev/null) || output=
   output=${output%%$'\n'*}
   output=${output//$'\r'/}

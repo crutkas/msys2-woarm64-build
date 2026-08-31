@@ -6,9 +6,15 @@ export PATH="/usr/bin:/bin${PATH:+:$PATH}"
 repo_root=$(realpath "$(dirname "${BASH_SOURCE[0]}")/../..")
 source "$repo_root/.github/scripts/lib/native-tooling.sh"
 
-if [[ ! -x /mingwarm64/bin/gcc.exe ]]; then
-  echo "Native ARM64 GCC is required for launcher tests" >&2
-  exit 1
+if ! verify_native_tool_closure; then
+  echo "BLOCKED: admitted native ARM64 tool closure is unavailable" >&2
+  exit 77
+fi
+
+launcher=/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe
+if [[ ! -x "$launcher" ]]; then
+  echo "BLOCKED: admitted native compiler launcher is unavailable: $launcher" >&2
+  exit 77
 fi
 
 temporary_root=$(mktemp -d)
@@ -42,11 +48,8 @@ exit "${WOARM64_FAKE_COMPILER_STATUS:-0}"
 EOF
 chmod 0755 "$fake_compiler"
 
-ensure_native_compiler_launchers
-launcher=/usr/local/libexec/msys2-woarm64/woarm64-gcc.exe
-[[ -x "$launcher" ]]
 assert_native_arm64_pe "$launcher" 'installed native compiler launcher'
-grep -Fq 'launcher-identity-v2' \
+grep -Fq 'launcher-identity-v3' \
   /usr/local/libexec/msys2-woarm64/native-compiler-launcher.identity
 
 # Production runs under the pinned policy, not with conversion switched off.

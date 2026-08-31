@@ -1,9 +1,19 @@
 #!/bin/bash
 
 configure_stage0_git() {
+  local git_executable
   local exec_path
 
-  exec_path=$(env -u GIT_EXEC_PATH /usr/bin/git --exec-path)
+  git_executable=$(command -v git) || {
+    echo "Stage-0 Git executable is unavailable" >&2
+    return 1
+  }
+  if [[ ! -x "$git_executable" ]]; then
+    echo "Stage-0 Git executable is not executable: $git_executable" >&2
+    return 1
+  fi
+
+  exec_path=$(env -u GIT_EXEC_PATH "$git_executable" --exec-path)
   if [[ ! -x "$exec_path/git-remote-https.exe" ]]; then
     echo "Stage-0 Git HTTPS helper is missing from $exec_path" >&2
     return 1

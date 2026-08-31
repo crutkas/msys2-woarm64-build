@@ -10,8 +10,8 @@ source "$repo_root/tests/bootstrap/lib/native-fixtures.sh"
 
 native_ar=/mingwarm64/bin/ar.exe
 if [[ ! -x "$native_ar" ]]; then
-  echo "Native ARM64 ar is required for the libtool archive regression" >&2
-  exit 1
+  echo "BLOCKED: admitted native ARM64 ar is unavailable: $native_ar" >&2
+  exit 77
 fi
 if ! file "$native_ar" | grep -F 'ARM64' >/dev/null; then
   echo "The libtool archive regression requires an ARM64 ar.exe" >&2
@@ -220,17 +220,17 @@ chmod +x "$signal_runner"
 export HELPER_PATH="$repo_root/.github/scripts/lib/native-recipe-root.sh"
 export RECIPE_ROOT="$recipe_root"
 
-for signal_spec in 'HUP 129' 'TERM 143'; do
+for signal_spec in 'HUP 129' 'INT 130' 'TERM 143'; do
   read -r signal expected_status <<< "$signal_spec"
   signal_ready="$temporary_root/$signal.ready"
   signal_child="$temporary_root/$signal.child"
   signal_helper="$temporary_root/$signal.helper"
   export signal_ready signal_child signal_helper SIGNAL_TO_SEND="$signal"
   set +e
-  /usr/bin/bash "$signal_runner" >/dev/null 2>&1
+  timeout --foreground --kill-after=2s 12s /usr/bin/bash "$signal_runner" >/dev/null 2>&1
   signal_status=$?
   set -e
-  if [[ $signal_status -ne 0 && $signal_status -ne $expected_status ]] || [[ -e /z ]]; then
+  if [[ $signal_status -ne $expected_status ]] || [[ -e /z ]]; then
     echo "Native recipe alias did not clean up after $signal: status $signal_status" >&2
     exit 1
   fi
@@ -240,84 +240,31 @@ for signal_spec in 'HUP 129' 'TERM 143'; do
   fi
 done
 
-fake_bin="$temporary_root/fake-bin"
-driver_capture="$temporary_root/driver.capture"
-mkdir -p "$fake_bin"
-cat > "$fake_bin/ccache" <<'EOF'
-#!/bin/bash
-exit 0
-EOF
-cat > "$fake_bin/makepkg-mingw" <<'EOF'
-#!/bin/bash
-printf 'cwd=%s\n' "$(cygpath -am .)" > "$DRIVER_CAPTURE"
-printf 'arg=%s\n' "$@" >> "$DRIVER_CAPTURE"
-EOF
-chmod +x "$fake_bin/ccache" "$fake_bin/makepkg-mingw"
+# The closure used by a production package driver has no fixture seam. This
+# test already exercises the real native ar.exe; assert the driver refuses
+# every test-only override before it can execute makepkg or provision tools.
+for protected_setting in WOARM64_NATIVE_BIN WOARM64_NATIVE_LAUNCHER_COMPILER \
+    WOARM64_NATIVE_CXX WOARM64_LAUNCHER_INSTALL_DIR; do
+  if ! grep -Fq "Refusing \$protected_setting override during a native package build" \
+      "$repo_root/.github/scripts/build-package.sh"; then
+    echo "Native package driver does not reject $protected_setting overrides" >&2
+    exit 1
+  fi
+done
 
-# The driver now gates on the pinned tool closure and on a launcher whose cache
-# identity covers that closure. Give it synthetic ARM64 fixtures so this test
-# keeps exercising the alias plumbing rather than the host toolchain.
-driver_tool_bin="$temporary_root/driver-bin"
-driver_launcher_dir="$temporary_root/driver-libexec"
-driver_fake_compiler="$temporary_root/driver-gcc"
-driver_compiler_calls="$temporary_root/driver-gcc.calls"
-make_native_tool_fixtures "$driver_tool_bin" aa64
-mkdir -p "$driver_launcher_dir"
-cp -f "$repo_root/.github/scripts/lib/native-compiler-launcher.c" \
-  "$driver_launcher_dir/native-compiler-launcher.c"
-make_fake_launcher_compiler "$driver_fake_compiler" "$driver_compiler_calls"
-
-driver_environment=(
-  PATH="$driver_tool_bin:$fake_bin:$PATH"
-  DRIVER_CAPTURE="$driver_capture"
-  FLAVOR=NATIVE_WITH_NATIVE
-  CLEAN_BUILD=1
-  INSTALL_PACKAGE=1
-  WOARM64_SUBST_DRIVES=Z
-  WOARM64_NATIVE_BIN="$driver_tool_bin"
-  WOARM64_TOOL_VERSION_PROBE=0
-  WOARM64_LAUNCHER_INSTALL_DIR="$driver_launcher_dir"
-  WOARM64_NATIVE_LAUNCHER_COMPILER="$driver_fake_compiler"
-  WOARM64_NATIVE_CXX="$driver_fake_compiler"
-  WOARM64_FAKE_COMPILER_COUNTER="$driver_compiler_calls"
-)
-
-(
-  cd "$recipe_root"
-  env "${driver_environment[@]}" "$repo_root/.github/scripts/build-package.sh" MINGW
-)
-grep -Fx 'cwd=Z:/' "$driver_capture" >/dev/null
-grep -Fx 'arg=--cleanbuild' "$driver_capture" >/dev/null
-grep -Fx 'arg=--install' "$driver_capture" >/dev/null
-if [[ -e /z ]]; then
-  echo "Native package driver did not remove its recipe alias" >&2
-  exit 1
-fi
-if [[ ! -x "$driver_launcher_dir/woarm64-gcc.exe" ]]; then
-  echo "Native package driver did not provision its compiler launchers" >&2
-  exit 1
-fi
-
-# Alias residue in staged output has to fail the driver: the drive letter is
-# whichever candidate was free, so the recorded path is irreproducible.
+# The archive path is a real libtool-style fixture. Alias residue must be
+# rejected from staging independently of any compiler test double.
 mkdir -p "$recipe_root/pkg/mingwarm64/lib"
 printf "libdir='Z:/src/build/.libs'\n" > "$recipe_root/pkg/mingwarm64/lib/leak.la"
 set +e
-(
-  cd "$recipe_root"
-  env "${driver_environment[@]}" "$repo_root/.github/scripts/build-package.sh" MINGW
-) >/dev/null 2>&1
+assert_no_native_recipe_alias_residue z "$recipe_root"
 residue_status=$?
 set -e
 if [[ $residue_status -eq 0 ]]; then
-  echo "Native package driver accepted staged output containing alias residue" >&2
+  echo "Native residue scanner accepted staged output containing alias residue" >&2
   exit 1
 fi
 rm -rf "$recipe_root/pkg"
-if [[ -e /z ]]; then
-  echo "Native package driver did not remove its recipe alias after residue detection" >&2
-  exit 1
-fi
 
 printf 'old_output_length=%s old_exit=%s old_reproduced=%s fixed=present\n' \
   "${#failing_output_native}" "$old_status" "$old_reproduced"

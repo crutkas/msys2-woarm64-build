@@ -31,6 +31,7 @@ _WOARM64_ALIAS_SUBST_TOOL=
 _WOARM64_ALIAS_COMMAND_PID=
 _WOARM64_ALIAS_COMMAND_STARTING=0
 _WOARM64_ALIAS_PENDING_SIGNAL=
+_WOARM64_ALIAS_CALLER_ROOT=
 _WOARM64_ALIAS_TRAP_EXIT=
 _WOARM64_ALIAS_TRAP_HUP=
 _WOARM64_ALIAS_TRAP_INT=
@@ -72,8 +73,11 @@ cleanup_short_native_recipe_root() {
     return 0
   fi
 
+  # A mapped drive cannot be removed while the shell is sitting on it. Prefer
+  # the physical recipe root, but still try to get off the alias if that root
+  # was unexpectedly removed by the build.
+  cd "$_WOARM64_ALIAS_RECIPE_ROOT" 2>/dev/null || cd / || status=1
   if [[ "$_WOARM64_ALIAS_ROOT" -ef "$_WOARM64_ALIAS_RECIPE_ROOT" ]]; then
-    cd "$_WOARM64_ALIAS_RECIPE_ROOT" 2>/dev/null || cd /
     if ! MSYS2_ARG_CONV_EXCL='*' \
         "$_WOARM64_ALIAS_SUBST_TOOL" "$_WOARM64_ALIAS_DRIVE" /D >/dev/null; then
       echo "Failed to remove native recipe alias $_WOARM64_ALIAS_DRIVE" >&2
@@ -85,6 +89,11 @@ cleanup_short_native_recipe_root() {
   fi
 
   _WOARM64_ALIAS_OWNED=0
+  if [[ -n "$_WOARM64_ALIAS_CALLER_ROOT" ]] &&
+      ! cd "$_WOARM64_ALIAS_CALLER_ROOT" 2>/dev/null; then
+    echo "Failed to restore the caller directory after native recipe alias cleanup" >&2
+    status=1
+  fi
   return "$status"
 }
 
@@ -111,6 +120,7 @@ _woarm64_recipe_release_state() {
   _WOARM64_ALIAS_COMMAND_PID=
   _WOARM64_ALIAS_COMMAND_STARTING=0
   _WOARM64_ALIAS_PENDING_SIGNAL=
+  _WOARM64_ALIAS_CALLER_ROOT=
 }
 
 # Every failure path after the traps are armed must go through here, otherwise
@@ -130,14 +140,43 @@ _woarm64_recipe_abort() {
 _woarm64_capture_traps() {
   local state_file=$1
 
-  trap -p EXIT > "$state_file"
-  _WOARM64_ALIAS_TRAP_EXIT=$(cat "$state_file")
-  trap -p HUP > "$state_file"
-  _WOARM64_ALIAS_TRAP_HUP=$(cat "$state_file")
-  trap -p INT > "$state_file"
-  _WOARM64_ALIAS_TRAP_INT=$(cat "$state_file")
-  trap -p TERM > "$state_file"
-  _WOARM64_ALIAS_TRAP_TERM=$(cat "$state_file")
+  if ! trap -p EXIT > "$state_file"; then
+    return 1
+  fi
+  _WOARM64_ALIAS_TRAP_EXIT=$(< "$state_file")
+  if ! trap -p HUP > "$state_file"; then
+    return 1
+  fi
+  _WOARM64_ALIAS_TRAP_HUP=$(< "$state_file")
+  if ! trap -p INT > "$state_file"; then
+    return 1
+  fi
+  _WOARM64_ALIAS_TRAP_INT=$(< "$state_file")
+  if ! trap -p TERM > "$state_file"; then
+    return 1
+  fi
+  _WOARM64_ALIAS_TRAP_TERM=$(< "$state_file")
+}
+
+_woarm64_wait_for_native_recipe_child() {
+  local pid=$1
+  local timeout=${WOARM64_ALIAS_SIGNAL_WAIT_SECONDS:-10}
+  local deadline
+
+  if [[ ! "$timeout" =~ ^[1-9][0-9]*$ ]]; then
+    echo "WOARM64_ALIAS_SIGNAL_WAIT_SECONDS must be a positive integer" >&2
+    return 2
+  fi
+  deadline=$((SECONDS + timeout))
+  while kill -0 "$pid" 2>/dev/null; do
+    if (( SECONDS >= deadline )); then
+      echo "Timed out waiting for native recipe child $pid after $timeout seconds; terminating it" >&2
+      kill -KILL "$pid" 2>/dev/null || true
+      break
+    fi
+    sleep 1
+  done
+  wait "$pid" 2>/dev/null || true
 }
 
 forward_native_recipe_signal() {
@@ -145,9 +184,13 @@ forward_native_recipe_signal() {
   local status=$2
 
   trap - HUP INT TERM
-  kill -s "$signal" "$_WOARM64_ALIAS_COMMAND_PID" 2>/dev/null || true
-  wait "$_WOARM64_ALIAS_COMMAND_PID" 2>/dev/null || true
-  cleanup_short_native_recipe_root || status=1
+  if [[ -n "$_WOARM64_ALIAS_COMMAND_PID" ]]; then
+    kill -s "$signal" "$_WOARM64_ALIAS_COMMAND_PID" 2>/dev/null || true
+    _woarm64_wait_for_native_recipe_child "$_WOARM64_ALIAS_COMMAND_PID" || true
+  fi
+  # Signal status is the caller-visible contract. Cleanup errors are reported
+  # but never turn HUP/INT/TERM into an unrelated status.
+  cleanup_short_native_recipe_root || true
   restore_native_recipe_traps
   _woarm64_recipe_release_state
   exit "$status"
@@ -170,39 +213,168 @@ handle_native_recipe_signal() {
   forward_native_recipe_signal "$signal" "$status"
 }
 
-# Fails the build when the temporary alias drive leaked into staged package
-# content. The drive letter is whichever of the candidates was free, so any
-# recorded path under it is both dangling and non-reproducible.
-assert_no_native_recipe_alias_residue() {
-  local drive_letter=$1
-  local root=$2
-  local -a matches=()
-  local pattern
+_woarm64_file_has_native_recipe_alias_residue() {
+  local file=$1
+  local drive_letter=$2
+  local ascii_pattern
+  local utf16le_pattern
+  local scan_status
 
-  if [[ -z "$drive_letter" || -z "$root" ]]; then
-    echo "assert_no_native_recipe_alias_residue requires a drive letter and a root" >&2
+  # Keep URL schemes and identifier fragments out of scope while accepting the
+  # joined -I/-L forms that libtool emits and a bare, bounded drive token.
+  ascii_pattern="(^|[^[:alnum:]_]|-[IL])${drive_letter}:($|[^[:alnum:]_])"
+  utf16le_pattern="(?:^|(?:[^A-Za-z0-9_]\x00)|(?:-\x00[IL]\x00))${drive_letter}\x00:\x00(?:$|[^A-Za-z0-9_]\x00)"
+
+  if LC_ALL=C grep -a -i -E -q -- "$ascii_pattern" "$file"; then
+    return 0
+  else
+    scan_status=$?
+  fi
+  if [[ $scan_status -ne 1 ]]; then
+    echo "Unable to scan native recipe alias residue in $file" >&2
     return 2
   fi
-  if [[ "${WOARM64_SKIP_ALIAS_RESIDUE_SCAN:-0}" == "1" ]]; then
-    echo "::warning::Skipping the native recipe alias residue scan by request"
+  if LC_ALL=C grep -a -i -P -q -- "$utf16le_pattern" "$file"; then
     return 0
+  else
+    scan_status=$?
   fi
-  if [[ ! -d "$root" ]]; then
-    return 0
+  if [[ $scan_status -ne 1 ]]; then
+    echo "Unable to scan UTF-16LE native recipe alias residue in $file" >&2
+    return 2
   fi
+  return 1
+}
 
-  # Discriminate the URL false positive by its double slash rather than by a
-  # preceding letter. "http://" and "https://" contain "p://" and "s://", and
-  # both letters are candidate drives, but a real alias path never has two
-  # slashes after the colon. Anchoring on a preceding non-letter instead would
-  # miss the joined option forms libtool writes into .la files, such as
-  # -LW:/src/gettext/gnulib-lib/.libs.
-  pattern="${drive_letter}"':(\\|/([^/]|$))'
-  mapfile -t matches < <(
-    grep -r -l -a -i -E -e "$pattern" -- "$root" 2>/dev/null
-  )
+_woarm64_archive_has_native_recipe_alias_residue() {
+  local archive=$1
+  local drive_letter=$2
+  local member_list
+  local member
+  local extracted
+  local scan_status
+  local status=1
+
+  if ! member_list=$(mktemp "${TMPDIR:-/tmp}/woarm64-archive-members.XXXXXX"); then
+    return 2
+  fi
+  if ! tar -tf -- "$archive" > "$member_list"; then
+    rm -f -- "$member_list" || true
+    echo "Unable to list archive for native recipe alias residue: $archive" >&2
+    return 2
+  fi
+  while IFS= read -r member || [[ -n "$member" ]]; do
+    [[ "$member" == */ || -z "$member" ]] && continue
+    if ! extracted=$(mktemp "${TMPDIR:-/tmp}/woarm64-archive-member.XXXXXX"); then
+      status=2
+      break
+    fi
+    if ! tar -xOf -- "$archive" "$member" > "$extracted"; then
+      rm -f -- "$extracted" || true
+      echo "Unable to extract archive member for native recipe alias residue: $archive:$member" >&2
+      status=2
+      break
+    fi
+    if _woarm64_file_has_native_recipe_alias_residue "$extracted" "$drive_letter"; then
+      rm -f -- "$extracted" || true
+      status=0
+      break
+    fi
+    scan_status=$?
+    if ! rm -f -- "$extracted"; then
+      status=2
+      break
+    fi
+    if [[ $scan_status -ne 1 ]]; then
+      status=2
+      break
+    fi
+  done < "$member_list"
+  if ! rm -f -- "$member_list"; then
+    status=2
+  fi
+  return "$status"
+}
+
+_woarm64_path_is_scannable_archive() {
+  case "$1" in
+    *.tar|*.tar.gz|*.tar.bz2|*.tar.xz|*.tar.zst|*.tar.lz4|*.pkg.tar.*)
+      return 0
+      ;;
+  esac
+  return 1
+}
+
+# Fails the build when the temporary alias drive leaked into build trees,
+# staged files, package metadata, or the contents of produced package
+# archives. The drive letter is whichever candidate was free, so every form
+# of that path is dangling and non-reproducible.
+assert_no_native_recipe_alias_residue() {
+  local drive_letter=$1
+  shift
+  local root
+  local file_list
+  local file
+  local scan_status
+  local -a matches=()
+
+  if [[ ! "$drive_letter" =~ ^[A-Za-z]$ || $# -eq 0 ]]; then
+    echo "assert_no_native_recipe_alias_residue requires a drive letter and at least one root" >&2
+    return 2
+  fi
+  drive_letter=${drive_letter^^}
+
+  for root in "$@"; do
+    [[ -e "$root" ]] || continue
+    if [[ -f "$root" ]]; then
+      file_list=$(mktemp "${TMPDIR:-/tmp}/woarm64-residue-files.XXXXXX") || return 2
+      printf '%s\0' "$root" > "$file_list" || {
+        rm -f -- "$file_list" || true
+        return 2
+      }
+    elif [[ -d "$root" ]]; then
+      file_list=$(mktemp "${TMPDIR:-/tmp}/woarm64-residue-files.XXXXXX") || return 2
+      if ! find "$root" -type f -print0 > "$file_list"; then
+        rm -f -- "$file_list" || true
+        echo "Unable to enumerate native recipe output for residue scanning: $root" >&2
+        return 2
+      fi
+    else
+      echo "Unsupported native recipe residue scan root: $root" >&2
+      return 2
+    fi
+
+    while IFS= read -r -d '' file; do
+      if _woarm64_file_has_native_recipe_alias_residue "$file" "$drive_letter"; then
+        matches+=("$file")
+        continue
+      else
+        scan_status=$?
+      fi
+      if [[ $scan_status -ne 1 ]]; then
+        rm -f -- "$file_list" || true
+        return "$scan_status"
+      fi
+      if _woarm64_path_is_scannable_archive "$file"; then
+        if _woarm64_archive_has_native_recipe_alias_residue "$file" "$drive_letter"; then
+          matches+=("$file (archive contents)")
+          continue
+        else
+          scan_status=$?
+        fi
+        if [[ $scan_status -ne 1 ]]; then
+          rm -f -- "$file_list" || true
+          return "$scan_status"
+        fi
+      fi
+    done < "$file_list"
+    if ! rm -f -- "$file_list"; then
+      return 2
+    fi
+  done
+
   if [[ ${#matches[@]} -gt 0 ]]; then
-    echo "Native recipe alias ${drive_letter^^}: leaked into staged build output:" >&2
+    echo "Native recipe alias ${drive_letter}: leaked into build or package output:" >&2
     printf '  %s\n' "${matches[@]}" >&2
     return 1
   fi
@@ -230,6 +402,7 @@ with_short_native_recipe_root() {
     return 2
   fi
 
+  WOARM64_LAST_RECIPE_ALIAS_LETTER=
   if ! recipe_root=$(pwd -P); then
     return 2
   fi
@@ -248,13 +421,16 @@ with_short_native_recipe_root() {
   if ! trap_state_file=$(mktemp "${TMPDIR:-/tmp}/native-recipe-traps.XXXXXX"); then
     return 2
   fi
-  _woarm64_capture_traps "$trap_state_file"
-  rm -f "$trap_state_file"
+  if ! _woarm64_capture_traps "$trap_state_file" || ! rm -f "$trap_state_file"; then
+    rm -f -- "$trap_state_file" || true
+    return 2
+  fi
 
   _WOARM64_ALIAS_ACTIVE=1
   _WOARM64_ALIAS_SUBST_TOOL="$subst_tool"
   _WOARM64_ALIAS_RECIPE_ROOT="$recipe_root"
   _WOARM64_ALIAS_RECIPE_ROOT_NATIVE="$recipe_root_native"
+  _WOARM64_ALIAS_CALLER_ROOT="$recipe_root"
 
   for drive_letter in ${WOARM64_SUBST_DRIVES:-W V U T S R Q P}; do
     if [[ ! "$drive_letter" =~ ^[A-Za-z]$ ]]; then
@@ -278,9 +454,8 @@ with_short_native_recipe_root() {
 
   if [[ -z "$_WOARM64_ALIAS_ROOT" ]]; then
     echo "No free drive letter is available for the native recipe path boundary" >&2
-    restore_native_recipe_traps
-    _woarm64_recipe_release_state
-    return 1
+    _woarm64_recipe_abort 1
+    return $?
   fi
 
   trap cleanup_short_native_recipe_root EXIT
@@ -303,7 +478,79 @@ with_short_native_recipe_root() {
   fi
 
   _WOARM64_ALIAS_COMMAND_STARTING=1
-  MSYS2_WOARM64_RECIPE_HELPER_PID=$BASHPID "$@" <&0 &
+  # MSYS Bash can inherit SIGINT as ignored from a non-interactive launcher.
+  # Run the managed command through a tiny relay with its HUP/INT/TERM
+  # dispositions explicitly reset. It is the signal endpoint exposed to the
+  # command, forwards to the real child with a bounded wait, and returns the
+  # conventional signal status to this helper.
+  if ! env --default-signal=HUP,INT,TERM true 2>/dev/null; then
+    echo "env with --default-signal is required for native recipe signal handling" >&2
+    abort_status=1
+    _woarm64_recipe_abort "$abort_status"
+    return $?
+  fi
+  env --default-signal=HUP,INT,TERM bash -c '
+    child_pid=
+    child_starting=0
+    pending_signal=
+    relay_pid=$BASHPID
+
+    wait_for_child() {
+      local pid=$1
+      local timeout=${WOARM64_ALIAS_SIGNAL_WAIT_SECONDS:-10}
+      local deadline
+      [[ "$timeout" =~ ^[1-9][0-9]*$ ]] || exit 2
+      deadline=$((SECONDS + timeout))
+      while kill -0 "$pid" 2>/dev/null; do
+        if (( SECONDS >= deadline )); then
+          kill -KILL "$pid" 2>/dev/null || true
+          break
+        fi
+        sleep 1
+      done
+      wait "$pid" 2>/dev/null || true
+    }
+
+    forward_signal() {
+      local signal=$1
+      local status=$2
+      trap - HUP INT TERM
+      if [[ -n "$child_pid" ]]; then
+        kill -s "$signal" "$child_pid" 2>/dev/null || true
+        wait_for_child "$child_pid"
+      fi
+      exit "$status"
+    }
+
+    receive_signal() {
+      local signal=$1
+      local status=$2
+      if [[ $child_starting -eq 1 && -z "$child_pid" ]]; then
+        pending_signal="$signal $status"
+        return
+      fi
+      forward_signal "$signal" "$status"
+    }
+
+    trap "receive_signal HUP 129" HUP
+    trap "receive_signal INT 130" INT
+    trap "receive_signal TERM 143" TERM
+    child_starting=1
+    MSYS2_WOARM64_RECIPE_HELPER_PID=$relay_pid \
+      env --default-signal=HUP,INT,TERM "$@" <&0 &
+    child_pid=$!
+    child_starting=0
+    if [[ -n "$pending_signal" ]]; then
+      read -r signal status <<< "$pending_signal"
+      forward_signal "$signal" "$status"
+    fi
+    if wait "$child_pid"; then
+      child_status=0
+    else
+      child_status=$?
+    fi
+    exit "$child_status"
+  ' native-recipe-signal-relay "$@" <&0 &
   _WOARM64_ALIAS_COMMAND_PID=$!
   _WOARM64_ALIAS_COMMAND_STARTING=0
   if [[ -n "$_WOARM64_ALIAS_PENDING_SIGNAL" ]]; then

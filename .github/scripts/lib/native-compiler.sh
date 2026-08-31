@@ -39,21 +39,51 @@ declare -a converted=()
 declare -a response_temporaries=()
 
 woarm64_cleanup() {
+  local temporary
+  local status=0
+
   if [[ ${#response_temporaries[@]} -gt 0 ]]; then
-    rm -f -- "${response_temporaries[@]}"
+    for temporary in "${response_temporaries[@]}"; do
+      if ! rm -f -- "$temporary"; then
+        echo "Failed to remove rewritten compiler response file: $temporary" >&2
+        status=1
+      fi
+    done
   fi
+  response_temporaries=()
+  return "$status"
 }
 
-# A rewritten response file must not outlive this process on any path, and a
-# signal must not be reported as a clean exit.
+woarm64_on_exit() {
+  local status=$?
+
+  trap - EXIT HUP INT TERM
+  if ! woarm64_cleanup && [[ $status -eq 0 ]]; then
+    status=1
+  fi
+  exit "$status"
+}
+
+# A rewritten response file must not outlive this process on any path. Cleanup
+# errors before compiler invocation are hard failures; signals retain their
+# conventional status even when cleanup also reports an error.
 woarm64_on_signal() {
   local status=$1
 
   trap - EXIT HUP INT TERM
-  woarm64_cleanup
+  woarm64_cleanup || true
   exit "$status"
 }
-trap woarm64_cleanup EXIT
+woarm64_abort_before_compiler() {
+  local status=${1:-2}
+
+  trap - EXIT HUP INT TERM
+  if ! woarm64_cleanup; then
+    status=1
+  fi
+  exit "$status"
+}
+trap woarm64_on_exit EXIT
 trap 'woarm64_on_signal 129' HUP
 trap 'woarm64_on_signal 130' INT
 trap 'woarm64_on_signal 143' TERM
@@ -174,9 +204,8 @@ woarm64_convert_payload() {
 }
 
 # Rewrites the *contents* of a response file into a temporary copy. The caller's
-# file is only ever read. Files using quoting this rewriter cannot round-trip
-# exactly, and files that nest a further @response, are passed through untouched
-# rather than corrupted or silently flattened.
+# file is only ever read. Unsupported syntax is rejected rather than passing the
+# original response through to a native compiler with unconverted paths.
 _woarm64_response=
 woarm64_convert_response_file() {
   local original=$1
@@ -184,26 +213,44 @@ woarm64_convert_response_file() {
   local line
   local rest
   local token
+  local scan_status
   local -a tokens=()
 
-  _woarm64_response=$(to_native_path "$original")
+  if ! original=$(to_msys_path "$original"); then
+    echo "Unable to resolve compiler response file: $1" >&2
+    return 2
+  fi
   if [[ ! -f "$original" ]]; then
-    return 0
+    echo "Compiler response file does not exist: $original" >&2
+    return 2
   fi
-  if grep -q -F -e "'" -e '\' -- "$original"; then
-    echo "::warning::Response file uses quoting this boundary cannot rewrite; passing it through: $original" >&2
-    return 0
+  if grep -q -F -e "'" -- "$original"; then
+    echo "Compiler response file uses unsupported single-quoted syntax: $original" >&2
+    return 2
+  else
+    scan_status=$?
   fi
-  if grep -q -E '(^|[[:space:]])@' -- "$original"; then
-    echo "::warning::Response file nests a further response file; passing it through: $original" >&2
-    return 0
+  if [[ $scan_status -ne 1 ]]; then
+    echo "Unable to inspect compiler response file quoting: $original" >&2
+    return 2
   fi
   if ! converted_file=$(mktemp "${TMPDIR:-/tmp}/woarm64-response.XXXXXX"); then
-    return 0
+    echo "Unable to create rewritten compiler response file for: $original" >&2
+    return 2
   fi
   response_temporaries+=("$converted_file")
 
-  : > "$converted_file"
+  # Establish that the temporary can be removed before the compiler starts.
+  # Otherwise a cleanup failure is discovered only after the caller's command
+  # has already run and the rewrite no longer has a fail-closed boundary.
+  if ! rm -f -- "$converted_file"; then
+    echo "Unable to clean up rewritten compiler response file: $converted_file" >&2
+    return 2
+  fi
+  if ! : > "$converted_file"; then
+    echo "Unable to write rewritten compiler response file: $converted_file" >&2
+    return 2
+  fi
   # The "next token is a path" state has to survive both token and line
   # boundaries, because --out-implib and its value are often on separate lines.
   _woarm64_expect_path=0
@@ -221,30 +268,40 @@ woarm64_convert_response_file() {
           ;;
         '"'*)
           rest=${rest#\"}
-          token=${rest%%\"*}
-          if [[ "$token" == "$rest" ]]; then
-            rest=
-          else
-            rest=${rest#"$token"}
-            rest=${rest#\"}
+          if [[ "$rest" != *\"* ]]; then
+            echo "Compiler response file has an unterminated double quote: $original" >&2
+            return 2
           fi
+          token=${rest%%\"*}
+          rest=${rest#"$token"}
+          rest=${rest#\"}
           ;;
         *)
           token=${rest%%[$' \t']*}
           rest=${rest#"$token"}
           ;;
       esac
+      if [[ "$token" == @* ]]; then
+        echo "Compiler response file nests another response file: $original" >&2
+        return 2
+      fi
       tokens+=("$token")
     done
 
     for token in "${tokens[@]}"; do
       woarm64_convert_field "$token" "${woarm64_linker_path_options[@]}"
-      printf '"%s"\n' "${_woarm64_field//\"/\\\"}" >> "$converted_file"
+      if ! printf '"%s"\n' "${_woarm64_field//\"/\\\"}" >> "$converted_file"; then
+        echo "Unable to write rewritten compiler response file: $converted_file" >&2
+        return 2
+      fi
     done
   done < "$original"
   _woarm64_expect_path=0
 
-  _woarm64_response=$(to_native_path "$converted_file")
+  if ! _woarm64_response=$(to_native_path "$converted_file"); then
+    echo "Unable to convert rewritten compiler response file path: $converted_file" >&2
+    return 2
+  fi
 }
 
 while [[ $# -gt 0 ]]; do
@@ -322,7 +379,9 @@ while [[ $# -gt 0 ]]; do
       if [[ "${argument#@}" == "-" ]]; then
         converted+=("$argument")
       else
-        woarm64_convert_response_file "${argument#@}"
+        if ! woarm64_convert_response_file "${argument#@}"; then
+          woarm64_abort_before_compiler 2
+        fi
         converted+=("@$_woarm64_response")
       fi
       ;;
@@ -357,6 +416,4 @@ set +e
 "$compiler" "${converted[@]}"
 compiler_status=$?
 set -e
-# Cleanup runs from the EXIT trap. An explicit exit status is what the shell
-# reports, so a failing rm can never turn a failed compile into a success.
 exit "$compiler_status"
