@@ -1,0 +1,145 @@
+{
+  "schema": "arm64-vnext-runtime-generator-artifact-index-v1",
+  "epoch": "2026-08-31-v1",
+  "candidate_revision": 2,
+  "reason": "Revision 2 repairs the rejected native make runtime closure while remaining in the fixed programme epoch.",
+  "repository": {
+    "repo": "crutkas/msys2-runtime",
+    "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+    "base_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+    "staged_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+    "candidate_commit_count": 0
+  },
+  "supersedes_no_go": {
+    "review_file_sha256": "0e88bb5e997b2a437faada948376fb9559a23ecb653567dc3111efd1718057d7",
+    "review_payload_sha256": "831b338797038eb6d03f6caaf32b67721089f6d6559107e8da8cce8b50f99429",
+    "blocker": "tools/make.exe imported admitted libintl-8.dll but revision-1 bundle omitted it"
+  },
+  "repair": {
+    "input_provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+    "source_bytes": 268288,
+    "source_sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+    "bundle_path": "runtime/bin/libintl-8.dll",
+    "negative_control_exit_hex": "0xC0000135",
+    "isolated_make_result": "PASS",
+    "recursive_pe_count": 119,
+    "recursive_import_edges": 1348,
+    "unresolved_imports": 0
+  },
+  "artifacts": [
+    {
+      "id": "patch",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-before-commit.patch",
+      "bytes": 3204,
+      "sha256": "0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8"
+    },
+    {
+      "id": "bundle_zip",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle.zip",
+      "bytes": 24478030,
+      "sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+    },
+    {
+      "id": "bundle_zip_second",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-second.zip",
+      "bytes": 24478030,
+      "sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+    },
+    {
+      "id": "bundle_manifest",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\bundle-manifest-v2.json",
+      "bytes": 367481,
+      "sha256": "23dfc14a6b0e68d9f4c943ea131ad05de9e171628ac54df8a4ff60ac9c1780e2",
+      "manifested_files": 2049,
+      "tree_sha256": "64a8141e18f5ac28c0f4f83f677f9cf653db90d63ae6bc415ba356a4a3155b48"
+    },
+    {
+      "id": "artifact_evidence",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-artifact-evidence.json",
+      "bytes": 4344,
+      "sha256": "39ed03205a75ffbc41ee23c43bec37b8ac1a34f7986c022362a60dff635cfbbd",
+      "payload_sha256": "ff0204dba43a8533a034667ea09b7ab7ef2e13b971815afa974dc3fb9229c361"
+    },
+    {
+      "id": "reproducibility_evidence",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-reproducibility-evidence.json",
+      "bytes": 26919,
+      "sha256": "51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+      "payload_sha256": "c290c8c92e5256a1d71cadf4b9248370d1c632a243e76a8d0737395048574204"
+    },
+    {
+      "id": "rich_candidate_context",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-before-commit-candidate-context.json",
+      "bytes": 10249,
+      "sha256": "ac94c74783924736e370e2ee196ce326a1004a08f3f09b86eaaf418ed7ceef4e",
+      "payload_sha256": "a2751d04a15135f3dd90f640e4e396db7c81041c4420140a0b11684f9d5cac10"
+    },
+    {
+      "id": "continuity",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-continuity.json",
+      "bytes": 16125,
+      "sha256": "228e08cc4a6d6480bd6dd126256eab1ed790894b8b94f2b433b41f2f5fab5065",
+      "payload_sha256": "476d2b497fa650309a94b25890dbfc6ba0b1343b8860e224a5a3f2744a16020d"
+    },
+    {
+      "id": "final_replay",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-final-replay.tar.gz",
+      "bytes": 180250658,
+      "sha256": "a8392f840591d4af7534a2ce6ca747b7422c9d15d1312c6a1131b3bc2e45cb04",
+      "entries": 2109
+    }
+  ],
+  "key_evidence": [
+    {
+      "id": "strict_runtime_closure",
+      "file_sha256": "ea900351564d58cb9347f1ef3e3e2d9e35ce7da3fd5d3330a82ae7be87b9ce53",
+      "payload_sha256": "cfab704e6281abb3c071392e3c7077fd685654aa744ef1e19e6fd3f7dd1408d9"
+    },
+    {
+      "id": "pe_import_closure",
+      "file_sha256": "58f8b45acbdaeefda7f669ce0e765af7c06c8dc6d0c3503617d9df0ff01e0c2"
+    },
+    {
+      "id": "make_process_attestation",
+      "file_sha256": "eb6615eb97fbd35ad767ee0289f246e0b83bf3ddbaf754051d7565ee5023a60d"
+    },
+    {
+      "id": "dual_generation",
+      "file_sha256": "16a6d0fa6f3ba3a14431f0cab663d0715da0355507af91351d872eea97b903e0",
+      "payload_sha256": "56266e73bd597cfe83bd1a7cbadd1bf78bd84d555abf575fa55a1a7c6971b79a"
+    },
+    {
+      "id": "space_dollar_relocation",
+      "file_sha256": "62f22037a7409c82f89be04331a1d2844d9bf4133fdac13a6a0f3e54c34b93eb",
+      "payload_sha256": "2c19943a671561f6f9036c8f74e8b915049d7912039678d4ac4853814583cf1e"
+    },
+    {
+      "id": "cocom_replay",
+      "file_sha256": "b3629533e767eec5dc4435b836494a478356ce3a969b03219e862f75ee5e4196",
+      "payload_sha256": "03b6472b8efc0de6e7efbbf8c55495b230a2feb4a9d0b331c30af7b6f922c80e"
+    },
+    {
+      "id": "focused_contracts",
+      "file_sha256": "f4d14676176055a0df1d5e4bac18c5bd771cc0d45867fab1a8f7fb62ca348de9",
+      "payload_sha256": "d60735e9d0d22faaa0df8e266ec51411133a1acea4255ebd0b58a713d1ff9396"
+    },
+    {
+      "id": "hosted_validation",
+      "file_sha256": "bbea5ffddbd967ec2be42772146d4fea09f73f832fd12d7fad5e7cb0ef25ab80",
+      "payload_sha256": "4443902b0c4061e6d31afb998044c2b1a54de64313d1fc87dda37bdfde7d5d5f"
+    }
+  ],
+  "restrictions": {
+    "source_tree_changed_from_revision1": false,
+    "commit_created": false,
+    "push_or_pr_created": false,
+    "abi_or_runtime_dll_claim": false,
+    "release_claim": false
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 5728,
+    "payload_sha256": "c52686d5d32e49c96f69df383bc66ef41587d18f6348e90c7093b18f0bf314d9"
+  }
+}

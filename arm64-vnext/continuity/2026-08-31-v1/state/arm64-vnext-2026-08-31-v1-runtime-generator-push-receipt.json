@@ -1,0 +1,109 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-push-receipt-v1",
+    "epoch": "2026-08-31-v1",
+    "captured_at": "2026-09-01T01:11:30.573188+00:00",
+    "authorization": {
+      "authorized_node_phases": [
+        {
+          "node_id": "runtime-generator",
+          "phases": [
+            "before_push"
+          ]
+        }
+      ],
+      "authorization_granted": true,
+      "scope": "exactly one normal non-force creation push of the exact branch at the exact authorized commit; set upstream; then stop",
+      "review": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-push-review.json",
+        "bytes": 12467,
+        "file_sha256": "b0b3c78c3afc68fb492b517da79497cbedcd595e737fcf08fe67c501fea6d593",
+        "payload_sha256": "e6df0291f1522f7e32f3d94b0eef221ad84645774e0b85bedb57258d78df3a2c"
+      },
+      "verdict": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-verdict-runtime-generator-before-push.json",
+        "bytes": 6688,
+        "file_sha256": "b3b76eeeaf5a31722e110c31db6a13708a00753e27937ad9f94093d67c53a45f",
+        "payload_sha256": "c673f14d6ed24ab0560893ea0c2bb46311fb546568113dd9b2061ad04732951b"
+      },
+      "receipt": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-push-authorized.json",
+        "bytes": 12309,
+        "file_sha256": "567922eea1dff103f65ddda2635c6df7cdf92f7b37668f8545ce92cac4fae8b8",
+        "payload_sha256": "8154e4c97ff8b72b1dfd0093eb706abba5a161cb7c4526579814d204051ab02c"
+      }
+    },
+    "target": {
+      "repository": "crutkas/msys2-runtime",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "local_ref": "refs/heads/crutkas-arm64-vnext/msys2-runtime/generator",
+      "remote_ref": "refs/heads/crutkas-arm64-vnext/msys2-runtime/generator",
+      "remote_tracking_ref": "refs/remotes/origin/crutkas-arm64-vnext/msys2-runtime/generator",
+      "authorized_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "parent": "8fbd9808447ee78ed485deead9b79cd1e40c07b7"
+    },
+    "pre_race_check": {
+      "observed_at": "2026-09-01T01:10:47.2168690+00:00",
+      "branch_match": true,
+      "head_match": true,
+      "tree_match": true,
+      "parent_match": true,
+      "commit_count_above_parent": 1,
+      "worktree_and_index_clean": true,
+      "destination_remote_ref_count": 0,
+      "matching_head_pull_request_count": 0,
+      "result": "PASS"
+    },
+    "push": {
+      "started_at": "2026-09-01T01:10:48.4079500+00:00",
+      "finished_at": "2026-09-01T01:10:50.5260552+00:00",
+      "command": "git push --set-upstream origin refs/heads/crutkas-arm64-vnext/msys2-runtime/generator:refs/heads/crutkas-arm64-vnext/msys2-runtime/generator",
+      "command_class": "normal non-force branch creation",
+      "push_invocation_count": 1,
+      "force": false,
+      "force_with_lease": false,
+      "set_upstream": true,
+      "exit_code": 0,
+      "result": "PASS"
+    },
+    "remote_readback": {
+      "observed_at": "2026-09-01T01:11:00.5373467+00:00",
+      "remote_ref_count": 1,
+      "remote_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "remote_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "remote_parent": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "remote_parent_count": 1,
+      "object_readback_method": "git ls-remote exact ref followed by git cat-file -p of the returned object ID",
+      "local_head": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "remote_tracking_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "local_remote_match": true,
+      "upstream": "origin/crutkas-arm64-vnext/msys2-runtime/generator",
+      "worktree_and_index_clean": true,
+      "matching_head_pull_request_count": 0,
+      "result": "PASS"
+    },
+    "mutation_accounting": {
+      "performed": [
+        "created refs/heads/crutkas-arm64-vnext/msys2-runtime/generator at d890a845e992638a6f09560efacc26d15b3ffe6a by one normal non-force push",
+        "set local upstream to origin/crutkas-arm64-vnext/msys2-runtime/generator"
+      ],
+      "pull_request_create_or_update": false,
+      "label": false,
+      "review": false,
+      "stack": false,
+      "queue_or_merge": false,
+      "artifact_or_release": false,
+      "source_or_index_change": false,
+      "other_ref_or_repository_change": false
+    },
+    "result": "PASS_PUSH_COMPLETE_STOPPED"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 3946,
+    "payload_sha256": "288ddebf81c4c87887f01c77ba0fc6ef640b00c4420f4d478abd5afe23094f8a"
+  }
+}

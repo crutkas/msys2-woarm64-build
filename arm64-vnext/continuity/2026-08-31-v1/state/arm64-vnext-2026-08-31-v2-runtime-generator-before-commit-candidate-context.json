@@ -1,0 +1,177 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-before-commit-candidate-context-v2",
+    "epoch": "2026-08-31-v2",
+    "captured_at": "2026-09-01T00:42:47.605181+00:00",
+    "review_request": {
+      "node": "runtime-generator",
+      "phase": "before_commit",
+      "request": "fresh independent review of replacement v2 outputs after exact NO-GO closure repair",
+      "authorization_claimed": false,
+      "hard_stop_before_commit": true
+    },
+    "authority": {
+      "active_scope": "session_start only",
+      "prior_before_commit_verdict": "NO-GO",
+      "prior_review": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-review.json",
+        "bytes": 28797,
+        "file_sha256": "0e88bb5e997b2a437faada948376fb9559a23ecb653567dc3111efd1718057d7",
+        "payload_sha256": "831b338797038eb6d03f6caaf32b67721089f6d6559107e8da8cce8b50f99429"
+      },
+      "repair_allowed_under_existing_session_start": true
+    },
+    "candidate": {
+      "worktree": "D:\\copilot-worktrees\\msys2-runtime\\crutkas-fantastic-meme",
+      "repo": "crutkas/msys2-runtime",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "head_base_merge_base": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "staged_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "candidate_commits": 0,
+      "staged_entries": [
+        {
+          "mode": "100644",
+          "blob_oid": "813e45d82ac6804d5a870dc62291646cee30773f",
+          "path": ".github/workflows/build.yaml"
+        },
+        {
+          "mode": "100755",
+          "blob_oid": "ef8cc86e39d743c31a89a49ac61f034646487f88",
+          "path": "winsup/autogen.sh"
+        },
+        {
+          "mode": "100755",
+          "blob_oid": "473548bc41809af958cac0ccc97db2a47a749905",
+          "path": "winsup/tests/autogen-contract.sh"
+        }
+      ],
+      "unstaged_or_untracked_count": 0,
+      "diff_check": "PASS"
+    },
+    "repair": {
+      "blocker": "exact tools/make.exe SHA e388... imported exact admitted libintl-8.dll but v1 bundle omitted it",
+      "admitted_libintl": {
+        "source": {
+          "path": "C:\\Users\\crutkasLocal\\AppData\\Local\\github-copilot-git-2.53.0-4\\clangarm64\\bin\\libintl-8.dll",
+          "bytes": 268288,
+          "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "bundle": {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin\\libintl-8.dll",
+          "bytes": 268288,
+          "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll"
+      },
+      "negative_control": "PASS exact make without DLL -> signed -1073741515 / 0xC0000135",
+      "restored_control": "PASS exact make with repaired bundle -> exit 0 / GNU Make 4.4.1",
+      "recursive_closure": "PASS 119/119 AA64 PE files; 1348 import edges; 0 unresolved; libintl transitively closes through bundled libiconv plus System32/API sets",
+      "native_process": "PASS native-arm64 make PID 32084; make/libintl/libiconv exact modules captured"
+    },
+    "exports": {
+      "patch": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-before-commit.patch",
+        "bytes": 3204,
+        "sha256": "0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8"
+      },
+      "bundle_zip": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle.zip",
+        "bytes": 24478030,
+        "sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+      },
+      "second_bundle_zip": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-second.zip",
+        "bytes": 24478030,
+        "sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+      },
+      "bundle_tree_sha256": "64a8141e18f5ac28c0f4f83f677f9cf653db90d63ae6bc415ba356a4a3155b48",
+      "manifest": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\bundle-manifest-v2.json",
+        "bytes": 367481,
+        "sha256": "23dfc14a6b0e68d9f4c943ea131ad05de9e171628ac54df8a4ff60ac9c1780e2"
+      },
+      "artifact_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-artifact-evidence.json",
+        "bytes": 4344,
+        "sha256": "39ed03205a75ffbc41ee23c43bec37b8ac1a34f7986c022362a60dff635cfbbd",
+        "payload_sha256": "ff0204dba43a8533a034667ea09b7ab7ef2e13b971815afa974dc3fb9229c361"
+      },
+      "reproducibility_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-reproducibility-evidence.json",
+        "bytes": 26919,
+        "sha256": "51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+        "payload_sha256": "c290c8c92e5256a1d71cadf4b9248370d1c632a243e76a8d0737395048574204"
+      },
+      "continuity": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-continuity.json",
+        "bytes": 16125,
+        "sha256": "228e08cc4a6d6480bd6dd126256eab1ed790894b8b94f2b433b41f2f5fab5065",
+        "payload_sha256": "476d2b497fa650309a94b25890dbfc6ba0b1343b8860e224a5a3f2744a16020d"
+      },
+      "final_replay_archive": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-final-replay.tar.gz",
+        "bytes": 180250658,
+        "sha256": "a8392f840591d4af7534a2ce6ca747b7422c9d15d1312c6a1131b3bc2e45cb04"
+      }
+    },
+    "validation": {
+      "deterministic_bundle_zips": "PASS byte-identical",
+      "zip_extraction_manifests": "PASS twice, zero mismatches",
+      "zip_extracted_strict_make": "PASS",
+      "dual_candidate_generation": "PASS two fresh independent git archive extractions; all ten byte-identical and match v1 accepted generation",
+      "autom4te_cache": "absent",
+      "protected_or_config_h_in_drift": "zero",
+      "invalid_make_separators": "zero",
+      "space_literal_dollar_relocation": "PASS under strict closure-only PATH",
+      "sprut_shilka_msta_replay": "PASS exact prior hashes",
+      "devices_replay": "PASS SHA 7072cba98dcd53996f0e8f5d82cc31884bcf30132793bd84143df0dcca9b4a0d exact tracked",
+      "focused_host_contract": "PASS",
+      "focused_native_contract": "PASS under strict closure-only PATH",
+      "hosted_configure": "PASS 61.231s",
+      "hosted_build_j20": "PASS 506.826s",
+      "hosted_install_j20": "PASS 26.098s; 321 files; 32,796,170 bytes",
+      "source_preaudit": "PASS zero blockers"
+    },
+    "limitations": [
+      "m4 MSYS2 test/Cygwin patches did not apply cleanly and were not used; native output validated.",
+      "m4 make install failed only at pthread-linked test helper; required m4 executable staged and validated.",
+      "Autoconf release man pages reused because documentation tools were constrained; runtime and fresh frozen trees installed.",
+      "Fresh Sprut replay differs from checked-in bootstrap; both are retained and hashed.",
+      "Bison fallback path strings remain but launcher overrides BISON_PKGDATADIR and M4.",
+      "Attestor sees direct launcher rather than Bison grandchild; every PE has separate import/machine evidence.",
+      "Full upstream test suites were not run.",
+      "Full hosted Cygwin compilation was not rerun by this external-bundle follow-up; all 27 staged Makefile.in files were regenerated and scanned, and the corrected dirstamp rule was executed with GNU make/sh.",
+      "External bundle evidence predates the parent hosted build rerun; this evidence records the subsequent successful configure/build/install.",
+      "Direct attestation succeeded for fresh Sprut and the bison launcher; other short-lived direct generator processes exited before stable module capture, while all PE images retain separate machine/import evidence.",
+      "Hosted validation is x86_64-pc-cygwin only and makes no ARM64 runtime DLL, ABI, or release-artifact claim.",
+      "The first v2 hosted build attempt failed because the exact GNU patch helper was not yet on hosted PATH; this is retained in v2 hosted evidence, and a new clean configure/build/install passed after prepending the exact signature-verified helper.",
+      "Fresh v2 hosted install has 321 files and 32,796,170 bytes; no equality to the earlier hosted install, runtime DLL, ABI, or release artifact is claimed."
+    ],
+    "classification": {
+      "bundle_and_digest": "runtime-generator node OUTPUT, never input",
+      "native_perl": "admitted input, not output",
+      "flex": "reference-only and absent",
+      "hosted_build": "x86_64-pc-cygwin validation only",
+      "arm64_runtime_dll_abi_release_artifact_claim": false
+    },
+    "prohibitions": {
+      "commit_created": false,
+      "push": false,
+      "pr_create_or_update": false,
+      "review_requested": false,
+      "stack_registered": false,
+      "queue_or_merge": false,
+      "github_mutation": false,
+      "other_repo_or_branch_mutation": false
+    },
+    "result": "READY_FOR_FRESH_INDEPENDENT_BEFORE_COMMIT_REVIEW"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 8571,
+    "payload_sha256": "a2751d04a15135f3dd90f640e4e396db7c81041c4420140a0b11684f9d5cac10"
+  }
+}

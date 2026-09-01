@@ -1,7 +1,7 @@
 {
   "schema": "arm64-vnext-release-graph-v1",
   "epoch": "2026-08-31-v1",
-  "captured_at": "2026-08-31T22:09:22.129545Z",
+  "captured_at": "2026-09-01T01:23:18.841654Z",
   "status": "PHASE0_PLANNED_IDENTITIES_PENDING",
   "nodes": [
     {
@@ -31,23 +31,26 @@
       "id": "runtime-generator",
       "repo": "crutkas/msys2-runtime",
       "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
-      "pr": null,
+      "pr": 31,
       "base_ref": "msys2-3.6.10",
       "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
       "base_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
-      "head_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
-      "head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
       "native_stack": null,
       "position": 1,
       "depends_on": [
         "busybox-bootstrap-tools"
       ],
-      "source_verdict": "pending",
-      "check_verdict": "pending",
-      "audit_verdict": "pending",
-      "artifact_ids": [],
-      "state": "ready_after_phase0_go",
-      "identity_gate": "session_start_frozen_at_clean_base"
+      "source_verdict": "pass",
+      "check_verdict": "pending-live-checks",
+      "audit_verdict": "pass",
+      "artifact_ids": [
+        "sha256:51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+        "sha256:bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+      ],
+      "state": "pr_open",
+      "identity_gate": "frozen_candidate_head"
     },
     {
       "id": "runtime-abi",
@@ -55,8 +58,8 @@
       "branch": "crutkas-arm64-vnext/msys2-runtime/abi",
       "pr": null,
       "base_ref": "crutkas-arm64-vnext/msys2-runtime/generator",
-      "base_commit": null,
-      "base_tree": null,
+      "base_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "base_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
       "head_commit": null,
       "head_tree": null,
       "native_stack": null,
@@ -68,8 +71,8 @@
       "check_verdict": "pending",
       "audit_verdict": "pending",
       "artifact_ids": [],
-      "state": "blocked_on_parent_identity",
-      "identity_gate": "blocked_until_immediate_parent_is_frozen"
+      "state": "blocked_on_dependencies",
+      "identity_gate": "blocked_until_all_dependencies_are_frozen"
     },
     {
       "id": "runtime-linker-import",
@@ -480,27 +483,27 @@
     "all_external_inputs_admitted": true,
     "implementation_go": false
   },
-  "graph_revision": 8,
+  "graph_revision": 12,
   "supersedes": {
-    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-prs-open.json",
-    "bytes": 17606,
-    "file_sha256": "f2828df1d256a0cc224fd84e3de37d20fb818ba5efc70edd556cd4220b1adab8",
-    "payload_sha256": "2cfa3cd47296c857fe17fff2a2b9a2814c0f793c30afe5ea310cfbedaa792bf2"
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-release-graph.json",
+    "bytes": 17861,
+    "file_sha256": "693012fecf72fc3a62a044911b11dd90d5beeb3cebd7bfa8f8cf40550845dd8a",
+    "payload_sha256": "37e2f061c726839cf3d8cca7de8af72097f15bae20d1d8538a932344e2457740"
   },
   "last_transition": {
     "node_id": "runtime-generator",
-    "old_head_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
-    "old_head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
-    "new_head_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
-    "new_head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
-    "state": "ready_after_phase0_go",
-    "pr": null,
+    "old_head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+    "old_head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+    "new_head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+    "new_head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+    "state": "pr_open",
+    "pr": 31,
     "updated_dependent_nodes": []
   },
   "seal": {
     "algorithm": "sha256",
     "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
-    "payload_utf8_bytes": 13832,
-    "payload_sha256": "ce347a909f230fa527783b856725d9ed38946c6f16769bfc75be905b53820a0b"
+    "payload_utf8_bytes": 13988,
+    "payload_sha256": "18eb4e9da1194bae88c167d626a0108d24fe432466b5fdc16787a23ac4393276"
   }
 }

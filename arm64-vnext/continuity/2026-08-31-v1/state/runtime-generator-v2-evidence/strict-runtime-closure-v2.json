@@ -1,0 +1,264 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-strict-closure-v2",
+    "epoch": "2026-08-31-v2",
+    "captured_at": "2026-09-01T00:17:56.800290+00:00",
+    "bundle_root": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+    "environment_contract": {
+      "PATH": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+      "SystemRoot": "C:\\Windows",
+      "WINDIR": "C:\\Windows",
+      "retained_non_path_variables": [
+        "SystemRoot",
+        "WINDIR",
+        "LC_ALL=C",
+        "TZ=UTC",
+        "SOURCE_DATE_EPOCH=1375128924"
+      ],
+      "ambient_clangarm64_or_msys_path_present": false,
+      "process_environment_was_cleared_before_allowlist": true
+    },
+    "missing_dependency_review": {
+      "review_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-review.json",
+      "file_sha256": "0e88bb5e997b2a437faada948376fb9559a23ecb653567dc3111efd1718057d7",
+      "payload_sha256": "831b338797038eb6d03f6caaf32b67721089f6d6559107e8da8cce8b50f99429"
+    },
+    "admitted_libintl": {
+      "source_path": "C:\\Users\\crutkasLocal\\AppData\\Local\\github-copilot-git-2.53.0-4\\clangarm64\\bin\\libintl-8.dll",
+      "bundle_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin\\libintl-8.dll",
+      "bytes": 268288,
+      "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+      "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll"
+    },
+    "negative_control": {
+      "directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-strict-negative-control",
+      "make_sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9",
+      "libintl_absent": true,
+      "exit_code_signed": -1073741515,
+      "exit_code_hex": "0xC0000135",
+      "status": "STATUS_DLL_NOT_FOUND",
+      "stdout": "",
+      "stderr": "",
+      "reproduced": true
+    },
+    "restored_bundle_make": {
+      "make_sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9",
+      "exit_code": 0,
+      "stdout": "GNU Make 4.4.1\r\nBuilt for aarch64-w64-mingw32\r\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\r\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n",
+      "stderr": "",
+      "result": "PASS"
+    },
+    "launcher_and_tool_runs": [
+      {
+        "name": "positive-make-closed-bundle",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools\\make.exe",
+        "exe_sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 18,
+        "stdout": "GNU Make 4.4.1\r\nBuilt for aarch64-w64-mingw32\r\nCopyright (C) 1988-2023 Free Software Foundation, Inc.\r\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-m4",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\m4.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 24,
+        "stdout": "m4 (GNU M4) 1.4.21\r\nCopyright (C) 2026 Free Software Foundation, Inc.\r\nLicense GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by Ren� Seindal.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-bison",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\bison.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 42,
+        "stdout": "bison (GNU Bison) 3.8.2\r\nWritten by Robert Corbett and Richard Stallman.\r\n\r\nCopyright (C) 2021 Free Software Foundation, Inc.\r\nThis is free software; see the source for copying conditions.  There is NO\r\nwarranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-autom4te",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\autom4te.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 232,
+        "stdout": "autom4te (GNU Autoconf) 2.73\r\nFeatures: subsecond-mtime\r\n\r\nCopyright (C) 2026 Free Software Foundation, Inc.\r\nLicense GPLv3+/Autoconf: GNU GPL version 3 or later\r\n<https://gnu.org/licenses/gpl.html>, <https://gnu.org/licenses/exceptions.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by Akim Demaille.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-autoconf",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\autoconf.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 89,
+        "stdout": "autoconf (GNU Autoconf) 2.73\r\nCopyright (C) 2026 Free Software Foundation, Inc.\r\nLicense GPLv3+/Autoconf: GNU GPL version 3 or later\r\n<https://gnu.org/licenses/gpl.html>, <https://gnu.org/licenses/exceptions.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by David J. MacKenzie and Akim Demaille.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-autoheader",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\autoheader.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 264,
+        "stdout": "autoheader (GNU Autoconf) 2.73\r\nCopyright (C) 2026 Free Software Foundation, Inc.\r\nLicense GPLv3+/Autoconf: GNU GPL version 3 or later\r\n<https://gnu.org/licenses/gpl.html>, <https://gnu.org/licenses/exceptions.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by Roland McGrath and Akim Demaille.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-aclocal",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\aclocal.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 126,
+        "stdout": "aclocal (GNU automake) 1.18.1\r\nCopyright (C) 2025 Free Software Foundation, Inc.\r\nLicense GPLv2+: GNU GPL version 2 or later <https://gnu.org/licenses/gpl-2.0.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by Tom Tromey <tromey@redhat.com>\r\n       and Alexandre Duret-Lutz <adl@gnu.org>.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-automake",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\automake.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "--version"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 148,
+        "stdout": "automake (GNU automake) 1.18.1\r\nFeatures: subsecond-mtime\r\n\r\nCopyright (C) 2025 Free Software Foundation, Inc.\r\nLicense GPLv2+: GNU GPL version 2 or later\r\n  <https://gnu.org/licenses/gpl-2.0.html>\r\nThis is free software: you are free to change and redistribute it.\r\nThere is NO WARRANTY, to the extent permitted by law.\r\n\r\nWritten by Tom Tromey <tromey@redhat.com>\r\n       and Alexandre Duret-Lutz <adl@gnu.org>.\r\n",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "positive-shell",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools\\sh.exe",
+        "exe_sha256": "4e510e35e642a32cc6b5a0e676e78513c91108df6143f33737ecf5c3eeeb0369",
+        "args": [
+          "-c",
+          "printf strict-shell-ok"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 0,
+        "exit_code_hex": "0x00000000",
+        "elapsed_ms": 40,
+        "stdout": "strict-shell-ok",
+        "stderr": "",
+        "loader_succeeded": true
+      },
+      {
+        "name": "process-exec-msta",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\msta.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "-h"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 1,
+        "exit_code_hex": "0x00000001",
+        "elapsed_ms": 32,
+        "stdout": "",
+        "stderr": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec\\msta-real.exe options:\r\n\r\ncommand line: msta [ options ...] specification-file\r\n\r\nYACC compatible options:\r\n  `-d', `-define'  Create the header file.\r\n  `-l', `-line'    Produce code without #line constructs.\r\n  `-t', `-trace'   Permit compilation of debugging code in the code file.\r\n  `-v', `-verbose' Write a file containing description of the parser.\r\n  `-b file_prefix' Use file_prefix instead of y as the prefix for all\r\n                   output filenames (y.tab.c, y.tab.h, y.output).\r\n  `-p sym_prefix'  Use sym_prefix instead of yy as the prefix for all\r\n                   external names produced by yacc.\r\n\r\nNew options: Default options are marked by star (*).\r\n  `-h', `-help', or `--help'\r\n                   Output this message\r\n  `-w'             Inhibit all warning messages\r\n  `-c++'           Generate c++ code instead of c\r\n  `-enum'          Generate token constants as enumeration instead of macro\r\n* `-no-enum'       Generate token constants as macro\r\n* `-pattern-equiv' Equiv patterns are denoted by the same nonterminal\r\n  `-no-pattern-equiv'\r\n                   Equiv patterns are denoted by different nonterminals and\r\n                   are expanded into the different set of rules\r\n  `-look-ahead number'\r\n  `-la number'\r\n                   Define k (default value: 1) for LR(k)-,LALR(k)-grammars.\r\n  `-lr'            Input grammar is considered as LR(k)-grammar.\r\n* `-no-lr'         Input grammar is considered as LALR(k)-grammar.\r\n* `-lalr-optimization'\r\n                   Extract LALR parts of input LR(k)-grammar and represent\r\n                   them by adequate LR-sets (only when option -lr is on)\r\n  `-no-lalr-optimization'\r\n                   Option is opposite to the previous one.\r\n* `-regular-optimization'\r\n                   Extract regular parts of input grammar and implement them\r\n                   by adequate methods (deterministic finite automaton).\r\n  `-no-regular-optimization'\r\n                   Option is opposite to the previous one.\r\n  `-split-lr-sets' Splitting LR-sets during regular optimization\r\n                   in order to extract more regular parts (only when option\r\n                   -regular-optimization is on).  Default if %scanner\r\n                   is present\r\n  `-no-split-lr-sets'\r\n                   Option is opposite to the previous one.  Default if\r\n                   %scanner is absent\r\n* `-yacc-error-recovery'\r\n                   Use error recover according to Posix YACC standard.\r\n  `-local-error-recovery'\r\n                   Use a local error recovery method.\r\n  `-minimal-error-recovery'\r\n                   Use minimal error recovery method.\r\n* `-error-reduce'\r\n                   Permits default reduces on error.\r\n  `-no-error-reduce'\r\n                   Reduces on error only for the right lookahead.\r\n* `-error-conflict'\r\n                   Permits reporting conflicts on error.\r\n  `-no-error-conflict'\r\n                   Do not report conflicts on errors.\r\n  `-yacc-input'    Only Posix YACC input can be used as input grammar.\r\n* `-no-yacc-input' All input grammar features of MSTA can be used.\r\n  `-strict'        Use only strict POSIX YACC input (when `-yacc-input')\r\n                   not SYSTEM V one.  Errors are output when nonstrict\r\n                   features are used.\r\n* `-no-strict'     When `-yacc-input', only warnings about non strict POSIX\r\n                   YACC features usage are output.\r\n  `-yacc-file-names'\r\n                   Output file names are generated according to Posix YACC.\r\n* `-no-yacc-file-names'\r\n                   Output files will have the same name and suffixes (.h,\r\n                   .c, and .output).\r\n  `-o name'        Specify names of output files (header file name.h,\r\n                   code file name.c(name.cpp), description file name.output)\r\n  `-y', `-yacc'    Emulate Posix YACC.  It means that the options -no-enum\r\n                   -yacc-input, -lalr, -yacc-error-recovery, -error-reduce,\r\n                   -error-conflict and -yacc-file-names are on.\r\n  `-full-lr-set'   Write full LR-sets into a file containing description\r\n                   of the parser (the option acts only with option -v).\r\n  `-lr-situation-context'\r\n                   Write context of LR-situations into description of the\r\n                   parser (the option acts only with option -v).\r\n  `-removed-lr-sets'\r\n                   Write LR-sets removed during conflict resolution and\r\n                   regular optimization into description of the\r\n                   parser (the option acts only with option -v).\r\n* `-expand'        Attributes & states in the parser will be expandable.\r\n  `-no-expand'     Option is opposite to the previous one.\r\n  `-time'          Output time statistics into stderr.\r\n  `-debug number'  Output debug information (with given level>=0) into stderr.\r\n",
+        "loader_succeeded": true
+      },
+      {
+        "name": "process-exec-sprut",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\sprut.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "-h"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 1,
+        "exit_code_hex": "0x00000001",
+        "elapsed_ms": 68,
+        "stdout": "",
+        "stderr": "sprut: unknown flag `-h'\r\nsprut: one specification file must be on command line\r\n",
+        "loader_succeeded": true
+      },
+      {
+        "name": "process-exec-shilka",
+        "exe": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\shilka.exe",
+        "exe_sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854",
+        "args": [
+          "-h"
+        ],
+        "working_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+        "exit_code_signed": 1,
+        "exit_code_hex": "0x00000001",
+        "elapsed_ms": 61,
+        "stdout": "",
+        "stderr": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec\\shilka-real.exe options:\r\n\r\ncommand line: shilka [option ...] specification-file\r\n\r\n`-c++'        output C++ code instead of C code\r\n`-statistics' generate macro switching on gathering and printing\r\n              keyword usage statistics\r\n`-inline'     generation of inline function (take care with C compiler)\r\n`-debug'      output debugging information during Shilka run\r\n`-strip'      strip code for gathering and printing statistics\r\n`-length'     usage of strncmp instead of strcmp to compare keywords\r\n`-case'       keywords case is ignored\r\n`-no-definitions'\r\n              no generation of macros(enum) defining identifiers of keywords\r\n`-interface'  generation of additional interface file (with suffix .h)\r\n`-export'     macros defining identifiers of keywords are in interface file\r\n`-enum'       output enumeration instead of macro definitions\r\n`-pprefix'    use 'prefix' instead of 'KR_' for names of generated objects\r\n`-time'       output time statistics into stderr\r\n`-fast n'     If number of rest unchecked characters is less or equal than n,\r\n              use these characters comparison instead strcmp (default n = 3).\r\n`-w'          no warning output\r\n`-h', `-help' output this message\r\n`-v'          create description file\r\n",
+        "loader_succeeded": true
+      }
+    ],
+    "all_version_and_shell_runs_exit_zero": true,
+    "all_cocom_launchers_loaded_without_dll_failure": true,
+    "recursive_import_closure": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\pe-import-closure-v2.json",
+      "bytes": 377527,
+      "sha256": "58f8b45acbdaeefda7f669ce0e765af7c06c8dc6d0c3503617d9df0ff01e0c2f",
+      "pe_count": 119,
+      "all_machine_0xAA64": true,
+      "unresolved_import_count": 0
+    },
+    "result": "PASS"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 27361,
+    "payload_sha256": "cfab704e6281abb3c071392e3c7077fd685654aa744ef1e19e6fd3f7dd1408d9"
+  }
+}

@@ -1,7 +1,7 @@
 # Git for Windows Native ARM64 vNext Plan
 
 Epoch: `2026-08-31-v1`  
-Last updated: `2026-08-31T23:18:00Z`
+Last updated: `2026-09-01T01:25:00Z`
 
 ## Goal
 
@@ -9,7 +9,7 @@ Produce the next clean-slate Git for Windows engineering build with a supported 
 
 ## Current gate
 
-**GO_FIRST_LAYERS_ONLY — runtime-generator `session_start` only.** BusyBox draft PR #4 and build-extra draft PR #29 are open at their frozen audited heads. Runtime-generator may implement and produce local candidate outputs from its clean base, with a hard stop before the first commit. The effective physical prefix is `crutkas-arm64-vnext/`; logical programme namespace remains `arm64-vnext/`.
+**NO ACTIVE VERDICT.** Runtime-generator draft PR #31 is open at exact audited head `d890a845e992638a6f09560efacc26d15b3ffe6a`, labeled only `arm64-vnext`; checks are running and no review/stack/merge authority exists. The effective physical prefix is `crutkas-arm64-vnext/`; logical programme namespace remains `arm64-vnext/`.
 
 The durable machine-readable tracker is the session `todos`/`todo_deps` graph. This file and `inbox.md` are updated whenever work starts, completes, blocks, or changes scope.
 
@@ -58,7 +58,7 @@ These layers are backlog, not authorization to start. Phase 0 will remove unnece
 |---|---|---|
 | BusyBox | `vnext-implement-busybox-tools`; later `vnext-remove-busybox-bootstrap-dependency` | Draft PR #4; frozen audited head |
 | binutils | `vnext-implement-binutils-source` -> `vnext-implement-binutils-hardening`; `vnext-capture-binutils-evidence` only if workflow source changes | **HOLD** unless LLVM/GNU behavior requires fallback |
-| MSYS2 runtime | `vnext-implement-runtime-generator` -> `vnext-implement-runtime-abi` -> `vnext-implement-runtime-linker` -> `vnext-implement-runtime-signal-tls` -> `vnext-implement-runtime-mvp` -> `vnext-implement-runtime-fork-exec`; post-handoff utilities and `vnext-implement-runtime-cpu-topology` | Three paths staged at corrected tree `43aec2e`; fresh ARM64 bundle build/replay active; later layers blocked |
+| MSYS2 runtime | `vnext-implement-runtime-generator` -> `vnext-implement-runtime-abi` -> `vnext-implement-runtime-linker` -> `vnext-implement-runtime-signal-tls` -> `vnext-implement-runtime-mvp` -> `vnext-implement-runtime-fork-exec`; post-handoff utilities and `vnext-implement-runtime-cpu-topology` | Generator draft PR #31 exact/open; checks running; later layers blocked |
 | GCC | zero layers with admitted compiler, otherwise `vnext-implement-gcc-foundations` -> `vnext-implement-gcc-preflight`; `vnext-implement-gcc-seh` post-MVP | **HOLD** unless LLVM/LLD fallback activates |
 | mingw-w64 | `vnext-implement-mingw-source` | **HOLD**; canonical source is currently zero-delta |
 | MSYS2 packages | `vnext-implement-packages-bdb` -> `vnext-implement-packages-locators` -> conditional admission | Deferred until self-hosting/package-native/RTM |
@@ -81,7 +81,7 @@ These layers are backlog, not authorization to start. Phase 0 will remove unnece
 | `vnext-publish-team-handoff` | Artifact, `README-HANDOFF.md`, exact source identity, evidence, and limitations | Pending replay |
 | `vnext-build-admitted-artifact` | Fresh superseding artifact after protected base-controlled admission exists | Pending protection |
 | `vnext-plan-rtm` | Remaining correctness, protection, governance, and release plan | Pending team handoff |
-| `vnext-preserve-reformat-continuity` | Versioned checkpoint PR with exact patch, sealed state, hashes, and portable restart instructions | In progress |
+| `vnext-preserve-reformat-continuity` | Versioned checkpoint PR with exact patch, sealed state, hashes, and portable restart instructions | Draft PR #10 remote; cloud verification active |
 
 ## First artifact acceptance
 
@@ -97,4 +97,4 @@ Filename: `arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip`
 
 ## Current totals
 
-`49 done` · `6 in progress` · `29 pending` · `3 blocked`
+`50 done` · `6 in progress` · `29 pending` · `3 blocked`

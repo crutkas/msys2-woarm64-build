@@ -1,0 +1,218 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-bundle-evidence-v2",
+    "epoch": "2026-08-31-v2",
+    "captured_at": "2026-09-01T00:38:36.666090+00:00",
+    "decision": "replacement v2 output repairs independent before_commit NO-GO missing libintl closure blocker without repository/index/source drift",
+    "candidate": {
+      "repo": "crutkas/msys2-runtime",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "base_head_merge_base": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "base_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "staged_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "zero_commits": true,
+      "staged_entries": [
+        {
+          "mode": "100644",
+          "blob": "813e45d82ac6804d5a870dc62291646cee30773f",
+          "path": ".github/workflows/build.yaml"
+        },
+        {
+          "mode": "100755",
+          "blob": "ef8cc86e39d743c31a89a49ac61f034646487f88",
+          "path": "winsup/autogen.sh"
+        },
+        {
+          "mode": "100755",
+          "blob": "473548bc41809af958cac0ccc97db2a47a749905",
+          "path": "winsup/tests/autogen-contract.sh"
+        }
+      ]
+    },
+    "authority": {
+      "session_start_only": true,
+      "review_v3": {
+        "file_sha256": "a323a61ced581a4cf9ccc8a1ae9619b9a583138e7917b71e7f2988daf089ddfb",
+        "payload_sha256": "b40e1a605322f4c0132b0f9c7da2465d4ef985d71855864299774bc954552d93"
+      },
+      "verdict": {
+        "file_sha256": "f13ec4e688f5f9c5e9c4de38c4fdb1174b6795c81acc00e2edd31d81c8bdf9f1",
+        "payload_sha256": "ec65bae5dab878f982efe399fbad16f34da694d4c5a59c94d1aff360611b6b37"
+      },
+      "receipt": {
+        "file_sha256": "48ade7bd7ed52ec93692df5744875607a32399e310fb778cefeeea76923d8e30",
+        "payload_sha256": "75bf7d154864c8e21c04f5d6c58e6a1b2eaf45ee8257348bdeeac6d93d51936c"
+      },
+      "input_ledger_v2": {
+        "file_sha256": "14fea77370d75b50e826adc0c466f5a4ffc540c3412fe276f426fca877b57761",
+        "payload_sha256": "099f466ebb15fe0434c14d0712085717162c1cf96294e0afe2c8b236d34bed6a",
+        "required_inputs": 78,
+        "blocked": 0
+      },
+      "no_go_review": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-review.json",
+        "file_sha256": "0e88bb5e997b2a437faada948376fb9559a23ecb653567dc3111efd1718057d7",
+        "payload_sha256": "831b338797038eb6d03f6caaf32b67721089f6d6559107e8da8cce8b50f99429",
+        "verdict": "NO-GO",
+        "blocker": "tools/make.exe imports admitted libintl-8.dll absent from v1 bundle"
+      }
+    },
+    "predecessor": {
+      "v1_bundle": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-generator-bundle.zip",
+        "bytes": 24992214,
+        "sha256": "c997705bbd440d981857100070f7637a8d0f897f0e68f8106db7c3d1afe3b3f7"
+      },
+      "v1_artifact_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-generator-bundle-artifact-evidence.json",
+        "bytes": 4963,
+        "sha256": "181255a6a2837236dfd4b5ec2abf7fe1a26eda63ce5d906268c039f9ae6dedc2"
+      },
+      "v1_reproducibility_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-reproducibility-evidence.json",
+        "bytes": 26732,
+        "sha256": "b06d909bd09071fa30048ebc23fe9b6d75783de843b83b7d428759f5b4ab4d32",
+        "payload_sha256": "f69f0b38395fa166aaf4c24d4455f371a559df64f771722c38d7ffe9b62c7b51"
+      },
+      "unchanged_fresh_generator_build_and_source_provenance": true
+    },
+    "repair": {
+      "admitted_dependency": {
+        "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+        "source": {
+          "path": "C:\\Users\\crutkasLocal\\AppData\\Local\\github-copilot-git-2.53.0-4\\clangarm64\\bin\\libintl-8.dll",
+          "bytes": 268288,
+          "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "bundle": {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin\\libintl-8.dll",
+          "bytes": 268288,
+          "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        }
+      },
+      "runtime_location": "runtime/bin, included in setup.cmd and strict validation PATH before tools",
+      "make": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools\\make.exe",
+        "bytes": 358912,
+        "sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9"
+      },
+      "make_import": "libintl-8.dll",
+      "libintl_non_system_import": "libiconv-2.dll",
+      "libiconv": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin\\libiconv-2.dll",
+        "bytes": 1108992,
+        "sha256": "5eb3e024adbeb40e990530b64498fa5305b4ebeaa34db971196f92317f70a35d"
+      }
+    },
+    "evidence": {
+      "strict-runtime-closure-v2.json": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\strict-runtime-closure-v2.json",
+        "bytes": 29947,
+        "sha256": "ea900351564d58cb9347f1ef3e3e2d9e35ce7da3fd5d3330a82ae7be87b9ce53",
+        "payload_sha256": "cfab704e6281abb3c071392e3c7077fd685654aa744ef1e19e6fd3f7dd1408d9"
+      },
+      "cocom-replay-v2.json": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\cocom-replay-v2.json",
+        "bytes": 8504,
+        "sha256": "b3629533e767eec5dc4435b836494a478356ce3a969b03219e862f75ee5e4196",
+        "payload_sha256": "03b6472b8efc0de6e7efbbf8c55495b230a2feb4a9d0b331c30af7b6f922c80e"
+      },
+      "space-dollar-relocation-validation-v2.json": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\space-dollar-relocation-validation-v2.json",
+        "bytes": 5510,
+        "sha256": "62f22037a7409c82f89be04331a1d2844d9bf4133fdac13a6a0f3e54c34b93eb",
+        "payload_sha256": "2c19943a671561f6f9036c8f74e8b915049d7912039678d4ac4853814583cf1e"
+      },
+      "focused-contracts-v2.json": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\focused-contracts-v2.json",
+        "bytes": 1896,
+        "sha256": "f4d14676176055a0df1d5e4bac18c5bd771cc0d45867fab1a8f7fb62ca348de9",
+        "payload_sha256": "d60735e9d0d22faaa0df8e266ec51411133a1acea4255ebd0b58a713d1ff9396"
+      },
+      "hosted-validation-v2.json": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\hosted-validation-v2.json",
+        "bytes": 66661,
+        "sha256": "bbea5ffddbd967ec2be42772146d4fea09f73f832fd12d7fad5e7cb0ef25ab80",
+        "payload_sha256": "4443902b0c4061e6d31afb998044c2b1a54de64313d1fc87dda37bdfde7d5d5f"
+      },
+      "pe_import_closure": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\pe-import-closure-v2.json",
+        "bytes": 377527,
+        "sha256": "58f8b45acbdaeefda7f669ce0e765af7c06c8dc6d0c3503617d9df0ff01e0c2f"
+      },
+      "make_attestation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\process-attestation-make-v2.json",
+        "bytes": 14332,
+        "sha256": "eb6615eb97fbd35ad767ee0289f246e0b83bf3ddbaf754051d7565ee5023a60d"
+      },
+      "dual_generation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-repro\\dual-generation-validation-v2.json",
+        "bytes": 13054,
+        "sha256": "16a6d0fa6f3ba3a14431f0cab663d0715da0355507af91351d872eea97b903e0",
+        "payload_sha256": "56266e73bd597cfe83bd1a7cbadd1bf78bd84d555abf575fa55a1a7c6971b79a"
+      },
+      "patches_and_recipes": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\patches-and-recipes.json",
+        "bytes": 5305,
+        "sha256": "021e8b47b17f16da8ba50773ee6f20e16b5296f772ebbf8ac69b065811b142d8"
+      }
+    },
+    "results": {
+      "recursive_pe_closure": "PASS: 119/119 PE files AA64; 1348 edges; zero unresolved non-System32/API-set imports",
+      "negative_control": "PASS: exact make without libintl exits 0xC0000135",
+      "strict_make": "PASS: GNU Make 4.4.1 with closure-only PATH + System32",
+      "strict_launchers": "PASS",
+      "dual_generation": "PASS: ten outputs byte-identical and match prior pass; no cache/drift/invalid separators",
+      "space_literal_dollar_relocation": "PASS",
+      "sprut_shilka_msta_devices_replay": "PASS; exact prior hashes; devices exact tracked",
+      "native_make_process": "PASS: native-arm64; make, libintl and libiconv modules captured",
+      "focused_host_and_native_contracts": "PASS",
+      "hosted_configure_build_install": "PASS: clean final build -j20 and install -j20"
+    },
+    "limitations": [
+      "m4 MSYS2 test/Cygwin patches did not apply cleanly and were not used; native output validated.",
+      "m4 make install failed only at pthread-linked test helper; required m4 executable staged and validated.",
+      "Autoconf release man pages reused because documentation tools were constrained; runtime and fresh frozen trees installed.",
+      "Fresh Sprut replay differs from checked-in bootstrap; both are retained and hashed.",
+      "Bison fallback path strings remain but launcher overrides BISON_PKGDATADIR and M4.",
+      "Attestor sees direct launcher rather than Bison grandchild; every PE has separate import/machine evidence.",
+      "Full upstream test suites were not run.",
+      "Full hosted Cygwin compilation was not rerun by this external-bundle follow-up; all 27 staged Makefile.in files were regenerated and scanned, and the corrected dirstamp rule was executed with GNU make/sh.",
+      "External bundle evidence predates the parent hosted build rerun; this evidence records the subsequent successful configure/build/install.",
+      "Direct attestation succeeded for fresh Sprut and the bison launcher; other short-lived direct generator processes exited before stable module capture, while all PE images retain separate machine/import evidence.",
+      "Hosted validation is x86_64-pc-cygwin only and makes no ARM64 runtime DLL, ABI, or release-artifact claim.",
+      "The first v2 hosted build attempt failed because the exact GNU patch helper was passed as a make variable while the recipe resolves patch by basename; the failure is retained, and the fresh final hosted build prepended the exact signature-verified helper path and passed.",
+      "Installed v2 file count matches v1 at 321 while total bytes differ because this is a new hosted build; no release artifact or ABI identity is claimed."
+    ],
+    "prohibitions": {
+      "commit": false,
+      "push": false,
+      "pr": false,
+      "github_mutation": false,
+      "other_repo_or_branch_mutation": false,
+      "arm64_runtime_dll_or_abi_claim": false,
+      "generated_bundle_digest_classification": "node output, never input"
+    },
+    "result": "PASS_READY_FOR_PACKAGING",
+    "generator_payload": {
+      "versions": [
+        "GNU m4 1.4.21",
+        "GNU Bison 3.8.2",
+        "COCOM msta/sprut/shilka",
+        "GNU Autoconf/Autom4te 2.73",
+        "GNU Automake/Aclocal 1.18.1"
+      ],
+      "native_perl": "exact admitted input, not output",
+      "flex": "reference-only and absent",
+      "fresh_build_recipe_and_source_provenance": "unchanged and bound through predecessor v1 evidence plus evidence/patches-and-recipes.json",
+      "generated_bundle_digest_classification": "v2 node output, never input"
+    }
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 10966,
+    "payload_sha256": "abb401bb6cb9842bb0678f14f3d3435f414634e0b63fa8b2f806d6508d2baacd"
+  }
+}

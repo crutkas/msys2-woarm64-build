@@ -1,0 +1,1365 @@
+{
+  "schema": "arm64-vnext-boundary-verifier-v2-result",
+  "epoch": "2026-08-31-v1",
+  "mode": "diagnostic",
+  "invocation_arguments": [
+    "--boundary",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+    "--graph",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-pr-open.json",
+    "--ancestry",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+    "--self-test",
+    "--diagnostic",
+    "--receipt",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-generator-pr-open-controls.json"
+  ],
+  "verifier": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2.py",
+    "file_sha256": "09d8c6b18fe0e5c5fcc160d561055e9eb4b350f491a9a9c2c020b6d825bdb0a1"
+  },
+  "boundary": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+    "bytes": 984579,
+    "file_sha256": "97ce5396ff9f581c02f7207413d9803dbd219f6fa1764c87e73f2b1c4ed7b68d",
+    "payload_utf8_bytes": 681690,
+    "payload_sha256": "459a0086a712f9075042ce42ef92736bb05932f25670e7e11ee5e4a5fedfb2e8"
+  },
+  "graph": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-pr-open.json",
+    "bytes": 17850,
+    "file_sha256": "8ac61bcb3aa71ac15065e5bb5b72ece8269c2a24399942efee6a39e6b3ea2605",
+    "payload_utf8_bytes": 13988,
+    "payload_sha256": "18eb4e9da1194bae88c167d626a0108d24fe432466b5fdc16787a23ac4393276"
+  },
+  "ancestry": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+    "bytes": 237790,
+    "file_sha256": "9aa7f43125c638751cfd805a4c318355db6702ea3cc8c772435feefbd04e30ac",
+    "payload_utf8_bytes": 178012,
+    "payload_sha256": "80bac27573f29f1553c1aa3073d01d921e38834341bc3217211cd72227cfc713"
+  },
+  "provenance_ledger": null,
+  "artifact_definition": null,
+  "independent_review": null,
+  "phase0_verdict": null,
+  "static_validation": {
+    "pass": true,
+    "errors": [],
+    "actual_lengths": {
+      "repositories": 8,
+      "old_prs": 127,
+      "branch_ref_records": 348,
+      "forbidden_commit_heads": 173,
+      "old_native_stacks": 12,
+      "old_releases": 28,
+      "all_old_artifacts_and_assets": 3082,
+      "evidence_root_records": 40,
+      "old_actions_artifacts": 2955,
+      "old_release_assets": 127
+    },
+    "source_reconstruction": {
+      "generator": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+        "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+      },
+      "fragment_index": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+        "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+        "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+      },
+      "runtime_artifact_ledger": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+        "bytes": 750814,
+        "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+        "payload_utf8_bytes": 583320,
+        "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+      }
+    },
+    "quarantine_replay": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+      "bytes": 37476,
+      "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+      "payload_utf8_bytes": 26673,
+      "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+    },
+    "policy_reconciliation": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+      "bytes": 20238,
+      "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+      "payload_utf8_bytes": 15529,
+      "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+    },
+    "branch_prefix_amendment": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+      "bytes": 2835,
+      "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+      "payload_utf8_bytes": 2179,
+      "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+    },
+    "input_provenance": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+      "bytes": 302758,
+      "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+      "payload_utf8_bytes": 235310,
+      "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+    },
+    "graph_topological_order": [
+      "busybox-bootstrap-tools",
+      "build-extra-ownership-sdk",
+      "runtime-generator",
+      "runtime-abi",
+      "runtime-linker-import",
+      "runtime-signal-tls",
+      "runtime-mvp",
+      "runtime-fork-exec",
+      "build-extra-payload"
+    ],
+    "ancestry_coverage": {
+      "pass": true,
+      "errors": [],
+      "expected": 173,
+      "actual": 173,
+      "missing": [],
+      "unexpected": [],
+      "failed_rows": []
+    }
+  },
+  "self_test": {
+    "controls": [
+      {
+        "name": "positive_static_authority",
+        "expected": "pass",
+        "result": {
+          "pass": true,
+          "errors": [],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_forbidden_head",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "graph_forbidden_head:busybox-bootstrap-tools"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_old_base",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "first_layer_identity:busybox-bootstrap-tools"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_old_artifact",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "external_input_old_artifact:node-inputs:build-extra-ownership-sdk"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_wrong_epoch",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "graph_epoch"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_old_stack",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "graph_old_stack:runtime-generator"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_deleted_branch_ref",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "actual_count:branch_ref_records",
+            "source_equality:forbidden.branch_refs"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 347,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_deleted_commit_head",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "actual_count:forbidden_commit_heads",
+            "ancestry_coverage_set_mismatch",
+            "source_equality:forbidden.commit_heads"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 172,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": false,
+            "errors": [
+              "ancestry_coverage_set_mismatch"
+            ],
+            "expected": 172,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [
+              [
+                "crutkas/msys2-woarm64-build",
+                "f74be1dee193bed3a07a1b221fa90d2aa7bf146a"
+              ]
+            ],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_deleted_artifact",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "actual_count:all_old_artifacts_and_assets",
+            "actual_count:old_actions_artifacts",
+            "source_equality:forbidden.artifact_ids"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3081,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2954,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_deleted_cross_edges",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "graph_cross_edges"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_removed_busybox_dependency",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "graph_dependencies:runtime-mvp"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_unbacked_external_admission",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "external_input_unbacked:node-inputs:build-extra-ownership-sdk"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": true,
+            "errors": [],
+            "expected": 173,
+            "actual": 173,
+            "missing": [],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_deleted_ancestry_row",
+        "expected": "fail",
+        "result": {
+          "pass": false,
+          "errors": [
+            "ancestry_coverage_set_mismatch"
+          ],
+          "actual_lengths": {
+            "repositories": 8,
+            "old_prs": 127,
+            "branch_ref_records": 348,
+            "forbidden_commit_heads": 173,
+            "old_native_stacks": 12,
+            "old_releases": 28,
+            "all_old_artifacts_and_assets": 3082,
+            "evidence_root_records": 40,
+            "old_actions_artifacts": 2955,
+            "old_release_assets": 127
+          },
+          "source_reconstruction": {
+            "generator": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-generate-phase0.py",
+              "file_sha256": "ab2d7e336912785755a0dd790c911a7f3ffde17344773847a221a0ea40f3b8a8"
+            },
+            "fragment_index": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-fragment-index-v2.json",
+              "file_sha256": "9b358666a7a6dafad98d5af31bc134675900274c3f4c9dfe69251d9533eda9c9",
+              "payload_sha256": "3c3a21dc6703a8776506cabdf1fe3009698c6163ab2edce55ed0ee41072581eb"
+            },
+            "runtime_artifact_ledger": {
+              "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2c5e9beb-2617-4e37-a8e0-b835010b6205\\files\\arm64-vnext-2026-08-31-v1-runtime-actions-artifacts.json",
+              "bytes": 750814,
+              "file_sha256": "8db0d2cd8c2d4dfe099895aac64fdf311b445e46a4bec73eec0c7009ef8b538d",
+              "payload_utf8_bytes": 583320,
+              "payload_sha256": "72ef82b03e30646a4e505a3a4c138263da6f005894c74431126460d7ff0a706f"
+            }
+          },
+          "quarantine_replay": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-quarantine-replay.json",
+            "bytes": 37476,
+            "file_sha256": "f68df17b1d7945f667885291240773207b0f53481e061f504131423953e1f020",
+            "payload_utf8_bytes": 26673,
+            "payload_sha256": "d8da14cf049ff858a54271445860434b1c58ad9c47fe0d9e7f3b1164b308f39a"
+          },
+          "policy_reconciliation": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-policy-reconciliation-v2.json",
+            "bytes": 20238,
+            "file_sha256": "1b9be47efc0c7566dd454dc75d7f0e344b74c1dfe0b9cbaf75ee1e26c54eb2fe",
+            "payload_utf8_bytes": 15529,
+            "payload_sha256": "580cb65ac6a85a4552aff29932622cf4208dd270090b667c149aae6d16693b12"
+          },
+          "branch_prefix_amendment": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+            "bytes": 2835,
+            "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+            "payload_utf8_bytes": 2179,
+            "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+          },
+          "input_provenance": {
+            "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+            "bytes": 302758,
+            "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+            "payload_utf8_bytes": 235310,
+            "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+          },
+          "graph_topological_order": [
+            "busybox-bootstrap-tools",
+            "build-extra-ownership-sdk",
+            "runtime-generator",
+            "runtime-abi",
+            "runtime-linker-import",
+            "runtime-signal-tls",
+            "runtime-mvp",
+            "runtime-fork-exec",
+            "build-extra-payload"
+          ],
+          "ancestry_coverage": {
+            "pass": false,
+            "errors": [
+              "ancestry_coverage_set_mismatch"
+            ],
+            "expected": 173,
+            "actual": 172,
+            "missing": [
+              [
+                "crutkas/msys2-woarm64-build",
+                "f74be1dee193bed3a07a1b221fa90d2aa7bf146a"
+              ]
+            ],
+            "unexpected": [],
+            "failed_rows": []
+          }
+        },
+        "control_pass": true
+      },
+      {
+        "name": "reject_fabricated_candidate",
+        "expected": "fail",
+        "result": {
+          "checks_pass": false,
+          "authorized": false,
+          "failures": [
+            "candidate_base_identity",
+            "candidate_branch",
+            "candidate_branch_namespace",
+            "candidate_head_identity",
+            "candidate_schema",
+            "input_not_in_provenance_ledger",
+            "repo_path_required"
+          ],
+          "authorization_failures": [
+            "node_not_authorized",
+            "phase0_verdict_required"
+          ],
+          "node_id": "busybox-bootstrap-tools",
+          "repo": "crutkas/busybox-w32",
+          "phase": "session_start",
+          "observations": {
+            "repo_path": null,
+            "invocation_arguments": [
+              "--boundary",
+              "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+              "--graph",
+              "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-pr-open.json",
+              "--ancestry",
+              "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+              "--self-test",
+              "--diagnostic",
+              "--receipt",
+              "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-generator-pr-open-controls.json"
+            ],
+            "ancestry_coverage": {
+              "expected": 173,
+              "actual": 173,
+              "pass": true
+            }
+          }
+        },
+        "control_pass": true
+      }
+    ],
+    "summary": {
+      "count": 14,
+      "passed": 14,
+      "failed": 0,
+      "all_pass": true
+    }
+  },
+  "pass": true,
+  "authorization_granted": false,
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 50279,
+    "payload_sha256": "f539457edeea94a44e903fcd5a68622c1631d0b170fc6a6f3fc3efd74272b5f1"
+  }
+}

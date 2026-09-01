@@ -38,14 +38,15 @@ Git Bash:
 sha256sum --check SHA256SUMS
 ```
 
-PowerShell 7 with Python 3:
+PowerShell 7 with Python 3 verifies every present canonical seal recursively;
+manifest-style evidence JSON without a `seal.payload_sha256` remains covered by
+`SHA256SUMS`:
 
 ```powershell
-python -c "import glob,hashlib,json,sys; fs=glob.glob('state/*.json'); bad=[]; [(lambda o,p,e,a: bad.append((p,e,a)) if a != e else print('PASS',p,a))(json.load(open(p,encoding='utf-8')),p,(lambda o:o['seal']['payload_sha256'].lower())(json.load(open(p,encoding='utf-8'))),(lambda o:hashlib.sha256(json.dumps(o['payload'] if set(o)=={'payload','seal'} else {k:v for k,v in o.items() if k!='seal'},sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest())(json.load(open(p,encoding='utf-8')))) for p in fs]; sys.exit(str(bad) if bad else 0)"
+python -c "import glob,hashlib,json,sys; fs=glob.glob('state/**/*.json',recursive=True); bad=[]; [(lambda o,p,e,a: bad.append((p,e,a)) if a != e else print('PASS',p,a))(o,p,o['seal']['payload_sha256'].lower(),hashlib.sha256(json.dumps(o['payload'] if set(o)=={'payload','seal'} else {k:v for k,v in o.items() if k!='seal'},sort_keys=True,separators=(',',':'),ensure_ascii=False).encode()).hexdigest()) for p in fs for o in [json.load(open(p,encoding='utf-8'))] if isinstance(o,dict) and isinstance(o.get('seal'),dict) and 'payload_sha256' in o['seal']]; sys.exit(str(bad) if bad else 0)"
 ```
 
-Expected result: 14 `PASS` lines, including continuity payload SHA-256
-`d2f16dc11c9cf917e2c51fdfb8da40859a9e85720bd06c79fd5701b78cf6d777`.
+The output must contain only `PASS` records and no failure exit.
 
 ## Recreate the eight projects
 
@@ -89,7 +90,43 @@ gh pr view 29 --json isDraft,baseRefName,headRefName,headRefOid,labels,reviewReq
 Both must remain draft and labeled only `arm64-vnext`. Stop on any identity or
 authority drift.
 
-## Replay the runtime patch in isolation
+## Primary runtime recovery: fetch PR #31
+
+```powershell
+Set-Location ..\msys2-runtime
+gh pr checkout 31
+if ((git rev-parse HEAD) -ne "d890a845e992638a6f09560efacc26d15b3ffe6a") {
+  throw "msys2-runtime PR #31 head mismatch"
+}
+if ((git rev-parse "HEAD^{tree}") -ne "43aec2ed8555b6f4a9866ae4b8605972062dff6d") {
+  throw "msys2-runtime PR #31 tree mismatch"
+}
+gh pr view 31 --json number,url,state,isDraft,baseRefName,baseRefOid,headRefName,headRefOid,labels,reviewRequests,autoMergeRequest,statusCheckRollup
+```
+
+Require draft/open, base `msys2-3.6.10` at
+`8fbd9808447ee78ed485deead9b79cd1e40c07b7`, label only `arm64-vnext`,
+and no review request or auto-merge. Independently require one matching-head PR
+and a null merge-queue entry. Monitor checks and reviews; do not mutate PR #31.
+
+Verify and extract the continuity-only repaired bundle:
+
+```powershell
+$Bundle = Join-Path $Checkpoint "state\arm64-vnext-2026-08-31-v2-generator-bundle.zip"
+if ((Get-FileHash $Bundle -Algorithm SHA256).Hash.ToLowerInvariant() -ne
+    "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1") {
+  throw "Generator bundle mismatch"
+}
+Expand-Archive -LiteralPath $Bundle -DestinationPath .\generator-bundle
+```
+
+The ZIP must contain
+`arm64-vnext-2026-08-31-v2-generator-bundle/runtime/bin/libintl-8.dll`,
+268,288 bytes, SHA-256
+`31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320`.
+This bundle is a non-admitted engineering continuity artifact, not a release.
+
+## Fallback only: replay the runtime patch in isolation
 
 From Git Bash, set `CHECKPOINT` to this checkpoint directory:
 
@@ -102,7 +139,7 @@ git checkout --detach 8fbd9808447ee78ed485deead9b79cd1e40c07b7
 test "$(git rev-parse 'HEAD^{tree}')" = fe1106187ef9aa842e1cff0ccc4f978b65c16613
 test -z "$(git status --porcelain)"
 
-PATCH="$CHECKPOINT/state/arm64-vnext-2026-08-31-v1-runtime-generator-staged-43aec2ed.patch"
+PATCH="$CHECKPOINT/state/arm64-vnext-2026-08-31-v2-runtime-generator-before-commit.patch"
 printf '%s  %s\n' \
   0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8 \
   "$PATCH" | sha256sum --check
@@ -121,7 +158,8 @@ M	winsup/autogen.sh
 A	winsup/tests/autogen-contract.sh
 ```
 
-This creates no commit and grants no authority to create one.
+Use this only if PR #31 cannot be fetched. It creates no commit and grants no
+authority to create one.
 
 ## Rebuild and replay generator outputs
 
@@ -141,9 +179,9 @@ generator source archives are:
 f4e7ce3a074e5d63dcee75855cf80950f8885d0885e09c5aaa3eb64f10a4f33a  m4-1.4.21-1.src.tar.zst
 ```
 
-After reconstructing an admitted native ARM64 generator bundle at `BUNDLE`,
-run the source contract and regeneration from Git Bash in each of two fresh,
-identically patched runtime clones:
+Use the preserved repaired bundle as `BUNDLE`, or reconstruct it from admitted
+inputs if required. Run the source contract and regeneration from Git Bash in
+each of two fresh, identically patched runtime clones:
 
 ```sh
 export BUNDLE=/absolute/path/to/rebuilt-generator-bundle
@@ -183,15 +221,16 @@ sha256sum \
   winsup/cygwin/devices.cc > generated-output-sha256.txt
 ```
 
-The two manifests must be byte-identical. Also recreate canonical provenance,
-process, PE/import/module, relocation, and bundle inventory evidence and compare
-it to the sealed continuity ledger. A new independent `before_commit` review
-must evaluate the patch, both output runs, and all final evidence before any
-runtime commit.
+The two manifests must be byte-identical. Compare provenance, process,
+PE/import/module, relocation, and bundle evidence against
+`state/runtime-generator-v2-evidence/` and the compact continuity record.
 
 ## Authority boundary
 
-After recovery, query live state again. Do not commit, push, open a runtime PR,
-request review, register a stack, enable auto-merge, enter a queue, merge, or
-create a release without the separately sealed authority for that exact phase
-and identity.
+All preserved `session_start`, `before_commit`, `before_push`, and `before_pr`
+verdicts and authorizations are consumed and cannot be reused. After recovery,
+query live state again. Monitor the four draft PRs (#4, #29, #31, and #10).
+Start runtime `abi` only after fresh independent review and exact authority for
+that node and identity. Do not request review, register a stack, enable
+auto-merge, enter a merge queue, merge, or create a release without separately
+sealed authority.

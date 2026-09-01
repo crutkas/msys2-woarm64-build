@@ -1,0 +1,50 @@
+{
+  "schema": "arm64-vnext-controls-authority-promotion-v1",
+  "epoch": "2026-08-31-v1",
+  "captured_at": "2026-09-01T00:55:00Z",
+  "trigger": {
+    "review_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-review-v2.json",
+    "review_file_sha256": "c286ab7afc584c0102797afe5a94ccf8a4598f65897e191121edb74afbe67dff",
+    "review_payload_sha256": "ac298be49cd72e3c478af1a0689dbee15a2d39ded2266e5c7f67936fa607514a",
+    "verdict": "NO-GO",
+    "sole_blocker": "frozen_verifier_controls_identity_drift"
+  },
+  "finding": {
+    "classification": "CANONICAL_ALIAS_NOT_PROMOTED",
+    "runtime_or_source_drift": false,
+    "reviewed_revision8_controls_unchanged": true,
+    "detail": "The exact revision-8 controls remained unchanged at the staging path. The canonical root alias still contained the preserved earlier Phase-0 control."
+  },
+  "preserved_predecessor": {
+    "former_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls.json",
+    "archive_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls-phase0-v3.json",
+    "bytes": 67538,
+    "file_sha256": "d11d2a1df90152e2f75efd6daddff072a986f07afdb3d7f87d62695ee47359a5",
+    "payload_sha256": "1eabfd50d8d93566266a93bf35b4b596a585e21d14bbe6fc6f87617673b0b51b",
+    "status": "PRESERVED_SUPERSEDED"
+  },
+  "promoted_authority": {
+    "source_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-session-review-controls.json",
+    "canonical_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls.json",
+    "bytes": 67533,
+    "file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+    "payload_utf8_bytes": 50294,
+    "payload_sha256": "1e57aa96bab6a32728d199fd15b52d87c963738258df61ea531416838ca43de5",
+    "source_and_canonical_byte_identical": true,
+    "pass": true,
+    "authorization_granted": false
+  },
+  "decision": {
+    "canonical_revision8_controls_authority_published": true,
+    "prior_no_go_preserved": true,
+    "runtime_candidate_changed": false,
+    "new_phase_authority_granted": false,
+    "next_action": "Fresh independent before_commit review must rehash the promoted canonical controls and all unchanged revision-2 candidate authorities."
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 2457,
+    "payload_sha256": "39543f1897ab5f43c05090b62dc00d575ba49eeecf96bb9299ccbb03eb5b19c9"
+  }
+}
