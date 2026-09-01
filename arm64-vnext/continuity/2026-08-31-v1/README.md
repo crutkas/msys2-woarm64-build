@@ -59,6 +59,10 @@ The runtime-generator transition is now durable:
   SHA-256 prefix: `122fe6fb`
 - PR state: draft/open; label only `arm64-vnext`; matching-head count one;
   checks running; no review, queue, auto-merge, stack, or merge.
+- PR #31's three matrix failures are sealed as external moving MSYS2
+  MinGW/Rust/Python linker environment drift; PR build and comparable lanes
+  pass, and no source change is required. Triage file SHA-256:
+  `a7ea9785371839193a10ef0ca60544c983122ccd07e6e63affd3e230a73dec5b`.
 - Primary preserved bundle:
   `state/arm64-vnext-2026-08-31-v2-generator-bundle.zip`
 - Bundle bytes/SHA-256:
