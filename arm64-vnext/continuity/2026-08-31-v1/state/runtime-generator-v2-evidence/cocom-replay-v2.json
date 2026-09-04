@@ -1,0 +1,165 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-cocom-replay-v2",
+    "epoch": "2026-08-31-v2",
+    "captured_at": "2026-09-01T00:21:40.884413+00:00",
+    "strict_environment": {
+      "PATH": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\runtime\\bin;C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\tools;C:\\Windows\\System32",
+      "environment_cleared_before_allowlist": true,
+      "ambient_clangarm64_or_msys_paths": false,
+      "LC_ALL": "C",
+      "TZ": "UTC",
+      "SOURCE_DATE_EPOCH": "1375128924"
+    },
+    "fresh_sprut": {
+      "launcher": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\sprut.exe",
+        "bytes": 69632,
+        "sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854"
+      },
+      "real_image": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\libexec\\sprut-real.exe",
+        "bytes": 271360,
+        "sha256": "1fd9128fdd61656d53fb97859e14e9d9f9e3c31ba7a501daf7bedb10ddb4000f"
+      },
+      "bootstrap_input": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\generator-work-2026-08-31-v1\\src\\cocom\\SPRUT\\ird.sprut",
+        "bytes": 17300,
+        "sha256": "001ea4597fb9cf44fe4d998650ff863287c64790f99633c15eb6b0ab69e94825"
+      },
+      "command": [
+        "sprut",
+        "-macro",
+        "-debug",
+        "-access",
+        "-set",
+        "-copy",
+        "<absolute admitted ird.sprut>"
+      ],
+      "fresh_outputs": [
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\sprut\\replay-ird.c",
+          "bytes": 79938,
+          "sha256": "33a3c646f1483b6c265a46cc469b5865db97a190bfdd82f35af0a5fab9cf1d4c",
+          "expected_prior_sha256": "33a3c646f1483b6c265a46cc469b5865db97a190bfdd82f35af0a5fab9cf1d4c",
+          "exact_replay_match": true
+        },
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\sprut\\replay-ird.h",
+          "bytes": 32972,
+          "sha256": "c524238707df87b0b985edb30676e24f6352e27b65439e3657ed5c891176b4b4",
+          "expected_prior_sha256": "c524238707df87b0b985edb30676e24f6352e27b65439e3657ed5c891176b4b4",
+          "exact_replay_match": true
+        }
+      ],
+      "checked_in_bootstrap": [
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\generator-work-2026-08-31-v1\\build\\cocom-direct\\SPRUT\\ird.c",
+          "bytes": 4991,
+          "sha256": "d42692207ccc0b1782a6b885412bbf8a15071ab247ea906eed3e70583e520a1f"
+        },
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\generator-work-2026-08-31-v1\\build\\cocom-direct\\SPRUT\\ird.h",
+          "bytes": 31882,
+          "sha256": "19ee71ce8466c3e261b4ed67d4c83208a285175430408d3dc2bf4e3250ff6b62"
+        }
+      ],
+      "fresh_replay_differs_from_checked_in_bootstrap": true
+    },
+    "fresh_sprut_for_shilka_msta": {
+      "commands": [
+        [
+          "sprut",
+          "-only-macro",
+          "-access",
+          "-set",
+          "-new",
+          "ird.sprut"
+        ],
+        [
+          "sprut",
+          "-only-macro",
+          "-access",
+          "-set",
+          "-new",
+          "-copy",
+          "ird.sprut"
+        ]
+      ],
+      "outputs": [
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\shilka\\ird.c",
+          "bytes": 26777,
+          "sha256": "150b61154e5c71d6294d8e6b3a99a01d9701aecfe304d09d3d00b23dee18d427",
+          "expected_prior_sha256": "150b61154e5c71d6294d8e6b3a99a01d9701aecfe304d09d3d00b23dee18d427",
+          "exact_replay_match": true
+        },
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\shilka\\ird.h",
+          "bytes": 20888,
+          "sha256": "8397632c6b3305339cf8ab2c503408d4c4709e00dc4d1bac17a139ab4ee34f36",
+          "expected_prior_sha256": "8397632c6b3305339cf8ab2c503408d4c4709e00dc4d1bac17a139ab4ee34f36",
+          "exact_replay_match": true
+        },
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\msta\\ird.c",
+          "bytes": 206480,
+          "sha256": "54843e7ff76b157d61cc07fc6012a1178fe16bc3b1fce7c465079dc6eed6259e",
+          "expected_prior_sha256": "54843e7ff76b157d61cc07fc6012a1178fe16bc3b1fce7c465079dc6eed6259e",
+          "exact_replay_match": true
+        },
+        {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\msta\\ird.h",
+          "bytes": 95679,
+          "sha256": "e4fc6589e9184d86ecb7bb4687da0e07096f2bce6bca8d2a536dc62614fd5219",
+          "expected_prior_sha256": "e4fc6589e9184d86ecb7bb4687da0e07096f2bce6bca8d2a536dc62614fd5219",
+          "exact_replay_match": true
+        }
+      ],
+      "all_exact_prior_replay_matches": true
+    },
+    "devices": {
+      "driver": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\devices-replay\\gendevices-session-adapted.pl",
+        "bytes": 4153,
+        "sha256": "1d655aabc28586f38e4ecc44fceaec6d1bedb499ead4f04f3cfa73dabf2ebc1f"
+      },
+      "input": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-repro\\build-h\\winsup\\cygwin\\devices.in",
+        "bytes": 10977,
+        "sha256": "35630884cb56f09e5ab153a22bc44f9f4127c7816f7e4d47f4b109d4fb8cb91b"
+      },
+      "fresh_shilka_launcher": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\bin\\shilka.exe",
+        "bytes": 69632,
+        "sha256": "199ff2e0b66d5f1aa77a278016b731c5541df8fcb18f7a9ffb6f172564404854"
+      },
+      "command": "runtime/bin/perl.exe gendevices-session-adapted.pl devices.in devices.cc; shilka resolved only through strict bundle PATH",
+      "exit_code": 0,
+      "elapsed_ms": 202,
+      "log": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\devices-replay.log",
+        "bytes": 253,
+        "sha256": "9198680c54f19f1dfb740711f46957d626323369728d0b348170e7c3dda2828c"
+      },
+      "generated": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-cocom-replay\\devices.cc",
+        "bytes": 328574,
+        "sha256": "7072cba98dcd53996f0e8f5d82cc31884bcf30132793bd84143df0dcca9b4a0d"
+      },
+      "tracked": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-repro\\build-h\\winsup\\cygwin\\devices.cc",
+        "bytes": 328574,
+        "sha256": "7072cba98dcd53996f0e8f5d82cc31884bcf30132793bd84143df0dcca9b4a0d"
+      },
+      "byte_identical": true
+    },
+    "result": "PASS"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 6759,
+    "payload_sha256": "03b6472b8efc0de6e7efbbf8c55495b230a2feb4a9d0b331c30af7b6f922c80e"
+  }
+}

@@ -1,0 +1,235 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-pr-ci-triage-v1",
+    "epoch": "2026-08-31-v1",
+    "captured_at": "2026-09-01T01:30:29.168979+00:00",
+    "scope": {
+      "mode": "read-only CI triage",
+      "repository": "crutkas/msys2-runtime",
+      "pull_request_number": 31,
+      "pull_request_url": "https://github.com/crutkas/msys2-runtime/pull/31",
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "head_parent": "8fbd9808447ee78ed485deead9b79cd1e40c07b7"
+    },
+    "current_run": {
+      "run_id": 33457716277,
+      "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277",
+      "event": "push",
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "failed_jobs": [
+        {
+          "job_id": 99703152636,
+          "name": "msys2-tests UCRT64-clang",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152636",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_step": "Run tests / test: python",
+          "completed_at": "2026-09-01T01:26:02Z"
+        },
+        {
+          "job_id": 99703152615,
+          "name": "msys2-tests UCRT64-gcc",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152615",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_step": "Run tests / test: python",
+          "completed_at": "2026-09-01T01:25:41Z"
+        },
+        {
+          "job_id": 99703152589,
+          "name": "msys2-tests MINGW64-gcc",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152589",
+          "status": "completed",
+          "conclusion": "failure",
+          "failed_step": "Run tests / test: python",
+          "completed_at": "2026-09-01T01:25:29Z"
+        }
+      ]
+    },
+    "failure_signature": {
+      "identity": "identical across all three failed jobs",
+      "external_action": "msys2/msys2-tests@main",
+      "external_action_checkout_fragment": "_actions\\msys2\\msys2-tests\\main",
+      "test": "python/setuptools-rust",
+      "rust_crate": "indoc 2.0.7",
+      "rust_mode": "proc-macro",
+      "rust_link_argument": "-C link-arg=-lpython3.14",
+      "rust_linker_characteristic": "-nodefaultlibs",
+      "diagnostics": [
+        "libmingwex.a(...stack_chk_fail.o): undefined reference to `write'",
+        "libmingwex.a(...stack_chk_guard.o): undefined reference to `__imp_rand_s'",
+        "collect2.exe: error: ld returned 1 exit status",
+        "error: could not compile `indoc` (lib) due to 1 previous error",
+        "cargo rustc failed with code 101",
+        "make: *** [Makefile:12: python] Error 1",
+        "Process completed with exit code 2"
+      ],
+      "classification": "x86_64 MinGW GCC-linker/native-library closure regression in the moving external test environment"
+    },
+    "package_version_drift": {
+      "current_observed": {
+        "observation_source_job_id": 99703152636,
+        "gcc": "16.2.0-3",
+        "binutils": "2.47-3",
+        "mingw_w64_crt": "14.0.0.r302.gd7f3c5201-1",
+        "rust": "1.98.0-1",
+        "rustc": "1.98.0 (88d9e12ae 2026-08-18) Rev1",
+        "python": "3.14.7-1",
+        "python_runtime": "3.14.7",
+        "python_setuptools_rust": "1.12.1-1"
+      },
+      "exact_base_historical_observed": {
+        "observation_source_job_id": 90644189500,
+        "gcc": "16.1.0-5",
+        "binutils": "2.47-1",
+        "mingw_w64_crt": "14.0.0.r220.gd999af622-1",
+        "rust": "1.97.0-1",
+        "rustc": "1.97.0 (2d8144b78 2026-07-07) Rev1",
+        "python": "3.14.6-1",
+        "python_runtime": "3.14.6",
+        "python_setuptools_rust": "1.12.1-1"
+      },
+      "moving_inputs": [
+        "msys2/msys2-tests@main",
+        "MSYS2 staging repositories and packages"
+      ],
+      "interpretation": "The exact source base was green with its then-current packages; the failing invocation resolves newer mutable external action/package state."
+    },
+    "base_comparison": {
+      "repository": "msys2/msys2-runtime",
+      "commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "run_id": 30471244661,
+      "run_url": "https://github.com/msys2/msys2-runtime/actions/runs/30471244661",
+      "run_conclusion": "success",
+      "matrix_conclusion": "all nine jobs successful",
+      "corresponding_jobs": [
+        {
+          "job_id": 90644189662,
+          "name": "msys2-tests UCRT64-clang",
+          "url": "https://github.com/msys2/msys2-runtime/actions/runs/30471244661/job/90644189662",
+          "conclusion": "success"
+        },
+        {
+          "job_id": 90644189500,
+          "name": "msys2-tests UCRT64-gcc",
+          "url": "https://github.com/msys2/msys2-runtime/actions/runs/30471244661/job/90644189500",
+          "conclusion": "success"
+        },
+        {
+          "job_id": 90644189504,
+          "name": "msys2-tests MINGW64-gcc",
+          "url": "https://github.com/msys2/msys2-runtime/actions/runs/30471244661/job/90644189504",
+          "conclusion": "success"
+        }
+      ]
+    },
+    "successful_and_running_snapshot": {
+      "basis": "single non-looping gh pr checks snapshot taken after 2026-09-01T01:28:17Z",
+      "successful": [
+        {
+          "job_id": 99701136369,
+          "name": "build",
+          "event": "push",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99701136369",
+          "conclusion": "success"
+        },
+        {
+          "job_id": 99703152625,
+          "name": "msys2-tests MINGW32-gcc",
+          "event": "push",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152625",
+          "conclusion": "success",
+          "note": "setuptools-rust is skipped on MINGW32"
+        },
+        {
+          "job_id": 99703152637,
+          "name": "msys2-tests CLANG64-clang",
+          "event": "push",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152637",
+          "conclusion": "success",
+          "note": "successfully compiled the same indoc 2.0.7 proc-macro with Rust 1.98.0 and Python 3.14.7"
+        },
+        {
+          "job_id": 99703152594,
+          "name": "msys2-tests MSYS-gcc",
+          "event": "push",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152594",
+          "conclusion": "success"
+        }
+      ],
+      "running": [
+        {
+          "job_id": 99703152645,
+          "name": "msys2-tests CLANGARM64-clang",
+          "event": "push",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33457716277/job/99703152645",
+          "status": "in_progress"
+        },
+        {
+          "job_id": 99703064122,
+          "name": "build",
+          "event": "pull_request",
+          "run_id": 33458357647,
+          "run_url": "https://github.com/crutkas/msys2-runtime/actions/runs/33458357647",
+          "url": "https://github.com/crutkas/msys2-runtime/actions/runs/33458357647/job/99703064122",
+          "status": "in_progress"
+        }
+      ]
+    },
+    "patch_causality": {
+      "changed_paths": [
+        ".github/workflows/build.yaml",
+        "winsup/autogen.sh",
+        "winsup/tests/autogen-contract.sh"
+      ],
+      "diff_stat": {
+        "files": 3,
+        "insertions": 86,
+        "deletions": 6
+      },
+      "relevant_changes": [
+        "run focused autogen contract before configure",
+        "preserve autogen defaults while adding quoted caller overrides",
+        "change ordinary build parallelism from -j8 to -j20"
+      ],
+      "not_changed": [
+        "Python",
+        "Rust",
+        "MinGW CRT or libraries",
+        "msys2-tests matrix",
+        "msys2/msys2-tests action reference"
+      ],
+      "supporting_observations": [
+        "the source build job succeeded",
+        "MSYS-gcc and CLANG64-clang passed using the same built runtime artifact",
+        "CLANG64 compiled the same indoc crate under current Rust/Python versions",
+        "failures are deterministic link-time undefined symbols inside external MinGW libraries rather than a runtime crash or generated-source failure"
+      ],
+      "caused_by_patch": false,
+      "source_change_required": false,
+      "confidence": "high",
+      "conclusion": "external moving test/toolchain environment regression"
+    },
+    "operations": {
+      "repository_writes": 0,
+      "github_mutations": 0,
+      "workflow_reruns": 0,
+      "workflow_cancellations": 0,
+      "source_changes": 0,
+      "branch_changes": 0,
+      "pull_request_changes": 0,
+      "label_changes": 0,
+      "evidence_changes": 0,
+      "poll_or_sleep_loops": 0
+    },
+    "decision": "EXTERNAL_MOVING_ENVIRONMENT_NO_SOURCE_CHANGE"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 6798,
+    "payload_sha256": "3c5e18122f16d661ddac5db7bfba6a0fd896159228994a45bdbe83a2dd52fc86"
+  }
+}

@@ -1,0 +1,187 @@
+{
+  "schema": "arm64-vnext-live-readback-v1",
+  "epoch": "2026-08-31-v1",
+  "captured_at": "2026-09-01T01:23:30.6978648Z",
+  "verdict": {
+    "classification_drift": false
+  },
+  "open_pull_request_counts": [
+    {
+      "repo": "crutkas/busybox-w32",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 2,
+      "arm64_vnext": 1
+    },
+    {
+      "repo": "crutkas/binutils-woarm64",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 7,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/msys2-runtime",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 25,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/gcc-woarm64",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 11,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/mingw-w64",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 1,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/MSYS2-packages",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 45,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/msys2-woarm64-build",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 8,
+      "arm64_vnext": 1
+    },
+    {
+      "repo": "crutkas/build-extra",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 23,
+      "arm64_vnext": 1
+    },
+    {
+      "repo": "mingw-w64/mingw-w64",
+      "ambiguous_arm64": 1,
+      "arm64_poc_old": 0,
+      "arm64_vnext": 0
+    }
+  ],
+  "vnext_pull_requests": [
+    {
+      "repo": "crutkas/busybox-w32",
+      "number": 4,
+      "url": "https://github.com/crutkas/busybox-w32/pull/4",
+      "state": "OPEN",
+      "draft": true,
+      "base_commit": "d8d8bb397f1e200ba5a871dc6aa4af819b23f32a",
+      "head_commit": "942be1cd339f2fa5c426d28a83dad62b2b366d5e",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "matching_head_pr_count": 1,
+      "checks": {
+        "success": 2,
+        "failure": 0,
+        "skipped": 0,
+        "pending": 0
+      },
+      "review_request_count": 0,
+      "merge_queue_entry": null,
+      "is_in_merge_queue": false,
+      "auto_merge_request": null,
+      "merged": false
+    },
+    {
+      "repo": "crutkas/build-extra",
+      "number": 29,
+      "url": "https://github.com/crutkas/build-extra/pull/29",
+      "state": "OPEN",
+      "draft": true,
+      "base_commit": "7acc5756b94a0a0ab8d0cd06642c8c8254e1bf40",
+      "head_commit": "305d14d63db6073245ad4e3002f7400e58040c55",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "matching_head_pr_count": 1,
+      "checks": {
+        "success": 1,
+        "failure": 0,
+        "skipped": 4,
+        "pending": 0
+      },
+      "review_request_count": 0,
+      "merge_queue_entry": null,
+      "is_in_merge_queue": false,
+      "auto_merge_request": null,
+      "merged": false
+    },
+    {
+      "repo": "crutkas/msys2-woarm64-build",
+      "number": 10,
+      "url": "https://github.com/crutkas/msys2-woarm64-build/pull/10",
+      "state": "OPEN",
+      "draft": true,
+      "base_commit": "77f0d56cdf4c063c1b3af37f551e01c3a012c8bb",
+      "head_commit": "d27a45a135d28042f8b34c70e91f82fec4611903",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "matching_head_pr_count": 1,
+      "checks": {
+        "success": 1,
+        "failure": 1,
+        "skipped": 6,
+        "pending": 7
+      },
+      "check_classification": "diagnostic_only_unrelated_product_matrix",
+      "review_request_count": 0,
+      "merge_queue_entry": null,
+      "is_in_merge_queue": false,
+      "auto_merge_request": null,
+      "merged": false
+    },
+    {
+      "repo": "crutkas/msys2-runtime",
+      "number": 31,
+      "url": "https://github.com/crutkas/msys2-runtime/pull/31",
+      "state": "OPEN",
+      "draft": true,
+      "base_ref": "msys2-3.6.10",
+      "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_ref": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "matching_head_pr_count": 1,
+      "authorized_body_sha256": "f29ca2873dd21c9ce23877daf70454cfec201ce8c6781652d92b5548a1932f9d",
+      "normalized_live_body_sha256": "122fe6fbd7bee287f211ddaaeaca001e57fdd06fee6b8d54ac4d6f68e9af70e2",
+      "checks": {
+        "success": 3,
+        "failure": 0,
+        "skipped": 0,
+        "pending": 8
+      },
+      "review_request_count": 0,
+      "submitted_review_count": 0,
+      "merge_queue_entry": null,
+      "is_in_merge_queue": false,
+      "auto_merge_request": null,
+      "stack": null,
+      "merged": false
+    }
+  ],
+  "summary": {
+    "open_vnext_pull_requests": 4,
+    "open_product_vnext_pull_requests": 3,
+    "open_continuity_vnext_pull_requests": 1,
+    "runtime_generator_remote_branch_count": 1,
+    "runtime_generator_matching_head_pr_count": 1,
+    "open_old_pull_requests_in_program_repositories": 122,
+    "ambiguous_open_arm64_pull_requests_in_program_repositories": 0,
+    "effective_ambiguous": 0,
+    "native_stacks": 0
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 3675,
+    "payload_sha256": "85d71c633127cfdd5ed3139a2b5fa9384fd8ac78950b07b31e324fde3ca119d5"
+  }
+}

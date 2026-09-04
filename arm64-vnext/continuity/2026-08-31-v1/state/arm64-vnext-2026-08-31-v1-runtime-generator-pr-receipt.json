@@ -1,0 +1,159 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-pr-receipt-v1",
+    "epoch": "2026-08-31-v1",
+    "captured_at": "2026-09-01T01:22:37.354590+00:00",
+    "authorization": {
+      "authorized_node_phases": [
+        {
+          "node_id": "runtime-generator",
+          "phases": [
+            "before_pr"
+          ]
+        }
+      ],
+      "authorization_granted": true,
+      "scope": "exactly one draft PR creation and exactly one post-creation label operation for arm64-vnext; then stop",
+      "authorities": {
+        "review": {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-pr-review.json",
+          "bytes": 19151,
+          "file_sha256": "86a27db3e67abb301adb4760bb5eefd37fafd24bf890aec46cd341784791f7c7",
+          "payload_sha256": "4ba0ca94b1e514bacd16d0086bfd16b1d38667a890212a743de40d8acffc004f"
+        },
+        "verdict": {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-verdict-runtime-generator-before-pr.json",
+          "bytes": 6684,
+          "file_sha256": "61c26a2e44f9ad09b7c2fa2d4a4d058e3b049a78619d1a50cd89bd315cc3a6ce",
+          "payload_sha256": "7436e1997beca9ff0a9ae0aa9ad627b752cbea78f37634c97c93a5655b815012"
+        },
+        "receipt": {
+          "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-pr-authorized.json",
+          "bytes": 12288,
+          "file_sha256": "69f33b882236e895758623e4cdca8cd22020e0eaacfa3cbae3e5d33521feeeba",
+          "payload_sha256": "24df64d5886481fc4f05d0d65655a345d5fd5e78a265a585e1975c8529905f1b"
+        }
+      },
+      "authorized_body": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-pr-body.md",
+        "bytes": 2384,
+        "file_sha256": "f29ca2873dd21c9ce23877daf70454cfec201ce8c6781652d92b5548a1932f9d",
+        "newline_form": "CRLF",
+        "normalized_newline_form": "LF",
+        "normalized_utf8_bytes": 2349,
+        "normalized_sha256": "122fe6fbd7bee287f211ddaaeaca001e57fdd06fee6b8d54ac4d6f68e9af70e2"
+      }
+    },
+    "pre_race_check": {
+      "observed_at": "2026-09-01T01:20:29.4437884+00:00",
+      "remote_head_ref_count": 1,
+      "remote_head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "remote_head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "remote_head_parent": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "remote_base_ref": "msys2-3.6.10",
+      "remote_base_ref_count": 1,
+      "remote_base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "matching_head_pull_request_count": 0,
+      "worktree_and_index_clean": true,
+      "result": "PASS"
+    },
+    "create": {
+      "started_at": "2026-09-01T01:20:30.9036625+00:00",
+      "finished_at": "2026-09-01T01:20:33.3532180+00:00",
+      "command_class": "one gh CLI draft pull request creation",
+      "attempt_count": 1,
+      "repository": "crutkas/msys2-runtime",
+      "base_ref": "msys2-3.6.10",
+      "head_ref": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "title": "[ARM64 vNext] Runtime generator",
+      "body_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-pr-body.md",
+      "draft": true,
+      "exit_code": 0,
+      "returned_url": "https://github.com/crutkas/msys2-runtime/pull/31"
+    },
+    "label_operation": {
+      "precheck_at": "2026-09-01T01:20:47.9033134+00:00",
+      "preexisting_label_count": 0,
+      "authorized_label_exists": true,
+      "started_at": "2026-09-01T01:20:49.4595510+00:00",
+      "finished_at": "2026-09-01T01:20:50.9146035+00:00",
+      "operation_count": 1,
+      "label": "arm64-vnext",
+      "exit_code": 0
+    },
+    "readback": {
+      "observed_at": "2026-09-01T01:22:37.354642+00:00",
+      "matching_head_pull_request_count": 1,
+      "number": 31,
+      "node_id": "PR_kwDOT3jXmM8AAAABBrkj6g",
+      "url": "https://github.com/crutkas/msys2-runtime/pull/31",
+      "api_url": "https://api.github.com/repos/crutkas/msys2-runtime/pulls/31",
+      "state_rest": "open",
+      "state_graphql": "OPEN",
+      "draft": true,
+      "open": true,
+      "merged": false,
+      "merged_at": null,
+      "title": "[ARM64 vNext] Runtime generator",
+      "base_ref": "msys2-3.6.10",
+      "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_ref": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "head_parents": [
+        "8fbd9808447ee78ed485deead9b79cd1e40c07b7"
+      ],
+      "body_utf8_bytes": 2384,
+      "body_sha256": "f29ca2873dd21c9ce23877daf70454cfec201ce8c6781652d92b5548a1932f9d",
+      "body_normalized_sha256": "122fe6fbd7bee287f211ddaaeaca001e57fdd06fee6b8d54ac4d6f68e9af70e2",
+      "body_equal_after_documented_newline_normalization": true,
+      "newline_normalization": "CRLF and CR to LF only",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "requested_reviewers_count": 0,
+      "requested_teams_count": 0,
+      "reviews_rest_count": 0,
+      "review_requests_graphql_count": 0,
+      "reviews_graphql_count": 0,
+      "merge_queue_entry": null,
+      "auto_merge_rest": null,
+      "auto_merge_graphql": null,
+      "stack_api_supported": true,
+      "stack": null,
+      "stack_entry": null,
+      "stack_merge_requirements": null,
+      "local_head": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "local_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "local_parent": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "local_branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "local_upstream": "origin/crutkas-arm64-vnext/msys2-runtime/generator",
+      "worktree_and_index_clean": true,
+      "result": "PASS"
+    },
+    "mutation_accounting": {
+      "performed": [
+        "created draft pull request 31",
+        "added label arm64-vnext in one label operation"
+      ],
+      "other_labels": false,
+      "legacy_arm64_poc_label": false,
+      "review_request": false,
+      "review_submission": false,
+      "stack": false,
+      "merge_queue": false,
+      "auto_merge": false,
+      "merge": false,
+      "branch_or_source_change": false,
+      "artifact_or_release": false,
+      "other_repository_or_github_mutation": false
+    },
+    "result": "PASS_PR_COMPLETE_STOPPED"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 5442,
+    "payload_sha256": "876f9d826812885c7ea7cc24fdd527cea4cfc54cb080de9c5d5758b5695ec553"
+  }
+}

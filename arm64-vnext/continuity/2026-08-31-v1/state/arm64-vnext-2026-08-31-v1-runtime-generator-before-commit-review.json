@@ -1,0 +1,520 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-independent-phase0-review-v2",
+    "epoch": "2026-08-31-v1",
+    "reviewed_at": "2026-09-01T00:10:29.823676Z",
+    "review_scope": {
+      "mode": "fresh independent read-only runtime-generator before_commit authorization review",
+      "requested_node_id": "runtime-generator",
+      "requested_phase": "before_commit",
+      "repository_or_index_mutation": false,
+      "github_mutation": false,
+      "coordinator_or_writer_artifact_mutation": false,
+      "prior_review_mutation": false,
+      "session_scoped_output_only": true
+    },
+    "authorities": {
+      "boundary": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+        "bytes": 984579,
+        "file_sha256": "97ce5396ff9f581c02f7207413d9803dbd219f6fa1764c87e73f2b1c4ed7b68d",
+        "payload_utf8_bytes": 681690,
+        "payload_sha256": "459a0086a712f9075042ce42ef92736bb05932f25670e7e11ee5e4a5fedfb2e8"
+      },
+      "graph": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-session-review.json",
+        "bytes": 17669,
+        "file_sha256": "5d581d49b1ed3df931cd63048058bb8da9760f5c900698d49e6b6e05a601695a",
+        "payload_utf8_bytes": 13832,
+        "payload_sha256": "ce347a909f230fa527783b856725d9ed38946c6f16769bfc75be905b53820a0b"
+      },
+      "ancestry": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+        "bytes": 237790,
+        "file_sha256": "9aa7f43125c638751cfd805a4c318355db6702ea3cc8c772435feefbd04e30ac",
+        "payload_utf8_bytes": 178012,
+        "payload_sha256": "80bac27573f29f1553c1aa3073d01d921e38834341bc3217211cd72227cfc713"
+      },
+      "artifact_definition": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-first-artifact-definition.json",
+        "bytes": 36207,
+        "file_sha256": "f714a7f6cfd3302330351f436f96f9c10046c55a1fdd0a045c5f58d9c4fe9b73",
+        "payload_utf8_bytes": 28207,
+        "payload_sha256": "099e4e51a0241c90d86c3f7f4e4b89b54bc173402d390d6a085006b8756fe785"
+      },
+      "input_provenance": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+        "bytes": 302758,
+        "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+        "payload_utf8_bytes": 235310,
+        "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+      },
+      "branch_prefix_amendment": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+        "bytes": 2835,
+        "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+        "payload_utf8_bytes": 2179,
+        "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+      },
+      "verifier": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2.py",
+        "bytes": 55656,
+        "file_sha256": "09d8c6b18fe0e5c5fcc160d561055e9eb4b350f491a9a9c2c020b6d825bdb0a1"
+      },
+      "verdict_issuer": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-issue-phase0-verdict.py",
+        "bytes": 13153,
+        "file_sha256": "2cb2e1138727765964f7fd810b1e5f32c1b605ada59fd5fae8ad53997201df0d"
+      },
+      "verifier_controls": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-session-review-controls.json",
+        "bytes": 67533,
+        "file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+        "payload_utf8_bytes": 50294,
+        "payload_sha256": "1e57aa96bab6a32728d199fd15b52d87c963738258df61ea531416838ca43de5"
+      },
+      "live_readback": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-live-readback-v6.json",
+        "bytes": 4142,
+        "file_sha256": "4fffe7832523b01fb09734fd47e368e42b740c7ee14fc0e5f54aab6f93caa290",
+        "payload_utf8_bytes": 2668,
+        "payload_sha256": "94fb22705ed035578531f9e8408bebbf36a46852e956314525cb3d274306db69"
+      }
+    },
+    "reviewed_authorities": {
+      "boundary": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+        "bytes": 984579,
+        "file_sha256": "97ce5396ff9f581c02f7207413d9803dbd219f6fa1764c87e73f2b1c4ed7b68d",
+        "payload_utf8_bytes": 681690,
+        "payload_sha256": "459a0086a712f9075042ce42ef92736bb05932f25670e7e11ee5e4a5fedfb2e8"
+      },
+      "graph": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-session-review.json",
+        "bytes": 17669,
+        "file_sha256": "5d581d49b1ed3df931cd63048058bb8da9760f5c900698d49e6b6e05a601695a",
+        "payload_utf8_bytes": 13832,
+        "payload_sha256": "ce347a909f230fa527783b856725d9ed38946c6f16769bfc75be905b53820a0b"
+      },
+      "ancestry": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+        "bytes": 237790,
+        "file_sha256": "9aa7f43125c638751cfd805a4c318355db6702ea3cc8c772435feefbd04e30ac",
+        "payload_utf8_bytes": 178012,
+        "payload_sha256": "80bac27573f29f1553c1aa3073d01d921e38834341bc3217211cd72227cfc713"
+      },
+      "artifact_definition": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-first-artifact-definition.json",
+        "bytes": 36207,
+        "file_sha256": "f714a7f6cfd3302330351f436f96f9c10046c55a1fdd0a045c5f58d9c4fe9b73",
+        "payload_utf8_bytes": 28207,
+        "payload_sha256": "099e4e51a0241c90d86c3f7f4e4b89b54bc173402d390d6a085006b8756fe785"
+      },
+      "input_provenance": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+        "bytes": 302758,
+        "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+        "payload_utf8_bytes": 235310,
+        "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+      },
+      "branch_prefix_amendment": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+        "bytes": 2835,
+        "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+        "payload_utf8_bytes": 2179,
+        "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+      },
+      "verifier": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2.py",
+        "bytes": 55656,
+        "file_sha256": "09d8c6b18fe0e5c5fcc160d561055e9eb4b350f491a9a9c2c020b6d825bdb0a1"
+      },
+      "verdict_issuer": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-issue-phase0-verdict.py",
+        "bytes": 13153,
+        "file_sha256": "2cb2e1138727765964f7fd810b1e5f32c1b605ada59fd5fae8ad53997201df0d"
+      },
+      "verifier_controls": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-session-review-controls.json",
+        "bytes": 67533,
+        "file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+        "payload_utf8_bytes": 50294,
+        "payload_sha256": "1e57aa96bab6a32728d199fd15b52d87c963738258df61ea531416838ca43de5"
+      },
+      "live_readback": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-live-readback-v6.json",
+        "bytes": 4142,
+        "file_sha256": "4fffe7832523b01fb09734fd47e368e42b740c7ee14fc0e5f54aab6f93caa290",
+        "payload_utf8_bytes": 2668,
+        "payload_sha256": "94fb22705ed035578531f9e8408bebbf36a46852e956314525cb3d274306db69"
+      }
+    },
+    "supplemental_evidence": {
+      "generator_input_ledger": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76bcf18e-f793-4bd8-93f5-b12b37f0e5fe\\files\\arm64-vnext-2026-08-31-v1-generator-input-ledger-v2.json",
+        "bytes": 168053,
+        "file_sha256": "14fea77370d75b50e826adc0c466f5a4ffc540c3412fe276f426fca877b57761",
+        "payload_utf8_bytes": 137219,
+        "payload_sha256": "099f466ebb15fe0434c14d0712085717162c1cf96294e0afe2c8b236d34bed6a"
+      },
+      "source_preaudit": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-source-preaudit.json",
+        "bytes": 6130,
+        "file_sha256": "cb76badf249ea5b2844b5fab608072edb90cc00f3a949959c0cba112e0bbd71b",
+        "payload_utf8_bytes": 4529,
+        "payload_sha256": "91bf390d780c4c26597bc69e0e476f47c81ad2239ff5512a7b450925cf004288"
+      },
+      "patch": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit.patch",
+        "bytes": 3204,
+        "file_sha256": "0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8"
+      },
+      "candidate_context": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-candidate-context.json",
+        "bytes": 16506,
+        "file_sha256": "b947757038f78266277f2b3dda96a74bf9dcbb0fcb03d0346a34779b5a937f60",
+        "payload_utf8_bytes": 13459,
+        "payload_sha256": "daaa30cbb4f49544a0b4c8a3de2dee37989e2133dfac9ad907c58248b4bb0375"
+      },
+      "strict_verifier_context": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-verifier-context.json",
+        "bytes": 18751,
+        "file_sha256": "845cc2cb902e2554f2d122e78705d8ccfff0a304ef0d44969c5d0c8e5eb69e63"
+      },
+      "strict_diagnostic": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-diagnostic-v2.json",
+        "bytes": 9837,
+        "file_sha256": "f7b2fbe597511d2455dafc4c43a09069f6735a65a0ee1ffa2c1f5a0061d8874a",
+        "payload_utf8_bytes": 8250,
+        "payload_sha256": "95e52bd6a1f4bd0d13689adde14f6dea91276c9d98dc39fceb3f8d42f10903f6"
+      },
+      "bundle_zip": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-generator-bundle.zip",
+        "bytes": 24992214,
+        "file_sha256": "c997705bbd440d981857100070f7637a8d0f897f0e68f8106db7c3d1afe3b3f7"
+      },
+      "bundle_manifest": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-generator-bundle\\evidence\\bundle-manifest.json",
+        "bytes": 367298,
+        "file_sha256": "4647f01f44c4ead136aaff817235ea1239ae5642830d523cb70ad7877242624c"
+      },
+      "bundle_artifact_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-generator-bundle-artifact-evidence.json",
+        "bytes": 4963,
+        "file_sha256": "181255a6a2837236dfd4b5ec2abf7fe1a26eda63ce5d906268c039f9ae6dedc2"
+      },
+      "reproducibility_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-reproducibility-evidence.json",
+        "bytes": 26732,
+        "file_sha256": "b06d909bd09071fa30048ebc23fe9b6d75783de843b83b7d428759f5b4ab4d32",
+        "payload_utf8_bytes": 20406,
+        "payload_sha256": "f69f0b38395fa166aaf4c24d4455f371a559df64f771722c38d7ffe9b62c7b51"
+      },
+      "final_replay_archive": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-final-replay.tar.gz",
+        "bytes": 170425633,
+        "file_sha256": "ac6c1ae5dbf519a6c63b4671a56e86013106a487ceeb9e13bf786c9a18691374"
+      },
+      "busybox_artifact": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\4a203e57-e1e1-4c9f-a7fe-ad86d2c49149\\files\\arm64-vnext-2026-08-31-v1-busybox-bootstrap-tools-final.exe",
+        "bytes": 336384,
+        "file_sha256": "4e510e35e642a32cc6b5a0e676e78513c91108df6143f33737ecf5c3eeeb0369"
+      },
+      "busybox_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\4a203e57-e1e1-4c9f-a7fe-ad86d2c49149\\files\\arm64-vnext-2026-08-31-v1-busybox-bootstrap-evidence-final-v2.json",
+        "bytes": 54283,
+        "file_sha256": "b36e429106fc9b2f51ff57921b171ab6410c1c8347c31cdb226420012d7fc658",
+        "payload_utf8_bytes": 32708,
+        "payload_sha256": "697d0d91b5dc2c9abaa0ff1ae964ce442bacc74dffd1e16d0a311550dd060cc2"
+      }
+    },
+    "canonical_seal_replay": {
+      "boundary": true,
+      "graph": true,
+      "ancestry": true,
+      "artifact_definition": true,
+      "input_provenance": true,
+      "branch_prefix_amendment": true,
+      "verifier_controls": true,
+      "live_readback": true,
+      "generator_input_ledger": true,
+      "source_preaudit": true,
+      "candidate_context": true,
+      "strict_diagnostic": true,
+      "reproducibility_evidence": true,
+      "busybox_evidence": true
+    },
+    "target": {
+      "repository": "crutkas/msys2-runtime",
+      "worktree": "D:\\copilot-worktrees\\msys2-runtime\\crutkas-fantastic-meme",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "merge_base": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "candidate_commit_count": 0,
+      "staged_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "unstaged_paths": [],
+      "untracked_paths": [],
+      "staged_entries": [
+        {
+          "mode": "100644",
+          "blob": "813e45d82ac6804d5a870dc62291646cee30773f",
+          "path": ".github/workflows/build.yaml"
+        },
+        {
+          "mode": "100755",
+          "blob": "ef8cc86e39d743c31a89a49ac61f034646487f88",
+          "path": "winsup/autogen.sh"
+        },
+        {
+          "mode": "100755",
+          "blob": "473548bc41809af958cac0ccc97db2a47a749905",
+          "path": "winsup/tests/autogen-contract.sh"
+        }
+      ],
+      "patch_reconstruction_exact": true,
+      "source_preaudit_bound": true
+    },
+    "input_and_dependency_audit": {
+      "required_input_count": 78,
+      "unique_required_input_count": 78,
+      "strict_context_count": 78,
+      "strict_context_ids_equal_ledger": true,
+      "strict_context_hashes_equal_ledger": true,
+      "fresh_generators_are_node_outputs_not_external_inputs": true,
+      "busybox_is_frozen_graph_dependency": true,
+      "busybox_sha256": "4e510e35e642a32cc6b5a0e676e78513c91108df6143f33737ecf5c3eeeb0369",
+      "old_generator_or_mutable_latest_consumed_as_declared_input": false
+    },
+    "source_audit": {
+      "complete_three_path_diff_reviewed": true,
+      "override_safe_quoted_autogen": true,
+      "literal_space_and_dollar_contract": true,
+      "exit_status_propagation_fail_closed": true,
+      "focused_contract_passed": true,
+      "ci_orders_contract_before_autogen": true,
+      "ci_parallelism": "-j20",
+      "source_blockers": []
+    },
+    "artifact_and_reproducibility_audit": {
+      "bundle_zip_sha256": "c997705bbd440d981857100070f7637a8d0f897f0e68f8106db7c3d1afe3b3f7",
+      "manifest_entries": 2048,
+      "manifest_bytes": 72694307,
+      "recomputed_tree_sha256": "2cc802ad27ebe3da884577262a553e0579532c1c29db5ec0aaa08d55eeab977d",
+      "all_manifest_entries_match_directory": true,
+      "zip_entries": 2049,
+      "zip_paths_unique_and_safe": true,
+      "zip_bytes_equal_directory": true,
+      "zip_order_sorted": true,
+      "zip_fixed_timestamp": "2013-07-29T22:55:24",
+      "zip_modes": [
+        "100644",
+        "100755"
+      ],
+      "final_replay_entries": 9609,
+      "final_replay_entries_unique_and_safe": true,
+      "final_replay_regular_files_readable": 8964,
+      "key_replay_members_match_frozen_inputs": true,
+      "dual_generation_runs": [
+        {
+          "build": "F",
+          "exit_code": 0,
+          "elapsed_ms": 2683
+        },
+        {
+          "build": "G",
+          "exit_code": 0,
+          "elapsed_ms": 2692
+        }
+      ],
+      "ten_outputs_byte_identical": true,
+      "protected_file_drift_count": 0,
+      "autom4te_cache_count": 0,
+      "invalid_make_path_token_count": 0,
+      "space_literal_dollar_relocation_pass": true,
+      "devices_replay_sha256": "7072cba98dcd53996f0e8f5d82cc31884bcf30132793bd84143df0dcca9b4a0d",
+      "devices_replay_matches_tracked": true,
+      "pe_files": 118,
+      "all_pe_machine_0xAA64": true,
+      "all_recorded_import_lists_independently_parsed_and_matched": true,
+      "native_process_attestations": {
+        "bison_launcher": "native-arm64 exit 0",
+        "sprut_real": "native-arm64 expected usage exit 1"
+      },
+      "hosted_validation": {
+        "scope": "x86_64-pc-cygwin only; no ARM64 runtime DLL or ABI claim",
+        "configure_exit_code": 0,
+        "configure_elapsed_ms": 55651,
+        "build_command": "make -j20",
+        "build_exit_code": 0,
+        "build_elapsed_ms": 488847,
+        "install_exit_code": 0,
+        "install_elapsed_ms": 27872,
+        "installed_files": 321,
+        "installed_bytes": 47738700
+      },
+      "limitations_assessed_nonblocking_except_dependency_closure": [
+        "Three unapplied m4 patches affect nonessential tests/Cygwin behavior; required native m4 executable passed.",
+        "m4 install stopped at an upstream pthread-linked test helper; the required executable was staged and validated.",
+        "Reused Autoconf man pages are non-executable documentation; fresh runtime/frozen trees were installed.",
+        "Fresh Sprut differs from bootstrap, but both are retained and fresh Sprut/Shilka reproduce exact devices.cc.",
+        "Bison fallback strings are overridden by relocatable launcher environment.",
+        "Short-lived direct processes lack stable module capture, but all images have independently matched AA64 PE/import evidence and the recurring launcher plus Sprut have native process attestations.",
+        "Focused generator, relocation, reproducibility, devices, and hosted build/install validation is adequate despite not running every upstream suite."
+      ],
+      "blocking_dependency_closure": {
+        "id": "generator_bundle_missing_make_runtime_dependency",
+        "severity": "blocking",
+        "component": "tools/make.exe",
+        "component_sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9",
+        "component_pe_machine": "0xAA64",
+        "missing_import": "libintl-8.dll",
+        "admitted_dependency": {
+          "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+          "bytes": 268288,
+          "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "bundle_inventory": {
+          "manifested_files": 2048,
+          "dependency_present": false,
+          "manifest_sha256": "4647f01f44c4ead136aaff817235ea1239ae5642830d523cb70ad7877242624c",
+          "tree_sha256_excluding_manifest": "2cc802ad27ebe3da884577262a553e0579532c1c29db5ec0aaa08d55eeab977d"
+        },
+        "independent_execution": {
+          "command": "tools\\make.exe --version",
+          "environment": "PATH limited to bundle bin/libexec/runtime/bin/tools plus Windows System32; SystemRoot/WINDIR retained",
+          "process_started": true,
+          "exit_code_signed": -1073741515,
+          "exit_code_hex": "0xC0000135",
+          "status": "STATUS_DLL_NOT_FOUND",
+          "stdout": "",
+          "stderr": ""
+        },
+        "control_execution": {
+          "environment": "inherited host PATH containing github-copilot-git-2.53.0-4\\clangarm64\\bin",
+          "exit_code": 0,
+          "reported_version": "GNU Make 4.4.1; Built for aarch64-w64-mingw32",
+          "ambient_dependency_path": "C:\\Users\\crutkasLocal\\AppData\\Local\\github-copilot-git-2.53.0-4\\clangarm64\\bin\\libintl-8.dll",
+          "ambient_dependency_sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "impact": "The claimed relocatable generator/support bundle cannot launch its bundled make control from its documented closure. Success depends on an ambient mutable installed-toolchain PATH outside the bundle, so the bundle and make -j20 evidence do not satisfy the digest-bound relocatable dependency-closure gate."
+      }
+    },
+    "control_audit": {
+      "strict_diagnostic_checks_pass": true,
+      "strict_diagnostic_failures": [],
+      "strict_diagnostic_authorization_false_without_fresh_verdict": true,
+      "live_classification_drift": false,
+      "live_effective_ambiguous": 0,
+      "runtime_vnext_pr_present": false,
+      "review_requests_or_queue_or_auto_merge_or_merge_or_stack_present": false,
+      "issuer_compatible_go_possible": false,
+      "issuer_expected_rejection": "independent review did not grant staged GO"
+    },
+    "findings": [
+      {
+        "id": "generator_bundle_missing_make_runtime_dependency",
+        "severity": "blocking",
+        "component": "tools/make.exe",
+        "component_sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9",
+        "component_pe_machine": "0xAA64",
+        "missing_import": "libintl-8.dll",
+        "admitted_dependency": {
+          "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+          "bytes": 268288,
+          "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "bundle_inventory": {
+          "manifested_files": 2048,
+          "dependency_present": false,
+          "manifest_sha256": "4647f01f44c4ead136aaff817235ea1239ae5642830d523cb70ad7877242624c",
+          "tree_sha256_excluding_manifest": "2cc802ad27ebe3da884577262a553e0579532c1c29db5ec0aaa08d55eeab977d"
+        },
+        "independent_execution": {
+          "command": "tools\\make.exe --version",
+          "environment": "PATH limited to bundle bin/libexec/runtime/bin/tools plus Windows System32; SystemRoot/WINDIR retained",
+          "process_started": true,
+          "exit_code_signed": -1073741515,
+          "exit_code_hex": "0xC0000135",
+          "status": "STATUS_DLL_NOT_FOUND",
+          "stdout": "",
+          "stderr": ""
+        },
+        "control_execution": {
+          "environment": "inherited host PATH containing github-copilot-git-2.53.0-4\\clangarm64\\bin",
+          "exit_code": 0,
+          "reported_version": "GNU Make 4.4.1; Built for aarch64-w64-mingw32",
+          "ambient_dependency_path": "C:\\Users\\crutkasLocal\\AppData\\Local\\github-copilot-git-2.53.0-4\\clangarm64\\bin\\libintl-8.dll",
+          "ambient_dependency_sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+        },
+        "impact": "The claimed relocatable generator/support bundle cannot launch its bundled make control from its documented closure. Success depends on an ambient mutable installed-toolchain PATH outside the bundle, so the bundle and make -j20 evidence do not satisfy the digest-bound relocatable dependency-closure gate."
+      }
+    ],
+    "final_verdict": {
+      "verdict": "NO-GO",
+      "authorized_node_ids": [],
+      "authorized_phases": [],
+      "node_authorizations": [],
+      "authorization_granted": false,
+      "session_start_go": false,
+      "before_commit_go": false,
+      "push_go": false,
+      "pr_go": false,
+      "artifact_construction_go": false,
+      "release_admission_go": false,
+      "blocking_findings": [
+        {
+          "id": "generator_bundle_missing_make_runtime_dependency",
+          "severity": "blocking",
+          "component": "tools/make.exe",
+          "component_sha256": "e388fdf451d2d715cafba6b6c3f392f4bd6334102433a49b4ff2edd763072ed9",
+          "component_pe_machine": "0xAA64",
+          "missing_import": "libintl-8.dll",
+          "admitted_dependency": {
+            "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+            "bytes": 268288,
+            "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+          },
+          "bundle_inventory": {
+            "manifested_files": 2048,
+            "dependency_present": false,
+            "manifest_sha256": "4647f01f44c4ead136aaff817235ea1239ae5642830d523cb70ad7877242624c",
+            "tree_sha256_excluding_manifest": "2cc802ad27ebe3da884577262a553e0579532c1c29db5ec0aaa08d55eeab977d"
+          },
+          "independent_execution": {
+            "command": "tools\\make.exe --version",
+            "environment": "PATH limited to bundle bin/libexec/runtime/bin/tools plus Windows System32; SystemRoot/WINDIR retained",
+            "process_started": true,
+            "exit_code_signed": -1073741515,
+            "exit_code_hex": "0xC0000135",
+            "status": "STATUS_DLL_NOT_FOUND",
+            "stdout": "",
+            "stderr": ""
+          },
+          "control_execution": {
+            "environment": "inherited host PATH containing github-copilot-git-2.53.0-4\\clangarm64\\bin",
+            "exit_code": 0,
+            "reported_version": "GNU Make 4.4.1; Built for aarch64-w64-mingw32",
+            "ambient_dependency_path": "C:\\Users\\crutkasLocal\\AppData\\Local\\github-copilot-git-2.53.0-4\\clangarm64\\bin\\libintl-8.dll",
+            "ambient_dependency_sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+          },
+          "impact": "The claimed relocatable generator/support bundle cannot launch its bundled make control from its documented closure. Success depends on an ambient mutable installed-toolchain PATH outside the bundle, so the bundle and make -j20 evidence do not satisfy the digest-bound relocatable dependency-closure gate."
+        }
+      ],
+      "restrictions": [
+        "No commit is authorized, including the otherwise frozen staged tree.",
+        "No source drift, generated-artifact commit, runtime-generator output claim, other node/repository mutation, push, PR, stack, merge, artifact construction, or release admission is authorized.",
+        "Repair the frozen bundle by including the exact admitted ARM64 libintl-8.dll dependency (or removing make.exe if the governing contract is explicitly revised), rebuild the bundle and evidence reproducibly, and request a fresh before_commit review."
+      ],
+      "reason": "Source, identity, input, reproducibility, native-architecture, focused-generation, and hosted validation checks otherwise pass. Authorization is withheld because the frozen generator bundle is not relocatable/self-contained: its included make.exe has an imported DLL absent from the manifest, directory, and ZIP and fails outside the ambient toolchain PATH."
+    }
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 23761,
+    "payload_sha256": "831b338797038eb6d03f6caaf32b67721089f6d6559107e8da8cce8b50f99429"
+  }
+}

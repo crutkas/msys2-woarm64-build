@@ -1,0 +1,595 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-independent-phase0-review-v2",
+    "epoch": "2026-08-31-v1",
+    "reviewed_at": "2026-09-01T00:55:00Z",
+    "review_scope": {
+      "node_id": "runtime-generator",
+      "phase": "before_commit",
+      "candidate_revision": 2,
+      "mode": "independent read-only replacement review",
+      "supersedes_for_authorization": {
+        "file_sha256": "0e88bb5e997b2a437faada948376fb9559a23ecb653567dc3111efd1718057d7",
+        "payload_sha256": "831b338797038eb6d03f6caaf32b67721089f6d6559107e8da8cce8b50f99429",
+        "preserved_unchanged": true,
+        "reason": "Candidate revision 2 repairs the sole missing-libintl runtime-closure blocker while preserving the audited source and index."
+      }
+    },
+    "authorities": {
+      "boundary": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+        "bytes": 984579,
+        "file_sha256": "97ce5396ff9f581c02f7207413d9803dbd219f6fa1764c87e73f2b1c4ed7b68d",
+        "payload_utf8_bytes": 681690,
+        "payload_sha256": "459a0086a712f9075042ce42ef92736bb05932f25670e7e11ee5e4a5fedfb2e8"
+      },
+      "graph": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-session-review.json",
+        "bytes": 17669,
+        "file_sha256": "5d581d49b1ed3df931cd63048058bb8da9760f5c900698d49e6b6e05a601695a",
+        "payload_utf8_bytes": 13832,
+        "payload_sha256": "ce347a909f230fa527783b856725d9ed38946c6f16769bfc75be905b53820a0b"
+      },
+      "ancestry": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+        "bytes": 237790,
+        "file_sha256": "9aa7f43125c638751cfd805a4c318355db6702ea3cc8c772435feefbd04e30ac",
+        "payload_utf8_bytes": 178012,
+        "payload_sha256": "80bac27573f29f1553c1aa3073d01d921e38834341bc3217211cd72227cfc713"
+      },
+      "artifact_definition": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-first-artifact-definition.json",
+        "bytes": 36207,
+        "file_sha256": "f714a7f6cfd3302330351f436f96f9c10046c55a1fdd0a045c5f58d9c4fe9b73",
+        "payload_utf8_bytes": 28207,
+        "payload_sha256": "099e4e51a0241c90d86c3f7f4e4b89b54bc173402d390d6a085006b8756fe785"
+      },
+      "input_provenance": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+        "bytes": 302758,
+        "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+        "payload_utf8_bytes": 235310,
+        "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+      },
+      "branch_prefix_amendment": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+        "bytes": 2835,
+        "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+        "payload_utf8_bytes": 2179,
+        "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+      },
+      "verifier": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2.py",
+        "bytes": 55656,
+        "file_sha256": "09d8c6b18fe0e5c5fcc160d561055e9eb4b350f491a9a9c2c020b6d825bdb0a1"
+      },
+      "verdict_issuer": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-issue-phase0-verdict.py",
+        "bytes": 13153,
+        "file_sha256": "2cb2e1138727765964f7fd810b1e5f32c1b605ada59fd5fae8ad53997201df0d"
+      },
+      "verifier_controls": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls.json",
+        "bytes": 67533,
+        "file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+        "payload_utf8_bytes": 50294,
+        "payload_sha256": "1e57aa96bab6a32728d199fd15b52d87c963738258df61ea531416838ca43de5"
+      },
+      "live_readback": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-live-readback-v7.json",
+        "bytes": 4302,
+        "file_sha256": "67de99cbc59c4fd7a1c869d1e9198f7671e3451d5396475fc700782f03dcb15a",
+        "payload_utf8_bytes": 2794,
+        "payload_sha256": "349e2b0e3e03955358c3b59f602e7d15fa2d9609fb71a0f686cb242e952389a6"
+      }
+    },
+    "reviewed_authorities": {
+      "boundary": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-boundary.json",
+        "bytes": 984579,
+        "file_sha256": "97ce5396ff9f581c02f7207413d9803dbd219f6fa1764c87e73f2b1c4ed7b68d",
+        "payload_utf8_bytes": 681690,
+        "payload_sha256": "459a0086a712f9075042ce42ef92736bb05932f25670e7e11ee5e4a5fedfb2e8"
+      },
+      "graph": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-session-review.json",
+        "bytes": 17669,
+        "file_sha256": "5d581d49b1ed3df931cd63048058bb8da9760f5c900698d49e6b6e05a601695a",
+        "payload_utf8_bytes": 13832,
+        "payload_sha256": "ce347a909f230fa527783b856725d9ed38946c6f16769bfc75be905b53820a0b"
+      },
+      "ancestry": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-ancestry-report.json",
+        "bytes": 237790,
+        "file_sha256": "9aa7f43125c638751cfd805a4c318355db6702ea3cc8c772435feefbd04e30ac",
+        "payload_utf8_bytes": 178012,
+        "payload_sha256": "80bac27573f29f1553c1aa3073d01d921e38834341bc3217211cd72227cfc713"
+      },
+      "artifact_definition": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-first-artifact-definition.json",
+        "bytes": 36207,
+        "file_sha256": "f714a7f6cfd3302330351f436f96f9c10046c55a1fdd0a045c5f58d9c4fe9b73",
+        "payload_utf8_bytes": 28207,
+        "payload_sha256": "099e4e51a0241c90d86c3f7f4e4b89b54bc173402d390d6a085006b8756fe785"
+      },
+      "input_provenance": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+        "bytes": 302758,
+        "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+        "payload_utf8_bytes": 235310,
+        "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+      },
+      "branch_prefix_amendment": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-app-branch-prefix-amendment.json",
+        "bytes": 2835,
+        "file_sha256": "e477de0e24d84c40843a887a0b5b2268257e6373faa1c22ea6490227fdc93a8c",
+        "payload_utf8_bytes": 2179,
+        "payload_sha256": "c1fe968983a338ca9ab76b91aa7f9063f3a4897d13a02a8200e4846582988615"
+      },
+      "verifier": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2.py",
+        "bytes": 55656,
+        "file_sha256": "09d8c6b18fe0e5c5fcc160d561055e9eb4b350f491a9a9c2c020b6d825bdb0a1"
+      },
+      "verdict_issuer": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-issue-phase0-verdict.py",
+        "bytes": 13153,
+        "file_sha256": "2cb2e1138727765964f7fd810b1e5f32c1b605ada59fd5fae8ad53997201df0d"
+      },
+      "verifier_controls": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls.json",
+        "bytes": 67533,
+        "file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+        "payload_utf8_bytes": 50294,
+        "payload_sha256": "1e57aa96bab6a32728d199fd15b52d87c963738258df61ea531416838ca43de5"
+      },
+      "live_readback": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-live-readback-v7.json",
+        "bytes": 4302,
+        "file_sha256": "67de99cbc59c4fd7a1c869d1e9198f7671e3451d5396475fc700782f03dcb15a",
+        "payload_utf8_bytes": 2794,
+        "payload_sha256": "349e2b0e3e03955358c3b59f602e7d15fa2d9609fb71a0f686cb242e952389a6"
+      }
+    },
+    "supplemental_evidence": {
+      "generator_input_ledger": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76bcf18e-f793-4bd8-93f5-b12b37f0e5fe\\files\\arm64-vnext-2026-08-31-v1-generator-input-ledger-v2.json",
+        "bytes": 168053,
+        "file_sha256": "14fea77370d75b50e826adc0c466f5a4ffc540c3412fe276f426fca877b57761",
+        "payload_utf8_bytes": 137219,
+        "payload_sha256": "099f466ebb15fe0434c14d0712085717162c1cf96294e0afe2c8b236d34bed6a"
+      },
+      "source_preaudit": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-source-preaudit.json",
+        "bytes": 6130,
+        "file_sha256": "cb76badf249ea5b2844b5fab608072edb90cc00f3a949959c0cba112e0bbd71b",
+        "payload_utf8_bytes": 4529,
+        "payload_sha256": "91bf390d780c4c26597bc69e0e476f47c81ad2239ff5512a7b450925cf004288"
+      },
+      "revision2_index": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-revision2-artifact-index.json",
+        "bytes": 7047,
+        "file_sha256": "2895e5c4069507315ef821ac2987360504f9b8634ca6114d646503b9933db672",
+        "payload_utf8_bytes": 5728,
+        "payload_sha256": "c52686d5d32e49c96f69df383bc66ef41587d18f6348e90c7093b18f0bf314d9"
+      },
+      "patch": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-before-commit.patch",
+        "bytes": 3204,
+        "file_sha256": "0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8"
+      },
+      "strict_verifier_context": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-verifier-context-v2.json",
+        "bytes": 16746,
+        "file_sha256": "1c14ea9aeb2ce3797650cc1a4e0c270d70eb8003c1f6c4a325db3175a30f9223",
+        "sealed": false,
+        "role": "strict candidate adapter"
+      },
+      "strict_diagnostic": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-diagnostic-v3.json",
+        "bytes": 9843,
+        "file_sha256": "2f2ec26efe0b7b59e6c60db7c0d363a0caff2b6a57ae660a29c12d79f7e05c14",
+        "payload_utf8_bytes": 8256,
+        "payload_sha256": "e9b791b12c978aca4e1741141fe75b8e3d678c244951f12163abe51e34fd007a"
+      },
+      "observed_verifier_controls_drift": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls.json",
+        "bytes": 67538,
+        "file_sha256": "d11d2a1df90152e2f75efd6daddff072a986f07afdb3d7f87d62695ee47359a5",
+        "payload_utf8_bytes": 50299,
+        "payload_sha256": "1eabfd50d8d93566266a93bf35b4b596a585e21d14bbe6fc6f87617673b0b51b",
+        "differs_from_frozen_authority": true
+      },
+      "bundle_zip": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle.zip",
+        "bytes": 24478030,
+        "file_sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+      },
+      "bundle_zip_second": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-second.zip",
+        "bytes": 24478030,
+        "file_sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+      },
+      "bundle_manifest": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\bundle-manifest-v2.json",
+        "bytes": 367481,
+        "file_sha256": "23dfc14a6b0e68d9f4c943ea131ad05de9e171628ac54df8a4ff60ac9c1780e2",
+        "manifested_files": 2049,
+        "tree_sha256_excluding_manifest": "64a8141e18f5ac28c0f4f83f677f9cf653db90d63ae6bc415ba356a4a3155b48"
+      },
+      "artifact_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-artifact-evidence.json",
+        "bytes": 4344,
+        "file_sha256": "39ed03205a75ffbc41ee23c43bec37b8ac1a34f7986c022362a60dff635cfbbd",
+        "payload_utf8_bytes": 3545,
+        "payload_sha256": "ff0204dba43a8533a034667ea09b7ab7ef2e13b971815afa974dc3fb9229c361"
+      },
+      "reproducibility_evidence": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-reproducibility-evidence.json",
+        "bytes": 26919,
+        "file_sha256": "51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+        "payload_utf8_bytes": 22080,
+        "payload_sha256": "c290c8c92e5256a1d71cadf4b9248370d1c632a243e76a8d0737395048574204"
+      },
+      "rich_candidate_context": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-before-commit-candidate-context.json",
+        "bytes": 10249,
+        "file_sha256": "ac94c74783924736e370e2ee196ce326a1004a08f3f09b86eaaf418ed7ceef4e",
+        "payload_utf8_bytes": 8571,
+        "payload_sha256": "a2751d04a15135f3dd90f640e4e396db7c81041c4420140a0b11684f9d5cac10"
+      },
+      "continuity": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-continuity.json",
+        "bytes": 16125,
+        "file_sha256": "228e08cc4a6d6480bd6dd126256eab1ed790894b8b94f2b433b41f2f5fab5065",
+        "payload_utf8_bytes": 13119,
+        "payload_sha256": "476d2b497fa650309a94b25890dbfc6ba0b1343b8860e224a5a3f2744a16020d"
+      },
+      "strict_runtime_closure": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\strict-runtime-closure-v2.json",
+        "bytes": 29947,
+        "file_sha256": "ea900351564d58cb9347f1ef3e3e2d9e35ce7da3fd5d3330a82ae7be87b9ce53",
+        "payload_utf8_bytes": 27361,
+        "payload_sha256": "cfab704e6281abb3c071392e3c7077fd685654aa744ef1e19e6fd3f7dd1408d9"
+      },
+      "pe_import_closure": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\pe-import-closure-v2.json",
+        "bytes": 377527,
+        "file_sha256": "58f8b45acbdaeefda7f669ce0e765af7c06c8dc6d0c3503617d9df0ff01e0c2f"
+      },
+      "make_process_attestation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\process-attestation-make-v2.json",
+        "bytes": 14332,
+        "file_sha256": "eb6615eb97fbd35ad767ee0289f246e0b83bf3ddbaf754051d7565ee5023a60d"
+      },
+      "dual_generation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-repro\\dual-generation-validation-v2.json",
+        "bytes": 13054,
+        "file_sha256": "16a6d0fa6f3ba3a14431f0cab663d0715da0355507af91351d872eea97b903e0",
+        "payload_utf8_bytes": 10203,
+        "payload_sha256": "56266e73bd597cfe83bd1a7cbadd1bf78bd84d555abf575fa55a1a7c6971b79a"
+      },
+      "space_dollar_relocation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\space-dollar-relocation-validation-v2.json",
+        "bytes": 5510,
+        "file_sha256": "62f22037a7409c82f89be04331a1d2844d9bf4133fdac13a6a0f3e54c34b93eb",
+        "payload_utf8_bytes": 4452,
+        "payload_sha256": "2c19943a671561f6f9036c8f74e8b915049d7912039678d4ac4853814583cf1e"
+      },
+      "cocom_replay": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\cocom-replay-v2.json",
+        "bytes": 8504,
+        "file_sha256": "b3629533e767eec5dc4435b836494a478356ce3a969b03219e862f75ee5e4196",
+        "payload_utf8_bytes": 6759,
+        "payload_sha256": "03b6472b8efc0de6e7efbbf8c55495b230a2feb4a9d0b331c30af7b6f922c80e"
+      },
+      "focused_contracts": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\focused-contracts-v2.json",
+        "bytes": 1896,
+        "file_sha256": "f4d14676176055a0df1d5e4bac18c5bd771cc0d45867fab1a8f7fb62ca348de9",
+        "payload_utf8_bytes": 1436,
+        "payload_sha256": "d60735e9d0d22faaa0df8e266ec51411133a1acea4255ebd0b58a713d1ff9396"
+      },
+      "hosted_validation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\hosted-validation-v2.json",
+        "bytes": 66661,
+        "file_sha256": "bbea5ffddbd967ec2be42772146d4fea09f73f832fd12d7fad5e7cb0ef25ab80",
+        "payload_utf8_bytes": 48396,
+        "payload_sha256": "4443902b0c4061e6d31afb998044c2b1a54de64313d1fc87dda37bdfde7d5d5f"
+      },
+      "final_replay_archive": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-final-replay.tar.gz",
+        "bytes": 180250658,
+        "file_sha256": "a8392f840591d4af7534a2ce6ca747b7422c9d15d1312c6a1131b3bc2e45cb04",
+        "readable_entries": 2109
+      },
+      "busybox_artifact": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\4a203e57-e1e1-4c9f-a7fe-ad86d2c49149\\files\\arm64-vnext-2026-08-31-v1-busybox-bootstrap-tools-final.exe",
+        "bytes": 336384,
+        "file_sha256": "4e510e35e642a32cc6b5a0e676e78513c91108df6143f33737ecf5c3eeeb0369"
+      }
+    },
+    "canonical_seal_replay": {
+      "boundary": true,
+      "graph": true,
+      "ancestry": true,
+      "artifact_definition": true,
+      "input_provenance": true,
+      "branch_prefix_amendment": true,
+      "verifier_controls": false,
+      "live_readback_v7": true,
+      "generator_input_ledger": true,
+      "source_preaudit": true,
+      "revision2_index": true,
+      "strict_diagnostic_v3": true,
+      "artifact_evidence": true,
+      "reproducibility_evidence": true,
+      "rich_candidate_context": true,
+      "continuity": true,
+      "strict_runtime_closure": true,
+      "dual_generation": true,
+      "space_dollar_relocation": true,
+      "cocom_replay": true,
+      "focused_contracts": true,
+      "hosted_validation": true
+    },
+    "target": {
+      "repository": "crutkas/msys2-runtime",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "repo_path": "D:\\copilot-worktrees\\msys2-runtime\\crutkas-fantastic-meme",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "merge_base": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "staged_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "candidate_commit_count": 0,
+      "staged_entries": [
+        "100644 813e45d82ac6804d5a870dc62291646cee30773f .github/workflows/build.yaml",
+        "100755 ef8cc86e39d743c31a89a49ac61f034646487f88 winsup/autogen.sh",
+        "100755 473548bc41809af958cac0ccc97db2a47a749905 winsup/tests/autogen-contract.sh"
+      ],
+      "unstaged_paths": [],
+      "untracked_paths": [],
+      "repository_mutation_by_review": false
+    },
+    "input_and_dependency_audit": {
+      "required_input_count": 78,
+      "unique_required_input_count": 78,
+      "strict_context_count": 78,
+      "strict_context_ids_equal_ledger": true,
+      "strict_context_hashes_equal_ledger": true,
+      "fresh_generators_are_node_outputs_not_external_inputs": true,
+      "busybox_is_frozen_graph_dependency": true,
+      "busybox_sha256": "4e510e35e642a32cc6b5a0e676e78513c91108df6143f33737ecf5c3eeeb0369",
+      "admitted_libintl": {
+        "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+        "bytes": 268288,
+        "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+        "bundle_path": "runtime/bin/libintl-8.dll"
+      },
+      "old_generator_or_mutable_latest_consumed_as_declared_input": false,
+      "ambient_clangarm64_or_msys_path_used_by_strict_bundle_runs": false
+    },
+    "source_audit": {
+      "bound_source_preaudit": true,
+      "complete_diff_rechecked": true,
+      "patch_reconstruction_from_base_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "patch_reconstruction_matches_index": true,
+      "exact_modes_and_blobs_match": true,
+      "override_safe_quoted_autogen": true,
+      "literal_space_and_dollar_contract": true,
+      "tool_failure_propagation": true,
+      "ci_focus_contract_before_build": true,
+      "ci_build_parallelism": "-j20",
+      "hidden_unrelated_source_change": false
+    },
+    "artifact_and_reproducibility_audit": {
+      "bundle": {
+        "manifested_files_excluding_manifest": 2049,
+        "manifest_paths_sizes_hashes_match_directory": true,
+        "tree_sha256_excluding_manifest": "64a8141e18f5ac28c0f4f83f677f9cf653db90d63ae6bc415ba356a4a3155b48",
+        "zip_entries_including_manifest": 2050,
+        "zip_directory_exact_match": true,
+        "two_zips_byte_identical": true,
+        "fixed_zip_timestamp": "2013-07-29T20:15:24",
+        "zip_sorted_unique_paths": true
+      },
+      "pe_and_runtime_closure": {
+        "pe_count": 119,
+        "all_machine_0xAA64": true,
+        "independently_parsed_import_edges": 1348,
+        "bundle_edges": 57,
+        "system32_edges": 276,
+        "api_set_edges": 1015,
+        "unresolved_edges": 0,
+        "make_imports_libintl": true,
+        "libintl_imports_bundle_libiconv": true,
+        "negative_control_exit_signed": -1073741515,
+        "negative_control_exit_hex": "0xC0000135",
+        "isolated_repaired_make_exit_code": 0,
+        "isolated_repaired_make_version": "GNU Make 4.4.1 aarch64-w64-mingw32",
+        "native_make_process_machine": "0xAA64",
+        "native_make_process_machine_type_info": "0xAA64",
+        "native_make_iswow64_process": "0x0000",
+        "native_machine": "0xAA64",
+        "attested_bundle_modules": [
+          "tools/make.exe",
+          "runtime/bin/libintl-8.dll",
+          "runtime/bin/libiconv-2.dll"
+        ],
+        "attested_module_identity_mismatches": [],
+        "strict_smoke_exit_failures": []
+      },
+      "generation": {
+        "dual_runs": [
+          "build-h",
+          "build-i"
+        ],
+        "elapsed_seconds": [
+          2.654,
+          2.262
+        ],
+        "declared_outputs": 10,
+        "all_ten_byte_identical": true,
+        "autom4te_cache_count": 0,
+        "invalid_make_path_tokens": [],
+        "protected_file_records": 20,
+        "protected_file_drift": false,
+        "space_literal_dollar_relocation_pass": true,
+        "fresh_sprut_shilka_msta_replay_pass": true,
+        "devices_cc_sha256": "7072cba98dcd53996f0e8f5d82cc31884bcf30132793bd84143df0dcca9b4a0d",
+        "hosted_focused_contract_exit": 0,
+        "native_focused_contract_exit": 0
+      },
+      "hosted_validation": {
+        "scope": "x86_64 hosted source/build/install control only",
+        "configure_exit": 0,
+        "configure_elapsed_seconds": 61.231,
+        "build_command": "make -j20",
+        "build_exit": 0,
+        "build_elapsed_seconds": 506.826,
+        "install_command": "make -j20 DESTDIR=<session v2 install> install",
+        "install_exit": 0,
+        "install_elapsed_seconds": 26.098,
+        "installed_file_count": 321,
+        "installed_total_bytes": 32796170,
+        "installed_tree_sha256": "4d86a2a56e11a76b919ced2172bdd8125aaf4318d54b2e9bbeed7c2dd2dbd474",
+        "file_identity_mismatches": []
+      },
+      "final_replay": {
+        "readable_entries": 2109,
+        "unique_entries": 2109,
+        "unsafe_paths": [],
+        "hardlinks": [],
+        "embedded_patch_matches": true,
+        "embedded_reproducibility_evidence_matches": true,
+        "embedded_bundle_manifest_matches": true
+      },
+      "abi_or_runtime_dll_claim": false,
+      "product_or_release_claim": false
+    },
+    "recorded_limitations_assessment": [
+      {
+        "limitation": "Three nonessential m4 MSYS/Cygwin test patches did not apply.",
+        "gate_effect": "nonblocking",
+        "reason": "They affect nonessential upstream test adaptation, not the required native m4 executable or declared generator outputs."
+      },
+      {
+        "limitation": "The full m4 install target stopped at an upstream pthread-linked test helper.",
+        "gate_effect": "nonblocking",
+        "reason": "The required freshly built m4 binary is retained, hashed, AA64, directly executed, and passes the scoped generator contract; no full upstream test-suite claim is made."
+      },
+      {
+        "limitation": "Autoconf man pages were reused.",
+        "gate_effect": "nonblocking",
+        "reason": "Documentation reuse does not alter executable generator behavior or the declared output contract."
+      },
+      {
+        "limitation": "Fresh Sprut replay differs from the checked-in bootstrap.",
+        "gate_effect": "nonblocking",
+        "reason": "Both are retained and hashed; the fresh generator reproduces its expected outputs and downstream Shilka, Msta, and devices.cc exactly."
+      },
+      {
+        "limitation": "Bison fallback strings remain in generated launchers.",
+        "gate_effect": "nonblocking",
+        "reason": "The override launchers resolve exact bundle paths and pass strict relocation with spaces and a literal dollar sign."
+      },
+      {
+        "limitation": "Short-lived direct generators other than Sprut ended before stable process-attestor sampling.",
+        "gate_effect": "nonblocking",
+        "reason": "Every shipped PE identity and import table is independently measured; strict isolated executions and exact output replay cover behavior without asserting complete transient process capture."
+      },
+      {
+        "limitation": "Full upstream generator suites were not run.",
+        "gate_effect": "nonblocking",
+        "reason": "The fixed gate requires focused source contracts, exact declared-output regeneration, native tool smoke, closure, relocation, and hosted build validation, all of which pass; no broader suite claim is made."
+      },
+      {
+        "limitation": "The first hosted v2 build failed because the signature-verified GNU patch helper was not on PATH.",
+        "gate_effect": "nonblocking",
+        "reason": "The failure and log are retained; the final clean configure, make -j20, and install -j20 run uses the exact admitted helper and passes."
+      },
+      {
+        "limitation": "Hosted install bytes differ from revision 1.",
+        "gate_effect": "nonblocking",
+        "reason": "Revision 2 does not claim equality to revision 1 or product/release identity; its complete 321-file hosted control inventory is internally exact."
+      }
+    ],
+    "control_audit": {
+      "strict_diagnostic_pass": true,
+      "strict_diagnostic_checks_pass": true,
+      "strict_diagnostic_failures": [],
+      "strict_diagnostic_authorization_false_only_without_fresh_verdict": true,
+      "live_classification_drift": false,
+      "live_effective_ambiguous": 0,
+      "runtime_generator_matching_head_pr_count": 0,
+      "vnext_pull_requests": [
+        "crutkas/busybox-w32#4",
+        "crutkas/build-extra#29",
+        "crutkas/msys2-woarm64-build#10"
+      ],
+      "all_matching_head_counts": 1,
+      "review_requests_or_queue_or_auto_merge_or_merge_or_stack_present": false,
+      "continuity_product_matrix_failure_is_diagnostic_only": true,
+      "issuer_compatible_go_expected": false,
+      "issuer_rejection_observed": "independent review authority mismatch: verifier_controls",
+      "issuer_output_created": false
+    },
+    "findings": [
+      {
+        "id": "frozen_verifier_controls_identity_drift",
+        "severity": "blocking",
+        "component": "arm64-vnext-2026-08-31-v1-boundary-verifier-v2-controls.json",
+        "expected": {
+          "bytes": 67533,
+          "file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+          "payload_utf8_bytes": 50294,
+          "payload_sha256": "1e57aa96bab6a32728d199fd15b52d87c963738258df61ea531416838ca43de5"
+        },
+        "observed": {
+          "bytes": 67538,
+          "file_sha256": "d11d2a1df90152e2f75efd6daddff072a986f07afdb3d7f87d62695ee47359a5",
+          "payload_utf8_bytes": 50299,
+          "payload_sha256": "1eabfd50d8d93566266a93bf35b4b596a585e21d14bbe6fc6f87617673b0b51b"
+        },
+        "independent_issuer_result": "Rejected before output creation with independent review authority mismatch: verifier_controls.",
+        "impact": "The current canonical verifier-controls input is not the exact frozen governing authority supplied for this review, so a before_commit authorization cannot be bound or issued even though the runtime-generator source and repaired artifact evidence otherwise pass."
+      }
+    ],
+    "final_verdict": {
+      "verdict": "NO-GO",
+      "authorized_node_ids": [],
+      "authorized_phases": [],
+      "node_authorizations": [],
+      "authorization_granted": false,
+      "session_start_go": false,
+      "before_commit_go": false,
+      "push_go": false,
+      "pr_go": false,
+      "artifact_construction_go": false,
+      "release_admission_go": false,
+      "blocking_findings": [
+        {
+          "id": "frozen_verifier_controls_identity_drift",
+          "severity": "blocking",
+          "expected_file_sha256": "95d907f48397b1c54e426446463e7d2801dcb7a182c39ce7ff520dd71b655463",
+          "observed_file_sha256": "d11d2a1df90152e2f75efd6daddff072a986f07afdb3d7f87d62695ee47359a5",
+          "issuer_output_created": false
+        }
+      ],
+      "restrictions": [
+        "No commit is authorized, including the otherwise frozen staged tree 43aec2ed8555b6f4a9866ae4b8605972062dff6d.",
+        "Any source or index drift, generated-artifact commit, other node or repository mutation, push, PR, review, stack, merge, artifact-construction claim, product claim, release claim, or release admission remains forbidden.",
+        "Restore or republish an exact sealed verifier-controls authority, publish its frozen identity to the reviewer, and request a fresh replacement before_commit review."
+      ],
+      "reason": "The unchanged frozen source and revision-2 artifact repair otherwise pass, but the canonical verifier-controls file no longer matches the exact 95d907f4 governing authority. The exact issuer independently rejects this mismatch and creates no authorization output."
+    }
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 27426,
+    "payload_sha256": "ac298be49cd72e3c478af1a0689dbee15a2d39ded2266e5c7f67936fa607514a"
+  }
+}

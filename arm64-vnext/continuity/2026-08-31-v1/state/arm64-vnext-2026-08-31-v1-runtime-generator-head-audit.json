@@ -1,0 +1,252 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-independent-head-audit-v1",
+    "epoch": "2026-08-31-v1",
+    "audited_at": "2026-09-01T01:03:10Z",
+    "scope": {
+      "node_id": "runtime-generator",
+      "phase": "post_commit_head_audit",
+      "mode": "independent read-only",
+      "grants_phase_authority": false
+    },
+    "target": {
+      "repository": "crutkas/msys2-runtime",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "repo_path": "D:\\copilot-worktrees\\msys2-runtime\\crutkas-fantastic-meme",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "upstream": null,
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "parent_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "parent_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "merge_base": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "commits_above_base": 1,
+      "linear_history": true,
+      "worktree_clean": true,
+      "index_clean": true,
+      "untracked_paths": [],
+      "remote_branch_count": 0,
+      "matching_pull_request_count": 0
+    },
+    "commit_audit": {
+      "subject": "Add ARM64 vNext generator overrides",
+      "subject_exact": true,
+      "freeform_body_lines": [],
+      "trailers": [
+        {
+          "line": "Co-authored-by: Copilot App <223556219+Copilot@users.noreply.github.com>",
+          "count": 1
+        },
+        {
+          "line": "Copilot-Session: 3f55c44f-bca5-4c8a-b24c-0e8b8f0b0151",
+          "count": 1
+        }
+      ],
+      "changed_paths": [
+        ".github/workflows/build.yaml",
+        "winsup/autogen.sh",
+        "winsup/tests/autogen-contract.sh"
+      ],
+      "generated_artifacts_committed": false,
+      "patch": {
+        "bytes": 3204,
+        "sha256": "0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8",
+        "byte_equal_to_reviewed_patch": true
+      },
+      "patch_reconstruction": {
+        "tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+        "matches_commit_tree": true,
+        "entries": [
+          "100644 813e45d82ac6804d5a870dc62291646cee30773f .github/workflows/build.yaml",
+          "100755 ef8cc86e39d743c31a89a49ac61f034646487f88 winsup/autogen.sh",
+          "100755 473548bc41809af958cac0ccc97db2a47a749905 winsup/tests/autogen-contract.sh"
+        ]
+      }
+    },
+    "authority_chain": {
+      "before_commit_review": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\32e67a41-087f-44a8-a3f0-ae12737390f2\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-review-v3.json",
+        "bytes": 18317,
+        "file_sha256": "bd7d6f358583833b76388e9e453ca24735804029a493b0bc1ec3a6ec3c6084e6",
+        "payload_utf8_bytes": 15009,
+        "payload_sha256": "fbeb8c0f9968b002ebcf8a61ad9c033a9e5cb36cc67d80645bf09713e37fb837",
+        "seal_valid": true,
+        "authorized_scope": [
+          {
+            "node_id": "runtime-generator",
+            "phases": [
+              "before_commit"
+            ]
+          }
+        ]
+      },
+      "issuer_verdict": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-phase0-verdict-runtime-generator-before-commit.json",
+        "bytes": 6695,
+        "file_sha256": "ee4bdd0592b689bedece731d384c59854657f459c8bc7e2cfa527ce89922ce22",
+        "payload_utf8_bytes": 5402,
+        "payload_sha256": "9ee51bc55c72438817880434c18dbe85105b480f87cb8430c6e2e959b1c8f9e6",
+        "seal_valid": true
+      },
+      "strict_authorization_receipt": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-runtime-generator-before-commit-authorized.json",
+        "bytes": 12365,
+        "file_sha256": "00711096c30d6e3aa6c0d5ef05c41ae0af252e604adb4924842d13e376801cc7",
+        "payload_utf8_bytes": 10599,
+        "payload_sha256": "20b15d600fce69c0533c98038f379bb8536512b50b74fb4c597e4c532aa56e12",
+        "seal_valid": true
+      },
+      "post_commit_writer_receipt": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-runtime-generator-post-commit-identity-receipt.json",
+        "bytes": 7354,
+        "file_sha256": "52df82e7511161d026c2662c7c3f6cab67722cd57d5891a2a680fa349a4825a9",
+        "payload_utf8_bytes": 5896,
+        "payload_sha256": "8e8d42d5df20242578c964baae9fddfc49d18129072389eda6ae5a5df932ff8c",
+        "seal_valid": true
+      },
+      "prior_no_go_reviews": [
+        {
+          "file_sha256": "0e88bb5e997b2a437faada948376fb9559a23ecb653567dc3111efd1718057d7",
+          "preserved_unchanged": true
+        },
+        {
+          "file_sha256": "c286ab7afc584c0102797afe5a94ccf8a4598f65897e191121edb74afbe67dff",
+          "preserved_unchanged": true
+        }
+      ]
+    },
+    "proposed_graph_audit": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-runtime-generator-committed.json",
+      "bytes": 17900,
+      "file_sha256": "9a3b3fd88582b0201efb1b5dd943936976d8c4224ed7b2c608c041be6cb34b72",
+      "payload_utf8_bytes": 14026,
+      "payload_sha256": "11f0bd372fbea205f827024ca0da297f335bf48540002c7ec2970da22d2ea46f",
+      "seal_valid": true,
+      "graph_revision": 9,
+      "semantic_transition_exact": true,
+      "runtime_generator": {
+        "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+        "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+        "state": "committed_awaiting_audit",
+        "source_verdict": "pass",
+        "check_verdict": "pass",
+        "audit_verdict": "pending",
+        "pr": null,
+        "artifact_ids": [
+          "sha256:51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+          "sha256:bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+        ]
+      },
+      "runtime_abi": {
+        "base_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+        "base_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+        "head_commit": null,
+        "head_tree": null,
+        "state": "blocked_on_dependencies",
+        "audit_verdict": "pending"
+      },
+      "other_node_pr_or_authority_state_changed": false
+    },
+    "committed_controls": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-2026-08-31-v1-runtime-generator-committed-controls.json",
+      "bytes": 67528,
+      "file_sha256": "41fcfc9aa672ab507f0ab6254992be0302e54be391706675da3508a574941223",
+      "payload_utf8_bytes": 50289,
+      "payload_sha256": "1be3c45e530c2e9438a8ddf9fc1a5aeff0b90e84203a09d0cb35b0f0cb8d4650",
+      "seal_valid": true,
+      "pass": true,
+      "authorization_granted": false
+    },
+    "artifact_binding": {
+      "normalized_artifact_index": {
+        "file_sha256": "2895e5c4069507315ef821ac2987360504f9b8634ca6114d646503b9933db672",
+        "payload_sha256": "c52686d5d32e49c96f69df383bc66ef41587d18f6348e90c7093b18f0bf314d9",
+        "seal_valid": true
+      },
+      "bundle_zips": {
+        "count": 2,
+        "each_bytes": 24478030,
+        "each_sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1",
+        "byte_identical": true
+      },
+      "manifest": {
+        "file_sha256": "23dfc14a6b0e68d9f4c943ea131ad05de9e171628ac54df8a4ff60ac9c1780e2",
+        "manifested_files": 2049,
+        "tree_sha256": "64a8141e18f5ac28c0f4f83f677f9cf653db90d63ae6bc415ba356a4a3155b48"
+      },
+      "reproducibility_evidence": {
+        "file_sha256": "51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+        "payload_sha256": "c290c8c92e5256a1d71cadf4b9248370d1c632a243e76a8d0737395048574204"
+      },
+      "rich_candidate": {
+        "file_sha256": "ac94c74783924736e370e2ee196ce326a1004a08f3f09b86eaaf418ed7ceef4e",
+        "payload_sha256": "a2751d04a15135f3dd90f640e4e396db7c81041c4420140a0b11684f9d5cac10"
+      },
+      "final_replay_sha256": "a8392f840591d4af7534a2ce6ca747b7422c9d15d1312c6a1131b3bc2e45cb04",
+      "all_frozen_identities_unchanged": true,
+      "artifact_source_or_evidence_mutation_after_commit": false
+    },
+    "carried_forward_independent_engineering_audit": {
+      "basis": {
+        "before_commit_review_file_sha256": "bd7d6f358583833b76388e9e453ca24735804029a493b0bc1ec3a6ec3c6084e6",
+        "commit_tree_equals_reviewed_staged_tree": true,
+        "all_artifact_and_evidence_identities_equal": true
+      },
+      "pe_count": 119,
+      "all_pe_machine_0xAA64": true,
+      "import_edges": 1348,
+      "unresolved_imports": 0,
+      "exact_admitted_libintl_fix": true,
+      "missing_dll_negative_control": "0xC0000135",
+      "repaired_native_make_and_module_closure_pass": true,
+      "dual_generation_output_count": 10,
+      "all_outputs_byte_identical": true,
+      "relocation_pass": true,
+      "cocom_devices_replay_pass": true,
+      "hosted_configure_make_j20_install_pass": true,
+      "recorded_limitations_assessed_nonblocking": true,
+      "rebuild_required": false,
+      "rebuild_not_run_reason": "The commit tree is exactly the reviewed staged tree and every bound candidate-revision-2 artifact and evidence identity remains byte-for-byte unchanged."
+    },
+    "focused_committed_tree_controls": {
+      "native_bundle_shell_exit_code": 0,
+      "hosted_git_shell_exit_code": 0,
+      "result": "PASS"
+    },
+    "live_readback": {
+      "sealed_v7": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-live-readback-v7.json",
+        "bytes": 4302,
+        "file_sha256": "67de99cbc59c4fd7a1c869d1e9198f7671e3451d5396475fc700782f03dcb15a",
+        "payload_utf8_bytes": 2794,
+        "payload_sha256": "349e2b0e3e03955358c3b59f602e7d15fa2d9609fb71a0f686cb242e952389a6",
+        "seal_valid": true
+      },
+      "fresh_runtime_remote_branch_count": 0,
+      "fresh_runtime_matching_pr_count": 0,
+      "classification_drift": false,
+      "effective_ambiguous": 0,
+      "review_queue_auto_merge_stack_or_merge_present": false
+    },
+    "findings": [],
+    "final_verdict": {
+      "verdict": "GO_FOR_PUSH_REVIEW",
+      "blocking_findings": [],
+      "authorization_granted": false,
+      "push_go": false,
+      "pr_go": false,
+      "stack_go": false,
+      "merge_go": false,
+      "artifact_construction_go": false,
+      "release_admission_go": false,
+      "reason": "The committed HEAD is exactly the reviewed and authorized source tree, the commit message and one-commit ancestry are exact, the repository is clean, all authority and artifact identities replay unchanged, focused committed-tree controls pass, rev9 expresses only the intended pending-audit transition, and fresh live checks show no runtime remote branch or PR.",
+      "next_gate": "A separate canonical graph transition and fresh independent before_push phase review and verdict are required before any push. This head audit grants no push, PR, stack, merge, artifact-construction, or release authority."
+    }
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 9174,
+    "payload_sha256": "d920d1953228db7cc40ce1630f7e7259ef19f9a4934a7ca032799d3064a45beb"
+  }
+}

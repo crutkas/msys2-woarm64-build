@@ -1,0 +1,161 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-runtime-generator-source-preaudit-v1",
+    "epoch": "2026-08-31-v1",
+    "reviewed_at": "2026-08-31T23:16:33.232306Z",
+    "scope": {
+      "mode": "independent read-only source-only staged-tree preaudit",
+      "repository_mutation": false,
+      "github_mutation": false,
+      "prior_review_mutation": false,
+      "session_scoped_output_only": true,
+      "before_commit_authorization_requested": false,
+      "final_bundle_and_reproducibility_evidence_pending": true
+    },
+    "repository": {
+      "path": "D:\\copilot-worktrees\\msys2-runtime\\crutkas-fantastic-meme",
+      "repository": "crutkas/msys2-runtime",
+      "origin": "https://github.com/crutkas/msys2-runtime.git",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "head_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "head_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "candidate_commit_count": 0,
+      "index_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "unstaged_paths": [],
+      "untracked_paths": []
+    },
+    "staged_diff": {
+      "path_count": 3,
+      "insertions": 86,
+      "deletions": 6,
+      "patch_bytes": 3204,
+      "patch_sha256": "0f2f3f9dfc7509d1d240f81a44a4c1700032478c51ff89d769a14c4b5ca022d8",
+      "stable_patch_id": "bee10bdb2b1cec8d0545eb374bfb7839d5bb5262",
+      "diff_check_pass": true,
+      "paths": [
+        {
+          "path": ".github/workflows/build.yaml",
+          "status": "modified",
+          "mode": "100644",
+          "blob": "813e45d82ac6804d5a870dc62291646cee30773f",
+          "bytes": 2558,
+          "sha256": "bd061df3dba3029d6151ddcb8bab44ddcb0a6d8039e9192e5f4129d5707de17c"
+        },
+        {
+          "path": "winsup/autogen.sh",
+          "status": "modified",
+          "mode": "100755",
+          "blob": "ef8cc86e39d743c31a89a49ac61f034646487f88",
+          "bytes": 250,
+          "sha256": "4b21ed0fb227b03132cdd74146f1729f8b7a2a8a018d32ae6093bb005638ae9c"
+        },
+        {
+          "path": "winsup/tests/autogen-contract.sh",
+          "status": "added",
+          "mode": "100755",
+          "blob": "473548bc41809af958cac0ccc97db2a47a749905",
+          "bytes": 1679,
+          "sha256": "23da5786d0316a82d4336759ca465f8162c543a42211b29ceb4ebf69d5042d34"
+        }
+      ],
+      "all_blobs_lf_only": true,
+      "all_blobs_final_lf": true
+    },
+    "source_audit": {
+      "complete_three_path_diff_reviewed": true,
+      "autogen": {
+        "script_directory_quoted": true,
+        "tool_overrides_supported": [
+          "ACLOCAL",
+          "AUTOCONF",
+          "AUTOMAKE",
+          "RM"
+        ],
+        "override_execution_quoted_as_single_path": true,
+        "default_behavior_preserved": true,
+        "command_order_preserved": [
+          "aclocal --force",
+          "autoconf -f",
+          "automake -ac",
+          "rm -rf autom4te.cache"
+        ],
+        "fail_closed_via_set_e": true,
+        "hidden_behavior_change_found": false
+      },
+      "contract_test": {
+        "arbitrary_script_directory_spaces_and_literal_dollar_covered": true,
+        "arbitrary_tool_path_spaces_and_literal_dollar_covered": true,
+        "working_directory_asserted": true,
+        "exact_argument_vectors_asserted": true,
+        "autoconf_exit_47_propagation_asserted": true,
+        "subsequent_automake_and_rm_suppression_asserted": true,
+        "cleanup_present": true
+      },
+      "workflow": {
+        "yaml_parse_pass": true,
+        "contract_runs_before_real_autogen": true,
+        "existing_real_autogen_and_build_flow_preserved": true,
+        "parallelism_changed_from": 8,
+        "parallelism_changed_to": 20,
+        "permissions_unchanged": "contents: read"
+      },
+      "quoting_or_path_blocker": false,
+      "fail_open_blocker": false,
+      "unrelated_source_change_blocker": false,
+      "security_or_correctness_blocker": false
+    },
+    "executed_checks": [
+      {
+        "name": "MSYS Bash syntax and contract",
+        "result": "PASS",
+        "control": "C:\\msys64\\usr\\bin\\bash.exe with explicit /usr/bin:/bin PATH"
+      },
+      {
+        "name": "Admitted ARM64 BusyBox syntax",
+        "result": "PASS",
+        "control": "artifact 4e510e35... copied to temporary busybox.exe solely to preserve BusyBox argv0 dispatch; temporary copy removed"
+      },
+      {
+        "name": "Workflow YAML parse",
+        "result": "PASS"
+      },
+      {
+        "name": "git diff --cached --check",
+        "result": "PASS"
+      }
+    ],
+    "excluded_invalid_probes": [
+      {
+        "probe": "MSYS contract under inherited Windows-only PATH",
+        "reason": "cmp unavailable because non-login Bash inherited a Windows PATH; rerun with explicit MSYS PATH passed"
+      },
+      {
+        "probe": "BusyBox evidence filename invoked directly",
+        "reason": "BusyBox dispatches by argv0 and the evidence filename is not an applet; rerun via temporary busybox.exe passed"
+      }
+    ],
+    "findings": {
+      "blocking": [],
+      "non_blocking": []
+    },
+    "status": {
+      "source_only": "PASS_SOURCE_ONLY_AWAITING_FINAL_EVIDENCE",
+      "before_commit_go": false,
+      "artifact_construction_go": false,
+      "push_go": false,
+      "pr_go": false,
+      "release_admission_go": false,
+      "authorized_node_ids": [],
+      "authorized_phases": [],
+      "node_authorizations": [],
+      "required_next_gate": "Combine this frozen source preaudit with final generator bundle, declared-output replay, provenance/process/PE/import/module, and two-build byte-reproducibility evidence in a separate before_commit review.",
+      "reason": "No high-confidence source correctness, security, quoting, path, fail-open, or unrelated-change blocker was found in the exact staged tree. This is evidence only and grants no implementation-lifecycle authority."
+    }
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 4529,
+    "payload_sha256": "91bf390d780c4c26597bc69e0e476f47c81ad2239ff5512a7b450925cf004288"
+  }
+}

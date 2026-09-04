@@ -1,0 +1,160 @@
+{
+  "schema": "arm64-vnext-live-readback-v1",
+  "epoch": "2026-08-31-v1",
+  "captured_at": "2026-08-31T22:18:41.8901501Z",
+  "verdict": {
+    "classification_drift": false
+  },
+  "open_pull_request_counts": [
+    {
+      "repo": "crutkas/busybox-w32",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 2,
+      "arm64_vnext": 1
+    },
+    {
+      "repo": "crutkas/binutils-woarm64",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 7,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/msys2-runtime",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 25,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/gcc-woarm64",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 11,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/mingw-w64",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 1,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/MSYS2-packages",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 45,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/msys2-woarm64-build",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 8,
+      "arm64_vnext": 0
+    },
+    {
+      "repo": "crutkas/build-extra",
+      "ambiguous_arm64": 0,
+      "arm64_poc_old": 23,
+      "arm64_vnext": 1
+    },
+    {
+      "repo": "mingw-w64/mingw-w64",
+      "ambiguous_arm64": 1,
+      "arm64_poc_old": 0,
+      "arm64_vnext": 0
+    }
+  ],
+  "vnext_pull_requests": [
+    {
+      "repo": "crutkas/busybox-w32",
+      "number": 4,
+      "url": "https://github.com/crutkas/busybox-w32/pull/4",
+      "title": "[ARM64 vNext] BusyBox bootstrap tools",
+      "state": "OPEN",
+      "draft": true,
+      "merged": false,
+      "base_ref": "main",
+      "base_commit": "d8d8bb397f1e200ba5a871dc6aa4af819b23f32a",
+      "head_ref": "crutkas-arm64-vnext/busybox-w32/bootstrap-tools",
+      "head_commit": "942be1cd339f2fa5c426d28a83dad62b2b366d5e",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "matching_head_pr_count": 1,
+      "check_runs": [
+        {
+          "name": "build",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "build",
+          "status": "completed",
+          "conclusion": "success"
+        }
+      ],
+      "review_request_count": 0,
+      "merge_queue_entry": null,
+      "is_in_merge_queue": false,
+      "auto_merge_request": null
+    },
+    {
+      "repo": "crutkas/build-extra",
+      "number": 29,
+      "url": "https://github.com/crutkas/build-extra/pull/29",
+      "title": "[ARM64 vNext] Packaging ownership and SDK foundation",
+      "state": "OPEN",
+      "draft": true,
+      "merged": false,
+      "base_ref": "main",
+      "base_commit": "7acc5756b94a0a0ab8d0cd06642c8c8254e1bf40",
+      "head_ref": "crutkas-arm64-vnext/build-extra/ownership-sdk",
+      "head_commit": "305d14d63db6073245ad4e3002f7400e58040c55",
+      "labels": [
+        "arm64-vnext"
+      ],
+      "matching_head_pr_count": 1,
+      "check_runs": [
+        {
+          "name": "determine-packages",
+          "status": "completed",
+          "conclusion": "success"
+        },
+        {
+          "name": "build-artifacts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "build-packages",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "sdk-artifacts",
+          "status": "completed",
+          "conclusion": "skipped"
+        },
+        {
+          "name": "check-for-missing-dlls",
+          "status": "completed",
+          "conclusion": "skipped"
+        }
+      ],
+      "review_request_count": 0,
+      "merge_queue_entry": null,
+      "is_in_merge_queue": false,
+      "auto_merge_request": null
+    }
+  ],
+  "summary": {
+    "open_vnext_pull_requests": 2,
+    "open_old_pull_requests_in_program_repositories": 122,
+    "ambiguous_open_arm64_pull_requests_in_program_repositories": 0,
+    "effective_ambiguous": 0,
+    "native_stacks": 0
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 2785,
+    "payload_sha256": "72e6ac5ab85716a71cd3524404a9ca0b57edafa3f5e478329c754e27b5ef8ede"
+  }
+}

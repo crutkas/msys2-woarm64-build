@@ -1,0 +1,79 @@
+{
+  "payload": {
+    "schema": "arm64-vnext-generator-bundle-artifact-evidence-v2",
+    "epoch": "2026-08-31-v2",
+    "captured_at": "2026-09-01T00:40:16.169461+00:00",
+    "classification": "runtime-generator node OUTPUT; digest is never an input",
+    "bundle_directory": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle",
+    "manifest": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\bundle-manifest-v2.json",
+      "bytes": 367481,
+      "sha256": "23dfc14a6b0e68d9f4c943ea131ad05de9e171628ac54df8a4ff60ac9c1780e2"
+    },
+    "tree_sha256": "64a8141e18f5ac28c0f4f83f677f9cf653db90d63ae6bc415ba356a4a3155b48",
+    "manifest_file_count": 2049,
+    "manifest_total_bytes_excluding_manifest": 73348949,
+    "canonical_zip": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle.zip",
+      "bytes": 24478030,
+      "sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+    },
+    "independent_second_zip": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle-second.zip",
+      "bytes": 24478030,
+      "sha256": "bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+    },
+    "deterministic_zip_byte_identical": true,
+    "zip_entries": 2050,
+    "fixed_zip_timestamp_utc": "2013-07-29T20:15:24Z",
+    "archive_root_name": "arm64-vnext-2026-08-31-v2-generator-bundle",
+    "admitted_libintl": {
+      "provenance_id": "toolchain:file:clangarm64-bin-libintl-8.dll",
+      "path": "runtime/bin/libintl-8.dll",
+      "bytes": 268288,
+      "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+    },
+    "closure_evidence": {
+      "strict": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\strict-runtime-closure-v2.json",
+        "bytes": 29947,
+        "sha256": "ea900351564d58cb9347f1ef3e3e2d9e35ce7da3fd5d3330a82ae7be87b9ce53",
+        "payload_sha256": "cfab704e6281abb3c071392e3c7077fd685654aa744ef1e19e6fd3f7dd1408d9"
+      },
+      "imports": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\pe-import-closure-v2.json",
+        "bytes": 377527,
+        "sha256": "58f8b45acbdaeefda7f669ce0e765af7c06c8dc6d0c3503617d9df0ff01e0c2f"
+      },
+      "make_attestation": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-generator-bundle\\evidence\\process-attestation-make-v2.json",
+        "bytes": 14332,
+        "sha256": "eb6615eb97fbd35ad767ee0289f246e0b83bf3ddbaf754051d7565ee5023a60d"
+      }
+    },
+    "independent_extractions": [
+      {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-zip-validation-a\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "manifest_mismatches": 0,
+        "libintl_sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+      },
+      {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76313824-571e-409c-b873-5eec261545ce\\files\\arm64-vnext-2026-08-31-v2-zip-validation-b\\arm64-vnext-2026-08-31-v2-generator-bundle",
+        "manifest_mismatches": 0,
+        "libintl_sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+      }
+    ],
+    "extracted_a_strict_make": {
+      "exit_code": 0,
+      "reported": "GNU Make 4.4.1; Built for aarch64-w64-mingw32",
+      "PATH": "extracted bundle bin;libexec;runtime/bin;tools;Windows System32 only"
+    },
+    "result": "PASS"
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for payload",
+    "payload_utf8_bytes": 3545,
+    "payload_sha256": "ff0204dba43a8533a034667ea09b7ab7ef2e13b971815afa974dc3fb9229c361"
+  }
+}

@@ -1,0 +1,46 @@
+{
+  "schema": "arm64-vnext-review-authority-correction-v1",
+  "epoch": "2026-08-31-v1",
+  "captured_at": "2026-08-31T22:18:41.8901501Z",
+  "scope": {
+    "node_id": "runtime-generator",
+    "phase": "session_start"
+  },
+  "superseded_request_claim": {
+    "authority": "release-graph revision 7",
+    "claimed_file_sha256": "f2828df1f702e7e5fc7a60046df19a0ad4622528f8b6ee3c1abb6d9ff6e83ee8",
+    "status": "REJECTED_COORDINATOR_TRANSCRIPTION_ERROR",
+    "reason": "The claimed digest is not present in the frozen revision-7 file, revision-8 supersedes metadata, or coordinator evidence store."
+  },
+  "corrected_authority": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\final-v2-staging\\arm64-vnext-release-graph-prs-open.json",
+    "graph_revision": 7,
+    "bytes": 17606,
+    "file_sha256": "f2828df1d256a0cc224fd84e3de37d20fb818ba5efc70edd556cd4220b1adab8",
+    "payload_utf8_bytes": 13776,
+    "payload_sha256": "2cfa3cd47296c857fe17fff2a2b9a2814c0f793c30afe5ea310cfbedaa792bf2",
+    "seal_replay": true
+  },
+  "successor_binding": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-release-graph.json",
+    "graph_revision": 8,
+    "bytes": 17669,
+    "file_sha256": "5d581d49b1ed3df931cd63048058bb8da9760f5c900698d49e6b6e05a601695a",
+    "payload_utf8_bytes": 13832,
+    "payload_sha256": "ce347a909f230fa527783b856725d9ed38946c6f16769bfc75be905b53820a0b",
+    "supersedes_exact_corrected_authority": true,
+    "seal_replay": true
+  },
+  "decision": {
+    "corrected_revision_7_identity_is_authoritative": true,
+    "revision_7_to_revision_8_continuity_is_exact": true,
+    "source_or_repository_authority_granted": false,
+    "review_instruction": "Future reviews must bind revision 7 to the corrected d256 file digest and must reject the superseded f702 transcription."
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 1721,
+    "payload_sha256": "84cc993ce2283147bb2ee6ac40ea35668a64ce3ff014bb75bb91beedd53e1455"
+  }
+}

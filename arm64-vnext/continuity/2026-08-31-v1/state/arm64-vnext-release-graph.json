@@ -1,0 +1,509 @@
+{
+  "schema": "arm64-vnext-release-graph-v1",
+  "epoch": "2026-08-31-v1",
+  "captured_at": "2026-09-01T01:23:18.841654Z",
+  "status": "PHASE0_PLANNED_IDENTITIES_PENDING",
+  "nodes": [
+    {
+      "id": "busybox-bootstrap-tools",
+      "repo": "crutkas/busybox-w32",
+      "branch": "crutkas-arm64-vnext/busybox-w32/bootstrap-tools",
+      "pr": 4,
+      "base_ref": "main",
+      "base_commit": "d8d8bb397f1e200ba5a871dc6aa4af819b23f32a",
+      "base_tree": "37fb55f5335e63c9f14c44208ed08a6e9aad4f91",
+      "head_commit": "942be1cd339f2fa5c426d28a83dad62b2b366d5e",
+      "head_tree": "198989dc0eb640d199e0cb8cb6ac852f02e11b50",
+      "native_stack": null,
+      "position": null,
+      "depends_on": [],
+      "source_verdict": "pass",
+      "check_verdict": "pending-live-checks",
+      "audit_verdict": "pass",
+      "artifact_ids": [
+        "sha256:4e510e35e642a32cc6b5a0e676e78513c91108df6143f33737ecf5c3eeeb0369",
+        "sha256:b36e429106fc9b2f51ff57921b171ab6410c1c8347c31cdb226420012d7fc658"
+      ],
+      "state": "pr_open",
+      "identity_gate": "frozen_candidate_head"
+    },
+    {
+      "id": "runtime-generator",
+      "repo": "crutkas/msys2-runtime",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "pr": 31,
+      "base_ref": "msys2-3.6.10",
+      "base_commit": "8fbd9808447ee78ed485deead9b79cd1e40c07b7",
+      "base_tree": "fe1106187ef9aa842e1cff0ccc4f978b65c16613",
+      "head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "native_stack": null,
+      "position": 1,
+      "depends_on": [
+        "busybox-bootstrap-tools"
+      ],
+      "source_verdict": "pass",
+      "check_verdict": "pending-live-checks",
+      "audit_verdict": "pass",
+      "artifact_ids": [
+        "sha256:51063d8762c12921601e10921fd17839a1f9f0ba30b857d4cad3399088a955aa",
+        "sha256:bf5e5cfae801f5e6c5a79acbf25e99b7a26ea9bed3c67895ceed979a28ca49e1"
+      ],
+      "state": "pr_open",
+      "identity_gate": "frozen_candidate_head"
+    },
+    {
+      "id": "runtime-abi",
+      "repo": "crutkas/msys2-runtime",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/abi",
+      "pr": null,
+      "base_ref": "crutkas-arm64-vnext/msys2-runtime/generator",
+      "base_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+      "base_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+      "head_commit": null,
+      "head_tree": null,
+      "native_stack": null,
+      "position": 2,
+      "depends_on": [
+        "runtime-generator"
+      ],
+      "source_verdict": "pending",
+      "check_verdict": "pending",
+      "audit_verdict": "pending",
+      "artifact_ids": [],
+      "state": "blocked_on_dependencies",
+      "identity_gate": "blocked_until_all_dependencies_are_frozen"
+    },
+    {
+      "id": "runtime-linker-import",
+      "repo": "crutkas/msys2-runtime",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/linker-import",
+      "pr": null,
+      "base_ref": "crutkas-arm64-vnext/msys2-runtime/abi",
+      "base_commit": null,
+      "base_tree": null,
+      "head_commit": null,
+      "head_tree": null,
+      "native_stack": null,
+      "position": 3,
+      "depends_on": [
+        "runtime-abi"
+      ],
+      "source_verdict": "pending",
+      "check_verdict": "pending",
+      "audit_verdict": "pending",
+      "artifact_ids": [],
+      "state": "blocked_on_parent_identity",
+      "identity_gate": "blocked_until_immediate_parent_is_frozen"
+    },
+    {
+      "id": "runtime-signal-tls",
+      "repo": "crutkas/msys2-runtime",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/signal-tls",
+      "pr": null,
+      "base_ref": "crutkas-arm64-vnext/msys2-runtime/linker-import",
+      "base_commit": null,
+      "base_tree": null,
+      "head_commit": null,
+      "head_tree": null,
+      "native_stack": null,
+      "position": 4,
+      "depends_on": [
+        "runtime-linker-import"
+      ],
+      "source_verdict": "pending",
+      "check_verdict": "pending",
+      "audit_verdict": "pending",
+      "artifact_ids": [],
+      "state": "blocked_on_parent_identity",
+      "identity_gate": "blocked_until_immediate_parent_is_frozen"
+    },
+    {
+      "id": "runtime-mvp",
+      "repo": "crutkas/msys2-runtime",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/mvp",
+      "pr": null,
+      "base_ref": "crutkas-arm64-vnext/msys2-runtime/signal-tls",
+      "base_commit": null,
+      "base_tree": null,
+      "head_commit": null,
+      "head_tree": null,
+      "native_stack": null,
+      "position": 5,
+      "depends_on": [
+        "runtime-signal-tls",
+        "busybox-bootstrap-tools"
+      ],
+      "source_verdict": "pending",
+      "check_verdict": "pending",
+      "audit_verdict": "pending",
+      "artifact_ids": [],
+      "state": "blocked_on_parent_identity",
+      "identity_gate": "blocked_until_immediate_parent_is_frozen"
+    },
+    {
+      "id": "runtime-fork-exec",
+      "repo": "crutkas/msys2-runtime",
+      "branch": "crutkas-arm64-vnext/msys2-runtime/fork-exec",
+      "pr": null,
+      "base_ref": "crutkas-arm64-vnext/msys2-runtime/mvp",
+      "base_commit": null,
+      "base_tree": null,
+      "head_commit": null,
+      "head_tree": null,
+      "native_stack": null,
+      "position": 6,
+      "depends_on": [
+        "runtime-mvp"
+      ],
+      "source_verdict": "pending",
+      "check_verdict": "pending",
+      "audit_verdict": "pending",
+      "artifact_ids": [],
+      "state": "blocked_on_parent_identity",
+      "identity_gate": "blocked_until_immediate_parent_is_frozen"
+    },
+    {
+      "id": "build-extra-ownership-sdk",
+      "repo": "crutkas/build-extra",
+      "branch": "crutkas-arm64-vnext/build-extra/ownership-sdk",
+      "pr": 29,
+      "base_ref": "main",
+      "base_commit": "7acc5756b94a0a0ab8d0cd06642c8c8254e1bf40",
+      "base_tree": "08e34404480e5fd67cfdbce904a09e5a35c49871",
+      "head_commit": "305d14d63db6073245ad4e3002f7400e58040c55",
+      "head_tree": "5b704bfc47511c3de27d866213bec28ce24f55d9",
+      "native_stack": null,
+      "position": 1,
+      "depends_on": [],
+      "source_verdict": "pass",
+      "check_verdict": "pending-live-checks",
+      "audit_verdict": "pass",
+      "artifact_ids": [
+        "sha256:73777a4cf80c1e2f8256a3c52bd539e7201801c401e11fc77819701207c0e29f",
+        "sha256:87771c854be15e24193553303fb4804094809c668a7ceefccc3fc73687c43e3f"
+      ],
+      "state": "pr_open",
+      "identity_gate": "frozen_candidate_head"
+    },
+    {
+      "id": "build-extra-payload",
+      "repo": "crutkas/build-extra",
+      "branch": "crutkas-arm64-vnext/build-extra/payload",
+      "pr": null,
+      "base_ref": "crutkas-arm64-vnext/build-extra/ownership-sdk",
+      "base_commit": "305d14d63db6073245ad4e3002f7400e58040c55",
+      "base_tree": "5b704bfc47511c3de27d866213bec28ce24f55d9",
+      "head_commit": null,
+      "head_tree": null,
+      "native_stack": null,
+      "position": 2,
+      "depends_on": [
+        "build-extra-ownership-sdk",
+        "runtime-fork-exec"
+      ],
+      "source_verdict": "pending",
+      "check_verdict": "pending",
+      "audit_verdict": "pending",
+      "artifact_ids": [],
+      "state": "blocked_on_dependencies",
+      "identity_gate": "blocked_until_all_dependencies_are_frozen"
+    }
+  ],
+  "same_repository_stacks": [
+    {
+      "repo": "crutkas/msys2-runtime",
+      "native_stack": null,
+      "members_bottom_to_top": [
+        "runtime-generator",
+        "runtime-abi",
+        "runtime-linker-import",
+        "runtime-signal-tls",
+        "runtime-mvp",
+        "runtime-fork-exec"
+      ],
+      "state": "planned"
+    },
+    {
+      "repo": "crutkas/build-extra",
+      "native_stack": null,
+      "members_bottom_to_top": [
+        "build-extra-ownership-sdk",
+        "build-extra-payload"
+      ],
+      "state": "planned"
+    }
+  ],
+  "cross_repository_edges": [
+    {
+      "from": "busybox-bootstrap-tools",
+      "to": "runtime-generator",
+      "reason": "native bootstrap shell and core utility closure"
+    },
+    {
+      "from": "busybox-bootstrap-tools",
+      "to": "runtime-mvp",
+      "reason": "native supported command payload until replaced"
+    },
+    {
+      "from": "runtime-fork-exec",
+      "to": "build-extra-payload",
+      "reason": "frozen runtime top and fresh runtime artifact"
+    }
+  ],
+  "first_artifact_utility_provider": {
+    "provider_node": "busybox-bootstrap-tools",
+    "provider_repo": "crutkas/busybox-w32",
+    "producer_output": "fresh native ARM64 busybox.exe",
+    "required_supported_applets": [
+      "awk",
+      "basename",
+      "cat",
+      "cp",
+      "cut",
+      "dirname",
+      "echo",
+      "env",
+      "false",
+      "find",
+      "grep",
+      "head",
+      "ln",
+      "mkdir",
+      "mv",
+      "printf",
+      "pwd",
+      "readlink",
+      "rm",
+      "sed",
+      "sh",
+      "sleep",
+      "sort",
+      "tail",
+      "test",
+      "touch",
+      "tr",
+      "true",
+      "uname",
+      "which",
+      "xargs"
+    ],
+    "packaging_edges": [
+      "busybox-bootstrap-tools -> runtime-mvp",
+      "runtime-mvp -> runtime-fork-exec rebuilt artifact",
+      "runtime-fork-exec -> build-extra-payload"
+    ],
+    "product_payload_edge": true,
+    "broad_runtime_utilities_deferred": [
+      "profiler",
+      "dumper",
+      "SSP",
+      "cygcheck",
+      "broad long-double math utilities"
+    ],
+    "permanent_busybox_dependency": false
+  },
+  "staged_identity_policy": {
+    "phase0_authorizable_nodes": [
+      "build-extra-ownership-sdk",
+      "busybox-bootstrap-tools",
+      "runtime-generator"
+    ],
+    "runtime_generator_hold": "Although its clean-base session-start identity is frozen, runtime-generator is not authorized until the BusyBox bootstrap-tools parent is committed, pushed, opened, independently verified, and recorded.",
+    "dependent_layer_rule": "A dependent session may not begin until its immediate parent PR has exact base/head/tree identities and any same-repository chain is registered in a new vNext stack.",
+    "graph_update_rule": "Each parent freeze produces a newly sealed graph revision and layer-scoped authorization receipt; no global claim authorizes unresolved nodes.",
+    "null_identity_interpretation": "Null base/head/tree fields are hard holds for that node, not missing data that may be inferred."
+  },
+  "deferred_repositories": [
+    {
+      "repo": "crutkas/MSYS2-packages",
+      "reason": "No exact first-artifact package/build dependency",
+      "reentry": "self-hosting, package-native builds, or RTM"
+    },
+    {
+      "repo": "crutkas/msys2-woarm64-build",
+      "reason": "NLS/Gettext disabled and runtime producer does not invoke this repo",
+      "reentry": "self-hosting, NLS/Gettext, package admission, or RTM"
+    },
+    {
+      "repo": "crutkas/gcc-woarm64",
+      "reason": "LLVM/LLD selected for first artifact",
+      "reentry": "Clang/LLD ABI, SEH, unwind, or link failure"
+    },
+    {
+      "repo": "crutkas/mingw-w64",
+      "reason": "Canonical upstream currently requires zero source delta",
+      "reentry": "Fresh runtime/GCC integration exposes a concrete source gap"
+    }
+  ],
+  "conditional_fallbacks": [
+    {
+      "repo": "crutkas/binutils-woarm64",
+      "layers": [
+        "source",
+        "hardening-tests"
+      ],
+      "condition": "A retained gate requires GNU ld/BFD/archive behavior or LLVM equivalence fails"
+    },
+    {
+      "repo": "crutkas/gcc-woarm64",
+      "layers": [
+        "runtime-foundations",
+        "c-bootstrap-preflight"
+      ],
+      "condition": "Clang/LLD cannot independently satisfy runtime ABI, SEH/unwind, linking, or native execution"
+    }
+  ],
+  "input_provenance": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-2026-08-31-v1-input-provenance.json",
+    "bytes": 302758,
+    "file_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999",
+    "payload_utf8_bytes": 235310,
+    "payload_sha256": "342a102e998220968f33a582fbee47bbe7109b190af0d8facedca8f836232a66"
+  },
+  "input_sources": [
+    {
+      "name": "generator",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76bcf18e-f793-4bd8-93f5-b12b37f0e5fe\\files\\arm64-vnext-2026-08-31-v1-generator-input-ledger-v2.json",
+      "bytes": 168053,
+      "file_sha256": "14fea77370d75b50e826adc0c466f5a4ffc540c3412fe276f426fca877b57761",
+      "payload_utf8_bytes": 137219,
+      "payload_sha256": "099f466ebb15fe0434c14d0712085717162c1cf96294e0afe2c8b236d34bed6a",
+      "schema": "arm64-vnext-generator-input-ledger-v2"
+    },
+    {
+      "name": "llvm",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\76bcf18e-f793-4bd8-93f5-b12b37f0e5fe\\files\\arm64-vnext-2026-08-31-v1-llvm-toolchain-input-ledger-v2.json",
+      "bytes": 256988,
+      "file_sha256": "a5c32f04b93cad8604e78df5d8e1ab4e848d0aa4e516ddf42912c6cbcfcdf661",
+      "payload_utf8_bytes": 208854,
+      "payload_sha256": "fec1c9af2f783df2966fb18e65e4267bfc7da57572a2b3b1a291fe561159a302",
+      "schema": "arm64-vnext-llvm-toolchain-input-ledger-v2"
+    },
+    {
+      "name": "payload",
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\ad018621-1db6-4fe7-874e-cb0419d7037a\\files\\arm64-vnext-2026-08-31-v1-handoff-payload-input-ledger-v2.json",
+      "bytes": 150040,
+      "file_sha256": "857984d61f37862eb0ada5c92bb21699e301c5a861c65c8abe3829978cb33f7b",
+      "payload_utf8_bytes": 149775,
+      "payload_sha256": "4459b69d01c9c51530446330cf3519b5dfb4c734cf6cedd2ebd46445136f80f9",
+      "schema": "arm64-vnext-handoff-payload-input-ledger-v2"
+    }
+  ],
+  "external_inputs": [
+    {
+      "id": "node-inputs:build-extra-ownership-sdk",
+      "node_id": "build-extra-ownership-sdk",
+      "required_count": 0,
+      "blocked_input_ids": [],
+      "status": "ADMITTED",
+      "epoch": "2026-08-31-v1",
+      "provenance_id": "node-inputs:build-extra-ownership-sdk",
+      "ledger_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999"
+    },
+    {
+      "id": "node-inputs:build-extra-payload",
+      "node_id": "build-extra-payload",
+      "required_count": 72,
+      "blocked_input_ids": [],
+      "status": "ADMITTED",
+      "epoch": "2026-08-31-v1",
+      "provenance_id": "node-inputs:build-extra-payload",
+      "ledger_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999"
+    },
+    {
+      "id": "node-inputs:busybox-bootstrap-tools",
+      "node_id": "busybox-bootstrap-tools",
+      "required_count": 55,
+      "blocked_input_ids": [],
+      "status": "ADMITTED",
+      "epoch": "2026-08-31-v1",
+      "provenance_id": "node-inputs:busybox-bootstrap-tools",
+      "ledger_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999"
+    },
+    {
+      "id": "node-inputs:rebuild-process-attestor",
+      "node_id": "rebuild-process-attestor",
+      "required_count": 10,
+      "blocked_input_ids": [],
+      "status": "ADMITTED",
+      "epoch": "2026-08-31-v1",
+      "provenance_id": "node-inputs:rebuild-process-attestor",
+      "ledger_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999"
+    },
+    {
+      "id": "node-inputs:runtime-generator",
+      "node_id": "runtime-generator",
+      "required_count": 78,
+      "blocked_input_ids": [],
+      "status": "ADMITTED",
+      "epoch": "2026-08-31-v1",
+      "provenance_id": "node-inputs:runtime-generator",
+      "ledger_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999"
+    },
+    {
+      "id": "node-inputs:runtime-mvp",
+      "node_id": "runtime-mvp",
+      "required_count": 72,
+      "blocked_input_ids": [],
+      "status": "ADMITTED",
+      "epoch": "2026-08-31-v1",
+      "provenance_id": "node-inputs:runtime-mvp",
+      "ledger_sha256": "9f4ed99e12d67ef026eb7fb85c783edc9d8211a1ea80f5447e3a7dd3e1a00999"
+    }
+  ],
+  "milestones": [
+    {
+      "id": "first-engineering-handoff",
+      "artifact": "arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip",
+      "classification": "NON-ADMITTED ENGINEERING HANDOFF",
+      "depends_on": [
+        "runtime-fork-exec",
+        "build-extra-payload"
+      ],
+      "source_identity": null,
+      "state": "blocked_on_source_and_input_identities"
+    },
+    {
+      "id": "superseding-admitted-artifact",
+      "depends_on": [
+        "first-engineering-handoff",
+        "build-extra aggregate-check",
+        "build-extra governance/protection",
+        "protected base-controlled admission"
+      ],
+      "state": "post_handoff"
+    }
+  ],
+  "verdict": {
+    "minimum_source_graph_defined": true,
+    "first_layer_base_head_tree_identities_frozen": true,
+    "same_repository_stack_numbers_known": false,
+    "all_parent_head_identities_known": false,
+    "all_external_inputs_admitted": true,
+    "implementation_go": false
+  },
+  "graph_revision": 12,
+  "supersedes": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\2afe4c88-1e62-4bee-8d7d-b31d6b6c0c52\\files\\arm64-vnext-release-graph.json",
+    "bytes": 17861,
+    "file_sha256": "693012fecf72fc3a62a044911b11dd90d5beeb3cebd7bfa8f8cf40550845dd8a",
+    "payload_sha256": "37e2f061c726839cf3d8cca7de8af72097f15bae20d1d8538a932344e2457740"
+  },
+  "last_transition": {
+    "node_id": "runtime-generator",
+    "old_head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+    "old_head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+    "new_head_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+    "new_head_tree": "43aec2ed8555b6f4a9866ae4b8605972062dff6d",
+    "state": "pr_open",
+    "pr": 31,
+    "updated_dependent_nodes": []
+  },
+  "seal": {
+    "algorithm": "sha256",
+    "scope": "UTF-8 bytes of recursively lexicographically key-sorted compact JSON for the top-level document excluding seal",
+    "payload_utf8_bytes": 13988,
+    "payload_sha256": "18eb4e9da1194bae88c167d626a0108d24fe432466b5fdc16787a23ac4393276"
+  }
+}
