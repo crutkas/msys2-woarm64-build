@@ -1,0 +1,38 @@
+--- a/winsup/cygwin/dcrt0.cc
++++ b/winsup/cygwin/dcrt0.cc
+@@ -162,9 +162,12 @@
+   if (!winshell || !glob)
+     {
+       char *p;
+-      strcpy (cmd, cmd + 1);
++      /* NB: source and destination overlap, so strcpy() is undefined
++	 behaviour.  x86_64's byte-forward strcpy tolerates it; AArch64's
++	 reads 16-byte NEON blocks and corrupts the result.  */
++      memmove (cmd, cmd + 1, strlen (cmd + 1) + 1);
+       if (*(p = strchrnul (cmd, quote)))
+-	strcpy (p, p + 1);
++	memmove (p, p + 1, strlen (p + 1) + 1);
+       return p;
+     }
+ 
+@@ -1053,11 +1056,16 @@
+ 		       : : [ADDR] "r" (stackaddr));
+ 		       #elif defined (__aarch64__)
+ 		       	      /* Set stack pointer to new address and point the frame
+-		       		 pointer (x29) at it.  Windows ARM64 has no shadow space,
+-		       		 so unlike x86_64 nothing has to be subtracted here. */
++		       		 pointer (x29) at it.  create_new_main_thread_stack()
++		       		 returns StackBase-16.  AArch64 addresses locals at
++		       		 POSITIVE offsets from sp (x86_64 uses negative offsets
++		       		 from rbp), so without headroom the compiler's own spills
++		       		 land ABOVE StackBase -- which is cygheap->chain, since
++		       		 THREAD_STORAGE_HIGH == CYGHEAP_STORAGE_LOW.  Reserve 32
++		       		 bytes, matching the x86_64 arm.  */
+ 		       	      __asm__ ("\n\
+-		       		       mov  sp, %[ADDR]  \n\
+-		       		       mov  x29, sp      \n"
++		       		       sub  sp, %[ADDR], #32  \n\
++		       		       mov  x29, sp           \n"
+ 		       		       : : [ADDR] "r" (stackaddr));
+ 		       #else
+ 		       #error unimplemented for this target
