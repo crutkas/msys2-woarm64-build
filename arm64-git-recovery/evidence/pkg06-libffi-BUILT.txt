@@ -1,0 +1,43 @@
+CLOSURE PACKAGE 6/10: libffi 3.4.6 — BUILT with native WoA GCC (MEASURED, RUN=42 THROUGH THE ASM TRAMPOLINE)
+  [This is the package the coordinator flagged as most likely to resist — per-arch asm + generated config.]
+
+TOOLCHAIN: WoA woarm64-native gcc 15.0.1dev-2 / binutils 2.45dev-1, NATIVE on ARM64 host. Nothing cross/prebuilt.
+FOUR ABI KNOBS: aarch64-w64-mingw32 / UCRT / winpthreads / crt-git 70d63e7c9.
+DRIVE METHOD: direct gcc/ar/as (NO configure, NO shell), hand-written fficonfig.h + generated ffi.h.
+
+SOURCE: libffi 3.4.6 release tarball (github libffi/libffi v3.4.6, 1391684 B). (msys2 lists 3.8.0; I built 3.4.6.
+  Note the version delta if exact-match to the reference closure matters — the ABI is stable across this range.)
+
+THE ASSEMBLY TRAMPOLINE WORKS: src/aarch64/sysv.S ASSEMBLED cleanly with our WoA as, and ffi_call dispatched
+  a real function through it at runtime. This is the load-bearing proof for libffi — the whole library exists to
+  make that indirect asm-trampolined call, and it returned the correct value.
+
+BINUTILS/AS FINDING (measured, reportable) — .hidden pseudo-op on aarch64-PE:
+  The stale vendor msvc_build/aarch64 fficonfig.h sets HAVE_HIDDEN_VISIBILITY_ATTRIBUTE=1, whose ASM path emits
+    FFI_HIDDEN(name) -> `.hidden name`
+  GNU as on aarch64-w64-mingw32 REJECTS it: "Error: unknown pseudo-op: `.hidden'". PE/COFF has no ELF-style
+  hidden visibility, so .hidden is meaningless on this target. (x86_64-w64-mingw32 historically tolerated/ignored
+  some of these; aarch64 as errors hard.) This is a real per-target gap: libffi's config machinery, when it
+  believes visibility is available, emits an ELF-only directive that aarch64-PE as cannot accept.
+  CORRECT FIX (applied): define FFI_HIDDEN empty for BOTH the C path and the LIBFFI_ASM path on PE. That is what
+  a correct ./configure would produce for this target (it would detect .hidden unsupported). Symbols are DLL-
+  scoped on PE regardless, so dropping hidden-visibility is semantically fine.
+  ALSO: the shipped msvc_build ffi.h/ffitarget.h are for a DIFFERENT libffi version (FFI_BAD_ARGTYPE / ftramp
+  member mismatches against 3.4.6 sources) — do NOT use them; generate ffi.h from the in-tree ffi.h.in instead.
+
+HAND-WRITTEN fficonfig.h (LEGITIMATE ARTEFACT; values for aarch64-w64-mingw32/UCRT, all stated):
+  SIZEOF_DOUBLE=8, SIZEOF_LONG_DOUBLE=8 [MEASURED: mingw aarch64 long double = 64-bit, NOT 128],
+  HAVE_LONG_DOUBLE=1, FFI_EXEC_TRAMPOLINE_TABLE=0 [static tramp not needed], FFI_MMAP_EXEC_WRIT=0,
+  HAVE_AS_CFI_PSEUDO_OP=1 [our as supports .cfi_*], FFI_HIDDEN empty on PE (see finding above).
+ffi.h generated from include/ffi.h.in: VERSION=3.4.6, TARGET=AARCH64, HAVE_LONG_DOUBLE=1, TRAMPOLINE_TABLE=0.
+ffitarget.h: used the in-tree src/aarch64/ffitarget.h unchanged.
+
+BUILD: 6 portable src/*.c + aarch64/ffi.c + aarch64/sysv.S = 8 objects, 0 failures. ar rcs libffi.a (30456 B).
+
+VERIFY (compile-assemble-link-RUN, distinctive return 42 VIA ffi_call):
+  Test builds an ffi_cif for int(int,int), then ffi_call dispatches add_them(13,29) THROUGH the sysv.S
+  trampoline; returns 42. fftest.exe (0xAA64) RAN, printed "ffi_call add(13,29) = 42", exit 42.
+
+STAGED: files/staged-closure/libffi/{libffi.a, fficonfig.h.HAND-WRITTEN, ffi.h, ffitarget.h}
+STATUS: 6 of 10 done (wineditline, brotli, libtasn1, libssh2, c-ares, libffi). All native, all RUN-verified.
+  The two hardest categories are now cleared: cross-DLL-data auto-import (brotli) and per-arch asm (libffi).

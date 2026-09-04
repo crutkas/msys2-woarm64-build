@@ -1,0 +1,32 @@
+PACMAN PACKAGE FORMAT (measured from mingw-w64-clang-aarch64-brotli-1.2.0-1-any.pkg.tar.zst, repo.msys2.org)
+
+A .pkg.tar.zst is a ZSTD-compressed TAR containing, at archive root (order: metadata first):
+  .PKGINFO    text; makepkg key=value. REQUIRED keys observed:
+                pkgname, pkgbase, pkgver (VER-REL), pkgdesc, url, builddate (epoch), packager,
+                size (installed bytes), arch (=any for mingw split pkgs), license.
+                xdata = pkgtype=split ; makedepend/depend/provides/conflicts/optdepend as needed.
+  .BUILDINFO  text; makepkg build environment record (format/machine/pkgbuild sha etc.). Not needed for
+                pactree/pacman -Ql resolution; can be minimal or omitted for local install (pacman tolerates
+                absence; -U installs without it). KEEP minimal.
+  .MTREE      GZIP-compressed BSD mtree manifest (magic 1F 8B). Lists every payload path with mode/size/
+                sha256/time. pacman regenerates/validates from it. For a local -U install pacman does NOT
+                require .MTREE to be correct (it is used for -Qkk verification); a correct one is preferred.
+  <root>/...  payload rooted at the install prefix segment. For clangarm64 packages the top dir is literally
+                `clangarm64/` (so files land at $MSYSTEM_LOWER = clangarm64/bin, clangarm64/lib, clangarm64/include).
+
+REFERENCE brotli payload layout (what a clang-aarch64 lib package ships):
+  clangarm64/bin/{lib*.dll, tool.exe}
+  clangarm64/lib/{lib*.a, lib*.dll.a, pkgconfig/*.pc}
+  clangarm64/include/<pkg>/*.h
+  clangarm64/share/licenses/<pkg>/LICENSE   (+ optional man)
+
+INSTALL DB: after `pacman -U pkg.tar.zst`, pacman writes /var/lib/pacman/local/<pkgname>-<ver>/{desc,files,mtree}.
+  make-file-list.sh uses `pactree -u <pkg>` (walks depends in the sync/local db) and `pacman -Ql <pkg>`
+  (reads the local 'files' list). BOTH require the package INSTALLED in a pacman root, not merely present as a file.
+
+CONSEQUENCE for the dry-run: a real pactree/pacman -Ql pass needs a pacman installation (absent on host and in
+  WSL Ubuntu — measured: `which pacman makepkg pactree` empty in both). Options: (a) install msys2 to get pacman,
+  (b) install standalone libalpm/pacman in WSL, or (c) SIMULATE: `pacman -Ql` == the package 'files' list, and
+  `pactree -u` == the transitive depends from .PKGINFO depend= lines. I can generate both deterministically from
+  the packages I build, which lets make-file-list.sh's logic be exercised without a live pacman if I stub the
+  two calls. Recorded so the environment need is explicit, not discovered mid-dry-run.

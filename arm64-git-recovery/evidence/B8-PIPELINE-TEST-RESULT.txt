@@ -1,0 +1,89 @@
+B8 — FULL END-TO-END PIPELINE TEST WITH UPSTREAM STAND-INS (A/B ISOLATION)
+==========================================================================
+STATUS: PASS. A complete MinGit-arm64 layout was assembled end-to-end through
+the real build-extra tooling using KNOWN-GOOD stand-in components in the two
+slots we are still waiting on. This isolates the assembly pipeline so that
+swapping in our own git.exe and busybox later is a SINGLE-VARIABLE change.
+
+ARTEFACT (labelled DO-NOT-SHIP, four channels):
+  filename : PIPELINE-TEST-upstream-git-DO-NOT-SHIP.zip   (58 MB, 1680 files)
+  in-zip   : PIPELINE-TEST-DO-NOT-SHIP.txt  (states which slots are upstream)
+  log      : every run line says "upstream git+busybox standins"
+  pkgdesc  : busybox pkgdesc = "PIPELINE-TEST STAND-IN: upstream busybox.exe
+             ... NOT our build"; GCM pkgdesc = non-functional stub
+  Saved to session files/ (see staged-packages / this evidence dir).
+
+WHAT RAN (MEASURED, exit codes captured in-command):
+  repo-add    exit=0  (40 pkgs into the sync repo: 28 upstream clangarm64 ref
+                       + busybox upstream stand-in + GCM stub + 4 my leaves +
+                       8 base/msys dep stubs)
+  pacman -U -dd exit=0  10688 files installed under root/clangarm64
+  make-file-list.sh MINIMAL_GIT_WITH_BUSYBOX=1  exit=0  1492 lines
+       -> the closure walk (pactree -u per pkg), PACKAGE_EXCLUDES filtering,
+          the WITH_BUSYBOX required-install loop, and pacman -Ql ALL succeed.
+  assembly (mirrors release.sh 126-146): copied=1486, missing=6,
+          libexec/git-core/*.exe -> bin moves = 14
+  zip: 1680 files.
+
+PROVEN PIPELINE STAGES (the machinery, independent of our binaries):
+  1. sync-repo construction + repo-add (needs libarchive-tools/bsdtar)
+  2. pactree -u transitive closure over the depend= graph WE author
+  3. PACKAGE_EXCLUDES regex (drops mingw-w64-*/{i686,x86_64,ucrt,clang-aarch64})
+  4. MINIMAL_GIT_WITH_BUSYBOX branch (SH_FOR_REBASE=busybox, not dash)
+  5. required-install loop -> reduces to GCM + busybox only
+  6. pacman -Ql file enumeration -> 1492-line file list
+  7. release.sh layout move: 14 libexec/git-core/*.exe copied to bin/
+  8. cert placement verified: clangarm64/etc/ssl/certs/ca-bundle.crt present
+  9. archive.
+
+KEY DEFECTS FOUND AND FIXED IN THE PIPELINE TEST (each is a real pipeline
+finding, not a property of our binaries):
+  * has_pacman_package (make-file-list.sh:166) globs /var/lib/pacman/local/
+    $1-[0-9]* — an ABSOLUTE path that ignores --dbpath, AND requires the
+    pkgver to start with a DIGIT. Two consequences:
+      - must symlink /var/lib/pacman/local -> our root's local db or the check
+        misses installed pkgs and re-runs the required install;
+      - a stand-in version "UPSTREAM-STANDIN.1" (letter-leading) never matches
+        the glob -> forced a pacman -Sy that hit a sync-db checksum error.
+        Fixed by versioning the stand-in "1.37.0.upstreamstandin-1".
+    IMPLICATION FOR OUR REAL PACKAGES: git and busybox pkgver MUST be
+    digit-leading (they are: 2.55.0.x, 1.37.x). No action needed, but noted.
+  * pacman -U enforces deps + prompts unless -dd (double nodeps).
+  * pactree emits "[unresolvable]" for base deps absent from our snapshot:
+    only TWO for the git closure -> cc-libs (compiler-runtime virtual) and
+    nano (msys editor). Plus the hardcoded packages-list msys deps
+    (msys2-runtime, openssh, filesystem, rebase, git-extra). All satisfied
+    here with empty base stubs; in a real MSYS2 host they are present.
+  * PACKAGE_VERSIONS_FILE (make-file-list.sh:149-155) runs pacman -Q on the
+    whole list and DIES if any is absent. It is OPTIONAL (only release.sh sets
+    it). Unsetting it for the file-list step avoids the die; release.sh itself
+    would need those packages actually present.
+
+THE 6 "MISSING" AT COPY TIME (benign):
+  1 = a grep stderr line ("grep: /usr/bin/gpg.exe: No such file or directory")
+      that leaked into the list via a stray CR; harmless noise.
+  5 = etc/fstab, etc/nsswitch.conf, etc/gitattributes, usr/bin/rebase.exe,
+      usr/bin/rebaseall — all from the EMPTY base/msys stubs (no payload).
+  NONE are from the git / busybox / leaf packages. Clean.
+
+WHAT THIS PROVES / DOES NOT PROVE:
+  PROVES: the entire assembly pipeline (sync repo -> closure -> file list ->
+          layout moves -> cert placement -> zip) is FUNCTIONAL. When our own
+          git.exe (from 2918d1f1, native WoA GCC) and busybox (from 1e7a7fd3)
+          land, swapping them in is a single-variable change and any failure
+          is attributable to those binaries, not the machinery.
+  DOES NOT PROVE: that OUR binaries assemble correctly (they are not in this
+          zip) nor that the result runs on ARM64 (assembled on x86-64 WSL;
+          the assembler only copies+lists, it does not execute ARM64 code).
+  DOES NOT SHIP: contains upstream git.exe + upstream busybox. Explicitly
+          labelled on four channels.
+
+METHOD NOTES:
+  - MEASURED: all exit codes and counts captured in the same command that
+    produced them; file presence checked by ls, not inferred.
+  - The assembler MIRRORS release.sh lines 126-146 (libexec->bin) rather than
+    executing release.sh, because release.sh lines 149/169 EXECUTE the ARM64
+    git-wrapper.exe and busybox.exe to validate them, which cannot run under
+    x86-64 WSL. That execution step is a TARGET-runtime check, legitimately
+    deferred to a real ARM64 host; it is not part of the closure/layout logic
+    this test validates.

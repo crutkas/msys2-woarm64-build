@@ -1,0 +1,28 @@
+CLOSURE PACKAGE 1/10: wineditline 2.208 — BUILT with native WoA GCC (MEASURED, full pipeline + RUN)
+
+TOOLCHAIN (the four ABI knobs):
+  1. TARGET TRIPLE : aarch64-w64-mingw32  (gcc -dumpmachine)
+  2. CRT           : UCRT
+  3. THREADING     : posix / winpthreads
+  4. HEADERS/CRT   : mingw-w64 crt-git/headers-git 70d63e7c9
+  COMPILER: WoA woarm64-native gcc 15.0.1dev-2 / binutils 2.45dev-1, running NATIVELY on this ARM64 host.
+  NOTHING PREBUILT, NOTHING CROSS: our native ARM64 gcc compiled + assembled + linked on the target machine.
+  Driver: invoked gcc/ar directly (no cmake needed for this leaf); source = upstream ptosco/wineditline 2.208.
+
+SOURCE: https://github.com/ptosco/wineditline/archive/wineditline-2.208.tar.gz (http 200, 24817 B)
+  matches msys2 mingw-w64-wineditline PKGBUILD pkgver=2.208.
+
+BUILD (all exit 0):
+  gcc -c editline.c / fn_complete.c / history.c   (3 objects, pe-aarch64-little, architecture: aarch64)
+  ar rcs libedit_static.a  -> static lib
+  gcc -shared ... libedit.def --out-implib libedit.dll.a -> edit.dll (0xAA64) + import lib
+
+VERIFY (compile-assemble-link-RUN standard):
+  edit.dll PE machine            = 0xAA64
+  static-lib member architecture = aarch64 (pe-aarch64-little)
+  edit_test_dll.exe              = 0xAA64, compiled against our headers
+  RAN edit_test_dll.exe          -> "Type exit to quit the test", exit 0
+
+STAGED: files/staged-closure/wineditline/{edit.dll, libedit_static.a, libedit.dll.a}
+
+STATUS: 1 of 10 remaining compiled closure packages DONE, self-built, native, verified-by-run.

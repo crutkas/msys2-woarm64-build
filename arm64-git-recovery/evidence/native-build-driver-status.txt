@@ -1,0 +1,35 @@
+NATIVE BUILD-DRIVER STATUS — MEASURED (what works, what is genuinely gated)
+
+WHAT NOW WORKS NATIVELY ON THIS ARM64 HOST (all measured, exit 0 + RUN):
+  - WoA gcc 15.0.1 (0xAA64, native via IsWow64Process2) — compiles+assembles+links, ret42.exe ran =42.
+  - GNU Make 4.4.1 "Built for aarch64-w64-mingw32" (clangarm64 pkg, UCRT, needs only libintl-8) — runs, exit 0.
+  - PROVEN: mingw32-make + WoA gcc drives a Makefile build end-to-end: prog.exe built + RAN =7.
+    => For hand-written or simple Makefiles using Windows paths, the native driver is COMPLETE.
+
+WHAT IS STILL GATED (measured):
+  - A POSIX SHELL sharing make's path universe. configure scripts and kbuild (busybox, autotools) run sh
+    scripts that receive make's $(srctree). 
+  - mingw32-make is a WINDOWS-native binary: it emits Windows paths (C:\Users\...). 
+  - Git-for-Windows sh is an MSYS-native binary: it mangles C:\Users\... -> /Users/... (drops drive) and fails.
+  - MEASURED failure: busybox mingw64a (ARM64!) config, HOSTCC built fixdep/split-include/docproc with our
+    gcc SUCCESSFULLY, then gen_build_files.sh failed: "cd: /Users/.../busybox-build: No such file or directory"
+    because the Windows path from make was fed to MSYS sh. Same failure from cmd, from git-bash login shell,
+    and with MSYS_NO_PATHCONV=1/MSYS2_ARG_CONV_EXCL=* set.
+  - ROOT CAUSE: mixing a MINGW-native make with an MSYS-native sh = incompatible path conventions. The real
+    MSYS2 build works because msys2's make AND msys2's sh are BOTH msys-native (one POSIX path universe).
+    That msys-native userland is exactly what is gated on msys2-runtime (the WIP component).
+
+CONSEQUENCE / HONEST CRITICAL PATH for a FULLY-native on-host build of autotools/kbuild packages:
+  Need an msys-native (or otherwise path-consistent) make+sh pair. Options:
+   (a) msys2-runtime lands -> msys-native coreutils/make/bash become available (the runtime track).
+   (b) A make built to emit POSIX paths + a POSIX sh in the SAME convention (e.g. busybox-w32 sh + a
+       busybox/make in the same path model) — but busybox-w32 itself needs this env to build (bootstrap).
+   (c) Cross-build from Linux/WSL (what 2918d1f1 does) — works, but is a CROSS build, weaker claim.
+   (d) For CMAKE/Ninja packages ONLY: cmake+ninja avoid sh; drive gcc directly with Windows paths. VIABLE
+       today for the CMake-based closure members (proven: wineditline built this way, gcc/ar direct).
+
+MEASURED SCORECARD for the strong-form "our gcc + native make + native sh, nothing cross" claim:
+  gcc  native  : YES (verified, ran)
+  make native  : YES (verified, ran, drove a build)
+  sh   native  : NO path-consistent sh available without msys2-runtime -> THIS is the last real gate.
+  => autotools/kbuild packages are gated on the sh; CMake/direct-gcc packages are NOT.

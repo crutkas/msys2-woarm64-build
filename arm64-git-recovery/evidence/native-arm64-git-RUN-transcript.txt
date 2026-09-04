@@ -1,0 +1,43 @@
+# Native ARM64 Git executed on Windows-on-ARM64 host — session ea1641ea 2026-09-03T08:15:24.1235567-07:00
+# Reference implementation: MSYS2 clangarm64 git 2.55.0.5 (PREBUILT — not our toolchain)
+## git.exe PE machine = 0xaa64 (ARM64), host PROCESSOR_ARCHITECTURE=ARM64
+
+## git --version
+git version 2.55.0.windows.5
+exit=0
+
+## HTTPS clone (schannel) result HEAD:
+a279acf Release Notes: notify users about end of Windows 8.1 support
+clone file count = 619, exit=0
+
+## DLL closure PE machine verification:
+edit.dll                 0xaa64
+libasprintf-0.dll        0xaa64
+libbrotlicommon.dll      0xaa64
+libbrotlidec.dll         0xaa64
+libbrotlienc.dll         0xaa64
+libbz2-1.dll             0xaa64
+libc++.dll               0xaa64
+libcares-2.dll           0xaa64
+libcharset-1.dll         0xaa64
+libcrypto-3-arm64.dll    0xaa64
+libcurl-4.dll            0xaa64
+libexpat-1.dll           0xaa64
+libffi-8.dll             0xaa64
+libiconv-2.dll           0xaa64
+libidn2-0.dll            0xaa64
+libintl-8.dll            0xaa64
+libp11-kit-0.dll         0xaa64
+libpcre2-16-0.dll        0xaa64
+libpcre2-32-0.dll        0xaa64
+libpcre2-8-0.dll         0xaa64
+libpcre2-posix-3.dll     0xaa64
+libpsl-5.dll             0xaa64
+libssh2-1.dll            0xaa64
+libssl-3-arm64.dll       0xaa64
+libtasn1-6.dll           0xaa64
+libunistring-5.dll       0xaa64
+libunwind.dll            0xaa64
+libzstd.dll              0xaa64
+zlib1.dll                0xaa64
+cert bundle ca-bundle.crt is 0 bytes (generated at install by update-ca-trust); schannel used OS trust store instead

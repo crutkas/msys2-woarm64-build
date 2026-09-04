@@ -1,0 +1,38 @@
+L1 CLOSURE — FINAL QUEUE STATUS (MEASURED per package)
+
+ORIGINAL 10-PACKAGE QUEUE -> RESOLVED AS:
+
+BUILT NATIVE + RUN-VERIFIED (6), our WoA GCC, aarch64-w64-mingw32/UCRT/winpthreads/crt-git 70d63e7c9:
+  1. wineditline 2.208   direct-drive (cmake bypassed)         static+RUN                  [edit.dll]
+  2. brotli 1.2.0        direct-drive (cmake bypassed)         static+shared RUN=55        [libbrotli{common,dec,enc}]
+  3. libtasn1 4.21.0     direct-drive + hand config.h          static+shared RUN=42        [libtasn1-6] (gnulib in-tree)
+  4. libssh2 1.11.1      direct-drive + hand config.h, WINCNG  static+shared RUN=42        [libssh2-1]
+  5. c-ares 1.34.5       direct-drive, vendor config-win32.h   static+shared RUN=42        [libcares-2]
+  6. libffi 3.4.6        direct-drive + hand config.h + asm     RUN=42 via ffi_call/tramp   [libffi-8]
+
+DROPPED — NOT IN GIT'S REAL CLOSURE (measured by objdump import tables, imported by nothing):
+  7. p11-kit            gnutls-only; git uses openssl/schannel curl. DROP. (Also meson = shell-gated anyway.)
+  (libtasn1 is likewise gnutls-only but was cheap and is built/staged as a bonus.)
+
+DEFERRED — GENUINELY NEED configure/shell (the one honest defer-to-shell tail):
+  8. libunistring 1.4.2 626 sources + 39 .in.h header templates with 1365 DISTINCT @tokens@, many of which are
+                        REAL feature-detection results (BITSIZEOF_*, CXX_HAS_*, ~1000 GNULIB_* module toggles
+                        tied to the exact gnulib import set). Hand-writing is infeasible/correctness-risky.
+                        => build via its real ./configure once busybox sh (session 1e7a7fd3) lands; CC = our WoA gcc.
+  9. libidn2 2.3.7      bundles a unistring SUBSET but its lib/*.c #include <unictype.h>/<uninorm.h> = the FULL
+                        libunistring public headers, which are the .in.h templates above. 7/14 lib sources
+                        compiled with a hand config.h before hitting the unistring header wall. Blocked on (8).
+ 10. libpsl 0.21.5      meson + imports libidn2 + libunistring. Blocked on (8)+(9) and on meson(shell). 
+
+CRITICAL-PATH CONSEQUENCE (measured + derived):
+  * The 6 built cover every git-closure library that is NOT gnutls-dead-weight and NOT the IDN/PSL tail.
+  * libidn2+libpsl+libunistring are ALL OPTIONAL curl features: `curl --without-libidn2 --without-libpsl`
+    yields a fully working HTTPS git. They add IDN hostnames + PSL cookie-domain checks, neither required for
+    the https-clone acceptance test. => a MINIMAL USABLE ARM64 GIT SHIPS NOW WITHOUT THIS TAIL.
+  * The tail is not a compiler problem — our GCC compiled 7/14 libidn2 sources and would compile libunistring's
+    .c fine; it is purely the configure-time header/config generation that needs a shell. Same structural gate
+    as everything else: sh (busybox, 1e7a7fd3) is the unlock, and m4/autoconf/bison are NOT needed because these
+    ship pre-generated configure scripts in their release tarballs.
+
+SUMMARY: 6/10 built+run-verified natively; 1 dropped (not in closure); 3 deferred to the sh unlock but OPTIONAL
+for a minimal working git. Plus: native make verified, ca-certificates built+https-proven earlier.

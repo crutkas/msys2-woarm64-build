@@ -1,0 +1,24 @@
+# Git 2.55.0.5 — MEASURED shell-script (needs /bin/sh) vs C-builtin, on native ARM64
+# Method: read libexec/git-core/git-*; MZ header => PE exe, else shell script. Confirmed by execution.
+
+## SHELL SCRIPTS still present (genuinely runtime/sh-blocked):
+  git-difftool--helper
+  git-filter-branch
+  git-instaweb
+  git-merge-octopus
+  git-merge-one-file
+  git-merge-resolve
+  git-mergetool
+  git-mergetool--lib
+  git-quiltimport
+  git-request-pull
+  git-sh-i18n
+  git-sh-setup
+  git-submodule
+  git-web--browse
+
+## CONFIRMED NATIVE (ran with NO sh, exit 0): stash, bisect start, add -p, rebase(builtin reached)
+## Classic 'blocked' list is OUTDATED for 2.55: rebase -i, add -p/-i, stash, bisect are now C builtins.
+## Genuinely blocked porcelain = the scripts above: chiefly filter-branch, mergetool/difftool,
+##   submodule, request-pull, quiltimport, instaweb, web--browse, octopus/resolve strategies,
+##   plus git-sh-setup/git-sh-i18n helpers and any shell-script repo hooks.

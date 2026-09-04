@@ -1,0 +1,46 @@
+L1 REMAINING GIT.EXE CLOSURE GAP — MEASURED
+Generated: (see file mtime)
+
+Full git 2.55 clangarm64 transitive closure = 23 MINGW packages.
+
+RESOLVED WITHOUT BUILDING BY ME:
+  In WoA native repo already (mingw-w64-aarch64-*, GCC-built, http 200):
+    bzip2, gettext-runtime, libiconv, zlib, zstd  (also iconv, ncurses present)
+  Clang-runtime -> GCC-libs substitution (WoA ships gcc-libs = libstdc++/libgcc):
+    libc++  -> gcc-libs
+    libunwind -> gcc-libs
+  Owned by session 2918d1f1 (curl/openssl/expat/pcre2):
+    curl, openssl, expat, pcre2
+  Built by me today, arch=any DATA, proven via HTTPS clone:
+    ca-certificates
+  The target binary itself:
+    git  (Track A / 2918d1f1)
+
+GENUINELY REMAINING COMPILED PACKAGES = 10 (all MINGW-target, runtime-UNBLOCKED):
+  Ranked easiest->hardest to cross-build (DERIVED from build system + deps):
+   1. wineditline    - small, CMake, no deps (readline shim)                [leaf]
+   2. libunistring   - autotools, no deps                                   [leaf]
+   3. libtasn1       - autotools, no deps                                   [leaf]
+   4. c-ares         - CMake/autotools, no deps                            [leaf]
+   5. brotli         - CMake, no deps                                       [leaf]
+   6. libffi         - autotools, no deps                                   [leaf]
+   7. libidn2        - autotools; depends libunistring (#2)
+   8. libtasn1 -> p11-kit (below)
+   9. p11-kit        - meson; depends libtasn1(#3), libffi(#6)             [meson!]
+  10. libpsl         - meson/autotools; depends libidn2(#7), libunistring(#2)
+  11. libssh2        - CMake/autotools; depends openssl(2918d1f1), zlib(native)
+
+  (that is 10 distinct packages; ssh2/psl/p11-kit have intra-set deps -> build leaves first)
+
+BUILD ORDER (topological):
+  leaves:   wineditline, libunistring, libtasn1, c-ares, brotli, libffi
+  then:     libidn2 (needs libunistring)
+  then:     p11-kit (needs libtasn1+libffi), libpsl (needs libidn2+libunistring)
+  then:     libssh2 (needs openssl from 2918d1f1 + zlib native)
+
+TOOLCHAIN REQUIRED (see L1-compiled-toolchain-mechanism.txt):
+  x86_64 MSYS2 + WoA mingw-w64-cross-mingwarm64 GCC 15.0.1  (cross -> aarch64-w64-mingw32)
+  OR native ARM64 MSYS2 CLANGARM64 (clang). Neither exists on host/WSL yet -> STAND-UP REQUIRED.
+
+NOTE: none of these 10 need the MSYS2 runtime (msys-2.0.dll). All are pure MINGW target.
+Confirms the parallelisation thesis: the entire git.exe closure is buildable before the runtime lands.

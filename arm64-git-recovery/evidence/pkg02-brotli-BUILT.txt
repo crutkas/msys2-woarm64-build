@@ -1,0 +1,28 @@
+CLOSURE PACKAGE 2/10: brotli 1.2.0 — BUILT with native WoA GCC (MEASURED, shared+static, RUN-verified)
+
+TOOLCHAIN: WoA woarm64-native gcc 15.0.1dev-2 / binutils 2.45dev-1, native on ARM64 host.
+  Four ABI knobs: aarch64-w64-mingw32 / UCRT / winpthreads / crt-git 70d63e7c9. Nothing cross/prebuilt.
+  DRIVE METHOD: direct gcc/ar (NO cmake, NO configure, NO shell) — brotli needs no generated headers.
+
+SOURCE: https://github.com/google/brotli/archive/v1.2.0 (http 200, 646315 B) = msys2 PKGBUILD pkgver 1.2.0.
+
+BUILD: 35 sources (common 6, dec 6, enc 23) -> pe-aarch64-little objects, 0 failures.
+  STATIC: libbrotlicommon.a / libbrotlidec.a / libbrotlienc.a  (ar rcs)
+  SHARED: libbrotlicommon.dll / libbrotlidec.dll / libbrotlienc.dll (all 0xAA64) + import libs
+    built with -DBROTLI_SHARED_COMPILATION + per-lib -DBROTLI{COMMON,DEC,ENC}_SHARED_COMPILATION.
+
+VERIFY (compile-assemble-link-RUN, distinctive return value 55):
+  STATIC round-trip  : encode->decode->byte-compare, exe RAN, exit 55.
+  SHARED round-trip  : consumer linked import libs, loaded the 3 DLLs at runtime, RAN, exit 55.
+  All 3 DLLs + consumer exe = 0xAA64.
+
+GCC/BINUTILS DEFECT FOUND (see GCC-DEFECT-aarch64-autoimport.txt):
+  A naive `-shared` over all objects WITHOUT the dllexport macros triggers ld:
+    "cannot get section contents - auto-import exception (bit size 21 / 12)"  (ADRP/ADD relocs).
+  ROOT CAUSE: mingw runtime pseudo-reloc AUTO-IMPORT of cross-DLL DATA symbols is not supported on AArch64
+  (ADRP addressing is not runtime-patchable). x86_64 works; aarch64 does not. Toolchain should diagnose it.
+  FIX (standard, applied): decorate exports/imports with __declspec via BROTLI_SHARED_COMPILATION -> clean link.
+  Functional code UNAFFECTED (static ran = 55). This is a real per-target finding worth upstreaming.
+
+STAGED: files/staged-closure/brotli/{3 .dll, 3 .dll.a, 3 static .a}
+STATUS: 2 of 10 done (wineditline, brotli). Both direct-drive, native, RUN-verified.

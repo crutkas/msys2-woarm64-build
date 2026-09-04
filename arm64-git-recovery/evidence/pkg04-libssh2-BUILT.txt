@@ -1,0 +1,36 @@
+CLOSURE PACKAGE 4/10: libssh2 1.11.1 — BUILT with native WoA GCC (MEASURED, static+shared, RUN=42)
+
+TOOLCHAIN: WoA woarm64-native gcc 15.0.1dev-2 / binutils 2.45dev-1, NATIVE on ARM64 host. Nothing cross/prebuilt.
+FOUR ABI KNOBS: aarch64-w64-mingw32 / UCRT / winpthreads / crt-git 70d63e7c9.
+DRIVE METHOD: direct gcc/ar (NO cmake, NO configure, NO shell), hand-written libssh2_config.h.
+
+SOURCE: https://www.libssh2.org/download/libssh2-1.11.1.tar.gz (1093012 B) = msys2 PKGBUILD pkgver 1.11.1.
+
+CRYPTO BACKEND CHOICE (significant): built with -DLIBSSH2_WINCNG = Windows CNG (bcrypt/crypt32).
+  This makes libssh2 SELF-CONTAINED — it does NOT need openssl (2918d1f1's build) at all. The alternative
+  -DLIBSSH2_OPENSSL would pull in libcrypto. WINCNG is the natural Windows choice and removes a closure edge.
+  Excluded backend sources: libgcrypt.c, mbedtls.c, openssl.c, os400qc3.c, wolfssl.c. Kept wincng.c.
+
+HAND-WRITTEN libssh2_config.h (LEGITIMATE ARTEFACT; values standard for win32/mingw, all stated):
+  HAVE_WINDOWS_H/WS2TCPIP_H/WINSOCK2_H=1, HAVE_IOCTLSOCKET=1, HAVE_SELECT=1, HAVE_SNPRINTF=1,
+  HAVE_INTTYPES/STDINT/SYS_TYPES_H=1, HAVE_GETTIMEOFDAY=1 [mingw provides it via <sys/time.h>].
+  Compiled with -D_WIN32_WINNT=0x0601. session.c needed -include sys/time.h so gettimeofday is declared.
+
+BUILD: 29 .c (33 minus 4 other-backend files) -> pe-aarch64-little, 0 failures. ar rcs libssh2.a (278600+ B).
+  Shared: libssh2-1.dll (0xAA64) + libssh2.dll.a, linked with -lbcrypt -lcrypt32 -lws2_32. CLEAN (no auto-import).
+
+VERIFY (compile-assemble-link-RUN, distinctive return 42):
+  Test: libssh2_init -> version -> session_init -> session_free -> exit; returns 42.
+  STATIC : sshtest.exe (0xAA64) RAN, exit 42, printed "libssh2 1.11.1".
+  SHARED : sshtest_sh.exe (0xAA64) loaded libssh2-1.dll at runtime, RAN, exit 42.
+
+TRANSIENT-ERROR NOTE (not a defect): an intermediate link showed "26 bit relocation not currently supported"
+  + undefined libssh2_session_init_ex. ROOT CAUSE was a MISSING session.o (its first compile silently didn't
+  emit the object due to the gettimeofday implicit-decl); the 26-bit-reloc message was ld's fallback on the
+  unresolved BL branch. Once session.o was correctly built and archived (29 members), the link was clean and
+  the exe ran. So: NOT a binutils defect here — it was a build-completeness bug on my side, now fixed. Worth
+  noting because "26 bit relocation not currently supported" IS a real aarch64 ld limitation that would bite a
+  genuine >128MB BL displacement; here it was a red herring caused by the missing object.
+
+STAGED: files/staged-closure/libssh2/{libssh2.a, libssh2-1.dll, libssh2.dll.a, libssh2_config.h.HAND-WRITTEN}
+STATUS: 4 of 10 done (wineditline, brotli, libtasn1, libssh2). All native, all RUN-verified.

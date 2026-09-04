@@ -1,0 +1,12 @@
+
+--- CONTENT DIFFERENCE: no libc++ C++23 module tree (toolchain consequence) ---
+Upstream MinGit-busybox-arm64 ships ~140 files under share/libc++/v1/ (the
+libc++ C++23 module tree) because upstream is CLANG-built and its clangarm64
+base image bundles libc++. Ours is GCC-built and uses libstdc++, and NOTHING
+in the git closure links a C++ standard library (git, curl, openssl, expat,
+zlib, pcre2 are all C; GCM is a stubbed placeholder). So our artefact ships
+NEITHER the libc++ module tree NOR any libstdc++/libc++ runtime dependency
+(verified by objdump import-table scan: only libgcc_s appears, via the GCC C
+runtime). This is not a missing feature — it is a direct, expected consequence
+of building with a different toolchain, and it is concrete evidence the
+artefact is a genuinely different chain rather than a repackage of upstream.

@@ -1,0 +1,48 @@
+STAGED CLOSURE INVENTORY — consumable by 2918d1f1 for the final git.exe link (nothing to rebuild)
+Generated 2026-09-03T09:08:56.9318847-07:00
+
+THE FOUR ABI KNOBS (identical for every artifact below, MEASURED from the toolchain + object files):
+  (1) TARGET TRIPLE : aarch64-w64-mingw32
+  (2) CRT           : UCRT
+  (3) THREADING     : posix / winpthreads
+  (4) mingw-w64 hdrs/crt rev : 70d63e7c9  (from the woarm64-native prefix)
+TOOLCHAIN: WoA native GCC 15.0.1 + binutils 2.45, running ON this ARM64 Windows host (native, not cross).
+  Nothing prebuilt, nothing borrowed, except where explicitly noted below.
+
+PACKAGES (version | build method | RUN evidence | prebuilt-parts):
+  wineditline 2.208 | direct-drive (cmake bypassed)                | static, edit.dll loads          | none
+  brotli 1.2.0      | direct-drive; shared via -D*_SHARED_COMPILATION| static + shared round-trip RUN=55| none
+  libtasn1 4.21.0   | direct-drive + hand config.h (gnulib in-tree) | static+shared RUN=42 (DER parse)| none  [gnutls-only: NOT in git live closure; bonus]
+  libssh2 1.11.1    | direct-drive + hand config.h, WINCNG backend  | static+shared RUN=42            | none  [no openssl dep; uses -lbcrypt -lcrypt32 -lws2_32]
+  c-ares 1.34.5     | direct-drive, vendor config-win32.h           | static+shared RUN=42 (resolver) | none  [needs -lws2_32 -liphlpapi]  [msys2 has 1.34.8]
+  libffi 3.4.6      | direct-drive + hand fficonfig.h + sysv.S      | static RUN=42 via ffi_call/tramp| none  [PREFER STATIC .a; shared hits auto-import; NOT in git live closure]  [msys2 has 3.8.0]
+  ca-certificates   | data only (arch-independent PEM)              | 172 certs, used in HTTPS clone  | PEM data from upstream ca bundle (arch-independent)
+  make 4.4.1        | OBTAINED PREBUILT from clangarm64 (not built) | verified 0xAA64 + drives Makefile| PREBUILT (mingw-w64-clang-aarch64-make)
+
+FILE HASHES (sha256):
+brotli           libbrotlicommon.a            132516  08941A4AB80CFB38C286E09BBE52460C5DABD6EED6161B57C2773014B2554002
+brotli           libbrotlicommon.dll          245577  B786646E01C5A937AC12314E6D176197E953D54B7575F59D25BB54B5C45E235D
+brotli           libbrotlicommon.dll.a          8952  8B3EFAA5CBC59D904C145609C02AEECA1CD8AD7E57ECABAFD19588917F3F80F5
+brotli           libbrotlidec.a                45208  4F65F49AAAFF495C4E5075929CAC10458DA3B1B6C01A552A3B7CD1ECC81AA8BF
+brotli           libbrotlidec.dll             160008  76242D90D1F1F593158B60D6304232D0F4FFC43CE9B5EA88449318BAE52CA540
+brotli           libbrotlidec.dll.a            21078  1CB7C672628DECE4D0FF5A35CBD954DDB579F998CB946537F070B1C9E8933D42
+brotli           libbrotlienc.a               644500  17F3192071AE128654F34405982ADFD2EB63E11BFDE354DF3EF64E698062CEC5
+brotli           libbrotlienc.dll             736551  CF7D70511BA6B13FD5B9F2FD0769F0A72FD135A2B1CF131538B1AC1E2C1C6BC4
+brotli           libbrotlienc.dll.a            66896  3820ADB4A4FA1F737BDA52025A8EDC145AE54F2DB25456FFE16AA9733F3D2BCE
+c-ares           libcares-2.dll               376363  5B92BA97024B939DA12A12973E13D00489DEAF8200EFA0D5D5B1B7D83C2DBA18
+c-ares           libcares.a                   357900  451FAF5612A4CFA602396129E7EDFD89C0F246A13705E593A47ED87ADD47354F
+c-ares           libcares.dll.a               364348  A091A902152ABCC7A16533E5BB6C8C1F8EA0E2F1880FA5CC1A54C7EC9720A2CA
+ca-certificates  ca-bundle.crt                260007  D2EB6ED690D732C10F151E6A657A5012363FE30B6301741B7CEDEFBD1685B170
+libffi           libffi-8.dll                 143049  68C26A40C9A13D0BDAA3E3935B0F75960B1BF95D2FC9954E9368B96DC9374A4E
+libffi           libffi.a                      30456  8C9C5D525E3CA55AB9CC7F9004A9B80963E3B3FD8D427163EB48B54046EB02A8
+libffi           libffi.dll.a                  32188  03DDEE0A843368B4A6CB2EF849B0594BB55676EEE764FBCA0CE2F15F986CC85D
+libssh2          libssh2-1.dll                375196  E444756110C582D03F8A89E910F2D75312CC893C6B954A2BF2915396F83A1FD3
+libssh2          libssh2.a                    293808  4DE882CF6E0806A089996E51A04C0A46D06C6022BF51929034E7ED588BC5D058
+libssh2          libssh2.dll.a                187354  E95B17107DD76D6CA2505CCCE2E3D6EFD325C65A238828249829DC3E4996EE60
+libtasn1         libtasn1-6.dll               194236  18358D45269F0C399D49153FC278B0A36C123725822DF0C2F1EDA684BDF1C3D2
+libtasn1         libtasn1.a                    91944  625657621167138F7FCEE6939E49C5BCD7F7FFC3B01BE784AA53601C7088947D
+libtasn1         libtasn1.dll.a                55336  1B000134EE02F99A3E11457632985C219223FCBD3FF15F762520762D5121B922
+make             mingw32-make.exe             358912  E388FDF451D2D715CAFBA6B6C3F392F4BD6334102433A49B4FF2EDD763072ED9
+wineditline      edit.dll                     313163  A7AF205B6A116692F4FE8B725D88A28BB93910B81C58F144F6C98BE99F0CE5C2
+wineditline      libedit_static.a              37382  AAA576CDCAAA7BD1F15F7A59F10AB51CBB4AB34ADD0D5BAE060853D978BB3619
+wineditline      libedit.dll.a                 19998  B21A2F724D2C05056A2FACAFA373F70A9FC07A09C0229769697F095370D6B6DE

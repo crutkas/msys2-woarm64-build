@@ -1,0 +1,29 @@
+L1 RECIPE READINESS FOR THE 10 REMAINING COMPILED PACKAGES — MEASURED
+
+Searched (exact): repos/Windows-on-ARM-Experiments/MINGW-packages/contents/mingw-w64-<pkg>?ref=woarm64
+  RESULT: NONE of the 10 have a woarm64-branch recipe (all 404).
+Searched (exact): repos/msys2/MINGW-packages/contents/mingw-w64-<pkg>/PKGBUILD?ref=master
+  RESULT: ALL 10 present on msys2 master.
+
+Per-package (MEASURED from master PKGBUILD mingw_arch= line + build system):
+  pkg           mingw_arch has clangarm64?   buildsys
+  brotli        YES                          cmake
+  c-ares        YES                          cmake/autotools
+  libffi        YES                          autotools
+  libidn2       YES                          autotools
+  libpsl        YES                          meson
+  libssh2       YES                          autotools
+  libtasn1      YES                          autotools
+  libunistring  YES                          autotools
+  p11-kit       YES                          meson
+  wineditline   YES                          cmake
+
+CONCLUSION:
+  - All 10 recipes are READY AS-IS: msys2 master already declares clangarm64 in mingw_arch.
+    No recipe authoring needed for the arch; reuse msys2 master PKGBUILDs unchanged.
+  - The ONLY blocker is the toolchain environment (x86_64-MSYS2+WoA-cross, or native ARM64 MSYS2 CLANGARM64).
+  - build systems needed in env: autotools(6), cmake(2 full +c-ares), meson(2 -> p11-kit,libpsl).
+    meson/ninja are already in WoA native repo (ninja present); cmake+meson must be in the build MSYS2.
+
+COMMISSIONABLE UNIT: "build these 10 from msys2 master recipes in the cross env, topo order
+  (leaves: wineditline,libunistring,libtasn1,c-ares,brotli,libffi; then libidn2; then p11-kit,libpsl; then libssh2)."

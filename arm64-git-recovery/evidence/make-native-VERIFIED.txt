@@ -1,0 +1,22 @@
+NATIVE ARM64 GNU MAKE — OBTAINED + VERIFIED TO STANDARD (MEASURED)
+
+SOURCE: MSYS2 clangarm64 repo, mingw-w64-clang-aarch64-make-4.4.1-5 (repo.msys2.org, 140601 B pkg).
+  This is a MINGW-target PE (aarch64-w64-mingw32), NOT dependent on msys2-runtime. Obtained PREBUILT
+  (it is a reference build tool, not part of the git closure; obtain-and-verify per coordinator direction).
+
+VERIFICATION (same standard as the GCC stand-up — file inspection alone is insufficient on this host):
+  1. RAW COFF machine of mingw32-make.exe = 0xAA64 (read from PE header offset e_lfanew+4). MEASURED.
+  2. IsWow64Process2 on the LIVE make process: processMachine=0x0000 (IMAGE_FILE_MACHINE_UNKNOWN = NOT
+     under WOW64 = genuinely native), nativeMachine=0xAA64. An x64-emulated make would report 0x8664.
+     MEASURED on the running process, not inferred from the file.
+  3. REAL WORK (not just --version): drove a Makefile that invoked our WoA gcc to compile+link app.c;
+     the produced app.exe was 0xAA64 and RAN, returning the distinctive value 99. make exit 0.
+     => native ARM64 make + native ARM64 WoA gcc together perform a real build on-host.
+
+GOTCHA CONFIRMED: make's gcc recipe FAILS (Error 1) unless the WoA gcc bin dir is on PATH, because as.exe
+  needs libintl-8.dll etc from that dir — the same DLL-closure trap, now surfacing through make. Fixed by
+  prepending the WoA bin to PATH. Recorded so downstream builds set PATH correctly.
+
+STAGED: files/staged-closure/make/mingw32-make.exe ; also copied into the working WoA prefix bin.
+CORRECTION: this REVERSES my earlier "no native ARM64 make exists" claim, which was based on searching only
+  woarm64-native + aarch64/msys.db (404) and NOT clangarm64. See clangarm64-buildtools-search.txt.

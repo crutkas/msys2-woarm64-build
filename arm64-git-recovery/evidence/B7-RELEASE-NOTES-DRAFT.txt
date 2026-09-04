@@ -1,0 +1,80 @@
+RELEASE NOTES DRAFT — MinGit-arm64 (WoA GCC toolchain proof)
+============================================================
+Status: DRAFT for the toolchain-proof artefact. Not for publication (no commits/pushes/PRs/CI
+per programme rules). Consumed by the coordinator; every claim below is measured or explicitly
+marked derived/presumed.
+
+WHAT THIS IS (precise claim)
+----------------------------
+This artefact demonstrates that the Windows-on-ARM (WoA) GCC toolchain — GCC 15.0.1dev, running
+NATIVELY ON AN ARM64 WINDOWS HOST — can build the entire dependency chain of a working Git for
+Windows: the C closure leaves, and git.exe with curl, openssl, expat, zlib and pcre2, all as
+native ARM64 (PE machine 0xAA64) binaries, assembled into a MinGit layout.
+
+WHAT THIS IS NOT
+----------------
+This is NOT the first ARM64 MinGit. Git for Windows already ships MinGit-<ver>-busybox-arm64.zip,
+built from MSYS2 clangarm64 packages. The contribution here is the TOOLCHAIN: one native ARM64
+GCC produced the whole chain, rather than a cross-toolchain patchwork or prebuilt packages. A
+prebuilt binary that runs proves the target; only the chain that builds it proves the chain.
+
+TOOLCHAIN (single-runtime, by construction)
+--------------------------------------------
+- Compiler/runtime: WoA GCC 15.0.1dev-2, native on-host, libstdc++/libgcc, UCRT, winpthreads.
+- Triple: aarch64-w64-mingw32. mingw-w64 crt-git 70d63e7c9.
+- ABI is moot BY CONSTRUCTION (one compiler produced everything), not by careful matching.
+- Verification standard: PE machine 0xAA64; IsWow64Process2 native on live processes; distinctive
+  non-zero RUN return values; HTTPS clone verified by `git rev-parse HEAD == 7fd1a60b...`.
+
+CAPABILITY DIFFERENCES vs stock Git for Windows (FIRST-CLASS SECTION, measured against the real
+upstream MinGit-busybox-arm64 reference — not asserted)
+-------------------------------------------------------------------------------------------------
+Upstream ships DYNAMIC libcurl, libcrypto, libssh2, libbrotli{common,dec,enc}, libidn2, libpsl,
+libnghttp2, libzstd. This artefact's curl is STATIC and built --without idn2/psl/brotli/zstd/
+libssh2/nghttp2. Consequently, versus upstream, this artefact has:
+  * NO HTTP/2 (curl --without-nghttp2). HTTPS works on HTTP/1.1; GitHub supports it.
+  * NO brotli or zstd Content-Encoding decompression (--without-brotli --without-zstd). Git's wire
+    protocol uses zlib independently, so fetch/clone are unaffected.
+  * NO SSH transport via libssh2 in curl (--without-libssh2). git ssh:// uses the openssh client
+    path, not curl's libssh2.
+  * NO IDN or PSL handling (--without-libidn2 --without-libpsl). ASCII hostnames only; no PSL
+    cookie-domain checks.
+NONE of these affects the HTTPS-clone acceptance test. ALL FOUR are real differences a user could
+notice in other workflows. They are deliberate reductions for a minimal toolchain proof.
+
+TLS / TRUST (load-bearing by design)
+------------------------------------
+schannel is DISABLED; the openssl backend is used, pointed at a populated 172-certificate bundle
+at clangarm64/etc/ssl/certs/ca-bundle.crt. This proves OUR TLS stack and OUR trust store with no
+Windows fallback able to mask a broken component. (Never ship the zero-byte stock ca-bundle.crt:
+schannel would silently carry the clone and hide a broken openssl backend.)
+
+PLACEHOLDER COMPONENTS (announced at runtime, not only in metadata)
+-------------------------------------------------------------------
+git-credential-manager in this artefact is a NON-FUNCTIONAL STUB. Real GCM is a .NET/Avalonia
+application (~45 managed assemblies) out of scope for a C toolchain proof. Upstream MinGit ships
+GCM, so we provide a labelled stub rather than diverging by trimming it. STANDARD ENFORCED: the
+stub announces its own limitation AT RUNTIME — the exe prints "NON-FUNCTIONAL STUB ... manages no
+credentials" to stderr and returns 1 — so it cannot silently masquerade even if pkgver/pkgdesc and
+the shipped STUB-PLACEHOLDER.txt are all stripped or unread. THE ARTEFACT ANNOUNCES ITS OWN
+LIMITATION AT RUNTIME is the adopted standard for any placeholder this programme ships.
+
+ASSEMBLY NOTE
+-------------
+MinGit assembly (make-file-list.sh / mingit/release.sh) runs on the BUILD HOST and only copies and
+lists files; an existing x86-64 MSYS2 satisfies its `pwd -W`/cygpath/absolute-mount assumptions
+today. Assembling an ARM64 artefact from an x86-64 host is a legitimate packaging step and does not
+require the ARM64 msys-2.0.dll runtime. (Distinct from the runtime `sh` gate, which is about the
+TARGET needing a native ARM64 busybox shell — filled by mingw-w64-clang-aarch64-busybox.)
+
+--- CONTENT DIFFERENCE: no libc++ C++23 module tree (toolchain consequence) ---
+Upstream MinGit-busybox-arm64 ships ~140 files under share/libc++/v1/ (the
+libc++ C++23 module tree) because upstream is CLANG-built and its clangarm64
+base image bundles libc++. Ours is GCC-built and uses libstdc++, and NOTHING
+in the git closure links a C++ standard library (git, curl, openssl, expat,
+zlib, pcre2 are all C; GCM is a stubbed placeholder). So our artefact ships
+NEITHER the libc++ module tree NOR any libstdc++/libc++ runtime dependency
+(verified by objdump import-table scan: only libgcc_s appears, via the GCC C
+runtime). This is not a missing feature — it is a direct, expected consequence
+of building with a different toolchain, and it is concrete evidence the
+artefact is a genuinely different chain rather than a repackage of upstream.

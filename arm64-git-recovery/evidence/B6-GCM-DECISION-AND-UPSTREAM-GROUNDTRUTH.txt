@@ -1,0 +1,120 @@
+################################################################################
+# CLAIM FRAMING — READ FIRST. Binding for B6 and ALL release notes/descriptions.
+################################################################################
+WE ARE NOT FIRST TO ARM64 MinGit AND MUST NOT CLAIM TO BE.
+Upstream Git-for-Windows ALREADY ships MinGit-2.55.0.5-busybox-arm64.zip (33 MB, 403 files,
+busybox-minimal, arm64), built from MSYS2 clangarm64 packages. That artefact class EXISTS.
+
+THEREFORE OUR CLAIM IS A TOOLCHAIN CLAIM, NOT A NOVELTY CLAIM:
+  NOT  "ARM64 MinGit is now possible."
+  YES  "The WoA GCC toolchain, running NATIVELY ON ARM64, can PRODUCE an ARM64 MinGit."
+This mirrors the MSYS2 clangarm64 git.exe distinction: a prebuilt binary that runs proves the
+TARGET; only OUR chain building it proves OUR CHAIN. A precise claim survives checking; an
+overreaching one collapses. The value here is that ONE native ARM64 GCC produced the entire
+chain (closure leaves + git.exe + curl/openssl/expat/zlib/pcre2), not that the artefact is new.
+
+The upstream artefact is a GOLDMINE precisely BECAUSE it exists: it is ground truth for layout,
+content and capability, and it INDEPENDENTLY CONFIRMED our derived cert-bundle placement at
+clangarm64/etc/ssl/certs/ca-bundle.crt (derived before we saw the reference — external
+confirmation of a derivation, the strongest form available).
+################################################################################
+B6 — GCM DECISION SETTLED BY MEASUREMENT + UPSTREAM MinGit-busybox-arm64 GROUND TRUTH
+=====================================================================================
+METHOD: downloaded the OFFICIAL upstream artefact MinGit-2.55.0.5-busybox-arm64.zip
+(sha per release page 5adf5203ba3b4706c21687ea1bcd871c727917d913773a41b0af69b86c997d6f,
+33,133,945 bytes, 403 files) and listed its contents. This is the exact artefact CLASS
+we target (busybox, arm64, minimal), so it is the definitive reference. NOT inference.
+
+=== GCM QUESTION: SETTLED — UPSTREAM SHIPS IT, EVEN IN THE BUSYBOX-MINIMAL VARIANT ===
+Measured present in the upstream busybox-arm64 MinGit:
+  clangarm64/bin/git-credential-manager.exe            (132,920 bytes, .NET)
+  clangarm64/bin/git-credential-manager.exe.config
+  clangarm64/bin/git-credential-helper-selector.exe    (60,928)
+  clangarm64/libexec/git-core/git-credential-wincred.exe (52,424)
+  clangarm64/doc/git-credential-manager/{LICENSE,NOTICE,README.md}
+=> GCM is GENUINELY shipped by upstream MinGit, not merely listed in the script. So per the
+   coordinator's rule 3 the honest action is: BUILD A STUB, LABELLED UNAMBIGUOUSLY as a
+   non-functional placeholder (NOT trim it — trimming would diverge from upstream MinGit).
+
+WHY A STUB AND NOT THE REAL GCM (measured cost): real GCM drags a full .NET + Avalonia UI
+stack. The upstream zip carries ~45 managed DLLs FOR GCM ALONE:
+  Avalonia.* (15 UI DLLs), Microsoft.Identity.Client.* (MSAL, 5), GitHub.dll, GitLab.dll,
+  Atlassian.Bitbucket.dll, Microsoft.AzureRepos.dll, SkiaSharp/HarfBuzzSharp (+native
+  libSkiaSharp/libHarfBuzzSharp/av_libglesv2), System.Text.Json, System.CommandLine,
+  gcmcore.dll, msalruntime_arm64.dll, etc.
+Building real GCM => a .NET ARM64 + Avalonia toolchain, entirely out of scope for a
+TOOLCHAIN-PROOF C artefact. The stub proves the packaging slot without the .NET dependency.
+
+STUB LABELLING REQUIREMENTS (to avoid a FIFTH misleading-name artefact after gendef2,
+w-ctorfix, the absent-file manifest, new-msys-2.0.dll):
+  - pkgdesc MUST say "NON-FUNCTIONAL PLACEHOLDER (toolchain-proof); manages no credentials".
+  - ship a file clangarm64/doc/git-credential-manager/STUB-PLACEHOLDER.txt stating the same.
+  - release notes MUST state GCM is a stub and real credential management is absent.
+
+=== UPSTREAM MinGit STRUCTURE (our target spec, measured) ===
+git.exe location: clangarm64/bin/git.exe  (NOT libexec). The MinGit assembly MOVES the
+  http/transport helpers into bin/: git-remote-http, git-remote-https, git-http-fetch,
+  git-http-push, git-upload-pack, git-receive-pack, git-sh-i18n--envsubst, git-askpass,
+  git-askyesno all appear in clangarm64/bin/. (matches release.sh:127-146 libexec->bin move.)
+ONLY ONE libexec/git-core exe survives the trim: git-credential-wincred.exe.
+Shell: clangarm64/bin/ash.exe (43,208) + clangarm64/bin/busybox.exe (833,536) — the busybox
+  sh slot our session 1e7a7fd3 fills. edit-git-bash.exe present in share/git/.
+
+CA BUNDLE PATH (measured — confirms A3): certificates sit at
+  clangarm64/etc/ssl/certs/ca-bundle.crt        <-- my 172-cert bundle goes HERE
+  clangarm64/etc/ssl/cert.pem
+  clangarm64/etc/ssl/certs/ca-bundle.trust.crt
+
+=== CAPABILITY DELTA: upstream is DYNAMIC + FULL-FEATURE; ours is STATIC + REDUCED ===
+Upstream busybox MinGit ships these DYNAMIC DLLs in clangarm64/bin (measured):
+  libcurl-4.dll, libcurl-openssl-4.dll, libcrypto-3.dll, libssl-3.dll, libssh2-1.dll,
+  libbrotlicommon/dec/enc.dll, libidn2-0.dll, libpsl-5.dll, libunistring-5.dll,
+  libnghttp2-14.dll, libpcre2-8-0.dll, libzstd.dll, zlib1.dll, libiconv-2.dll, libintl-8.dll.
+=> upstream curl is built WITH brotli/zstd/libssh2/idn2/psl/nghttp2, SHARED.
+OUR artefact (2918d1f1): curl built --without idn2/psl/brotli/zstd/libssh2/nghttp2, STATIC,
+  single WoA-GCC runtime. DOCUMENTED KNOWN LIMITATIONS vs stock (per coordinator):
+   - no HTTP/2 (--without-nghttp2): clone works on HTTP/1.1, GitHub supports it. Test unaffected.
+   - no Content-Encoding br/zstd decompression: git wire protocol uses zlib independently. Test unaffected.
+   - no in-process libssh2 ssh:// (curl side): git ssh uses the openssh client path anyway.
+   - no IDN/PSL: ASCII hostnames + no PSL cookie-domain checks. Test (github.com clone) unaffected.
+  IRONY (record it): this retires my own brotli package from the MINIMAL artefact entirely —
+  it was the one MinGit-critical leaf by file-list analysis, yet the acceptance clone needs
+  even less. brotli/libssh2 remain FULL-GIT bonus; the pacman-format work was load-bearing.
+
+Our reduced git-side sync-repo closure (locked): git, curl, openssl, zlib, expat, pcre2,
+  ca-certificates = 7 packages. curl -> openssl, zlib, ca-certificates.
+
+=== B6 ADDENDUM — GCM STUB PACKAGE BUILT + VALIDATED ===
+Package: mingw-w64-clang-aarch64-git-credential-manager-0-STUB.1-any.pkg.tar.zst
+sha256:  2cdde1ce28f7b03a4dc8cd61b7932073b8a1bee927ab1f1e97c9d84f09af685c
+size:    48,129 bytes  (staged at files/staged-packages/)
+pkgver:  0-STUB.1  (the "STUB" in the version is itself a signal)
+
+CONTENTS (payload rooted at clangarm64/, matching upstream layout):
+  clangarm64/bin/git-credential-manager.exe            (ARM64 PE 0xAA64, 153,353 B, built with WoA GCC 15.0.1)
+  clangarm64/bin/git-credential-helper-selector.exe    (same stub binary)
+  clangarm64/bin/git-credential-manager.exe.config     (placeholder)
+  clangarm64/doc/git-credential-manager/STUB-PLACEHOLDER.txt   <-- explicit non-functional notice
+  clangarm64/doc/git-credential-manager/NOTICE         (copy of the notice)
+  clangarm64/doc/git-credential-manager/README.md
+
+STUB BEHAVIOUR (source-verified): main() prints to stderr
+  "git-credential-manager: NON-FUNCTIONAL STUB (toolchain-proof placeholder). This build
+   manages no credentials. Install a real credential helper." and RETURNS 1.
+So it can NEVER silently masquerade as working credential storage — any invocation fails loudly.
+
+LABELLING (all four channels, to avoid a fifth misleading-name artefact):
+  1. pkgver = 0-STUB.1
+  2. pkgdesc = "NON-FUNCTIONAL PLACEHOLDER (toolchain-proof); manages no credentials. ..."
+  3. STUB-PLACEHOLDER.txt shipped inside the package
+  4. the exe itself announces the stub status and exits non-zero.
+
+VALIDATED THE WAY THE CONSUMER USES IT (all against pacman 6.0.2 in WSL):
+  - repo-add: exit 0, "Adding package ..." (structurally valid).
+  - pacman -U --noconfirm: exit 0, installs cleanly.
+  - pacman -Ql mingw-w64-clang-aarch64-git-credential-manager: returns the 6-file list.
+    This is EXACTLY the call make-file-list.sh:127 makes, so the MinGit tooling can walk it.
+
+=> GCM GATE CLEARED. Of the three remaining MinGit sync-repo gates, GCM (mine) is now DONE.
+   Remaining: busybox (session 1e7a7fd3) and git (session 2918d1f1's binary, wrapped per B4).
+

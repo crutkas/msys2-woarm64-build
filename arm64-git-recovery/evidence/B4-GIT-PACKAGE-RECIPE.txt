@@ -1,0 +1,120 @@
+B4 — GIT PACKAGE SLOT RECIPE (ready before 2918d1f1 binary lands)
+Goal: the instant a native WoA-GCC git.exe exists, wrap it as mingw-w64-clang-aarch64-git so make-file-list.sh can walk it.
+
+UPSTREAM REFERENCE (MEASURED from clangarm64 db, mingw-w64-clang-aarch64-git-2.55.0.5-1):
+  DEPENDS: curl, ca-certificates, expat>=2.0, openssl, pcre2, nano
+  Upstream curl DEPENDS (transitively drags the whole tail):
+    cc-libs, c-ares, brotli, libidn2, libpsl, zlib, zstd, ca-certificates, libssh2, openssl, nghttp2, ngtcp2, nghttp3
+    libidn2 -> {gettext-runtime, libiconv, libunistring};  libpsl -> {libiconv, libidn2, libunistring, gettext-runtime}
+    ca-certificates -> p11-kit ;  pcre2 -> {bzip2, wineditline, zlib}
+
+OUR REDUCED CLOSURE (what we ACTUALLY built/configured — the recipe MUST match the binary, not the upstream graph):
+  We configure curl --without-libidn2 --without-libpsl, and (presumed, confirm with 2918d1f1) without HTTP/3
+  (no ngtcp2/nghttp3) and likely without c-ares unless explicitly enabled. So OUR curl package DEPENDS should be:
+    mingw-w64-clang-aarch64-{brotli, zlib, zstd, openssl, libssh2, nghttp2, ca-certificates}
+  Dropping vs upstream: c-ares (unless enabled), libidn2, libpsl, ngtcp2, nghttp3 — hence libunistring/gettext/
+  libiconv fall out of the git closure entirely. THIS IS THE CENTRAL PACKAGING CONSEQUENCE of the --without flags.
+  NOTE: ca-certificates upstream depends on p11-kit (for trust extraction). OUR ca-certificates ships a PRE-POPULATED
+  static bundle (data), so it needs NO p11-kit at runtime — declare ca-certificates with NO p11-kit depend.
+
+GIT PACKAGE .PKGINFO RECIPE (fill VER when binary lands; keep deps matched to the actual build):
+  pkgname = mingw-w64-clang-aarch64-git
+  pkgbase = mingw-w64-git
+  pkgver  = <git version>-1        e.g. 2.47.1-1  (2918d1f1 reported GIT_VERSION 2.47.1)
+  pkgdesc = The fast distributed version control system (mingw-w64) [WoA native GCC build]
+  url = https://git-scm.com/ ; arch = any ; license = GPL2 ; xdata = pkgtype=split
+  depend = mingw-w64-clang-aarch64-curl
+  depend = mingw-w64-clang-aarch64-ca-certificates
+  depend = mingw-w64-clang-aarch64-expat>=2.0
+  depend = mingw-w64-clang-aarch64-openssl
+  depend = mingw-w64-clang-aarch64-pcre2
+  # (drop 'nano' for MinGit; it is a full-git convenience, and MINIMAL_GIT excludes nano anyway)
+  provides = mingw-w64-clang-aarch64-git
+
+PAYLOAD LAYOUT (mirror upstream git package; the MinGit tooling moves libexec exes to bin itself):
+  clangarm64/bin/git.exe
+  clangarm64/bin/*.dll                      (the closure DLLs, if not delivered by their own packages)
+  clangarm64/libexec/git-core/*.exe         (git-remote-https, git-http-fetch, receive-pack, etc.)
+  clangarm64/libexec/git-core/git-*         (builtins; many are hardlinks/copies of git.exe upstream)
+  clangarm64/share/git-core/templates/...
+  clangarm64/etc/gitconfig                  (system config; release.sh appends [include] paths)
+  clangarm64/share/licenses/git/LICENSE
+  IMPORTANT: make-file-list.sh:127 does `pacman -Ql mingw-w64-clang-aarch64-git | grep '^clangarm64/libexec/git-core/.*\.exe$'`
+    then copies those into bin. So the package MUST list the libexec/git-core/*.exe files, or MinGit finds no exes
+    and dies ("Could not find any .exe files in libexec/git-core/", release.sh:136).
+  ALSO builtins.txt: if clangarm64/share/git/builtins.txt exists, make-file-list.sh:77-79 cross-checks builtins.
+    Ship it (git produces it) or the BUILTINS_ON_RECORD check is skipped (it is guarded by test -f, so optional).
+
+ASSEMBLER: reuse mkpkg.py (validated on brotli+libssh2). Provide payload_root = <staged git tree>/clangarm64 and
+  the depend list above. pacman -U + -Ql already proven to consume such packages.
+
+OPEN ITEM FOR 2918d1f1: confirm the EXACT curl ./configure flags (idn2/psl/http3/c-ares on or off) so our curl
+  package's depend= list matches the binary's real DT_NEEDED/import table. If curl imports a DLL we did not
+  declare, MinGit will still copy it (it walks imports via the file list), but pactree closure would understate.
+
+=== B4 ADDENDUM — MEASURED git package manifest (from reference mingw-w64-clang-aarch64-git-2.55.0.5-1) ===
+
+Extracted with bsdtar from the actual reference package. This is the EXACT structure 2918d1f1's git package must
+reproduce, and what the MinGit walk (pacman -Ql ...-git | grep libexec/git-core/*.exe; release.sh:136 dies if empty)
+consumes.
+
+clangarm64/libexec/git-core/*.exe  (14, MUST be non-empty or MinGit assembly DIES):
+  git-daemon, git-http-backend, git-http-fetch, git-http-push, git-imap-send,
+  git-remote-ftp, git-remote-ftps, git-remote-http, git-remote-https,
+  git-sh-i18n--envsubst, git-shell, git, headless-git, scalar
+  (git-remote-https is the curl-backed HTTPS transport — the one that exercises our curl/openssl/brotli closure.)
+
+clangarm64/bin/*.exe:
+  git, git-receive-pack, git-shell, git-upload-archive, git-upload-pack, scalar
+
+depend = (MEASURED from reference .PKGINFO):
+  mingw-w64-clang-aarch64-curl
+  mingw-w64-clang-aarch64-ca-certificates
+  mingw-w64-clang-aarch64-expat>=2.0
+  mingw-w64-clang-aarch64-openssl
+  mingw-w64-clang-aarch64-pcre2
+  nano
+=> for our REDUCED build: keep curl/ca-certificates/expat/openssl/pcre2; `nano` is editor convenience and is in the
+   MINIMAL_GIT PACKAGE_EXCLUDES (line 59) so it need not be a hard depend for the minimal artefact. curl's own
+   depends (brotli, zlib, zstd, libssh2, nghttp2, openssl, ca-certificates) pull the closure transitively — our
+   --without-libidn2/--without-libpsl curl drops the idn2/psl/unistring/gettext/iconv tail (confirm vs 2918d1f1
+   final curl flags before locking depend=).
+
+NOTE: the git package is a large multi-binary package (many libexec helpers are hardlinks/copies of the same git.exe
+built with different command dispatch). 2918d1f1 must ensure `make install` populates libexec/git-core, not just
+bin/git.exe, or the MinGit grep returns empty and release.sh:136 dies.
+
+=== B4 ADDENDUM 2 — ABI STORY SIMPLIFIED + curl deps LOCKED (from 2918d1f1, 2026-09-03) ===
+
+ABI CONVERGENCE (reported by 2918d1f1): their git.exe pass is now FULLY NATIVE ON-HOST with WoA GCC 15.0.1dev-2 —
+the SAME compiler/runtime as my closure (libstdc++/libgcc, UCRT, winpthreads, triple aarch64-w64-mingw32, mingw-w64
+crt-git 70d63e7c9). The earlier clang/llvm-mingw prefix is RETIRED. => the clang/gcc divergence I measured in the
+toolchain-compat analysis NO LONGER APPLIES. We are single-runtime. My static .a leaves AND my shared DLLs (both WoA
+GCC) are now ABI-identical to their build by construction — no rebuild, no mix risk. crt/winpthreads match because
+they built against the same woagcc prefix headers/crt I provided.
+
+Their native on-host builds (all static .a, member COFF 0xAA64, built with WoA gcc + native ARM64 GNU make 4.4.1):
+  zlib 1.3.1, openssl 3.4.1 (libcrypto+libssl), expat 2.6.4, pcre2 10.44. curl 8.11.1 configuring
+  WITHOUT libidn2/libpsl/brotli/zstd/libssh2/nghttp2.
+
+curl DEPS LOCKED (measured decision from 2918d1f1): the HTTPS-clone acceptance build needs NONE of brotli/libssh2/
+zstd/nghttp2/libidn2/libpsl. So the git package's TRANSITIVE closure for the minimal artefact is just:
+  git -> curl -> (openssl, zlib, ca-certificates)   [curl's own optional deps all --without]
+  git -> expat, openssl, pcre2, ca-certificates
+=> REDUCED git package depend= (minimal HTTPS artefact):
+     mingw-w64-clang-aarch64-curl
+     mingw-w64-clang-aarch64-openssl
+     mingw-w64-clang-aarch64-zlib
+     mingw-w64-clang-aarch64-expat>=2.0
+     mingw-w64-clang-aarch64-pcre2
+     mingw-w64-clang-aarch64-ca-certificates
+   (nano dropped — MINIMAL_GIT exclude. brotli/libssh2/zstd/nghttp2/idn2/psl NOT deps of this curl.)
+   And curl package depend= reduces to: openssl, zlib, ca-certificates (its --without flags drop the rest).
+
+CONSEQUENCE for MinGit gate (B5): the sync repo for the minimal HTTPS artefact needs, transitively:
+  git, curl, openssl, zlib, expat, pcre2, ca-certificates  (7 packages from the git side)
+  + busybox (1e7a7fd3) + git-credential-manager (stub-or-real).
+My brotli/libssh2 packages remain FULL-GIT bonus, not on the minimal HTTPS critical path — consistent with the
+coordinator's earlier "only brotli is MinGit-critical" being about the MinGit file-list, while the ACCEPTANCE clone
+needs even less. CA bundle IS load-bearing: schannel disabled, openssl backend -> my 172-cert bundle, verifying
+rev-parse HEAD == 7fd1a60b.

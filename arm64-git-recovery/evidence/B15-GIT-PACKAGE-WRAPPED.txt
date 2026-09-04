@@ -1,0 +1,75 @@
+B15 — GIT PACKAGE WRAPPED, PINNED, VALIDATED (the real deliverable)
+==================================================================
+GREEN LIGHT from coordinator: verifier blessed git.exe sha256 69b1e704... on the
+INSTALLED tree (GIT_EXEC_PATH resolved inside it, helpers exercised from where
+they ship). Two conditions honoured:
+  COND 1 (tree NOT frozen upstream -> my exit-4 pin is load-bearing): enforced.
+  COND 2 (manifest + pin from the SAME read): wrapper reworked so ONE sha256 pass
+          over all binaries writes SHA256SUMS.woa-gcc AND the git.exe pin is read
+          BACK OUT of that same manifest. One read, one set of bytes, both uses.
+
+WRAP INPUT: .../files/git-install-FROZEN/  (my read-only copy, chmod a-w, from
+  2918d1f1 git-install; git.exe pinned 69b1e704, 152 libexec exes).
+COMMAND: wrap-git-package.sh <FROZEN> 2.47.1 69b1e704729cf69f0a0c029aa189eb9d38f74fc16ef37823048cb6a98b1523d1
+
+MEASURED RESULTS:
+  * libexec/git-core = 152 .exe asserted present (release.sh:136 guard satisfied).
+  * SINGLE-READ manifest: 158 binaries hashed once.
+  * git.exe PE machine = 0xaa64 (read from COFF header at e_lfanew).
+  * PIN OK: git.exe sha256 (FROM manifest) == 69b1e704... == verified hash.
+  * Package: mingw-w64-clang-aarch64-git-2.47.1-1-any.pkg.tar.zst
+    - size 357,819,670 bytes
+    - PACKAGE sha256 (artefact identity) = 68ac0b3a2db3d5a3edc4072bb75ba7898b4a4e2445102e96531649fb3de6314b
+  * .PKGINFO depend = mingw-w64-clang-aarch64-ca-certificates  (ONLY — B14 measured).
+    provides = mingw-w64-clang-aarch64-git.  pkgver 2.47.1-1.
+  * Embedded manifest INSIDE package at clangarm64/share/licenses/git/SHA256SUMS.woa-gcc;
+    its ./bin/git.exe line = 69b1e704... (== pin == what ships).
+  * pacman repo-add + -Sy + -U -dd + -Ql: PASS, enumerates the libexec exes.
+
+POST-WRAP MECHANICAL GATES (both on the wrapped package, both PASS):
+  * C++ runtime imports (objdump -p | grep libstdc++|libc++) = 0 hits.
+  * All 158 binaries PE machine 0xaa64, zero exceptions.
+
+PERSISTED: staged-packages/mingw-w64-clang-aarch64-git-2.47.1-1-any.pkg.tar.zst
+  + .sha256 sidecar (68ac0b3a...). Survives WSL /tmp wipe.
+
+WHAT THIS CARRIES (verifier's blessed claim, attached to 69b1e704):
+  raw COFF 0xaa64, PE32+, ImageBase 0x140000000; LinkerVersion 2.44, zero clang
+  strings, no .buildid (GNU-linked); git + git-remote-https native by live-process
+  check; 36 bound modules, schannel/ncrypt ABSENT (positive control on Windows
+  curl.exe); SHA-1 KAT 3/3; known-SHA clone 7fd1a60b, fsck 0; NO_INSTALL_HARDLINKS
+  confirmed (158 distinct NTFS indexes, NumberOfLinks histogram 1->158).
+
+REMAINING GATE: busybox (owner 1e7a7fd3, ash applet). Then final --busybox
+assembly on THIS ARM64 host (sequence: busybox swap first, re-run; then git swap).
+The git package is ready NOW; swapping it into the sync repo is a single-variable
+change whose failure would be immediately attributable.
+
+-------------------------------------------------------------------------------
+ADDENDUM - EXTERNAL CROSS-CHECK: my package carries the OFFICIAL frozen bytes
+-------------------------------------------------------------------------------
+2918d1f1 produced an OFFICIAL frozen tree AFTER I had already wrapped:
+  .../2918d1f1.../files/gcc-native/git-install-FROZEN-69b1e704/  (read-only,
+  SHA256SUMS.txt at root, 158 entries). Its bin/git.exe = 69b1e704.
+
+CROSS-CHECK (independent confirmation of a derivation):
+  Compared the OFFICIAL frozen tree's 158-binary hash set against MY frozen copy's
+  158-binary hash set (the copy I wrapped from):
+    official binaries: 158   mine: 158
+    hash sets: IDENTICAL.
+  => The package I shipped (68ac0b3a...) carries EXACTLY the official frozen,
+     re-verified bytes. No re-wrap needed. This is the strongest form of
+     confirmation: my frozen copy (made independently, before 2918d1f1 froze
+     theirs) matches an artefact I had not seen when I packaged.
+
+LINEAGE (2918d1f1, measured) - 69b1e704 is a BENIGN relink of verified fb8ecae9:
+  09:51 git-execpath\git.exe    fb8ecae9  4723261  (first verify; flat, no libexec)
+  09:58 git-2.47.1\git.exe      69b1e704  4723261  (`make all` for FULL 152-helper set)
+  10:02 git-install\bin\git.exe 69b1e704  4723261  (make install of that)
+  Same size to the byte, same sources/compiler/flags. Hash delta = build-embedded
+  metadata from the full-target rebuild (execpath had only git + a hand-linked
+  remote-http, no libexec tree). git-remote-http e4d66ba->4290174 for the same
+  reason. 2918d1f1 then RE-RAN THE FULL PROTOCOL against the installed bytes
+  (COFF 0xAA64, live IsWow64Process2 native, schannel/ncrypt absent, HTTPS clone
+  7fd1a60b + fsck 0, init/add/commit root-commit 2abe16a1) - shipped == blessed.
+  It will NOT rebuild; the freeze holds at 69b1e704.

@@ -1,0 +1,94 @@
+STAGED PACMAN PACKAGES (validated, consumable for the MinGit sync-repo dry-run)
+================================================================================
+All built with the WoA GCC 15.0.1 native on-host toolchain (aarch64-w64-mingw32/UCRT/
+winpthreads/crt-git 70d63e7c9) except the GCM stub (also WoA GCC). Each VALIDATED via
+repo-add + pacman -U + pacman -Ql (the make-file-list.sh:127 call) on pacman 6.0.2.
+mingw-w64-clang-aarch64-brotli-1.2.0-1-any.pkg.tar.zst
+  size: 411230 bytes
+  sha256: 0553e83594531db8f538402125d48d2effcbf16c20ce0148af58ebfcc7aaa521
+
+mingw-w64-clang-aarch64-git-credential-manager-0-STUB.1-any.pkg.tar.zst
+  size: 48129 bytes
+  sha256: 2cdde1ce28f7b03a4dc8cd61b7932073b8a1bee927ab1f1e97c9d84f09af685c
+
+mingw-w64-clang-aarch64-libssh2-1.11.1-2-any.pkg.tar.zst
+  size: 183388 bytes
+  sha256: 25bd9c31e8d564c391d8372129a0b52c0ca8eb2be52c02416b5ae6e889915d97
+
+
+MinGit-CRITICALITY (measured):
+  brotli   — MinGit file-list critical by earlier analysis, BUT retired from the MINIMAL HTTPS
+             acceptance artefact (2918d1f1 curl built --without-brotli). Full-git bonus.
+  libssh2  — wanted-but-optional; WINCNG leaf. Full-git bonus (git ssh uses openssh path).
+  git-credential-manager — NON-FUNCTIONAL STUB, clearly labelled 4 ways incl. runtime. Fills the
+             GCM slot upstream MinGit-busybox-arm64 requires. GATE CLEARED.
+
+STILL NEEDED IN THE SYNC REPO to complete the 7-package git-side closure + shell:
+  from 2918d1f1: git, curl, openssl, zlib, expat, pcre2, ca-certificates (native WoA GCC builds)
+  from 1e7a7fd3: mingw-w64-clang-aarch64-busybox (clangarm64/bin/busybox.exe, ARM64 PE)
+
+--- REFRESH 2026-09-03T17:09Z (while blocked on git-tree freeze) ---
+7 leaf packages present, sha256 (first16) unchanged:
+  0553e835 brotli-1.2.0   e3a82d24 c-ares-1.34.5   2cdde1ce git-credential-manager-0-STUB.1
+  8cd29d38 libffi-3.4.6   25bd9c31 libssh2-1.11.1-2   6df36cf6 libtasn1-4.21.0   279780a8 wineditline-2.208
+C++ PRE-SWAP GATE re-run: objdump -p over every dll/exe in all 7 packages =
+  0 hits for libstdc++/libc++. Gate EMPTY, as required before the git binary lands.
+Two open slots remain: (1) busybox (owner 1e7a7fd3, ash applet), (2) git
+(wrap-git-package.sh, PINNED to verified installed hash, BLOCKED on 2918d1f1 freeze).
+
+--- SLOT STATUS 2026-09-03T10:11 local ---
+GIT SLOT: install prefix delivered by 2918d1f1 (git-install/, 152 libexec, git.exe=69b1e704,
+  self-consistent). Depends measured+locked. Wrapper hardened (pin+SHA256SUMS). BLOCKED on
+  2918d1f1 FREEZE + verifier bless of 69b1e704. Wrap is one pinned command once cleared.
+BUSYBOX SLOT: owner 1e7a7fd3 — checked session files, only smoke/ (smoke.c + smoke.exe 157735 B),
+  NO busybox.exe/ash.exe/pkg yet. Still in progress. Git wrap does NOT depend on busybox;
+  only the final --busybox assembly does (sequence: busybox swap first, then git swap).
+
+--- GIT PACKAGE WRAPPED 2026-09-03T10:19 local (B15) ---
+mingw-w64-clang-aarch64-git-2.47.1-1-any.pkg.tar.zst
+  package sha256 = 68ac0b3a2db3d5a3edc4072bb75ba7898b4a4e2445102e96531649fb3de6314b
+  git.exe (bin + libexec) PINNED sha256 = 69b1e704...b1523d1 (verifier-blessed)
+  depends = ca-certificates ONLY (B14 measured). provides = git. 152 libexec exes.
+  embedded manifest: clangarm64/share/licenses/git/SHA256SUMS.woa-gcc (158 bins, single-read).
+  gates: C++ imports 0, all 158 binaries 0xaa64. pacman -Ql validated.
+  source: git-install-FROZEN/ (my chmod-a-w copy of 2918d1f1 git-install).
+
+GIT SLOT: FILLED (ready to swap into sync repo as single variable).
+BUSYBOX SLOT: still pending 1e7a7fd3 (only smoke.exe so far).
+
+===============================================================================
+MINGIT ARTEFACT (first-ever full assembly, release.sh:126-181) - B16
+===============================================================================
+files/mingit-arm64/MinGit-2.47.1-arm64-upstream-busybox.zip
+  316,975,852 bytes
+  sha256 = 8e56750d58b0c9a7a49032cead93edb837995ebd1399886d3b0a2aca9a880d32
+  + .sha256 sidecar (written from the same read)
+
+  Composition:
+    git binaries + libraries : OURS (WoA GCC 15.0.1, static, git.exe=69b1e704)
+    shell (busybox.exe/ash.exe): UPSTREAM ARM64 busybox stand-in (labelled)
+  154 PE files, ALL 0xAA64 (152 exe + 2 dll), zero exceptions.
+  bin/*.exe = 152 after libexec->bin fold. Depends-driven dead-weight DLLs
+  (curl/openssl/expat/pcre2/libffi/libtasn1/p11-kit) ABSENT - trims verified fired.
+
+  Status: HONEST INTERIM ARTEFACT. When our busybox (1e7a7fd3) lands, the shell
+  slot is a ONE-VARIABLE swap -> all-ours MinGit-arm64. Assembly path proven.
+
+--- UPDATE: ALL-OURS MinGit-arm64 (busybox swap complete) ---
+artefact: MinGit-2.47.1-arm64.zip  (26,622,481 bytes)
+  sha256 = 7d2c2ebf8bf236c736fa73f38447a8b52530b326704f90d0d07716d9f8b1a88e
+  git.exe pinned 69b1e704 (our static git); busybox+ash pinned 67665b44 (OUR
+  WoA-GCC busybox, busybox-w32 d8d8bb397 unmodified). 18 PE all 0xAA64, 11
+  distinct binaries. builtins.txt fix in force (16 bin exes). Supersedes and
+  replaces MinGit-2.47.1-arm64-upstream-busybox.zip (removed).
+busybox package: mingw-w64-clang-aarch64-busybox-1.37.0-1-any.pkg.tar.zst
+  (was ...-1.37.0.upstreamstandin-1). depends=[]; UCRT-only, runtime-free.
+CLAIM: every binary and library built with our Windows-on-Arm GCC toolchain.
+
+--- UPDATE 2: final artefact (stubs disclosed, pipeline-stubs removed) ---
+MinGit-2.47.1-arm64.zip = 26,621,454 bytes
+  sha256 = 99485ab9ef0bf2a3b4ff4ab6928b923e26f2c0b63afc2fe87ef47362ebf559fd
+  93 entries, 16 bin exes (11 distinct), 18 PE all 0xAA64. git.exe 69b1e704,
+  ash 67665b44. pipeline-stubs REMOVED. GCM+selector are 153353-B non-functional
+  stubs, disclosed in RELEASE-NOTES.md and the in-pkg STUB-PLACEHOLDER.txt.
+  Supersedes hashes 7d2c2ebf (pre-hardening) and e78bb2dd (pre-stub-trim).

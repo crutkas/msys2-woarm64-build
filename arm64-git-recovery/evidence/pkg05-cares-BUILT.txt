@@ -1,0 +1,25 @@
+CLOSURE PACKAGE 5/10: c-ares 1.34.5 — BUILT with native WoA GCC (MEASURED, static+shared, RUN=42)
+
+TOOLCHAIN: WoA woarm64-native gcc 15.0.1dev-2 / binutils 2.45dev-1, NATIVE on ARM64 host. Nothing cross/prebuilt.
+FOUR ABI KNOBS: aarch64-w64-mingw32 / UCRT / winpthreads / crt-git 70d63e7c9.
+DRIVE METHOD: direct gcc/ar (NO cmake, NO configure, NO shell).
+
+SOURCE: c-ares 1.34.5 release tarball (github c-ares/c-ares v1.34.5, 1009261 B). (msys2 lists 1.34.8; I built
+  1.34.5 — a patch-level diff; note this if exact-version matching to the reference closure matters.)
+
+CONFIG: NO hand-written config.h needed. c-ares SHIPS config-win32.h (hand-crafted vendor Windows config) and a
+  pre-generated ares_build.h (0 unsubstituted tokens). ares_setup.h selects config-win32.h automatically under
+  _WIN32 when HAVE_CONFIG_H is undefined. So this is the CLEANEST direct-drive: compile without -DHAVE_CONFIG_H.
+
+BUILD: 91 sources (src/lib/**.c) -> pe-aarch64-little, 0 failures. -DCARES_STATICLIB for static; ar rcs
+  libcares.a (357900 B). Shared: recompiled with -DCARES_BUILDING_LIBRARY (proper dllexport) ->
+  libcares-2.dll (0xAA64) + libcares.dll.a, linked with -lws2_32 -liphlpapi. CLEAN (no auto-import errors —
+  the dllexport macro path avoids the pseudo-reloc trap, same lesson as brotli).
+
+VERIFY (compile-assemble-link-RUN, distinctive return 42):
+  Test: ares_version -> library_init(ALL) -> init_options (real resolver channel) -> destroy -> cleanup; ret 42.
+  STATIC : ctest.exe (0xAA64) RAN, exit 42, printed "c-ares 1.34.5 (0x12205)".
+  SHARED : ctest_sh.exe (0xAA64) loaded libcares-2.dll at runtime, RAN, exit 42.
+
+STAGED: files/staged-closure/c-ares/{libcares.a, libcares-2.dll, libcares.dll.a}
+STATUS: 5 of 10 done (wineditline, brotli, libtasn1, libssh2, c-ares). All native, all RUN-verified.

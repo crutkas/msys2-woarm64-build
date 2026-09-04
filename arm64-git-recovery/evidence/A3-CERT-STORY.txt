@@ -1,0 +1,38 @@
+A3 — THE CERT STORY (explicit, so it is not rediscovered at clone time)
+
+WHAT I MEASURED:
+  * The ca-certificates SHIPPED bundle is generated at install time. The stock ca-bundle.crt as extracted from the
+    package is ZERO BYTES until update-ca-trust runs — the zero-byte trap I found earlier. (MEASURED earlier.)
+  * MY POPULATED BUNDLE: staged-closure\ca-certificates\ca-bundle.crt = 260,007 bytes, 172 certificates
+    (counted BEGIN CERTIFICATE blocks). sha256 D2EB6ED690D732C10F151E6A657A5012363FE30B6301741B7CEDEFBD1685B170.
+    This is arch-INDEPENDENT PEM data — no toolchain involved; it is the same bundle any platform would use.
+  * ca-certificates is an MSYS (arch-independent) package: ca-certificates-20260816-1 in repo.msys2.org/msys.
+    Its .db carries only desc (no file list), so paths below are KNOWN-LAYOUT from msys2, not read from this pkg.
+
+KNOWN MSYS2 LAYOUT (where the bundle sits):
+  * Canonical generated bundle: /etc/pki/ca-trust/extracted/pem/tls-ca-bundle.pem
+  * Compatibility path git/curl read by default: /usr/ssl/certs/ca-bundle.crt   (in a MinGit layout this maps
+    under the install root; git-for-windows historically ships it at  mingw64/ssl/certs/ca-bundle.crt  and the
+    system gitconfig sets  http.sslCAInfo  to it, or curl's CURL_CA_BUNDLE / -DCURL_CA_BUNDLE points there.)
+  * make-file-list.sh does NOT hardcode a bundle path; it includes the ssl tree wholesale (only excludes
+    /usr/ssl/misc/, line 382). So whatever the ca-certificates package lays down under ssl/certs is shipped.
+
+THE PACKAGING DECISION (must be made, not defaulted):
+  OPTION A — SHIP THE POPULATED BUNDLE (recommended for a portable, schannel-independent artefact):
+    Place my 172-cert ca-bundle.crt at  <root>/<MSYSTEM_LOWER>/ssl/certs/ca-bundle.crt  (i.e. clangarm64/ssl/certs/)
+    AND ensure system gitconfig has  http.sslCAInfo = <path>  OR curl is built with that default.
+    PRO: works with the openssl/schannel-off backend; self-contained; matches how I validated ca-certificates
+    (schannel DISABLED, openssl backend pointed at THIS bundle — the bundle is load-bearing and proven).
+    CON: the 172 certs are a point-in-time snapshot; needs refresh over time (same as upstream ca-certificates).
+    MUST NOT ship the zero-byte stock file — that silently defeats https unless schannel carries it.
+  OPTION B — DEFAULT TO SCHANNEL (Windows trust store):
+    Build curl with schannel and set  http.sslBackend = schannel ; no bundle needed; Windows supplies trust.
+    PRO: always-current OS trust; zero bundle maintenance. CON: not portable off Windows trust; and it MASKS an
+    empty bundle — the exact failure mode I proved (a clone succeeds via the OS store even with an empty bundle,
+    hiding the fact that the shipped bundle is broken). If schannel is default, the bundle must STILL be populated
+    or removed, never shipped empty, so a later --ssl-backend=openssl user is not silently broken.
+
+RECOMMENDATION (derived): ship the POPULATED bundle at clangarm64/ssl/certs/ca-bundle.crt AND leave schannel
+  available as an opt-in backend. Default http.sslBackend to openssl+bundle for a demonstrably self-contained
+  artefact, because that is what the programme is proving (our chain, end to end) rather than leaning on Windows.
+  Either way: NEVER ship the zero-byte file. This is the single packaging decision that must be explicit.

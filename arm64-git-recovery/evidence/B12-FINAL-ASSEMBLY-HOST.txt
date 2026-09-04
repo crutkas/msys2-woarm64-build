@@ -1,0 +1,74 @@
+B12 — FINAL-ASSEMBLY HOST CAPABILITY (can we drive release.sh --busybox here?)
+==============================================================================
+Coordinator item (2): confirm the final --busybox assembly can run ON THIS
+WINDOWS ARM64 HOST (not WSL), because release.sh:169 executes an ARM64 binary
+(ash.exe -c uname) which cannot run under x86-64 WSL.
+
+HOST FACTS (MEASURED):
+  * PROCESSOR_ARCHITECTURE = ARM64 (PowerShell).
+  * Git for Windows IS installed at C:\Program Files\Git; provides
+    sh.exe + bash.exe (C:\Program Files\Git\bin\).
+    uname -a: MINGW64_NT-10.0-28000-ARM64 ... 3.6.9-...x86_64 Msys
+    -> the Git-for-Windows MSYS layer here is x86-64 (runs under Windows-on-ARM
+       x64 emulation). It provides a POSIX sh for running scripts.
+  * NO MSYS2 with pacman on this host: `command -v pacman pactree 7z` all EMPTY
+    inside Git-bash; no pacman.exe found under C:\Program Files\Git.
+  * The only msys-2.0.dll on the box is the peer runtime work under
+    C:\Users\crutkasLocal\arm64-loadtest\ (NOT a full MSYS2/pacman install).
+
+DECISIVE ARCHITECTURAL POINT (platform guarantee, not re-derived):
+  Windows on ARM64 executes ARM64 PEs NATIVELY (and x86/x64 via emulation).
+  Therefore release.sh:169 `ash.exe -c uname` and :153 `git-remote-http.exe`
+  — which run our ARM64 wrapper/busybox — WILL execute on THIS host. They
+  CANNOT execute under x86-64 WSL (Linux ELF loader, no Windows-ARM64 PE
+  support). This is exactly why the final assembly belongs here.
+
+THE GAP (what this host still needs for release.sh's FILE-LIST step):
+  release.sh calls make-file-list.sh which needs: pacman (-Ql, -Q, -Sy),
+  pactree, and 7z (line 122-124 tries `pacman -Sy 7zip` if 7z missing).
+  This host has NONE of them. Two ways to satisfy it:
+
+  OPTION 1 (cleanest): install MSYS2-arm64 OR MSYS2-x86_64 here and populate a
+    sync repo with our packages. The SCRIPT host arch is irrelevant to the
+    PACKAGES (they are arm64 data); pacman just reads metadata and copies
+    files. An x86-64 MSYS2 satisfies pacman/pactree/7z, and the SAME host's
+    native ARM64 PE execution satisfies the L153/L169 probes. So ONE machine
+    (this one) covers both needs: emulated-x64 pacman for listing + native
+    arm64 execution for the wrapper probes.
+
+  OPTION 2 (split, matches what we proved in WSL): run make-file-list.sh in
+    WSL (where pacman/pactree already work — B8 proved exit=0, 1492 lines),
+    producing the file list + the copied `root/` tree, then do ONLY the
+    ARM64-executing tail (release.sh:148-176, the git-wrapper/ash.exe probes +
+    7z) on THIS Windows ARM64 host. The file list is host-agnostic text; the
+    copied tree is arm64 payload. This cleanly separates the two capability
+    needs and re-uses the already-proven WSL pipeline.
+  NOTE for Option 2: with the Option-B ash.exe decision (busybox-as-ash via
+    applet name, provided by the busybox PACKAGE, not git-wrapper), the L168
+    git-wrapper copy is not even needed — ash.exe arrives already correct in
+    the tree, and the L169 probe just CONFIRMS it runs. So the ARM64-host tail
+    reduces to: verify ash.exe runs (one exec) + 7z the archive. Minimal.
+
+RECOMMENDATION: OPTION 2. Keep the proven WSL file-list/copy pipeline (B8),
+  and run only the final verify-ash + 7z on this ARM64 host. It changes the
+  fewest variables and isolates the one thing WSL genuinely cannot do (execute
+  an ARM64 PE) to a 2-step tail. 7z on the host: install via winget/standalone
+  (7-Zip has an arm64 build) or use PowerShell Compress-Archive as a fallback
+  (the pipeline test already used python zipfile successfully).
+
+CAN WE DRIVE IT HERE TODAY? YES for the ARM64-execution tail (host is ARM64,
+  runs ARM64 PEs). The file-list step needs pacman — available in WSL now, or
+  via installing MSYS2 here. No blocker either way; Option 2 needs nothing new
+  except a 7z/zip on the host (Compress-Archive/python both present).
+
+HOST ARCHIVE TOOLING (MEASURED, this ARM64 host):
+  * Compress-Archive: AVAILABLE (PowerShell 7.6.2)
+  * C:\Windows\system32\tar.exe: present (can emit zip)
+  * Python 3.14 ARM64 (C:\Program Files\Python314-arm64\python.exe): present
+    -> python zipfile already used successfully in the pipeline test (B8).
+  * winget: present -> can install 7-Zip arm64 for EXACT release.sh 7z path.
+  * 7z.exe: NOT currently on PATH (installable via winget if 7z-exact wanted).
+CONCLUSION: the Option-2 ARM64-host tail (verify ash.exe runs, then archive)
+  is fully feasible on this host TODAY with existing tools. No new dependency
+  is strictly required; 7-Zip is a one-winget-install away if we want to run
+  release.sh line 181 verbatim rather than substituting Compress-Archive/zip.

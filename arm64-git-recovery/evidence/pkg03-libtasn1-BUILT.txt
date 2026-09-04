@@ -1,0 +1,35 @@
+CLOSURE PACKAGE 3/10: libtasn1 4.21.0 — BUILT with native WoA GCC (MEASURED, static+shared, RUN=42)
+
+TOOLCHAIN: WoA woarm64-native gcc 15.0.1dev-2 / binutils 2.45dev-1, NATIVE on ARM64 host. Nothing cross/prebuilt.
+FOUR ABI KNOBS: aarch64-w64-mingw32 / UCRT / winpthreads / crt-git 70d63e7c9.
+DRIVE METHOD: direct gcc/ar (NO configure, NO shell) using a HAND-WRITTEN config.h (see below).
+
+SOURCE: https://ftp.gnu.org/gnu/libtasn1/libtasn1-4.21.0.tar.gz (1816537 B) = msys2 PKGBUILD pkgver 4.21.0.
+
+KEY FINDING — libtasn1 IS direct-drivable (my earlier "needs-configure" call was WRONG, corrected here):
+  * gnulib sources DO ship in the tarball at lib/gl/ (c-ctype.c/.h, strverscmp.c, intprops.h, minmax.h).
+    My first attempt failed only because I omitted -Ilib/gl.
+  * ASN1.c is PRE-GENERATED in the tarball (ships beside ASN1.y); no bison run needed. Skip the .y.
+  * So the ONLY missing piece is config.h, which I hand-wrote for the known target.
+
+HAND-WRITTEN config.h (LEGITIMATE ARTEFACT — equivalent to a cross-compile cache; every value stated):
+  SIZEOF_UNSIGNED_INT=4, SIZEOF_UNSIGNED_LONG_INT=4   [MEASURED: LLP64, int=long=32-bit on win64]
+  WORD_BIT=32                                          [MEASURED-CORRECT: 32-bit int]
+  WORDS_BIGENDIAN=0                                    [MEASURED: aarch64 little-endian]
+  HAVE_STRING_H=1, HAVE_STDLIB_H=1                     [KNOWN: UCRT provides both]
+  _GL_CONFIG_H_INCLUDED sentinel + _GL_INLINE/_GL_ATTRIBUTE_* stubs [gnulib guard; stubs are safe no-ops]
+  extern int strverscmp(...)                           [declares the gnulib fn we compile from lib/gl]
+  NO value was guessed blind — all derived from the measured aarch64-w64-mingw32/UCRT environment.
+
+BUILD: 9 core lib/*.c + 2 gnulib (strverscmp, c-ctype) = 11 objects, pe-aarch64-little, 0 failures.
+  ar rcs libtasn1.a (91944 B). Shared: libtasn1-6.dll (0xAA64) + libtasn1.dll.a, linked CLEAN (no auto-import
+  errors — libtasn1 has no cross-DLL data imports, unlike brotli).
+
+VERIFY (compile-assemble-link-RUN, distinctive return 42):
+  Test parses a real DER INTEGER {0x02,0x01,0x2A} via asn1_get_tag_der -> tag=2,len=1; returns tag+40=42.
+  STATIC : ttest_static.exe (0xAA64) RAN, exit 42.
+  SHARED : ttest_shared.exe (0xAA64) loaded libtasn1-6.dll at runtime, RAN, exit 42.
+  Proves the ASN.1 engine actually works, not just that it links.
+
+STAGED: files/staged-closure/libtasn1/{libtasn1.a, libtasn1-6.dll, libtasn1.dll.a, config.h.HAND-WRITTEN}
+STATUS: 3 of 10 done (wineditline, brotli, libtasn1). All native, all RUN-verified.

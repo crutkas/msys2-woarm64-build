@@ -1,0 +1,34 @@
+L1 COMPILED-PACKAGE TOOLCHAIN — MEASURED mechanism finding
+Generated: (see file mtime)
+
+QUESTION: how to build the compiled git.exe closure (brotli, c-ares, libidn2, libpsl,
+libssh2, libtasn1, libunistring, p11-kit, libffi, wineditline, zstd...) for the ARM64 target.
+
+MEASURED — local toolchain availability:
+- WSL /root/xc/inst = aarch64-pc-cygwin cross-toolchain ONLY (targets the MSYS2 runtime, NOT mingw).
+- No aarch64-w64-mingw32-gcc in WSL. No clang in WSL. No MSYS2 on the Windows host (C:\msys64 absent).
+
+MEASURED — WoA publishes a cross toolchain (http 200, x86_64/woarm64.db, 9 entries):
+  mingw-w64-cross-mingwarm64-binutils-2.44dev-1
+  mingw-w64-cross-mingwarm64-crt-12.0.0dev-4
+  mingw-w64-cross-mingwarm64-gcc-15.0.1dev-3        (payload: ...-x86_64.pkg.tar.zst)
+  mingw-w64-cross-mingwarm64-gcc-stage1-15.0.1dev-3
+  mingw-w64-cross-mingwarm64-headers-12.0.0dev-3
+  mingw-w64-cross-mingwarm64-windows-default-manifest-6.4-6
+  mingw-w64-cross-mingwarm64-winpthreads-12.0.0dev-3
+  mingw-w64-cross-mingwarm64-zlib-1.3.1-4 (+ mingw-w64-cross-zlib)
+
+DERIVED: the "-x86_64.pkg.tar.zst" payload means these cross packages RUN under an
+  x86_64 MSYS2 runtime and TARGET aarch64-w64-mingw32. The WoA-intended build HOST is an
+  x86_64 MSYS2 install, cross-compiling to ARM64 — NOT WSL, NOT native-on-ARM64.
+
+CONSEQUENCE for parallelisation:
+- ca-certificates (arch=any DATA) needs NO toolchain — BUILT TODAY, proven (see ca-certificates-BUILD-and-CLONE.txt).
+- The ~18 COMPILED closure packages require standing up: x86_64 MSYS2 (runs under WoW64/x86 emulation on
+  this ARM64 host) + install the WoA cross-mingwarm64 toolchain + build via MINGW-packages@woarm64 recipes.
+  This is the SAME environment session 2918d1f1 must have stood up for curl/openssl/expat/pcre2.
+- ALTERNATIVE (native): install ARM64 MSYS2 CLANGARM64 and build natively with clang — but WoA's toolchain
+  is GCC cross, so to stay ABI/recipe-consistent with the programme, the x86_64-MSYS2 cross path is preferred.
+
+STATUS: build mechanism identified & measured. Compiled packages are UNBLOCKED only after the
+  x86_64-MSYS2 + WoA-cross environment exists. Awaiting 2918d1f1 confirmation of their exact env to reuse it.

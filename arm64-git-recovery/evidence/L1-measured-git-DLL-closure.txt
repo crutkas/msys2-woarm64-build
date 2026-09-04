@@ -1,0 +1,28 @@
+MEASURED GROUND TRUTH: DLL closure of a WORKING native ARM64 git.exe
+Source: MSYS2 clangarm64 git 2.55.0.5 prefix (the reference impl we ran earlier), bin\*.dll list.
+This is MEASURED (ls of an actual working install), not derived.
+
+30 DLLs shipped:
+  edit.dll                <- wineditline           [MINE 1/10 DONE, native GCC, RUN-verified]
+  libbrotlicommon/dec/enc <- brotli                [MINE 2/10 DONE, native GCC, RUN-verified]
+  libcares-2.dll          <- c-ares                [MINE, cmake-or-autotools]
+  libffi-8.dll            <- libffi                [MINE, autotools]
+  libidn2-0.dll           <- libidn2               [MINE, autotools]
+  libp11-kit-0.dll        <- p11-kit               [MINE, meson]
+  libpsl-5.dll            <- libpsl                [MINE, meson]
+  libssh2-1.dll           <- libssh2               [MINE, autotools]
+  libtasn1-6.dll          <- libtasn1              [MINE, autotools]
+  libunistring-5.dll      <- libunistring          [MINE, autotools]
+  --- owned by 2918d1f1 ---
+  libcurl-4.dll, libcrypto-3-arm64.dll, libssl-3-arm64.dll, libexpat-1.dll,
+  libpcre2-{8,16,32}-0.dll, libpcre2-posix-3.dll
+  --- already in woarm64-native repo (no build needed) ---
+  libbz2-1.dll (bzip2), libiconv-2.dll+libcharset-1.dll (libiconv), libintl-8.dll+libasprintf-0.dll (gettext),
+  libzstd.dll (zstd), zlib1.dll (zlib)
+  --- CLANG RUNTIME: falls away under a GCC build ---
+  libc++.dll   -> replaced by libstdc++-6.dll (GCC)  [git core is C; may not even be needed]
+  libunwind.dll-> replaced by libgcc_s_seh-1.dll (GCC)
+
+CONCLUSION (measured): my 10-package list is EXACTLY right and none are optional — every one ships in a
+working native git. No package outside {my 10, 2918d1f1's set, woarm64-native repo, clang-runtime} appears.
+Absence check: grepped the full bin\*.dll list (30 entries, printed above); nothing unaccounted for.

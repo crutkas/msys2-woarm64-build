@@ -1,0 +1,65 @@
+WoA NATIVE ARM64 GCC STAND-UP — VERIFIED (our compiler, on the target arch, no emulation)
+Generated: (see file mtime)  Host: PROCESSOR_ARCHITECTURE=ARM64
+
+SOURCE: woarm64-native pacman repo (https://windows-on-arm-experiments.github.io/msys2-woarm64-build/aarch64), http 200.
+  Packages extracted into a standalone prefix on this host (no MSYS2 installed):
+    gcc 15.0.1dev-2, binutils 2.45dev-1, gcc-libs, headers-git 70d63e7c9, crt-git 70d63e7c9,
+    winpthreads-git, libwinpthread-git, windows-default-manifest 6.4-4,
+    gmp 6.3.0, mpfr 4.2.1, mpc 1.3.1, isl 0.27, zlib 1.3.1, zstd 1.5.7, libiconv 1.18.
+
+RAW COFF MACHINE (read from PE header, not inferred):
+  gcc.exe                     0xAA64
+  aarch64-w64-mingw32-gcc.exe 0xAA64
+  ld.exe                      0xAA64
+  as.exe                      0xAA64
+  cc1.exe                     0xAA64
+  cc1plus.exe                 0xAA64
+
+LIVE-PROCESS NATIVITY (IsWow64Process2 on the running gcc.exe, NOT inferred from file):
+  gcc.exe live: processMachine=0x0000 (IMAGE_FILE_MACHINE_UNKNOWN => NOT under WOW64 => native)
+                nativeMachine=0xAA64
+  (An x64-emulated process would report processMachine=0x8664. gcc reported 0x0000 = native ARM64.)
+
+COMPILE TEST (hello.c -> hello.exe, native gcc):
+  gcc --version: 15.0.1 20250131 (experimental) (Rev2, Built by MSYS2 project)
+  compile+link EXIT=0
+  hello.exe PE machine = 0xAA64
+  EXECUTED hello.exe -> "hello from native arm64 gcc", exit 0
+
+THE FOUR ABI KNOBS (measured from gcc -v config string + cc1 import table):
+  1. TARGET TRIPLE : aarch64-w64-mingw32   (gcc -v: Target: aarch64-w64-mingw32)
+  2. CRT           : UCRT  (cc1 imports api-ms-win-crt-*-l1-1-0.dll => UCRT, NOT msvcrt)
+  3. THREADING     : posix / winpthreads  (gcc -v: Thread model: posix; cc1 imports libwinpthread-1.dll)
+  4. HEADERS/CRT   : mingw-w64 crt-git/headers-git 70d63e7c9 ; --with-native-system-header-dir=/mingwarm64/include
+
+FIRST-PASS DLL-CLOSURE GOTCHA (measured, recorded so builders avoid it):
+  cc1.exe binds libgmp-10/libisl-23/libmpc-3/libmpfr-6/zlib1/libzstd — these are SEPARATE packages.
+  A bare gcc+binutils+crt prefix compiles gcc --version fine but cc1 dies 0xC0000135 (STATUS_DLL_NOT_FOUND)
+  until gmp/mpfr/mpc/isl/zlib/zstd are also in the prefix. Extract those too.
+
+PREFIX LOCATION (session scratch, may be cleared):
+  C:\Users\crutkasLocal\AppData\Local\Temp\woagcc-win\mingwarm64  (bin on PATH => working native gcc)
+
+CONCLUSION: OUR GCC, running NATIVELY on ARM64 Windows, builds a working ARM64 PE. This is the
+  strong-form demonstration (no cross, no emulation). Ready to build the 10 closure packages with it.
+
+=== UPDATE: assembler DLL-closure fix + full-pipeline RUN verification ===
+TRAP (measured by 2918d1f1 on a copy of this prefix): as.exe binds libintl-8.dll, which was ABSENT.
+  Symptom: gcc --version OK, gcc -S OK (stops at cc1), gcc -c FAILS silently exit 1 (no diagnostic).
+FIX (measured working): extracted mingw-w64-aarch64-gettext-runtime-0.23.1-1 from woarm64-native,
+  placed libintl-8.dll into prefix/bin.
+as.exe FULL import list (measured via objdump -p): libintl-8.dll, KERNEL32, api-ms-win-crt-* (UCRT),
+  libwinpthread-1.dll, zlib1.dll, libzstd.dll  -- all now present in bin.
+
+FULL COMPILE-ASSEMBLE-LINK-RUN SMOKE TEST (the ONLY sufficient test; --version proves a stage, not the pipeline):
+  as --version                : exit 0  (GNU assembler 2.44.50.20250131)
+  gcc -S ret42.c              : exit 0
+  gcc -c ret42.c              : exit 0  (object produced)
+  gcc ret42.c -o ret42.exe    : exit 0  (0xAA64 PE)
+  ret42.exe RUN               : exit 42  <-- executed natively, correct return value
+GENERAL LESSON: each pipeline stage (cc1, as, ld, and the produced exe) has its OWN DLL closure.
+  cc1 needed gmp/mpfr/mpc/isl/zlib/zstd; as needed libintl-8 (+zlib/zstd/winpthread). Adopt compile-
+  assemble-link-RUN as the per-package sanity check.
+
+FINAL WORKING PREFIX DLL SET added beyond gcc/binutils/crt:
+  gmp, mpfr, mpc, isl, zlib, zstd, gcc-libs, libiconv, gettext-runtime(libintl-8).

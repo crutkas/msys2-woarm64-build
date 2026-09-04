@@ -1,0 +1,35 @@
+B3 — libssh2 PACKAGED + VALIDATED (clang-aarch64), with a DEPENDENCY DIVERGENCE worth noting
+
+ARTEFACT: mingw-w64-clang-aarch64-libssh2-1.11.1-2-any.pkg.tar.zst (183,388 bytes). 8 payload files; libssh2-1.dll = 0xAA64.
+Installed cleanly via pacman -U ALONGSIDE brotli; pacman -Q lists both; pacman -Ql returns the file list. VALIDATED.
+
+DEPENDENCY DIVERGENCE (MEASURED + deliberate): the UPSTREAM clang-aarch64 libssh2 package declares
+  depend = mingw-w64-clang-aarch64-openssl, mingw-w64-clang-aarch64-zlib  (it uses the OpenSSL crypto backend).
+MY build uses the WINCNG (Windows CNG) backend, so it depends on NO pacman packages — only win32 import libs
+  (-lbcrypt -lcrypt32 -lws2_32), which are part of the mingw CRT, not packages. My package therefore declares
+  depend = (none). I also PATCHED the shipped libssh2.pc: upstream's had Requires.private: libcrypto,zlib and
+  Libs.private: -lssl -lcrypto -lz (the openssl surface); I replaced with Requires.private: (empty) and
+  Libs.private: -lbcrypt -lcrypt32 -lws2_32 so pkg-config emits the correct link line for the WINCNG build.
+CONSEQUENCE: for pactree, my libssh2 is a LEAF (no deps) — it does not drag openssl/zlib into the closure via ssh.
+  git links openssl anyway (via curl), so this changes nothing for git, but it means the ssh feature is
+  self-contained on Windows crypto. Flagged so a later exact-match against the upstream package's dep list is a
+  KNOWN divergence, not a surprise.
+
+--- BEHAVIOURAL DIVERGENCE (WINCNG vs OpenSSL backend), MEASURED from the DLL's method-name strings ---
+Per coordinator: a WINCNG backend MAY advertise a different SSH algorithm set than OpenSSL. I enumerated what my
+built libssh2-1.dll actually carries (extracted printable strings, filtered to SSH method names). RESULT:
+  Host-key / public-key: ssh-ed25519 (+cert-v01), ssh-rsa (+cert), rsa-sha2-256/512 (+cert),
+    ecdsa-sha2-nistp256/384/521 (+cert), sk-ssh-ed25519@openssh.com, sk-ecdsa-* (FIDO/security-key variants).
+  Ciphers: aes128/192/256-ctr, aes128/192/256-cbc, aes128/256-gcm@openssh.com, chacha20-poly1305@openssh.com, 3des-cbc.
+  MACs: hmac-sha2-256/512 (+etm), hmac-sha1 (+96,+etm).
+  KEX: curve25519 (via chacha20-poly1305 present), diffie-hellman-group14/16/18-sha256/512, group-exchange-sha256, + legacy sha1 groups.
+
+MEASURED CONCLUSION: contrary to the classic assumption that a Windows-CNG libssh2 lacks ed25519, THIS BUILD
+  ADVERTISES ssh-ed25519 AND curve25519/chacha20 AND aes-gcm — the modern set is present in the method tables.
+CAVEAT (derived, not runtime-tested): presence of a method NAME means it is compiled into the method table; actual
+  negotiation still requires the underlying CNG primitive at runtime. I did NOT run a live ssh:// handshake against
+  an ed25519-only server, so "advertised" is measured but "successfully negotiates" is not. If ssh:// is exercised
+  in acceptance, test specifically against an ed25519 host key and a curve25519 kex to confirm the primitives resolve.
+INTENTIONAL-DIFFERENCE NOTE for the package: this libssh2 uses the WINCNG crypto backend (not OpenSSL). Its algorithm
+  support derives from Windows CNG, not OpenSSL. Disclosed here so any future ssh:// algorithm-negotiation gap is a
+  known, documented choice rather than a surprise bug report.

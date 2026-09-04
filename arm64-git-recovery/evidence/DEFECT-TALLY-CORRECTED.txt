@@ -1,0 +1,33 @@
+DEFECT TALLY — CORRECTED (precision pass, per coordinator)
+
+RULE APPLIED: check independence at the INPUTS, not just the method; read image base from the header, never assume.
+
+FINAL HONEST TALLY = ONE SOLID + ONE LATENT-COSMETIC. Two items removed.
+
+[SOLID — STANDS] AArch64 cross-DLL-data auto-import is architecturally impossible, with a cryptic diagnostic.
+  Root cause: mingw runtime pseudo-relocation assumes runtime-patchable WIDE displacements; AArch64 references
+  cross-DLL data via ADRP+ADD (21-bit page + 12-bit lo12) which are NOT runtime-patchable. ld emits the opaque
+  "cannot get section contents ... auto-import exception (bit size 21 / bit size 12)".
+  The reportable defect is the CRYPTIC DIAGNOSTIC, not the failure (the failure is inherent to the architecture).
+  FIX (supported path, not a bypass): __declspec(dllexport/dllimport). Proven on brotli, shared RUN=55.
+
+[LATENT / COSMETIC — keep as a minor upstream nit, NOT failure-causing] dlltool declares `2**2` alignment on
+  8-byte .idata IAT members. MEASURED: all 5,726 .idata members are exactly 8 bytes, layout is correct; only the
+  DECLARED attribute is wrong. No runtime effect. Cosmetic.
+
+[REMOVED — RETRACTED UPSTREAM ~1h ago, was never mine to keep] "ld/BFD dropping ADDR64 base relocations."
+  Cause of the false positive: section RVAs were derived as (VA - 0x180000000) assuming the conventional Cygwin
+  image base, but the PE header actually states image base 0x180040000 — a uniform 0x40000 displacement on every
+  .reloc lookup. Re-measured from the section table's OWN RVA: 424/424 present, 0 missing; .text 28/28,
+  .data 9173/9173, .rdata 8212/8212. THERE IS NO BASE-RELOCATION DEFECT. Do not circulate.
+
+[REMOVED — NOT A DEFECT, settled by x86_64 differential] "as rejects .hidden pseudo-op."
+  DECISIVE MEASUREMENT (this session): stock x86_64-w64-mingw32 as (binutils 2.41.90, Ubuntu pkg) on the same
+  input `.hidden foo` returns the IDENTICAL error: "Error: unknown pseudo-op: `.hidden'". So it is TARGET-FAMILY
+  (all mingw/PE) behaviour, NOT aarch64-specific, and arguably CORRECT — PE/COFF has no ELF hidden visibility.
+  The real cause of the libffi hiccup was that bypassing ./configure meant nothing defined FFI_HIDDEN empty (the
+  known cost of the hand-config tactic). Fixed correctly by defining FFI_HIDDEN empty for C and LIBFFI_ASM paths.
+  Test cmd: printf '.text\n.hidden foo\nfoo:\n ret\n' | x86_64-w64-mingw32-as  => same unknown-pseudo-op error.
+
+NET: 1 solid (auto-import diagnostic) + 1 cosmetic (dlltool alignment). The auto-import finding stands on a correct
+root-cause analysis and is the one worth upstreaming.

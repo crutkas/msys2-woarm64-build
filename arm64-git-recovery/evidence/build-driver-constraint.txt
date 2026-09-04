@@ -1,0 +1,36 @@
+BUILD-DRIVER CONSTRAINT — MEASURED (the real structural gate for the 10 compiled packages)
+
+FACT 1 (measured): WoA native ARM64 gcc WORKS on this host (see WoA-native-GCC-standup-VERIFIED.txt).
+FACT 2 (measured): NO native ARM64 msys base userland exists in WoA repos.
+  - https://.../msys2-woarm64-build/aarch64/msys.db  -> HTTP 404
+  - https://.../msys2-woarm64-build/msys/aarch64/msys.db -> HTTP 404
+  - woarm64-native.db (HTTP 200) contains NO make, bash, sh, coreutils, m4, dash, busybox, msys2-runtime.
+    (searched the full package-base list; only mingw-target toolchain+libs, plus autotools/ninja/libtool/pkgconf/gperf.)
+  => make + the POSIX shell layer + m4 are gated on msys2-runtime, the SAME WIP component the runtime track blocks on.
+FACT 3 (measured): Git-for-Windows usr/bin has bash/sh/sed/awk/perl but NO make, NO m4, NO cc.
+FACT 4 (measured): driving the native Windows gcc.exe FROM WSL fails:
+  - `gcc.exe --version` from WSL works (interop runs the .exe).
+  - full compile fails: gcc driver spawns cc1 via CreateProcess and cannot resolve cc1 through the
+    WSL-translated path ("cannot execute 'cc1': CreateProcess: No such file or directory").
+  - with cwd=gcc/bin, cc1 launches but then cannot read the /tmp/xxx.c INPUT (WSL path meaningless to the
+    Windows cc1). Mixing WSL paths + Windows exe process spawning is fundamentally broken for a real build.
+
+CONSEQUENCE:
+  The 10 compiled packages need a build DRIVER (make/shell/m4/cmake/meson) that runs in WINDOWS path space
+  next to the native gcc. That driver layer is exactly the msys2 base userland, which is NOT yet available
+  as native ARM64. So although the COMPILER is unblocked, an autotools/make-driven BUILD of the 10 is
+  currently gated on a Windows-native make+shell layer.
+
+OPTIONS (to resolve, ranked):
+  A. Obtain a standalone native ARM64 make.exe + minimal sh (not requiring msys2-runtime). CMake/Ninja route
+     avoids make+shell for the CMake packages (wineditline, brotli, c-ares) -> those 3 buildable with
+     native ninja (present in woarm64-native) + native cmake (MISSING -> must obtain).
+  B. Use the reference MSYS2 CLANGARM64 userland (bash/make from clangarm64) purely as the DRIVER while the
+     COMPILER remains WoA gcc. clangarm64 make is a mingw binary that does NOT need msys2-runtime -> viable.
+  C. Cross-build from Linux/WSL with a LINUX->aarch64-w64-mingw32 cross gcc (llvm-mingw or the WoA x86_64
+     cross packages under x86 emulation). This is what 2918d1f1 does. Works, but is a CROSS build, not native.
+
+PREFERRED: Option B — use a mingw (clangarm64) make/coreutils as the harness (they are PE binaries needing
+  only mingw DLLs, NOT msys2-runtime), invoking the native WoA gcc as CC. Keeps the COMPILER native+ours,
+  gets a working driver today, and every produced library is still built by our native ARM64 GCC.
+  MEASURE NEXT: does clangarm64 make.exe run on this host without msys2-runtime?

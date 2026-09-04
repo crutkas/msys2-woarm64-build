@@ -1,0 +1,31 @@
+
+--- git-wrapper.exe PROVENANCE (MEASURED) ---
+Searched: build-extra (grep git-wrapper) -> only release.sh, installer/
+install.iss, git-extra/git-extra.install.in.
+  * git-extra/PKGBUILD package() (lines 150-190): installs create-shortcut,
+    WhoUses, blocked-file-util, proxy-lookup, git-askyesno,
+    git-credential-helper-selector, git-askpass, git-update, etc. It does NOT
+    install git-wrapper.exe or edit-git-bash.exe.
+  * git-extra.install.in:21-22 REFERENCES it as already present:
+    "Drop git-wrapper in place of builtins to save space;
+     git_wrapper=@@MINGW_PREFIX@@/share/git/git-wrapper.exe".
+  * The upstream MSYS2 clangarm64 git-2.55.0.5 reference package does NOT ship
+    share/git/git-wrapper.exe (measured: it has only share/git/completion/*).
+CONCLUSION: git-wrapper.exe is shipped by GIT-FOR-WINDOWS OWN git build (the
+G4W git package), NOT by the MSYS2 git package and NOT by git-extra. It lands
+at <arch>/share/git/git-wrapper.exe. It is a Git-for-Windows patch/artefact.
+
+*** PROVISIONING ACTION (git slot, 2918d1f1) ***
+If our git package is built from UPSTREAM git sources (not the Git-for-Windows
+fork), it will NOT contain git-wrapper.exe, and release.sh L152/L168 will fail
+to find the copy source -> the http/https wrapper optimisation and the ash.exe
+wiring both break (ash.exe would not be created at all, since L168 copies FROM
+git-wrapper.exe). TWO OPTIONS:
+  (A) Build our git package to include share/git/git-wrapper.exe (requires the
+      Git-for-Windows git-wrapper source, a small C wrapper in G4W repo), OR
+  (B) Accept the degradation: without git-wrapper.exe, provide ash.exe another
+      way (e.g. ship busybox.exe AS ash.exe directly, which busybox supports
+      via applet name) and let http/https be two full copies.
+Option (B) keeps the artefact runtime-free and correct; it only forgoes the
+size optimisation. This is a DECISION for the git/busybox slot owners, flagged
+now so it is not discovered during the first real assembly.

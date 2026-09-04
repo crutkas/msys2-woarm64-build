@@ -1,0 +1,27 @@
+B2 — BROTLI PACKAGED AS clang-aarch64 PACMAN PACKAGE + VALIDATED BY LIVE PACMAN (MEASURED)
+
+ARTEFACT: mingw-w64-clang-aarch64-brotli-1.2.0-1-any.pkg.tar.zst  (411,230 bytes)
+Built BY HAND (no makepkg) from my WoA-native-GCC brotli artifacts, using a Python assembler that emits the exact
+makepkg layout: zstd tar with .PKGINFO, .BUILDINFO, gzip .MTREE, payload rooted at clangarm64/.
+Payload: 18 files (3 DLLs all machine 0xAA64 MEASURED, 3 .a, 3 .dll.a, 5 headers, 3 .pc, LICENSE). Installed size 2,117,882.
+
+VALIDATION BY A REAL PACMAN (pacman 6.0.2, installed in WSL Ubuntu; isolated --root /tmp/pacroot, SigLevel=Never):
+  * `pacman -U <pkg>`  => INSTALLED CLEANLY. "checking package integrity", "checking for file conflicts",
+    "installing mingw-w64-clang-aarch64-brotli" all passed. This proves .PKGINFO + .MTREE + payload are well-formed;
+    a malformed package or bad mtree would abort here.
+  * `pacman -Q`  => "mingw-w64-clang-aarch64-brotli 1.2.0-1"  (registered in local db).
+  * `pacman -Ql mingw-w64-clang-aarch64-brotli`  => returned all 18 payload paths under clangarm64/.
+    THIS IS THE EXACT CALL make-file-list.sh MAKES (line 127: `pacman -Ql $MINGW_PACKAGE_PREFIX-git`) — VERIFIED it
+    returns a usable file list from my hand-built package.
+  * `pactree -u` : pactree is in pacman-contrib, which is NOT packaged for Ubuntu (apt: "Unable to locate package
+    pacman-contrib"; MEASURED). For a leaf with no depend= entries, `pactree -u X` returns just X; the transitive
+    closure is fully determined by the depend= lines in .PKGINFO, which I control. So this call is satisfiable
+    deterministically; only the standalone binary is unavailable in this environment.
+
+CONCLUSION: the packaging approach WORKS end to end against real pacman tooling — not simulated. My hand-assembled
+package is indistinguishable to pacman from a makepkg-produced one for -U/-Q/-Ql purposes. The provisioning gap for
+brotli is CLOSED. Same assembler will produce the remaining packages (libssh2, c-ares, etc.) and the git slot.
+
+NOTE (variant): the upstream brotli package also ships brotli.exe + man pages; I ship a LIB-ONLY variant (libraries,
+headers, .pc, license) because git needs only the libraries. If the MinGit list ever expects brotli.exe, add it;
+git.exe does not.

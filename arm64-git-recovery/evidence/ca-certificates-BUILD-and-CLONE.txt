@@ -1,0 +1,18 @@
+L1 ca-certificates — MEASURED build + HTTPS acceptance test
+Generated: 2026-09-03T08:18:56.3350451-07:00
+Host: PROCESSOR_ARCHITECTURE=ARM64
+
+SOURCE: Debian ca-certificates_20260816.tar.xz (271796 B, http 200 from ftp.us.debian.org)
+  matches MSYS2 clangarm64 pkgver ca-certificates-20260816-1
+RECIPE: WoA MINGW-packages@woarm64/mingw-w64-ca-certificates (arch='any' => arch-independent data)
+METHOD: certdata2pem.py (WoA/msys2) => 172 p11-kit trust files => concatenated leading X509 PEM blocks
+
+OUTPUT tls-ca-bundle.pem -> ca-bundle.crt:
+  bytes=260007  certs=172  openssl-parsed=172/172 valid
+  (this replaces the 0-byte placeholder shipped in the MSYS2 pkg, populated at install by update-ca-trust)
+
+git.exe PE machine: 0xAA64  (0xAA64 = ARM64)
+
+ACCEPTANCE TEST (schannel DISABLED, openssl backend + OUR bundle):
+  cmd: git -c http.sslBackend=openssl -c http.sslCAInfo=<ourbundle> clone --depth 1 https://github.com/octocat/Hello-World.git
+  EXIT=0  clone succeeded

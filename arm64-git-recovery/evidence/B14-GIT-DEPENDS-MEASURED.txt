@@ -1,0 +1,186 @@
+B14 — GIT PACKAGE DEPENDS: MEASURED, NOT PRESUMED (static binary => minimal depends)
+====================================================================================
+COORDINATOR QUESTION: git.exe is fully static and binds nothing from curl/openssl/
+expat/pcre2 as packages. Does declaring them as `depends` make pactree pull their
+never-loaded DLLs into the MinGit file list? Measure before wrapping.
+
+ANSWER: YES it does, and switching to ca-certificates-only depends removes them.
+All claims below are MEASURED on the working sync repo + real pactree + real
+make-file-list.sh (mfl-patched), not inferred.
+
+-------------------------------------------------------------------------------
+STEP 1 — BOUND MODULES OF THE FROZEN git.exe / git-remote-https.exe (objdump -p)
+-------------------------------------------------------------------------------
+git.exe imports ONLY:  ADVAPI32, KERNEL32, USER32, WS2_32, ntdll, api-ms-win-crt-*
+  (UCRT forwarders + Win32 system DLLs). ZERO libcurl/libcrypto/libssl/libexpat/
+  libpcre2.  => fully static, confirms coordinator + 2918d1f1.
+git-remote-https.exe adds only CRYPT32 + bcrypt (Windows system crypto, used by
+  our static openssl for the cert store) — still no package DLLs.
+
+-------------------------------------------------------------------------------
+STEP 2 — UPSTREAM git PACKAGE DEPENDS (the DYNAMIC reference), MEASURED
+-------------------------------------------------------------------------------
+mingw-w64-clang-aarch64-git-2.55.0.5 .PKGINFO:
+  depend = curl, ca-certificates, expat>=2.0, openssl, pcre2, nano
+Upstream git is DYNAMICALLY linked (ships libcurl/libcrypto/libssh2/libbrotli/
+libidn2/libpsl/libnghttp2 as DLLs), so THOSE depends are correct for ITS build
+and WRONG for ours. Copying them inherits a graph describing a different artefact.
+
+-------------------------------------------------------------------------------
+STEP 3 — pactree CLOSURE, upstream depends vs ca-certificates-only (SINGLE VARIABLE)
+-------------------------------------------------------------------------------
+pactree -u mingw-w64-clang-aarch64-git, walked against the installed DB:
+
+  UPSTREAM depends  -> 29-package closure incl:
+    curl, openssl, expat, pcre2, brotli, bzip2, c-ares, gmp, gnutls, libidn2,
+    libpsl, libssh2, libunistring, nettle, nghttp2, nghttp3, ngtcp2, wineditline,
+    zlib, zstd, nano, ...
+
+  ca-certificates-ONLY depends -> 8-package closure:
+    git, ca-certificates, p11-kit, libtasn1, libffi, libiconv, gettext-runtime, cc-libs
+    (this tail is ca-certificates' OWN chain: ca-certificates -> p11-kit ->
+     libtasn1/libffi/libiconv/gettext-runtime. Genuine, load-bearing data path.)
+
+  DROPPED by the change (22 packages): brotli, bzip2, c-ares, curl, expat,
+    gmp, gnutls, libidn2, libpsl, libssh2, libunistring, libwinpthread, nettle,
+    nghttp2, nghttp3, ngtcp2, openssl, pcre2, wineditline, zlib, zstd, nano.
+
+-------------------------------------------------------------------------------
+STEP 4 — FILE-LEVEL CONSEQUENCE, MEASURED via make-file-list.sh
+-------------------------------------------------------------------------------
+With the UPSTREAM-depends git package, the produced file-list CONTAINS these
+never-loaded (for our static git) package DLLs (measured, real run):
+  libcurl-4.dll, libcrypto-3-arm64.dll, libssl-3-arm64.dll, libexpat-1.dll,
+  libpcre2-8-0.dll, libpcre2-16-0.dll, libpcre2-32-0.dll, libpcre2-posix-3.dll,
+  + gnutls/ngtcp2 cruft.
+  (Note: mfl PACKAGE_EXCLUDES lists git/curl/openssl/expat but the reference
+   closure still surfaces these because upstream git's DEPENDS pull them and the
+   dll-trim regexes at mfl:256/328 do NOT match libpcre2-8-0 / libcurl-4 /
+   libssl-3-arm64 / libcrypto-3-arm64 / libexpat-1. So they SURVIVE.)
+
+With the ca-certificates-ONLY git package, re-running make-file-list:
+  never-loaded DLLs remaining = NONE (all dropped).
+  ca-certificates DATA still present: /etc/ssl/certs/ca-bundle.crt, etc/ssl/
+  cert.pem, /etc/pki/ca-trust/... (the load-bearing 172-cert bundle path).
+  (git.exe count 0 in THIS probe only because the metadata-probe package had an
+   empty payload — this step measured the DEPENDS WALK, not a real assembly. The
+   real frozen tree carries all 158 binaries.)
+
+-------------------------------------------------------------------------------
+DECISION (adopted in wrap-git-package.sh)
+-------------------------------------------------------------------------------
+git DEPENDS = mingw-w64-clang-aarch64-ca-certificates   (ONLY)
+Rationale: git.exe + all helpers are fully static; ca-certificates is the sole
+runtime dependency and it is DATA (the cert bundle), confirmed load-bearing by
+the verifier's passing HTTPS clone. curl/openssl/expat/pcre2 are BUILD deps, not
+RUNTIME deps, for a static binary — declaring them ships 22 packages of
+never-loaded libraries that "appear to be in use and are not."
+  * wrap-git-package.sh default depends = ca-certificates only (measured-correct).
+  * GIT_DEPENDS env override retained IF the closure walk or required-install
+    loop turns out to need more — but the walk SUCCEEDS with ca-certificates only
+    (exit 0), so no need measured.
+  * This does NOT break the walk: ca-certificates-only closure resolves cleanly
+    (pactree exit 0, make-file-list exit 0).
+
+RELEASE-NOTE ITEM (record the divergence from upstream depends):
+  "Our git package declares depends = ca-certificates only, versus upstream's
+   {curl, ca-certificates, expat, openssl, pcre2, nano}. Upstream git is
+   dynamically linked and needs those DLLs at runtime; ours is fully static
+   (measured: git.exe binds only UCRT + Win32 system DLLs) and needs only the
+   ca-certificates data bundle. Declaring the build-time libraries as runtime
+   depends would pull 22 never-loaded packages into MinGit via pactree."
+
+-------------------------------------------------------------------------------
+ADDENDUM - libp11-kit-0.dll QUESTION (coordinator follow-up), MEASURED
+-------------------------------------------------------------------------------
+Q: with ca-certificates-only depends, is libp11-kit-0.dll present-but-never-loaded
+   dead weight in the final file list?
+A: NO. libp11-kit-0.dll is NOT in the file list at all (grep count 0), because
+   mingw-w64-p11-kit is in PACKAGE_EXCLUDES (mfl:55, MINIMAL_GIT branch) so its
+   files incl. libp11-kit-0.dll are stripped by the closure-collection grep -v.
+
+SUSPECT-THE-GATE NOTE: the pipeline-test harness file-list DID appear to contain
+  libffi-8.dll, libtasn1-6.dll, and /clangarm64/lib/p11-kit/p11-kit-extract-trust.
+  This is a HARNESS PATH ARTIFACT, not a real-assembly outcome: the harness roots
+  paths at tmp/pipe-root/clangarm64/... (relative) while mfl trim regexes anchor
+  on ^/clangarm64/... (absolute) at mfl:326 [lib(ffi|...|tasn1)-*.dll] and mfl:333
+  [^/clangarm64/lib/p11-kit/]. So those anchored trims SILENTLY DO NOT FIRE in the
+  harness. Same reason gettext.exe/envsubst.exe survived here too.
+  Normalizing the harness paths to absolute /clangarm64/... and re-applying the
+  EXACT mfl:326/333 regexes -> libffi-8.dll, libtasn1-6.dll, lib/p11-kit/ ALL
+  trimmed -> NONE survive. So a REAL assembly ships zero p11-kit-chain dead weight.
+
+  No git binary imports p11-kit/tasn1/ffi [objdump -p on all bin + network
+  helpers = 0 matches] - confirming these are PACKAGE-graph entries for cert
+  processing, not RUNTIME linkage. Two true statements about different layers:
+  p11-kit is (a) not runtime-linked by anything we ship AND (b) a genuine package
+  dep of ca-certificates. Both measured.
+
+===============================================================================
+B14 ADDENDUM - DEPENDS RE-CHECK WITH ABSOLUTE PATHS + EXACT REGEXES
+(coordinator's "suspect the gate" callback: the earlier depends run used the
+ same relative-path harness whose trims silently do not fire, so re-verify)
+===============================================================================
+QUESTION: with UPSTREAM depends, do libcurl-4.dll / libcrypto-3-arm64.dll /
+libssl-3-arm64.dll / libexpat-1.dll / libpcre2-8-0.dll actually REACH the
+artefact, or did "they survive" only reflect no-trim-fired (path anchoring)?
+
+METHOD: rebuilt the pipeline harness (WSL /tmp wiped between sessions), ran the
+REAL pactree walk against the reference git package (upstream depends baked in),
+then applied BOTH filter layers with ABSOLUTE /clangarm64/... paths and the
+EXACT mfl regexes. Validated each filter is live before trusting it.
+
+--- LAYER 1: pactree -u walk (MEASURED) ---
+pactree -u mingw-w64-clang-aarch64-git  ->  30 packages reached, incl.:
+  mingw-w64-clang-aarch64-curl
+  mingw-w64-clang-aarch64-expat
+  mingw-w64-clang-aarch64-openssl
+  mingw-w64-clang-aarch64-pcre2
+(also brotli,c-ares,gnutls,libssh2,nghttp2/3,ngtcp2,libidn2,libpsl,p11-kit,
+ libtasn1,libffi,nettle,gmp,libunistring,zstd,... - the full dynamic-git closure)
+
+--- LAYER 2a: PACKAGE_EXCLUDES filter (mfl:131-133), EXACT sed transform ---
+Filter VALIDATED live: "nano" -> EXCLUDED (correct). Regex is functioning.
+RESULT for the four:
+  mingw-w64-clang-aarch64-curl    -> SURVIVES
+  mingw-w64-clang-aarch64-openssl -> SURVIVES
+  mingw-w64-clang-aarch64-expat   -> SURVIVES
+  mingw-w64-clang-aarch64-pcre2   -> SURVIVES
+WHY: PACKAGE_EXCLUDES lists BARE "curl","openssl","expat" (mfl:34/40/58). The
+sed at mfl:132 only arch-prefixes tokens that literally start with "mingw-w64-".
+Bare "curl" therefore matches ONLY the MSYS2 package "curl", NOT
+"mingw-w64-clang-aarch64-curl". So the MINGW variants are never excluded.
+(Same reason p11-kit/c-ares/wineditline as bare... actually p11-kit IS listed
+ mingw-w64-prefixed at mfl:55 so it DOES get excluded; curl/openssl/expat do not.)
+
+--- LAYER 2b: DLL name-trim regexes (mfl:256/257/326/328), ABSOLUTE paths ---
+Applied to /clangarm64/bin/<dll>:
+  libcurl-4.dll          -> SURVIVES (no regex matches)
+  libcrypto-3-arm64.dll  -> SURVIVES
+  libssl-3-arm64.dll     -> SURVIVES
+  libexpat-1.dll         -> SURVIVES
+  libpcre2-8-0.dll       -> SURVIVES  (line 256 trims pcre2-[13], NOT pcre2-8)
+  libpcre2-16-0.dll      -> trimmed
+  libpcre2-32-0.dll      -> trimmed
+  libpcre2-posix-3.dll   -> trimmed
+
+CONCLUSION (the strong form, and it SURVIVES the absolute-path re-check):
+  With upstream depends, curl/openssl/expat/pcre2 packages reach the file
+  collection AND their principal DLLs (libcurl-4, libcrypto-3-arm64,
+  libssl-3-arm64, libexpat-1, libpcre2-8-0) pass BOTH filter layers and land
+  in the artefact. This is NOT a path-anchoring artefact: it reproduces with
+  absolute paths and validated-live filters. The release-note claim stands at
+  the STRONG form: "declaring upstream depends would have shipped never-loaded
+  curl/openssl/expat/pcre2 DLLs into a static-git MinGit."
+
+CONTRAST WITH THE p11-kit CASE (why measuring both mattered):
+  libffi/libtasn1 DID get trimmed once paths were absolute (mfl:326), and
+  libp11-kit-0.dll is excluded outright (mingw-w64-p11-kit in PACKAGE_EXCLUDES,
+  mfl:55, IS mingw-w64-prefixed so the sed arch-expands and matches). Those were
+  genuine relative-path artefacts. curl/openssl/expat/pcre2 are NOT - they
+  survive both layers for real. Different layers, different answers, both measured.
+
+Our shipped git package declares depends = ca-certificates ONLY, which prunes
+the walk to the 8-package HTTPS-data closure and removes all of the above.
+Correct either way (static binary has no runtime dep on those packages); the
+re-check only confirms the STRENGTH of the "dead weight avoided" statement.

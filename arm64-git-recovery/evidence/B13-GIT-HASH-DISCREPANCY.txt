@@ -1,0 +1,155 @@
+B13 — GIT BINARY HASH DISCREPANCY (moving target; wrap BLOCKED pending freeze)
+==============================================================================
+CONTEXT: coordinator warned the git binary was rebuilt mid-verification and an
+artefact PATH is not an artefact IDENTITY. Investigating 2918d1f1's on-disk
+trees CONFIRMS the hazard and reveals a harder problem: there is currently NO
+self-consistent VERIFIED full install tree.
+
+MEASURED (sha256 first 16, sizes, mtimes) from
+2918d1f1 .../files/gcc-native/ :
+
+  time      git.exe hash       tree / note
+  09:51:20  fb8ecae91dc8fce9   git-execpath/git.exe   <- THE VERIFIED BINARY
+                               (FINAL-VERIFICATION.txt ran 09:51:45; coordinator
+                                pins fb8ecae9... as the current verified hash)
+  09:58:22  69b1e704729cf69f   git-2.47.1/git.exe     <- REBUILT after verify
+  10:02:49  69b1e704729cf69f   git-install/bin/git.exe<- make install of the
+                                                         REBUILT (unverified) one
+
+  git.exe libexec-nearby count:
+    git-execpath  (fb8ecae9)  -> 0 libexec exes  (flat dir: git.exe +
+                                 git-remote-http(s), receive/upload-pack)
+    git-install   (69b1e704)  -> 152 libexec/git-core/*.exe  (full make install)
+
+  git-remote-https.exe (verified size 9,075,851 — matches both):
+    git-execpath                         e4d66ba49bb3d0f0   9075851
+    git-install/libexec/git-core         4290174bed6056fd   9075851
+    -> SAME SIZE, DIFFERENT HASH. Another size-stable rebuild, exactly the
+       trap the coordinator flagged (git.exe changed hash at constant size).
+
+THE BLOCKER (stated plainly, not worked around):
+  * The VERIFIED bytes (fb8ecae9 git.exe, e4d66ba git-remote-https) live ONLY
+    in git-execpath, which has NO libexec/git-core tree.
+  * The ONLY full install tree (git-install, 152 libexec exes — what
+    release.sh:136 / my wrapper require) carries the UNVERIFIED rebuild
+    (69b1e704 / 4290174), produced ~11 min AFTER verification.
+  => Wrapping git-install would package UNVERIFIED bytes. Wrapping git-execpath
+     would fail the libexec guard. NEITHER is correct as-is.
+
+WHY THIS MATTERS: the coordinator's verified CLAIM (LinkerVersion 2.44, no
+clang strings, OpenSSL 3.4.1 / libcurl 8.11.1 embedded, native IsWow64Process2,
+schannel/ncrypt absent, 172-cert clone to 7fd1a60b, SHA-1 KATs) attaches to
+sha256 fb8ecae9 AND NOTHING ELSE. Packaging 69b1e704 would ship a binary that
+carries the claim by ASSOCIATION but not by VERIFICATION — the precise
+name-vs-content hazard this programme has hit repeatedly.
+
+REQUIRED RESOLUTION (asked of 2918d1f1):
+  Produce ONE frozen, self-consistent install prefix in which bin/git.exe is
+  the VERIFIED hash (or a NEW hash that the verifier then re-blesses) AND
+  libexec/git-core/*.exe is fully populated from that SAME build. Concretely:
+    1. FREEZE: copy the chosen build's `make install` prefix to an immutable
+       path, chmod -R a-w, and write a SHA256SUMS covering every *.exe/*.dll.
+    2. Ensure git-execpath's verified git.exe and that prefix's bin/git.exe are
+       byte-identical (same build), OR re-run FINAL-VERIFICATION against the
+       install-tree binary and pin its new hash.
+    3. Hand over the frozen path + its SHA256SUMS.
+  My wrapper will then, AT WRAP TIME (not plan time): assert libexec non-empty,
+  read git.exe PE machine == 0xaa64 from the header, recompute sha256 of every
+  packaged binary, EMBED a SHA256SUMS in the package, and REFUSE if git.exe !=
+  the pinned verified hash.
+
+STATUS: WRAP BLOCKED — correctly — until 2918d1f1 freezes a self-consistent
+verified prefix. This is the coordinator's requirement (freeze first, pin the
+hash at wrap time, stop if it moved) applied exactly.
+
+------------------------------------------------------------------------------
+UPDATE - WRAPPER HARDENED + PROVEN AGAINST THE GATE (mechanism test only)
+------------------------------------------------------------------------------
+wrap-git-package.sh now takes an OPTIONAL 3rd arg PIN_SHA and:
+  * REFUSES to package (exit 4) unless bin/git.exe sha256 == PIN_SHA. This is the
+    coordinators "verify what ships, not what was built; re-check at wrap time"
+    turned into a hard gate.
+  * EMBEDS share/licenses/git/SHA256SUMS.woa-gcc listing sha256 of every shipped
+    *.exe/*.dll INTO the package payload (coordinator requirement 2).
+  * pkgdesc carries settled wording: built entirely by WoA GCC 15.0.1 + our
+    assembler natively on ARM64; make/shell contributed no code.
+
+MEASURED PROOF (against 2918d1f1 git-install, the ONLY libexec-populated tree):
+  * install-tree bin/git.exe sha256 = 69b1e704729cf69f...b1523d1 = UNVERIFIED
+    third hash; a real wrap pinning fb8ecae9 REFUSES it.
+  * TEST A (wrong pin deadbeef): BLOCKED, exit 4.
+  * TEST B (pin = own 69b1e704, MECHANISM TEST, DO-NOT-SHIP): PASS - machine
+    0xaa64; 158 bins -> SHA256SUMS; 341 MB pkg built; pacman -Ql enumerated all
+    152 libexec exes as real PEs (confirms NO_INSTALL_HARDLINKS=1). Test pkg DELETED.
+
+STATE: wrapper one command from a validated package. BLOCKED on 2918d1f1
+freezing a self-consistent installed tree AND verifier blessing the INSTALLED
+bytes. Then: wrap-git-package.sh <frozen-prefix> 2.47.1 <verified-installed-sha>
+self-refuses if the tree moved. Curl depend= pending flag confirm.
+
+------------------------------------------------------------------------------
+UPDATE - 2918d1f1 CONFIRMED PREFIX + REDUCED DEPENDS (2026-09-03T10:09 local)
+------------------------------------------------------------------------------
+2918d1f1 delivered curl configure flags (from config.log) and the full install prefix.
+
+CURL (measured from config.log): --enable-static --disable-shared
+  --with-openssl --with-zlib --without-libidn2 --without-libpsl --without-brotli
+  --without-zstd --without-libssh2 --without-nghttp2 --disable-ldap --disable-ldaps
+  TLS backend = OpenSSL ONLY. c-ares/ngtcp2/nghttp3 NOT enabled.
+  => curl DEPENDS = openssl, zlib, ca-certificates (measured, not presumed).
+
+REDUCED DEPEND SETS (adopt in wrap-git-package.sh):
+  git  DEPENDS = curl, ca-certificates, expat>=2.0, openssl, pcre2   (nano dropped)
+  curl DEPENDS = openssl, zlib, ca-certificates
+  DROPPED from upstream closure: c-ares, brotli, libidn2, libpsl, libunistring,
+  zstd, libssh2, nghttp2, ngtcp2, nghttp3. (=> our staged c-ares/libssh2/brotli/
+  libtasn1/libffi/wineditline are FULL-GIT bonus, NOT MinGit blockers.)
+
+INSTALL PREFIX (re-measured by me NOW, stable):
+  .../gcc-native/git-install/  with bin, libexec, share
+  bin/git.exe sha256 = 69b1e704...b1523d1  (UNCHANGED since 2918d1f1 reported it)
+  libexec/git-core = 152 real .exe (NO_INSTALL_HARDLINKS=1)
+  libexec/git-core/git-remote-https.exe = 4290174...  (self-consistent w/ this tree)
+  Installed via: mingw32-make uname_S=MINGW MSYSTEM=MINGW64 NO_INSTALL_HARDLINKS=1
+    NO_TCLTK=1 prefix=<stage> install -> exit 0
+  2918d1f1 OWN check on the INSTALLED prefix: git version 2.47.1 exit 0; HTTPS
+  clone octocat/Hello-World via our openssl + 172-cert bundle -> HEAD 7fd1a60b
+  known-SHA MATCH, fsck exit 0.
+
+RESOLUTION PATH NOW CLEAR: the installed tree IS self-consistent (git.exe +
+libexec from the same make install). The remaining requirement is (a) 2918d1f1
+FREEZES it read-only with a SHA256SUMS so it cannot move, and (b) the VERIFIER
+re-runs the full protocol against 69b1e704 (the installed bytes that ship), per
+coordinator step 2. Then wrap pinning 69b1e704.
+
+DISCLOSED (release notes): two cosmetic Makefile -ef extensionless-cleanup
+recipes (~L2409, ~L3563) disabled for MSYS-sh EOF parsing. Orchestration only,
+no binary impact; NO_INSTALL_HARDLINKS leaves no stray files to clean anyway.
+
+------------------------------------------------------------------------------
+UPDATE - SELF-FROZEN THE INSTALL TREE (2026-09-03T10:12 local)
+------------------------------------------------------------------------------
+2918d1f1 confirmed ABI alignment (same woagcc prefix: mingw-w64 crt-git 70d63e7c9,
+UCRT, posix-winpthreads, GCC 15.0.1) and that git.exe + all deps are STATICALLY
+linked (libcurl.a/libssl.a/libcrypto.a/libexpat.a/libpcre2-8.a/libz.a) -> only
+runtime DLL deps are UCRT + Win32 system DLLs, all 0xAA64. Nothing dynamic pulled
+from the prefix at load. Depend graph agreed identical.
+
+Rather than wait on 2918d1f1 to freeze in THEIR dir, I FROZE A COPY IN MY OWN
+SESSION SCRATCH (read-only source respected; copy-out only, no mutation of theirs):
+  FROZEN PATH: .../ea1641ea.../files/git-install-FROZEN/
+  cp -a from 2918d1f1 git-install/, then chmod -R a-w.
+  Contents: bin/ (6 exe), libexec/git-core/ (152 exe), share/
+  SHA256SUMS written over all 158 binaries (*.exe + *.dll).
+  PINNED bin/git.exe = 69b1e704729cf69f0a0c029aa189eb9d38f74fc16ef37823048cb6a98b1523d1
+    (MATCHES 2918d1f1's reported installed hash exactly.)
+  git-remote-https.exe = 4290174... (self-consistent with this tree).
+
+WHY: this makes the shipping bytes IMMUTABLE on MY side independent of any further
+2918d1f1 rebuild. The verifier can bless THIS frozen path; wrap-git-package.sh
+runs against it pinning 69b1e704 and self-refuses if it ever differs. Bytes the
+verifier blesses == bytes I wrap == bytes that ship, provably.
+
+REMAINING GATE: verifier's full-protocol bless of 69b1e704 (coordinator step 2).
+Once that lands, wrap is:
+  wrap-git-package.sh <frozen-path> 2.47.1 69b1e704729cf69f0a0c029aa189eb9d38f74fc16ef37823048cb6a98b1523d1

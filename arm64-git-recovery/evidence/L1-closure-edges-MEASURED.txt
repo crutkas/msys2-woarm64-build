@@ -1,0 +1,32 @@
+MEASURED CLOSURE EDGES — who actually imports whom in a WORKING native ARM64 git prefix
+Method: objdump -p on every bin\*.dll of the reference MSYS2 clangarm64 git 2.55.0.5, reading the PE import
+tables (DLL Name: entries). This is MEASURED (real import tables), not derived from package deps.
+
+KEY RESULT — two packages are DEAD WEIGHT in git's closure (imported by NOTHING in the prefix):
+  libp11-kit-0.dll : imported by (nothing)   <- pulled only via gnutls; git's curl uses openssl/schannel, NOT
+                                                gnutls. p11-kit is NOT load-bearing for git.
+  libtasn1-6.dll   : imported by (nothing)   <- likewise gnutls-only. (I built it anyway; it was cheap and it
+                                                is a valid closure member if a gnutls-curl variant is ever used.)
+
+THE REAL REMAINING EDGE (what git actually needs from my unbuilt set):
+  libcurl-4.dll  -> libidn2-0.dll , libpsl-5.dll
+  libpsl-5.dll   -> libidn2-0.dll , libunistring-5.dll
+  libidn2-0.dll  -> libunistring-5.dll
+  => the only live tail I have not built is: libidn2 -> libunistring, and libpsl -> {libidn2, libunistring}.
+  libssh2 (built), c-ares (built), brotli (built), wineditline (built) are all independently confirmed present.
+
+CONSEQUENCE FOR THE CRITICAL PATH:
+  * p11-kit: DROP from my queue — not in git's closure. (8 of the original 10 are the real set.)
+  * libtasn1: already built, but also not load-bearing for an openssl/schannel git. Keep as staged bonus.
+  * The genuinely-needed remainder is libidn2 + libpsl + libunistring, a single dependency chain.
+  * ALL THREE are OPTIONAL curl features: curl --without-libidn2 --without-libpsl produces a fully working
+    HTTPS git (clone/fetch/push over https all work). They add IDN hostname support and Public-Suffix-List
+    cookie-domain checks — NOT required for the acceptance test (https clone). So a minimal usable ARM64 git
+    can ship WITHOUT this tail, and the tail can be added later once libunistring is built.
+  * libunistring is the config-heavy blocker (626 sources + 39 .in.h header templates needing configure-time
+    substitution + full gnulib). It is the one genuine "defer to a shell / configure" package in the set —
+    hand-writing 39 header templates + a 200-line gnulib config.h is fragile and correctness-risky. Best built
+    via its real ./configure once busybox sh (session 1e7a7fd3) lands, with our WoA gcc as CC.
+
+MEASURED vs DERIVED: import edges = MEASURED (objdump). "curl --without-* still works for https" = DERIVED from
+  curl's documented optional-feature flags + the fact that these libs serve IDN/PSL, not TLS/transport.

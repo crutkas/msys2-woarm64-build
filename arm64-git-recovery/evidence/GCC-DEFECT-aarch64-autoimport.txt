@@ -1,0 +1,40 @@
+BINUTILS/LD DEFECT (aarch64-w64-mingw32, binutils 2.45dev-1) — MEASURED, REPORTABLE
+
+SYMPTOM: linking a SHARED DLL that auto-imports DATA symbols from another mingw DLL across the
+  AArch64 PE boundary fails at ld with many:
+    ld.exe: <obj>:(.text+0xNNN): cannot get section contents - auto-import exception (bit size 21)
+    ld.exe: <obj>:(.text+0xNNN): cannot get section contents - auto-import exception (bit size 12)
+  bit size 21 = ADRP page-relative reloc; bit size 12 = ADD lo12 reloc (the AArch64 ADRP/ADD pair).
+
+REPRO (measured): brotli 1.2.0, our native WoA gcc 15.0.1 / binutils 2.45.
+  - Compiled all 35 sources to pe-aarch64-little objects: OK (0 failures).
+  - Static-lib round trip (encode->decode, byte-compare): BUILT + RAN, returned 55 (correct). => code is fine.
+  - Shared build: libbrotlidec.dll / libbrotlienc.dll reference DATA symbols exported by libbrotlicommon.dll.
+    Default mingw AUTO-IMPORT (pseudo-reloc) for those data refs emits the ADRP(21)/ADD(12) pair, and ld's
+    auto-import runtime pseudo-reloc handler cannot fix up a 21-bit ADRP page displacement => "auto-import
+    exception (bit size 21)". x86_64 auto-import works because its data refs are 32-bit absolute/RIP-rel that
+    the pseudo-reloc mechanism CAN patch; AArch64 ADRP cannot be patched the same way.
+
+DERIVED root cause: mingw's runtime pseudo-relocation (auto-import) design assumes patchable wide
+  displacements; AArch64's ADRP+ADD addressing is not runtime-patchable, so cross-DLL DATA auto-import is
+  fundamentally unsupported on this target with the current binutils.
+
+CORRECT FIX (not a toolchain workaround): decorate cross-DLL symbols with __declspec(dllimport)/dllexport
+  so no auto-import/pseudo-reloc is needed. brotli headers support this via BROTLI_SHARED_COMPILATION +
+  the port.h BROTLI_ENC_API/BROTLI_DEC_API/BROTLI_COMMON_API macros. The msys2 recipe builds shared with
+  those defined; a naive "-shared over all objects" build (what I did first) does NOT set them and hits this.
+
+STATUS: this is a GENUINE per-target defect class worth reporting upstream (binutils/mingw-w64): AArch64 PE
+  auto-import of data symbols is not supported; toolchain should DIAGNOSE it clearly rather than emit
+  "cannot get section contents". For OUR closure, the fix is to build each shared lib with its dllexport/
+  dllimport macros defined (standard practice), which I do next. FUNCTIONAL CODE IS UNAFFECTED (static ran =55).
+
+--- SECOND INDEPENDENT WITNESS (libffi shared, this session) ---
+Linking a test exe against libffi-8.dll (shared) reproduced the identical auto-import failure at the ffi_type_*
+cross-DLL DATA references: "cannot get section contents - auto-import exception (bit size 21)" then "(bit size 12)"
+paired at consecutive .text offsets (0x34/0x38, 0x40/0x44, 0x58/0x5c) = the ADRP(21)+ADD-lo12(12) pair, exactly as
+diagnosed. This is a SECOND, independent reproduction (first was brotli) with the SAME root cause and SAME opaque
+message. libffi's public data symbols (ffi_type_slong etc.) need __declspec(dllimport) via FFI_API when consumed
+from the DLL; the static libffi.a avoids it entirely. Consequence for packaging: prefer STATIC libffi (already
+RUN-verified through the sysv.S trampoline). Note: libffi is not in git's live import closure anyway (its only
+importer p11-kit is dropped gnutls dead-weight), so the DLL is staged for completeness only.

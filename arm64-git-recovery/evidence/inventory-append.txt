@@ -1,0 +1,53 @@
+
+=============================================================================
+TWO OPEN SLOTS — MECHANICAL SWAP PROCEDURE (so landing binaries = single vars)
+=============================================================================
+Both slots have a PROVEN socket (pipeline test B8 passed with upstream
+stand-ins). Swapping is one command each. Stage them SEPARATELY (coordinator
+directive): busybox first, re-run; then git. Two single-variable changes.
+
+SLOT 1 — busybox  (owner 1e7a7fd3)
+  Package name the tooling expects: mingw-w64-clang-aarch64-busybox
+  pkgver MUST be digit-leading (1.37.x is fine). Letter-leading breaks
+  has_pacman_package's `$1-[0-9]*` glob (proven).
+  ASH DECISION = OPTION B (coordinator-locked): the busybox PACKAGE ships
+  ash.exe as busybox-invoked-as-ash (argv[0] applet dispatch), NOT via
+  git-wrapper.exe. So the package should place BOTH:
+      clangarm64/bin/busybox.exe
+      clangarm64/bin/ash.exe        (= busybox as the `ash` applet)
+  This makes release.sh:168 git-wrapper copy unnecessary; :169
+  `ash.exe -c uname` then only CONFIRMS it runs (expect exit 0 + "BusyBox").
+  SWAP: drop the real busybox pkg into the sync repo replacing the
+  UPSTREAM-STANDIN one; re-run pipeline-test.sh. Single variable.
+
+SLOT 2 — git  (owner 2918d1f1)
+  Wrap with: wrap-git-package.sh <full-install-prefix> <version>
+    (scratch: %TEMP%\mkpkg\wrap-git-package.sh — PROVEN on the reference tree:
+     asserts 14 libexec/git-core/*.exe, checks git.exe PE machine == 0xaa64,
+     packages, validates via repo-add/pacman -U/-Ql.)
+  HARD REQUIREMENT: the input MUST be a FULL install tree (make install), so
+  libexec/git-core/*.exe is populated — else release.sh:136 dies. The wrapper
+  ASSERTS this and exits 3 with a clear message if empty.
+  Locked reduced deps (B4 addendum 2): curl, ca-certificates, expat>=2.0,
+  openssl, pcre2. (nano dropped; MINIMAL_GIT excludes it.)
+  git-wrapper.exe: NOT required under the Option-B ash decision. (It is a
+  Git-for-Windows-fork artefact absent from MSYS2 git + git-extra — B10.)
+  SWAP: run wrap-git-package.sh on 2918d1f1's tree, drop the pkg into the sync
+  repo replacing the upstream reference git, re-run pipeline-test.sh. Single
+  variable.
+
+PRE-SWAP GATE (git): objdump -p git.exe + bundled *.dll | grep -iE
+  'libstdc\+\+|libc\+\+'  MUST be EMPTY (B11). If non-empty, a C++ runtime dep
+  slipped in and must be added to the closure / documented.
+
+FINAL --busybox ASSEMBLY HOST: this Windows ARM64 machine (B12). Recommended
+  path = Option 2: run make-file-list.sh + the file copy in WSL (proven), then
+  run only the ARM64-executing tail (verify ash.exe runs + archive) on this
+  host. Archive via 7-Zip(arm64, winget) OR Compress-Archive OR python zipfile
+  (all present).
+
+SCRATCH SCRIPTS (rebuilt each session; /tmp is wiped between WSL sessions):
+  pipeline-test.sh, wrap-git-package.sh, mkpkg.py, mfl-patched.sh,
+  build-gcm-stub.sh, build-leaves.sh, make-busybox-standin.sh,
+  make-base-stubs.sh, assemble-pipeline-zip.sh, host-arm64-check.sh.
+  All under %TEMP%\mkpkg\ (Windows, persistent).

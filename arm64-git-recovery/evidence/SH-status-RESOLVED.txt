@@ -1,0 +1,18 @@
+NATIVE sh STATUS — RESOLVED (measured, corrects a loose phrase in my prior message)
+
+My option (b) said "libunistring via the clangarm64 native sh". THAT PHRASE WAS LOOSE. There is NO native sh.
+
+MEASURED: extracted clangarm64.db (repo.msys2.org/mingw/clangarm64/clangarm64.db) and enumerated every package
+name. Among shell/awk/autotools build-drivers:
+  PRESENT:  libtool, perl (5.44)
+  ABSENT:   bash, dash, sh, busybox, mksh, zsh, gawk, mawk, awk, m4, bison, flex, autoconf, automake
+Search: matched package basenames against ^(bash|dash|sh|busybox|...)$ and substring bash|busybox|shell|dash.
+Only false-positive substrings (ifcopenshell, perl-win32-shellquote, python-*-shell*) appeared — none is a shell.
+
+CONCLUSION: sh IS still the last gate. Busybox (session 1e7a7fd3) remains the build blocker, NOT merely a
+runtime-free-MinGit nicety. No retasking of 1e7a7fd3 is warranted on my account.
+NUANCE: perl IS native (could drive perl-based configure steps), and libtool is native, but the ./configure
+scripts themselves are /bin/sh scripts and gnulib's generated Makefiles invoke sh — so perl alone does not unblock
+libunistring's configure. m4/autoconf/automake are also absent, but release tarballs ship pre-generated configure,
+so the ONLY missing driver for a tarball build is sh (+ the already-present make/sed/grep). That is exactly the
+busybox deliverable.

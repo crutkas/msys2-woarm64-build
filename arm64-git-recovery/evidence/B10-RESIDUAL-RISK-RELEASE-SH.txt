@@ -1,0 +1,124 @@
+B10 — RESIDUAL RISK: release.sh CATEGORY-(d) GENERATION + EXECUTION STEPS
+=========================================================================
+Coordinator flagged category (d) — files release.sh GENERATES/EXECUTES at
+assembly time, deferred in the pipeline test — as the last untested segment.
+This enumerates EXACTLY what those steps do and whether they EXECUTE an ARM64
+binary (which would require a real ARM64 host, not x86-64 WSL). All MEASURED
+by reading build-extra/mingit/release.sh (read-only) line by line.
+
+--- STEP INVENTORY (release.sh) ---
+
+L80   sed license -> root/LICENSE.txt          : file copy. No execution.
+L83   mkdir root/etc                            : fs. No execution.
+L94-97 make-file-list.sh (MINIMAL_GIT=1 + WITH_BUSYBOX inherited)
+        + PACKAGE_VERSIONS_FILE=root/etc/package-versions.txt
+                                                : ALREADY PROVEN in pipeline
+        test (exit=0, 1492 lines). PACKAGE_VERSIONS_FILE writes pacman -Q
+        output -> generates etc/package-versions.txt. Needs all listed pkgs
+        installed (satisfied on a real host). No ARM64 execution — pacman -Q/
+        -Ql/-pactree are BUILD-HOST tools reading metadata.
+L110-118 cat system gitconfig -> root/<arch>/etc/gitconfig
+                                                : file write from the host's
+        /etc/gitconfig + an [include] block. No execution. GENERATES etc/
+        gitconfig (category d).
+L122-124 type 7z || pacman -Sy 7zip            : provisioning the archiver.
+        Build-host tool. No ARM64 execution.
+L126-133 pacman -Ql git | grep libexec/git-core/*.exe -> sorted-libexec-exes;
+        comm -12 -> root/etc/libexec-moved.txt : metadata + text. GENERATES
+        etc/libexec-moved.txt (category d). No execution. DIES at L136 if the
+        list is empty -> WHY B4 warns our git package MUST populate
+        libexec/git-core (14 exes measured upstream).
+L138-146 cp the moved exes into <arch>/bin/    : file copy. No execution.
+        This is the ONE step the pipeline test mirrored (14 moves).
+
+>>> THE TWO EXECUTION POINTS (the actual residual risk) <<<
+
+L149  cmp git-remote-http{,s}.exe               : BYTE COMPARE (cmp), NOT
+        execution. Just tests if the two files are identical.
+L153  usage="$( .../git-remote-http.exe 2>&1 )" : *** EXECUTES AN ARM64 PE ***
+        This runs git-wrapper.exe (copied over git-remote-http.exe at L152)
+        and inspects output for exit=1 + "remote-curl".
+        FAILURE MODE ON x86-64: the exec fails (wrong arch) -> $?,$usage does
+        NOT match "1,*remote-curl*" -> the `*)` fallback at L156 fires -> it
+        just copies git-remote-https.exe over git-remote-http.exe. NON-FATAL.
+        CONSEQUENCE OF RUNNING ON x86-64: you lose the git-wrapper size
+        optimisation (http and https end up as two full copies instead of one
+        tiny wrapper) but the artefact is STILL COMPLETE AND CORRECT.
+L169  uname="$( .../ash.exe -c uname 2>&1 )"     : *** EXECUTES AN ARM64 PE ***
+        Runs git-wrapper.exe (copied to ash.exe at L168) as `ash -c uname`,
+        checks exit=0 + "BusyBox".
+        FAILURE MODE ON x86-64: exec fails -> not "0,*BusyBox*" -> `*)` at
+        L172 REMOVES ash.exe. NON-FATAL to the archive, BUT the resulting zip
+        would then LACK ash.exe — and ash.exe is the busybox-shell entry point
+        the --busybox MinGit is built around. So on x86-64 this step would
+        SILENTLY DROP the shell wrapper.
+L181  7z a -mx9 "$TARGET" $LIST root/*          : archiver. No ARM64 exec.
+
+--- CONCLUSION (DERIVED from the above, MEASURED reads) ---
+
+TWO steps execute ARM64 binaries: L153 and L169. Both are git-wrapper.exe
+"is-this-wrapper-usable?" probes.
+  * L153 degrades gracefully to a correct-but-larger artefact if it cannot
+    execute -> a real ARM64 host is PREFERRED but not REQUIRED for correctness.
+  * L169 does NOT degrade gracefully for the --busybox path: on a non-ARM64
+    host it removes ash.exe, producing a MinGit without its shell entry point.
+    -> A REAL ARM64 HOST IS REQUIRED for the final --busybox assembly to keep
+    ash.exe. This is a SCHEDULING FACT: the real assembly must run on THIS
+    Windows ARM64 machine, not under x86-64 WSL.
+
+RECOMMENDATION FOR THE REAL ASSEMBLY (three new variables at once — our git,
+our busybox, first run of L149-181):
+  1. Run release.sh --busybox on the ARM64 Windows host (has MSYS2 x86-64 or
+     arm64 providing sh/7z/pacman as build-host tools; the PACKAGES are arm64,
+     the SCRIPT host can be either — but the L153/L169 PROBES need to execute
+     the arm64 wrapper, so the host must be able to run arm64 PEs, i.e. ARM64
+     Windows).
+  2. PRE-VERIFY the two generated files exist and are non-empty:
+     etc/libexec-moved.txt (else L136 died -> git pkg didn't populate
+     libexec/git-core) and etc/package-versions.txt.
+  3. PRE-VERIFY git-wrapper.exe is present at <arch>/share/git/git-wrapper.exe
+     (L152/L168 copy FROM it; upstream ships it — it is in our B9 upstream-only
+     list, category 5, meaning OUR git package or git-extra must provide it or
+     these steps cannot run). *** ACTION: confirm 2918d1f1's git package (or a
+     git-extra package) ships share/git/git-wrapper.exe, else L152/L168 fail
+     to find the source and the wrapper optimisation/ash.exe wiring break. ***
+  4. Expect L153/L169 to now PASS (arm64 host runs arm64 wrapper) -> ash.exe
+     retained, http/https share the wrapper. That is the intended outcome and
+     the first time it will be exercised.
+
+NEW FINDING FOR THE SLOT OWNERS:
+  git-wrapper.exe at <arch>/share/git/git-wrapper.exe is REQUIRED by L152/L168.
+  It is upstream-only in B9 (category 5). Our git or git-extra package MUST
+  provide it or the --busybox ash.exe wiring cannot be assembled. Flag to
+  2918d1f1 / whoever owns git-extra.
+
+--- git-wrapper.exe PROVENANCE (MEASURED) ---
+Searched: build-extra (grep git-wrapper) -> only release.sh, installer/
+install.iss, git-extra/git-extra.install.in.
+  * git-extra/PKGBUILD package() (lines 150-190): installs create-shortcut,
+    WhoUses, blocked-file-util, proxy-lookup, git-askyesno,
+    git-credential-helper-selector, git-askpass, git-update, etc. It does NOT
+    install git-wrapper.exe or edit-git-bash.exe.
+  * git-extra.install.in:21-22 REFERENCES it as already present:
+    "Drop git-wrapper in place of builtins to save space;
+     git_wrapper=@@MINGW_PREFIX@@/share/git/git-wrapper.exe".
+  * The upstream MSYS2 clangarm64 git-2.55.0.5 reference package does NOT ship
+    share/git/git-wrapper.exe (measured: it has only share/git/completion/*).
+CONCLUSION: git-wrapper.exe is shipped by GIT-FOR-WINDOWS OWN git build (the
+G4W git package), NOT by the MSYS2 git package and NOT by git-extra. It lands
+at <arch>/share/git/git-wrapper.exe. It is a Git-for-Windows patch/artefact.
+
+*** PROVISIONING ACTION (git slot, 2918d1f1) ***
+If our git package is built from UPSTREAM git sources (not the Git-for-Windows
+fork), it will NOT contain git-wrapper.exe, and release.sh L152/L168 will fail
+to find the copy source -> the http/https wrapper optimisation and the ash.exe
+wiring both break (ash.exe would not be created at all, since L168 copies FROM
+git-wrapper.exe). TWO OPTIONS:
+  (A) Build our git package to include share/git/git-wrapper.exe (requires the
+      Git-for-Windows git-wrapper source, a small C wrapper in G4W repo), OR
+  (B) Accept the degradation: without git-wrapper.exe, provide ash.exe another
+      way (e.g. ship busybox.exe AS ash.exe directly, which busybox supports
+      via applet name) and let http/https be two full copies.
+Option (B) keeps the artefact runtime-free and correct; it only forgoes the
+size optimisation. This is a DECISION for the git/busybox slot owners, flagged
+now so it is not discovered during the first real assembly.

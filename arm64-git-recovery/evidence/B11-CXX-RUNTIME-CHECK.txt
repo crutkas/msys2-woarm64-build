@@ -1,0 +1,43 @@
+B11 — C++ RUNTIME DEPENDENCY CHECK (libstdc++ / libc++)
+=======================================================
+Coordinator asked: does anything in our closure actually LINK libstdc++ or
+libc++? A late-discovered C++ runtime dep would be a surprise. Checked now.
+
+METHOD (MEASURED): aarch64-pc-cygwin-objdump -p on every .dll/.exe inside our
+7 staged leaf/support packages, grepping import tables for
+libstdc++ | libc++ | libgcc_s. (objdump from /root/xc/inst.)
+
+RESULT:
+  * NO libstdc++ import in any staged package.
+  * NO libc++ import in any staged package.
+  * ONE libgcc import: libffi-8.dll -> libgcc_s_seh-1.dll. That is LIBGCC
+    (the C low-level runtime: unwinding, __chkstk, soft-float helpers), NOT a
+    C++ standard library. libgcc_s is already part of the gcc-libs/winpthread
+    closure and is expected for any GCC-built DLL. Not a new dependency.
+
+REASONING ABOUT THE NOT-YET-BUILT git.exe + curl/openssl/expat/zlib/pcre2
+(DERIVED, to be re-checked on the real binary):
+  * git itself is C. curl is C. openssl is C. expat is C. zlib is C. pcre2 is
+    C (pcre2 has an optional C++ wrapper, NOT built/linked by git). NONE of the
+    git closure is C++.
+  * The ONLY C++ in a normal Git-for-Windows is git-credential-manager, which
+    is .NET/managed (Avalonia/System.*), NOT native libstdc++/libc++ — and we
+    ship a tiny C stub for it anyway (also C, no C++ runtime).
+  * Therefore we EXPECT git.exe and its DLLs to import at most libgcc_s (via
+    the GCC C runtime) and winpthread, NOT libstdc++/libc++.
+
+WHY UPSTREAM SHIPS ~140 libc++ files (B9 category b) DESPITE THIS:
+  Upstream is CLANG-built; its clangarm64 base image bundles the full libc++
+  C++23 module tree in share/libc++/. Those files are BASE-IMAGE payload, not
+  a git link-time dependency. Our GCC build uses libstdc++, and nothing in the
+  git closure links a C++ standard library at all, so we ship neither the
+  libc++ tree NOR a libstdc++ runtime dependency. This is a legitimate,
+  expected toolchain difference and a point in favour of the "different chain"
+  claim.
+
+ACTION WHEN 2918d1f1's git.exe LANDS (one-command re-check):
+  aarch64-*-objdump -p <git.exe and each bundled *.dll> | grep -iE \
+    'libstdc\+\+|libc\+\+'
+  Expect EMPTY. If non-empty, a C++ dep slipped in (e.g. a dependency built
+  with a C++ component) and must be added to the closure / documented. Flagged
+  as a pre-swap gate.

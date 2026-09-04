@@ -1,0 +1,46 @@
+A2 — MinGit PACKAGE-LIST DELTA (aarch64 branch already exists; this is an EDIT/PROVISIONING gap, not a redesign)
+MEASURED by reading build-extra\mingit\release.sh and build-extra\make-file-list.sh (read-only).
+
+FINDING 1 — THE aarch64 BRANCH IS ALREADY COMPLETE IN BOTH SCRIPTS. No code change is required for arch handling.
+  make-file-list.sh:24-27   ARCH=aarch64 -> MSYSTEM_LOWER=clangarm64, PACMAN_ARCH=clang-aarch64
+  mingit/release.sh:46-48   ARCH=aarch64, ARTIFACT_SUFFIX=arm64, MINGW_PACKAGE_PREFIX=mingw-w64-clang-aarch64
+  make-file-list.sh:49      SH_FOR_REBASE=mingw-w64-clang-aarch64-busybox   <-- busybox is ALREADY the aarch64 shell
+  make-file-list.sh:133     PACKAGE_EXCLUDES regex already lists 'clang-aarch64' as a recognised prefix
+  => The scripts are arch-complete. What is missing is PACKAGES IN A PACMAN REPO, not script edits.
+
+FINDING 2 — MECHANISM: the file list is PACMAN-DRIVEN. release.sh:94-96 runs make-file-list.sh which uses
+  `pactree -u <pkg>` and `pacman -Ql mingw-w64-clang-aarch64-git` against INSTALLED packages. So MinGit assembly
+  requires the git package + its dependency closure to be installed as clang-aarch64 pacman packages. That is the
+  real gate. It is NOT satisfied by loose staged .dll/.a files unless they are wrapped as pacman packages OR the
+  list is generated a different way.
+
+FINDING 3 — MINIMAL_GIT ALREADY EXCLUDES SEVERAL OF "MY" PACKAGES (make-file-list.sh:54-59). For MinGit these are
+  DROPPED outright: c-ares, p11-kit, wineditline, expat/libexpat, perl, bzip2, tcl/tk, subversion/svn, vim/nano.
+  Consequence, MEASURED: my c-ares, p11-kit(dropped anyway), wineditline builds are NOT needed for MinGit at all.
+  They belong to a FULL git install, not MinGit. This shrinks the MinGit-critical closure substantially.
+
+FINDING 4 — DLL TRIM LIST (make-file-list.sh:256,258,260,326,330,333) EXPLICITLY EXCLUDES from MinGit:
+  libffi, libtasn1, libgnutls, libidn, libp11-kit, asn1/p11tool/certtool exes, /lib/p11-kit/, /etc/pki.
+  This is INDEPENDENT CONFIRMATION of my objdump import-edge finding: the gnutls/p11 stack is dead weight for git.
+  My libtasn1 + libffi builds are therefore bonus artefacts, not MinGit-critical.
+
+NET MinGit-CRITICAL CLOSURE (intersection of "in git's import table" AND "not MINIMAL_GIT-excluded"):
+  From 2918d1f1: libcurl, libcrypto/libssl(openssl), zlib, libpcre2-8, libiconv, libintl, zstd, libwinpthread,
+    libgcc_s_seh/libstdc++ (GCC runtime).
+  From me: NONE are strictly MinGit-critical. brotli is the only close call — it IS a curl dependency and NOT in
+    the MINIMAL exclude list, so brotli SHIPS in MinGit (my brotli build is the one MinGit-relevant artefact).
+    ssh over https is not needed for an https clone, so libssh2 is optional for the minimal artefact too, though
+    it is wanted for `git clone ssh://` and is not MINIMAL-excluded, so include it for a usable git.
+  ca-certificates: SHIPS (data). See A3.
+
+THE `--busybox` PATH (release.sh:160-171): if busybox.exe is in the list, release.sh copies it and wires
+  git-wrapper.exe as ash.exe, verifying with `ash.exe -c uname`. This is the runtime-free shell path and it is
+  ALREADY WIRED for aarch64 via SH_FOR_REBASE=mingw-w64-clang-aarch64-busybox. It needs the busybox package
+  (session 1e7a7fd3) to exist as mingw-w64-clang-aarch64-busybox, or busybox.exe present at $BIN_DIR/busybox.exe.
+
+RUNTIME-FREE TRIM: MinGit itself already avoids msys2-runtime for the git binaries (clangarm64 git is MINGW-target).
+  The only msys-runtime consumer historically is the rebase shell, which --busybox replaces. So MinGit + busybox
+  = a fully runtime-free ARM64 git. No script redesign; provisioning only.
+
+QUANTIFIED EDIT SIZE: ZERO script edits for arch. The work is PACKAGING: produce clang-aarch64 pacman packages
+  (or an equivalent installed prefix) for git + curl-closure + brotli + busybox, so pactree/pacman -Ql resolve.

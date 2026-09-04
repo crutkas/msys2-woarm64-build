@@ -1,0 +1,120 @@
+B5 — MinGit DRY-RUN BREAK LIST (MEASURED by running the real make-file-list.sh against a live pacman root)
+
+METHOD: installed the 28-package reference clangarm64 git closure into an isolated pacman root (pacman -U --nodeps),
+built pactree from pacman-contrib source (Ubuntu has no pacman-contrib package), symlinked /clangarm64 -> the root's
+payload so the script's absolute paths resolve, and ran build-extra/make-file-list.sh ARCH=aarch64 MINIMAL_GIT=1.
+This is a GENUINE run of the real tooling, not a simulation. Breaks found, in the order the script hits them:
+
+BREAK 1 (line 110) — `pwd -W`. The script calls `this_script_dir="$(cd "$(dirname "$0")" && pwd -W)"`. `pwd -W`
+  is an MSYS2-only flag (prints a Windows path); plain bash/dash `pwd` rejects `-W`. => the script is MSYS2-BOUND
+  at the very first step. WORKAROUND for dry-run: remove `-W`. REAL FIX: run inside an MSYS2/clangarm64 shell,
+  where pwd -W is native. This is the single most important structural finding: MinGit assembly must run inside an
+  MSYS2 environment, not plain Linux/WSL. (Same class as the sh gate — the tooling assumes the MSYS2 userland.)
+
+BREAK 2 (line 128, pactree) — `pactree -u <pkg>` is required. pactree is in pacman-contrib, ABSENT from Ubuntu
+  (apt cannot locate it; MEASURED). I built it from source against libalpm. In a real MSYS2 env pactree is present.
+  For our purposes the closure is deterministic from depend= lines, so this is satisfiable either way.
+
+BREAK 3 (lines 182-197) — `pacman -Sy --noconfirm $required` needs a CONFIGURED SYNC REPOSITORY. With only a local
+  -U root and no [repo] in pacman.conf, this dies: "no usable package repositories configured. Could not install
+  required packages: mingw-w64-clang-aarch64-git-credential-manager dash". For MINIMAL_GIT=1 the `required` set is:
+    mingw-w64-clang-aarch64-git-credential-manager   (GCM)
+    $SH_FOR_REBASE  = mingw-w64-clang-aarch64-busybox (aarch64) -- OUR busybox session 1e7a7fd3 fills this
+    $LIBCURL_EXTRA  = (empty unless curl-winssl is present)
+  NOTE the reference run showed `dash` because unpatched SH_FOR_REBASE defaulted to dash at line 33 before the
+  MINIMAL_GIT_WITH_BUSYBOX branch set busybox; with ARCH=aarch64 the aarch64 case sets busybox at line 49 only under
+  the WITH_BUSYBOX path. => CONFIRM which SH_FOR_REBASE fires for plain MINIMAL_GIT vs MINIMAL_GIT_WITH_BUSYBOX.
+
+BREAK 4 (line 205-206, not yet reached) — the `packages` list references, even for MinGit:
+    $G4W_PACKAGE (=...-git), ...-git-credential-manager, ...-git-extra, openssh, msys2-runtime, $UTIL_PACKAGES.
+  So make-file-list.sh's package set includes msys2-runtime and git-extra/openssh. These are for the FULL file walk;
+  MinGit later trims via the big exclude regex. But the packages must be INSTALLABLE (sync repo) for pactree/-Ql.
+
+FINITE TASK LIST TO CLOSE THE GAP (ordered):
+  T1. Provide a pacman SYNC REPOSITORY (a local file:// repo db built with repo-add) containing our clang-aarch64
+      packages, so `pacman -Sy` and pactree resolve. This is the single missing piece of infrastructure; everything
+      else is packages.
+  T2. Packages that must exist in that repo for MINIMAL_GIT: our git, curl (+reduced closure: brotli, zlib, zstd,
+      openssl, libssh2, nghttp2, ca-certificates), pcre2 (+bzip2, wineditline, zlib), expat, plus:
+        mingw-w64-clang-aarch64-git-credential-manager, mingw-w64-clang-aarch64-busybox (1e7a7fd3),
+        mingw-w64-clang-aarch64-git-extra, openssh, msys2-runtime.
+      GCM, git-extra, openssh, msys2-runtime are NOT in our scope/closure work — they are separate packages the
+      MinGit list pulls. For a FIRST minimal artefact, evaluate whether they can be stubbed/excluded: git-extra and
+      GCM are convenience; openssh is only needed for ssh:// via the openssh client (libssh2 covers in-process);
+      msys2-runtime is NOT needed by the mingw git.exe itself (it is MINGW-target) — it appears in the list but the
+      exclude/trim + --busybox path is what removes the runtime dependency. CONFIRM by reaching Break 4 with a repo.
+  T3. Run inside an MSYS2 clangarm64 shell (or faithfully emulate pwd -W + absolute mounts) so line 110 passes natively.
+
+CONCLUSION: the tooling is arch-complete and the closure resolves; the gap is (a) an MSYS2 runtime environment to run
+  the script in, and (b) a local sync repo of our packages incl. GCM/busybox/git-extra/openssh. Both are provisioning,
+  not development. The dry-run converted "packaging problem" into these 3 concrete tasks.
+
+=== B5 ADDENDUM — MEASURED with a WORKING local sync repo (repo-add + pacman -Sy) ===
+
+INFRASTRUCTURE NOW PROVEN: built a local pacman SYNC repo from the 28 reference clang-aarch64 packages via
+`repo-add woa.db.tar.gz *.pkg.tar.zst`, configured [woa] Server=file://, and `pacman -Sy` synchronized it (exit 0,
+28 pkgs visible via `pacman -Sl woa`). So T1 (a sync repo) is a solved, cheap step — NOT a blocker.
+
+repo-add GOTCHA (measured, environment not package): repo-add uses `bsdtar` to read .PKGINFO. On a stock Ubuntu WSL
+`bsdtar` is ABSENT (package libarchive-tools), and WITHOUT it repo-add rejects EVERY package with the misleading
+"'X' is not a package file, skipping". Installing libarchive-tools fixed it; my hand-built brotli/libssh2 packages
+were then accepted identically to reference packages. => my packages are structurally valid; the earlier rejection
+was a missing bsdtar, not a package defect. (Same lesson as the zero-byte cert: a tool's absence masqueraded as a
+data problem.)
+
+CRITICAL FLAG CORRECTION (measured from make-file-list.sh:33-51): the runtime-free busybox path is
+`MINIMAL_GIT_WITH_BUSYBOX=1`, NOT plain `MINIMAL_GIT=1`.
+  - line 33: default SH_FOR_REBASE=dash
+  - lines 37-51: only MINIMAL_GIT_WITH_BUSYBOX sets SH_FOR_REBASE=mingw-w64-clang-aarch64-busybox, empties
+    UTIL_PACKAGES, adds bash/sh/coreutils/openssl/etc to PACKAGE_EXCLUDES, and implies MINIMAL_GIT=1.
+  Under plain MINIMAL_GIT=1 the run tries to install `dash` (absent) — wrong target for our purpose.
+  Under MINIMAL_GIT_WITH_BUSYBOX=1 the `required` install set collapses to EXACTLY TWO packages:
+
+  THE COMPLETE, FINITE GATE (measured, MINIMAL_GIT_WITH_BUSYBOX=1, run against the working sync repo):
+    "Could not install required packages:  mingw-w64-clang-aarch64-git-credential-manager mingw-w64-clang-aarch64-busybox"
+    1. mingw-w64-clang-aarch64-git-credential-manager  — NOT in our closure; a separate GCM package. For a first
+       minimal artefact this is a convenience tool; evaluate stubbing or providing an empty provides-package, OR
+       build the real GCM (it is a .NET app — heavy; likely stub for the toolchain-proof artefact).
+    2. mingw-w64-clang-aarch64-busybox                 — OUR busybox session 1e7a7fd3 fills EXACTLY this slot.
+       Once it delivers the package into the sync repo, this gate clears.
+
+  Everything the script needs BEFORE this point now passes: pwd -W (patched for the Linux dry-run; native in MSYS2),
+  pactree (built), sync-repo resolution, and the aarch64/clangarm64/clang-aarch64 arch mapping.
+
+REVISED FINITE TASK LIST (supersedes T1-T3 ordering):
+  DONE:  local sync repo works; arch mapping complete; pactree available; my packages repo-add-valid.
+  T1'.  Build/stub mingw-w64-clang-aarch64-git-credential-manager into the repo (stub acceptable for a
+        toolchain-proof MinGit; real GCM is a separate, heavier .NET deliverable).
+  T2'.  Land mingw-w64-clang-aarch64-busybox from session 1e7a7fd3 into the repo (its exact expected slot).
+  T3'.  Land mingw-w64-clang-aarch64-git (from 2918d1f1's git.exe, wrapped per B4) into the repo.
+  T4'.  Re-run make-file-list.sh MINIMAL_GIT_WITH_BUSYBOX=1 inside an MSYS2 clangarm64 shell (native pwd -W).
+        Expected next surface: the `pacman -Ql ...-git | grep libexec/git-core/*.exe` walk (release.sh:136 DIES
+        if empty) — which is why B4 insists the git package MUST expose clangarm64/libexec/git-core/*.exe.
+
+NET: the runtime-free MinGit-arm64 reduces to THREE packages in a sync repo (busybox, GCM-or-stub, git) plus running
+the assembler inside MSYS2. The closure/leaf packaging work is sufficient for MinGit; only these three org-level
+packages and the MSYS2 execution environment remain. This is provisioning, and it is finite and named.
+
+=== B5 CORRECTION (coordinator, 2026-09-03) — pwd -W IS NOT A RUNTIME DEPENDENCY ===
+My earlier framing ("MinGit assembly must run INSIDE MSYS2 ... same class as the sh gate") was
+WRONG in an important way and is corrected here so it does not propagate as a false dependency
+on the runtime track:
+
+make-file-list.sh / mingit/release.sh RUN ON THE BUILD HOST and only COPY and LIST files. The
+PACKAGES they assemble are ARM64; the SCRIPT itself need not be ARM64 and need not run under the
+ARM64 msys-2.0.dll. An EXISTING x86-64 MSYS2 satisfies `pwd -W` (and cygpath, /usr/bin, ldd, the
+absolute /clangarm64 mount) TODAY. So:
+
+  MinGit-arm64 CAN BE ASSEMBLED RIGHT NOW on an x86-64 MSYS2 host, WITHOUT waiting on the ARM64
+  msys-2.0.dll runtime. Assembling an ARM64 artefact from an x86-64 host is a PACKAGING step, not
+  a build step, and is entirely legitimate. It should simply be STATED PLAINLY in the release notes.
+
+This is DIFFERENT from the `sh` gate. The `sh` gate is about the TARGET artefact needing a native
+ARM64 shell at RUNTIME (busybox ash.exe on the user's ARM64 machine) — that is a genuine ARM64
+component and is why busybox stays commissioned. `pwd -W` is only about the BUILD-HOST environment
+that runs the assembler, which can be any existing MSYS2 (x86-64). Do not conflate them.
+
+CONSEQUENCE: the "run inside MSYS2 clangarm64 shell" line in the B5 task list T4' is over-specified.
+CORRECTED T4': run make-file-list.sh MINIMAL_GIT_WITH_BUSYBOX=1 under ANY existing MSYS2 (x86-64 is
+fine) with the clang-aarch64 packages installed in its pacman root. No ARM64 runtime required for
+assembly. The ARM64-ness lives entirely in the packaged binaries.
