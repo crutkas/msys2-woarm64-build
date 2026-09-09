@@ -1,0 +1,11 @@
+--- a/tests/misc/env.sh
++++ b/tests/misc/env.sh
+@@ -22,7 +22,8 @@ print_ver_ env pwd
+ 
+ # A simple shebang program to call "echo" from symlinks like "./-u" or "./--".
+-echo "#!$abs_top_builddir/src/echo simple_echo" > simple_echo \
++echo "#!${COREUTILS_TEST_PROGRAM_DIR:-$abs_top_builddir/src}/echo.exe simple_echo" \
++  > simple_echo \
+   || framework_failure_
+ chmod a+x simple_echo || framework_failure_
+ 

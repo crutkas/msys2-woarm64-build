@@ -1,0 +1,31 @@
+diff --git a/lib/dirchownmod.c b/lib/dirchownmod.c
+index 826704c..8db12bb 100644
+--- a/lib/dirchownmod.c
++++ b/lib/dirchownmod.c
+@@ -116,11 +116,21 @@ dirchownmod (int fd, char const *dir, mode_t mkdir_mode,
+             {
+               mode_t chmod_mode =
+                 mode | (dir_mode & CHMOD_MODE_BITS & ~mode_bits);
+-              result = (HAVE_FCHMOD && 0 <= fd
+-                        ? fchmod (fd, chmod_mode)
+-                        : mkdir_mode != (mode_t) -1
+-                        ? lchmod (dir, chmod_mode)
+-                        : chmod (dir, chmod_mode));
++              if (HAVE_FCHMOD && 0 <= fd)
++                {
++                  result = fchmod (fd, chmod_mode);
++#if defined __CYGWIN__
++                  /* The native ARM64 runtime can reject fchmod on an open
++                     directory even though chmod on the directory selected by
++                     the saved working directory is valid.  */
++                  if (result != 0 && errno == EACCES)
++                    result = chmod (dir, chmod_mode);
++#endif
++                }
++              else
++                result = (mkdir_mode != (mode_t) -1
++                          ? lchmod (dir, chmod_mode)
++                          : chmod (dir, chmod_mode));
+             }
+         }
+     }

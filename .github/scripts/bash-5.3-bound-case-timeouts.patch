@@ -1,0 +1,16 @@
+--- a/tests/run-all
++++ b/tests/run-all
+@@ -70,7 +70,12 @@
+ 	*.orig|*~) ;;
+ 	*)	echo "$x"
+ 		case_status=0
+-		sh "$x" >"$BASH_TEST_EVIDENCE/$x.log" 2>&1 || case_status=$?
++		case_timeout=${BASH_TEST_CASE_TIMEOUT:-900}
++		case $x in
++		run-builtins) case_timeout=${BASH_BUILTINS_TEST_TIMEOUT:-120} ;;
++		esac
++		timeout --foreground --signal=TERM --kill-after=10 "$case_timeout" \
++			sh "$x" >"$BASH_TEST_EVIDENCE/$x.log" 2>&1 || case_status=$?
+ 		cat "$BASH_TEST_EVIDENCE/$x.log" || overall=1
+ 		printf '%s\t%s\n' "$x" "$case_status" >> "$BASH_TEST_EVIDENCE/results.tsv" || overall=1
+ 		if test -f "$BASH_TSTOUT"; then

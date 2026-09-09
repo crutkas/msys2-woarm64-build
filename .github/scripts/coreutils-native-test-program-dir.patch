@@ -1,0 +1,13 @@
+--- a/tests/init.sh
++++ b/tests/init.sh
+@@ -517,6 +517,10 @@ path_prepend_ ()
+ {
+   while test $# != 0; do
+     path_dir_=$1
++    if test -n "${COREUTILS_TEST_PROGRAM_DIR-}" \
++       && test "x$path_dir_" = x./src; then
++      path_dir_=$COREUTILS_TEST_PROGRAM_DIR
++    fi
+     case $path_dir_ in
+       '') fail_ "invalid path dir: '$1'";;
+       /* | ?:*) abs_path_dir_=$path_dir_;;
