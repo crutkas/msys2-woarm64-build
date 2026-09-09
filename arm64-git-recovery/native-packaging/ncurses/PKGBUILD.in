@@ -1,0 +1,39 @@
+pkgbase=ncurses
+pkgname=('ncurses' 'ncurses-devel')
+pkgver=6.6
+pkgrel=2
+pkgdesc='System V Release 4.0 curses emulation library'
+arch=('aarch64')
+url='https://www.gnu.org/software/ncurses/'
+license=('spdx:MIT')
+options=('!strip' '!debug' '!lto' '!ccache' '!purge' 'staticlibs')
+source=('payload.tar' 'payload-files.sha256')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+package_ncurses() {
+    depends=('gcc-libs')
+
+    install -dm755 "$pkgdir/usr"
+    cp -a "$srcdir/payload/usr/bin" "$pkgdir/usr/"
+    rm -f "$pkgdir/usr/bin/"*-config
+    cp -a "$srcdir/payload/usr/share" "$pkgdir/usr/"
+    install -dm755 "$pkgdir/usr/lib"
+    ln -s ../share/terminfo "$pkgdir/usr/lib/terminfo"
+}
+
+package_ncurses-devel() {
+    groups=('development')
+    depends=("ncurses=${pkgver}")
+    pkgdesc='NCURSES headers and libraries'
+
+    install -dm755 "$pkgdir/usr/bin"
+    cp -a "$srcdir/payload/usr/bin/"*-config "$pkgdir/usr/bin/"
+    cp -a "$srcdir/payload/usr/include" "$pkgdir/usr/"
+    cp -a "$srcdir/payload/usr/lib" "$pkgdir/usr/"
+    rm -rf "$pkgdir/usr/lib/terminfo"
+}

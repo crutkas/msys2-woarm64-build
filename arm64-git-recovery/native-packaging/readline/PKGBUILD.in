@@ -1,0 +1,32 @@
+pkgbase=readline
+pkgname=('libreadline' 'libreadline-devel')
+pkgver=8.3.003
+pkgrel=1
+pkgdesc='GNU readline library'
+arch=('arm64')
+url='https://tiswww.case.edu/php/chet/readline/rltop.html'
+license=('spdx:GPL-3.0-or-later')
+options=('!strip' '!debug' '!emptydirs')
+source=()
+
+package_libreadline() {
+  depends=('ncurses')
+  groups=('libraries')
+  backup=('etc/inputrc')
+
+  mkdir -p "${pkgdir}/usr" "${pkgdir}/etc"
+  cp -a '@@STAGE_ROOT@@/usr/bin' "${pkgdir}/usr/"
+  cp -a '@@STAGE_ROOT@@/usr/share' "${pkgdir}/usr/"
+  cp -a '@@STAGE_ROOT@@/etc/inputrc' "${pkgdir}/etc/"
+}
+
+package_libreadline-devel() {
+  pkgdesc='readline headers and libraries'
+  groups=('development')
+  options=('!strip' '!debug' 'staticlibs')
+  depends=("libreadline=${pkgver}" 'ncurses-devel')
+
+  mkdir -p "${pkgdir}/usr"
+  cp -a '@@STAGE_ROOT@@/usr/include' "${pkgdir}/usr/"
+  cp -a '@@STAGE_ROOT@@/usr/lib' "${pkgdir}/usr/"
+}

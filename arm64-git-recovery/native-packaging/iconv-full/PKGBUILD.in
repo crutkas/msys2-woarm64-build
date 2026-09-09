@@ -1,0 +1,45 @@
+pkgbase=libiconv
+pkgname=('libiconv' 'iconv' 'libiconv-devel')
+pkgver=1.19
+pkgrel=1
+pkgdesc='Libiconv is a conversion library'
+arch=('aarch64')
+url='https://www.gnu.org/software/libiconv/'
+license=('spdx:GPL-3.0-only AND LGPL-2.1-only')
+options=('!strip' '!debug' '!lto' '!ccache' '!purge' '!libtool')
+source=('payload.tar' 'payload-files.sha256')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+package_libiconv() {
+    depends=('gcc-libs')
+
+    install -dm755 "$pkgdir/usr/bin" "$pkgdir/usr/share"
+    cp -a "$srcdir/payload/usr/bin/msys-charset-1.dll" "$pkgdir/usr/bin/"
+    cp -a "$srcdir/payload/usr/bin/msys-iconv-2.dll" "$pkgdir/usr/bin/"
+    cp -a "$srcdir/payload/usr/share/." "$pkgdir/usr/share/"
+}
+
+package_iconv() {
+    depends=('gcc-libs' "libiconv=${pkgver}" 'libintl')
+    conflicts=('libiconv<1.18-2')
+
+    install -dm755 "$pkgdir/usr/bin"
+    cp -a "$srcdir/payload/usr/bin/iconv.exe" "$pkgdir/usr/bin/"
+}
+
+package_libiconv-devel() {
+    groups=('development')
+    options=('staticlibs')
+    depends=("iconv=${pkgver}" "libiconv=${pkgver}")
+    pkgdesc='libiconv headers and libraries'
+
+    install -dm755 "$pkgdir/usr"
+    cp -a "$srcdir/payload/usr/include" "$pkgdir/usr/"
+    cp -a "$srcdir/payload/usr/lib" "$pkgdir/usr/"
+    rm -f "$pkgdir/usr/lib/charset.alias"
+}

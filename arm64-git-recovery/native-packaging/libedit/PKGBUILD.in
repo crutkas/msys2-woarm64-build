@@ -1,0 +1,29 @@
+pkgbase=libedit
+pkgname=('libedit' 'libedit-devel')
+pkgver=20240808_3.1
+pkgrel=1
+pkgdesc='Autotool- and libtoolized port of the NetBSD Editline library'
+arch=('arm64')
+url='https://www.thrysoee.dk/editline/'
+license=('spdx:BSD-3-Clause')
+options=('!strip' '!debug' 'staticlibs')
+source=()
+
+package_libedit() {
+  depends=('ncurses' 'sh')
+  groups=('libraries')
+
+  mkdir -p "${pkgdir}/usr"
+  cp -a '@@STAGE_ROOT@@/usr/bin' "${pkgdir}/usr/"
+  cp -a '@@STAGE_ROOT@@/usr/share' "${pkgdir}/usr/"
+}
+
+package_libedit-devel() {
+  pkgdesc='libedit headers and libraries'
+  groups=('development')
+  depends=("libedit=${pkgver}" 'ncurses-devel')
+
+  mkdir -p "${pkgdir}/usr"
+  cp -a '@@STAGE_ROOT@@/usr/include' "${pkgdir}/usr/"
+  cp -a '@@STAGE_ROOT@@/usr/lib' "${pkgdir}/usr/"
+}
