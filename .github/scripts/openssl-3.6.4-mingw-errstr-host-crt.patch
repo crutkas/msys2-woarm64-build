@@ -1,0 +1,12 @@
+--- a/test/recipes/02-test_errstr.t
++++ b/test/recipes/02-test_errstr.t
+@@ -37,7 +37,8 @@ plan skip_all => 'This is unsupported for cross compiled configurations'
+ # on Windows when built with msys perl.  Similar problems are also observed
+ # in MSVC builds, depending on the perl implementation used.
+ plan skip_all => 'This is unsupported on MSYS/MinGW or MSWin32'
+-    if $^O eq 'msys' or $^O eq 'MSWin32';
++    if $^O eq 'msys' or $^O eq 'MSWin32'
++        or config('target') =~ m|^mingw|;
+ 
+ plan skip_all => 'OpenSSL is configured "no-autoerrinit" or "no-err"'
+     if disabled('autoerrinit') || disabled('err');
