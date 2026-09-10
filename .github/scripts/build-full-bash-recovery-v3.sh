@@ -58,6 +58,7 @@ cd "$output/source"
     --enable-nls --enable-multibyte --enable-job-control --without-bash-malloc --with-curses \
     "--with-libintl-prefix=$sdk/usr" "--with-libiconv-prefix=$sdk/usr" \
     bash_cv_dev_stdin=present bash_cv_dev_fd=standard bash_cv_termcap_lib=libncurses
+grep -qx '#define WEXITSTATUS_OFFSET 8' config.h
 for feature in HAVE_DLOPEN HAVE_DLCLOSE HAVE_DLSYM; do
     sed -i "s@/\\* #undef $feature \\*/@#define $feature 1@" config.h
 done

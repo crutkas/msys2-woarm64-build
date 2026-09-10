@@ -1,0 +1,9 @@
+--- a/tests/run-all
++++ b/tests/run-all
+@@ -78 +78,5 @@
+-		timeout --signal=TERM --kill-after=10 "$case_timeout" \
++		BASH_TEST_TIMEOUT_MODE=
++		case $x in
++		run-jobs) BASH_TEST_TIMEOUT_MODE=--foreground ;;
++		esac
++		timeout $BASH_TEST_TIMEOUT_MODE --signal=TERM --kill-after=10 "$case_timeout" \

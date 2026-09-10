@@ -62,13 +62,21 @@ else
     sed -i 's/void g(){}/void g(int,t1 const*,t1,t2,t1 const*,int){}/g' configure
     ! grep -Fq 'void g(){}' configure
     ./configure --build=aarch64-pc-cygwin --host=aarch64-pc-cygwin \
-        --prefix=/usr --enable-cxx --enable-fat --enable-shared --disable-static
+        --prefix=/usr --enable-cxx --disable-assembly --enable-shared --disable-static
+    grep -Fx 'path= generic' config.log
     [[ $(grep -Fc 's/^lib/cyg/' libtool) == 1 ]]
     sed -i 's|s/\^lib/cyg/|s/^lib/msys-/|' libtool
     make -j"$jobs"
     make -j1 DESTDIR="$output/stage/gmp" install
     export PATH="$output/stage/gmp/usr/bin:$PWD/.libs:$PATH"
     make -j1 check
+    for direct_test in \
+        tests/mpn/.libs/t-divrem_1.exe \
+        tests/mpz/.libs/t-tdiv.exe \
+        tests/mpf/.libs/t-div.exe \
+        tests/misc/.libs/t-printf.exe; do
+        "$direct_test"
+    done
 fi
 
 export PATH="$output/stage/gmp/usr/bin:$PATH"

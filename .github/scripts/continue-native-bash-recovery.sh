@@ -21,6 +21,7 @@ export CONFIG_SITE=/dev/null CCACHE_DISABLE=1 MAKEFLAGS="-j$jobs" MFLAGS="-j$job
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 WOARM64_NATIVE_ARG_CONVERSION=none
 export HOME="$root/home" TMPDIR="$root/temp" TMP="$root/temp" TEMP="$root/temp"
 export XDG_CACHE_HOME="$root/cache" TERMINFO="$sdk/usr/share/terminfo"
+[[ -n ${WOARM64_NATIVE_EXIT_DIR:-} && -d $WOARM64_NATIVE_EXIT_DIR ]]
 grep -A2 '^cygwin\*)' "$root/source/support/shobj-conf" |
     grep -Fq "SHOBJ_LD='\${CC}'"
 
@@ -57,6 +58,7 @@ cd "$root/source"
     --enable-nls --enable-multibyte --enable-job-control --without-bash-malloc --with-curses \
     "--with-libintl-prefix=$sdk/usr" "--with-libiconv-prefix=$sdk/usr" \
     bash_cv_dev_stdin=present bash_cv_dev_fd=standard bash_cv_termcap_lib=libncurses
+grep -qx '#define WEXITSTATUS_OFFSET 8' config.h
 for feature in HAVE_DLOPEN HAVE_DLCLOSE HAVE_DLSYM; do
     sed -i "s@/\\* #undef $feature \\*/@#define $feature 1@" config.h
 done

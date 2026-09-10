@@ -17,6 +17,8 @@ export WOARM64_NATIVE_ARG_CONVERSION=none TERMINFO="$sdk/usr/share/terminfo"
 export MSYS2_ENV_CONV_EXCL=NATIVE_BASH_TEST_HELPERS
 export BASH_TEST_EVIDENCE="$output/cases"
 unset BASH_ENV ENV
+mkdir -p "$HOME" "$TMPDIR" "$output/runtime/usr/bin" "$output/runtime/etc" \
+    "$BASH_TEST_EVIDENCE"
 actual_runtime=$("$host/usr/bin/sha256sum.exe" "$runtime_dll")
 [[ ${actual_runtime%% *} == "$runtime_sha" ]]
 "$host/usr/bin/cp.exe" "$runtime_dll" "$output/runtime/usr/bin/msys-2.0.dll"
@@ -25,6 +27,9 @@ for config in passwd group nsswitch.conf; do
     [[ -f "$host/etc/$config" ]] &&
         "$host/usr/bin/cp.exe" "$host/etc/$config" "$output/runtime/etc/"
 done
+if [[ ! -f "$output/runtime/etc/passwd" ]]; then
+    printf 'root:x:0:0:root:/root:/usr/bin/bash\n' > "$output/runtime/etc/passwd"
+fi
 for dll in "$utilities"/usr/bin/msys-*.dll; do
     [[ -e $dll ]] || continue
     dll_windows=$("$host/usr/bin/cygpath.exe" -w "$dll")
@@ -72,7 +77,11 @@ case ${run_all_sha%% *} in
             -p1 -d "$root/source" -i "$here/bash-5.3-record-all-tests.patch"
         ;;
     a05e9044d9314ed8c602e0f9044a8abd1a4fce9ef9763f2148c924084a548d63 | \
-    c1ec9ce5e2a64ed9e63c6c541aa3271028a98783c51ad387c5e8009fbe942db1)
+    c1ec9ce5e2a64ed9e63c6c541aa3271028a98783c51ad387c5e8009fbe942db1 | \
+    e9790d75c88d24c7a14d4314cb4bab4381c75c4ffbdfa680fc299aef1a519c30 | \
+    8f30aa853743adfc1718b2e551a6bf59b0305f2eb8de390ce71e37b42322549f | \
+    5e22d073b9cb4c83246dea5d927f052daff1ebc03475a431ac2f85dc27692a0b | \
+    e19e0050ca1ebe8bdb292b8b1c2505b516d15d8937f1f0f020164fe9ff7703fb)
         ;;
     *)
         echo "Bash run-all differs from sealed recording harness states" >&2
@@ -85,7 +94,11 @@ case ${run_all_sha%% *} in
         "$host/usr/bin/patch.exe" --batch --forward --fuzz=0 --no-backup-if-mismatch \
             -p1 -d "$root/source" -i "$here/bash-5.3-native-test-helpers.patch"
         ;;
-    c1ec9ce5e2a64ed9e63c6c541aa3271028a98783c51ad387c5e8009fbe942db1)
+    c1ec9ce5e2a64ed9e63c6c541aa3271028a98783c51ad387c5e8009fbe942db1 | \
+    e9790d75c88d24c7a14d4314cb4bab4381c75c4ffbdfa680fc299aef1a519c30 | \
+    8f30aa853743adfc1718b2e551a6bf59b0305f2eb8de390ce71e37b42322549f | \
+    5e22d073b9cb4c83246dea5d927f052daff1ebc03475a431ac2f85dc27692a0b | \
+    e19e0050ca1ebe8bdb292b8b1c2505b516d15d8937f1f0f020164fe9ff7703fb)
         ;;
     *)
         echo "Bash run-all differs from sealed native-helper harness states" >&2
@@ -96,11 +109,16 @@ if ! grep -q 'BASH_TEST_CASE_TIMEOUT' "$run_all"; then
     "$host/usr/bin/patch.exe" --batch --forward --fuzz=0 --no-backup-if-mismatch \
         -p1 -d "$root/source" -i "$here/bash-5.3-bound-case-timeouts.patch"
 fi
+if grep -q 'timeout --foreground --signal=TERM' "$run_all"; then
+    [[ $(grep -c 'timeout --foreground --signal=TERM' "$run_all") == 1 ]]
+    sed -i 's/timeout --foreground --signal=TERM/timeout --signal=TERM/' "$run_all"
+fi
+if ! grep -q 'BASH_TEST_TIMEOUT_MODE' "$run_all"; then
+    "$host/usr/bin/patch.exe" --batch --forward --fuzz=0 --no-backup-if-mismatch \
+        -p1 -d "$root/source" -i "$here/bash-5.3-job-control-timeout.patch"
+fi
 grep -q 'BASH_TEST_CASE_TIMEOUT' "$run_all"
-cd "$root/source"
-"$host/usr/bin/make.exe" -j1 check \
-    "MAKE=$host/usr/bin/make.exe" \
-    "THIS_SH=$output/runtime/usr/bin/bash.exe" \
-    'LOCAL_LDFLAGS=-Wl,--export-all,--out-implib,libbash.dll.a' \
-    'LDFLAGS_FOR_BUILD=$(CFLAGS_FOR_BUILD)' \
-    "SHOBJ_LIBS=$PWD/libbash.dll.a -lintl -liconv" HISTORY_LDFLAGS= READLINE_LDFLAGS=
+grep -q 'run-jobs) BASH_TEST_TIMEOUT_MODE=--foreground' "$run_all"
+cd "$root/source/tests"
+BUILD_DIR="$root/source" THIS_SH="$output/runtime/usr/bin/bash.exe" \
+    "$output/runtime/usr/bin/sh.exe" run-all

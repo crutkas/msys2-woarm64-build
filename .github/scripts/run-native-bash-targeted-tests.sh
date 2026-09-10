@@ -17,6 +17,14 @@ mkdir -p "$output/cases"
 cp -a "$base_runtime" "$output/runtime"
 cp "$root/stage/usr/bin/bash.exe" "$output/runtime/usr/bin/bash.exe"
 cp "$root/stage/usr/bin/sh.exe" "$output/runtime/usr/bin/sh.exe"
+for helper in printenv recho xcase zecho; do
+    [[ -f "$root/source/tests/$helper.exe" ]]
+    cp "$root/source/tests/$helper.exe" "$output/runtime/usr/bin/$helper.exe"
+done
+mkdir -p "$output/runtime/etc"
+if [[ ! -f "$output/runtime/etc/passwd" ]]; then
+    printf 'root:x:0:0:root:/root:/usr/bin/bash\n' > "$output/runtime/etc/passwd"
+fi
 
 export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
 export LC_ALL=C.UTF-8 MSYSTEM=CYGWIN MSYS=winsymlinks:sys
@@ -34,10 +42,15 @@ status=0
 for test_case in "$@"; do
     [[ $test_case == run-* && -f "$root/source/tests/$test_case" ]]
     export BASH_TSTOUT="$output/cases/$test_case.output"
+    deadline=900
+    [[ $test_case == run-builtins ]] && deadline=180
+    timeout_args=(--signal=TERM --kill-after=10 "$deadline")
+    [[ $test_case == run-jobs ]] && timeout_args=(--foreground "${timeout_args[@]}")
     case_status=0
     (
         cd "$root/source/tests"
-        "$output/runtime/usr/bin/bash.exe" "$test_case"
+        timeout "${timeout_args[@]}" \
+            "$output/runtime/usr/bin/sh.exe" "$test_case"
     ) >"$output/cases/$test_case.log" 2>&1 || case_status=$?
     printf '%s\t%s\n' "$test_case" "$case_status" >> "$output/results.tsv"
     (( case_status == 0 )) || status=1

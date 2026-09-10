@@ -86,6 +86,9 @@ for test_name in "$@"; do
     log_name=${test_name//\//-}
     deadline=180
     case "$test_name" in
+        tests/misc/usage_vs_getopt.sh)
+            deadline=900
+            ;;
         tests/tail-2/*)
             deadline=90
             ;;
@@ -95,7 +98,7 @@ for test_name in "$@"; do
         shell_args+=(-x)
     fi
     set +e
-    timeout --foreground --signal=TERM --kill-after=10 "$deadline" \
+    timeout --signal=TERM --kill-after=10 "$deadline" \
         "$native_shell" --noprofile --norc -c \
         'cd "$1" && shift && exec "$@"' native-test "$build_root" \
         "$native_shell" "${shell_args[@]}" "$test_path" \

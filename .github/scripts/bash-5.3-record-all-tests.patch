@@ -12,7 +12,8 @@
  do
  	case $x in
 @@ -63,7 +67,17 @@
- 	$0|run-minimal|run-gprof)	;;
+-	$0|run-minimal|run-gprof)	;;
++	$0|run-all|./run-all|run-minimal|run-gprof)	;;
  	*.orig|*~) ;;
 -	*)	echo $x ; sh $x ; rm -f ${BASH_TSTOUT} ;;
 +	*)	echo "$x"
