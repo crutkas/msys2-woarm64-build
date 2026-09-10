@@ -79,7 +79,7 @@ cd "$output/source"
     bash_cv_dev_stdin=present bash_cv_dev_fd=standard bash_cv_termcap_lib=libncurses
 grep -qx 'prefix = /usr' Makefile
 grep -qx 'datarootdir = ${prefix}/share' Makefile
-grep -qx 'localedir = ${datarootdir}/locale' Makefile
+grep -qx 'localedir = /usr/share/locale' Makefile
 grep -qx '#define WEXITSTATUS_OFFSET 8' config.h
 for feature in HAVE_DLOPEN HAVE_DLCLOSE HAVE_DLSYM; do
     sed -i "s@/\\* #undef $feature \\*/@#define $feature 1@" config.h
