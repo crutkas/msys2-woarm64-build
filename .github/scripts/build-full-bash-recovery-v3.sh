@@ -18,7 +18,7 @@ export CONFIG_SITE=/dev/null CCACHE_DISABLE=1 MAKEFLAGS="-j$jobs" MFLAGS="-j$job
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 WOARM64_NATIVE_ARG_CONVERSION=none
 export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
 export XDG_CACHE_HOME="$output/cache" TERMINFO="$sdk/usr/share/terminfo"
-mkdir "$output/source" "$output/stage"
+mkdir -p "$HOME" "$TMPDIR" "$XDG_CACHE_HOME" "$output/source" "$output/stage"
 cp -a "$source_root/." "$output/source/"
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 probe_patcher=$(cygpath -am "$script_dir/patch-bash-wexitstatus-probe.py")
