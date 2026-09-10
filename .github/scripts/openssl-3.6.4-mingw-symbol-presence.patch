@@ -1,0 +1,71 @@
+--- a/test/recipes/01-test_symbol_presence.t
++++ b/test/recipes/01-test_symbol_presence.t
+@@ -42,6 +42,8 @@ my %stlibname;
+ my %shlibname;
+ my %stlibpath;
+ my %shlibpath;
++my %shlibnmopt;
++my $mingw_target = config('target') =~ m|^mingw|;
+ my %defpath;
+ foreach (qw(crypto ssl)) {
+     $stlibname{$_} = platform->staticlib("lib$_");
+@@ -49,5 +50,11 @@ foreach (qw(crypto ssl)) {
+     $shlibname{$_} = platform->sharedlib("lib$_") unless disabled('shared');
+     $shlibpath{$_} = bldtop_file($shlibname{$_})  unless disabled('shared');
++    $shlibnmopt{$_} = "-DPg";
++    if ($mingw_target && !disabled('shared')) {
++        $shlibname{$_} = platform->sharedlib_import("lib$_");
++        $shlibpath{$_} = bldtop_file($shlibname{$_});
++        $shlibnmopt{$_} = "-Pg";
++    }
+ }
+ 
+ my $testcount
+@@ -65,8 +72,9 @@ my %stsymbols;                  # Static library symbols
+ my %shsymbols;                  # Shared library symbols
+ my %defsymbols;                 # Symbols taken from ordinals
++my $null_device = devnull();
+ foreach (sort keys %stlibname) {
+-    my $stlib_cmd = "nm -Pg $stlibpath{$_} 2> /dev/null";
+-    my $shlib_cmd = "nm -DPg $shlibpath{$_} 2> /dev/null";
++    my $stlib_cmd = "nm -Pg $stlibpath{$_} 2> $null_device";
++    my $shlib_cmd = "nm $shlibnmopt{$_} $shlibpath{$_} 2> $null_device";
+     my @stlib_lines;
+     my @shlib_lines;
+     *OSTDERR = *STDERR;
+@@ -97,7 +105,8 @@ foreach (sort keys %stlibname) {
+         indir $bldtop => sub {
+             my $mkdefpath = srctop_file("util", "mkdef.pl");
+             my $def_path = srctop_file("util", "lib$_.num");
+-            my $def_cmd = "$^X $mkdefpath --ordinals $def_path --name $_ --OS linux 2> /dev/null";
++            my $mkdef_os = $mingw_target ? "mingw" : "linux";
++            my $def_cmd = "$^X $mkdefpath --ordinals $def_path --name $_ --OS $mkdef_os 2> $null_device";
+             @def_lines = map { s|\R$||; $_ } `$def_cmd`;
+             if ($? != 0) {
+                 note "running 'cd $bldtop; $def_cmd' => $?";
+@@ -153,9 +162,18 @@ foreach (sort keys %stlibname) {
+     unless (disabled('shared')) {
+-        @def_lines =
+-            sort
+-            map { s|;||; s|\s+||g; $_ }
+-            grep { $in_global = 1 if m|global:|;
+-                   $in_global = 0 if m|local:|;
+-                   $in_global = 0 if m|\}|;
+-                   $in_global && m|;|; } @def_lines;
++        if ($mingw_target) {
++            my $in_exports = 0;
++            @def_lines =
++                sort
++                map { s|^\s+||; s|\s+$||; s|=.*$||; $_ }
++                grep { $in_exports = 1 if m|^EXPORTS$|;
++                       $in_exports && m|^\s+\S|; } @def_lines;
++        } else {
++            @def_lines =
++                sort
++                map { s|;||; s|\s+||g; $_ }
++                grep { $in_global = 1 if m|global:|;
++                       $in_global = 0 if m|local:|;
++                       $in_global = 0 if m|\}|;
++                       $in_global && m|;|; } @def_lines;
++        }
+     }
