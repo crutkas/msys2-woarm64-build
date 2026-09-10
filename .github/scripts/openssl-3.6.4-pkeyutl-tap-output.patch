@@ -1,0 +1,11 @@
+--- a/test/recipes/20-test_pkeyutl.t
++++ b/test/recipes/20-test_pkeyutl.t
+@@ -178,2 +178,6 @@
+-    ok(run(app((['openssl', 'pkeyutl', '-verifyrecover', '-in', $sigfile,
+-                 '-pubin', '-inkey', srctop_file('test', 'testrsapub.pem')]))),
++    # -verifyrecover outputs the recovered payload (binary, without a
++    # trailing newline), which would otherwise be echoed into the TAP
++    # stream by run() and corrupt it, so redirect it to a file.
++    ok(run(app((['openssl', 'pkeyutl', '-verifyrecover', '-in', $sigfile,
++                 '-pubin', '-inkey', srctop_file('test', 'testrsapub.pem')],
++                stdout => 'rsa_verifyrecover.out'))),
