@@ -22,7 +22,9 @@ export CFLAGS_FOR_BUILD="$CFLAGS"
 export CPPFLAGS="-DWORDEXP_OPTION -DLIBINTL_STATIC -DLIBICONV_STATIC -DNCURSES_STATIC -I$(cygpath -m "$sdk/usr/include") -I$(cygpath -m "$sdk/usr/include/ncursesw")"
 export LDFLAGS="-Wl,--no-insert-timestamp -L$(cygpath -m "$sdk/usr/lib")"
 export CONFIG_SITE=/dev/null CCACHE_DISABLE=1 MAKEFLAGS="-j$jobs" MFLAGS="-j$jobs"
+host_locale=$(cygpath -am /usr/share/locale)
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 WOARM64_NATIVE_ARG_CONVERSION=none
+export MSYS2_ARG_CONV_EXCL='*'
 export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
 export XDG_CACHE_HOME="$output/cache" TERMINFO="$sdk/usr/share/terminfo"
 mkdir -p "$HOME" "$TMPDIR" "$XDG_CACHE_HOME" "$output/source" "$output/stage"
@@ -75,7 +77,9 @@ cd "$output/source"
     --enable-nls --enable-multibyte --enable-job-control --without-bash-malloc --with-curses \
     "--with-libintl-prefix=$sdk/usr" "--with-libiconv-prefix=$sdk/usr" \
     bash_cv_dev_stdin=present bash_cv_dev_fd=standard bash_cv_termcap_lib=libncurses
-grep -qx 'localedir = /usr/share/locale' Makefile
+grep -qx 'prefix = /usr' Makefile
+grep -qx 'datarootdir = ${prefix}/share' Makefile
+grep -qx 'localedir = ${datarootdir}/locale' Makefile
 grep -qx '#define WEXITSTATUS_OFFSET 8' config.h
 for feature in HAVE_DLOPEN HAVE_DLCLOSE HAVE_DLSYM; do
     sed -i "s@/\\* #undef $feature \\*/@#define $feature 1@" config.h
@@ -102,10 +106,12 @@ make -j1 "${make_args[@]}" DESTDIR="$output/stage" install
 cp "$output/stage/usr/bin/bash.exe" "$output/stage/usr/bin/sh.exe"
 sdk_locale=$(cygpath -m "$sdk/usr/share/locale")
 while IFS= read -r executable; do
-    if grep -aFq "$sdk_locale" "$executable"; then
-        echo "Staged executable retains build-only locale prefix: $executable" >&2
-        exit 3
-    fi
+    for forbidden_locale in "$host_locale" "$sdk_locale"; do
+        if grep -aFq "$forbidden_locale" "$executable"; then
+            echo "Staged executable retains build-only locale prefix: $executable" >&2
+            exit 3
+        fi
+    done
 done < <(find "$output/stage" -type f -name '*.exe' -print)
 install -Dm644 COPYING "$output/stage/usr/share/licenses/bash/COPYING"
 mkdir -p "$output/stage/usr/include/bash" "$output/stage/usr/lib"
