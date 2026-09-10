@@ -1,0 +1,10 @@
+--- a/test/recipes/25-test_pkcs8.t
++++ b/test/recipes/25-test_pkcs8.t
+@@ -31 +31,6 @@
+-is(compare_text($pc5_key, $inout), 0,
++is(compare_text($pc5_key, $inout, sub {
++        my ($left, $right) = @_;
++        $left =~ s/\r\n/\n/g;
++        $right =~ s/\r\n/\n/g;
++        return $left ne $right;
++    }), 0,
