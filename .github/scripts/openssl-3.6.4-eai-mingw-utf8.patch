@@ -1,0 +1,8 @@
+--- a/test/recipes/25-test_eai_data.t
++++ b/test/recipes/25-test_eai_data.t
+@@ -51 +51,4 @@
+-    skip "Unicode tests disabled on MingW", 2 if $^O =~ /^msys$/;
++    my $mingw_target = config('target') =~ /^mingw/;
++
++    local $ENV{OPENSSL_WIN32_UTF8} = 1 if $mingw_target;
++    skip "Unicode tests disabled on MingW", 2 if $^O =~ /^msys$/ && !$mingw_target;

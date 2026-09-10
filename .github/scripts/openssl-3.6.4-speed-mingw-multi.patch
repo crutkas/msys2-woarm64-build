@@ -1,0 +1,11 @@
+--- a/test/recipes/20-test_speed.t
++++ b/test/recipes/20-test_speed.t
+@@ -28,7 +28,7 @@ ok(run(app(['openssl', 'speed', '-testmode'])),
+ 
+ SKIP: {
+     skip "Multi option is not supported by this OpenSSL build", 1
+-       if $^O =~ /^(VMS|MSWin32)$/;
++       if $^O =~ /^(VMS|MSWin32)$/ || config('target') =~ /^mingw/;
+ 
+     ok(run(app(['openssl', 'speed', '-testmode', '-multi', 2])),
+            "Test the multi option");
