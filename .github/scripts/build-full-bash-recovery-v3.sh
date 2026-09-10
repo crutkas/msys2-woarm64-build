@@ -95,6 +95,8 @@ make_args=(HISTORY_LDFLAGS= READLINE_LDFLAGS=
            'LDFLAGS_FOR_BUILD=$(CFLAGS_FOR_BUILD)'
            "SHOBJ_LIBS=$PWD/libbash.dll.a -lintl -liconv")
 make -j"$jobs" "${make_args[@]}"
+make -j"$jobs" "${make_args[@]}" printenv.exe recho.exe xcase.exe zecho.exe
+cp printenv.exe recho.exe xcase.exe zecho.exe tests/
 make -j1 "${make_args[@]}" DESTDIR="$output/stage" install
 cp "$output/stage/usr/bin/bash.exe" "$output/stage/usr/bin/sh.exe"
 install -Dm644 COPYING "$output/stage/usr/share/licenses/bash/COPYING"
