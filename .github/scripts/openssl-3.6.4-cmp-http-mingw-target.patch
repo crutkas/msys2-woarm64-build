@@ -1,0 +1,11 @@
+--- a/test/recipes/80-test_cmp_http.t
++++ b/test/recipes/80-test_cmp_http.t
+@@ -35,7 +35,7 @@ plan skip_all => "These tests are not supported in a no-cms build"
+     if disabled("cms"); # central key pair generation
+ 
+ plan skip_all => "Tests involving local HTTP server not available on Windows or VMS"
+-    if $^O =~ /^(VMS|MSWin32|msys)$/;
++    if $^O =~ /^(VMS|MSWin32|msys)$/ || config('target') =~ /^mingw/;
+ plan skip_all => "Tests involving local HTTP server not available in cross-compile builds"
+     if defined $ENV{EXE_SHELL};
+ 
