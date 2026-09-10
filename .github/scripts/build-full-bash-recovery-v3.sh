@@ -24,7 +24,6 @@ export LDFLAGS="-Wl,--no-insert-timestamp -L$(cygpath -m "$sdk/usr/lib")"
 export CONFIG_SITE=/dev/null CCACHE_DISABLE=1 MAKEFLAGS="-j$jobs" MFLAGS="-j$jobs"
 host_locale=$(cygpath -am /usr/share/locale)
 export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 WOARM64_NATIVE_ARG_CONVERSION=none
-export MSYS2_ARG_CONV_EXCL='*'
 export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
 export XDG_CACHE_HOME="$output/cache" TERMINFO="$sdk/usr/share/terminfo"
 mkdir -p "$HOME" "$TMPDIR" "$XDG_CACHE_HOME" "$output/source" "$output/stage"
@@ -44,6 +43,7 @@ probe_patcher=$(cygpath -am "$script_dir/patch-bash-wexitstatus-probe.py")
 "$native_python" -I "$probe_patcher" "$output/source"
 loadable_patcher=$(cygpath -am "$script_dir/patch-bash-cygwin-loadables.py")
 "$native_python" -I "$loadable_patcher" "$output/source"
+export MSYS2_ARG_CONV_EXCL='*'
 exec > >(tee "$output/build.log") 2>&1
 cat > "$output/dlopen-provider.c" <<'EOF'
 __declspec(dllexport) int native_dlopen_probe(void)
