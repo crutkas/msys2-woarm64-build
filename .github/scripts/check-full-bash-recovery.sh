@@ -88,6 +88,7 @@ case ${run_all_sha%% *} in
         ;;
     a05e9044d9314ed8c602e0f9044a8abd1a4fce9ef9763f2148c924084a548d63 | \
     c1ec9ce5e2a64ed9e63c6c541aa3271028a98783c51ad387c5e8009fbe942db1 | \
+    e1ca019d4ff51747f26334be80b769da6956789680fe8c2508130b974acf23cb | \
     e9790d75c88d24c7a14d4314cb4bab4381c75c4ffbdfa680fc299aef1a519c30 | \
     8f30aa853743adfc1718b2e551a6bf59b0305f2eb8de390ce71e37b42322549f | \
     5e22d073b9cb4c83246dea5d927f052daff1ebc03475a431ac2f85dc27692a0b | \
@@ -100,7 +101,8 @@ case ${run_all_sha%% *} in
 esac
 run_all_sha=$("$host/usr/bin/sha256sum.exe" "$run_all")
 case ${run_all_sha%% *} in
-    a05e9044d9314ed8c602e0f9044a8abd1a4fce9ef9763f2148c924084a548d63)
+    a05e9044d9314ed8c602e0f9044a8abd1a4fce9ef9763f2148c924084a548d63 | \
+    e1ca019d4ff51747f26334be80b769da6956789680fe8c2508130b974acf23cb)
         "$host/usr/bin/patch.exe" --batch --forward --fuzz=0 --no-backup-if-mismatch \
             -p1 -d "$root/source" -i "$here/bash-5.3-native-test-helpers.patch"
         ;;
