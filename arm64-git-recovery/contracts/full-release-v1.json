@@ -22,7 +22,14 @@
   "self_hosting_evidence": {
     "schema": 1,
     "status": "verified-native-self-hosting",
-    "target": "aarch64-pc-msys"
+    "target": "aarch64-pc-msys",
+    "required_evidence_kinds": [
+      "native-build",
+      "native-runtime"
+    ],
+    "execution_targets": [
+      "aarch64-pc-cygwin"
+    ]
   },
   "expected_git_splits": [
     "mingw-w64-aarch64-git",
@@ -161,22 +168,43 @@
       "decision": "user-approved",
       "host_architecture": "arm64",
       "runtime_support_status": "verified",
+      "required_evidence_kinds": [
+        "managed-runtime"
+      ],
+      "execution_targets": [
+        "windows-arm64-managed"
+      ],
       "files": [
         "mingwarm64/bin/git-credential-manager.exe",
         "mingwarm64/bin/git-credential-helper-selector.exe"
       ]
     }
   ],
-  "network_payload_globs": [
-    "mingwarm64/bin/*.dll",
-    "mingwarm64/etc/**",
-    "mingwarm64/lib/tcl*/**",
-    "mingwarm64/lib/tk*/**",
-    "mingwarm64/share/licenses/**",
-    "mingwarm64/share/locale/**",
-    "mingwarm64/share/tcl*/**",
-    "mingwarm64/share/tk*/**"
-  ],
+  "provider_role_payload_globs": {
+    "network-runtime": [
+      "mingwarm64/bin/*.dll",
+      "mingwarm64/etc/**",
+      "mingwarm64/lib/tcl*/**",
+      "mingwarm64/lib/tk*/**",
+      "mingwarm64/share/licenses/**",
+      "mingwarm64/share/locale/**",
+      "mingwarm64/share/tcl*/**",
+      "mingwarm64/share/tk*/**"
+    ],
+    "native-python": [
+      "mingwarm64/bin/*.dll",
+      "mingwarm64/bin/python*.exe",
+      "mingwarm64/etc/**",
+      "mingwarm64/lib/python*/**",
+      "mingwarm64/lib/tcl*/**",
+      "mingwarm64/lib/tk*/**",
+      "mingwarm64/share/licenses/**",
+      "mingwarm64/share/locale/**",
+      "mingwarm64/share/tcl*/**",
+      "mingwarm64/share/tk*/**",
+      "mingwarm64/share/zoneinfo/**"
+    ]
+  },
   "excluded_payload_globs": [
     "mingwarm64/include/**",
     "mingwarm64/lib/*.a",
@@ -198,12 +226,14 @@
     "comctl32.dll",
     "comdlg32.dll",
     "crypt32.dll",
+    "dbghelp.dll",
     "dnsapi.dll",
     "gdi32.dll",
     "imm32.dll",
     "iphlpapi.dll",
     "kernel32.dll",
     "mpr.dll",
+    "msi.dll",
     "msvcrt.dll",
     "netapi32.dll",
     "ncrypt.dll",

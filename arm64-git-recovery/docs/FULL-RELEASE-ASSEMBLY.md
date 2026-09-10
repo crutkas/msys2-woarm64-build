@@ -68,10 +68,24 @@ satisfy the self-hosting evidence gate.
 }
 ```
 
-Each additional provider export uses schema 1 and contains `packages`; every
-package entry supplies `name`, `path`, and `sha256`. Relative package paths are
-resolved beside the export. Package identity and dependencies are read back
-from `.PKGINFO`; the export cannot override them.
+Each additional provider export uses schema 1 and contains `packages`. A package
+entry supplies either `name`/`path` or the producer-equivalent
+`packageName`/`archive`, plus `sha256`. Mixing both forms with different values
+is rejected. Relative package paths are resolved beside the export. Package
+identity and dependencies are read back from `.PKGINFO`; the export cannot
+override them.
+
+Provider roles listed in `provider_role_payload_globs` are filtered to their
+declared runtime surface after dependency resolution. This permits a
+dependency-complete Python export to retain compiler and development packages
+for readback without shipping compiler executables, headers, static libraries,
+or build-only documentation.
+
+A corrected current Git handoff may use top-level `packages` rows with
+`packageName`/`archive`. If it omits the recipe digest, it must hash-bind the
+preserved prior handoff. The assembler verifies unchanged source identity and
+the exact 15-package split set, and permits only the declared git-p4 replacement
+whose old/new archive hashes and Python dependency match that handoff.
 
 ```json
 {
@@ -88,16 +102,59 @@ from `.PKGINFO`; the export cannot override them.
 ```
 
 Native self-hosting evidence is a separate schema-1 JSON document with
-`status: "verified-native-self-hosting"`, `target: "aarch64-pc-msys"`, and a
-nonempty `evidence` array of hash-bound native build/test receipts.
+`status: "verified-native-self-hosting"`, the release-profile label
+`target: "aarch64-pc-msys"`, a nonempty `runtime_cohort`, and a nonempty
+`evidence` array. The profile label does not rename the compiler's real target:
+each nested receipt must report `execution.target: "aarch64-pc-cygwin"`.
+
+Every nested evidence entry is a relative, directory-contained reference:
+
+```json
+{
+  "kind": "native-build",
+  "path": "receipts/native-build.json",
+  "sha256": "<full sha256>"
+}
+```
+
+The cited schema-1 receipt must be hash-valid, have `status: "verified"`, repeat
+the cited `kind`, and contain:
+
+```json
+{
+  "execution": {
+    "native_process": true,
+    "host_architecture": "arm64",
+    "target": "aarch64-pc-cygwin"
+  },
+  "runtime": {
+    "cohort": "<same cohort as the outer evidence document>",
+    "sha256": "<full runtime identity sha256>"
+  }
+}
+```
+
+Self-hosting requires both `native-build` and `native-runtime` receipts. A
+cross-hosted build, an ARM64 PE classification, a string label, a missing or
+tampered receipt, or a receipt from another runtime cohort does not satisfy the
+gate.
 
 Listing GCM paths as managed files classifies them; it does not approve them.
 The GCM package additionally requires version-1 admission evidence with
 `status: "approved-for-native-arm64-distribution"`, `decision:
 "user-approved"`, `host_architecture: "arm64"`,
-`runtime_support_status: "verified"`, exact package/version/file hashes, and a
-nonempty runtime evidence list. Without that explicit approval the release
-remains incomplete.
+`runtime_support_status: "verified"`, exact package/version/file hashes, a
+nonempty `runtime_cohort`, and a nested `managed-runtime` receipt using the same
+hash-bound schema. Its execution target is `windows-arm64-managed`, and it must
+repeat the admitted package and version. This technical receipt does not replace
+the separate `decision: "user-approved"` requirement. Without that explicit
+approval the release remains incomplete.
+
+`msi.dll` is treated narrowly as a Windows system dependency by basename. It is
+not copied into the release. Other unknown non-system imports remain blockers.
+The runtime's `minidumper.exe` similarly uses the signed Windows
+`System32\dbghelp.dll`; that DLL is also a basename-only system dependency and
+is not shipped.
 
 `provider-not-supplied` means only that the package was absent from the input
 manifests supplied to that audit. It is not a claim that the component has not

@@ -78,6 +78,100 @@ def verify_reference(reference: dict, label: str) -> tuple[Path, dict]:
     return path, read_json(path)
 
 
+def verify_nested_reference(parent_path: Path, reference: dict,
+                            label: str) -> tuple[Path, dict]:
+    if not isinstance(reference, dict):
+        raise ContractError(f"{label} must be a structured path/SHA-256 reference")
+    relative = safe_relative(str(reference.get("path", "")))
+    expected = str(reference.get("sha256", "")).lower()
+    if not re.fullmatch(r"[0-9a-f]{64}", expected):
+        raise ContractError(f"{label} must declare a full SHA-256")
+    base = parent_path.parent.resolve()
+    path = (base / Path(*PurePosixPath(relative).parts)).resolve()
+    try:
+        path.relative_to(base)
+    except ValueError as error:
+        raise ContractError(f"{label} escapes its evidence directory: {relative}") from error
+    if not path.is_file():
+        raise ContractError(f"{label} is missing: {path}")
+    actual = digest(path)
+    if actual != expected:
+        raise ContractError(f"{label} hash mismatch: expected {expected}, got {actual}")
+    return path, read_json(path)
+
+
+def validate_nested_evidence(
+    document_path: Path,
+    evidence_items: object,
+    label: str,
+    required_kinds: list[str],
+    execution_targets: list[str],
+    runtime_cohort: object,
+    package: str | None = None,
+    version: str | None = None,
+) -> list[dict]:
+    if not isinstance(runtime_cohort, str) or not runtime_cohort:
+        raise ContractError(f"{label} must declare a runtime_cohort")
+    if not isinstance(evidence_items, list) or not evidence_items:
+        raise ContractError(f"{label} must cite nonempty structured evidence")
+    allowed_kinds = set(required_kinds)
+    if not allowed_kinds:
+        raise ContractError(f"{label} contract has no required evidence kinds")
+    allowed_targets = set(execution_targets)
+    if not allowed_targets:
+        raise ContractError(f"{label} contract has no execution targets")
+    found_kinds = set()
+    receipts = []
+    for index, reference in enumerate(evidence_items):
+        receipt_path, receipt = verify_nested_reference(
+            document_path, reference, f"{label} receipt {index + 1}"
+        )
+        kind = receipt.get("kind")
+        if kind not in allowed_kinds:
+            raise ContractError(f"{label} receipt has invalid kind: {kind!r}")
+        if reference.get("kind") != kind:
+            raise ContractError(f"{label} receipt kind does not match its reference")
+        if receipt.get("schema") != 1 or receipt.get("status") != "verified":
+            raise ContractError(f"{label} receipt is not schema-1 verified evidence")
+        execution = receipt.get("execution")
+        if not isinstance(execution, dict):
+            raise ContractError(f"{label} receipt has no execution evidence")
+        if execution.get("native_process") is not True:
+            raise ContractError(f"{label} receipt did not execute as a native process")
+        if execution.get("host_architecture") != "arm64":
+            raise ContractError(f"{label} receipt did not execute on ARM64")
+        if execution.get("target") not in allowed_targets:
+            raise ContractError(
+                f"{label} receipt has foreign execution target: "
+                f"{execution.get('target')!r}"
+            )
+        runtime = receipt.get("runtime")
+        if not isinstance(runtime, dict):
+            raise ContractError(f"{label} receipt has no runtime evidence")
+        if runtime.get("cohort") != runtime_cohort:
+            raise ContractError(f"{label} receipt has a foreign runtime cohort")
+        runtime_sha256 = str(runtime.get("sha256", "")).lower()
+        if not re.fullmatch(r"[0-9a-f]{64}", runtime_sha256):
+            raise ContractError(f"{label} receipt has no runtime SHA-256 identity")
+        if package is not None and (
+            receipt.get("package") != package or receipt.get("version") != version
+        ):
+            raise ContractError(f"{label} receipt package/version mismatch")
+        found_kinds.add(kind)
+        receipts.append({
+            "kind": kind,
+            "name": receipt_path.name,
+            "sha256": reference["sha256"].lower(),
+            "execution_target": execution["target"],
+            "runtime_cohort": runtime_cohort,
+            "runtime_sha256": runtime_sha256,
+        })
+    missing = allowed_kinds - found_kinds
+    if missing:
+        raise ContractError(f"{label} is missing evidence kinds: {sorted(missing)}")
+    return receipts
+
+
 def parse_pkginfo(data: bytes) -> dict:
     values: dict[str, list[str]] = {}
     for raw in data.decode("utf-8", errors="strict").splitlines():
@@ -324,28 +418,132 @@ def generic_packages(export_path: Path, export: dict, role: str) -> list[dict]:
         raise ContractError(f"Provider export has no package list: {export_path.name}")
     result = []
     for item in packages:
-        package_path = Path(item["path"])
+        if not isinstance(item, dict):
+            raise ContractError(f"Provider package row must be an object: {export_path.name}")
+        path_value = item.get("path")
+        archive_value = item.get("archive")
+        if path_value and archive_value and path_value != archive_value:
+            raise ContractError(
+                f"Provider package row has conflicting path/archive: {export_path.name}"
+            )
+        path_value = path_value or archive_value
+        if not isinstance(path_value, str) or not path_value:
+            raise ContractError(
+                f"Provider package row has no path/archive: {export_path.name}"
+            )
+        name_value = item.get("name")
+        package_name_value = item.get("packageName")
+        if name_value and package_name_value and name_value != package_name_value:
+            raise ContractError(
+                f"Provider package row has conflicting name/packageName: {export_path.name}"
+            )
+        package_path = Path(path_value)
         if not package_path.is_absolute():
             package_path = export_path.parent / package_path
-        declared_name = item.get("name")
+        declared_name = name_value or package_name_value
         if not isinstance(declared_name, str) or not declared_name.startswith(
             ("mingw-w64-", "msys2-runtime")
         ):
             declared_name = None
+        sha256 = str(item.get("sha256", "")).lower()
+        if not re.fullmatch(r"[0-9a-f]{64}", sha256):
+            raise ContractError(
+                f"Provider package row has no full SHA-256: {export_path.name}"
+            )
         result.append({
             "name": declared_name,
             "path": package_path,
-            "sha256": item["sha256"],
+            "sha256": sha256,
             "role": role,
         })
     return result
 
 
-def validate_source_identity(contract: dict, git: dict, network: dict) -> None:
+def git_package_records(git: dict) -> list[dict]:
+    legacy = git.get("build", {}).get("packages")
+    current = git.get("packages")
+    if legacy is not None and current is not None:
+        raise ContractError("Git handoff declares both legacy and current package lists")
+    records = legacy if legacy is not None else current
+    if not isinstance(records, list):
+        raise ContractError("Git package handoff has no package list")
+    return records
+
+
+def git_package_identity(item: dict) -> tuple[str, str, str]:
+    if not isinstance(item, dict):
+        raise ContractError("Git package handoff has invalid package entry")
+    name = item.get("packageName") or item.get("name")
+    path = item.get("file") or item.get("archive") or item.get("path")
+    archive_hash = str(item.get("sha256", "")).lower()
+    if not isinstance(name, str) or not name:
+        raise ContractError("Git package handoff package has no name")
+    if not isinstance(path, str) or not path:
+        raise ContractError(f"Git package handoff package has no path: {name}")
+    if not re.fullmatch(r"[0-9a-f]{64}", archive_hash):
+        raise ContractError(f"Git package handoff package has invalid SHA-256: {name}")
+    return name, path, archive_hash
+
+
+def git_package_hashes(git: dict) -> dict[str, str]:
+    result = {}
+    for item in git_package_records(git):
+        name, _, archive_hash = git_package_identity(item)
+        if name in result:
+            raise ContractError(f"Git package handoff repeats package: {name}")
+        result[name] = archive_hash
+    return result
+
+
+def resolve_git_source_identity(git: dict) -> tuple[dict, list[dict]]:
+    source = dict(git.get("source", {}))
+    if source.get("recipeSha256"):
+        return source, []
+    prior_reference = git.get("immutablePriorHandoff")
+    if not isinstance(prior_reference, dict) or prior_reference.get("preserved") is not True:
+        raise ContractError(
+            "Git handoff without recipe identity must bind an immutable preserved prior handoff"
+        )
+    prior_path, prior = verify_reference(prior_reference, "Prior Git package handoff")
+    prior_source = prior.get("source", {})
+    for field in ("tag", "commit", "makepkgArchiveSha256"):
+        if source.get(field) != prior_source.get(field):
+            raise ContractError(f"Corrected Git handoff changed source {field}")
+    recipe_hash = prior_source.get("recipeSha256")
+    if not isinstance(recipe_hash, str) or not re.fullmatch(r"[0-9a-fA-F]{64}", recipe_hash):
+        raise ContractError("Prior Git package handoff has no recipe identity")
+    prior_hashes = git_package_hashes(prior)
+    current_hashes = git_package_hashes(git)
+    if set(prior_hashes) != set(current_hashes):
+        raise ContractError("Corrected Git handoff changed the exact Git split set")
+    changed = sorted(
+        name for name in current_hashes if current_hashes[name] != prior_hashes[name]
+    )
+    if changed:
+        integration = git.get("gitP4Integration", {})
+        if changed != ["mingw-w64-aarch64-git-p4"]:
+            raise ContractError("Corrected Git handoff changed packages other than git-p4")
+        if (
+            integration.get("oldArchiveSha256") != prior_hashes[changed[0]]
+            or integration.get("newArchiveSha256") != current_hashes[changed[0]]
+            or integration.get("declaredDependency") != "mingw-w64-aarch64-python"
+        ):
+            raise ContractError("Corrected git-p4 provenance does not match package hashes")
+    source["recipeSha256"] = recipe_hash.lower()
+    return source, [{
+        "role": "git-source-provenance",
+        "name": prior_path.name,
+        "sha256": prior_reference["sha256"].lower(),
+    }]
+
+
+def validate_source_identity(
+    contract: dict, git: dict, network: dict, git_source: dict | None = None
+) -> None:
     expected = contract.get("source_identity")
     if not expected:
         return
-    git_source = git.get("source", {})
+    git_source = git_source or git.get("source", {})
     checks = {
         "Git tag": (git_source.get("tag"), expected["git_tag"]),
         "Git commit": (git_source.get("commit"), expected["git_commit"]),
@@ -369,12 +567,18 @@ def collect_declared_packages(input_path: Path, input_data: dict,
     git_path, git = verify_reference(input_data["git_handoff"], "Git package handoff")
     references.append({"role": "git", "name": git_path.name,
                        "sha256": input_data["git_handoff"]["sha256"].lower()})
-    package_dir = git_path.parent / "git-packages"
-    for item in git.get("build", {}).get("packages", []):
+    git_records = git_package_records(git)
+    package_dir = (
+        git_path.parent / "git-packages"
+        if git.get("build", {}).get("packages") is not None
+        else git_path.parent
+    )
+    for item in git_records:
+        name, archive_path, archive_hash = git_package_identity(item)
         declarations.append({
-            "name": item["packageName"],
-            "path": package_dir / item["file"],
-            "sha256": item["sha256"],
+            "name": name,
+            "path": package_dir / archive_path,
+            "sha256": archive_hash,
             "role": "git-split",
         })
     runtime_dir = git_path.parent / "runtime-providers"
@@ -388,7 +592,9 @@ def collect_declared_packages(input_path: Path, input_data: dict,
     network_path, network = verify_reference(
         input_data["network_export"], "Network package export"
     )
-    validate_source_identity(contract, git, network)
+    git_source, provenance_references = resolve_git_source_identity(git)
+    references.extend(provenance_references)
+    validate_source_identity(contract, git, network, git_source)
     references.append({"role": "network", "name": network_path.name,
                        "sha256": input_data["network_export"]["sha256"].lower()})
     declarations.extend(generic_packages(network_path, network, "network-runtime"))
@@ -486,11 +692,13 @@ def include_payload_file(package: dict, rel: str, contract: dict) -> bool:
         return False
     if "git-split" in package["roles"]:
         return True
-    if any(role != "network-runtime" for role in package["roles"]):
+    role_patterns = contract.get("provider_role_payload_globs", {})
+    filtered_roles = [role for role in package["roles"] if role in role_patterns]
+    if not filtered_roles:
         return True
     return (
         rel in contract["required_files"]
-        or matches_any(rel, contract.get("network_payload_globs", []))
+        or any(matches_any(rel, role_patterns[role]) for role in filtered_roles)
     )
 
 
@@ -700,13 +908,21 @@ def validate_self_hosting(contract: dict, reference: dict) -> dict:
                 f"Native self-hosting evidence has invalid {key}: "
                 f"{evidence.get(key)!r} != {expected[key]!r}"
             )
-    if not isinstance(evidence.get("evidence"), list) or not evidence["evidence"]:
-        raise ContractError("Native self-hosting evidence must cite nonempty evidence")
+    receipts = validate_nested_evidence(
+        evidence_path,
+        evidence.get("evidence"),
+        "Native self-hosting evidence",
+        expected.get("required_evidence_kinds", []),
+        expected.get("execution_targets", []),
+        evidence.get("runtime_cohort"),
+    )
     return {
         "name": evidence_path.name,
         "sha256": reference["sha256"].lower(),
         "status": evidence["status"],
         "target": evidence["target"],
+        "runtime_cohort": evidence["runtime_cohort"],
+        "receipts": receipts,
     }
 
 
@@ -766,8 +982,16 @@ def validate_managed_admissions(contract: dict, input_data: dict,
         supplied = {item.get("path"): item.get("sha256") for item in declared_files}
         if supplied != actual:
             raise ContractError(f"Managed admission file hashes differ: {package_name}")
-        if not isinstance(evidence.get("evidence"), list) or not evidence["evidence"]:
-            raise ContractError(f"Managed admission has no runtime evidence: {package_name}")
+        receipts = validate_nested_evidence(
+            path,
+            evidence.get("evidence"),
+            f"Managed admission {package_name}",
+            component.get("required_evidence_kinds", []),
+            component.get("execution_targets", []),
+            evidence.get("runtime_cohort"),
+            package_name,
+            package["version"],
+        )
         admitted.append({
             "package": package_name,
             "version": package["version"],
@@ -775,6 +999,8 @@ def validate_managed_admissions(contract: dict, input_data: dict,
             "sha256": reference["sha256"].lower(),
             "host_architecture": evidence["host_architecture"],
             "runtime_support_status": evidence["runtime_support_status"],
+            "runtime_cohort": evidence["runtime_cohort"],
+            "receipts": receipts,
         })
     return blockers, admitted
 

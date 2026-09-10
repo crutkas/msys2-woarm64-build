@@ -1,0 +1,40 @@
+pkgbase=msys2-runtime
+pkgname=('msys2-runtime' 'msys2-runtime-devel')
+pkgver=3.6.10
+pkgrel=4.1
+pkgdesc='Cygwin POSIX emulation engine'
+arch=('aarch64')
+url='https://www.cygwin.com/'
+license=('spdx:GPL-3.0-or-later')
+source=('runtime-payload.tar' 'runtime-files.sha256')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@')
+
+check() {
+  cd "${srcdir}"
+  sha256sum -c runtime-files.sha256
+  test "$(sha256sum payload/runtime/usr/bin/msys-2.0.dll | cut -d' ' -f1)" = \
+    d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d
+  test "$(sha256sum payload/devel/usr/lib/libmsys-2.0.a | cut -d' ' -f1)" = \
+    fac7ee56bb99f1c8aa06fd04c164f3b95e71a2fe3168e0b55db5fa02275bf32c
+  test "$(sha256sum payload/devel/usr/lib/crt0.o | cut -d' ' -f1)" = \
+    3f1d5aed644750ca496008c6c2bc5206da144da3e633065e0a41d0ef07dfeb0e
+}
+
+package_msys2-runtime() {
+  pkgdesc='POSIX emulation engine for Windows'
+  conflicts=('catgets' 'libcatgets' 'msys2-runtime-3.6')
+  replaces=('catgets' 'libcatgets' 'msys2-runtime-3.6')
+  options=('!strip')
+
+  cp -a "${srcdir}/payload/runtime/." "${pkgdir}/"
+}
+
+package_msys2-runtime-devel() {
+  pkgdesc='MSYS2 headers and libraries'
+  depends=("msys2-runtime=${pkgver}")
+  conflicts=('libcatgets-devel' 'msys2-runtime-3.6-devel')
+  replaces=('libcatgets-devel' 'msys2-runtime-3.6-devel')
+  options=('!strip')
+
+  cp -a "${srcdir}/payload/devel/." "${pkgdir}/"
+}
