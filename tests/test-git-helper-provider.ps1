@@ -32,4 +32,19 @@ if ($script -notmatch 'git_extra_native_rebuild' -or $script -notmatch 'aarch64-
     throw 'Exporter must record the native GCC git-extra rebuild.'
 }
 
-'PASS: Git helper exporter pins signed inputs, ARM64 payloads, ownership, and release identities'
+$verifier = Get-Content -LiteralPath "$PSScriptRoot\..\.github\scripts\test-git-helper-provider.ps1" -Raw
+foreach ($required in @(
+    'mingw-w64-aarch64-git-lfs',
+    'mingw-w64-aarch64-git-extra',
+    'git-credential-helper-selector.exe',
+    '0xaa64',
+    'GIT_CONFIG_NOSYSTEM',
+    'version https://git-lfs.github.com/spec/v1',
+    'network_used = $false'
+)) {
+    if (-not $verifier.Contains($required)) {
+        throw "Verifier is missing admission control: $required"
+    }
+}
+
+'PASS: Git helper exporter and verifier pin inputs, ARM64 payloads, ownership, and behavior'
