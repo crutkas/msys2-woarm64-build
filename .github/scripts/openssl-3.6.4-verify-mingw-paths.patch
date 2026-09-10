@@ -1,0 +1,19 @@
+--- a/test/recipes/25-test_verify.t
++++ b/test/recipes/25-test_verify.t
+@@ -650,7 +650,7 @@ ok(!vfy_root("-CAstore", "non-existing", "-CAfile", $rootcert), "CAfile a
+ 
+ SKIP: {
+     skip "file names with colons aren't supported on Windows and VMS", 2
+-        if $^O =~ /^(MSWin32|VMS)$/;
++        if $^O =~ /^(MSWin32|VMS)$/ || config('target') =~ /^mingw/;
+     my $foo_file = "foo:cert.pem";
+     copy($rootcert, $foo_file);
+     ok(vfy_root("-CAstore", $foo_file), "CAstore foo:file");
+@@ -660,6 +660,7 @@ copy($rootcert, $foo_file);
+ ok(vfy_root("-CAstore", $foo_file), "CAstore foo:file");
+ ok(vfy_root("-CAstore", "file:".$foo_file), "CAstore file:foo:file");
+ my $abs_cert = abs_path($rootcert);
++$abs_cert =~ s|^/([A-Za-z])/|/$1:/| if config('target') =~ /^mingw/;
+ # Windows file: URIs should have a path part starting with a slash, i.e.
+ # file://authority/C:/what/ever/foo.pem and file:///C:/what/ever/foo.pem
+ # file://C:/what/ever/foo.pem is non-standard and may not be accepted.
