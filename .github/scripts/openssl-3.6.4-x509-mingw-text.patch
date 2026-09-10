@@ -1,0 +1,30 @@
+--- a/test/recipes/25-test_x509.t
++++ b/test/recipes/25-test_x509.t
+@@ -58,5 +58,9 @@
+ SKIP: {
+     skip "DES disabled", 1 if disabled("des");
+-    skip "Platform doesn't support command line UTF-8", 1 if $^O =~ /^(VMS|msys)$/;
++    my $mingw_target = config('target') =~ /^mingw/;
++
++    local $ENV{OPENSSL_WIN32_UTF8} = 1 if $mingw_target;
++    skip "Platform doesn't support command line UTF-8", 1
++        if $^O =~ /^(VMS|msys)$/ && !$mingw_target;
+ 
+     my $p12 = srctop_file("test", "shibboleth.pfx");
+@@ -509,10 +513,15 @@
+ ok(run(app(["openssl", "x509", "-multi", "-in", $ca_cert])),
+    "Run with -multi (single cert)");
+ 
+ # -multi test with multiple certs
+ my $outfile = result_file("multi.out");
+ ok(run(app(["openssl", "x509", "-multi", "-in", $goodcn2_chain, "-out", $outfile]))
+-   && compare_text($outfile, $goodcn2_chain) == 0,
++   && compare_text($outfile, $goodcn2_chain, sub {
++          my ($left, $right) = @_;
++          $left =~ s/\r\n/\n/g;
++          $right =~ s/\r\n/\n/g;
++          return $left ne $right;
++      }) == 0,
+    "Run with -multi (multiple certs)");
+ 
+ # Tests for signing certs (broken in 1.1.1o)
