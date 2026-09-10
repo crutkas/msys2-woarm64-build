@@ -22,7 +22,7 @@ jobs=$5
 mkdir -p "$output"/{source,build,stage,home,temp,cache}
 cp -a "$source_root/." "$output/source/"
 
-export PATH="$toolchain/bin:/usr/bin"
+export PATH="$toolchain/bin:$iconv_stage/usr/bin:/usr/bin"
 export MSYSTEM=CYGWIN LC_ALL=C
 export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
 export XDG_CACHE_HOME="$output/cache"
