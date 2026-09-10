@@ -1,0 +1,8 @@
+--- a/test/bioprinttest.c
++++ b/test/bioprinttest.c
+@@ -220,1 +220,5 @@
++#if defined(OPENSSL_SYS_WINDOWS)
++        /* The Windows CRT overflows the stack expanding this field width. */
++        .skip_libc_check = true,
++#endif
+         .skip_libc_ret_check = true, .exp_ret = -1 },
