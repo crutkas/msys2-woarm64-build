@@ -1,0 +1,12 @@
+--- a/test/recipes/70-test_sslrecords.t
++++ b/test/recipes/70-test_sslrecords.t
+@@ -43,7 +43,8 @@
+ 
+ SKIP: {
+     skip "DTLS 1.2 is disabled", 22 if disabled("dtls1_2");
+-    skip "DTLSProxy does not work on Windows", 22 if $^O =~ /^(MSWin32)$/;
++    skip "DTLSProxy does not work on Windows", 22
++        if $^O =~ /^(MSWin32)$/ || config('target') =~ /^mingw/;
+     run_tests(1);
+ }
+ 
