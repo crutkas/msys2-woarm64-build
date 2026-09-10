@@ -7,6 +7,13 @@ sdk=$(cygpath -u "$3") output=$(cygpath -u "$4") jobs=$5
 native_python=${WOARM64_NATIVE_PYTHON:-$(command -v python.exe)}
 [[ -n $native_python ]] || { echo "Verified native Python is required" >&2; exit 2; }
 native_python=$(cygpath -u "$native_python")
+runtime_sha=${WOARM64_TC_RUNTIME_SHA256:-}
+import_sha=${WOARM64_TC_IMPORT_SHA256:-}
+crt_sha=${WOARM64_TC_CRT0_SHA256:-}
+[[ $runtime_sha =~ ^[0-9a-f]{64}$ &&
+   $import_sha =~ ^[0-9a-f]{64}$ &&
+   $crt_sha =~ ^[0-9a-f]{64}$ ]] ||
+    { echo "Sealed compiler runtime, import-library, and CRT hashes are required" >&2; exit 2; }
 export PATH="$tc/bin:$sdk/usr/bin:/usr/bin" LC_ALL=C MSYSTEM=CYGWIN
 unset CC CXX CPP CPPFLAGS CFLAGS CXXFLAGS LDFLAGS CONFIG_SITE LIBRARY_PATH COMPILER_PATH GCC_EXEC_PREFIX
 export CC=gcc CXX=g++ CC_FOR_BUILD=gcc AR=ar RANLIB=ranlib LD=ld AS=as NM=nm
@@ -19,6 +26,16 @@ export OMP_NUM_THREADS=1 OPENBLAS_NUM_THREADS=1 WOARM64_NATIVE_ARG_CONVERSION=no
 export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
 export XDG_CACHE_HOME="$output/cache" TERMINFO="$sdk/usr/share/terminfo"
 mkdir -p "$HOME" "$TMPDIR" "$XDG_CACHE_HOME" "$output/source" "$output/stage"
+for sealed_input in \
+    "$runtime_sha:$tc/bin/msys-2.0.dll" \
+    "$import_sha:$tc/aarch64-pc-cygwin/lib/libmsys-2.0.a" \
+    "$crt_sha:$tc/aarch64-pc-cygwin/lib/crt0.o"; do
+    expected=${sealed_input%%:*}
+    input=${sealed_input#*:}
+    actual=$(sha256sum "$input")
+    [[ ${actual%% *} == "$expected" ]] ||
+        { echo "Compiler cohort mismatch: $input" >&2; exit 3; }
+done
 cp -a "$source_root/." "$output/source/"
 script_dir=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
 probe_patcher=$(cygpath -am "$script_dir/patch-bash-wexitstatus-probe.py")
