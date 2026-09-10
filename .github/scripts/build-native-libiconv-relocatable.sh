@@ -6,10 +6,10 @@ set -euo pipefail
     exit 2
 }
 
-source_root=$(cygpath -u "$1")
-toolchain=$(cygpath -u "$2")
-gettext_stage=$(cygpath -u "$3")
-output=$(cygpath -u "$4")
+source_root=$(/usr/bin/cygpath -u "$1")
+toolchain=$(/usr/bin/cygpath -u "$2")
+gettext_stage=$(/usr/bin/cygpath -u "$3")
+output=$(/usr/bin/cygpath -u "$4")
 jobs=$5
 [[ $jobs =~ ^[1-6]$ ]] || exit 2
 
@@ -41,8 +41,8 @@ unset CC CXX CPP CPPFLAGS CFLAGS CXXFLAGS LDFLAGS LIBRARY_PATH COMPILER_PATH GCC
 export CC=gcc CXX=g++ AR=ar RANLIB=ranlib LD=ld AS=as NM=nm STRIP=strip
 export CFLAGS="-O2 -g -fstack-protector-strong"
 export CXXFLAGS="$CFLAGS"
-export CPPFLAGS="-I$(cygpath -m "$gettext_stage/usr/include")"
-export LDFLAGS="-Wl,--no-insert-timestamp -L$(cygpath -m "$gettext_stage/usr/lib")"
+export CPPFLAGS="-I$(/usr/bin/cygpath -m "$gettext_stage/usr/include")"
+export LDFLAGS="-Wl,--no-insert-timestamp -L$(/usr/bin/cygpath -m "$gettext_stage/usr/lib")"
 export PKG_CONFIG_LIBDIR="$gettext_stage/usr/lib/pkgconfig"
 export PKG_CONFIG_SYSROOT_DIR="$gettext_stage"
 export CONFIG_SITE=/dev/null CCACHE_DISABLE=1
@@ -90,8 +90,8 @@ for license in COPYING COPYING.LIB; do
         install -Dm644 "$output/source/$license" "$output/stage/usr/share/licenses/libiconv/$license"
 done
 
-host_locale=$(cygpath -am /usr/share/locale)
-dependency_locale=$(cygpath -m "$gettext_stage/usr/share/locale")
+host_locale=$(/usr/bin/cygpath -am /usr/share/locale)
+dependency_locale=$(/usr/bin/cygpath -m "$gettext_stage/usr/share/locale")
 while IFS= read -r payload; do
     for forbidden_locale in "$host_locale" "$dependency_locale"; do
         if grep -aFq "$forbidden_locale" "$payload"; then
