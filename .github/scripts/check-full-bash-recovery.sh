@@ -19,7 +19,7 @@ export MSYS2_ENV_CONV_EXCL=NATIVE_BASH_TEST_HELPERS
 export BASH_TEST_EVIDENCE="$output/cases"
 unset BASH_ENV ENV
 mkdir -p "$HOME" "$TMPDIR" "$output/runtime/usr/bin" "$output/runtime/etc" \
-    "$BASH_TEST_EVIDENCE"
+    "$output/runtime/tmp" "$output/runtime/var/tmp" "$BASH_TEST_EVIDENCE"
 actual_runtime=$("$host/usr/bin/sha256sum.exe" "$runtime_dll")
 [[ ${actual_runtime%% *} == "$runtime_sha" ]]
 "$host/usr/bin/cp.exe" "$runtime_dll" "$output/runtime/usr/bin/msys-2.0.dll"
