@@ -43,7 +43,7 @@ probe_patcher=$(cygpath -am "$script_dir/patch-bash-wexitstatus-probe.py")
 "$native_python" -I "$probe_patcher" "$output/source"
 loadable_patcher=$(cygpath -am "$script_dir/patch-bash-cygwin-loadables.py")
 "$native_python" -I "$loadable_patcher" "$output/source"
-export MSYS2_ARG_CONV_EXCL='*'
+export MSYS2_ARG_CONV_EXCL='-DLOCALEDIR=;-DLOCALE_ALIAS_PATH=;-DLIBDIR='
 exec > >(tee "$output/build.log") 2>&1
 cat > "$output/dlopen-provider.c" <<'EOF'
 __declspec(dllexport) int native_dlopen_probe(void)
