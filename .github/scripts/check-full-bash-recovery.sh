@@ -60,6 +60,16 @@ for source_tool in "$utilities"/usr/bin/*.exe; do
         "$host/usr/bin/cp.exe" "$source_tool" "$target"
     fi
 done
+for shell_name in bash.exe sh.exe; do
+    source_shell="$root/stage/usr/bin/$shell_name"
+    source_shell_windows=$("$host/usr/bin/cygpath.exe" -w "$source_shell")
+    identity=$("$tc/bin/objdump.exe" -f "$source_shell_windows")
+    [[ $identity == *"file format pei-aarch64-little"* ]]
+    "$host/usr/bin/cp.exe" -f "$source_shell" "$output/runtime/usr/bin/$shell_name"
+    source_hash=$("$host/usr/bin/sha256sum.exe" "$source_shell")
+    runtime_hash=$("$host/usr/bin/sha256sum.exe" "$output/runtime/usr/bin/$shell_name")
+    [[ ${source_hash%% *} == "${runtime_hash%% *}" ]]
+done
 for helper in printenv recho xcase zecho; do
     source_helper="$root/source/tests/$helper.exe"
     source_helper_windows=$("$host/usr/bin/cygpath.exe" -w "$source_helper")
