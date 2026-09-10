@@ -70,11 +70,12 @@ gcc $CPPFLAGS $CFLAGS -static $LDFLAGS \
 export ac_cv_func_dlopen=yes ac_cv_func_dlclose=yes ac_cv_func_dlsym=yes
 cd "$output/source"
 ./configure --build=aarch64-pc-cygwin --host=aarch64-pc-cygwin \
-    --prefix=/usr --sysconfdir=/etc --localstatedir=/var \
+    --prefix=/usr --sysconfdir=/etc --localstatedir=/var --localedir=/usr/share/locale \
     --enable-static-link --enable-readline "--with-installed-readline=$sdk/usr" \
     --enable-nls --enable-multibyte --enable-job-control --without-bash-malloc --with-curses \
     "--with-libintl-prefix=$sdk/usr" "--with-libiconv-prefix=$sdk/usr" \
     bash_cv_dev_stdin=present bash_cv_dev_fd=standard bash_cv_termcap_lib=libncurses
+grep -qx 'localedir = /usr/share/locale' Makefile
 grep -qx '#define WEXITSTATUS_OFFSET 8' config.h
 for feature in HAVE_DLOPEN HAVE_DLCLOSE HAVE_DLSYM; do
     sed -i "s@/\\* #undef $feature \\*/@#define $feature 1@" config.h
@@ -99,6 +100,13 @@ make -j"$jobs" "${make_args[@]}" printenv.exe recho.exe xcase.exe zecho.exe
 cp printenv.exe recho.exe xcase.exe zecho.exe tests/
 make -j1 "${make_args[@]}" DESTDIR="$output/stage" install
 cp "$output/stage/usr/bin/bash.exe" "$output/stage/usr/bin/sh.exe"
+sdk_locale=$(cygpath -m "$sdk/usr/share/locale")
+while IFS= read -r executable; do
+    if grep -aFq "$sdk_locale" "$executable"; then
+        echo "Staged executable retains build-only locale prefix: $executable" >&2
+        exit 3
+    fi
+done < <(find "$output/stage" -type f -name '*.exe' -print)
 install -Dm644 COPYING "$output/stage/usr/share/licenses/bash/COPYING"
 mkdir -p "$output/stage/usr/include/bash" "$output/stage/usr/lib"
 cp libbash.dll.a "$output/stage/usr/lib/"
