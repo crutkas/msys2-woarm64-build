@@ -4,7 +4,8 @@ set -euo pipefail
 root=$(cygpath -u "$1") output=$(cygpath -u "$2") sdk=$(cygpath -u "$3") host=$(cygpath -u "$4")
 [[ $host == / ]] && host=
 here=$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)
-tc=/c/ag-e138920f/tc-cpp-guard-01
+: "${NATIVE_BASH_TEST_TOOLCHAIN:?Need the sealed native Bash test toolchain}"
+tc=$(cygpath -u "$NATIVE_BASH_TEST_TOOLCHAIN")
 [[ -n ${NATIVE_BASH_TEST_UTILITIES:-} && -n ${NATIVE_BASH_TEST_RUNTIME:-} ]]
 utilities=$(cygpath -u "$NATIVE_BASH_TEST_UTILITIES")
 runtime_dll=$(cygpath -u "$NATIVE_BASH_TEST_RUNTIME")
