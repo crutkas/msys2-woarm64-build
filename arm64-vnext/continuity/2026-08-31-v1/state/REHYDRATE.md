@@ -40,6 +40,8 @@ foreach ($n in 32,33,34) {
 }
 git -C .\build-recovery fetch origin crutkas-native-provider-intake
 if ($LASTEXITCODE -ne 0) { throw 'Could not recover the provider branch (no PR)' }
+git -C .\build-recovery fetch origin crutkas-native-git-helper-packages
+if ($LASTEXITCODE -ne 0) { throw 'Could not recover the helper-package evidence branch' }
 ```
 
 Read the evidence directory on each fetched branch. Do not merge branches just
@@ -82,6 +84,7 @@ merely because another receipt mentions it**.
 | Berkeley DB (`2f98bedd`) | Build repo, `crutkas-native-berkeley-db`, PR 13 | Root-cause source is published at `4ff861de52ae8ec5fb36fd1d853f916bb1b21640`. Owner evidence publication requested. Exact completed D70 matrix and timing handoffs are backed up here in `programme-reconciliation/source-receipts/`; complete package/SDK custody requires the owner's export. |
 | MVP assembly and replacement-TLS candidate (`f6ea7713`) | Build repo, `crutkas-full-native-git-assembly`, draft PR 14 | Owner evidence publication requested. Qualified candidate/ZIP binary preservation is **not confirmed here**; do not assume the 186 MB named ZIP is in Git. Independent verification and dependency-closure exports above preserve measured identities and failures even if a binary must be rebuilt. |
 | Provider ledger/admission (`a2dd0a44`, pipeline `2160ef10`) | Build repo, [`crutkas-native-provider-intake`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-provider-intake); **NO PR** (creation returned 422 twice, per coordinator) | **Published and remote directories confirmed** at `3ebc0c133105c77496ae80d4ea76fad7ed463c80`: [`arm64-vnext/evidence/provider-intake/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-intake/README.md) covers ordered contracts, rejected libintl-selection captures and limited roles; [`arm64-vnext/evidence/provider-admission/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-admission/README.md) covers strict authority, OpenSSL/header scopes and ledger v20-v42. Provider-intake `manifest.json` SHA-256 `df94ef731519e129e1dde7b497be7b501726366c2326b85b3f0f9291b1f8c65e` was verified from GitHub bytes. **No archives or payload binaries** are included: replacement OpenSSL payload custody is still separate. Search this branch directly, not only the PR list. |
+| Git helpers / GnuPG dependencies (`6b81b146`) | Build repo, [`crutkas-native-git-helper-packages`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-git-helper-packages) | **Published and remote root confirmed** at `2460d9fbd50a894c774e938670fae27ece1202cf`: [`arm64-vnext/evidence/git-helper-packages/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/2460d9fbd50a894c774e938670fae27ece1202cf/arm64-vnext/evidence/git-helper-packages/README.md), with per-file SHA-256 and `ORIGINS.tsv`. Includes Git LFS/git-extra evidence, later runtime907 client-only MSYS OpenSSH admission, crypto/libxcrypt dependency records and GnuPG work. Ledger v42's runtime907 GMP versus d70 conflict remains explicit. The interrupted libgcrypt `1-04` run proves no completed test/package success. No archives, PE binaries, private keyrings or build trees are included. |
 
 **Publication gaps are explicit, not absence claims.** Owners were pushing in
 parallel during shutdown. If an entry says requested/unconfirmed, inspect that
@@ -260,6 +263,16 @@ Limited libintl admission is two C DLLs plus six licenses; its default
 `/clangarm64/share/locale` CLI lookup failed before/after moves. Retained PCRE2
 10.48-1 lacks a signed-source/repro receipt and cannot be replaced by renaming
 10.48-3's incompatible `libpcre2-8-0.dll`.
+
+**Later helper evidence, not a retroactive artifact upgrade:** the newly
+published helper branch above records a separately admitted **runtime907,
+exact-dependency-scoped, client-only native MSYS OpenSSH provider-03**. Preserve
+this later scope rather than repeating the old global "no native MSYS provider"
+snapshot as current. It does not show that the historically tested portable-SSH
+artifact was replaced or that full GSSAPI/server/release integration completed.
+Likewise its clean runtime907 GMP admission cannot be consumed with selected
+d70 GMP: ledger v42 records that package conflict, and interrupted GnuPG/
+libgcrypt work remains unfinished.
 
 ## 5. The strict blocker truth: 81, not 59
 
