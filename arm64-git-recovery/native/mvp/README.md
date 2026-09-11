@@ -53,7 +53,10 @@ An assembly or static import audit is not an admission verdict.
    an exact command/response, and a wrong-host-key rejection. Keys and ACL
    changes are confined to new disposable fixture files. No service or real
    user SSH configuration is changed. The Windows client needs `PROGRAMDATA`
-   in its otherwise sanitized OS environment.
+   in its otherwise sanitized OS environment. With `--git NATIVE-GIT`, the
+   server runs the actual native `git upload-pack`, and the client clones and
+   fetches real commits over SSH, checks object integrity, and rejects a Git
+   clone with the wrong host key. This is not a simulated Git protocol.
 8. `moved_replay.py` creates byte-identical diagnostic ZIPs from two independent
    directories, extracts into different paths containing spaces, and starts
    fresh functional and live-attestation subprocesses. Local replay is not
@@ -70,6 +73,13 @@ An assembly or static import audit is not an admission verdict.
     bytes and measured payload modules against the exact root. Original
     producer/admission receipt JSONs and their restrictions travel in
     `provenance.json`; a receipt hash alone is not substituted for its contents.
+11. `verify_handoff.py --archive ZIP --receipt RECEIPT.json --receipt-sha256 SHA
+    --output NEW-OUTPUT --pwsh NATIVE-PWSH` checks the final archive and every
+    extracted file, requires archive-supplied runtime directories, runs the
+    extracted `recreate.ps1` with the shipped Python, and compares ZIP bytes.
+    It then executes all twelve real cases and the console launcher from the
+    newly extracted spaced path. Its detached result binds final-ZIP custody;
+    it does not rewrite the earlier independent payload/SSH/module receipts.
 
 The first-artifact filename is
 `arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip`. Do **not** use that name,
@@ -90,7 +100,7 @@ runtime qualification. It is consumed, never rebuilt here.
 | Corrected diagnostic root | Twelve real local/runtime/HTTPS cases passed; input bytes unchanged | Full child-exit or module attestation |
 | Observer integration | 230/230 generations observed; exact 1792/32256 contracts accepted; a separate negative-hook Bash 256 stayed rejected | A blanket exit-status decoder |
 | Relocation | Two byte-identical diagnostic archives and two fresh moved functional runs | Publication authorization |
-| Controlled SSH | Native portable client authenticated; wrong host key was rejected | MSYS OpenSSH, GSSAPI, or installed service support |
+| Controlled SSH | Native portable client authenticated; real encrypted Git clone/fetch and fsck passed; wrong host key rejected | MSYS OpenSSH, GSSAPI, or installed service support |
 
 The independent subset-fixture bare-clone AV is retained as reported evidence.
 The full extraction subsequently passed plain bare clone and bare
