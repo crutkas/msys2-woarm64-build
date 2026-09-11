@@ -5,10 +5,31 @@ import tempfile
 import unittest
 
 from artifact import ArtifactError, sha256
-from seal import bind_evidence, bind_plan, require_evidence
+from seal import bind_evidence, bind_plan, require_evidence, source_enricher
 
 
 class SealControls(unittest.TestCase):
+    def test_tree_resolution_keeps_roles_and_does_not_invent_source_commits(self):
+        source = {"repository": "https://github.com/example/recipes", "commit": "1" * 40,
+                  "tree": None, "identity_role": "recipe, not upstream source"}
+        provenance = {"source": source, "admission": "limited"}
+        plan = {"components": [{"provenance": provenance}]}
+        record = {"repository": source["repository"], "commit": source["commit"],
+                  "tree": "2" * 40, "lookup": "https://api.github.com/example"}
+        resolution = {"scope": "Git object identity only", "records": [record]}
+        enrich = source_enricher(plan, resolution, "receipt")
+        result = enrich(provenance)
+        self.assertIsNone(source["tree"])
+        self.assertEqual(result["source"]["tree"], "2" * 40)
+        self.assertEqual(result["source"]["identity_role"], source["identity_role"])
+        unknown = {"source": {"repository": "different", "commit": None, "tree": None}}
+        self.assertEqual(enrich(unknown), unknown)
+        with self.assertRaises(ArtifactError):
+            enrich({"source": {**source, "tree": "3" * 40}})
+        for records in ([record, record], [{**record, "commit": "4" * 40}], [{**record, "tree": "unknown"}]):
+            with self.subTest(records=records), self.assertRaises(ArtifactError):
+                source_enricher(plan, {**resolution, "records": records}, "receipt")
+
     def test_evidence_must_describe_the_actual_payload_and_complete_replay(self):
         files = {"usr/bin/msys-2.0.dll": {"sha256": "runtime"}, "usr/bin/ssh.exe": {"sha256": "client"}}
         cases = [[str(index), "PASS"] for index in range(12)]

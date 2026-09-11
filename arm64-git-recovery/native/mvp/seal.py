@@ -1,8 +1,10 @@
 """Seal a first-artifact directory only after explicit functional, observer and admission gates pass."""
 
 import argparse
+import copy
 import json
 import os
+import re
 from pathlib import Path
 import shutil
 import subprocess
@@ -76,6 +78,34 @@ def bind_evidence(results, files, manifest_sha256):
                 raise ArtifactError("Entrypoint loaded a different or non-native payload module")
 
 
+def source_enricher(plan, resolution, receipt_sha256):
+    selected = {(row["provenance"]["source"].get("repository"), row["provenance"]["source"].get("commit"))
+                for row in plan["components"]}
+    identities = {}
+    for record in resolution["records"]:
+        key = record["repository"], record["commit"]
+        if (key not in selected or key in identities
+                or not re.fullmatch(r"[0-9a-f]{40}", record["commit"])
+                or not re.fullmatch(r"[0-9a-f]{40}", record["tree"])):
+            raise ArtifactError("Source resolution has an unknown, duplicate or malformed Git identity")
+        identities[key] = record
+
+    def enrich(provenance):
+        result = copy.deepcopy(provenance)
+        source = result["source"]
+        record = identities.get((source.get("repository"), source.get("commit")))
+        if record:
+            if source.get("tree") not in (None, record["tree"]):
+                raise ArtifactError("Source resolution contradicts an existing tree identity")
+            result["source_identity_enrichment"] = {
+                "original_tree": source.get("tree"), "receipt_sha256": receipt_sha256,
+                "lookup": record["lookup"], "scope": resolution["scope"]}
+            source["tree"] = record["tree"]
+        return result
+
+    return enrich
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--spec", type=Path, required=True)
@@ -92,6 +122,13 @@ def main():
     assembly = bound_json({"path": str(args.manifest), "sha256": spec["assembly_manifest_sha256"]})
     plan = bound_json({"path": str(args.plan), "sha256": spec["assembly_plan_sha256"]})
     receipt_records, component_records = bind_plan(assembly, plan)
+    resolution = None
+    enrich = copy.deepcopy
+    if "source_resolution" in spec:
+        resolution = bound_json(spec["source_resolution"])
+        if resolution["assembly_plan_sha256"] != spec["assembly_plan_sha256"]:
+            raise ArtifactError("Source identity resolution belongs to a different assembly plan")
+        enrich = source_enricher(plan, resolution, spec["source_resolution"]["sha256"])
     files = inventory(root)
     if {name: row["sha256"] for name, row in files.items()} != {name: row["sha256"] for name, row in assembly["files"].items()}:
         raise ArtifactError("Final payload differs from its exact assembly manifest")
@@ -129,7 +166,10 @@ def main():
                   "limitations": assembly["limitations"], "publication_authority": spec["publication_authority"]}
     provenance["evidence_limitations"] = spec.get("evidence_limitations", [])
     provenance["admission_and_producer_receipts"] = receipt_records
-    provenance["components"] = component_records
+    provenance["components"] = {name: enrich(record) for name, record in component_records.items()}
+    if resolution is not None:
+        provenance["source_identity_resolution"] = resolution
+        provenance["source_identity_resolution_sha256"] = spec["source_resolution"]["sha256"]
     write_json(payload / "provenance.json", provenance)
     write_json(payload / "replay-results.json", {name: {"passed": result.get("passed"), "source_sha256": spec["evidence"][name]["sha256"]}
                                               for name, result in results.items()})
@@ -173,7 +213,7 @@ def main():
         row["archive_mode"] = "0100644"
         row["reparse_point"] = False
         if name in assembly["files"]:
-            row["provenance"] = assembly["files"][name]["provenance"]
+            row["provenance"] = enrich(assembly["files"][name]["provenance"])
             row["original_alias"] = assembly["files"][name].get("alias")
         else:
             row["provenance"] = {"source": source, "role": "artifact manifest, evidence or recreation tooling"}

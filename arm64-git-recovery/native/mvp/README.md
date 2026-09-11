@@ -119,6 +119,10 @@ not rewritten to impersonate another namespace.
 Missing source-specific provenance must remain a limitation, not a guessed
 commit. At publication, the generated handoff must name one exact assembly
 source commit/tree and preserve the producer identities for every component.
+An optional hash-bound `source_resolution` receipt can supply the published
+tree for an already-pinned commit. The seal rejects unknown commits or
+contradictory trees, preserves the original tree value and evidence reference,
+and keeps recipe identities distinct from upstream-source/build attestations.
 Artifact digests belong in detached receipts: embedding a ZIP's own digest
 inside that ZIP would be self-referential.
 
