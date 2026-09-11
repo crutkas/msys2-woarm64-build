@@ -13,9 +13,13 @@ sys.path.insert(0, str(Path(__file__).resolve().parent.parent))
 from bounded_process import run
 from artifact import ArtifactError, bound_json, inventory, safe_path, sha256, write_json
 from moved_replay import extract
+from seal import ARTIFACT_NAME
 
 
 def read_archive(archive, receipt):
+    if (receipt.get("artifact") != ARTIFACT_NAME or receipt.get("publication_authorized") is not True
+            or receipt.get("deterministic_recreation") is not True):
+        raise ArtifactError("Final readback requires an authorized, deterministically sealed artifact receipt")
     if sha256(archive) != receipt["sha256"] or archive.stat().st_size != receipt["size"]:
         raise ArtifactError("Archive differs from the detached artifact receipt")
     with zipfile.ZipFile(archive) as source:

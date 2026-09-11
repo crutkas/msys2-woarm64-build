@@ -5,6 +5,7 @@ import unittest
 
 from artifact import ArtifactError, deterministic_zip, inventory, sha256, write_json
 from moved_replay import extract
+from seal import ARTIFACT_NAME
 from verify_handoff import read_archive
 
 
@@ -25,6 +26,7 @@ class HandoffReadbackControls(unittest.TestCase):
         write_json(root / "manifest.json", {"top_source": source, "files": files})
         archive = base / "fixture.zip"
         receipt = {**deterministic_zip(root, archive), "source": source,
+                   "artifact": ARTIFACT_NAME, "publication_authorized": True, "deterministic_recreation": True,
                    "manifest_sha256": sha256(root / "manifest.json")}
         return archive, receipt
 
@@ -41,7 +43,8 @@ class HandoffReadbackControls(unittest.TestCase):
         with tempfile.TemporaryDirectory() as directory:
             archive, receipt = self.fixture(Path(directory))
             for key, value in (("sha256", "wrong"), ("size", 0), ("manifest_sha256", "wrong"),
-                               ("source", {"commit": "other"})):
+                               ("source", {"commit": "other"}), ("publication_authorized", False),
+                               ("deterministic_recreation", False), ("artifact", "diagnostic.zip")):
                 with self.subTest(key=key), self.assertRaises(ArtifactError):
                     read_archive(archive, {**receipt, key: value})
         for option in ("omit_directory", "wrong_files", "wrong_machine"):
