@@ -58,6 +58,18 @@ An assembly or static import audit is not an admission verdict.
    directories, extracts into different paths containing spaces, and starts
    fresh functional and live-attestation subprocesses. Local replay is not
    relabelled independent remote artifact custody.
+9. `check_launcher.py --root ROOT --output NEW-RESULTS` exercises the actual
+   CMD-to-login-Bash entrypoint with bounded commands and private configuration.
+   Redirected console execution does not certify interactive PTY/job control.
+10. `seal.py --spec SEAL.json --root ROOT --manifest MANIFEST.json --plan PLAN.json
+    --output NEW-OUTPUT` requires successful, hash-bound evidence and explicit
+    publication authority. The specification includes `assembly_manifest_sha256`,
+    `assembly_plan_sha256`, `top_source`, `publication_authority`,
+    `publication_authorized`, `evidence`, and `evidence_limitations`.
+    It checks observer inventory, independent replay identity, SSH/runtime
+    bytes and measured payload modules against the exact root. Original
+    producer/admission receipt JSONs and their restrictions travel in
+    `provenance.json`; a receipt hash alone is not substituted for its contents.
 
 The first-artifact filename is
 `arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip`. Do **not** use that name,

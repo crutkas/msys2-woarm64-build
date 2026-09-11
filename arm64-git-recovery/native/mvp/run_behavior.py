@@ -43,7 +43,9 @@ def main():
         cases = output / "work/cases.tsv"
         report["cases"] = [line.split("\t", 2) for line in cases.read_text().splitlines()] if cases.is_file() else []
         report["inputs_unchanged"] = inventory(root) == before
-        report["passed"] = report["process"]["passed"] and report["inputs_unchanged"] and len(report["cases"]) >= 11
+        report["passed"] = (report["process"]["passed"] and report["inputs_unchanged"]
+                            and len(report["cases"]) == 12
+                            and all(len(row) >= 2 and row[1] == "PASS" for row in report["cases"]))
     finally:
         write_json(output / "result.json", report)
     print(json.dumps({"passed": report["passed"], "case_count": len(report.get("cases", [])),

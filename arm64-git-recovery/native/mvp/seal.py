@@ -22,11 +22,66 @@ def require_evidence(spec):
     return results
 
 
+def bind_plan(assembly, plan):
+    components = {component["id"]: component for component in plan["components"]}
+    if len(components) != len(plan["components"]):
+        raise ArtifactError("Duplicate component identity in the assembly plan")
+    if plan["top_source"] != assembly["top_source"] or plan.get("limitations", []) != assembly["limitations"]:
+        raise ArtifactError("Assembly source or limitations differ from the exact input plan")
+    for name, row in assembly["files"].items():
+        owners = row["components"]
+        if not owners or not set(owners).issubset(components):
+            raise ArtifactError(f"Assembly file has no exact input-plan component: {name}")
+        if row["provenance"] != components[owners[0]]["provenance"]:
+            raise ArtifactError(f"Assembly file provenance differs from its input plan: {name}")
+    receipts = {}
+    for component in components.values():
+        for item in component.get("receipts", []):
+            receipts[item["sha256"]] = bound_json(item)
+    return receipts, {name: component["provenance"] for name, component in components.items()}
+
+
+def bind_evidence(results, files, manifest_sha256):
+    observer = results["observer"]
+    if observer.get("source_manifest") != {name: row["sha256"] for name, row in files.items()}:
+        raise ArtifactError("Observer evidence does not describe this exact payload")
+    if (observer.get("observer_passed") is not True or not observer.get("created_processes")
+            or observer["created_processes"] != observer.get("observed_processes")):
+        raise ArtifactError("Observer evidence has incomplete process-generation coverage")
+    for name in ("behavior", "observer"):
+        cases = results[name].get("cases", [])
+        if len(cases) != 12 or any(len(row) < 2 or row[1] != "PASS" for row in cases):
+            raise ArtifactError(f"The complete twelve-case {name} result is required")
+    independent = results["independent_replay"]
+    if (independent.get("candidate_manifest_sha256") != manifest_sha256
+            or any(independent.get(key) is not True for key in
+                   ("original_candidate_unchanged", "private_candidate_unchanged", "owned_jobs_drained"))):
+        raise ArtifactError("Independent replay is not bound to this unchanged payload")
+    if results["behavior"].get("runtime_sha256") != files["usr/bin/msys-2.0.dll"]["sha256"]:
+        raise ArtifactError("Behavior evidence used a different runtime")
+    if results["ssh"].get("client_sha256") != files["usr/bin/ssh.exe"]["sha256"]:
+        raise ArtifactError("SSH evidence used a different client")
+    cases = results["entrypoints"].get("cases", [])
+    if len(cases) != 4 or {case["name"] for case in cases} != {"bash", "git", "https-helper", "python"}:
+        raise ArtifactError("Four responsive native entrypoint checkpoints are required")
+    for case in cases:
+        if not case.get("modules") or case.get("native_process", {}).get("Passed") is not True:
+            raise ArtifactError("Entrypoint process or module evidence is missing")
+        payload_modules = [module for module in case["modules"] if module["location"] == "payload"]
+        if not payload_modules:
+            raise ArtifactError("Entrypoint checkpoint has no measured payload module")
+        for module in payload_modules:
+            row = files.get(module["payload_path"])
+            if not row or row["sha256"] != module["sha256"] or module["machine"] != "0xAA64":
+                raise ArtifactError("Entrypoint loaded a different or non-native payload module")
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--spec", type=Path, required=True)
     parser.add_argument("--root", type=Path, required=True)
     parser.add_argument("--manifest", type=Path, required=True)
+    parser.add_argument("--plan", type=Path, required=True)
     parser.add_argument("--output", type=Path, required=True)
     args = parser.parse_args()
     spec = json.loads(args.spec.read_text(encoding="utf-8"))
@@ -34,10 +89,13 @@ def main():
     root, output = args.root.resolve(), args.output.resolve()
     if output.exists():
         raise ArtifactError("Final artifact output must be fresh")
-    assembly = json.loads(args.manifest.read_text(encoding="utf-8"))
+    assembly = bound_json({"path": str(args.manifest), "sha256": spec["assembly_manifest_sha256"]})
+    plan = bound_json({"path": str(args.plan), "sha256": spec["assembly_plan_sha256"]})
+    receipt_records, component_records = bind_plan(assembly, plan)
     files = inventory(root)
     if {name: row["sha256"] for name, row in files.items()} != {name: row["sha256"] for name, row in assembly["files"].items()}:
         raise ArtifactError("Final payload differs from its exact assembly manifest")
+    bind_evidence(results, files, spec["assembly_manifest_sha256"])
     source = spec.get("top_source", assembly["top_source"])
     if not source.get("commit") or not source.get("tree"):
         raise ArtifactError("The artifact must name one exact top-of-stack source identity")
@@ -64,10 +122,14 @@ def main():
         shutil.copyfile(item["path"], evidence_dir / f"{name}.json")
     provenance = {"schema": 1, "artifact": ARTIFACT_NAME, "milestone": "limited native engineering MVP, not RTM",
                   "top_source": source, "assembly_manifest_sha256": sha256(args.manifest),
+                  "assembly_plan_sha256": sha256(args.plan),
                   "original_assembly_source": assembly["top_source"],
                   "evidence": {name: {"file": f"evidence/{name}.json", "sha256": item["sha256"]}
                                for name, item in spec["evidence"].items()},
                   "limitations": assembly["limitations"], "publication_authority": spec["publication_authority"]}
+    provenance["evidence_limitations"] = spec.get("evidence_limitations", [])
+    provenance["admission_and_producer_receipts"] = receipt_records
+    provenance["components"] = component_records
     write_json(payload / "provenance.json", provenance)
     write_json(payload / "replay-results.json", {name: {"passed": result.get("passed"), "source_sha256": spec["evidence"][name]["sha256"]}
                                               for name, result in results.items()})
@@ -86,8 +148,14 @@ def main():
         "A ZIP cannot embed its own final digest; its exact artifact hash is in the adjacent receipt.\n\n"
         "Supported evidence covers native Bash, local Git/hooks/recursive clones, verified HTTPS,\n"
         "controlled SSH public-key/host-key checks, fork/pipeline/subshell, filesystem and signals.\n"
-        "Admission scopes and independent moved-root replay are in `provenance.json` and `evidence/`.\n\n"
+        "Admission scopes and independent moved-root replay are in `provenance.json` and `evidence/`.\n"
+        "Use `git commit -m` and non-paged commands: an interactive editor, terminal emulator,\n"
+        "Git GUI/gitk launch workflow, and interactive credential services are not qualified.\n\n"
+        "The configured `winsymlinks:sys` links have MSYS POSIX semantics. Windows/UCRT\n"
+        "applications do not necessarily dereference them: do not treat them as native\n"
+        "Windows symlinks or claim Git symlink checkout/compiler-source-link compatibility.\n\n"
         "## Explicit limitations\n\n" + "".join(f"- {item}\n" for item in assembly["limitations"]) +
+        "".join(f"- {item}\n" for item in spec.get("evidence_limitations", [])) +
         "\nIssue/contact route: the linked assembly source pull request in the crutkas fork.\n"
     )
     (payload / "README-HANDOFF.md").write_text(readme, encoding="utf-8", newline="\n")
@@ -135,7 +203,7 @@ def main():
                "manifest_sha256": sha256(payload / "manifest.json"), "source": source,
                "archiver": {"payload_path": "mingwarm64/bin/python.exe", "sha256": archiver_sha},
                "deterministic_recreation": True, "publication_authorized": True,
-               "limitations": assembly["limitations"]})
+               "limitations": assembly["limitations"] + spec.get("evidence_limitations", [])})
     print(json.dumps(first))
 
 
