@@ -1,0 +1,70 @@
+diff --git a/tidy/zipman.sh b/tidy/zipman.sh
+index 9da6948..b955963 100644
+--- a/tidy/zipman.sh
++++ b/tidy/zipman.sh
+@@ -33,11 +33,12 @@ packaging_options+=('zipman')
+ tidy_zipman() {
+ 	if check_option "zipman" "y" && [[ -n ${MAN_DIRS[*]} ]]; then
+ 		msg2 "$(gettext "Compressing man and info pages...")"
+-		local file files inode link
++		local file files inode link
++		local -a links
++		mapfile -d '' -t links < <(find "${MAN_DIRS[@]}" -type l -print0 2>/dev/null)
+ 		while read -rd ' ' inode; do
+ 			IFS= read -r file
+-			find "${MAN_DIRS[@]}" -type l -print0 2>/dev/null |
+-			while IFS= read -rd '' link ; do
++			for link in "${links[@]}"; do
+ 				if [[ "${file}" -ef "${link}" ]] ; then
+ 					rm -f "$link" "${link}.gz"
+ 					if [[ ${file%/*} = "${link%/*}" ]]; then
+@@ -47,7 +48,7 @@ tidy_zipman() {
+ 						ln -s -- "/${file}.gz" "${link}.gz"
+ 					fi
+ 				fi
+-			done
++			done
+ 			if [[ -z ${files[$inode]} ]]; then
+ 				files[$inode]=$file
+ 				gzip -9 -n -f "$file"
+@@ -55,7 +56,7 @@ tidy_zipman() {
+ 				ln "${files[$inode]}.gz" "${file}.gz"
+ 				chmod 644 "${file}.gz"
+ 			fi
+-		done < <(find "${MAN_DIRS[@]}" -type f \! -name "*.gz" \! -name "*.bz2" \
+-			-exec stat -c '%i %n' '{}' + 2>/dev/null)
++		done < <(find "${MAN_DIRS[@]}" -type f \! -name "*.gz" \! -name "*.bz2" \
++			-printf '%i %p\n' 2>/dev/null)
+ 	fi
+ }
+diff --git a/util/dirsize.sh b/util/dirsize.sh
+index 960bf30..031327a 100644
+--- a/util/dirsize.sh
++++ b/util/dirsize.sh
+@@ -24,17 +24,15 @@ LIBMAKEPKG_UTIL_DIRSIZE_SH=1
+ # find the total filesize of all files in the current directory while only
+ # counting multiply hardlinked files once
+ dirsize() {
+-	local file inode
++	local inode size links total=0
+ 	declare -A files
+ 
+-	{
+-		find . -type f -links 1 -exec cat {} + 2>/dev/null
+-		while read -rd ' ' inode; do
+-			IFS= read -r file
+-			if [[ -z ${files[$inode]} ]]; then
+-				files[$inode]=found
+-				cat "$file"
+-			fi
+-		done < <(find . -type f -links +1 -exec stat -c '%i %n' {} + 2>/dev/null)
+-	} | wc -c
++	while read -r inode size links; do
++		if (( links == 1 )) || [[ -z ${files[$inode]+found} ]]; then
++			files[$inode]=found
++			(( total += size ))
++		fi
++	done < <(find . -type f -printf '%i %s %n\n' 2>/dev/null)
++
++	printf '%s\n' "$total"
+ }
