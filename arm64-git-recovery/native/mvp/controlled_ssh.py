@@ -14,6 +14,14 @@ import sys
 from artifact import ArtifactError, pe_identity, sha256, write_json
 
 
+def known_hosts_option(name, path):
+    value = Path(path).resolve().as_posix()
+    if any(character in value for character in '"\r\n\0'):
+        raise ArtifactError("The private known-hosts path cannot be represented in OpenSSH configuration")
+    # Shell argv quoting does not protect whitespace from OpenSSH's own -o parser.
+    return f'{name}="{value}"'
+
+
 async def exercise(client, driver, output, bash=None, git=None):
     sys.path.insert(0, str(driver))
     import asyncssh
@@ -170,8 +178,8 @@ async def exercise(client, driver, output, bash=None, git=None):
         for label, hosts in (("correct-host-key", known), ("wrong-host-key", wrong)):
             command = [str(client), "-F", str(output / "empty_config"), "-p", str(port),
                        "-i", str(key_file), "-o", "BatchMode=yes", "-o", "IdentitiesOnly=yes",
-                       "-o", "StrictHostKeyChecking=yes", "-o", f"UserKnownHostsFile={hosts}",
-                       "-o", f"GlobalKnownHostsFile={output / 'empty_config'}",
+                       "-o", "StrictHostKeyChecking=yes", "-o", known_hosts_option("UserKnownHostsFile", hosts),
+                       "-o", known_hosts_option("GlobalKnownHostsFile", output / "empty_config"),
                        "-o", "ConnectTimeout=10", "-o", "ProxyCommand=none",
                        "mvp-fixture@127.0.0.1", "prove", nonce]
             if bash is not None:
@@ -195,8 +203,8 @@ async def exercise(client, driver, output, bash=None, git=None):
             def transport(hosts):
                 arguments = [client.as_posix(), "-F", (output / "empty_config").as_posix(),
                              "-i", key_file.as_posix(), "-o", "BatchMode=yes", "-o", "IdentitiesOnly=yes",
-                             "-o", "StrictHostKeyChecking=yes", "-o", f"UserKnownHostsFile={hosts.as_posix()}",
-                             "-o", f"GlobalKnownHostsFile={(output / 'empty_config').as_posix()}",
+                             "-o", "StrictHostKeyChecking=yes", "-o", known_hosts_option("UserKnownHostsFile", hosts),
+                             "-o", known_hosts_option("GlobalKnownHostsFile", output / "empty_config"),
                              "-o", "ConnectTimeout=10", "-o", "ProxyCommand=none"]
                 return {"GIT_SSH_COMMAND": shlex.join(arguments), "GIT_SSH_VARIANT": "ssh"}
 

@@ -84,10 +84,17 @@ def main():
         raise ArtifactError("The private SSH fixture differs from its exact manifest")
     output.mkdir(parents=True)
     moved = output / "fresh moved Git Bash extraction"
+    tools = Path(__file__).resolve().parent
+    tool_paths = [tools / name for name in ("verify_handoff.py", "artifact.py", "moved_replay.py", "seal.py",
+                                           "run_behavior.py", "check_launcher.py", "controlled_ssh.py")]
+    tool_paths.append(tools.parent / "bounded_process.py")
+    tool_hashes = {str(path): sha256(path) for path in tool_paths}
     report = {"schema": 1, "passed": False, "archive_sha256": receipt["sha256"],
               "receipt_sha256": args.receipt_sha256, "manifest_sha256": receipt["manifest_sha256"],
               "ssh_fixture_manifest_sha256": args.ssh_driver_manifest_sha256,
               "source": receipt["source"], "steps": [],
+              "source_role": "Immutable artifact assembly/seal source, not the potentially newer replay controller",
+              "verification_tooling_sha256": tool_hashes,
               "scope": "Fresh final-ZIP readback, byte-identical shipped-archiver recreation and actual moved native behavior/launcher/encrypted Git SSH; prior module checkpoints remain separately byte-bound"}
     try:
         extract(archive, moved, expected)
@@ -103,7 +110,6 @@ def main():
         environment.update({"HOME": str(output / "home"), "USERPROFILE": str(output / "home"),
                             "TMP": str(output), "TEMP": str(output)})
         recreated = output / "recreated.zip"
-        tools = Path(__file__).resolve().parent
         commands = [
             ("recreation", [args.pwsh, "-NoProfile", "-File", moved / "recreate.ps1", "-Output", recreated], 600),
             ("behavior", [sys.executable, "-B", tools / "run_behavior.py",
@@ -134,12 +140,14 @@ def main():
         report["receipt_unchanged"] = sha256(args.receipt) == args.receipt_sha256
         report["ssh_fixture_unchanged"] = inventory(args.ssh_driver) == fixture_before
         report["ssh_fixture_manifest_unchanged"] = sha256(args.ssh_driver_manifest) == args.ssh_driver_manifest_sha256
+        report["verification_tooling_unchanged"] = all(sha256(path) == digest for path, digest in tool_hashes.items())
         report["file_count"] = len(expected)
         report["arm64_pe_count"] = sum(row["machine"] == "0xAA64" for row in expected.values())
         report["deterministic_recreation"] = True
         report["passed"] = all(report[key] for key in
                                ("extraction_unchanged", "archive_unchanged", "receipt_unchanged",
                                 "ssh_fixture_unchanged", "ssh_fixture_manifest_unchanged"))
+        report["passed"] = report["passed"] and report["verification_tooling_unchanged"]
     finally:
         write_json(output / "result.json", report)
     print(json.dumps(report))

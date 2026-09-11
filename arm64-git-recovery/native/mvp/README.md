@@ -64,6 +64,11 @@ An assembly or static import audit is not an admission verdict.
    server runs the actual native `git upload-pack`, and the client clones and
    fetches real commits over SSH, checks object integrity, and rejects a Git
    clone with the wrong host key. This is not a simulated Git protocol.
+   Known-hosts paths are quoted for OpenSSH's own `-o` parser as well as shell
+   argv transport: both the payload and private evidence directories may have
+   spaces. The initial independent final-ZIP replay exposed this fixture bug;
+   its failed SSH result remains preserved, separate from successful archive,
+   behavior and launcher results. No artifact bytes or host-key policy changed.
 8. `moved_replay.py` creates byte-identical diagnostic ZIPs from two independent
    directories, extracts into different paths containing spaces, and starts
    fresh functional and live-attestation subprocesses. Local replay is not
@@ -91,6 +96,8 @@ An assembly or static import audit is not an admission verdict.
     fixture must match its complete manifest before and after execution.
     Its detached result binds final-ZIP custody;
     it does not rewrite the earlier independent payload/SSH/module receipts.
+    Replay-controller file hashes and before/after invariance are distinct
+    from the immutable artifact's original assembly source commit/tree.
 
 The first-artifact filename is
 `arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip`. Do **not** use that name,
