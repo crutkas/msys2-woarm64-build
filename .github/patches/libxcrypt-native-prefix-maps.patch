@@ -1,0 +1,28 @@
+diff --git a/build-msys-library.sh b/build-msys-library.sh
+index c54334f..7353b0e 100755
+--- a/build-msys-library.sh
++++ b/build-msys-library.sh
+@@ -17,10 +17,22 @@ dependency=
+ if [[ $# == 6 ]]; then dependency=$(cygpath -u "$6"); fi
+ [[ $package != gettext-msys || -n $dependency ]] || { echo "Native iconv dependency required" >&2; exit 3; }
+ [[ $package != xz-msys || -n $dependency ]] || { echo "Native iconv/gettext dependencies required" >&2; exit 3; }
++canonical_source=/usr/src/debug/libxcrypt-4.5.2
++source_map=$(cygpath -am "$output/source")
++build_map=$(cygpath -am "$output/build")
++toolchain_map=$(cygpath -am "$toolchain")
+ export PATH="$toolchain/bin:/usr/bin" LC_ALL=C
+ unset CC CXX CPP CFLAGS CXXFLAGS CPPFLAGS LDFLAGS CONFIG_SITE GCC_EXEC_PREFIX COMPILER_PATH LIBRARY_PATH
+ export CC=gcc CXX=g++ AR=ar RANLIB=ranlib LD=ld AS=as NM=nm STRIP=strip OBJDUMP=objdump
+-export CFLAGS="-O2 -g -fstack-protector-strong" CXXFLAGS="-O2 -g -fstack-protector-strong" LDFLAGS="-Wl,--no-insert-timestamp"
++prefix_maps="-ffile-prefix-map=$source_map=$canonical_source"
++prefix_maps+=" -fdebug-prefix-map=$source_map=$canonical_source"
++prefix_maps+=" -fmacro-prefix-map=$source_map=$canonical_source"
++prefix_maps+=" -fdebug-prefix-map=$build_map=$canonical_source/build"
++prefix_maps+=" -fdebug-prefix-map=$toolchain_map=/usr/src/debug/native-msys-toolchain"
++export CFLAGS="-O2 -g -fstack-protector-strong $prefix_maps"
++export CXXFLAGS="$CFLAGS"
++export LDFLAGS="-Wl,--no-insert-timestamp"
++export MSYS2_ARG_CONV_EXCL='-ffile-prefix-map=;-fdebug-prefix-map=;-fmacro-prefix-map='
+ export MAKEFLAGS=-j1 MFLAGS=-j1 OMP_NUM_THREADS=1 CMAKE_BUILD_PARALLEL_LEVEL=1
+ export CONFIG_SITE=/dev/null CCACHE_DISABLE=1
+ if [[ -n $dependency ]]; then
