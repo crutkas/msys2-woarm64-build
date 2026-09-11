@@ -1,0 +1,211 @@
+#!/usr/bin/env perl
+# Validate in private files; publish each artifact atomically and its receipt last.
+use strict;
+use warnings;
+use Cwd qw(abs_path);
+use Digest::SHA qw(sha256_hex);
+use File::Basename qw(dirname basename);
+use File::Spec;
+use File::Temp qw(tempdir tempfile);
+use Fcntl qw(:flock);
+use Getopt::Long qw(GetOptions);
+use JSON::PP;
+
+my ($mode, $cpu, $generator, $exports, $definition, $assembly, $offsets, $header);
+my @inputs;
+GetOptions ('mode=s' => \$mode, 'cpu=s' => \$cpu, 'generator=s' => \$generator,
+            'exports=s' => \$exports, 'definition=s' => \$definition,
+            'assembly=s' => \$assembly, 'offsets=s' => \$offsets,
+            'header=s' => \$header, 'input=s@' => \@inputs)
+  or die "Invalid runtime-generation options\n";
+die "Expected --mode tls or signals\n" unless defined $mode && $mode =~ /^(tls|signals)$/;
+die "Unsupported runtime-generation CPU\n" unless defined $cpu && $cpu =~ /^(aarch64|x86_64)$/;
+die "Missing generator or offsets\n" unless defined $generator && defined $offsets;
+$generator = abs_path ($generator) // die "Generator does not exist\n";
+$offsets = File::Spec->rel2abs ($offsets);
+my $directory = dirname ($offsets);
+die "Output directory does not exist\n" unless -d $directory;
+open my $lock, '>>', "$directory/.runtime-generation.lock" or die "Open generation lock: $!\n";
+flock ($lock, LOCK_EX) or die "Lock runtime generation: $!\n";
+my $json = JSON::PP->new->canonical->pretty;
+
+sub read_file {
+  my ($path) = @_;
+  open my $file, '<:raw', $path or die "Read $path: $!\n";
+  local $/;
+  my $data = <$file>;
+  close $file or die "Close $path: $!\n";
+  return $data // '';
+}
+
+sub file_hash { return sha256_hex (read_file ($_[0])); }
+
+sub validate_tls {
+  my ($path) = @_;
+  my %values;
+  for my $line (split /\n/, read_file ($path)) {
+    $line =~ s/#.*//;
+    next if $line =~ /^\s*$/;
+    my ($name, $value) = $line =~ /^\s*\.equ\s+(_cygtls\.[A-Za-z_]\w*)\s*,\s*(-?\d+)\s*$/;
+    die "Malformed TLS offset: $line\n" unless defined $name;
+    die "Duplicate TLS offset $name\n" if exists $values{$name};
+    $values{$name} = 0 + $value;
+  }
+  for my $field (qw(start_offset initialized stacklock stackptr stack incyg current_sig saved_errno errno_addr context)) {
+    die "Missing TLS signal field $field\n" unless exists $values{"_cygtls.$field"};
+  }
+  my $start = $values{'_cygtls.start_offset'};
+  die "Invalid TLS start offset\n" if $start >= 0 || $start % 16;
+  for my $name (keys %values) {
+    next if $name eq '_cygtls.start_offset';
+    if ($name =~ /_p$/) {
+      (my $base = $name) =~ s/_p$//;
+      die "Unpaired TLS offset $name\n" unless exists $values{$base};
+      next;
+    }
+    die "Inconsistent TLS pair $name\n"
+      unless $values{$name} >= $start && $values{$name} < 0
+        && exists $values{"${name}_p"} && $values{"${name}_p"} == $values{$name} - $start;
+  }
+  my %alignment = (initialized => 4, stacklock => 4, incyg => 4, current_sig => 4,
+                   saved_errno => 4, stackptr => 8, stack => 8, errno_addr => 8, context => 16);
+  for my $field (keys %alignment) {
+    die "Misaligned TLS field $field\n" if $values{"_cygtls.$field"} % $alignment{$field};
+  }
+  my $size = $values{'_cygtls.initialized'} - $values{'_cygtls.stack'};
+  die "Invalid TLS signal stack\n"
+    unless $values{'_cygtls.stackptr'} + 8 == $values{'_cygtls.stack'} && $size >= 16 && $size % 8 == 0;
+}
+
+sub export_names {
+  my ($path, $conditional) = @_;
+  my (%names, @enabled);
+  @enabled = (1);
+  my $started = 0;
+  for my $line (split /\n/, read_file ($path)) {
+    $line =~ s/^\s+|\s+$//g;
+    if ($conditional) {
+      if ($line =~ /^#(ifdef|ifndef)\s+(__aarch64__|__x86_64__)$/) {
+        my $matches = $2 eq ($cpu eq 'aarch64' ? '__aarch64__' : '__x86_64__');
+        push @enabled, $enabled[-1] && ($1 eq 'ifdef' ? $matches : !$matches);
+        next;
+      }
+      if ($line eq '#endif') {
+        die "Unmatched export #endif\n" if @enabled == 1;
+        pop @enabled;
+        next;
+      }
+      die "Unsupported source-export conditional $line\n" if $line =~ /^#\s*(if|ifdef|ifndef|else|elif|endif)\b/;
+    }
+    next unless $enabled[-1];
+    $line =~ s/#.*//;
+    $line =~ s/^\s+|\s+$//g;
+    next unless length $line;
+    if (!$started) {
+      $started = 1 if lc ($line) eq 'exports';
+      next;
+    }
+    my ($name) = split /[\s=]/, $line;
+    die "Malformed export $name\n" unless $name =~ /^[A-Za-z_.\$\?\@][\w.\$\?\@]*$/;
+    die "Duplicate export $name\n" if $names{$name}++;
+  }
+  die "Missing or unterminated export list\n" unless $started && %names && @enabled == 1;
+  return join "\n", sort keys %names;
+}
+
+sub validate_signals {
+  my ($def, $asm) = @_;
+  die "Generated export list differs from source\n" unless export_names ($exports, 1) eq export_names ($def, 0);
+  my $text = read_file ($asm);
+  die "Signal generator produced empty assembly\n" unless length $text;
+  my (%labels, %public, %required);
+  while ($text =~ /^([A-Za-z_.\$][\w.\$]*):/mg) {
+    die "Duplicate assembly label $1\n" if $labels{$1}++;
+  }
+  while ($text =~ /^\s*\.(?:global|globl)\s+([A-Za-z_.\$][\w.\$]*)\s*$/mg) {
+    $public{$1} = 1;
+  }
+  my $definition_text = read_file ($def);
+  while ($definition_text =~ /=\s*(_sigfe\w+)\s*$/mg) { $required{$1} = 1; }
+  die "No generated signal exports\n" unless %required;
+  my @core = qw(_sigfe _sigfe_maybe _sigbe sigdelayed _sigdelayed_end sigsetjmp siglongjmp setjmp longjmp stabilize_sig_stack);
+  for my $name (keys %required, @core) {
+    die "Missing assembly provider $name\n" unless $labels{$name};
+  }
+  for my $name (keys %required, qw(_sigbe sigdelayed _sigdelayed_end sigsetjmp siglongjmp setjmp longjmp)) {
+    die "Assembly provider is not public: $name\n" unless $public{$name};
+  }
+}
+
+my @outputs;
+my $receipt;
+my %configuration = (mode => $mode, cpu => $cpu, generator => $generator);
+if ($mode eq 'tls') {
+  die "Missing TLS header or compiler setting\n" unless defined $header && length ($ENV{CXXCOMPILE} // '');
+  $header = abs_path ($header) // die "TLS header does not exist\n";
+  $configuration{compiler} = $ENV{CXXCOMPILE};
+  @outputs = ($offsets);
+  $receipt = "$offsets.generation.json";
+  push @inputs, $header;
+} else {
+  die "Missing signal generation paths\n" unless defined $exports && defined $definition && defined $assembly;
+  $exports = abs_path ($exports) // die "Export source does not exist\n";
+  $definition = File::Spec->rel2abs ($definition);
+  $assembly = File::Spec->rel2abs ($assembly);
+  die "Signal outputs must share the TLS directory\n"
+    unless dirname ($definition) eq $directory && dirname ($assembly) eq $directory;
+  validate_tls ($offsets);
+  @outputs = ($assembly, $definition);
+  $receipt = "$assembly.generation.json";
+  push @inputs, $exports, $offsets;
+}
+push @inputs, $generator, abs_path ($0);
+my %input_hashes = map {
+  my $path = abs_path ($_) // die "Generation prerequisite does not exist: $_\n";
+  ($path => file_hash ($path))
+} @inputs;
+my $signature = {configuration => \%configuration, files => \%input_hashes};
+if (-f $receipt) {
+  my $previous = $json->decode (read_file ($receipt));
+  die "Unsupported runtime-generation receipt\n" unless $previous->{schema} == 1;
+  if ($json->encode ($previous->{inputs}) eq $json->encode ($signature)) {
+    for my $path (@outputs) {
+      die "Generated artifact changed or missing: $path; regenerate explicitly after removing its receipt\n"
+        unless -f $path && exists $previous->{outputs}{$path} && file_hash ($path) eq $previous->{outputs}{$path};
+    }
+    $mode eq 'tls' ? validate_tls ($offsets) : validate_signals ($definition, $assembly);
+    exit 0;
+  }
+}
+
+my $temporary = tempdir ('.runtime-generation-XXXXXX', DIR => $directory, CLEANUP => 1);
+my @staged = map { "$temporary/" . basename ($_) } @outputs;
+my @command = $mode eq 'tls'
+  ? ('bash', $generator, $header, $staged[0])
+  : ($^X, $generator, "--cpu=$cpu", "--output-def=$staged[1]", $exports);
+my $child = fork ();
+die "Fork generation failed: $!\n" unless defined $child;
+if ($child == 0) {
+  if ($mode eq 'signals') {
+    chdir $temporary or die "Enter private generation directory: $!\n";
+  }
+  exec @command or die "Execute generator: $!\n";
+}
+waitpid ($child, 0) == $child or die "Wait for generator: $!\n";
+die "Runtime generator failed (status $?)\n" if $?;
+$mode eq 'tls' ? validate_tls ($staged[0]) : validate_signals ($staged[1], $staged[0]);
+for my $path (keys %input_hashes) {
+  die "Generation input changed: $path\n" unless file_hash ($path) eq $input_hashes{$path};
+}
+my %hashes;
+for my $i (0 .. $#outputs) {
+  $hashes{$outputs[$i]} = file_hash ($staged[$i]);
+  # Keep timestamps stable when a legitimate dependency touch changed no bytes.
+  next if -f $outputs[$i] && file_hash ($outputs[$i]) eq $hashes{$outputs[$i]};
+  rename $staged[$i], $outputs[$i] or die "Publish $outputs[$i]: $!\n";
+}
+my ($record, $record_path) = tempfile ('.runtime-receipt-XXXXXX', DIR => $directory, UNLINK => 1);
+print {$record} $json->encode ({schema => 1, inputs => $signature, outputs => \%hashes})
+  or die "Write generation receipt: $!\n";
+close $record or die "Close generation receipt: $!\n";
+rename $record_path, $receipt or die "Publish generation receipt: $!\n";
