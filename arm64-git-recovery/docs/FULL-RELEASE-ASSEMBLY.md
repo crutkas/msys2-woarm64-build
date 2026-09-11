@@ -76,6 +76,15 @@ is rejected. Relative package paths are resolved beside the export. Package
 identity and dependencies are read back from `.PKGINFO`; the export cannot
 override them.
 
+When an archive contains `.MTREE`, the assembler reads either its normal
+gzip-compressed form or plain text, applies `/set` and `/unset` defaults,
+decodes escaped filenames, and validates every recorded archive member's type,
+size, supported digest, and symlink target. This includes `.PKGINFO`,
+`.BUILDINFO`, and other package metadata whenever the MTREE records them.
+Malformed, duplicate, or conflicting MTREE entries are hard failures. Historical
+minimal fixtures are still accepted when they omit `.MTREE`; the check does not
+invent a new manifest for an archive that never supplied one.
+
 Exact package/archive identities listed in `rejected_package_archives` are hard
 failures, not optional blockers. This keeps a revoked or mislabeled archive
 from becoming admissible merely because it is referenced by another otherwise

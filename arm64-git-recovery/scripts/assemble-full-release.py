@@ -4,6 +4,7 @@ from __future__ import annotations
 
 import argparse
 import fnmatch
+import gzip
 import hashlib
 import json
 import posixpath
@@ -195,6 +196,271 @@ def parse_pkginfo(data: bytes) -> dict:
     }
 
 
+MTREE_DIGESTS = {
+    "md5": "md5",
+    "md5digest": "md5",
+    "sha1": "sha1",
+    "sha1digest": "sha1",
+    "sha256": "sha256",
+    "sha256digest": "sha256",
+    "sha384": "sha384",
+    "sha384digest": "sha384",
+    "sha512": "sha512",
+    "sha512digest": "sha512",
+}
+
+
+def mtree_tokens(line: str) -> list[str]:
+    tokens = []
+    token = []
+    escaped = False
+    for character in line:
+        if escaped:
+            token.append(character)
+            escaped = False
+        elif character == "\\":
+            token.append(character)
+            escaped = True
+        elif character.isspace():
+            if token:
+                tokens.append("".join(token))
+                token = []
+        else:
+            token.append(character)
+    if escaped:
+        raise ContractError("Malformed MTREE escape at end of line")
+    if token:
+        tokens.append("".join(token))
+    return tokens
+
+
+def decode_mtree_token(value: str) -> str:
+    result = bytearray()
+    index = 0
+    while index < len(value):
+        character = value[index]
+        if character != "\\":
+            result.extend(character.encode("utf-8"))
+            index += 1
+            continue
+        if index + 1 >= len(value):
+            raise ContractError("Malformed MTREE escape at end of token")
+        octal = value[index + 1:index + 4]
+        if len(octal) == 3 and all(digit in "01234567" for digit in octal):
+            result.append(int(octal, 8))
+            index += 4
+        else:
+            result.extend(value[index + 1].encode("utf-8"))
+            index += 2
+    try:
+        return result.decode("utf-8", errors="strict")
+    except UnicodeDecodeError as error:
+        raise ContractError("MTREE token is not valid UTF-8") from error
+
+
+def parse_mtree(data: bytes) -> dict[str, dict[str, str | None]]:
+    if data.startswith(b"\x1f\x8b"):
+        try:
+            data = gzip.decompress(data)
+        except (OSError, EOFError) as error:
+            raise ContractError("Package has malformed gzip-compressed .MTREE") from error
+    try:
+        lines = data.decode("utf-8", errors="strict").splitlines()
+    except UnicodeDecodeError as error:
+        raise ContractError("Package .MTREE is not valid UTF-8") from error
+
+    defaults: dict[str, str | None] = {}
+    entries: dict[str, dict[str, str | None]] = {}
+    for line_number, raw_line in enumerate(lines, 1):
+        line = raw_line.strip()
+        if not line or line.startswith("#"):
+            continue
+        tokens = mtree_tokens(line)
+        if not tokens:
+            continue
+        if tokens[0] == "/set":
+            if len(tokens) == 1:
+                raise ContractError(f"Malformed MTREE /set on line {line_number}")
+            seen = set()
+            for token in tokens[1:]:
+                key, separator, value = token.partition("=")
+                if not separator or not key or key in seen:
+                    raise ContractError(f"Malformed MTREE /set on line {line_number}")
+                seen.add(key)
+                defaults[key] = decode_mtree_token(value)
+            continue
+        if tokens[0] == "/unset":
+            if len(tokens) == 1:
+                raise ContractError(f"Malformed MTREE /unset on line {line_number}")
+            for key in tokens[1:]:
+                if "=" in key:
+                    raise ContractError(f"Malformed MTREE /unset on line {line_number}")
+                if key == "all":
+                    defaults.clear()
+                else:
+                    defaults.pop(key, None)
+            continue
+        if tokens[0].startswith("/"):
+            raise ContractError(
+                f"Unsupported MTREE directive on line {line_number}: {tokens[0]}"
+            )
+
+        decoded_path = decode_mtree_token(tokens[0])
+        while decoded_path.startswith("./"):
+            decoded_path = decoded_path[2:]
+        if decoded_path in ("", "."):
+            rel = "."
+        else:
+            rel = safe_relative(decoded_path)
+        if rel in entries:
+            raise ContractError(f"Duplicate MTREE entry: {rel}")
+
+        attributes = dict(defaults)
+        seen = set()
+        for token in tokens[1:]:
+            key, separator, value = token.partition("=")
+            if not key or key in seen:
+                raise ContractError(f"Malformed MTREE entry on line {line_number}")
+            seen.add(key)
+            attributes[key] = decode_mtree_token(value) if separator else None
+        entries[rel] = attributes
+    if not entries:
+        raise ContractError("Package .MTREE has no entries")
+    return entries
+
+
+def validate_mtree(
+    archive: tarfile.TarFile,
+    archive_name: str,
+    members: dict[str, tarfile.TarInfo],
+    data: bytes,
+) -> None:
+    entries = parse_mtree(data)
+    implicit_directories = {
+        PurePosixPath(path).parent.as_posix()
+        for path in members
+        if PurePosixPath(path).parent.as_posix() != "."
+    }
+    for path in list(members):
+        parent = PurePosixPath(path).parent
+        while parent.as_posix() != ".":
+            implicit_directories.add(parent.as_posix())
+            parent = parent.parent
+
+    data_cache: dict[str, bytes] = {}
+
+    def member_data(rel: str, resolving: set[str] | None = None) -> bytes:
+        if rel in data_cache:
+            return data_cache[rel]
+        member = members[rel]
+        if member.islnk():
+            target = safe_relative(member.linkname)
+            if target not in members:
+                raise ContractError(
+                    f"Package hardlink target is missing: {archive_name}:{rel} -> {target}"
+                )
+            resolving = set() if resolving is None else set(resolving)
+            if rel in resolving:
+                raise ContractError(f"Package hardlink cycle: {archive_name}:{rel}")
+            resolving.add(rel)
+            value = member_data(target, resolving)
+        else:
+            extracted = archive.extractfile(member)
+            if extracted is None:
+                raise ContractError(f"Cannot read package member: {archive_name}:{rel}")
+            value = extracted.read()
+        data_cache[rel] = value
+        return value
+
+    for rel, attributes in entries.items():
+        expected_type = attributes.get("type")
+        if rel == ".":
+            if expected_type != "dir":
+                raise ContractError("MTREE root entry must have type=dir")
+            continue
+        member = members.get(rel)
+        if member is None:
+            if expected_type == "dir" and rel in implicit_directories:
+                continue
+            raise ContractError(f"MTREE entry has no archive member: {archive_name}:{rel}")
+
+        if member.isdir():
+            actual_type = "dir"
+        elif member.issym():
+            actual_type = "link"
+        elif member.isfile() or member.islnk():
+            actual_type = "file"
+        else:
+            raise ContractError(f"Unsupported package member type: {archive_name}:{rel}")
+        if expected_type != actual_type:
+            raise ContractError(
+                f"MTREE type mismatch for {archive_name}:{rel}: "
+                f"expected {expected_type!r}, got {actual_type!r}"
+            )
+
+        if member.issym():
+            safe_symlink_target(rel, member.linkname)
+            expected_target = attributes.get("link")
+            if expected_target is None:
+                raise ContractError(
+                    f"MTREE symlink has no link target: {archive_name}:{rel}"
+                )
+            if expected_target != member.linkname:
+                raise ContractError(
+                    f"MTREE link mismatch for {archive_name}:{rel}: "
+                    f"expected {expected_target!r}, got {member.linkname!r}"
+                )
+        elif member.islnk():
+            target = safe_relative(member.linkname)
+            if target not in members:
+                raise ContractError(
+                    f"Package hardlink target is missing: {archive_name}:{rel} -> {target}"
+                )
+            if members[target].isdir() or members[target].issym():
+                raise ContractError(
+                    f"Package hardlink target is not a file: "
+                    f"{archive_name}:{rel} -> {target}"
+                )
+
+        size_value = attributes.get("size")
+        digest_values = [
+            (key, algorithm, attributes[key])
+            for key, algorithm in MTREE_DIGESTS.items()
+            if key in attributes
+        ]
+        if size_value is not None or digest_values:
+            if actual_type != "file":
+                raise ContractError(
+                    f"MTREE size/digest recorded for non-file: {archive_name}:{rel}"
+                )
+            content = member_data(rel)
+            if size_value is not None:
+                try:
+                    expected_size = int(size_value)
+                except (TypeError, ValueError) as error:
+                    raise ContractError(
+                        f"Malformed MTREE size for {archive_name}:{rel}"
+                    ) from error
+                if expected_size < 0 or expected_size != len(content):
+                    raise ContractError(
+                        f"MTREE size mismatch for {archive_name}:{rel}: "
+                        f"expected {expected_size}, got {len(content)}"
+                    )
+            for key, algorithm, expected_digest in digest_values:
+                if expected_digest is None or not re.fullmatch(
+                    rf"[0-9A-Fa-f]{{{hashlib.new(algorithm).digest_size * 2}}}",
+                    expected_digest,
+                ):
+                    raise ContractError(
+                        f"Malformed MTREE {key} for {archive_name}:{rel}"
+                    )
+                actual_digest = hashlib.new(algorithm, content).hexdigest()
+                if actual_digest != expected_digest.lower():
+                    raise ContractError(
+                        f"MTREE {key} mismatch for {archive_name}:{rel}: "
+                        f"expected {expected_digest.lower()}, got {actual_digest}"
+                    )
+
 def dependency_name(value: str) -> str:
     for operator in (">=", "<=", "=", ">", "<"):
         if operator in value:
@@ -380,10 +646,28 @@ def inspect_archive(path: Path, expected_sha256: str, declared_name: str | None 
     links: dict[str, str] = {}
     pkginfo = None
     with tarfile.open(path, "r:*") as archive:
+        members: dict[str, tarfile.TarInfo] = {}
         for member in archive.getmembers():
             rel = safe_relative(member.name)
+            if rel in members:
+                raise ContractError(f"Duplicate package member: {path.name}:{rel}")
+            members[rel] = member
+        mtree_member = members.get(".MTREE")
+        if mtree_member is not None:
+            if not mtree_member.isfile():
+                raise ContractError(f"Package .MTREE is not a regular file: {path.name}")
+            extracted = archive.extractfile(mtree_member)
+            if extracted is None:
+                raise ContractError(f"Cannot read .MTREE from {path.name}")
+            validate_mtree(archive, path.name, members, extracted.read())
+
+        for rel, member in members.items():
             if rel in PACKAGE_METADATA:
                 if rel == ".PKGINFO":
+                    if not member.isfile():
+                        raise ContractError(
+                            f"Package .PKGINFO is not a regular file: {path.name}"
+                        )
                     extracted = archive.extractfile(member)
                     if extracted is None:
                         raise ContractError(f"Cannot read .PKGINFO from {path.name}")

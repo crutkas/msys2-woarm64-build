@@ -1,8 +1,11 @@
 import importlib.util
+import gzip
 import hashlib
+import io
 import json
 from pathlib import Path
 import struct
+import tarfile
 import tempfile
 import unittest
 
@@ -74,6 +77,131 @@ class PackageLinkTests(unittest.TestCase):
     def test_relative_symlink_cannot_escape_archive_root(self):
         with self.assertRaises(ASSEMBLER.ContractError):
             ASSEMBLER.safe_symlink_target("usr/lib/terminfo", "../../../outside")
+
+
+class PackageMtreeTests(unittest.TestCase):
+    def setUp(self):
+        self.temporary = tempfile.TemporaryDirectory()
+        self.root = Path(self.temporary.name)
+        self.pkginfo = (
+            b"pkgname = mtree-test\n"
+            b"pkgver = 1.0-1\n"
+            b"arch = aarch64\n"
+            b"license = MIT\n"
+        )
+        self.payload = b"payload\n"
+
+    def tearDown(self):
+        self.temporary.cleanup()
+
+    @staticmethod
+    def mtree_file(path, data):
+        return (
+            f"./{path} size={len(data)} "
+            f"sha256digest={hashlib.sha256(data).hexdigest()}"
+        )
+
+    def write_package(self, name, buildinfo, *, recorded_buildinfo=None,
+                      compress_mtree=True):
+        recorded_buildinfo = (
+            buildinfo if recorded_buildinfo is None else recorded_buildinfo
+        )
+        lines = [
+            "#mtree",
+            "/set type=file uid=0 gid=0 mode=644",
+            self.mtree_file(".PKGINFO", self.pkginfo),
+            self.mtree_file(".BUILDINFO", recorded_buildinfo),
+            self.mtree_file("usr/share/example\\040name.txt", self.payload),
+            "/unset type",
+            "./usr/share/current.txt type=link link=example\\040name.txt",
+            (
+                "./usr/share/hard.txt type=file "
+                f"size={len(self.payload)} "
+                f"sha256digest={hashlib.sha256(self.payload).hexdigest()}"
+            ),
+        ]
+        mtree = ("\n".join(lines) + "\n").encode("utf-8")
+        if compress_mtree:
+            mtree = gzip.compress(mtree, mtime=0)
+
+        package = self.root / name
+        with tarfile.open(package, "w") as archive:
+            for path, data in (
+                (".PKGINFO", self.pkginfo),
+                (".BUILDINFO", buildinfo),
+                (".MTREE", mtree),
+                ("usr/share/example name.txt", self.payload),
+            ):
+                member = tarfile.TarInfo(path)
+                member.size = len(data)
+                archive.addfile(member, io.BytesIO(data))
+            symlink = tarfile.TarInfo("usr/share/current.txt")
+            symlink.type = tarfile.SYMTYPE
+            symlink.linkname = "example name.txt"
+            archive.addfile(symlink)
+            hardlink = tarfile.TarInfo("usr/share/hard.txt")
+            hardlink.type = tarfile.LNKTYPE
+            hardlink.linkname = "usr/share/example name.txt"
+            archive.addfile(hardlink)
+        return package
+
+    def inspect(self, package):
+        return ASSEMBLER.inspect_archive(
+            package,
+            hashlib.sha256(package.read_bytes()).hexdigest(),
+            "mtree-test",
+        )
+
+    def test_valid_gzip_mtree_accepts_metadata_escaped_paths_and_links(self):
+        package = self.write_package("valid.pkg.tar", b"builddir = /old\n")
+
+        inspected = self.inspect(package)
+
+        self.assertEqual("mtree-test", inspected["name"])
+        self.assertIn("usr/share/example name.txt", inspected["files"])
+        self.assertEqual("symlink", inspected["links"]["usr/share/current.txt"]["kind"])
+        self.assertEqual("hardlink", inspected["links"]["usr/share/hard.txt"]["kind"])
+
+    def test_modified_buildinfo_with_only_outer_hash_changed_is_rejected(self):
+        package = self.write_package(
+            "stale.pkg.tar",
+            b"builddir = /new\n",
+            recorded_buildinfo=b"builddir = /old\n",
+        )
+
+        with self.assertRaisesRegex(
+            ASSEMBLER.ContractError,
+            r"MTREE sha256digest mismatch.*\.BUILDINFO",
+        ):
+            self.inspect(package)
+
+    def test_regenerated_plain_mtree_accepts_modified_buildinfo(self):
+        package = self.write_package(
+            "fixed.pkg.tar",
+            b"builddir = /new\n",
+            compress_mtree=False,
+        )
+
+        inspected = self.inspect(package)
+
+        self.assertEqual("1.0-1", inspected["version"])
+
+    def test_duplicate_mtree_entry_is_rejected(self):
+        data = (
+            "#mtree\n"
+            "/set type=file\n"
+            "./file size=1\n"
+            "./file size=1\n"
+        ).encode("utf-8")
+
+        with self.assertRaisesRegex(ASSEMBLER.ContractError, "Duplicate MTREE entry"):
+            ASSEMBLER.parse_mtree(data)
+
+    def test_conflicting_attributes_in_one_mtree_entry_are_rejected(self):
+        data = b"#mtree\n/set type=file\n./file size=1 size=2\n"
+
+        with self.assertRaisesRegex(ASSEMBLER.ContractError, "Malformed MTREE entry"):
+            ASSEMBLER.parse_mtree(data)
 
 
 class ProviderPayloadFilterTests(unittest.TestCase):
