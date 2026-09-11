@@ -1,0 +1,203 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T10:56:07.7180696Z",
+  "status": "VERIFIED_SCOPED_CYGWIN_MSYS_ARM64_SDK_HEADER_PROVIDER",
+  "providerClass": "cygwin-msys-arm64-sdk-header-cohort",
+  "upstream": {
+    "export95": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-export-95\\handoff.json",
+      "sha256": "b093731b7c3b33c642cdaa0b3b93409443c338ac8db528f4b003bce9ce16391f"
+    },
+    "manifest95": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-export-95.manifest.json",
+      "sha256": "fe195ea1e42be22957c843fdb7210494662fdcda1392d6665901345e995c6527",
+      "entries": 1687,
+      "verified": 1687,
+      "mismatches": 0
+    },
+    "manifest96": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-export-96.manifest.json",
+      "sha256": "fe195ea1e42be22957c843fdb7210494662fdcda1392d6665901345e995c6527",
+      "entries": 1687,
+      "verified": 1687,
+      "mismatches": 0
+    },
+    "independentExports": {
+      "byteIdentical": true,
+      "verifiedFilesAcrossBoth": 3374,
+      "manifestEntryDifferences": 0,
+      "rootMismatches": 0
+    }
+  },
+  "payload": {
+    "cohortFiles": 1656,
+    "manifest": {
+      "path": "upstream/cohort/manifest.json",
+      "sha256": "668a3a678aa4244d9429fabca0b5ff2ef5c8bb30463032fd630c143d05a28c23"
+    },
+    "declaredActualPathDifferences": 0,
+    "unsafeOrPrivatePaths": 0,
+    "links": 0,
+    "changedFiles": [
+      "psdk_inc/intrin-impl.h"
+    ],
+    "contentDifferencesFromBaseline": 1,
+    "header": {
+      "path": "upstream/cohort/include/psdk_inc/intrin-impl.h",
+      "sha256": "c1effd54a4cc7679fd9265648cac815d4e107738b8e8892bed78974da6273c47",
+      "bytes": 81140
+    },
+    "existingAbiOverlay": {
+      "_cygwin.h": "db5bd8c4b428f42b28b76a9cedac9a8f769c86fbf83a00d867108de4458e234c",
+      "basetsd.h": "b11cebf83ecccd053b41bd96402f8ebffb165688abac8c97e7197fd1a3802026"
+    }
+  },
+  "sourceAuthority": {
+    "repository": "https://github.com/mingw-w64/mingw-w64.git",
+    "revision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba",
+    "archiveSha256": "41878f44fe3b6c347fc99ab8a90d384f61bd3ae25cfb2a62a7e24d4f0d14f720",
+    "archiveEntries": 6707,
+    "unsafeArchiveEntries": 0,
+    "sourceLockSha256": "2eab26b4cf3deac716cf3ef5f725579656df79e0059997de9efc2397158fc23e",
+    "patches": [
+      {
+        "sha256": "8567a8816086ed46436c9452edcb48a8b232385a423385b649fbebb51a917974",
+        "applyCheck": "pass"
+      },
+      {
+        "sha256": "3967efec4820d00d639c7b7907633351f445ca0c23da6e5f6e6a178a07e9de3f",
+        "applyCheck": "pass"
+      }
+    ],
+    "normalizedOutputs": {
+      "_cygwin.h": "db5bd8c4b428f42b28b76a9cedac9a8f769c86fbf83a00d867108de4458e234c",
+      "basetsd.h": "b11cebf83ecccd053b41bd96402f8ebffb165688abac8c97e7197fd1a3802026",
+      "psdk_inc/intrin-impl.h": "c1effd54a4cc7679fd9265648cac815d4e107738b8e8892bed78974da6273c47"
+    }
+  },
+  "qualification": {
+    "target": "aarch64-pc-cygwin",
+    "compilerSdkInventory": {
+      "files": 3043,
+      "sha256": "141a68595cd49221e39d3d07376c317db79b2cbcc99746b12a8486c6715f97a5",
+      "requiredCompilerEntries": 9,
+      "mismatches": 0
+    },
+    "runtime907": {
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "bytes": 30874017
+    },
+    "independentRuns": [
+      {
+        "name": "run-a",
+        "controls": 13,
+        "createdProcesses": 29,
+        "observedProcesses": 29,
+        "failures": 0
+      },
+      {
+        "name": "run-b",
+        "controls": 13,
+        "createdProcesses": 29,
+        "observedProcesses": 29,
+        "failures": 0
+      }
+    ],
+    "baseline": "rejected: missing release-capable public exchange in exchange_public_32",
+    "outlined": "__aarch64_swp4_acq_rel and __aarch64_swp8_acq_rel",
+    "inline": "ldaxr/stlxr for 32-bit, 64-bit, and pointer exchange",
+    "x64Preprocess": {
+      "baselineSha256": "524a943edf6fe9cdd3a9c8fc18b47bcb77e15879bc70d92351cd3ed169e50acd",
+      "patchedSha256": "524a943edf6fe9cdd3a9c8fc18b47bcb77e15879bc70d92351cd3ed169e50acd",
+      "equivalent": true,
+      "executionClaim": false
+    },
+    "nativeBehavior": "32-bit, 64-bit, and pointer exchange return/store behavior passed in outlined and inline modes",
+    "sealingReruns": {
+      "cases": 4,
+      "rawZero": 4,
+      "observed": 4,
+      "expected": 4,
+      "gaps": 0,
+      "highExits": 0,
+      "prePostImageShaEqual": 4,
+      "machines": [
+        "0xAA64"
+      ]
+    },
+    "overlayControls": {
+      "fresh": 0,
+      "idempotent": 0,
+      "trackedDrift": 1,
+      "untrackedDrift": 1
+    },
+    "localEvidence": {
+      "entries": 67,
+      "verified": 67,
+      "mismatches": 0,
+      "manifestSha256": "468ff68061d4b490f4e35b8bbf3a1c28a52db137a260d7cbde8a5b340bb3a7e8"
+    }
+  },
+  "metadata": {
+    "licenseFiles": [
+      {
+        "path": "licenses/COPYING",
+        "bytes": 2326,
+        "sha256": "99a69660981156c21336fdb5661f89341b013c94e4bf9e1c7467b4745718397f"
+      },
+      {
+        "path": "licenses/COPYING.MinGW-w64-runtime.txt",
+        "bytes": 10936,
+        "sha256": "e9b2dc02451ea29092a1f25fa0f3c07207ed421f1807dffb0c4e6dce69dee7bd"
+      },
+      {
+        "path": "licenses/COPYING.MinGW-w64.txt",
+        "bytes": 5905,
+        "sha256": "f38e6194bd3bfa1b654f118e5acefe0aead437bbe669eee43957ccc65a7127f1"
+      },
+      {
+        "path": "licenses/DISCLAIMER",
+        "bytes": 2245,
+        "sha256": "039ed6b4f31bb7fb97e733170b58cc435335352e4745734fcfd113877fdaf340"
+      },
+      {
+        "path": "licenses/DISCLAIMER.PD",
+        "bytes": 454,
+        "sha256": "87f33608570312a0f2a9745edcb2527275df813b13982e8c3b3f893d88a4141a"
+      }
+    ],
+    "dependencies": [
+      {
+        "kind": "build-consumer",
+        "target": "aarch64-pc-cygwin",
+        "compilerSha256": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+        "cc1Sha256": "b8046275497c4e8f4d056530ef2e956d1b7672a0e5eb15ad56fde5bf44e76b0a",
+        "selection": [
+          "-isysroot",
+          "<export>/upstream/cohort"
+        ]
+      },
+      {
+        "kind": "qualification-only-runtime",
+        "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "admittedByThisExport": false
+      }
+    ]
+  },
+  "intakeManifest": {
+    "path": "manifests/provider-files.json",
+    "sha256": "a99656631c8cc060eaa3264f70a923fde97a9c3125bb092d05ced489c2f1325d",
+    "entries": 1760
+  },
+  "boundaries": [
+    "header-only SDK/sysroot provider",
+    "fresh private Cygwin/MSYS ARM64 compiler/sysroot consumers only",
+    "separate from MinGW ARM64 bootstrap header provider",
+    "consumer binaries require rebuild under new identities",
+    "no GCC, CRT, runtime, package, Perl, OpenSSL, or full-release admission",
+    "no in-place shared-prefix mutation",
+    "no forced ARM intrinsic macros",
+    "no weak-memory stress claim",
+    "no x64 execution claim"
+  ]
+}

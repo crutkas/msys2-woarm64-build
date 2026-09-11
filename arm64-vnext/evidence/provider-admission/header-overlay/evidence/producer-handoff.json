@@ -1,0 +1,156 @@
+{
+  "schema": 1,
+  "status": "qualified-local-v12-cygwin-w32api-interlocked-successor",
+  "target": "aarch64-pc-cygwin",
+  "source": {
+    "repository": "https://github.com/mingw-w64/mingw-w64.git",
+    "revision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba"
+  },
+  "sourceLock": {
+    "path": "recipes/cygwin-w32api-source-lock.json",
+    "sha256": "2eab26b4cf3deac716cf3ef5f725579656df79e0059997de9efc2397158fc23e",
+    "bytes": 2446
+  },
+  "sourceArchive": {
+    "path": "evidence/source/pinned-source.tar",
+    "sha256": "41878f44fe3b6c347fc99ab8a90d384f61bd3ae25cfb2a62a7e24d4f0d14f720",
+    "bytes": 121323520
+  },
+  "sourcePatchEvidence": [
+    {
+      "canonicalPatch": {
+        "path": "evidence/source/patch-1/canonicalPatch.patch",
+        "sha256": "8567a8816086ed46436c9452edcb48a8b232385a423385b649fbebb51a917974",
+        "bytes": 1022
+      },
+      "checkLog": {
+        "path": "evidence/source/patch-1/checkLog.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "applyLog": {
+        "path": "evidence/source/patch-1/applyLog.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "canonicalPatch": {
+        "path": "evidence/source/patch-2/canonicalPatch.patch",
+        "sha256": "3967efec4820d00d639c7b7907633351f445ca0c23da6e5f6e6a178a07e9de3f",
+        "bytes": 1363
+      },
+      "checkLog": {
+        "path": "evidence/source/patch-2/checkLog.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      },
+      "applyLog": {
+        "path": "evidence/source/patch-2/applyLog.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    }
+  ],
+  "sourceOverlaySummary": {
+    "independentRuns": 2,
+    "files": 6602,
+    "inventorySHA256": "eac85e1ebc6ab141de6383429d9e68030f38aebd5879c7776aa3227cb4ad25b2"
+  },
+  "sdkFullInventory": {
+    "path": "evidence/sdk/full-inventory.json",
+    "sha256": "141a68595cd49221e39d3d07376c317db79b2cbcc99746b12a8486c6715f97a5",
+    "bytes": 555575,
+    "fileCount": 3043
+  },
+  "existingAbiOverlay": {
+    "_cygwin.h": "db5bd8c4b428f42b28b76a9cedac9a8f769c86fbf83a00d867108de4458e234c",
+    "basetsd.h": "b11cebf83ecccd053b41bd96402f8ebffb165688abac8c97e7197fd1a3802026"
+  },
+  "cohort": "cohort",
+  "include": "cohort/include",
+  "header": {
+    "path": "cohort/include/psdk_inc/intrin-impl.h",
+    "sha256": "c1effd54a4cc7679fd9265648cac815d4e107738b8e8892bed78974da6273c47",
+    "bytes": 81140
+  },
+  "manifest": {
+    "path": "cohort/manifest.json",
+    "sha256": "668a3a678aa4244d9429fabca0b5ff2ef5c8bb30463032fd630c143d05a28c23",
+    "bytes": 438869
+  },
+  "files": 1656,
+  "changedFiles": [
+    "psdk_inc/intrin-impl.h"
+  ],
+  "reproducibility": {
+    "independentCohorts": 2,
+    "independentQualificationRuns": 2,
+    "runsPerQualification": [
+      13,
+      13
+    ],
+    "overlayLifecycle": "v12-cygwin-w32api-overlay-controls-qualified",
+    "observerCompleteness": true
+  },
+  "localEvidence": {
+    "directory": "local-evidence",
+    "manifest": "local-evidence/manifest.json",
+    "scope": "Machine-local raw receipts, commands, traces, logs, and nonreproducible PE link outputs retained for audit but excluded from the reproducible manifest."
+  },
+  "publicFixture": {
+    "path": "recipes/cygwin-public-interlocked-codegen.c",
+    "sha256": "a5c27a197a84dbfb2755614131a1c361eec9d70753c13f1e92b58c418e8206cd",
+    "bytes": 383
+  },
+  "publicFixtureProvenance": {
+    "source_sha256": "cee155b9ff9e9a4823d7103c759658e811f240a803f1dbaa80cac81a343695c2",
+    "normalization": "CRLF-to-LF only"
+  },
+  "baselineCodegen": {
+    "path": "evidence/codegen/baseline.s",
+    "sha256": "960ed0895b99d5a88f9b9d51c2c6632f3760e5a42e5a616468d2a6d74392565a",
+    "bytes": 1746
+  },
+  "patchedCodegen": {
+    "patched": {
+      "path": "evidence/codegen/patched.s",
+      "sha256": "08f65aa7417ad5940198a956cfaa1e69d5777ad2029cc3e9e0da3099fd6fe585",
+      "bytes": 1761
+    },
+    "outlined": {
+      "path": "evidence/codegen/outlined.s",
+      "sha256": "08f65aa7417ad5940198a956cfaa1e69d5777ad2029cc3e9e0da3099fd6fe585",
+      "bytes": 1761
+    },
+    "inline": {
+      "path": "evidence/codegen/inline.s",
+      "sha256": "8660ad904c36ff3fee20ae72012c40f7f18bf134c376e7eb76048576ef0ab2cb",
+      "bytes": 845
+    }
+  },
+  "x64Control": "Identical public-probe preprocessing tokens for the x64 branch; not an x64 execution claim.",
+  "runtimeSourceIdentity": {
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "bytes": 30874017
+  },
+  "runtimeExecuted": {
+    "path": "evidence/msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "bytes": 30874017
+  },
+  "observer": {
+    "path": "recipes/native-job.py",
+    "sha256": "4fc0922c9be78d9355372335fec9cfb4fc4f92906bf2f628858f8ece4df6a6fa",
+    "bytes": 23552
+  },
+  "consumerSelection": {
+    "options": [
+      "-isysroot",
+      "<export>/cohort"
+    ],
+    "reason": "The configured compiler searches its existing Cygwin C headers before -isysroot/include and its built-in w32api after it."
+  },
+  "consumerBoundary": "Use the exact measured -isysroot full header cohort with root06's native aarch64-pc-cygwin compiler, or install the locked overlay into a new complete SDK. Rebuild consumers under explicit new identities.",
+  "limits": "Separate from the admitted 70d63 native MinGW provider. No root06/runtime907/compiler/Perl/OpenSSL mutation or rebuild, no forced ARM intrinsic macros, no weak-memory stress claim, and no x64 execution claim."
+}

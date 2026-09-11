@@ -1,0 +1,4889 @@
+{
+  "schema": 1,
+  "status": "selected-compatible-retained-PCRE2-fresh-byte-qualification-complete",
+  "package": {
+    "identity": "mingw-w64-aarch64-pcre2",
+    "version": "10.48-1",
+    "original_archive": {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\delivery-01\\original-package\\mingw-w64-aarch64-pcre2-10.48-1-any.pkg.tar.zst",
+      "sha256": "63ca004e570269889a30d4046a77946f09ddc6179a8be9b567e90cc9f4e3d7ec"
+    },
+    "new_package_created": false,
+    "metadata_rewritten": false,
+    "declared_dependency": "mingw-w64-aarch64-gcc",
+    "selection": {
+      "path": "C:\\ap11-native-provider-intake\\revoked-free-closures-v1\\network-export.json",
+      "sha256": "3faec2f42d87e28236dcc451ab6f48c63b67bd54aee746e1ebdf9debf3f1f30f"
+    }
+  },
+  "source_provenance_limit": "The original export/receipt binds package bytes and overarching source/recipe context; no PCRE2-specific signed source archive, CMake command or independently reproducible build receipt is available. This fresh qualification does not invent it or borrow the different10.48-3 proof.",
+  "target": "ordinary ARM64 Windows/UCRT; no MSYS runtime import or forced907 load",
+  "archive_content": {
+    "members": 244,
+    "payload_files": 241,
+    "PEs": 6,
+    "all_members_match_decompression": true,
+    "all_PE_machine_0xaa64": true,
+    "private_path_hits": [],
+    "inspection": {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\evidence\\archive-inspection.json",
+      "sha256": "e8b5080364773aadf47a60d68a8c9396ce8a974c7b9d582250d1a2b78587d8cb"
+    }
+  },
+  "PEs": [
+    {
+      "path": "mingwarm64/bin/libpcre2-16.dll",
+      "sha256": "0eb16103b86387d8eedbf39dee8d52c3bc5a6e21e5a95bec864acf913e2d2cec",
+      "machine": "0xAA64",
+      "ordinary_arm64": true,
+      "pe32_plus": true,
+      "imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "symbols": [
+            {
+              "name": "CloseHandle"
+            },
+            {
+              "name": "CreateMutexA"
+            },
+            {
+              "name": "DeleteCriticalSection"
+            },
+            {
+              "name": "EnterCriticalSection"
+            },
+            {
+              "name": "FlushInstructionCache"
+            },
+            {
+              "name": "GetCurrentProcess"
+            },
+            {
+              "name": "GetLastError"
+            },
+            {
+              "name": "GetSystemInfo"
+            },
+            {
+              "name": "InitializeCriticalSection"
+            },
+            {
+              "name": "LeaveCriticalSection"
+            },
+            {
+              "name": "ReleaseMutex"
+            },
+            {
+              "name": "Sleep"
+            },
+            {
+              "name": "TlsGetValue"
+            },
+            {
+              "name": "VirtualAlloc"
+            },
+            {
+              "name": "VirtualFree"
+            },
+            {
+              "name": "VirtualProtect"
+            },
+            {
+              "name": "VirtualQuery"
+            },
+            {
+              "name": "WaitForSingleObject"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "calloc"
+            },
+            {
+              "name": "free"
+            },
+            {
+              "name": "malloc"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-private-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "memcmp"
+            },
+            {
+              "name": "memcpy"
+            },
+            {
+              "name": "memmove"
+            },
+            {
+              "name": "strchr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_execute_onexit_table"
+            },
+            {
+              "name": "_exit"
+            },
+            {
+              "name": "_initialize_onexit_table"
+            },
+            {
+              "name": "_initterm"
+            },
+            {
+              "name": "_initterm_e"
+            },
+            {
+              "name": "_register_onexit_function"
+            },
+            {
+              "name": "abort"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__acrt_iob_func"
+            },
+            {
+              "name": "__stdio_common_vfprintf"
+            },
+            {
+              "name": "fwrite"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-string-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "isalnum"
+            },
+            {
+              "name": "isalpha"
+            },
+            {
+              "name": "iscntrl"
+            },
+            {
+              "name": "isgraph"
+            },
+            {
+              "name": "islower"
+            },
+            {
+              "name": "isprint"
+            },
+            {
+              "name": "ispunct"
+            },
+            {
+              "name": "isspace"
+            },
+            {
+              "name": "isupper"
+            },
+            {
+              "name": "isxdigit"
+            },
+            {
+              "name": "memset"
+            },
+            {
+              "name": "strlen"
+            },
+            {
+              "name": "strncmp"
+            },
+            {
+              "name": "tolower"
+            },
+            {
+              "name": "toupper"
+            }
+          ]
+        }
+      ],
+      "delay_imports": [],
+      "exports": [
+        {
+          "ordinal": 1,
+          "name": "_pcre2_OP_lengths_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 2,
+          "name": "_pcre2_auto_possessify_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 3,
+          "name": "_pcre2_callout_end_delims_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 4,
+          "name": "_pcre2_callout_start_delims_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 5,
+          "name": "_pcre2_check_escape_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 6,
+          "name": "_pcre2_ckd_smul_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 7,
+          "name": "_pcre2_compile_add_name_to_table16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 8,
+          "name": "_pcre2_compile_class_nested_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 9,
+          "name": "_pcre2_compile_class_not_nested_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 10,
+          "name": "_pcre2_compile_find_dupname_details16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 11,
+          "name": "_pcre2_compile_find_named_group16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 12,
+          "name": "_pcre2_compile_get_hash_from_name16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 13,
+          "name": "_pcre2_compile_parse_recurse_args16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 14,
+          "name": "_pcre2_compile_parse_scan_substr_args16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 15,
+          "name": "_pcre2_default_compile_context_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 16,
+          "name": "_pcre2_default_convert_context_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 17,
+          "name": "_pcre2_default_match_context_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 18,
+          "name": "_pcre2_default_tables_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 19,
+          "name": "_pcre2_eclass_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 20,
+          "name": "_pcre2_extuni_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 21,
+          "name": "_pcre2_find_bracket_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 22,
+          "name": "_pcre2_hspace_list_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 23,
+          "name": "_pcre2_is_newline_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 24,
+          "name": "_pcre2_jit_check_exec_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 25,
+          "name": "_pcre2_jit_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 26,
+          "name": "_pcre2_jit_free_rodata_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 27,
+          "name": "_pcre2_jit_get_size_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 28,
+          "name": "_pcre2_jit_get_target_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 29,
+          "name": "_pcre2_memctl_malloc_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 30,
+          "name": "_pcre2_ord2utf_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 31,
+          "name": "_pcre2_posix_class_maps16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 32,
+          "name": "_pcre2_script_run_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 33,
+          "name": "_pcre2_strcmp_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 34,
+          "name": "_pcre2_strcmp_c8_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 35,
+          "name": "_pcre2_strcpy_c8_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 36,
+          "name": "_pcre2_strlen_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 37,
+          "name": "_pcre2_strncmp_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 38,
+          "name": "_pcre2_strncmp_c8_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 39,
+          "name": "_pcre2_study_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 40,
+          "name": "_pcre2_ucd_boolprop_sets_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 41,
+          "name": "_pcre2_ucd_caseless_sets_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 42,
+          "name": "_pcre2_ucd_digit_sets_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 43,
+          "name": "_pcre2_ucd_nocase_ranges_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 44,
+          "name": "_pcre2_ucd_nocase_ranges_size_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 45,
+          "name": "_pcre2_ucd_records_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 46,
+          "name": "_pcre2_ucd_script_sets_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 47,
+          "name": "_pcre2_ucd_stage1_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 48,
+          "name": "_pcre2_ucd_stage2_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 49,
+          "name": "_pcre2_ucd_turkish_dotted_i_caseset_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 50,
+          "name": "_pcre2_ucp_gbtable_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 51,
+          "name": "_pcre2_ucp_gentype_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 52,
+          "name": "_pcre2_ucp_typerange_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 53,
+          "name": "_pcre2_unicode_version_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 54,
+          "name": "_pcre2_update_classbits_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 55,
+          "name": "_pcre2_utt_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 56,
+          "name": "_pcre2_utt_names_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 57,
+          "name": "_pcre2_utt_size_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 58,
+          "name": "_pcre2_valid_utf_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 59,
+          "name": "_pcre2_vspace_list_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 60,
+          "name": "_pcre2_was_newline_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 61,
+          "name": "_pcre2_xclass_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 62,
+          "name": "pcre2_callout_enumerate_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 63,
+          "name": "pcre2_code_copy_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 64,
+          "name": "pcre2_code_copy_with_tables_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 65,
+          "name": "pcre2_code_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 66,
+          "name": "pcre2_compile_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 67,
+          "name": "pcre2_compile_context_copy_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 68,
+          "name": "pcre2_compile_context_create_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 69,
+          "name": "pcre2_compile_context_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 70,
+          "name": "pcre2_config_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 71,
+          "name": "pcre2_convert_context_copy_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 72,
+          "name": "pcre2_convert_context_create_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 73,
+          "name": "pcre2_convert_context_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 74,
+          "name": "pcre2_converted_pattern_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 75,
+          "name": "pcre2_dfa_match_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 76,
+          "name": "pcre2_general_context_copy_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 77,
+          "name": "pcre2_general_context_create_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 78,
+          "name": "pcre2_general_context_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 79,
+          "name": "pcre2_get_error_message_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 80,
+          "name": "pcre2_get_mark_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 81,
+          "name": "pcre2_get_match_data_heapframes_size_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 82,
+          "name": "pcre2_get_match_data_size_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 83,
+          "name": "pcre2_get_ovector_count_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 84,
+          "name": "pcre2_get_ovector_pointer_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 85,
+          "name": "pcre2_get_startchar_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 86,
+          "name": "pcre2_jit_compile_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 87,
+          "name": "pcre2_jit_free_unused_memory_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 88,
+          "name": "pcre2_jit_match_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 89,
+          "name": "pcre2_jit_stack_assign_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 90,
+          "name": "pcre2_jit_stack_create_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 91,
+          "name": "pcre2_jit_stack_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 92,
+          "name": "pcre2_maketables_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 93,
+          "name": "pcre2_maketables_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 94,
+          "name": "pcre2_match_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 95,
+          "name": "pcre2_match_context_copy_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 96,
+          "name": "pcre2_match_context_create_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 97,
+          "name": "pcre2_match_context_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 98,
+          "name": "pcre2_match_data_create_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 99,
+          "name": "pcre2_match_data_create_from_pattern_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 100,
+          "name": "pcre2_match_data_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 101,
+          "name": "pcre2_next_match_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 102,
+          "name": "pcre2_pattern_convert_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 103,
+          "name": "pcre2_pattern_info_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 104,
+          "name": "pcre2_serialize_decode_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 105,
+          "name": "pcre2_serialize_encode_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 106,
+          "name": "pcre2_serialize_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 107,
+          "name": "pcre2_serialize_get_number_of_codes_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 108,
+          "name": "pcre2_set_bsr_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 109,
+          "name": "pcre2_set_callout_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 110,
+          "name": "pcre2_set_character_tables_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 111,
+          "name": "pcre2_set_compile_extra_options_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 112,
+          "name": "pcre2_set_compile_recursion_guard_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 113,
+          "name": "pcre2_set_depth_limit_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 114,
+          "name": "pcre2_set_glob_escape_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 115,
+          "name": "pcre2_set_glob_separator_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 116,
+          "name": "pcre2_set_heap_limit_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 117,
+          "name": "pcre2_set_match_limit_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 118,
+          "name": "pcre2_set_max_pattern_compiled_length_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 119,
+          "name": "pcre2_set_max_pattern_length_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 120,
+          "name": "pcre2_set_max_varlookbehind_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 121,
+          "name": "pcre2_set_newline_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 122,
+          "name": "pcre2_set_offset_limit_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 123,
+          "name": "pcre2_set_optimize_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 124,
+          "name": "pcre2_set_parens_nest_limit_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 125,
+          "name": "pcre2_set_recursion_limit_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 126,
+          "name": "pcre2_set_recursion_memory_management_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 127,
+          "name": "pcre2_set_substitute_callout_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 128,
+          "name": "pcre2_set_substitute_case_callout_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 129,
+          "name": "pcre2_substitute_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 130,
+          "name": "pcre2_substring_copy_byname_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 131,
+          "name": "pcre2_substring_copy_bynumber_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 132,
+          "name": "pcre2_substring_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 133,
+          "name": "pcre2_substring_get_byname_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 134,
+          "name": "pcre2_substring_get_bynumber_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 135,
+          "name": "pcre2_substring_length_byname_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 136,
+          "name": "pcre2_substring_length_bynumber_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 137,
+          "name": "pcre2_substring_list_free_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 138,
+          "name": "pcre2_substring_list_get_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 139,
+          "name": "pcre2_substring_nametable_scan_16",
+          "forwarder": null
+        },
+        {
+          "ordinal": 140,
+          "name": "pcre2_substring_number_from_name_16",
+          "forwarder": null
+        }
+      ]
+    },
+    {
+      "path": "mingwarm64/bin/libpcre2-32.dll",
+      "sha256": "482daf556866ceea196906e77f3c18f04890bec8f38aed14d7129218aef86f9e",
+      "machine": "0xAA64",
+      "ordinary_arm64": true,
+      "pe32_plus": true,
+      "imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "symbols": [
+            {
+              "name": "CloseHandle"
+            },
+            {
+              "name": "CreateMutexA"
+            },
+            {
+              "name": "DeleteCriticalSection"
+            },
+            {
+              "name": "EnterCriticalSection"
+            },
+            {
+              "name": "FlushInstructionCache"
+            },
+            {
+              "name": "GetCurrentProcess"
+            },
+            {
+              "name": "GetLastError"
+            },
+            {
+              "name": "GetSystemInfo"
+            },
+            {
+              "name": "InitializeCriticalSection"
+            },
+            {
+              "name": "LeaveCriticalSection"
+            },
+            {
+              "name": "ReleaseMutex"
+            },
+            {
+              "name": "Sleep"
+            },
+            {
+              "name": "TlsGetValue"
+            },
+            {
+              "name": "VirtualAlloc"
+            },
+            {
+              "name": "VirtualFree"
+            },
+            {
+              "name": "VirtualProtect"
+            },
+            {
+              "name": "VirtualQuery"
+            },
+            {
+              "name": "WaitForSingleObject"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "calloc"
+            },
+            {
+              "name": "free"
+            },
+            {
+              "name": "malloc"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-private-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "memcmp"
+            },
+            {
+              "name": "memcpy"
+            },
+            {
+              "name": "memmove"
+            },
+            {
+              "name": "strchr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_execute_onexit_table"
+            },
+            {
+              "name": "_exit"
+            },
+            {
+              "name": "_initialize_onexit_table"
+            },
+            {
+              "name": "_initterm"
+            },
+            {
+              "name": "_initterm_e"
+            },
+            {
+              "name": "_register_onexit_function"
+            },
+            {
+              "name": "abort"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__acrt_iob_func"
+            },
+            {
+              "name": "__stdio_common_vfprintf"
+            },
+            {
+              "name": "fwrite"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-string-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "isalnum"
+            },
+            {
+              "name": "isalpha"
+            },
+            {
+              "name": "iscntrl"
+            },
+            {
+              "name": "isgraph"
+            },
+            {
+              "name": "islower"
+            },
+            {
+              "name": "isprint"
+            },
+            {
+              "name": "ispunct"
+            },
+            {
+              "name": "isspace"
+            },
+            {
+              "name": "isupper"
+            },
+            {
+              "name": "isxdigit"
+            },
+            {
+              "name": "memset"
+            },
+            {
+              "name": "strlen"
+            },
+            {
+              "name": "strncmp"
+            },
+            {
+              "name": "tolower"
+            },
+            {
+              "name": "toupper"
+            }
+          ]
+        }
+      ],
+      "delay_imports": [],
+      "exports": [
+        {
+          "ordinal": 1,
+          "name": "_pcre2_OP_lengths_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 2,
+          "name": "_pcre2_auto_possessify_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 3,
+          "name": "_pcre2_callout_end_delims_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 4,
+          "name": "_pcre2_callout_start_delims_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 5,
+          "name": "_pcre2_check_escape_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 6,
+          "name": "_pcre2_ckd_smul_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 7,
+          "name": "_pcre2_compile_add_name_to_table32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 8,
+          "name": "_pcre2_compile_class_nested_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 9,
+          "name": "_pcre2_compile_class_not_nested_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 10,
+          "name": "_pcre2_compile_find_dupname_details32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 11,
+          "name": "_pcre2_compile_find_named_group32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 12,
+          "name": "_pcre2_compile_get_hash_from_name32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 13,
+          "name": "_pcre2_compile_parse_recurse_args32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 14,
+          "name": "_pcre2_compile_parse_scan_substr_args32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 15,
+          "name": "_pcre2_default_compile_context_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 16,
+          "name": "_pcre2_default_convert_context_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 17,
+          "name": "_pcre2_default_match_context_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 18,
+          "name": "_pcre2_default_tables_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 19,
+          "name": "_pcre2_dummy_ucd_record_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 20,
+          "name": "_pcre2_eclass_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 21,
+          "name": "_pcre2_extuni_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 22,
+          "name": "_pcre2_find_bracket_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 23,
+          "name": "_pcre2_hspace_list_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 24,
+          "name": "_pcre2_is_newline_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 25,
+          "name": "_pcre2_jit_check_exec_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 26,
+          "name": "_pcre2_jit_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 27,
+          "name": "_pcre2_jit_free_rodata_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 28,
+          "name": "_pcre2_jit_get_size_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 29,
+          "name": "_pcre2_jit_get_target_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 30,
+          "name": "_pcre2_memctl_malloc_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 31,
+          "name": "_pcre2_ord2utf_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 32,
+          "name": "_pcre2_posix_class_maps32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 33,
+          "name": "_pcre2_script_run_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 34,
+          "name": "_pcre2_strcmp_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 35,
+          "name": "_pcre2_strcmp_c8_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 36,
+          "name": "_pcre2_strcpy_c8_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 37,
+          "name": "_pcre2_strlen_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 38,
+          "name": "_pcre2_strncmp_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 39,
+          "name": "_pcre2_strncmp_c8_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 40,
+          "name": "_pcre2_study_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 41,
+          "name": "_pcre2_ucd_boolprop_sets_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 42,
+          "name": "_pcre2_ucd_caseless_sets_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 43,
+          "name": "_pcre2_ucd_digit_sets_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 44,
+          "name": "_pcre2_ucd_nocase_ranges_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 45,
+          "name": "_pcre2_ucd_nocase_ranges_size_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 46,
+          "name": "_pcre2_ucd_records_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 47,
+          "name": "_pcre2_ucd_script_sets_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 48,
+          "name": "_pcre2_ucd_stage1_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 49,
+          "name": "_pcre2_ucd_stage2_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 50,
+          "name": "_pcre2_ucd_turkish_dotted_i_caseset_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 51,
+          "name": "_pcre2_ucp_gbtable_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 52,
+          "name": "_pcre2_ucp_gentype_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 53,
+          "name": "_pcre2_ucp_typerange_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 54,
+          "name": "_pcre2_unicode_version_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 55,
+          "name": "_pcre2_update_classbits_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 56,
+          "name": "_pcre2_utt_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 57,
+          "name": "_pcre2_utt_names_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 58,
+          "name": "_pcre2_utt_size_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 59,
+          "name": "_pcre2_valid_utf_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 60,
+          "name": "_pcre2_vspace_list_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 61,
+          "name": "_pcre2_was_newline_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 62,
+          "name": "_pcre2_xclass_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 63,
+          "name": "pcre2_callout_enumerate_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 64,
+          "name": "pcre2_code_copy_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 65,
+          "name": "pcre2_code_copy_with_tables_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 66,
+          "name": "pcre2_code_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 67,
+          "name": "pcre2_compile_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 68,
+          "name": "pcre2_compile_context_copy_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 69,
+          "name": "pcre2_compile_context_create_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 70,
+          "name": "pcre2_compile_context_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 71,
+          "name": "pcre2_config_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 72,
+          "name": "pcre2_convert_context_copy_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 73,
+          "name": "pcre2_convert_context_create_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 74,
+          "name": "pcre2_convert_context_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 75,
+          "name": "pcre2_converted_pattern_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 76,
+          "name": "pcre2_dfa_match_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 77,
+          "name": "pcre2_general_context_copy_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 78,
+          "name": "pcre2_general_context_create_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 79,
+          "name": "pcre2_general_context_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 80,
+          "name": "pcre2_get_error_message_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 81,
+          "name": "pcre2_get_mark_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 82,
+          "name": "pcre2_get_match_data_heapframes_size_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 83,
+          "name": "pcre2_get_match_data_size_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 84,
+          "name": "pcre2_get_ovector_count_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 85,
+          "name": "pcre2_get_ovector_pointer_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 86,
+          "name": "pcre2_get_startchar_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 87,
+          "name": "pcre2_jit_compile_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 88,
+          "name": "pcre2_jit_free_unused_memory_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 89,
+          "name": "pcre2_jit_match_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 90,
+          "name": "pcre2_jit_stack_assign_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 91,
+          "name": "pcre2_jit_stack_create_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 92,
+          "name": "pcre2_jit_stack_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 93,
+          "name": "pcre2_maketables_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 94,
+          "name": "pcre2_maketables_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 95,
+          "name": "pcre2_match_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 96,
+          "name": "pcre2_match_context_copy_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 97,
+          "name": "pcre2_match_context_create_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 98,
+          "name": "pcre2_match_context_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 99,
+          "name": "pcre2_match_data_create_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 100,
+          "name": "pcre2_match_data_create_from_pattern_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 101,
+          "name": "pcre2_match_data_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 102,
+          "name": "pcre2_next_match_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 103,
+          "name": "pcre2_pattern_convert_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 104,
+          "name": "pcre2_pattern_info_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 105,
+          "name": "pcre2_serialize_decode_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 106,
+          "name": "pcre2_serialize_encode_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 107,
+          "name": "pcre2_serialize_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 108,
+          "name": "pcre2_serialize_get_number_of_codes_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 109,
+          "name": "pcre2_set_bsr_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 110,
+          "name": "pcre2_set_callout_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 111,
+          "name": "pcre2_set_character_tables_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 112,
+          "name": "pcre2_set_compile_extra_options_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 113,
+          "name": "pcre2_set_compile_recursion_guard_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 114,
+          "name": "pcre2_set_depth_limit_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 115,
+          "name": "pcre2_set_glob_escape_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 116,
+          "name": "pcre2_set_glob_separator_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 117,
+          "name": "pcre2_set_heap_limit_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 118,
+          "name": "pcre2_set_match_limit_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 119,
+          "name": "pcre2_set_max_pattern_compiled_length_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 120,
+          "name": "pcre2_set_max_pattern_length_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 121,
+          "name": "pcre2_set_max_varlookbehind_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 122,
+          "name": "pcre2_set_newline_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 123,
+          "name": "pcre2_set_offset_limit_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 124,
+          "name": "pcre2_set_optimize_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 125,
+          "name": "pcre2_set_parens_nest_limit_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 126,
+          "name": "pcre2_set_recursion_limit_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 127,
+          "name": "pcre2_set_recursion_memory_management_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 128,
+          "name": "pcre2_set_substitute_callout_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 129,
+          "name": "pcre2_set_substitute_case_callout_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 130,
+          "name": "pcre2_substitute_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 131,
+          "name": "pcre2_substring_copy_byname_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 132,
+          "name": "pcre2_substring_copy_bynumber_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 133,
+          "name": "pcre2_substring_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 134,
+          "name": "pcre2_substring_get_byname_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 135,
+          "name": "pcre2_substring_get_bynumber_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 136,
+          "name": "pcre2_substring_length_byname_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 137,
+          "name": "pcre2_substring_length_bynumber_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 138,
+          "name": "pcre2_substring_list_free_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 139,
+          "name": "pcre2_substring_list_get_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 140,
+          "name": "pcre2_substring_nametable_scan_32",
+          "forwarder": null
+        },
+        {
+          "ordinal": 141,
+          "name": "pcre2_substring_number_from_name_32",
+          "forwarder": null
+        }
+      ]
+    },
+    {
+      "path": "mingwarm64/bin/libpcre2-8.dll",
+      "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+      "machine": "0xAA64",
+      "ordinary_arm64": true,
+      "pe32_plus": true,
+      "imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "symbols": [
+            {
+              "name": "CloseHandle"
+            },
+            {
+              "name": "CreateMutexA"
+            },
+            {
+              "name": "DeleteCriticalSection"
+            },
+            {
+              "name": "EnterCriticalSection"
+            },
+            {
+              "name": "FlushInstructionCache"
+            },
+            {
+              "name": "GetCurrentProcess"
+            },
+            {
+              "name": "GetLastError"
+            },
+            {
+              "name": "GetSystemInfo"
+            },
+            {
+              "name": "InitializeCriticalSection"
+            },
+            {
+              "name": "LeaveCriticalSection"
+            },
+            {
+              "name": "ReleaseMutex"
+            },
+            {
+              "name": "Sleep"
+            },
+            {
+              "name": "TlsGetValue"
+            },
+            {
+              "name": "VirtualAlloc"
+            },
+            {
+              "name": "VirtualFree"
+            },
+            {
+              "name": "VirtualProtect"
+            },
+            {
+              "name": "VirtualQuery"
+            },
+            {
+              "name": "WaitForSingleObject"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "calloc"
+            },
+            {
+              "name": "free"
+            },
+            {
+              "name": "malloc"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-private-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "memchr"
+            },
+            {
+              "name": "memcmp"
+            },
+            {
+              "name": "memcpy"
+            },
+            {
+              "name": "memmove"
+            },
+            {
+              "name": "strchr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_execute_onexit_table"
+            },
+            {
+              "name": "_exit"
+            },
+            {
+              "name": "_initialize_onexit_table"
+            },
+            {
+              "name": "_initterm"
+            },
+            {
+              "name": "_initterm_e"
+            },
+            {
+              "name": "_register_onexit_function"
+            },
+            {
+              "name": "abort"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__acrt_iob_func"
+            },
+            {
+              "name": "__stdio_common_vfprintf"
+            },
+            {
+              "name": "fwrite"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-string-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "isalnum"
+            },
+            {
+              "name": "isalpha"
+            },
+            {
+              "name": "iscntrl"
+            },
+            {
+              "name": "isgraph"
+            },
+            {
+              "name": "islower"
+            },
+            {
+              "name": "isprint"
+            },
+            {
+              "name": "ispunct"
+            },
+            {
+              "name": "isspace"
+            },
+            {
+              "name": "isupper"
+            },
+            {
+              "name": "isxdigit"
+            },
+            {
+              "name": "memset"
+            },
+            {
+              "name": "strlen"
+            },
+            {
+              "name": "strncmp"
+            },
+            {
+              "name": "tolower"
+            },
+            {
+              "name": "toupper"
+            }
+          ]
+        }
+      ],
+      "delay_imports": [],
+      "exports": [
+        {
+          "ordinal": 1,
+          "name": "_pcre2_OP_lengths_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 2,
+          "name": "_pcre2_auto_possessify_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 3,
+          "name": "_pcre2_callout_end_delims_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 4,
+          "name": "_pcre2_callout_start_delims_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 5,
+          "name": "_pcre2_check_escape_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 6,
+          "name": "_pcre2_ckd_smul_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 7,
+          "name": "_pcre2_compile_add_name_to_table8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 8,
+          "name": "_pcre2_compile_class_nested_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 9,
+          "name": "_pcre2_compile_class_not_nested_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 10,
+          "name": "_pcre2_compile_find_dupname_details8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 11,
+          "name": "_pcre2_compile_find_named_group8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 12,
+          "name": "_pcre2_compile_get_hash_from_name8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 13,
+          "name": "_pcre2_compile_parse_recurse_args8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 14,
+          "name": "_pcre2_compile_parse_scan_substr_args8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 15,
+          "name": "_pcre2_default_compile_context_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 16,
+          "name": "_pcre2_default_convert_context_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 17,
+          "name": "_pcre2_default_match_context_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 18,
+          "name": "_pcre2_default_tables_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 19,
+          "name": "_pcre2_eclass_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 20,
+          "name": "_pcre2_extuni_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 21,
+          "name": "_pcre2_find_bracket_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 22,
+          "name": "_pcre2_hspace_list_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 23,
+          "name": "_pcre2_is_newline_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 24,
+          "name": "_pcre2_jit_check_exec_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 25,
+          "name": "_pcre2_jit_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 26,
+          "name": "_pcre2_jit_free_rodata_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 27,
+          "name": "_pcre2_jit_get_size_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 28,
+          "name": "_pcre2_jit_get_target_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 29,
+          "name": "_pcre2_memctl_malloc_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 30,
+          "name": "_pcre2_ord2utf_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 31,
+          "name": "_pcre2_posix_class_maps8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 32,
+          "name": "_pcre2_script_run_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 33,
+          "name": "_pcre2_strcmp_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 34,
+          "name": "_pcre2_strcmp_c8_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 35,
+          "name": "_pcre2_strcpy_c8_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 36,
+          "name": "_pcre2_strlen_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 37,
+          "name": "_pcre2_strncmp_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 38,
+          "name": "_pcre2_strncmp_c8_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 39,
+          "name": "_pcre2_study_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 40,
+          "name": "_pcre2_ucd_boolprop_sets_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 41,
+          "name": "_pcre2_ucd_caseless_sets_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 42,
+          "name": "_pcre2_ucd_digit_sets_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 43,
+          "name": "_pcre2_ucd_nocase_ranges_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 44,
+          "name": "_pcre2_ucd_nocase_ranges_size_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 45,
+          "name": "_pcre2_ucd_records_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 46,
+          "name": "_pcre2_ucd_script_sets_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 47,
+          "name": "_pcre2_ucd_stage1_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 48,
+          "name": "_pcre2_ucd_stage2_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 49,
+          "name": "_pcre2_ucd_turkish_dotted_i_caseset_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 50,
+          "name": "_pcre2_ucp_gbtable_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 51,
+          "name": "_pcre2_ucp_gentype_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 52,
+          "name": "_pcre2_ucp_typerange_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 53,
+          "name": "_pcre2_unicode_version_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 54,
+          "name": "_pcre2_update_classbits_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 55,
+          "name": "_pcre2_utf8_table1",
+          "forwarder": null
+        },
+        {
+          "ordinal": 56,
+          "name": "_pcre2_utf8_table1_size",
+          "forwarder": null
+        },
+        {
+          "ordinal": 57,
+          "name": "_pcre2_utf8_table2",
+          "forwarder": null
+        },
+        {
+          "ordinal": 58,
+          "name": "_pcre2_utf8_table3",
+          "forwarder": null
+        },
+        {
+          "ordinal": 59,
+          "name": "_pcre2_utf8_table4",
+          "forwarder": null
+        },
+        {
+          "ordinal": 60,
+          "name": "_pcre2_utt_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 61,
+          "name": "_pcre2_utt_names_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 62,
+          "name": "_pcre2_utt_size_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 63,
+          "name": "_pcre2_valid_utf_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 64,
+          "name": "_pcre2_vspace_list_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 65,
+          "name": "_pcre2_was_newline_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 66,
+          "name": "_pcre2_xclass_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 67,
+          "name": "pcre2_callout_enumerate_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 68,
+          "name": "pcre2_code_copy_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 69,
+          "name": "pcre2_code_copy_with_tables_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 70,
+          "name": "pcre2_code_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 71,
+          "name": "pcre2_compile_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 72,
+          "name": "pcre2_compile_context_copy_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 73,
+          "name": "pcre2_compile_context_create_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 74,
+          "name": "pcre2_compile_context_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 75,
+          "name": "pcre2_config_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 76,
+          "name": "pcre2_convert_context_copy_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 77,
+          "name": "pcre2_convert_context_create_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 78,
+          "name": "pcre2_convert_context_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 79,
+          "name": "pcre2_converted_pattern_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 80,
+          "name": "pcre2_dfa_match_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 81,
+          "name": "pcre2_general_context_copy_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 82,
+          "name": "pcre2_general_context_create_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 83,
+          "name": "pcre2_general_context_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 84,
+          "name": "pcre2_get_error_message_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 85,
+          "name": "pcre2_get_mark_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 86,
+          "name": "pcre2_get_match_data_heapframes_size_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 87,
+          "name": "pcre2_get_match_data_size_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 88,
+          "name": "pcre2_get_ovector_count_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 89,
+          "name": "pcre2_get_ovector_pointer_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 90,
+          "name": "pcre2_get_startchar_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 91,
+          "name": "pcre2_jit_compile_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 92,
+          "name": "pcre2_jit_free_unused_memory_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 93,
+          "name": "pcre2_jit_match_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 94,
+          "name": "pcre2_jit_stack_assign_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 95,
+          "name": "pcre2_jit_stack_create_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 96,
+          "name": "pcre2_jit_stack_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 97,
+          "name": "pcre2_maketables_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 98,
+          "name": "pcre2_maketables_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 99,
+          "name": "pcre2_match_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 100,
+          "name": "pcre2_match_context_copy_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 101,
+          "name": "pcre2_match_context_create_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 102,
+          "name": "pcre2_match_context_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 103,
+          "name": "pcre2_match_data_create_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 104,
+          "name": "pcre2_match_data_create_from_pattern_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 105,
+          "name": "pcre2_match_data_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 106,
+          "name": "pcre2_next_match_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 107,
+          "name": "pcre2_pattern_convert_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 108,
+          "name": "pcre2_pattern_info_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 109,
+          "name": "pcre2_serialize_decode_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 110,
+          "name": "pcre2_serialize_encode_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 111,
+          "name": "pcre2_serialize_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 112,
+          "name": "pcre2_serialize_get_number_of_codes_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 113,
+          "name": "pcre2_set_bsr_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 114,
+          "name": "pcre2_set_callout_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 115,
+          "name": "pcre2_set_character_tables_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 116,
+          "name": "pcre2_set_compile_extra_options_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 117,
+          "name": "pcre2_set_compile_recursion_guard_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 118,
+          "name": "pcre2_set_depth_limit_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 119,
+          "name": "pcre2_set_glob_escape_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 120,
+          "name": "pcre2_set_glob_separator_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 121,
+          "name": "pcre2_set_heap_limit_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 122,
+          "name": "pcre2_set_match_limit_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 123,
+          "name": "pcre2_set_max_pattern_compiled_length_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 124,
+          "name": "pcre2_set_max_pattern_length_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 125,
+          "name": "pcre2_set_max_varlookbehind_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 126,
+          "name": "pcre2_set_newline_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 127,
+          "name": "pcre2_set_offset_limit_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 128,
+          "name": "pcre2_set_optimize_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 129,
+          "name": "pcre2_set_parens_nest_limit_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 130,
+          "name": "pcre2_set_recursion_limit_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 131,
+          "name": "pcre2_set_recursion_memory_management_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 132,
+          "name": "pcre2_set_substitute_callout_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 133,
+          "name": "pcre2_set_substitute_case_callout_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 134,
+          "name": "pcre2_substitute_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 135,
+          "name": "pcre2_substring_copy_byname_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 136,
+          "name": "pcre2_substring_copy_bynumber_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 137,
+          "name": "pcre2_substring_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 138,
+          "name": "pcre2_substring_get_byname_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 139,
+          "name": "pcre2_substring_get_bynumber_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 140,
+          "name": "pcre2_substring_length_byname_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 141,
+          "name": "pcre2_substring_length_bynumber_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 142,
+          "name": "pcre2_substring_list_free_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 143,
+          "name": "pcre2_substring_list_get_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 144,
+          "name": "pcre2_substring_nametable_scan_8",
+          "forwarder": null
+        },
+        {
+          "ordinal": 145,
+          "name": "pcre2_substring_number_from_name_8",
+          "forwarder": null
+        }
+      ]
+    },
+    {
+      "path": "mingwarm64/bin/libpcre2-posix.dll",
+      "sha256": "448a3517ce5d287cae1ea7501ea0697d5c068b018e6f33edbf1ad1859f47850a",
+      "machine": "0xAA64",
+      "ordinary_arm64": true,
+      "pe32_plus": true,
+      "imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "symbols": [
+            {
+              "name": "DeleteCriticalSection"
+            },
+            {
+              "name": "EnterCriticalSection"
+            },
+            {
+              "name": "GetLastError"
+            },
+            {
+              "name": "InitializeCriticalSection"
+            },
+            {
+              "name": "LeaveCriticalSection"
+            },
+            {
+              "name": "Sleep"
+            },
+            {
+              "name": "TlsGetValue"
+            },
+            {
+              "name": "VirtualProtect"
+            },
+            {
+              "name": "VirtualQuery"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "calloc"
+            },
+            {
+              "name": "free"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_execute_onexit_table"
+            },
+            {
+              "name": "_exit"
+            },
+            {
+              "name": "_initialize_onexit_table"
+            },
+            {
+              "name": "_initterm"
+            },
+            {
+              "name": "_initterm_e"
+            },
+            {
+              "name": "_register_onexit_function"
+            },
+            {
+              "name": "abort"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__acrt_iob_func"
+            },
+            {
+              "name": "__stdio_common_vfprintf"
+            },
+            {
+              "name": "__stdio_common_vsprintf"
+            },
+            {
+              "name": "fwrite"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-string-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "strlen"
+            },
+            {
+              "name": "strncmp"
+            }
+          ]
+        },
+        {
+          "dll": "libpcre2-8.dll",
+          "symbols": [
+            {
+              "name": "pcre2_code_free_8"
+            },
+            {
+              "name": "pcre2_compile_8"
+            },
+            {
+              "name": "pcre2_get_ovector_pointer_8"
+            },
+            {
+              "name": "pcre2_match_8"
+            },
+            {
+              "name": "pcre2_match_data_create_8"
+            },
+            {
+              "name": "pcre2_match_data_free_8"
+            },
+            {
+              "name": "pcre2_pattern_info_8"
+            }
+          ]
+        }
+      ],
+      "delay_imports": [],
+      "exports": [
+        {
+          "ordinal": 1,
+          "name": "pcre2_regcomp",
+          "forwarder": null
+        },
+        {
+          "ordinal": 2,
+          "name": "pcre2_regerror",
+          "forwarder": null
+        },
+        {
+          "ordinal": 3,
+          "name": "pcre2_regexec",
+          "forwarder": null
+        },
+        {
+          "ordinal": 4,
+          "name": "pcre2_regfree",
+          "forwarder": null
+        }
+      ]
+    },
+    {
+      "path": "mingwarm64/bin/pcre2grep.exe",
+      "sha256": "14244c98c429b488cc9095180e5346339f4a9254da8a65d2a15dcd4762d0ef75",
+      "machine": "0xAA64",
+      "ordinary_arm64": true,
+      "pe32_plus": true,
+      "imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "symbols": [
+            {
+              "name": "CloseHandle"
+            },
+            {
+              "name": "CreateFileA"
+            },
+            {
+              "name": "CreateMutexA"
+            },
+            {
+              "name": "DeleteCriticalSection"
+            },
+            {
+              "name": "EnterCriticalSection"
+            },
+            {
+              "name": "FindClose"
+            },
+            {
+              "name": "FindFirstFileA"
+            },
+            {
+              "name": "FindNextFileA"
+            },
+            {
+              "name": "FlushInstructionCache"
+            },
+            {
+              "name": "GetConsoleScreenBufferInfo"
+            },
+            {
+              "name": "GetCurrentProcess"
+            },
+            {
+              "name": "GetFileAttributesA"
+            },
+            {
+              "name": "GetLastError"
+            },
+            {
+              "name": "GetStdHandle"
+            },
+            {
+              "name": "GetSystemInfo"
+            },
+            {
+              "name": "InitializeCriticalSection"
+            },
+            {
+              "name": "LeaveCriticalSection"
+            },
+            {
+              "name": "ReleaseMutex"
+            },
+            {
+              "name": "SetConsoleTextAttribute"
+            },
+            {
+              "name": "SetUnhandledExceptionFilter"
+            },
+            {
+              "name": "Sleep"
+            },
+            {
+              "name": "TlsGetValue"
+            },
+            {
+              "name": "VirtualAlloc"
+            },
+            {
+              "name": "VirtualFree"
+            },
+            {
+              "name": "VirtualProtect"
+            },
+            {
+              "name": "VirtualQuery"
+            },
+            {
+              "name": "WaitForSingleObject"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-convert-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "atoi"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-environment-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__p__environ"
+            },
+            {
+              "name": "getenv"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_set_new_mode"
+            },
+            {
+              "name": "calloc"
+            },
+            {
+              "name": "free"
+            },
+            {
+              "name": "malloc"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-locale-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "setlocale"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-math-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__setusermatherr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-private-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__C_specific_handler"
+            },
+            {
+              "name": "memchr"
+            },
+            {
+              "name": "memcmp"
+            },
+            {
+              "name": "memcpy"
+            },
+            {
+              "name": "memmove"
+            },
+            {
+              "name": "strchr"
+            },
+            {
+              "name": "strrchr"
+            },
+            {
+              "name": "strstr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-process-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_spawnvp"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_set_app_type"
+            },
+            {
+              "name": "__p___argc"
+            },
+            {
+              "name": "__p___argv"
+            },
+            {
+              "name": "_cexit"
+            },
+            {
+              "name": "_configure_narrow_argv"
+            },
+            {
+              "name": "_crt_atexit"
+            },
+            {
+              "name": "_errno"
+            },
+            {
+              "name": "_exit"
+            },
+            {
+              "name": "_initialize_narrow_environment"
+            },
+            {
+              "name": "_initterm"
+            },
+            {
+              "name": "_initterm_e"
+            },
+            {
+              "name": "_set_invalid_parameter_handler"
+            },
+            {
+              "name": "abort"
+            },
+            {
+              "name": "exit"
+            },
+            {
+              "name": "signal"
+            },
+            {
+              "name": "strerror"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__acrt_iob_func"
+            },
+            {
+              "name": "__p__commode"
+            },
+            {
+              "name": "__p__fmode"
+            },
+            {
+              "name": "__stdio_common_vfprintf"
+            },
+            {
+              "name": "__stdio_common_vsprintf"
+            },
+            {
+              "name": "_isatty"
+            },
+            {
+              "name": "_setmode"
+            },
+            {
+              "name": "fclose"
+            },
+            {
+              "name": "feof"
+            },
+            {
+              "name": "fflush"
+            },
+            {
+              "name": "fgetc"
+            },
+            {
+              "name": "fgets"
+            },
+            {
+              "name": "fopen"
+            },
+            {
+              "name": "fputc"
+            },
+            {
+              "name": "fputs"
+            },
+            {
+              "name": "fread"
+            },
+            {
+              "name": "fseek"
+            },
+            {
+              "name": "ftell"
+            },
+            {
+              "name": "fwrite"
+            },
+            {
+              "name": "puts"
+            },
+            {
+              "name": "setbuf"
+            },
+            {
+              "name": "_fileno"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-string-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "isalnum"
+            },
+            {
+              "name": "isalpha"
+            },
+            {
+              "name": "iscntrl"
+            },
+            {
+              "name": "isgraph"
+            },
+            {
+              "name": "islower"
+            },
+            {
+              "name": "isprint"
+            },
+            {
+              "name": "ispunct"
+            },
+            {
+              "name": "isspace"
+            },
+            {
+              "name": "isupper"
+            },
+            {
+              "name": "isxdigit"
+            },
+            {
+              "name": "memset"
+            },
+            {
+              "name": "strcmp"
+            },
+            {
+              "name": "strlen"
+            },
+            {
+              "name": "strncmp"
+            },
+            {
+              "name": "strpbrk"
+            },
+            {
+              "name": "strspn"
+            },
+            {
+              "name": "tolower"
+            },
+            {
+              "name": "toupper"
+            }
+          ]
+        }
+      ],
+      "delay_imports": [],
+      "exports": []
+    },
+    {
+      "path": "mingwarm64/bin/pcre2test.exe",
+      "sha256": "52fa4b6ff79bdd527b0905d94aa3189ed81d48e75354cd36d0ae5390e50c58ec",
+      "machine": "0xAA64",
+      "ordinary_arm64": true,
+      "pe32_plus": true,
+      "imports": [
+        {
+          "dll": "KERNEL32.dll",
+          "symbols": [
+            {
+              "name": "CloseHandle"
+            },
+            {
+              "name": "CreateMutexA"
+            },
+            {
+              "name": "DeleteCriticalSection"
+            },
+            {
+              "name": "EnterCriticalSection"
+            },
+            {
+              "name": "FlushInstructionCache"
+            },
+            {
+              "name": "GetCurrentProcess"
+            },
+            {
+              "name": "GetLastError"
+            },
+            {
+              "name": "GetSystemInfo"
+            },
+            {
+              "name": "InitializeCriticalSection"
+            },
+            {
+              "name": "LeaveCriticalSection"
+            },
+            {
+              "name": "ReleaseMutex"
+            },
+            {
+              "name": "SetUnhandledExceptionFilter"
+            },
+            {
+              "name": "Sleep"
+            },
+            {
+              "name": "TlsGetValue"
+            },
+            {
+              "name": "VirtualAlloc"
+            },
+            {
+              "name": "VirtualFree"
+            },
+            {
+              "name": "VirtualProtect"
+            },
+            {
+              "name": "VirtualQuery"
+            },
+            {
+              "name": "WaitForSingleObject"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-convert-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "strtol"
+            },
+            {
+              "name": "strtoul"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-environment-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__p__environ"
+            },
+            {
+              "name": "getenv"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-heap-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_set_new_mode"
+            },
+            {
+              "name": "calloc"
+            },
+            {
+              "name": "free"
+            },
+            {
+              "name": "malloc"
+            },
+            {
+              "name": "realloc"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-locale-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "setlocale"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-math-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__setusermatherr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-private-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__C_specific_handler"
+            },
+            {
+              "name": "memchr"
+            },
+            {
+              "name": "memcmp"
+            },
+            {
+              "name": "memcpy"
+            },
+            {
+              "name": "memmove"
+            },
+            {
+              "name": "strchr"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-runtime-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_set_app_type"
+            },
+            {
+              "name": "__p___argc"
+            },
+            {
+              "name": "__p___argv"
+            },
+            {
+              "name": "_cexit"
+            },
+            {
+              "name": "_configure_narrow_argv"
+            },
+            {
+              "name": "_crt_atexit"
+            },
+            {
+              "name": "_errno"
+            },
+            {
+              "name": "_exit"
+            },
+            {
+              "name": "_initialize_narrow_environment"
+            },
+            {
+              "name": "_initterm"
+            },
+            {
+              "name": "_initterm_e"
+            },
+            {
+              "name": "_set_invalid_parameter_handler"
+            },
+            {
+              "name": "abort"
+            },
+            {
+              "name": "exit"
+            },
+            {
+              "name": "signal"
+            },
+            {
+              "name": "strerror"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-stdio-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "__acrt_iob_func"
+            },
+            {
+              "name": "__p__commode"
+            },
+            {
+              "name": "__p__fmode"
+            },
+            {
+              "name": "__stdio_common_vfprintf"
+            },
+            {
+              "name": "__stdio_common_vsprintf"
+            },
+            {
+              "name": "_isatty"
+            },
+            {
+              "name": "_setmode"
+            },
+            {
+              "name": "fclose"
+            },
+            {
+              "name": "feof"
+            },
+            {
+              "name": "ferror"
+            },
+            {
+              "name": "fflush"
+            },
+            {
+              "name": "fgetc"
+            },
+            {
+              "name": "fgets"
+            },
+            {
+              "name": "fopen"
+            },
+            {
+              "name": "fputc"
+            },
+            {
+              "name": "fputs"
+            },
+            {
+              "name": "fread"
+            },
+            {
+              "name": "fwrite"
+            },
+            {
+              "name": "getchar"
+            },
+            {
+              "name": "putc"
+            },
+            {
+              "name": "putchar"
+            },
+            {
+              "name": "puts"
+            },
+            {
+              "name": "_fileno"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-string-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "isalnum"
+            },
+            {
+              "name": "isalpha"
+            },
+            {
+              "name": "iscntrl"
+            },
+            {
+              "name": "isgraph"
+            },
+            {
+              "name": "islower"
+            },
+            {
+              "name": "isprint"
+            },
+            {
+              "name": "ispunct"
+            },
+            {
+              "name": "isspace"
+            },
+            {
+              "name": "isupper"
+            },
+            {
+              "name": "isxdigit"
+            },
+            {
+              "name": "memset"
+            },
+            {
+              "name": "strcmp"
+            },
+            {
+              "name": "strcpy"
+            },
+            {
+              "name": "strlen"
+            },
+            {
+              "name": "strncmp"
+            },
+            {
+              "name": "strncpy"
+            },
+            {
+              "name": "tolower"
+            },
+            {
+              "name": "toupper"
+            }
+          ]
+        },
+        {
+          "dll": "api-ms-win-crt-time-l1-1-0.dll",
+          "symbols": [
+            {
+              "name": "_time64"
+            },
+            {
+              "name": "clock"
+            }
+          ]
+        }
+      ],
+      "delay_imports": [],
+      "exports": []
+    }
+  ],
+  "runtime_projection": [
+    {
+      "archive_sha256": "63ca004e570269889a30d4046a77946f09ddc6179a8be9b567e90cc9f4e3d7ec",
+      "archive_member": "mingwarm64/bin/libpcre2-8.dll",
+      "projected_member": "mingwarm64/bin/libpcre2-8.dll",
+      "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+      "unchanged": true
+    },
+    {
+      "archive_sha256": "63ca004e570269889a30d4046a77946f09ddc6179a8be9b567e90cc9f4e3d7ec",
+      "archive_member": "mingwarm64/share/licenses/pcre2/LICENCE.md",
+      "projected_member": "mingwarm64/share/licenses/pcre2/LICENCE.md",
+      "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+      "unchanged": true
+    }
+  ],
+  "runtime_scope": "Package-owned unchanged libpcre2-8.dll plus BSD license; it imports only KERNEL32/UCRT API sets. Other widths/POSIX/CLIs were tested from the original package but are not included in the minimal Git role.",
+  "basename_contract": {
+    "required": "libpcre2-8.dll",
+    "shipped": "libpcre2-8.dll",
+    "matching_consumers": [
+      {
+        "path": "mingwarm64/bin/git-receive-pack.exe",
+        "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/bin/git-shell.exe",
+        "sha256": "7743b94328828f4bc3708663e9b2461029a9d2612005fc03a6ab51ee99f4c2aa",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/bin/git-upload-archive.exe",
+        "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/bin/git-upload-pack.exe",
+        "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/bin/git.exe",
+        "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/bin/libpcre2-posix.dll",
+        "sha256": "448a3517ce5d287cae1ea7501ea0697d5c068b018e6f33edbf1ad1859f47850a",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/bin/scalar.exe",
+        "sha256": "99ae931ddced6041e73f71595b838ee8c8957be8989ea1ead260311313c92206",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-daemon.exe",
+        "sha256": "27b089e422beea5f3c7f5bbf382cb8cc5f036a0f009cc064e5e4b92044ed6abc",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-http-backend.exe",
+        "sha256": "bf4bca63ad30cc95bf25dea119030e1b195dd8233be6f5d001b8e6048ae2e31d",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-http-fetch.exe",
+        "sha256": "6ea443bdce999228449a620bb1b751f69540860b7f5a4f0663788807b6f3d834",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-http-push.exe",
+        "sha256": "7ec00042ef3a83c9aa305f1dca0331c715d6f0938633261143b093be672c0189",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-imap-send.exe",
+        "sha256": "6984979ede83b1b307cd1e78ace5d2498998e46565adc400b7c615ef8935a69e",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-remote-ftp.exe",
+        "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-remote-ftps.exe",
+        "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-remote-http.exe",
+        "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-remote-https.exe",
+        "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-sh-i18n--envsubst.exe",
+        "sha256": "576e403aa29a6d298ec9f13c9d0495a177768cbe0b3d3d8e086e5642a1a81021",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git-shell.exe",
+        "sha256": "7743b94328828f4bc3708663e9b2461029a9d2612005fc03a6ab51ee99f4c2aa",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/git.exe",
+        "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      },
+      {
+        "path": "mingwarm64/libexec/git-core/scalar.exe",
+        "sha256": "99ae931ddced6041e73f71595b838ee8c8957be8989ea1ead260311313c92206",
+        "symbols": [
+          {
+            "name": "pcre2_code_free_8"
+          },
+          {
+            "name": "pcre2_compile_8"
+          },
+          {
+            "name": "pcre2_compile_context_create_8"
+          },
+          {
+            "name": "pcre2_compile_context_free_8"
+          },
+          {
+            "name": "pcre2_config_8"
+          },
+          {
+            "name": "pcre2_general_context_create_8"
+          },
+          {
+            "name": "pcre2_general_context_free_8"
+          },
+          {
+            "name": "pcre2_get_error_message_8"
+          },
+          {
+            "name": "pcre2_get_ovector_pointer_8"
+          },
+          {
+            "name": "pcre2_jit_compile_8"
+          },
+          {
+            "name": "pcre2_jit_match_8"
+          },
+          {
+            "name": "pcre2_maketables_8"
+          },
+          {
+            "name": "pcre2_maketables_free_8"
+          },
+          {
+            "name": "pcre2_match_8"
+          },
+          {
+            "name": "pcre2_match_data_create_from_pattern_8"
+          },
+          {
+            "name": "pcre2_match_data_free_8"
+          },
+          {
+            "name": "pcre2_pattern_info_8"
+          },
+          {
+            "name": "pcre2_set_character_tables_8"
+          }
+        ],
+        "missing": []
+      }
+    ],
+    "missing_import_symbols": 0,
+    "current_Git_rebuilt": false,
+    "newer_10_48_3": "Unchanged archive7460d0 with libpcre2-8-0.dll is a different qualified candidate and remains non-plug-compatible with this pinned Git; no alias or renamed DLL used."
+  },
+  "fresh_API_qualification": {
+    "before": {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\evidence\\api-a.json",
+      "sha256": "7b584a7104c93f29b33e3bef51265659da213fd0638545f061d49ce44a53e0f8"
+    },
+    "after": {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\evidence\\api-b.json",
+      "sha256": "1d1802495b87b79b163091f9c39a6d0498edbf96a2e71611dcbe24dac0f97ef2"
+    },
+    "old_root_absent": true,
+    "cases_per_root": 21,
+    "case_passes_total": 42,
+    "POSIX_capture_nonmatch_sets": 2,
+    "coverage": "8/16/32-bit actual interpreter via NO_JIT, direct JIT, Unicode property matching, lookahead, nonmatch, invalid pattern, POSIX capture offsets/nonmatch, exact live DLL path/hash.",
+    "original_full_upstream_suite_rerun": false,
+    "CLI_profile_limit": "Retained pcre2test reports neither readline nor editline; no full ordinary10.48-3 CLI feature claim."
+  },
+  "actual_Git_grep": {
+    "evidence": {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\evidence\\git-grep-02.json",
+      "sha256": "e8e1dd95f2ef90462e6f3b99f2b1b5c4085eae5515d589713d25fafc8372e377"
+    },
+    "checks": 5,
+    "positive": 3,
+    "expected_negative": {
+      "nonmatch": 1,
+      "invalid_pattern": 128
+    },
+    "live_module_capture": "Recorded per run; exact selected unversioned DLL hash where captured"
+  },
+  "preserved_failed_grep_attempt": {
+    "evidence": {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\evidence\\git-grep.json",
+      "sha256": "694f095f2fb94970d0c538c10a4b9b7e2f162d694c4876ea6a74b0d394485bbe"
+    },
+    "cause": "The diagnostic supplied a Windows absolute path as a no-index pathspec, rejected as outside the directory tree. No regex was exercised. Rerun used the actual relative fixture name in its directory.",
+    "five_raw_exits": [
+      128,
+      128,
+      128,
+      128,
+      128
+    ],
+    "initial_invalid_pattern_predicate": "Too broad and invalid as a positive; corrected to require the specific PCRE2 missing-closing-parenthesis error."
+  },
+  "independent_Git_clone_failure": {
+    "evidence": {
+      "path": "C:\\ap11-accd-gettext01\\clone-baseline-comparison\\result.json",
+      "sha256": "de0f264747318afb27c49c28fedcf2a659ef44a0c1d88b7220c0e8b4e54722b5"
+    },
+    "scope": "Official/revoked/restored libintl all crashed in this isolated clone fixture. f6 owns full-root attribution; not a PCRE2 failure attribution or a waived MVP blocker."
+  },
+  "admission": "Intake owner a2dd decides; retain original selected identity, no new package or full-MVP claim.",
+  "export_inventory": {
+    "path": "C:\\ap11-accd-pcre2-mvp01\\delivery-01\\export-inventory.json",
+    "sha256": "29fa1f534e41086fef27b4f9dc7fbdc415fe876b816872d88e460421c5d63446"
+  }
+}

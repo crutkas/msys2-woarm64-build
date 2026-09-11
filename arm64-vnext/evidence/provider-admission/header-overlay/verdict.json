@@ -1,0 +1,49 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T10:56:47.7217759Z",
+  "decision": "ADMIT_SCOPED_CYGWIN_MSYS_ARM64_SDK_HEADER_PROVIDER",
+  "export": {
+    "path": "C:\\ap11-native-provider-intake\\cygwin-w32api-arm64-v12-admitted-v1\\export.json",
+    "sha256": "e8f15ea9837a75be2fb133f9dbd6b7ce31f0d628ca29ce06c933e5fb2f8017f7"
+  },
+  "verification": {
+    "path": "C:\\ap11-native-provider-intake\\cygwin-w32api-arm64-v12-admitted-v1\\independent-verification.json",
+    "sha256": "1bdf74f1a0d1736dd5a3db1e591fe47ade1f050897335f410703ea92e9102cc5"
+  },
+  "controlsPassed": [
+    "export-95 reproducible manifest 1687/1687",
+    "export-96 reproducible manifest 1687/1687",
+    "export-95/export-96 byte identity across 3374 checked files",
+    "local evidence manifest 67/67",
+    "exact 1656-file cohort membership and hashes",
+    "sole shared content delta psdk_inc/intrin-impl.h",
+    "pinned source archive and both canonical patch apply checks",
+    "normalized patched _cygwin.h, basetsd.h, and intrin-impl.h identities",
+    "baseline rejection",
+    "outlined acq_rel helper codegen",
+    "inline ldaxr/stlxr codegen",
+    "x64 preprocessing equivalence without x64 execution claim",
+    "two independent 13-control qualification runs with 29/29 observed processes each",
+    "native 32-bit, 64-bit, and pointer return/store behavior",
+    "four sealing-time raw-zero exact-PE reruns with pre/post SHA equality",
+    "fresh/idempotent overlay acceptance and tracked/untracked drift rejection",
+    "AA64 PE and runtime-907 qualification identity",
+    "license inclusion and path hygiene"
+  ],
+  "scope": "Fresh private Cygwin/MSYS ARM64 SDK/sysroot consumer rebuilds using -isysroot only",
+  "limitations": [
+    "Header-only provider; no binary package identity",
+    "Separate from and not substitutable for the admitted MinGW ARM64 bootstrap header provider",
+    "Does not admit or rebuild GCC, CRT, runtime-907, Perl, OpenSSL, or any release package",
+    "Does not clear a full-release shipping blocker",
+    "Does not authorize shared-prefix mutation or reuse by unchanged consumer binaries",
+    "No weak-memory stress or x64 execution claim"
+  ],
+  "audit": {
+    "rerun": false,
+    "status": "incomplete",
+    "authority": "C:\\ap11-native-provider-intake\\audit-v20-pcre2-runtime907-scoped.json",
+    "sha256": "e0951b48775b39c3c7c1f341756fb7e096192c0eb150e75ff4433f585874b0ac",
+    "releaseArchiveEmitted": false
+  }
+}

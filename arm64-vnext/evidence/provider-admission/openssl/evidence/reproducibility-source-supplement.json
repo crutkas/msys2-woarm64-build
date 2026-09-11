@@ -1,0 +1,28 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T06:36:07.3505150Z",
+  "status": "post-qualification-reproducibility-source-bound-package-unchanged",
+  "commit": "ce845fa0572cc58839d6c9a88a117bfc0e879cff",
+  "commitSubject": "Make OpenSSL store patch fuzz-free",
+  "controls": {
+    "patchApplication": "patch --batch --forward --fuzz=0 -p1",
+    "freshSourceCompletePatchStack": "20/20 succeeded",
+    "secondIdempotentPass": "20/20 succeeded",
+    "packageBytesChanged": false,
+    "providerExportChanged": false,
+    "fullReleaseAuditRerunRequired": false
+  },
+  "sourceFiles": [
+    {
+      "path": ".github/scripts/apply-native-openssl-store-mingw-target.sh",
+      "sha256": "ec4017a75b781c257913175e43bc9843223e8c82d6eedc45a1fcb17f7a4d67e2"
+    },
+    {
+      "path": ".github/scripts/openssl-3.6.4-store-mingw-target.patch",
+      "sha256": "5d5c596a8ce7458047fa3e8973f4a495355ba699e694f08d697b1123fbb30fff"
+    }
+  ],
+  "boundPackageSha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+  "boundProviderExportSha256": "4c3a57be0859f70a355a6d133604cf278cd06fc8406f734344bf15331ebf1a62",
+  "boundAuditSha256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb"
+}

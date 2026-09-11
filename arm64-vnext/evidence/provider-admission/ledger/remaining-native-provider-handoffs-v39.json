@@ -1,0 +1,1022 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T18:39:46.9313005Z",
+  "status": "full-release-incomplete-current-provider-handoffs-v39",
+  "supersedes": {
+    "path": "C:\\ap11-native-provider-intake\\remaining-native-provider-handoffs-v38.json",
+    "sha256": "87a4ffd767cb77899ad86030fb0db64106aa470c6376160051792c9b2d4cf10b"
+  },
+  "unchangedAuthorities": {
+    "input": {
+      "path": "C:\\ap11-native-provider-intake\\input-v21-openssh-runtime907-scoped-final.json",
+      "sha256": "392783cce3d3a45b53826601915f00560a71795ffcfa5dd30b0e33145c8f4552"
+    },
+    "audit": {
+      "path": "C:\\ap11-native-provider-intake\\audit-v22-openssh-runtime907-scoped-final.json",
+      "sha256": "361389b1603afd327aab02cf4279fb8d26122c83dcbfddaec9c45a22cf3d36c5",
+      "status": "incomplete",
+      "blockers": 98,
+      "gitSplits": 15,
+      "selectedPackages": 67,
+      "payloadFiles": 16669,
+      "nativePeArm64": 278,
+      "rerun": true,
+      "reason": "Unchanged assembler selected the scoped OpenSSH package and removed its provider plus four required-file blockers. Release remains incomplete because exact runtime-907/OpenSSL/libxcrypt/zlib package closure is not supplied cleanly and unrelated providers remain missing."
+    },
+    "pcre2Policy": {
+      "path": "C:\\ap11-native-provider-intake\\remaining-native-provider-handoffs-v7.json",
+      "sha256": "6b281b906987452e820676e0cae55700a56b8a9021da08f5a29722a094ade7db"
+    }
+  },
+  "remainingHandoffs": [
+    {
+      "provider": "Bash runtime-907 qualification",
+      "state": "final complete 86-case packet received; runtime-907 Bash compatibility NOT ADMITTED; no further retries",
+      "required": [
+        "new qualified runtime build or Bash/runtime fix that directly resolves the original foreground Ctrl-C pipeline regression",
+        "fresh exact-selection interactive controller demonstrating the original failing case and full regression suite",
+        "new immutable package/provider handoff only if bytes or runtime cohort change"
+      ],
+      "prohibited": [
+        "using 82/86 raw0 as admission",
+        "using the instrumented interactive 19/19 pass as waiver",
+        "normalizing raw DWORDs",
+        "classifying unresolved IFS/read timeouts as passes",
+        "replacing the original missing-helper failure with supplemental compiler pass",
+        "mutating or rebinding the admitted d70 Bash package"
+      ]
+    },
+    {
+      "provider": "strict nativeMSYS GNU gettext native-07",
+      "state": "active producer; no final package/export observed",
+      "required": [
+        "immutable final package/export",
+        "complete suite with no unexpected failures",
+        "four patched-source before/after hashes and both patch identities",
+        "package ownership/dependencies/licenses/readback/AA64/import/moved-root/private-path controls"
+      ],
+      "prohibited": [
+        "promoting native-06 failure artifacts",
+        "treating limited CLANGARM64 libintl projection as strict gettext"
+      ]
+    },
+    {
+      "provider": "nativeMSYS Perl06",
+      "state": "bootstrap/core candidate plus independent original 16-case t/lib/cygwin.t consumer replay passed; provider not admitted",
+      "required": [
+        "fresh dependency-enabled Perl candidate with DB_File, GDBM_File and crypt",
+        "required Git integration module scope or explicit package split ownership",
+        "immutable final package/export with exact archive SHA256",
+        "strict full tests and package/readback/moved-root/private-path controls",
+        "complete PE/import/runtime/module closure against runtime 907"
+      ],
+      "prohibited": [
+        "x64 ps.exe SHA 5b12590b...",
+        "promoting the focused lib/cygwin.t replay as complete Perl qualification",
+        "promoting bootstrap/core PE closure as a complete provider",
+        "generated Makefile authority",
+        "frozen-root mutation"
+      ],
+      "resolved": [
+        "genuine AA64 nativeMSYS ps.exe in accepted private runtime-907 utility fixture",
+        "unchanged original t/lib/cygwin.t replay raw 0, 16/16 PASS, zero skips/failures",
+        "native Bash parent retained so parent PID translation assertion executed",
+        "9/9 processes observed with zero gaps/high exits and zero residual processes"
+      ]
+    }
+  ],
+  "execution": {
+    "newJobsLaunchedByIntake": 0,
+    "sharedPrefixWrites": 0,
+    "sourceRebuildsByIntake": 0,
+    "fullAuditReruns": 2,
+    "releaseArchiveEmitted": false,
+    "nextAction": "Await corrected immutable libxcrypt package and any other active provider handoffs. Add the corrected provider to the preflighted input, rerun only the affected libxcrypt/OpenSSH readback, then run one unchanged-assembler audit; do not consume either rejected or historical libxcrypt pair."
+  },
+  "revokedAdmission": {
+    "name": "mingw-w64-aarch64-headers-git",
+    "version": "70d63e7c9-2",
+    "status": "REVOKED",
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\interlocked-header-package-revoked-v1\\verdict.json",
+      "sha256": "3d54d161e4ac1b646bb2088350fd8c2ca8fbbb5975a2aee30eb2e369f949dd4d"
+    },
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\interlocked-header-package-admitted-v1\\export.json",
+      "sha256": "b5a05014c84289d207447176fe2a424577b02ded49f9c642031199717ab030b1",
+      "consumptionAllowed": false
+    },
+    "package": {
+      "sha256": "dcf18ff9fb9a367a95c7acb844393c954d86f4fc6c6b4cb4b87de76fb849a9b6",
+      "consumptionAllowed": false,
+      "preserveBytes": true
+    },
+    "defects": [
+      "lost maintained _mingw.h static __inline__ C89 fix; -std=c89 <windows.h> fails",
+      "empty-root pacman transaction omitted 1,685 paths owned by mingw-w64-aarch64-gcc; no replacement/upgrade validity"
+    ],
+    "limitedExportAlsoBlocked": {
+      "path": "C:\\ap11-native-provider-intake\\interlocked-header-limited-build-input-v1\\export.json",
+      "sha256": "84e00734bfd625c59bc0c746b5e367f67c206669b19c525c28304fb0654e5597"
+    }
+  },
+  "evidenceSupplements": [
+    {
+      "provider": "nativeMSYS Perl",
+      "classification": "focused original t/lib/cygwin.t consumer replay admitted as evidence only; provider not admitted",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\perl-root07-cygwin-consumer-v1\\verdict.json",
+        "sha256": "328e719d7589f4e2718df74d1b03cabac822c08dd38afb64dbf97707b0c6bfb0"
+      },
+      "export": {
+        "path": "C:\\ap11-native-provider-intake\\perl-root07-cygwin-consumer-v1\\export.json",
+        "sha256": "3d427d99f769865be4a4f0d51f3cd020e3e48f0bc8f363d36a629b0160760ef2"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\perl-root07-cygwin-consumer-v1\\independent-verification.json",
+        "sha256": "df2ecd6c1c27a01076e29682315fde915e3484a7f427c5f80082cbe55b4734c1"
+      },
+      "passed": [
+        "original t/lib/cygwin.t and t/test.pl unchanged",
+        "16/16 PASS, zero skip/fail, parent raw 0",
+        "9/9 processes observed, zero unresolved/unobserved/unrelayed-high",
+        "exact accepted root07 Perl/core bytes and private runtime-907 utility fixture",
+        "1,731 manifest files unchanged post-run, zero unexpected files, zero residual processes"
+      ],
+      "boundaries": [
+        "private consumer evidence only",
+        "no full Perl, runtime-907, or utility shipping provider admission",
+        "DB_File/GDBM_File/crypt, Git modules, full suite, package/readback/moved-root/private-path, and final closure remain"
+      ]
+    },
+    {
+      "provider": "nativeMSYS Perl",
+      "classification": "bootstrap/core candidate advanced by PE/import/runtime/module probes; provider not admitted",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\perl-root07-bootstrap-evidence-v2\\verdict.json",
+        "sha256": "2783994d67f8e9a592af4d2ac88d1d510b2279d5dd9be2c500373647e3bd2a9c"
+      },
+      "resolved": [
+        "t/perl.exe and t/msys-perl5_38.dll materialization",
+        "GetShortPathName private writable fixture",
+        "Embed focused replay"
+      ],
+      "remaining": [
+        "genuine AA64 nativeMSYS ps.exe for lib/cygwin.t",
+        "DB_File/GDBM_File/crypt dependency-enabled candidate",
+        "11 optional Git integration modules",
+        "full package/test/PE/import/runtime/module closure"
+      ],
+      "positive": [
+        "58/58 candidate PEs AA64",
+        "58-PE import closure unresolved=0 disallowed=0",
+        "runtime 907 loader capture disallowed modules=0",
+        "module smoke raw 0, core failures=0"
+      ]
+    },
+    {
+      "provider": "nativeMSYS Coreutils limited MVP",
+      "classification": "root-cause packet accepted; no admission change",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\coreutils-rootcause-evidence-v1\\verdict.json",
+        "sha256": "87e247dbae78e0e37a04cc068346dffd7e964abd6c1d9f838a084809cb8584d9"
+      },
+      "originalTotals": {
+        "PASS": 48,
+        "FAIL": 41,
+        "SKIP": 23,
+        "ERROR": 4
+      },
+      "boundaries": [
+        "limited utilities export unchanged",
+        "help replay bounded-incomplete on missing AA64 gzip",
+        "seven genuine POSIX permission cases remain",
+        "twenty observation gaps retained as hard rejections"
+      ]
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-05 strict check failed; provider not admitted",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate05-failure-v1\\verdict.json",
+        "sha256": "93ad657517371f8235ed932efb443514ae4ead07c6482d3f4d620ab0c51da680"
+      },
+      "positive": [
+        "13,930/13,930 processes observed with no unresolved/unobserved processes",
+        "AA64 8/16/32 libraries compiled with JIT, Unicode, ANYCRLF, readline, zlib and bzip2",
+        "native pcre2_jit_test passed all ARM-64 UTF-width and invalid-UTF suites",
+        "native pcre2posix_test passed"
+      ],
+      "failure": [
+        "strict make -j1 check raw 2: 2 PASS, 2 FAIL",
+        "RunTest missing source fixture testoutput3C",
+        "RunGrepTest host-MSYS argument conversion corruption",
+        "required DLL/package export not produced because redundant -lpthread prevents libtool DLL output"
+      ],
+      "continuation": "candidate-06 authorized only for exact official fixture, native relay, and redundant -lpthread correction"
+    },
+    {
+      "provider": "Bash 5.3.015 against runtime 907",
+      "classification": "complete 86-case evidence accepted; runtime-907 compatibility not admitted",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\bash-runtime907-final-qualification-v2\\verdict.json",
+        "sha256": "3b5f68e0c37fbcaa7f502b9ffe5fae7c5649545bccead9553430af2ac305a450"
+      },
+      "packet": {
+        "path": "C:\\ag-bash907-20260911-02\\qualification-handoff-01\\handoff.json",
+        "sha256": "499f301a9103af687963a42b1987530f5eeffaf2d928dca170832196525127ce"
+      },
+      "suite": "86 total: 82 raw0, 2 raw1, 2 unresolved raw1460; 32 observer passes; 21464 created/21453 observed",
+      "controlling": "interactive failure ad40... remains controlling; d70 remains only admitted Bash runtime cohort"
+    },
+    {
+      "provider": "replacement ARM64 MinGW maintained header package",
+      "classification": "export-23 withdrawn before admission",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\interlocked-header-export23-withdrawn-v1\\verdict.json",
+        "sha256": "d0e71d9817507f2847cccff3b2a09a5d0788810787e13802d07cdc79abbd2b54"
+      },
+      "exportSha256": "f116386e28798561e8b8fa44d1ed872d829f3ae9920962d1ae0fd4cd438bc2f8",
+      "packageSha256": "7b5658afcba1f0943af8078b570b9749f4871660c09bb160235c22ffcea403bb",
+      "readback": "1690/1690 payload matched; 1685 shipped headers versus 2528 deployed paths; one shared-path change and 843 baseline-only paths",
+      "boundary": "Internal subset validity does not satisfy full two-way deployed-header accounting; no consumption authorized."
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-06 strict check failed 3/4; provider not admitted",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate06-failure-v1\\verdict.json",
+        "sha256": "33316719c0c40b05bbaf8c1c20a8e7469c7883d0fc8d49479f424d204b96b900"
+      },
+      "positive": [
+        "18660/18660 processes observed",
+        "genuine AA64 8/16/32/POSIX DLLs emitted",
+        "JIT, POSIX, and full RunTest passed"
+      ],
+      "failure": "RunGrepTest failed because a temporary Bash shebang wrapper added an extra host-MSYS argument conversion boundary",
+      "continuation": "candidate-07 authorized only to remove wrapper boundary and use native relay mode none"
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-07 strict check failed 3/4; provider not admitted",
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate07-failure-v1\\verdict.json",
+        "sha256": "2d83472431a6523d090ece8f06d6b03f7121f964b02b82947e3bc98b7baa76a9"
+      },
+      "observer": "4772/4772 observed, raw2",
+      "dllBytes": "unchanged from candidate-06",
+      "failure": "direct relay shell script execution remained the last host-MSYS argument-conversion boundary",
+      "continuation": "candidate-08 authorized only for in-shell function encoding into the existing native relay environment"
+    },
+    {
+      "provider": "replacement ARM64 MinGW maintained header package",
+      "classification": "export-26/pkgrel-3 admitted scoped bootstrap-only",
+      "export": {
+        "path": "C:\\ap11-native-provider-intake\\interlocked-header-package-admitted-v3\\export.json",
+        "sha256": "4d6f22d391e7345bd4993b3a2cc9d900ae00c2efed53d1324dcfd1ee254a05c6"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\interlocked-header-package-admitted-v3\\verdict.json",
+        "sha256": "87d7fb6ad06eac013b0daa41afb4066c1d246abd8ed33eb410cbe493f421c48c"
+      },
+      "packageSha256": "7b5658afcba1f0943af8078b570b9749f4871660c09bb160235c22ffcea403bb",
+      "providerSha256": "dd606c0d006e064adc84cf6b1baee3bf6074eb77e8f190663780e3839c0aee32",
+      "controls": "1690/1690 payload, 2528 exact deployed paths, 1685 shipped, 843 classified exclusions, C89, AA64 codegen/runtime, five licenses, reproducibility, fresh-root/Qkk, exact GCC overlap/conflict",
+      "boundary": "Fresh-bootstrap C/winpthreads headers only; no in-place migration, C++/generated-source ownership, runtime role, or audit blocker clearance."
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-08 strict check failed 3/4; provider not admitted",
+      "sourceHandoff": {
+        "path": "C:\\ap15-d207\\less-native-01\\candidate08-failure-handoff-01\\handoff.json",
+        "sha256": "dda213a3bf68585c7ec5233ff145e67e8df5c6eb5f3f52ff3372d31836882a11"
+      },
+      "intakeVerdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate08-failure-v1\\verdict.json",
+        "sha256": "1a7c38c99a799da698f4b91be269d90e6a096106cfb6255574665ca86fd9eb3b"
+      },
+      "strict": "raw 2; 3 PASS / 1 FAIL (RunGrepTest); 0 skips, 0 xfail, no waiver",
+      "observation": "1878/1878 observed; 0 unobserved, unresolved, or unrelayed high exits; 383 unique relay receipts",
+      "product": "four unchanged candidate-06 AA64 DLLs; JIT, pcre2grep JIT, widths 8/16/32, Unicode retained",
+      "verification": "395/395 bound references matched; all four DLL machines 0xaa64",
+      "boundary": "Evidence only: no package/install output, no PCRE2 admission, no less clearance, no audit change."
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-09 strict check failed 2/4; provider not admitted",
+      "sourceHandoff": {
+        "path": "C:\\ap15-d207\\less-native-01\\candidate09-failure-handoff-01\\handoff.json",
+        "sha256": "36f7deb0e9a8dc75e80354a1bc290f086470547f10c43f4185bb824f47e50182"
+      },
+      "intakeVerdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate09-failure-v1\\verdict.json",
+        "sha256": "199c7adc3ae73baa5082c4c185e1ca22899fc6d1b8cd47ef219abbad7741c5cb"
+      },
+      "strict": "raw 2; 2 PASS / 2 FAIL (RunTest, RunGrepTest); 0 skip/xfail/error; no waiver",
+      "observation": "1670/1670 observed; 0 unobserved, unresolved, or unrelayed high exits; 391 unique relay receipts all raw 127",
+      "bridge": "AA64 native-msys-argv-relay.exe SHA c1c06d02...; /cygdrive/c executable spelling rejected before target execution",
+      "product": "four unchanged candidate-06 AA64 DLLs; JIT, pcre2grep JIT, widths 8/16/32, Unicode retained",
+      "verification": "406/406 bound references matched",
+      "supplemental": "same bridge succeeded separately with Windows target and multiline/existing-/c probe; explicitly no strict/admission effect",
+      "boundary": "Evidence only: no install/package/API output, no PCRE2 admission, no less clearance, no audit change."
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-10 controller-environment failure; no product/path-delta inference and no admission",
+      "sourceHandoff": {
+        "path": "C:\\ap15-d207\\less-native-01\\candidate10-failure-handoff-01\\handoff.json",
+        "sha256": "1c9bda213367fa4ccfd42c9694d555e1186bad7565182a7efb6102237c0b9cd0"
+      },
+      "intakeVerdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate10-controller-failure-v1\\verdict.json",
+        "sha256": "35e1d640baeefbecbbb8b04ad08cc582bea2a128688ea81322e15a56be0459df"
+      },
+      "surface": "raw 2; reported 2 PASS / 2 FAIL; 1283/1283 observed; 0 gaps/high exits; 0 relay receipts",
+      "cause": "WOARM64_NATIVE_TEST_ROOT and WOARM64_NATIVE_EXIT_DIR omitted; native-target-exec failed closed before bridge/PCRE2 invocation",
+      "pathDeltaExercised": false,
+      "product": "four unchanged candidate-06 AA64 DLLs; only direct pcre2posix/JIT tests executed raw0",
+      "verification": "10/10 bound references matched",
+      "boundary": "Evidence only: not a PCRE2/path result, no install/package/API output, no PCRE2 admission, no less clearance, no audit change."
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-11 strict check failed 3/4; provider not admitted",
+      "sourceHandoff": {
+        "path": "C:\\ap15-d207\\less-native-01\\candidate11-failure-handoff-01\\handoff.json",
+        "sha256": "26f076878eb57e0049d353c3890d5ecfd26148769d3d19bafda6f704fe992231"
+      },
+      "intakeVerdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate11-failure-v1\\verdict.json",
+        "sha256": "9429e3136417f97797478058f49871e7edf05db7aa47b550c7ddd80083d640ef"
+      },
+      "strict": "raw 2; 3 PASS / 1 FAIL RunGrepTest; 2277/2277 observed; 383 unique bridge receipts; no waiver",
+      "strictBridge": "AA64 SHA 1ee29e...; Windows target spelling worked; failures were host conversion of --file-list=/non/exist and missing concatenated -f/c translation",
+      "product": "four unchanged candidate-06 AA64 DLLs; JIT, pcre2grep JIT, widths 8/16/32, Unicode retained",
+      "verification": "395/395 handoff-bound references plus 4/4 focused-control manifests matched",
+      "correctedFocused": "AA64 bridge SHA 1f0898bc... passed version raw0, multiline raw0, exact nonexistent diagnostic raw2, concatenated -f path raw0; each 4/4 observed with one relay receipt; supplemental only",
+      "boundary": "Evidence only: no install/package/API output, no PCRE2 admission, no less clearance, no audit change."
+    },
+    {
+      "provider": "ARM64-JIT-enabled-nativeMSYS-PCRE2",
+      "classification": "candidate-12 strict check failed 3/4; provider not admitted",
+      "sourceHandoff": {
+        "path": "C:\\ap15-d207\\less-native-01\\candidate12-failure-handoff-01\\handoff.json",
+        "sha256": "b5f5524d46d7dd0f0b9c077248a667d74a070e77ec412143ea1683b78fd16093"
+      },
+      "intakeVerdict": {
+        "path": "C:\\ap11-native-provider-intake\\pcre2-candidate12-failure-v1\\verdict.json",
+        "sha256": "cb84da29abe24159b177ed81f4731100a63571dfee7cf1b17cb5ce6fd6dfda22"
+      },
+      "strict": "raw 2; 3 PASS / 1 FAIL RunGrepTest; prior path divergences fixed; private test runtime lacked native /bin/echo",
+      "observation": "2643/2643 observed; 462 unique bridge receipts; 18 pcre2grep children raw256 unrelayed and retained fail-closed",
+      "bridge": "AA64 SHA 46b3317b...; receipt histogram 386 raw0, 35 raw1, 40 raw2, 1 raw4",
+      "product": "four unchanged candidate-06 AA64 DLLs; JIT, pcre2grep JIT, widths 8/16/32, Unicode retained",
+      "verification": "474/474 handoff references plus exact AA64 test-only echo SHA bc7bf74e... verified",
+      "testOnlyBoundary": "echo is test fixture only, not coreutils/PCRE2 admission; reported 16/16 callout probe not bound by this handoff and gives no waiver",
+      "boundary": "Evidence only: no install/package/API output, no PCRE2 admission, no less clearance, no audit change."
+    },
+    {
+      "provider": "msys2-runtime ARM64 ps/mount/cygpath utilities",
+      "classification": "clean reproducible source-utilities shipping payload admitted for msys2-runtime package integration; not a standalone or complete runtime package provider",
+      "sourceHandoff": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\85c409ca-0b3d-45da-90a0-c624251ff624\\files\\native-arm64-utils-shipping-03",
+        "sha256": "final producer directory; archive and supplemental scan individually hash-bound"
+      },
+      "sourceArchive": {
+        "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\85c409ca-0b3d-45da-90a0-c624251ff624\\files\\native-arm64-utils-shipping-03\\msys2-runtime-arm64-utilities-shipping-candidate.zip",
+        "sha256": "ae74229d16add0c42a45f2e3ff78d9213dce5b43e5dd87f5f378679644f7e84b"
+      },
+      "intakeExport": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-runtime907-utilities-shipping-v1\\export.json",
+        "sha256": "70249af19712c7a925681219f7cbdce222049bb5e295a0808b2af8eeea387206"
+      },
+      "intakeVerdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-runtime907-utilities-shipping-v1\\verdict.json",
+        "sha256": "44848bb45a73aaa4bcada83373135006703c26b5ac77c9c5b7436fac21d064ca"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-runtime907-utilities-shipping-v1\\independent-verification.json",
+        "sha256": "0e40291d0288505a3d2392fd26985290d7040050848be2e35c9a730bcea53fcf"
+      },
+      "utilities": "ps c3deba68..., mount 4bd418ec..., cygpath 8d77f36b...; 3/3 unmanaged AA64, exact imports, COFF timestamp 0, fresh-root raw0",
+      "runtime": "external exact runtime-907 SHA 907afa09...; no runtime package admission",
+      "boundary": "Only payload/usr is shipping-approved for integration by the msys2-runtime package owner. No standalone split-package identity, complete runtime provider, d70/Bash compatibility, or assembler consumption.",
+      "privateMarkerScan": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-runtime907-utilities-shipping-v1\\independent-verification.json",
+        "sha256": "0e40291d0288505a3d2392fd26985290d7040050848be2e35c9a730bcea53fcf",
+        "summary": "Independent section-aware scan: zero exact/private ASCII or UTF-16 hits, zero unexpected Windows/backslash paths, canonical /usr/src and /opt paths only; cygpath public help examples retained."
+      },
+      "reproducibility": [
+        "two differently named output roots produced byte-identical ps, mount, and cygpath PEs",
+        "all three COFF timestamps are zero",
+        "compile-origin prefix maps plus -Wl,--no-insert-timestamp are recorded"
+      ],
+      "independentReplay": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-runtime907-utilities-shipping-v1\\fresh-replay.json",
+        "sha256": "d24e9b3b94f9908e2187826abab1236d870a25ab42cb532d50cd413d26391e7f",
+        "result": "raw 0; ps/mount/cygpath expected outputs; 8/8 processes observed; zero high/gaps/residual"
+      },
+      "superseded": {
+        "privateArchive": {
+          "sha256": "530a2cb169723a62737d4c446f784e6c9f221f72a1cff2cf8fe62b1296037020",
+          "preserved": true,
+          "consumption": "private test fixture only"
+        },
+        "intermediateArchive": {
+          "sha256": "51b9640f633d9766b75bf736d9d4230a9541f3e1678676940972258c49c94909",
+          "consumptionAllowed": false,
+          "reason": "cross-output-root PE timestamp/checksum drift"
+        }
+      }
+    }
+  ],
+  "admittedScopedBootstrapHeaderProvider": {
+    "name": "mingw-w64-aarch64-headers-git",
+    "version": "70d63e7c9-3",
+    "status": "ADMITTED_SCOPED_BOOTSTRAP_ONLY",
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\interlocked-header-package-admitted-v3\\export.json",
+      "sha256": "4d6f22d391e7345bd4993b3a2cc9d900ae00c2efed53d1324dcfd1ee254a05c6"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\interlocked-header-package-admitted-v3\\verdict.json",
+      "sha256": "87d7fb6ad06eac013b0daa41afb4066c1d246abd8ed33eb410cbe493f421c48c"
+    },
+    "package": {
+      "sha256": "7b5658afcba1f0943af8078b570b9749f4871660c09bb160235c22ffcea403bb",
+      "provides": [
+        "mingw-w64-aarch64-headers"
+      ],
+      "conflicts": [
+        "mingw-w64-aarch64-gcc"
+      ]
+    },
+    "providerSha256": "dd606c0d006e064adc84cf6b1baee3bf6074eb77e8f190663780e3839c0aee32",
+    "authority": "2528 deployed = 1685 shipped + 843 excluded (831 C++ headers + 12 generated C sources), shipped-only 0, sole shared delta psdk_inc/intrin-impl.h",
+    "allowed": "fresh private bootstrap roots for MinGW ARM64 C target and winpthreads compatibility headers",
+    "forbidden": [
+      "co-install/in-place migration over monolithic GCC",
+      "C++ or generated CRT source ownership",
+      "runtime/full-release consumption"
+    ],
+    "priorDispositions": [
+      "pkgrel-2 remains revoked",
+      "export-23 remains withdrawn"
+    ]
+  },
+  "admittedRuntimeScopedProviders": [
+    {
+      "provider": "nativeMSYS ARM64 bzip2/PCRE2",
+      "status": "ADMITTED_RUNTIME907_SCOPED",
+      "export": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-bzip2-pcre2-admitted-v1\\export.json",
+        "sha256": "7032ded0427c23c698d043739349385d391220f3df30ff96a48670aa1c2a939b"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-bzip2-pcre2-admitted-v1\\verdict.json",
+        "sha256": "d8939553b86913e689b77d1925d7e0bc4eb60cef40aa791d5b06712a48e34ff4"
+      },
+      "packages": 9,
+      "payloadFiles": 261,
+      "packagePes": 11,
+      "runtimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "lessGate": "CLEARED_FOR_PRODUCER_BUILD_ONLY",
+      "boundaries": [
+        "d70 compatibility not claimed",
+        "runtime-907 package not admitted here",
+        "less not admitted",
+        "test-only helper closure excluded",
+        "release remains incomplete"
+      ]
+    },
+    {
+      "provider": "nativeMSYS ARM64 OpenSSH client",
+      "status": "ADMITTED_RUNTIME907_DEPENDENCY_SCOPED_CLIENT_ONLY",
+      "export": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\export.json",
+        "sha256": "9caf38721af1009c0c6b6fad59f1bca60e8fc05a137ece07b30b52f1deff83d2"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\verdict.json",
+        "sha256": "0966cd47f7ef1ca86d3afc7845f220fcdaca878f38d3ad006e42fcceef61c8bb"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\independent-verification.json",
+        "sha256": "fba26d68dc79cfd3b49d26c0bd91946772476768c4493aad6c6f65ca9464529b"
+      },
+      "package": {
+        "name": "openssh",
+        "version": "10.5p1-2",
+        "sha256": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+        "payloadFiles": 24,
+        "peImages": 9
+      },
+      "runtimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "dependencyIdentities": {
+        "crypto": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+        "ssl": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+        "zlib": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+        "libxcrypt": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe"
+      },
+      "fullReleaseBlockers": [
+        "runtime-907 package not admitted; current selected runtime is d70",
+        "clean libxcrypt package not admitted: exact ce687... DLL leaks six private source paths in .rdata",
+        "other required providers remain missing"
+      ],
+      "limitations": [
+        "client-only",
+        "no stack protector",
+        "no hardening",
+        "sandbox none",
+        "no GSSAPI/Kerberos/Heimdal",
+        "no libedit",
+        "no FIDO/security-key",
+        "candidate Bash parent proof is not Bash provider admission"
+      ],
+      "supersedesRejected": {
+        "handoffSha256": "00882b9e7db0010e87e2fcb678501ba02fc01083abbe90945f5560c7d774a61b",
+        "archiveSha256": "23a38c80b93726ece81024835811d20877b49783421265b6787810989de1bcb0",
+        "oldBytesAdmitted": false
+      },
+      "newlySatisfiedDependencies": {
+        "openssl": {
+          "provider": "C:\\ap11-native-provider-intake\\native-msys-openssl-zlib-admitted-v1\\export.json",
+          "sha256": "d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1"
+        },
+        "zlib": {
+          "packageSha256": "1f655e79e7acb640f483bfc3feef36742dd84afb65899cfd89e954f0740e16ce",
+          "dllSha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+        },
+        "affectedConsumerReplay": "OpenSSL default+legacy providers, dasync engine, and OpenSSH version raw 0; 10/10 observed"
+      }
+    }
+  ],
+  "supersededDraftLedger": {
+    "path": "C:\\ap11-native-provider-intake\\remaining-native-provider-handoffs-v23.json",
+    "sha256": "0e0e2ba4be0a3f537252d7bc7e7240b9711bd8de899a7969eb2c77c9f3a5bdd7",
+    "consumptionAllowed": false,
+    "reason": "Referenced pre-final admission hashes before exact raw PKGINFO evidence was bound."
+  },
+  "admittedCygwinSdkHeaderProvider": {
+    "name": "Cygwin/MSYS ARM64 w32api v12 Interlocked header successor",
+    "status": "ADMITTED_SCOPED_SDK_HEADER_ONLY",
+    "providerClass": "cygwin-msys-arm64-sdk-header-cohort",
+    "identity": "cygwin-w32api-arm64-v12-interlocked-819a6ec2-intake1",
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\cygwin-w32api-arm64-v12-admitted-v1\\export.json",
+      "sha256": "e8f15ea9837a75be2fb133f9dbd6b7ce31f0d628ca29ce06c933e5fb2f8017f7"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\cygwin-w32api-arm64-v12-admitted-v1\\verdict.json",
+      "sha256": "ab62da584ef51c1c4a14be60a2a3991bc860e20574c8dfd1ae8762593f3284cc"
+    },
+    "verification": {
+      "path": "C:\\ap11-native-provider-intake\\cygwin-w32api-arm64-v12-admitted-v1\\independent-verification.json",
+      "sha256": "1bdf74f1a0d1736dd5a3db1e591fe47ade1f050897335f410703ea92e9102cc5"
+    },
+    "sourceRevision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba",
+    "cohortFiles": 1656,
+    "changedPaths": [
+      "psdk_inc/intrin-impl.h"
+    ],
+    "target": "aarch64-pc-cygwin",
+    "qualifiedCompilerSha256": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+    "qualifiedRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "allowed": "fresh private Cygwin/MSYS ARM64 SDK/sysroot consumer rebuilds using the exact cohort with -isysroot",
+    "boundaries": [
+      "separate from MinGW ARM64 bootstrap header provider",
+      "header-only; no GCC/CRT/runtime/package admission",
+      "no shared-prefix mutation",
+      "consumers require explicit new identities",
+      "full-release audit unchanged and incomplete"
+    ]
+  },
+  "supersededDraftOpenSshAudit": {
+    "input": "C:\\ap11-native-provider-intake\\input-v20-openssh-runtime907-scoped.json",
+    "audit": "C:\\ap11-native-provider-intake\\audit-v21-openssh-runtime907-scoped.json",
+    "authoritative": false
+  },
+  "admittedLessProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_LESS704_RUNTIME907_SCOPED",
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-less704-admitted-v1\\export.json",
+      "sha256": "6f426710bdacceb32c31a89d427678c3373068a5df90bf521debbcad556ab809"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-less704-admitted-v1\\verdict.json",
+      "sha256": "5e2dabbdaf04613fbb244ec05eb10ee2f89f75de4b092f9ff6e6c5969a4f4a42"
+    },
+    "package": {
+      "name": "less",
+      "version": "704-1",
+      "sha256": "fe9b92485b8062f0ddddb209e93fd5200d2bed42442478f3a0dd3badfa4cf847"
+    },
+    "qualification": "18/18 strict fixtures, 2,245 steps, 169/169 observation, moved-root/PTY/Unicode/PCRE2/>4GiB controls, and fresh package readback",
+    "boundary": "runtime-907 only; no d70 or full-release completion claim"
+  },
+  "admittedOpenSslZlibProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_OPENSSL_ZLIB_RUNTIME907_SCOPED",
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-openssl-zlib-admitted-v1\\export.json",
+      "sha256": "d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-openssl-zlib-admitted-v1\\verdict.json",
+      "sha256": "327b1acafdefe6993d3a2de8f1c900208a5c85ca98adb79c5a5f876e09dc8579"
+    },
+    "packages": [
+      "libopenssl 4a5be29a...",
+      "openssl cd487c08...",
+      "openssl-devel 0070116c...",
+      "openssl-docs 8923f6a4...",
+      "zlib 1f655e79...",
+      "zlib-devel d9edc5d4..."
+    ],
+    "exactPayloads": "crypto 1f849092..., ssl 5db603a6..., zlib edb3e9e0...",
+    "affectedConsumerReplay": "OpenSSL canonical defaults/providers/engine and OpenSSH version raw 0; 10/10 observed",
+    "boundary": "runtime-907 scoped; libxcrypt excluded; OpenSSH full dependency gate remains open"
+  },
+  "rejectedLibxcryptProvider": {
+    "status": "REJECTED_PRIVATE_RUNTIME_PATHS",
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libxcrypt-rejected-v1\\verdict.json",
+      "sha256": "b8926e215949688f48c7b418636dfec715eda9733ea52309cde2fd514ae33b60"
+    },
+    "packages": [
+      {
+        "name": "libxcrypt",
+        "sha256": "47bf08ac989f20e0574a1728f511327bf1cb8b17d9fb628953e7138b6c033f65"
+      },
+      {
+        "name": "libxcrypt-devel",
+        "sha256": "eb8c494af45079cc6e06c54d254132170cb7ffdddef521aac177da33b7e1d37f"
+      }
+    ],
+    "exactDll": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe",
+    "finding": "300 private source-path strings: 72 .debug_info, 222 .debug_line, 6 .rdata; UTF-16 0",
+    "required": "source-origin prefix mapping with unchanged features/ABI, then affected package/OpenSSH closure replay"
+  },
+  "filteredLegacyProvider": {
+    "status": "ADMITTED_FILTERED_NATIVE_MSYS_CYGPATH_PACKAGE",
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\qualified-cygpath-only-v2\\export.json",
+      "sha256": "c049890381ca12ce055bb9ff0a5340cda71fdf3001b6a2076b77c73cac7a1550"
+    },
+    "package": {
+      "name": "cygpath",
+      "sha256": "af688ab25ce9a9bf9caf159302601e7ee0e0fea4597c30e0fda627a27d27ef84"
+    },
+    "sourceExport": {
+      "path": "C:\\ap11-native-provider-intake\\qualified-archives-v1\\export.json",
+      "sha256": "096f070a7afc477c30505d5280b8fa592e566b9f05ef8e41872c25b58e8f5811"
+    },
+    "disposition": "Exact cygpath archive reused unchanged. Historical zlib declarations were superseded by exact OpenSSH-cohort packages; historical libxcrypt declarations were withheld pending the corrected immutable successor."
+  },
+  "pendingAssemblerInput": {
+    "path": "C:\\ap11-native-provider-intake\\input-v26-mtree-gate-with-gdbm.json",
+    "sha256": "b39d9b03392d6ae7b3e63de2445d6f59f2079169bc086227a88279eba3d6bd4b",
+    "providerExports": 25,
+    "packageDeclarations": 115,
+    "uniquePackages": 106,
+    "references": 24,
+    "preflight": "PASS: every referenced export and package archive hash read back; package declarations loaded without conflicts; rejected archive guard passed",
+    "selectedPackages": [
+      "cygpath af688ab2...",
+      "less fe9b9248...",
+      "libopenssl 4a5be29a...",
+      "openssl cd487c08...",
+      "openssl-devel 0070116c...",
+      "openssl-docs 8923f6a4...",
+      "zlib 1f655e79...",
+      "zlib-devel d9edc5d4...",
+      "libdb 56b0f33798aa84bf3de5545916a7f19bb0ab401dce63ca0ce5d6f8583dc7d0e4",
+      "which 89b61c779aa6c883d4a55645c19687f1e8c9113c7eabe365d6d54930029eb2bc",
+      "dos2unix db48658b51c185ec961606d8c46e169f21c1cb3758422995aba8476b5b286be6"
+    ],
+    "withheldPackages": [
+      "historical libxcrypt 088ad7af...",
+      "historical libxcrypt-devel 9a06bd39...",
+      "rejected OpenSSH-cohort libxcrypt 47bf08ac...",
+      "rejected OpenSSH-cohort libxcrypt-devel eb8c494a..."
+    ],
+    "auditExecuted": false,
+    "releaseArchiveEmitted": false
+  },
+  "admittedLibdbProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_LIBDB_RUNTIME907_SCOPED_V2",
+    "handoff": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v2\\handoff.json",
+      "sha256": "536d5dbed13467adaeac5c010264b98fac976c5751524c4cd0575c0048d4e7db"
+    },
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v2\\export.json",
+      "sha256": "8615794b4ee53787c648cb21b17d8e39d8973f8f61e225699f796f4be8913aa2"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v2\\verdict.json",
+      "sha256": "f932dd258a105f70d2dfe38b48767943daeb4b0dde25aa58d604a5c4f50d0689"
+    },
+    "verification": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v2\\verification.json",
+      "sha256": "795f392f61b14a89721fd25ebabbf88f35d62dc6806faa322c6f2720613f67bc"
+    },
+    "package": {
+      "name": "libdb",
+      "sha256": "56b0f33798aa84bf3de5545916a7f19bb0ab401dce63ca0ce5d6f8583dc7d0e4",
+      "payloadFiles": 3,
+      "payloadBytesUnchanged": true,
+      "packagingChange": "Only .BUILDINFO builddir and its exact .MTREE size/SHA-256 record changed"
+    },
+    "freshReadback": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v2\\fresh-readback.json",
+      "sha256": "0a4a2891c458eca4ef2139f0ea032aeec36842b1afb0ad3857808ec6aa5d9aa6",
+      "result": "runtime-907 exact C consumer raw 0, one exit relay, zero residual processes"
+    },
+    "privateCBuildSdk": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-c-sdk-runtime907-v1\\manifest.json",
+      "sha256": "b12efa662e5b8ec9c31d47f2748fe47e16b7f239172e8b7fe0de9e53ab016e27",
+      "disposition": "Private dynamic C build input only; not an admitted libdb-devel provider"
+    },
+    "boundary": "Only libdb runtime package admitted for runtime-907. Utilities, devel/docs, runtime package, Perl, Git and full release remain nonadmitted."
+  },
+  "revokedLibdbProviderV1": {
+    "status": "REVOKED_STALE_MTREE",
+    "marker": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v1\\REVOKED.json",
+      "sha256": "f09c7b446186acb374c9c03254c6b0ee6657163725dd5d1f575893d15c02a7dc"
+    },
+    "revokedPackageSha256": "dffab36fb01481d4ac6aee71a047dce1d5fc24c7f422b60d779d6651ec6ef97d",
+    "reason": ".BUILDINFO changed without regenerating its recorded .MTREE size/SHA-256 entry"
+  },
+  "admittedLibxcryptProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_LIBXCRYPT_RUNTIME907",
+    "handoff": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libxcrypt-admitted-v1\\handoff.json",
+      "sha256": "f3c9e3df55a5ae853ba017fb841d5e004b119b32e104a80da18bcca203d5acc9"
+    },
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libxcrypt-admitted-v1\\export.json",
+      "sha256": "67e1d812b76dc6cc34bf16b2cd44fa1eaecb83e6a270906799290bd22a65f470"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libxcrypt-admitted-v1\\verdict.json",
+      "sha256": "cac6b0c49b750ff0ed214444bc00d59d67d0456e21c7c6f669f92a3c99e5ccae"
+    },
+    "verificationSha256": "190c24d3967edc2d3838f6b7a74f1bec161394ac722dc660d21d15160a0b254d",
+    "packages": [
+      "libxcrypt c458e3434d82abf881a659392b289d7524f06ed19b75882acb0c30c025a94480",
+      "libxcrypt-devel c313513c9587309777a1d74a5f6f570754d92f2d0672f487fb864208d05475f2"
+    ],
+    "boundary": "Corrected runtime-907 pair only; rejected predecessor remains excluded and no d70/full-release compatibility is claimed."
+  },
+  "admittedWhichProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_WHICH_RUNTIME907",
+    "handoff": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-which-runtime907-admitted-v1\\handoff.json",
+      "sha256": "268e795ba8797f53015e5e483f08dc0868a2db709db7c1dd955e160758ed79ab"
+    },
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-which-runtime907-admitted-v1\\export.json",
+      "sha256": "efdbb548f3ceb51e905d7fde265be5210f68ca3ac1420ce79e63dbbcebbaeea7"
+    },
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-which-runtime907-admitted-v1\\verdict.json",
+      "sha256": "8d4c25d4e206a3134a66038f33337dc9f5182b75464d06540d2e6c83cc983bb6"
+    },
+    "verificationSha256": "5ce1f1e0e20b804fe2f4818afbff78a04228dd0dcf392b75176c9054dffd5b6f",
+    "packageSha256": "89b61c779aa6c883d4a55645c19687f1e8c9113c7eabe365d6d54930029eb2bc",
+    "boundary": "runtime-907 only; declared sh dependency remains unsatisfied by an admitted runtime-907 shell provider; no d70/full-release compatibility claim."
+  },
+  "assemblerMtreeGate": {
+    "status": "ENFORCED",
+    "source": {
+      "path": "arm64-git-recovery\\scripts\\assemble-full-release.py",
+      "sha256": "34f2f812f0a84b21cd944f86346a1724f812c6d4d53862d4701263afd4032129"
+    },
+    "tests": {
+      "path": "arm64-git-recovery\\tests\\test_assemble_full_release.py",
+      "sha256": "9311c7af396c00de0fc544085fd176dabbb27559875ec3a797c116169ca04d25",
+      "result": "37 tests passed"
+    },
+    "controls": [
+      "gzip and plain MTREE parsing",
+      "/set and /unset defaults",
+      "escaped filenames",
+      "recorded file/directory/symlink/hardlink type validation",
+      "recorded size and MD5/SHA1/SHA256/SHA384/SHA512 digest validation",
+      "metadata member validation when recorded",
+      "malformed, duplicate and conflicting entry rejection",
+      "no new mandatory MTREE requirement for archives that omit it"
+    ]
+  },
+  "currentMtreeGatedAudit": {
+    "status": "INCOMPLETE",
+    "path": "C:\\ap11-native-provider-intake\\audit-v27-mtree-gate-with-gdbm.json",
+    "sha256": "a8f32f5f5812f756a4bc97101428712d95a29394a3d3ec1fa98313dc8c1888f5",
+    "inputSha256": "b39d9b03392d6ae7b3e63de2445d6f59f2079169bc086227a88279eba3d6bd4b",
+    "selectedPackages": 73,
+    "payloadFiles": 16924,
+    "nativeArm64PEs": 298,
+    "blockers": 72,
+    "gdbmProviderManifestAccepted": true,
+    "gdbmPackagesSelected": 0,
+    "selectionDisposition": "Current full-release contract has no GDBM requirement before a consuming package such as Perl is admitted.",
+    "releaseArchiveEmitted": false
+  },
+  "runtimeSignalRecoverySupplement": {
+    "status": "TIMING_SENSITIVE_CONTROLLER_BOUNDARY_NOT_RUNTIME907_PRODUCT_REGRESSION",
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\85c409ca-0b3d-45da-90a0-c624251ff624\\files\\runtime-signal-recovery-03\\recovery-handoff.json",
+    "sha256": "e0429e2c8bda3e6dff5da462e0700dd018e675da2f5a366ff8be3edd41c19ce3",
+    "pairSummarySha256": "394a9f8256759c9cad9101bf2e58bcf6ede7473e5e631eed5a2739f37c796595",
+    "admissionDisposition": "Runtime-907 remains NOT_ADMITTED; separate 86-case failures and historical evidence remain unchanged."
+  },
+  "admittedDos2unixProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_DOS2UNIX_RUNTIME907",
+    "producer": {
+      "export": {
+        "path": "C:\\ap18-accd-tools01\\dos2unix\\delivery-01\\export.json",
+        "sha256": "1d70395400981b3404648ad9457cea31b6a17b67980035212d67ecd1bbf6eeec"
+      },
+      "handoff": {
+        "path": "C:\\ap18-accd-tools01\\dos2unix\\delivery-01\\handoff.json",
+        "sha256": "c08af43f21d531fa9a02eaf3e4ec48d4048a3b138b9d732f9c7bb731591d4fa0"
+      }
+    },
+    "admission": {
+      "handoff": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\handoff.json",
+        "sha256": "aed463939712e058055a3309ff4b9d0a73037eae06a1551278aeff3a77f4cd55"
+      },
+      "export": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\export.json",
+        "sha256": "a546fb9731b77ccbbcb28a8d3acce257162fb7ec2751431e4838837a8dabb366"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\verdict.json",
+        "sha256": "a8a29f5fbe8d43f86ebc1f97f9ed882ff964ab8b425965d5aa33eb7188357c69"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\verification.json",
+        "sha256": "6654141c4b91012288bd2067a8febbab31151050543e61c75a059ab8e302c4b7"
+      }
+    },
+    "package": {
+      "name": "dos2unix",
+      "version": "7.5.7-1",
+      "sha256": "db48658b51c185ec961606d8c46e169f21c1cb3758422995aba8476b5b286be6",
+      "payloadMembers": 115,
+      "archiveMembers": 118,
+      "nativeArm64PEFiles": 4,
+      "executableSymlinks": 2,
+      "manpageSymlinks": 39,
+      "metadata": "depend=libintl; conflict=hd2u; license=spdx:BSD-2-Clause",
+      "bytesUnchanged": true
+    },
+    "qualification": {
+      "evidenceReferencesVerified": 397,
+      "originalTests": "174/174 PASS across 9 files",
+      "originalProcessObservation": "1094/1094, parent raw 0, zero unrelayed high exits",
+      "functionalBefore": "30/30 PASS; all six command names",
+      "functionalMoved": "30/30 PASS; all six command names; old root absent",
+      "exactRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "exactLibintlSha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+      "exactLibiconvSha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+      "operationalPrivatePathHits": 0,
+      "historicalFailure": "Preserved x64-bootstrap symlink/argv0 harness failure; unchanged target bytes pass native runtime-907 execv"
+    },
+    "boundary": "runtime-907 package only; test-only runtime/NLS helpers excluded; no d70 compatibility, reproducibility rebuild, or full-release completion claim."
+  },
+  "rejectedGdbmProviderV1": {
+    "status": "REJECTED_PRIVATE_BUILD_PROVENANCE",
+    "producerManifest": {
+      "path": "C:\\ag-gdbm-20260911-01\\packages01\\packages.json",
+      "sha256": "77fa7a9d9baea37bc196572fc9395dd1d13abe5cda9e9e5452eaccff9a68d7d7"
+    },
+    "producerApiEvidence": {
+      "path": "C:\\ag-gdbm-20260911-01\\installed-api05\\result.json",
+      "sha256": "6be5ed472ce69d05b5dcdc7878da435e148251136f24c06c15cb20cb5a165021",
+      "disposition": "Retained positive installed/moved C and NDBM API evidence for rejected bytes; not provider admission."
+    },
+    "rejection": {
+      "handoff": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-rejected-v1\\handoff.json",
+        "sha256": "01b4eb5e3e4e2d79f7d45550bbfb839e974af4e825ad2f79dcf1342398a0f35b"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-rejected-v1\\verdict.json",
+        "sha256": "d2380e41948a10e49e9bedc110cada69bdb5a3dd5119b386c137ee1922050f4a"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-rejected-v1\\verification.json",
+        "sha256": "256f5bc722a9d8cc48938bff7ac65aa3d98378647791df506df62648caabf209"
+      },
+      "providerExportCreated": false
+    },
+    "packages": [
+      "gdbm 9d540e7f3b68933673a39c25a5869f2500ac3a2b3179829028563c5dd4aba76b",
+      "libgdbm dc6fe7504a547eb221dbad4d63e565144dcbf9ad8323d5c4a994c08a8d725a4b",
+      "libgdbm-devel 0d3a9566c9f39a816f137afe6ba85d5d14c39b809819bd34ff40ed92e99592de"
+    ],
+    "retainedPositiveControls": "All archive hashes, package ownership, metadata and MTREE checks passed; five native AA64 PEs and 37 payload files matched.",
+    "blocker": "Five shipped PEs and two development static archives retain C:/ag-gdbm-20260911-01 private source/build provenance; seven members, 1021 normalized occurrences.",
+    "successorRequirement": "Fresh package identities with canonical prefix mapping and/or recipe-consistent runtime stripping; static archives must also be clean. Preserve existing evidence and rerun byte-sensitive/focused successor checks only.",
+    "perlBoundary": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root08-gdbm-boundary-03\\root08-gdbm-boundary-03.json",
+      "sha256": "8664359f41c9e06b83c18ffbf7e3c3a9bfb98fdc11755d7e98749e6657af48b1",
+      "liveStatusSha256": "e34f501ab8934f764e3508978c6c680ad6229f807c9dcfd10f4464bd7ad86472",
+      "disposition": "Formal rejection identities verified and bound; no package copied, no provider export, and no Perl Configure/build/test started."
+    },
+    "auditDisposition": "No assembler input or audit change because no GDBM provider export was admitted.",
+    "bdbDisposition": "Unchanged."
+  },
+  "rejectedLibgpgErrorProviderV1": {
+    "status": "REJECTED_PRIVATE_RUNTIME_AND_BUILD_PROVENANCE",
+    "producer": {
+      "export": {
+        "path": "C:\\ap13-dcb\\libgpg-error-provider-02\\export.json",
+        "sha256": "c72eeac4d89984b5cacc7d2a7e1cfa15d1b818837e00d6ba6e15558a14ea07e4"
+      },
+      "handoff": {
+        "path": "C:\\ap13-dcb\\libgpg-error-provider-02\\handoff.json",
+        "sha256": "008b31a15a6d0d0191bff89f24a2d9f723b4986ae1560402df4a6f2b921711b8"
+      }
+    },
+    "rejection": {
+      "handoff": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-libgpg-error-rejected-v1\\handoff.json",
+        "sha256": "9f198d2d36c1f96d92e339932447b9fa5c7b60ddd0a0cb6ff18d441da5c74ad0"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-libgpg-error-rejected-v1\\verdict.json",
+        "sha256": "3f8778fd7802a10c57e01fc1ac0519d92a03cf14fb4e488f4a5b8baa209e3456"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-libgpg-error-rejected-v1\\verification.json",
+        "sha256": "4dbc100778d8f33b8d45f50e0119f8fe8a6b4f06bb04a233413978d1d2b43b7c"
+      },
+      "providerExportCreated": false
+    },
+    "packages": [
+      "libgpg-error 6d4b7e9e2e1fe50416d00583d4e844365d31437ed97fd650230d7fb6113dfab8",
+      "libgpg-error-devel 15ede0ba11c77d57c784bac980333a0ea072d2effdf26a359aad1fe22b5a5835"
+    ],
+    "retainedPositiveControls": "Both packages pass hash, ownership, metadata, MTREE and AA64 PE checks; upstream 14 pass/1 config skip and basic relocated consumer evidence remain preserved.",
+    "blocker": "Runtime .rdata embeds bootstrap errorref, locale and /etc paths; all PEs and static archive also retain private toolchain debug paths. Four members, 120 normalized occurrences.",
+    "successorRequirement": "Fresh rebuild/package identities with canonical /usr errorref/locale/sysconf paths and debug prefix mapping or recipe-consistent stripping; static archive clean; moved path-dependent controls required.",
+    "externalOwnership": "runtime-907, libiconv and libintl remain external and unchanged.",
+    "auditDisposition": "No assembler input or audit change because no libgpg-error provider export was admitted."
+  },
+  "admittedGdbmProvider": {
+    "status": "ADMITTED_NATIVE_MSYS_GDBM_RUNTIME907",
+    "producer": {
+      "handoff": {
+        "path": "C:\\ag-gdbm-20260911-01\\handoff02\\handoff.json",
+        "sha256": "109e6c9f0f680b22a10b8726cd8a7800926feb8beeac4097d47b2412e4325a62"
+      },
+      "packageManifest": {
+        "path": "C:\\ag-gdbm-20260911-01\\packages02\\packages.json",
+        "sha256": "c7dd3a8a4d348cf65dd79a503a73faa9f7930f07481512bf061710543ee7e135"
+      }
+    },
+    "admission": {
+      "handoff": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-admitted-v1\\handoff.json",
+        "sha256": "90249f19f67ed49690b54fafbd11bf7ceb6d9b16323d0afb866a221803705d62"
+      },
+      "export": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-admitted-v1\\export.json",
+        "sha256": "79957538c919b91f485b618e39004b9ae5957296d42688688078cfae36aacbad"
+      },
+      "verdict": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-admitted-v1\\verdict.json",
+        "sha256": "b682d0489fcb66893267cfee921e0674d4f8decd3c4cfe065d4d48fcafcd4fbc"
+      },
+      "verification": {
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gdbm-runtime907-admitted-v1\\verification.json",
+        "sha256": "f7b9d229ef283b0d7465814f777046d5fd6b9abb1c43a44b1bd89069f4e23fd0"
+      }
+    },
+    "packages": [
+      "gdbm 597c5e5b721d2cd2a49289f7aaaf14d01c90bea834ea96d59a8239e4ee83c29e",
+      "libgdbm 1fcdc30abe4c7f4d311620188715f89de505aa74a0716e69ca527fc027e8f314",
+      "libgdbm-devel 45e531aeeb7b2054c9d655fac2c4c636f42a5f02eb449feaec25729440815a32"
+    ],
+    "qualification": {
+      "payloadFiles": 37,
+      "nativeArm64PEs": 5,
+      "privatePathHitsIncludingMetadata": 0,
+      "mtree": "All three complete regenerated MTREE manifests passed",
+      "stripReceiptSha256": "51208e87eafb5a93d69164f2fd7b15ce5ef6b98586ddbe56dd0b1c7d093f4c5f",
+      "staticArchiveAuditSha256": "0b89710b3437b965ec7bcdc5c0dd7f917464dbfbd98fe634a2ba40d4a437ebdb",
+      "dynamicApiSha256": "f0a4225603e14ede1c7a1cc6ede7797efc78fa76cc598132ff4d5bbed625ec96",
+      "staticApiSha256": "8567a3922f78519059034fa7b188a1a0a85535fb6b7ca0f0354e5a2788175983",
+      "exactRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "dynamicAndStaticInstalledMoved": "raw 0; compile 5/5 and installed/moved 2/2 process observations; static client has no GDBM DLL imports"
+    },
+    "supersedesRejectedV1": {
+      "verdictSha256": "d2380e41948a10e49e9bedc110cada69bdb5a3dd5119b386c137ee1922050f4a",
+      "disposition": "Rejected 1.26-1 package identities remain preserved and excluded."
+    },
+    "boundary": "runtime-907 only; runtime/NLS/readline/ncurses/gcc-libs remain external; no d70, C++ compiler, Expect/Tcl/Perl/BDB, reproducibility or full-release claim."
+  }
+}

@@ -1,0 +1,144 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T06:33:00.4541459Z",
+  "status": "independently-qualified-mingwarm64-openssl-provider",
+  "candidate": {
+    "producerExport": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\export.json",
+    "producerExportSha256": "cc62db912148d55d70c2a869f1aff3b8a5aec6385bcbfb0ce26b8af78aeab8d0",
+    "package": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\packages\\mingw-w64-aarch64-openssl-3.6.4-1-any.pkg.tar.zst",
+    "packageSha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+    "packageName": "mingw-w64-aarch64-openssl",
+    "version": "3.6.4-1",
+    "sourceArchiveSha256": "9bffaa1ad1e07b354c21bd3324ec02fa15579f45a7d0494b3e74bc449b7333ef",
+    "packagingSourceCommit": "66dea6733521e2e03b449e2a6d0d45a55d7dba2f"
+  },
+  "packageReadback": {
+    "payloadFiles": 7631,
+    "ownershipPathCount": 7631,
+    "ownershipPathsMatchSupersededPackage": true,
+    "metadataFiles": 3,
+    "symlinks": 0,
+    "license": {
+      "path": "mingwarm64/share/licenses/openssl/LICENSE",
+      "sha256": "7d5450cb2d142651b8afa315b5f238efc805dad827d91ba367d8516bc9d49e7a"
+    },
+    "peFiles": [
+      {
+        "path": "mingwarm64/bin/openssl.exe",
+        "sha256": "e60131c64200b8fe1913a45d46d73867ebe6f1b68c6a0375d5c2600c5d8e9b93",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "mingwarm64/bin/libcrypto-3-arm64.dll",
+        "sha256": "dd210957efceb1999e38f2b5f5165c370fb6da6a1d7eff1185dd6edf1bc33818",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "mingwarm64/bin/libssl-3-arm64.dll",
+        "sha256": "c1220fb0a6faea975376bbdde558ec19f9ada0a5f5ab0a9b86db14ed0f896b61",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "mingwarm64/lib/engines-3/capi.dll",
+        "sha256": "a1b7f290f1e9d5abffe9f67a993c3de3ccba61d38dc926821774f963dde23f1f",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "mingwarm64/lib/engines-3/loader_attic.dll",
+        "sha256": "525d0ef91c1c6d3472d53ec9f4d59f76641dd4997de97ab9f13d49b55c883127",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "mingwarm64/lib/engines-3/padlock.dll",
+        "sha256": "ee65696e60a649a77a75612ba2dd2544c6fd4934bc8b63474ab401c65f893971",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "mingwarm64/lib/ossl-modules/legacy.dll",
+        "sha256": "d3a593cbefc94882a112ffc73c9f22a8e139bcf0ed0e7e299e21222da0c22e58",
+        "machine": "0xAA64"
+      }
+    ]
+  },
+  "qualification": {
+    "recipes": "355/355",
+    "tests": "4405/4405",
+    "observer": "81776/81776",
+    "fullSuiteHandoffSha256": "a1714700a43ed3e74ff9081061683a834a45371da078a2acba739d7cf87e853b",
+    "packageHandoffSha256": "4779da58f593e6c10f2672314d106adfa53f33e2007c20e33874685ca2f13342",
+    "packageAttemptsSha256": "120b6660bed0d918cdecec1eb181779d104251d832fe5e85453d3272444947f1",
+    "pathProvenanceSupplementSha256": "4df171d29215da055570ba75286569e64bfc5b5ea332657e0b93f687cead55e4"
+  },
+  "pathHygiene": {
+    "forbiddenRecoveryWorkspaceMatches": [],
+    "nonOperationalBuildProvenancePrefix": "/root/arm64-vnext-20260905",
+    "affectedPeImages": [
+      "bin/libcrypto-3-arm64.dll",
+      "bin/libssl-3-arm64.dll",
+      "bin/openssl.exe",
+      "lib/engines-3/capi.dll",
+      "lib/engines-3/loader_attic.dll",
+      "lib/engines-3/padlock.dll",
+      "lib/ossl-modules/legacy.dll"
+    ],
+    "classification": "compiler/CRT source and build-directory debug provenance; not runtime configuration lookup",
+    "operationalDefaults": [
+      "/mingwarm64/etc/ssl",
+      "/mingwarm64/lib/engines-3",
+      "/mingwarm64/lib/ossl-modules"
+    ]
+  },
+  "abiCompatibility": [
+    {
+      "dll": "libcrypto-3-arm64.dll",
+      "oldSha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a",
+      "newSha256": "dd210957efceb1999e38f2b5f5165c370fb6da6a1d7eff1185dd6edf1bc33818",
+      "oldExportCount": 5906,
+      "newExportCount": 5906,
+      "missingFromNew": [],
+      "addedInNew": []
+    },
+    {
+      "dll": "libssl-3-arm64.dll",
+      "oldSha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48",
+      "newSha256": "c1220fb0a6faea975376bbdde558ec19f9ada0a5f5ab0a9b86db14ed0f896b61",
+      "oldExportCount": 604,
+      "newExportCount": 604,
+      "missingFromNew": [],
+      "addedInNew": []
+    }
+  ],
+  "consumerReplays": {
+    "python": {
+      "exit": 0,
+      "pythonSha256": "c55badc4658c6a5e01f21959ae813a66060b786b3297b67991b27a673327652f",
+      "sslPydSha256": "df08eddd868443d7f0b1becdf9f73ca9099da7f9e65b1f0ff678514754cfc6fc",
+      "output": "{\"default_paths\": {\"cafile\": null, \"capath\": \"C:/ap11-native-provider-intake/openssl-python-consumer-readback-v1/mingwarm64/etc/ssl\\\\certs\", \"openssl_cafile\": \"C:/ap11-native-provider-intake/openssl-python-consumer-readback-v1/mingwarm64/etc/ssl\\\\cert.pem\", \"openssl_cafile_env\": \"SSL_CERT_FILE\", \"openssl_capath\": \"C:/ap11-native-provider-intake/openssl-python-consumer-readback-v1/mingwarm64/etc/ssl\\\\certs\", \"openssl_capath_env\": \"SSL_CERT_DIR\"}, \"openssl\": \"OpenSSL 3.6.4 25 Aug 2026\", \"sha256\": \"4949ccaf2971f4dd0ac88d666c9da68fc62f17f769ba4e01d2b6fccbe8f411ff\"}"
+    },
+    "network": {
+      "exit": 0,
+      "curlSha256": "6ddfbcd7c5fcd015112d7e002727b20abc70b7e2c7f643b029cd8d70e9e196be",
+      "libcurlSha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+      "output": "curl 8.22.0 (Windows) libcurl/8.22.0 OpenSSL/3.6.4 zlib/1.3.2 brotli/1.2.0 zstd/1.5.7 c-ares/1.34.8 libidn2/2.3.8 libpsl/0.21.5 libssh2/1.11.1 nghttp2/1.70.0 ngtcp2/1.25.0 nghttp3/1.18.0 WinLDAP\r\nRelease-Date: 2026-09-02\r\nProtocols: dict file ftp ftps gopher gophers http https imap imaps ipfs ipns ldap ldaps mqtt mqtts pop3 pop3s rtsp scp sftp smtp smtps telnet tftp ws wss\r\nFeatures: alt-svc AsynchDNS brotli HSTS HTTP2 HTTP3 HTTPS-proxy IDN IPv6 Kerberos Largefile libz PSL SPNEGO SSL SSPI threadsafe UnixSockets zstd",
+      "selectedVariant": "mingw-w64-aarch64-curl",
+      "discardedHarnessDiagnostic": "An initial all-conflicting-variant extraction ended on curl-winssl and reported Schannel; the exact selected OpenSSL package was restored before the recorded pass."
+    },
+    "localTls13": {
+      "status": "passed",
+      "root": "C:\\ap11-native-provider-intake\\openssl-curl-local-tls-v1",
+      "curlSha256": "6ddfbcd7c5fcd015112d7e002727b20abc70b7e2c7f643b029cd8d70e9e196be",
+      "opensslSha256": "e60131c64200b8fe1913a45d46d73867ebe6f1b68c6a0375d5c2600c5d8e9b93",
+      "protocol": "TLSv1.3",
+      "certificateVerification": "passed with ephemeral localhost SAN and --cacert",
+      "globalConfigurationModified": false
+    }
+  },
+  "scope": {
+    "admittedRole": "native MinGW ARM64 OpenSSL provider",
+    "nativeMsysCryptoProvider": false,
+    "providesMsysCrypto3Dll": false,
+    "fullReleaseComplete": false,
+    "supersedesOldArchiveSha256": "256c79d70ee8a4dc65e6cc532242841373cedddabf67442e19205a026d1d80d3",
+    "oldBytesModified": false
+  }
+}

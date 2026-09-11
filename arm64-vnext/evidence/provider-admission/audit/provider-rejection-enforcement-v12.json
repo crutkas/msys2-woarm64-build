@@ -1,0 +1,370 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-10T22:47:00.3575281Z",
+  "status": "native-provider-audit-v17-canonical-iconv-enforced",
+  "supersedes": {
+    "path": "C:\\ap11-native-provider-intake\\provider-rejection-enforcement-v11.json",
+    "sha256": "00752b291fbc4c64c9f44b04d94f1ea86277d49864dbe2723b88ca62487756b4"
+  },
+  "current_audit": {
+    "input": {
+      "path": "C:\\ap11-native-provider-intake\\input-v17-revoked-free.json",
+      "sha256": "d4b4e9b2cf98d5d387f47315c87d7e99ba0ee20ee341e0105d5dcfd62c0b57c9"
+    },
+    "report": {
+      "path": "C:\\ap11-native-provider-intake\\audit-v17-revoked-free.json",
+      "sha256": "d71f2c02617dbc24e338065f5d5ef5e44f08669240fc40b21a9ad82a8823fc47"
+    },
+    "blockers": 81,
+    "selected_packages": 64,
+    "payload_files": 16633,
+    "native_arm64_pes": 267,
+    "release_complete": false
+  },
+  "canonical_iconv_provider": {
+    "package": {
+      "path": "C:\\ap11-native-provider-intake\\iconv-current-d70-v2\\packages\\iconv-1.19-1-aarch64.pkg.tar.zst",
+      "sha256": "dda09dbd593a8fb24ecdd2bf392f3816bda55f5785f63f31334bc98174def594"
+    },
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\iconv-current-d70-v2\\export.json",
+      "sha256": "152cfe8c388d698473f4ea1c6e52e9bdf271576920ea01b107b30459f370244f"
+    },
+    "handoff": {
+      "path": "C:\\ap11-native-provider-intake\\iconv-current-d70-v2\\handoff.json",
+      "sha256": "0714730e0435806540d790cbf9db1c7fa1f28b58bfccdf0c1141b79e48602f8a"
+    },
+    "excluded_predecessor_supersession": {
+      "path": "C:\\ap11-native-provider-intake\\iconv-current-d70-v2\\excluded-iconv-superseding-disposition.json",
+      "sha256": "f03a23888d92051dca5868828746cb25a5d97f120b69e1ea6f2e0de4ca9ddae7"
+    },
+    "failed_v1_attempt": {
+      "path": "C:\\ap11-native-provider-intake\\iconv-current-d70-v1-disposition.json",
+      "sha256": "e7cdba71fd2358e6a41a5b876c24988839aa165a5b78b432bd6cf6efe767db35"
+    },
+    "exact_iconv_exe_sha256": "5fc974e03a6c2a4bd25850e23876ee3503565bb77c72118fe7dde0f8f10fbca5",
+    "excluded_iconv_exe_sha256": "1354cb317c75b52db5f2e0d808d6612a561f93cbbafe0e2900d090e061acc8fc",
+    "existing_libiconv_package_superseded": false
+  },
+  "remaining_controlling_gaps": {
+    "provider_packages": [
+      "provider-not-supplied:antiword",
+      "provider-not-supplied:connect",
+      "provider-not-supplied:coreutils",
+      "provider-not-supplied:dash",
+      "provider-not-supplied:docx2txt",
+      "provider-not-supplied:dos2unix",
+      "provider-not-supplied:findutils",
+      "provider-not-supplied:gnupg",
+      "provider-not-supplied:less",
+      "provider-not-supplied:mingw-w64-aarch64-gettext",
+      "provider-not-supplied:mingw-w64-aarch64-git-credential-manager",
+      "provider-not-supplied:mintty",
+      "provider-not-supplied:nano",
+      "provider-not-supplied:odt2txt",
+      "provider-not-supplied:openssh",
+      "provider-not-supplied:patch",
+      "provider-not-supplied:perl",
+      "provider-not-supplied:perl-Authen-SASL",
+      "provider-not-supplied:perl-DBI",
+      "provider-not-supplied:perl-Error",
+      "provider-not-supplied:perl-JSON",
+      "provider-not-supplied:perl-MIME-tools",
+      "provider-not-supplied:perl-Net-SMTP-SSL",
+      "provider-not-supplied:perl-TermReadKey",
+      "provider-not-supplied:perl-libwww",
+      "provider-not-supplied:sed",
+      "provider-not-supplied:ssh-pageant",
+      "provider-not-supplied:subversion",
+      "provider-not-supplied:tar",
+      "provider-not-supplied:tig",
+      "provider-not-supplied:unzip",
+      "provider-not-supplied:vim",
+      "provider-not-supplied:which",
+      "provider-not-supplied:winpty",
+      "provider-not-supplied:xpdf-tools",
+      "provider-not-supplied:xz"
+    ],
+    "required_payload_files": [
+      "payload-file-not-supplied:etc/profile",
+      "payload-file-not-supplied:mingwarm64/bin/git-credential-helper-selector.exe",
+      "payload-file-not-supplied:mingwarm64/bin/git-credential-manager.exe",
+      "payload-file-not-supplied:usr/bin/cat.exe",
+      "payload-file-not-supplied:usr/bin/cp.exe",
+      "payload-file-not-supplied:usr/bin/env.exe",
+      "payload-file-not-supplied:usr/bin/find.exe",
+      "payload-file-not-supplied:usr/bin/less.exe",
+      "payload-file-not-supplied:usr/bin/mkdir.exe",
+      "payload-file-not-supplied:usr/bin/perl.exe",
+      "payload-file-not-supplied:usr/bin/rm.exe",
+      "payload-file-not-supplied:usr/bin/sed.exe",
+      "payload-file-not-supplied:usr/bin/sort.exe",
+      "payload-file-not-supplied:usr/bin/ssh-add.exe",
+      "payload-file-not-supplied:usr/bin/ssh-agent.exe",
+      "payload-file-not-supplied:usr/bin/ssh-keygen.exe",
+      "payload-file-not-supplied:usr/bin/ssh.exe",
+      "payload-file-not-supplied:usr/bin/uniq.exe"
+    ],
+    "missing_imports": [
+      "missing-dll:mingwarm64/bin/git-receive-pack.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/git-shell.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/git-upload-archive.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/git-upload-pack.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/git.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/libidn2-0.dll:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/libtre-5.dll:libintl-8.dll",
+      "missing-dll:mingwarm64/bin/scalar.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-daemon.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-http-backend.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-http-fetch.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-http-push.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-imap-send.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-remote-ftp.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-remote-ftps.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-remote-http.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-remote-https.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-sh-i18n--envsubst.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git-shell.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/git.exe:libintl-8.dll",
+      "missing-dll:mingwarm64/libexec/git-core/scalar.exe:libintl-8.dll"
+    ],
+    "operational_rebuilds": [
+      "private-runtime-path:mingwarm64/bin/libcurl-4.dll:C:/ap08-d207/curl-chain-01/variants/openssl/prefix/mingwarm64/bin",
+      "private-runtime-path:mingwarm64/bin/tcl86.dll:C:/ap10-ca5f/git-full-01/bootstrap/mingwarm64/bin",
+      "private-runtime-path:mingwarm64/bin/tcl86.dll:C:/ap10-ca5f/git-full-01/bootstrap/mingwarm64/lib/tcl8.6",
+      "private-runtime-path:mingwarm64/bin/tcl86.dll:C:/ap10-ca5f/git-full-01/bootstrap/mingwarm64/share/man"
+    ],
+    "managed_admission": [
+      "managed-admission-not-supplied:mingw-w64-aarch64-git-credential-manager"
+    ],
+    "native_self_hosting": [
+      "missing-native-self-hosting-evidence"
+    ]
+  },
+  "maintained_source": [
+    {
+      "path": "arm64-git-recovery/contracts/full-release-v1.json",
+      "sha256": "df280277aa9cf4d43d530a84fa063c8949bd88f9442611617c97ebb0531a8e53"
+    },
+    {
+      "path": "arm64-git-recovery/docs/FULL-RELEASE-ASSEMBLY.md",
+      "sha256": "ef1fc55c1cd1b2752487eb701227e5198dcc9f00cc89c0c4d47c15b61c298915"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/compression-policy/makepkg-compression-policy.sh",
+      "sha256": "a2e161767e4d9dea88768eac448170ec53981acb05efe06ad7064e2ddafc62d1"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/compression-policy/makepkg-compression.sh",
+      "sha256": "41bc1d98d912ddbca60f1a6369be0ee9f97959787dcf499eaee814a5f01406d6"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/compression-policy/with-makepkg-compression.sh",
+      "sha256": "b3324cc71bb44ad74ed00064e420db90158fb9aa2da022667a7fe6eaa3e8571c"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/gettext-runtime/PKGBUILD.in",
+      "sha256": "9456e19a57ae7a89da26b775f135ae7abdecdcd6d35198854f3a203bedd70363"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/iconv-full/PKGBUILD.in",
+      "sha256": "872c1780ff6dc791919319ba8d23c3c010676826222f49baf236194c02ac2df4"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/iconv/PKGBUILD.in",
+      "sha256": "daac962c313fee0352d16ee54b11960e2ed3cfc4fde0ddf21be99268d3b04299"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/libedit/PKGBUILD.in",
+      "sha256": "352463f5095f318c78c8e7e37798d3bf496102dee2bf948a72a7835299504c61"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/libiconv/PKGBUILD.in",
+      "sha256": "cb5c047bcd4cf026b21d6d6c7e4c5d66333dee997be5bcd503646ab0123374f6"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/msys2-runtime/PKGBUILD.in",
+      "sha256": "e5849fe209fe0a5215494e75ce06d1276e91bbdd620bd39ba3225799ebc3e22f"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/ncurses/PKGBUILD.in",
+      "sha256": "ee7274b492be25c5782a76c25d6f819b683cd9faa11d715bde44e73013768236"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/qualified-utility/PKGBUILD.in",
+      "sha256": "e377f061f0497578e1390d329603422c22ab121661225e7fd11a5375a0d4cb14"
+    },
+    {
+      "path": "arm64-git-recovery/native-packaging/readline/PKGBUILD.in",
+      "sha256": "0ee013d8e04df4b725857f4672411bfe2fb6ad87d663cc662a4e412b404f1a1e"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/assemble-full-release.py",
+      "sha256": "84ac403d6021bf50988015bf7308b3bd11c25c8c59ef76701f8ed6abafc51d6e"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/export-qualified-native-msys-archives.ps1",
+      "sha256": "f938527acaa284130a9dc5f616e57b8a51d545e9ac533207a4350819ea465107"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-native-bash-provider.ps1",
+      "sha256": "6eeedeef96c7dbb1f499f63babb18836fbe7fdaf6b84a80786cfadabcc4f496c"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-gettext-runtime.ps1",
+      "sha256": "06ad87ae66fb642724ba008a55c1aa966749356932a19602b947bdf32f8adfaf"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-iconv-tool.ps1",
+      "sha256": "4f7cb360866a159e6ba6d4aaf9a51d529c690c018fcfde1f0612093e4f310a19"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-iconv.ps1",
+      "sha256": "554ddf7c0810777d01050e196999e74c80f4b03e33e3c907aec45921d7fb46d7"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-libiconv-runtime.ps1",
+      "sha256": "6d065c769f89ac572bdea72157361662357642fce41908ea9b40e317d9e8f100"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-msys2-runtime.ps1",
+      "sha256": "228a78012f77e7c696493754bdebe1707c97f2ee17381ace1931f22af596ca79"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-native-gcc-libs.ps1",
+      "sha256": "f591a8d9845c09de96a0ceba94080d160ca06a5379c0a72f46a5d82774e97738"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-native-grep-v2.ps1",
+      "sha256": "d00b4c89565a8a81c287c2e0075e9c14b53ca1fe4818961aa655cc6617759679"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-native-make.ps1",
+      "sha256": "41e6a2a563d44de37bece4f5e259c45bde6ba7220e88cb11ab93ef9869f35275"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-native-utilities.ps1",
+      "sha256": "d7e40e36e10d08449caeae114f94b5cd69bb959cede179e8747089ecdd7ae588"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-native-utility-libraries.ps1",
+      "sha256": "977875a73d66f0d72889b51a4a6e81285d8a63cc075bc449439c4888a9ba39b7"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-ncurses.ps1",
+      "sha256": "73c89f1da11aafec9cb979a76fe4dc1151b455ae45fff8cfc7470bf46a96c053"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/package-qualified-terminal-libraries.ps1",
+      "sha256": "2b6cb74da6ab728dabd1326d3ea3514c8e06f9880c956b192819605d33e03aa1"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-audit-input-v12.ps1",
+      "sha256": "6fc43c6b8b3838d31e6e07602774bf3a570881fe99cf3ca2ad46bdaa1ffd16de"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-audit-input-v13.ps1",
+      "sha256": "e161b19a2e29dd12ffc3fe3a05eca99fe8167e68f57e470644936c05159be4ad"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-audit-input-v14.ps1",
+      "sha256": "ce339e92cb1259a29ad1379388668f752983639fee281d469ab3e89cc55fa4ad"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-audit-input-v15.ps1",
+      "sha256": "815afa92b52c6a44ef942533fd1e31c09cd300b4cae8d0e00933c1459c22296c"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-audit-input-v16.ps1",
+      "sha256": "a4ce7b99ac614977ad93973c9857fe9c126755fc69fde882ee3b036923925d5b"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-audit-input-v17.ps1",
+      "sha256": "e73e33a1bf428bed2bbae0a161345e12d6ec467a0417cee24facc5083196fe40"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/prepare-revoked-free-audit-input.ps1",
+      "sha256": "b943143cf0302717acaec3d31d6109b79f13d3a04a5a6232f0187b57130b25af"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/replace-qualified-pcre2-network-export.ps1",
+      "sha256": "14b9c9f5fef61c182c245666b73a4cd6ccfb6907ca1d89258c340e1214236c65"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-bash-audit-attempt-disposition.ps1",
+      "sha256": "1f74b1555a0ce4ef2327333cf1fdeb64019c1110a441aa9a42d05ef5bb165a03"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-bash-package-attempt-disposition.ps1",
+      "sha256": "71411c56c48c247eb7b45aefaeac0e4a861133c2e9d25562b4d9080737d004b4"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-native-provider-dispositions.ps1",
+      "sha256": "0cb62ca615c547895513d3fc61e85b373d3546de23450387333e79e2ae5a383d"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-operational-prefix-lineage.ps1",
+      "sha256": "0a4c73b35a0a20861539d35bd6a8bfbfec2125e0fb770403c88ea7f527ff50c2"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v10.ps1",
+      "sha256": "7a61465a813ba0bbafde28d1f7be062f9295a11b91fdc75081ba138b7a02cc90"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v11.ps1",
+      "sha256": "04aa109de822f0cd7e0f9efe8f77890342dc2fd3ce18a2538c60780c17485e52"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v12.ps1",
+      "sha256": "a7e8299762b386ab392a6f1ef2bd88c2267d0e40abb656e1571a04dbda8ca411"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v4.ps1",
+      "sha256": "c93ba9bca0635815575ff2f28c88bc8476e981c4c701ee1be5cea0078b213bc3"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v5.ps1",
+      "sha256": "186d35db08603ca23e92f68ba626afb25e24fa8771dcbd657d703ecceafd8356"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v6.ps1",
+      "sha256": "970144ca9de41abbb47d9b5247953150d5751d998c6c15edaee45fc36480bfeb"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v7.ps1",
+      "sha256": "3ddadd8e3ecad5e8b7871fa5f1defe8ac49bef935d3f935415b3919820a9c624"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v8.ps1",
+      "sha256": "5c325da4df2c467f7b643e5e8fd58d47cc2f5677d6ce31c6e3e6e75421d086d4"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-provider-enforcement-v9.ps1",
+      "sha256": "f1e25d91710dcc341ea4bd314833f52eb896072f8063787e3d66c3a64fffa228"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-qualified-grep-attempt-disposition.ps1",
+      "sha256": "7cd756c2f206e4819fe92ce61fc7560c46d08155e607d71b86d906828c28a8c0"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-qualified-utilities-v3.ps1",
+      "sha256": "ae355b0f089a9173c1512fdcbc6ab83b32628b9fe3387ec787b240d46f93a332"
+    },
+    {
+      "path": "arm64-git-recovery/scripts/write-qualified-utilities-v4.ps1",
+      "sha256": "e1b5f9c3dbbe07da070156e4164b9b41ffc12a37c8d02f34e84a1a3a469f7f11"
+    },
+    {
+      "path": "arm64-git-recovery/tests/test_assemble_full_release.py",
+      "sha256": "010350b968682950bc30b466ff8f5584aedfff8bf3876600bdff2694a849fb00"
+    }
+  ],
+  "controls": {
+    "release_archive_emitted": false,
+    "audit_incomplete_status_preserved": true,
+    "old_excluded_iconv_reused_or_relabeled": false,
+    "existing_libiconv_archive_repacked": false,
+    "source_or_dependency_rebuild_performed_by_intake": false,
+    "revoked_mingw_gettext_readmitted": false
+  }
+}

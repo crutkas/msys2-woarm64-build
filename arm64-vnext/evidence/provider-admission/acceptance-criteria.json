@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "rehydration-acceptance-envelope",
+  "authority": {
+    "contract": "arm64-git-recovery/contracts/full-release-v1.json",
+    "documentation": "arm64-git-recovery/docs/FULL-RELEASE-ASSEMBLY.md",
+    "strictAudit": "arm64-vnext/evidence/provider-admission/audit/audit-v18-qualified-openssl.json",
+    "strictAuditSha256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb"
+  },
+  "criteria": [
+    {
+      "id": 1,
+      "name": "immutable-source-and-package-identity",
+      "requirement": "Every consumed handoff, export, archive, source receipt, and declared package identity is hash-bound and read back from the artifact; rejected or revoked identities remain hard failures."
+    },
+    {
+      "id": 2,
+      "name": "package-metadata-ownership-and-closure",
+      "requirement": "PKGINFO, MTREE, dependencies, conflicts, file ownership, case-insensitive collisions, licenses, and documentation are truthful and complete; no fake provides, aliases, or ownership claims are permitted."
+    },
+    {
+      "id": 3,
+      "name": "target-architecture-and-import-closure",
+      "requirement": "Shipped native files have the required ARM64 machine identity and every DLL or executable import is resolved by an allowed package or system DLL for that artifact's own runtime contract."
+    },
+    {
+      "id": 4,
+      "name": "private-path-and-relocation-hygiene",
+      "requirement": "Payloads, metadata, static archives, and compiled operational strings contain no prohibited producer-private roots; moved-root behavior and package-time relocation are proven without altering unrelated payload bytes."
+    },
+    {
+      "id": 5,
+      "name": "functional-and-upstream-evidence",
+      "requirement": "The provider supplies preserved build, test, and moved-root consumer evidence appropriate to its claimed scope; missing, skipped, expected-failure, or harness-limited coverage is recorded rather than promoted to a pass."
+    },
+    {
+      "id": 6,
+      "name": "runtime-cohort-and-role-separation",
+      "requirement": "MINGWARM64/UCRT, native MSYS runtime cohorts, managed components, shipped-native payload, self-hosting evidence, and SDK/header-only inputs remain separate gates; evidence for one role or cohort cannot be inferred for another."
+    },
+    {
+      "id": 7,
+      "name": "complete-contract-and-release-gate",
+      "requirement": "All contract-required Git splits, packages, files, documentation, licenses, launch paths, managed admissions, native self-hosting evidence, TLS selection, and dependency closure must pass before a release archive is emitted; an incomplete audit remains incomplete."
+    }
+  ],
+  "standingRules": [
+    "Limited libintl and PCRE2 byte projections do not satisfy strict GNU package identity or transaction gates.",
+    "A valid provider admission may be unselected by the current full-release contract.",
+    "No runtime-907 admission implies d70 compatibility, and no d70 admission implies runtime-907 compatibility.",
+    "MinGW/UCRT libraries must not be forced to import msys-2.0.dll; genuine MSYS providers and consumers must prove their exact MSYS runtime cohort.",
+    "Missing input is not proof that a component was never built, but it cannot be consumed until an exact qualified handoff is supplied.",
+    "No complete archive may be emitted while any blocker remains."
+  ]
+}
+

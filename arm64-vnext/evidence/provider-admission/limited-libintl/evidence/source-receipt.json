@@ -1,0 +1,94 @@
+{
+  "schema": 1,
+  "status": "signed-official-gettext-source-verified",
+  "generatedUtc": "2026-09-10T04:32:13.7399827Z",
+  "release": {
+    "project": "GNU gettext",
+    "version": "1.0",
+    "releaseDate": "2026-01-29",
+    "url": "https://ftp.gnu.org/gnu/gettext/gettext-1.0.tar.xz",
+    "archive": "gettext-1.0.tar.xz",
+    "archiveSha256": "71132a3fb71e68245b8f2ac4e9e97137d3e5c02f415636eb508ae607bc01add7",
+    "signature": "gettext-1.0.tar.xz.sig",
+    "signatureSha256": "f0a94f0bde80f56a7dc079b9a22aaf3594915acd66fdd916e1508a10ccee506a"
+  },
+  "signatureVerification": {
+    "status": "valid",
+    "signer": "Bruno Haible (Free Software Development) <bruno@clisp.org>",
+    "fingerprint": "E0FFBD975397F77A32AB76ECB6301D9E1BBEAC08",
+    "isolatedKeyring": "gnu-keyring.gpg",
+    "isolatedKeyringSha256": "b136fbe57ade4ee5270ca66c402cae7b50349fd07646b5b3de7962d58d4df608",
+    "log": "signature-verification-isolated-02.log",
+    "logSha256": "02acff16483e1772065cd42826264b0d97119cf332d2325c691cdf5a33a84b6a",
+    "globalTrustModified": false
+  },
+  "officialExtraction": "C:\\ap12-ca5f\\gettext-source-01\\official\\gettext-1.0",
+  "retainedProducerComparison": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\native-gettext-shared-04\\source",
+    "files": [
+      {
+        "path": "configure",
+        "officialSha256": "94aed342463655ea6fdbf459a46add99c1158d7b9a0fc4a89ac69ac7c150c442",
+        "retainedSha256": "042bcebc7e79b14923b073ad9e1d6aefc7720e1004aeda501077b0a243d12410",
+        "match": false,
+        "classification": "regenerated-configure-differs"
+      },
+      {
+        "path": "configure.ac",
+        "officialSha256": "e2ad9a858d965506414b862f11e44ac745ef9d767e9ef5b1572ce60957b2053f",
+        "retainedSha256": "e2ad9a858d965506414b862f11e44ac745ef9d767e9ef5b1572ce60957b2053f",
+        "match": true,
+        "classification": "identical"
+      },
+      {
+        "path": "gettext-runtime\\configure",
+        "officialSha256": "e3377481d3934e8dc14ea49afe85ba74fb2b56837a403472e269a52d722ba42c",
+        "retainedSha256": "d8e4343a88fbe05917e6a159279daafc428badd34fcb15b1828dc266d2830793",
+        "match": false,
+        "classification": "regenerated-configure-differs"
+      },
+      {
+        "path": "gettext-runtime\\configure.ac",
+        "officialSha256": "6d1161beabc9758ba9df9f97769ad2914661d2261a9317acca53ed209bd825b2",
+        "retainedSha256": "6d1161beabc9758ba9df9f97769ad2914661d2261a9317acca53ed209bd825b2",
+        "match": true,
+        "classification": "identical"
+      },
+      {
+        "path": "gettext-tools\\configure",
+        "officialSha256": "ab07da5e02a758a3b6c277ef8732632d496eb007b57f5ccd374cdfc4b7b7cf6f",
+        "retainedSha256": "9ad5ac461181ac645f674cc22a84770a3af189910dea4ddd792105c5e4d69646",
+        "match": false,
+        "classification": "regenerated-configure-differs"
+      },
+      {
+        "path": "gettext-tools\\configure.ac",
+        "officialSha256": "9794268868b81f0f56f5cf6e13544a62ee2c617a41a2425a977c21d9eb3374b5",
+        "retainedSha256": "9794268868b81f0f56f5cf6e13544a62ee2c617a41a2425a977c21d9eb3374b5",
+        "match": true,
+        "classification": "identical"
+      },
+      {
+        "path": "NEWS",
+        "officialSha256": "36aeb014c1c872d2fcb84b47ed3ca78ef70f543d9ce23fd2b08b51e48f047976",
+        "retainedSha256": "36aeb014c1c872d2fcb84b47ed3ca78ef70f543d9ce23fd2b08b51e48f047976",
+        "match": true,
+        "classification": "identical"
+      },
+      {
+        "path": ".tarball-version",
+        "officialSha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf",
+        "retainedSha256": "5717e7c840171019a4eeab5b79a7f894a4986eaff93d04ec5b12c9a189f594bf",
+        "match": true,
+        "classification": "identical"
+      }
+    ],
+    "conclusion": "Declarative source/version files match; generated configure scripts differ, so the signed official extraction is authoritative."
+  },
+  "buildPolicy": [
+    "Build only from the signed official extraction.",
+    "Preserve the canonical /mingwarm64 prefix in compiled defaults.",
+    "Publish the truthful mingw-w64-aarch64-gettext-1.0-1 identity.",
+    "Do not rename or metadata-edit the rejected 0.26-1 archive."
+  ]
+}

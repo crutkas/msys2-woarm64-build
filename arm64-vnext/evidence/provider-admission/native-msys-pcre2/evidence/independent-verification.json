@@ -1,0 +1,442 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T10:29:35.1505166Z",
+  "status": "independently-verified-for-runtime907-scoped-admission",
+  "source": {
+    "handoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "c6c5a29ea81b83ba3640e5cfbe329ed27f84faa8dabb0f19c4b28e38f79a8013"
+    },
+    "combinedExport": {
+      "path": "evidence/producer-export.json",
+      "sha256": "c7eba739cb5b202da2bcdf62f52a40a7030a3456f6ba00327a73669396f035af"
+    },
+    "pcre2Export": {
+      "path": "evidence/producer-pcre2-export.json",
+      "sha256": "efd34c0d438b9b590b21fe5af808a999508166a6194fb5e74a791a283bf70b21"
+    },
+    "bzip2Export": {
+      "path": "evidence/producer-bzip2-export.json",
+      "sha256": "e8bd533bc32e909aea885aff5a228243f690e14072910984a4a4b5f89968b22d"
+    },
+    "verification": {
+      "path": "evidence/producer-verification.json",
+      "sha256": "7199533e5eeaa0ac16f49cc2ad41d41857498802ec379f74d8cc9b3b5b5f54e6"
+    },
+    "candidate13Handoff": {
+      "path": "evidence/candidate13-handoff.json",
+      "sha256": "11d3a3d081a4f2f4a0b6e5e54ba9a4b05bad34b57b0505cb450c31dafa493ada"
+    },
+    "candidate13Supplement": {
+      "path": "evidence/candidate13-supplement.json",
+      "sha256": "47119f7ca315ee8ef2f200eb5cae10468f71dece6df09c5d175387976a013b7a"
+    }
+  },
+  "immutableReferences": {
+    "path": "evidence/independent-reference-check.json",
+    "sha256": "4f1be5ba179017dc6326330c3f6e44e44fd1bf44cac70dd29528c117298bad00",
+    "references": 75,
+    "verified": 75,
+    "mismatches": 0
+  },
+  "packages": {
+    "count": 9,
+    "payloadFiles": 261,
+    "distinctPayloadPaths": 261,
+    "payloadBytes": null,
+    "duplicateOwnership": 0,
+    "unsafePaths": 0,
+    "archiveLinks": 0,
+    "freshReadback": "C:\\ap11-native-provider-intake\\native-msys-bzip2-pcre2-intake-v1\\readback",
+    "freshToProducerByteMismatches": 0,
+    "manifest": {
+      "path": "manifests/package-payload-manifest.json",
+      "sha256": "1507f1b3e4139f2b2013e2f2782661a172967c2423fe43e70c5bb66f627488fa"
+    },
+    "metadata": [
+      {
+        "name": "bzip2",
+        "version": "1.0.8-4",
+        "architecture": "aarch64",
+        "description": "A high-quality data compression program",
+        "licenses": [
+          "spdx:bzip2-1.0.6"
+        ],
+        "dependencies": [
+          "libbz2"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 20,
+        "archive": "packages/bzip2-1.0.8-4-aarch64.pkg.tar.zst",
+        "archiveSha256": "6ffe518ad29bab8d3ce71445b4e5876888d77851d26313f38c5aabfcce132cdb"
+      },
+      {
+        "name": "libbz2",
+        "version": "1.0.8-4",
+        "architecture": "aarch64",
+        "description": "A high-quality data compression program",
+        "licenses": [
+          "spdx:bzip2-1.0.6"
+        ],
+        "dependencies": [
+          "gcc-libs"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 1,
+        "archive": "packages/libbz2-1.0.8-4-aarch64.pkg.tar.zst",
+        "archiveSha256": "4dd2074dfd348e56ec9b1c9bf375da99125cbcba21a3c4f23f42b1bb30d0db3e"
+      },
+      {
+        "name": "libbz2-devel",
+        "version": "1.0.8-4",
+        "architecture": "aarch64",
+        "description": "Libbz2 headers and libraries",
+        "licenses": [
+          "spdx:bzip2-1.0.6"
+        ],
+        "dependencies": [
+          "libbz2=1.0.8"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 3,
+        "archive": "packages/libbz2-devel-1.0.8-4-aarch64.pkg.tar.zst",
+        "archiveSha256": "a87256afd525e9e14f382c5dfd5b17255ee3ea1a05f6edea20ede46c90ccc883"
+      },
+      {
+        "name": "pcre2",
+        "version": "10.48-1",
+        "architecture": "aarch64",
+        "description": "A library that implements Perl 5-style regular expressions",
+        "licenses": [
+          "spdx:BSD-3-Clause WITH PCRE2-exception"
+        ],
+        "dependencies": [
+          "libreadline",
+          "libbz2",
+          "zlib",
+          "libpcre2_8=10.48",
+          "libpcre2_16=10.48",
+          "libpcre2_32=10.48",
+          "libpcre2posix=10.48"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 218,
+        "archive": "packages/pcre2-10.48-1-aarch64.pkg.tar.zst",
+        "archiveSha256": "746513aab1510250ba1a99ca02c8684eb522e8ba2d4c4428b8449d67f657dc24"
+      },
+      {
+        "name": "libpcre2_8",
+        "version": "10.48-1",
+        "architecture": "aarch64",
+        "description": "A library that implements Perl 5-style regular expressions",
+        "licenses": [
+          "spdx:BSD-3-Clause WITH PCRE2-exception"
+        ],
+        "dependencies": [
+          "gcc-libs"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 1,
+        "archive": "packages/libpcre2_8-10.48-1-aarch64.pkg.tar.zst",
+        "archiveSha256": "b2ade919f7ad755dd908bc930719ef60ad40f6eb3a30563124cee7c3b900f028"
+      },
+      {
+        "name": "libpcre2_16",
+        "version": "10.48-1",
+        "architecture": "aarch64",
+        "description": "A library that implements Perl 5-style regular expressions",
+        "licenses": [
+          "spdx:BSD-3-Clause WITH PCRE2-exception"
+        ],
+        "dependencies": [
+          "gcc-libs"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 1,
+        "archive": "packages/libpcre2_16-10.48-1-aarch64.pkg.tar.zst",
+        "archiveSha256": "fb100e30e990cfe3c9b1ab632d1bc16d26efc0e9f4b7cbe9bcd6599baae78832"
+      },
+      {
+        "name": "libpcre2_32",
+        "version": "10.48-1",
+        "architecture": "aarch64",
+        "description": "A library that implements Perl 5-style regular expressions",
+        "licenses": [
+          "spdx:BSD-3-Clause WITH PCRE2-exception"
+        ],
+        "dependencies": [
+          "gcc-libs"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 1,
+        "archive": "packages/libpcre2_32-10.48-1-aarch64.pkg.tar.zst",
+        "archiveSha256": "1f79cc44e677f8f4d414affca87d7fda5ebdc0bc2a0b6b3e78dbaeccdcffef5e"
+      },
+      {
+        "name": "libpcre2posix",
+        "version": "10.48-1",
+        "architecture": "aarch64",
+        "description": "A library that implements Perl 5-style regular expressions",
+        "licenses": [
+          "spdx:BSD-3-Clause WITH PCRE2-exception"
+        ],
+        "dependencies": [
+          "libpcre2_8=10.48"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 1,
+        "archive": "packages/libpcre2posix-10.48-1-aarch64.pkg.tar.zst",
+        "archiveSha256": "8244f5d308a836e69f6578b6d3e1df3a720040842e741fb1c352462c261a6d70"
+      },
+      {
+        "name": "pcre2-devel",
+        "version": "10.48-1",
+        "architecture": "aarch64",
+        "description": "PCRE headers and libraries",
+        "licenses": [
+          "spdx:BSD-3-Clause WITH PCRE2-exception"
+        ],
+        "dependencies": [
+          "libpcre2_8=10.48",
+          "libpcre2_16=10.48",
+          "libpcre2_32=10.48",
+          "libpcre2posix=10.48"
+        ],
+        "provides": [
+          null
+        ],
+        "conflicts": [
+          null
+        ],
+        "replaces": [
+          null
+        ],
+        "payloadFiles": 15,
+        "archive": "packages/pcre2-devel-10.48-1-aarch64.pkg.tar.zst",
+        "archiveSha256": "4c1b9406548982e5d53fc45b5ff1ca168d84177fef6b2b365561c24457f041ef"
+      }
+    ],
+    "licenseDisposition": {
+      "bzip2": "usr/share/licenses/bzip2/LICENSE owned by bzip2 split",
+      "pcre2": "usr/share/licenses/pcre2/LICENSE.md owned by pcre2 split",
+      "libraryAndDevelSplits": "share the corresponding package-base license; no invented duplicate ownership"
+    },
+    "exactPkginfo": {
+      "path": "evidence/independent-pkginfo-check.json",
+      "sha256": "d2105d1df2cd725945816fc8cbfa939fe4751a0842fcb953b6111627cd74c1e2",
+      "files": 9,
+      "rawBytesPreserved": true
+    }
+  },
+  "architectureAndImports": {
+    "packagePes": 11,
+    "packageNonArm64": 0,
+    "runtimeClosurePes": 17,
+    "runtimeClosureNonArm64": 0,
+    "unresolvedImports": 0,
+    "evidence": {
+      "path": "evidence/independent-import-closure.json",
+      "sha256": "ef7216be2e38ace0b9c88d5a504e94cca500ed05cf2c389d332f2bd17c9215f5"
+    },
+    "pcre2grepImports": [
+      "KERNEL32.dll",
+      "msys-2.0.dll",
+      "msys-bz2-1.dll",
+      "msys-pcre2-8-0.dll",
+      "msys-z.dll"
+    ],
+    "pcre2testImports": [
+      "KERNEL32.dll",
+      "msys-2.0.dll",
+      "msys-pcre2-16-0.dll",
+      "msys-pcre2-32-0.dll",
+      "msys-pcre2-8-0.dll",
+      "msys-pcre2-posix-3.dll",
+      "msys-readline8.dll"
+    ]
+  },
+  "runtimeCohort": {
+    "required": "runtime-907",
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "dependencies": [
+      {
+        "name": "msys-2.0.dll",
+        "source": "C:\\ag-readline-e138-01\\combined-20260911-01\\compiler\\bin\\msys-2.0.dll",
+        "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+      },
+      {
+        "name": "msys-readline8.dll",
+        "source": "C:\\ag-readline-e138-01\\combined-20260911-01\\sdk\\usr\\bin\\msys-readline8.dll",
+        "sha256": "bf2a0cd06cb4951b8ad37c3e74970d6550f2d5fc101c3eb8056f7127b42253a7"
+      },
+      {
+        "name": "msys-history8.dll",
+        "source": "C:\\ag-readline-e138-01\\combined-20260911-01\\sdk\\usr\\bin\\msys-history8.dll",
+        "sha256": "f48e5347c7610fd53ca8066f19f8b7d964a9c6d251718d3997a4dc8d46e34840"
+      },
+      {
+        "name": "msys-ncursesw6.dll",
+        "source": "C:\\ag-readline-e138-01\\combined-20260911-01\\sdk\\usr\\bin\\msys-ncursesw6.dll",
+        "sha256": "e2d03ae2ac264d8788f3cd7ea4917c51c9b26ac59ee574e4cade633a96de3585"
+      },
+      {
+        "name": "msys-z.dll",
+        "source": "C:\\ap15-d207\\less-native-01\\pcre2-candidate-01\\stage\\zlib\\usr\\bin\\msys-z.dll",
+        "sha256": "aa736ada198e6255d400baf508a1002178b1fd86cc65275ba52bb9772ec9481c"
+      }
+    ],
+    "d70CompatibilityClaimed": false
+  },
+  "movedRoot": {
+    "path": "evidence/independent-runtime/independent-runtime-final.json",
+    "sha256": "d7f470454957b329fdf292d211fbfa48740ceb80e099b317305a7496d115ccab",
+    "constrainedPath": "C:\\ap11-native-provider-intake\\native-msys-bzip2-pcre2-intake-v1\\runtime-check\\usr\\bin;C:\\Windows\\System32",
+    "passed": true,
+    "unexpectedExitCount": 0,
+    "expectedRawExits": {
+      "pcre2grepVersion": 0,
+      "pcre2testConfig": 0,
+      "pcre2grepPositive": 0,
+      "pcre2grepNonmatch": 1,
+      "pcre2grepInvalidPattern": 2,
+      "bzip2Help": 0,
+      "bzip2Compress": 0,
+      "bzip2Decompress": 0,
+      "allWidthApi": 0
+    },
+    "bzip2Roundtrip": {
+      "originalSha256": "5160a901990e0aba85f2c23b638bb921f0d301c80a1bcc3e1e276bc65711f2a5",
+      "resultSha256": "5160a901990e0aba85f2c23b638bb921f0d301c80a1bcc3e1e276bc65711f2a5",
+      "match": true
+    },
+    "allWidthApi": {
+      "executableSha256": "5c32149326580f7aa7c48adc78433cd7f33e484dffcac94b3fa309b7f3cd958d",
+      "resultSha256": "cddd576d91f69e4b51396a6ca328e2c2e44b05e5a0503b412618145ca986558f",
+      "value": {
+        "passed": true,
+        "unicode": 1,
+        "jit": 1,
+        "newline": 5,
+        "width8_matches": 2,
+        "width16_matches": 2,
+        "width32_matches": 2,
+        "posix": 1,
+        "positive": true,
+        "nonmatch": true,
+        "invalid_pattern": true
+      }
+    }
+  },
+  "jitInstructionCache": {
+    "path": "evidence/independent-jit-cache-check.json",
+    "sha256": "0d79290aa13a461b0af6093ef9bc357cff5f2feb99c2d7c2cc87b44db8644dcb",
+    "importsFlushInstructionCache": true,
+    "legacyCacheInstructionCount": 0,
+    "passed": true
+  },
+  "payloadHygiene": {
+    "path": "evidence/independent-absence-check.json",
+    "sha256": "8a1afff6cdc6d756a555b67295ae3f18b8e838ad20e694e9c9885b27ce8a5e62",
+    "privatePathHits": 0,
+    "forbiddenHelperNameHits": 0,
+    "passed": true
+  },
+  "strictHistory": {
+    "candidate13Strict": {
+      "rawExit": 0,
+      "passed": 4,
+      "failed": 0,
+      "skipped": 0,
+      "xfail": 0,
+      "checkLogSha256": "b887677157fa67902873d10f76e29ddb4e9bffe757fe87d5f82621018daf7047",
+      "testSuiteSha256": "1c6b83c054d1d32adbc7b08ded33d11362261cf93a3b403b01bc9bc828d7d1b8"
+    },
+    "candidate13CombinedController": {
+      "rawExit": 1,
+      "classification": "post-check harness failure from repository-relative API fixture path after cd; strict suite and install had already succeeded",
+      "preserved": true,
+      "normalizedOrWaived": false
+    },
+    "supersedingProductEvidence": "unchanged installed/package bytes independently pass packaged all-width API and moved-root controls"
+  },
+  "admission": {
+    "decision": "ADMIT",
+    "scope": "nativeMSYS ARM64 bzip2 1.0.8-4 and PCRE2 10.48-1 package provider bound to runtime-907",
+    "lessGate": "CLEARED_FOR_PRODUCER_BUILD_AGAINST_RUNTIME907_ONLY",
+    "lessAdmitted": false,
+    "fullReleaseComplete": false,
+    "releaseArchiveAllowed": false,
+    "boundaries": [
+      "No d70 compatibility claim",
+      "No runtime-907 package admission by this verdict",
+      "No less package admission",
+      "Test-only echo/intl/iconv/argv relay excluded",
+      "No shared-prefix writes",
+      "No source or product rebuild by intake"
+    ]
+  }
+}

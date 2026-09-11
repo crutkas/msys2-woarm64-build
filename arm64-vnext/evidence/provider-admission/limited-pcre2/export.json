@@ -1,0 +1,194 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T03:56:47.3342626Z",
+  "authority": "nativeMSYS provider intake",
+  "status": "admitted-limited-mvp-only-final",
+  "exportRole": "selected-pcre2-current-byte-git-runtime-projection",
+  "exportRoot": "C:\\ap11-native-provider-intake\\pcre2-current-byte-limited-mvp-v1",
+  "verdict": {
+    "limitedGitMvp": "ADMITTED",
+    "existingSelectedPackage": "RETAINED_UNCHANGED",
+    "newPackageAdmission": "NONE",
+    "newer1048_3ForCurrentGit": "REJECTED_BASENAME_INCOMPATIBLE"
+  },
+  "authorization": {
+    "allowed": "Copy only exact payload files at recorded paths into the first native ARM64 Git artifact.",
+    "unchangedBytesRequired": true,
+    "packageAliasOrRenameAllowed": false,
+    "included": "libpcre2-8.dll and BSD LICENCE.md only",
+    "excluded": [
+      "libpcre2-16.dll",
+      "libpcre2-32.dll",
+      "libpcre2-posix.dll",
+      "pcre2grep.exe",
+      "pcre2test.exe",
+      "headers",
+      "static/import libraries",
+      "docs",
+      "new package metadata",
+      "renamed DLL alias"
+    ]
+  },
+  "payload": {
+    "files": [
+      {
+        "path": "payload/mingwarm64/bin/libpcre2-8.dll",
+        "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+        "bytes": 856400
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/pcre2/LICENCE.md",
+        "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+        "bytes": 4011
+      }
+    ],
+    "expectedCount": 2,
+    "dllMachine": "0xAA64",
+    "imports": "KERNEL32 and UCRT API sets only",
+    "msysRuntimeImported": false,
+    "privatePathHits": []
+  },
+  "package": {
+    "identity": "mingw-w64-aarch64-pcre2 10.48-1",
+    "archiveSha256": "63ca004e570269889a30d4046a77946f09ddc6179a8be9b567e90cc9f4e3d7ec",
+    "selectionReceipt": "C:\\ap11-native-provider-intake\\revoked-free-closures-v1\\network-export.json",
+    "selectionReceiptSha256": "3faec2f42d87e28236dcc451ab6f48c63b67bd54aee746e1ebdf9debf3f1f30f",
+    "metadataRewritten": false,
+    "newPackageCreated": false
+  },
+  "closure": {
+    "currentConsumers": 20,
+    "allConsumerMachines": "0xAA64",
+    "missingImportedSymbols": 0,
+    "actualGitGrep": {
+      "qualifiedChecks": 5,
+      "positive": 3,
+      "expectedNonmatch": 1,
+      "expectedInvalidPattern": 128
+    },
+    "freshApi": {
+      "casesBeforeMove": 21,
+      "casesAfterMove": 21,
+      "passed": 42,
+      "coverage": "8/16/32 interpreter, direct JIT, Unicode, lookahead, nonmatch, invalid-pattern, POSIX captures"
+    },
+    "independentVerificationSha256": "86438b3de91f98c861a73f12844752efb680608dfc2f15f7a5158d22bda10581"
+  },
+  "limitations": [
+    "No PCRE2-specific signed source archive, exact CMake command, or independently reproducible build receipt is available; do not claim a fresh/reproducible PCRE2 build.",
+    "The original package metadata comes from the umbrella network-provider export; this intake does not rewrite it or create a replacement package.",
+    "Full upstream PCRE2 suite was not rerun.",
+    "Retained pcre2test has no readline/editline support; CLI tools are not projected.",
+    "The newer 10.48-3 package exports libpcre2-8-0.dll and remains incompatible with current Git imports; no alias is permitted."
+  ],
+  "authorities": {
+    "qualification": "C:\\ap11-accd-pcre2-mvp01\\delivery-01\\qualification.json",
+    "qualificationSha256": "e43b0f5d7261618dabea1f55d3c16da9a56af986fc0b0fcaf16c4773155f6526",
+    "producerInventorySha256": "29fa1f534e41086fef27b4f9dc7fbdc415fe876b816872d88e460421c5d63446",
+    "apiBeforeSha256": "7b584a7104c93f29b33e3bef51265659da213fd0638545f061d49ce44a53e0f8",
+    "apiAfterSha256": "1d1802495b87b79b163091f9c39a6d0498edbf96a2e71611dcbe24dac0f97ef2",
+    "gitGrepSha256": "e8e1dd95f2ef90462e6f3b99f2b1b5c4085eae5515d589713d25fafc8372e377"
+  },
+  "exportInventory": [
+    {
+      "path": "evidence/api-a.json",
+      "sha256": "7b584a7104c93f29b33e3bef51265659da213fd0638545f061d49ce44a53e0f8",
+      "bytes": 12860
+    },
+    {
+      "path": "evidence/api-b.json",
+      "sha256": "1d1802495b87b79b163091f9c39a6d0498edbf96a2e71611dcbe24dac0f97ef2",
+      "bytes": 12908
+    },
+    {
+      "path": "evidence/archive-inspection.json",
+      "sha256": "e8b5080364773aadf47a60d68a8c9396ce8a974c7b9d582250d1a2b78587d8cb",
+      "bytes": 133485
+    },
+    {
+      "path": "evidence/git-grep-02.json",
+      "sha256": "e8e1dd95f2ef90462e6f3b99f2b1b5c4085eae5515d589713d25fafc8372e377",
+      "bytes": 27879
+    },
+    {
+      "path": "evidence/independent-verification.json",
+      "sha256": "86438b3de91f98c861a73f12844752efb680608dfc2f15f7a5158d22bda10581",
+      "bytes": 9134
+    },
+    {
+      "path": "evidence/producer-export-inventory.json",
+      "sha256": "29fa1f534e41086fef27b4f9dc7fbdc415fe876b816872d88e460421c5d63446",
+      "bytes": 13394
+    },
+    {
+      "path": "evidence/qualification.json",
+      "sha256": "e43b0f5d7261618dabea1f55d3c16da9a56af986fc0b0fcaf16c4773155f6526",
+      "bytes": 122851
+    },
+    {
+      "path": "evidence/selected-network-export.json",
+      "sha256": "3faec2f42d87e28236dcc451ab6f48c63b67bd54aee746e1ebdf9debf3f1f30f",
+      "bytes": 9789
+    },
+    {
+      "path": "independent-replay/empty.gitconfig",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "bytes": 2
+    },
+    {
+      "path": "independent-replay/grep-fixture.txt",
+      "sha256": "e34c4dd68d42c57787d3373b3207a16345ce142df93d109b5da6a7175e9de40f",
+      "bytes": 25
+    },
+    {
+      "path": "independent-replay/invalid.stderr",
+      "sha256": "deb8d8745fa1a4ffe15fc56ef3edb3183c25dcf36b25657823963acce53cc6ff",
+      "bytes": 52
+    },
+    {
+      "path": "independent-replay/invalid.stdout",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "independent-replay/positive.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "independent-replay/positive.stdout",
+      "sha256": "ba4bf26e3bdebb0af264ff5ee36cc8acd43dce6b9ff855157b24f6756160ac19",
+      "bytes": 30
+    },
+    {
+      "path": "payload/mingwarm64/bin/libpcre2-8.dll",
+      "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+      "bytes": 856400
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/pcre2/LICENCE.md",
+      "sha256": "197d8a73ffee0d6b09adba2f9c677b5f5aede24edf89258a68e48248d010d811",
+      "bytes": 4011
+    },
+    {
+      "path": "provenance/original-metadata/.BUILDINFO",
+      "sha256": "242fd34c53088ff8c357dd103c7c7339f42f0bc5bfb20edf0fec6aefb7ec13fe",
+      "bytes": 305
+    },
+    {
+      "path": "provenance/original-metadata/.MTREE",
+      "sha256": "c6b767d4e566fec15da458dcddebd69a7249ce6d920361f68392e1cd749bd5be",
+      "bytes": 12996
+    },
+    {
+      "path": "provenance/original-metadata/.PKGINFO",
+      "sha256": "d8ed3c94e10229c59dea6b41bbdd8d145a053de69cf26e683f9a2f76bb9fc151",
+      "bytes": 408
+    },
+    {
+      "path": "provenance/original-package/mingw-w64-aarch64-pcre2-10.48-1-any.pkg.tar.zst",
+      "sha256": "63ca004e570269889a30d4046a77946f09ddc6179a8be9b567e90cc9f4e3d7ec",
+      "bytes": 3051420
+    }
+  ]
+}
