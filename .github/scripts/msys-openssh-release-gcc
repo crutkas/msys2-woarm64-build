@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+: "${OPENSSH_RELEASE_GCC_REAL:?}"
+: "${OPENSSH_RELEASE_RUNTIME_LIB:?}"
+: "${OPENSSH_RELEASE_BUILD_SOURCE:?}"
+: "${OPENSSH_RELEASE_BUILD_ROOT:?}"
+
+exec "$OPENSSH_RELEASE_GCC_REAL" \
+    "-B$OPENSSH_RELEASE_RUNTIME_LIB/" \
+    "-ffile-prefix-map=$OPENSSH_RELEASE_BUILD_SOURCE=/usr/src/openssh-10.5p1" \
+    "-fdebug-prefix-map=$OPENSSH_RELEASE_BUILD_SOURCE=/usr/src/openssh-10.5p1" \
+    "-fmacro-prefix-map=$OPENSSH_RELEASE_BUILD_SOURCE=/usr/src/openssh-10.5p1" \
+    "-ffile-prefix-map=$OPENSSH_RELEASE_BUILD_ROOT=/usr/src/openssh-build" \
+    "-fdebug-prefix-map=$OPENSSH_RELEASE_BUILD_ROOT=/usr/src/openssh-build" \
+    "-fmacro-prefix-map=$OPENSSH_RELEASE_BUILD_ROOT=/usr/src/openssh-build" \
+    "$@"

@@ -1,0 +1,17 @@
+diff --git a/controlled_ssh.py b/controlled_ssh.py
+--- a/controlled_ssh.py
++++ b/controlled_ssh.py
+@@ -13,10 +13,10 @@ from artifact import ArtifactError, pe_identity, sha256, write_json
+ 
+ def known_hosts_option(name, path):
+     value = Path(path).resolve().as_posix()
+-    if any(character in value for character in '"\r\n\0'):
++    if any(character.isspace() or character in '"\r\n\0' for character in value):
+         raise ArtifactError("The private known-hosts path cannot be represented in OpenSSH configuration")
+-    # Shell argv quoting does not protect whitespace from OpenSSH's own -o parser.
+-    return f'{name}="{value}"'
++    # Embedded quotes survive Python's Windows command-line encoding as backslashes under MSYS.
++    return f"{name}={value}"
+ 
+ 
+ async def exercise(client, driver, output, bash=None, git=None):
