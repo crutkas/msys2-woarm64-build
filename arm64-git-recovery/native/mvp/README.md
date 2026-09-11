@@ -44,6 +44,13 @@ An assembly or static import audit is not an admission verdict.
    using the published observer and its exact precompiled helper. Helper
    instrumentation is not a shipped payload. Every raw Windows exit remains
    unchanged; unknown child exits fail closed. A positive parent is not enough.
+   The negative-hook fixture uses the published `--base-contracts` API, not a
+   modified observer or helper. It pins phase source, images and exact argv,
+   locks its inputs while running, and requires the actual helper0/Bash256/
+   Git1/hook73 generation chain, hook marker and unchanged HEAD. The consumer
+   permits exactly one newly protected generation: inherited protection for
+   any additional high-exit descendant fails. Twenty-two captured-record
+   refusal controls run after the real cases; raw status values are untouched.
 6. `attest_entrypoints.py` checks responsive Bash, Git, HTTPS-helper and Python
    processes with the epoch process attestor and read-only module snapshots.
    Snapshot coverage is labelled; this does not imply module completeness for
@@ -102,7 +109,8 @@ runtime qualification. It is consumed, never rebuilt here.
 | First functional run | Ten native cases passed; missing selected `sed` blocked submodules | Full local Git closure |
 | Second functional run | Recursive submodules passed; relative CA default blocked HTTPS | TLS verification may be disabled |
 | Corrected diagnostic root | Twelve real local/runtime/HTTPS cases passed; input bytes unchanged | Full child-exit or module attestation |
-| Observer integration | 230/230 generations observed; exact 1792/32256 contracts accepted; a separate negative-hook Bash 256 stayed rejected | A blanket exit-status decoder |
+| Initial observer integration | 230/230 generations observed; exact 1792/32256 contracts accepted; a separate negative-hook Bash 256 stayed rejected | A blanket exit-status decoder |
+| Exact hook-fixture integration | 238/238 generations; raw1792/32256/256 retained with exact fixture evidence; 22 refusal controls pass | Core observer modification or permission for other Bash256 descendants |
 | Relocation | Two byte-identical diagnostic archives and two fresh moved functional runs | Publication authorization |
 | Controlled SSH | Native portable client authenticated; real encrypted Git clone/fetch and fsck passed; wrong host key rejected | MSYS OpenSSH, GSSAPI, or installed service support |
 

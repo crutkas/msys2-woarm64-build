@@ -50,6 +50,13 @@ def bind_evidence(results, files, manifest_sha256):
     if (observer.get("observer_passed") is not True or not observer.get("created_processes")
             or observer["created_processes"] != observer.get("observed_processes")):
         raise ArtifactError("Observer evidence has incomplete process-generation coverage")
+    hook = observer.get("hook_causality", {}).get("phase", {})
+    controls = observer.get("refusal_controls", {})
+    protected = controls.get("exact_delta", {}).get("newly_protected_generations")
+    if (not hook.get("pid") or protected != [{"pid": hook["pid"], "created": hook["created"]}]
+            or len(controls.get("cases", [])) != 22
+            or any(row.get("passed") is not True for row in controls["cases"])):
+        raise ArtifactError("The exact hook phase and complete refusal controls are required")
     for name in ("behavior", "observer"):
         cases = results[name].get("cases", [])
         if len(cases) != 12 or any(len(row) < 2 or row[1] != "PASS" for row in cases):

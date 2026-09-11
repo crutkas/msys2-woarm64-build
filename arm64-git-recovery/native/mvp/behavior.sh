@@ -82,17 +82,23 @@ git -C source commit -am hook-positive
 [[ $(cat source/.git/hook-observed) == hook-ok ]]
 before=$(git -C source rev-parse HEAD)
 printf '#!/bin/sh\nprintf "negative-hook-executed\\n" > .git/negative-hook-observed\nexit 73\n' > source/.git/hooks/pre-commit
+cp source/.git/hooks/pre-commit negative-hook-source.sh
 printf 'negative\n' >> source/payload.txt
 rc=0
 if [[ ${MVP_NEGATIVE_HOOK_PHASE-} ]]; then
-    "$MVP_EXPECTED_EXIT_HELPER" --spawn msys-git-hook-negative-v1 1 /usr/bin/bash \
-        "$MVP_NEGATIVE_HOOK_PHASE" /mingwarm64/bin/git.exe "$work/source"
+    hook_argv=("$MVP_EXPECTED_EXIT_HELPER" --spawn msys-git-hook-negative-v1 1 /usr/bin/bash
+               "$MVP_NEGATIVE_HOOK_PHASE" /mingwarm64/bin/git.exe "$work/source")
+    printf '%s\0' "${hook_argv[@]}" > negative-hook-argv.bin
+    WOARM64_EXIT_CONTRACT_SOURCE_SHA256="${MVP_NEGATIVE_HOOK_SOURCE_SHA256:?Missing bound phase source}" \
+        "${hook_argv[@]}"
 else
     git -C source commit -am must-not-commit || rc=$?
     [[ $rc != 0 ]]
 fi
 [[ $(cat source/.git/negative-hook-observed) == negative-hook-executed ]]
 [[ $(git -C source rev-parse HEAD) == "$before" ]]
+printf '%s\n%s\n%s\n' "$before" "$(git -C source rev-parse HEAD)" \
+    "$(cat source/.git/negative-hook-observed)" > negative-hook-proof.txt
 printf '#!/bin/sh\nexit 0\n' > source/.git/hooks/pre-commit
 git -C source commit -am after-negative
 case_pass git-hooks positive-and-rejected-commit

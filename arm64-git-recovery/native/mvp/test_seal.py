@@ -38,7 +38,10 @@ class SealControls(unittest.TestCase):
             "machine": "0xAA64", "sha256": "runtime"}]}
         results = {
             "observer": {"source_manifest": {name: row["sha256"] for name, row in files.items()},
-                         "observer_passed": True, "created_processes": 2, "observed_processes": 2, "cases": cases},
+                         "observer_passed": True, "created_processes": 2, "observed_processes": 2, "cases": cases,
+                         "hook_causality": {"phase": {"pid": 1, "created": 2}},
+                         "refusal_controls": {"exact_delta": {"newly_protected_generations": [{"pid": 1, "created": 2}]},
+                                              "cases": [{"passed": True} for _ in range(22)]}},
             "behavior": {"runtime_sha256": "runtime", "cases": cases},
             "ssh": {"client_sha256": "client"},
             "independent_replay": {"candidate_manifest_sha256": "manifest", "original_candidate_unchanged": True,
@@ -47,6 +50,7 @@ class SealControls(unittest.TestCase):
                                      for name in ("bash", "git", "https-helper", "python")]}}
         bind_evidence(results, files, "manifest")
         changes = [("observer", "source_manifest", {}), ("observer", "observed_processes", 1),
+                   ("observer", "refusal_controls", {}),
                    ("behavior", "runtime_sha256", "old"), ("behavior", "cases", cases[:-1]),
                    ("ssh", "client_sha256", "other"), ("independent_replay", "owned_jobs_drained", False),
                    ("independent_replay", "candidate_manifest_sha256", "other"),
