@@ -9,6 +9,9 @@ param(
     [string]$Compiler,
 
     [Parameter(Mandatory = $true)]
+    [string]$BaselineIncludeRoot,
+
+    [Parameter(Mandatory = $true)]
     [string]$OutputRoot
 )
 
@@ -17,11 +20,55 @@ $ErrorActionPreference = 'Stop'
 $sourceCommit = '70d63e7c9a477b8b275a9782b289fbf1614b6e9e'
 $originalHeaderSha = 'b4b1ac36669b315ebdcee4d4e01731419e714a9663174467fe4adb1da1ca2a29'
 $patchedHeaderSha = '8e0d3b2f2f94969faf166d8d9a0d4eb5e358a32be6bd7e99fc76e552ebfc909a'
+$originalFastfailSourceSha = 'eeef89bcc19b9449fb67aa54ef0d5048dedd70464ad231281e250cd5699285e6'
+$patchedFastfailSourceSha = '73f341f1783674ce3cd7c58a4e4aa545ece9f8e16e81474b0b0ac4f3fbd3f633'
+$installedFastfailHeaderSha = 'dc7a4b6814d2529862e4e254935adddf1c6ffddb0cd5069d8146513c5f81efb9'
+$fastfailPatchSha = '5c89fe22fe5b9a63b43ca4e82b6c1f9fee802cd259a75cf238a821d44529ebd6'
+$expectedHeaderCount = 1685
+$expectedHeaderPathSetSha = 'c780e3df61a8154bf783634b355d9906658ad46536d5da0bb28cc3b857742681'
 $target = 'aarch64-w64-mingw32'
 $repositoryRoot = Resolve-Path (Join-Path $PSScriptRoot '..\..')
 $applier = Join-Path $PSScriptRoot 'apply-mingw-w64-arm64-interlocked-exchange-ordering.sh'
+$fastfailApplier = Join-Path $PSScriptRoot 'apply-mingw-w64-arm64-fastfail-c89-inline.sh'
 $codegenTest = Join-Path $PSScriptRoot 'test-mingw-w64-arm64-interlocked-exchange-ordering.ps1'
 $runtimeTest = Join-Path $PSScriptRoot 'test-mingw-w64-arm64-interlocked-exchange-runtime.ps1'
+$c89Test = Join-Path $PSScriptRoot 'test-mingw-w64-arm64-fastfail-c89.ps1'
+
+function Get-LfNormalizedSha256 {
+    param(
+        [Parameter(Mandatory = $true)]
+        [string]$Path
+    )
+
+    $text = [System.IO.File]::ReadAllText($Path)
+    $normalized = $text.Replace("`r`n", "`n").Replace("`r", "`n")
+    $bytes = [System.Text.UTF8Encoding]::new($false).GetBytes($normalized)
+    $hash = [System.Security.Cryptography.SHA256]::HashData($bytes)
+    return [System.Convert]::ToHexString($hash).ToLowerInvariant()
+}
+
+function Write-RelativePathSet {
+    param(
+        [Parameter(Mandatory = $true)]
+        [System.IO.FileInfo[]]$Files,
+
+        [Parameter(Mandatory = $true)]
+        [string]$Root,
+
+        [Parameter(Mandatory = $true)]
+        [string]$OutputPath
+    )
+
+    $paths = @($Files | ForEach-Object {
+            $_.FullName.Substring($Root.Length + 1).Replace('\', '/')
+        } | Sort-Object)
+    $text = ($paths -join "`n") + "`n"
+    [System.IO.File]::WriteAllText(
+        $OutputPath,
+        $text,
+        [System.Text.UTF8Encoding]::new($false))
+    return $paths
+}
 
 function Get-PeMachine {
     param(
@@ -73,16 +120,30 @@ if ($LASTEXITCODE -ne 0 -or $actualCommit -ne $sourceCommit) {
 }
 
 $sourceHeader = Join-Path $sourceRoot 'mingw-w64-headers\include\psdk_inc\intrin-impl.h'
+$fastfailSourceHeader = Join-Path $sourceRoot 'mingw-w64-headers\crt\_mingw.h.in'
 $actualOriginalSha = (Get-FileHash $sourceHeader -Algorithm SHA256).Hash.ToLowerInvariant()
 if ($actualOriginalSha -ne $originalHeaderSha) {
     throw "Unexpected original intrinsic header identity: $actualOriginalSha"
 }
+$actualOriginalFastfailSha = (Get-FileHash $fastfailSourceHeader -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($actualOriginalFastfailSha -ne $originalFastfailSourceSha) {
+    throw "Unexpected original fastfail header identity: $actualOriginalFastfailSha"
+}
+$fastfailPatch = Join-Path $PSScriptRoot 'mingw-w64-arm64-fastfail-c89-inline.patch'
+$actualFastfailPatchSha = Get-LfNormalizedSha256 $fastfailPatch
+if ($actualFastfailPatchSha -ne $fastfailPatchSha) {
+    throw "Unexpected LF-normalized fastfail patch identity: $actualFastfailPatchSha"
+}
 
-$baselineIncludeRoot = Join-Path $controlsRoot 'baseline-include'
-$baselineHeaderDirectory = Join-Path $baselineIncludeRoot 'psdk_inc'
+$baselineCodegenIncludeRoot = Join-Path $controlsRoot 'baseline-include'
+$baselineHeaderDirectory = Join-Path $baselineCodegenIncludeRoot 'psdk_inc'
 New-Item -ItemType Directory -Path $baselineHeaderDirectory | Out-Null
 Copy-Item $sourceHeader (Join-Path $baselineHeaderDirectory 'intrin-impl.h')
 
+& $Bash $fastfailApplier $sourceRoot
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
 & $Bash $applier $sourceRoot
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
@@ -92,11 +153,16 @@ $actualPatchedSha = (Get-FileHash $sourceHeader -Algorithm SHA256).Hash.ToLowerI
 if ($actualPatchedSha -ne $patchedHeaderSha) {
     throw "Unexpected patched intrinsic header identity: $actualPatchedSha"
 }
+$actualPatchedFastfailSha = (Get-FileHash $fastfailSourceHeader -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($actualPatchedFastfailSha -ne $patchedFastfailSourceSha) {
+    throw "Unexpected patched fastfail header identity: $actualPatchedFastfailSha"
+}
 
 $changedPaths = @(& git -C $sourceRoot diff --name-only)
 if ($LASTEXITCODE -ne 0 -or
-    $changedPaths.Count -ne 1 -or
-    $changedPaths[0] -ne 'mingw-w64-headers/include/psdk_inc/intrin-impl.h') {
+    $changedPaths.Count -ne 2 -or
+    $changedPaths[0] -ne 'mingw-w64-headers/crt/_mingw.h.in' -or
+    $changedPaths[1] -ne 'mingw-w64-headers/include/psdk_inc/intrin-impl.h') {
     throw "Unexpected source changes: $($changedPaths -join ', ')"
 }
 & git -C $sourceRoot diff --check
@@ -118,10 +184,6 @@ make >"$root/controls/make.log" 2>&1
 make DESTDIR="$root/stage" install >"$root/controls/install.log" 2>&1
 install -m 644 "$root/source/mingw-w64-libraries/winpthreads/include/"*.h \
     "$root/stage/mingwarm64/aarch64-w64-mingw32/include/"
-tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner \
-    --format=posix --pax-option=delete=atime,delete=ctime \
-    -I "zstd -19 -T0" -cf "$root/provider.tar.zst" \
-    -C "$root/stage" mingwarm64
 '@
 & $Bash -c $buildCommand -- $OutputRoot
 if ($LASTEXITCODE -ne 0) {
@@ -134,6 +196,38 @@ $actualStageSha = (Get-FileHash $stageHeader -Algorithm SHA256).Hash.ToLowerInva
 if ($actualStageSha -ne $patchedHeaderSha) {
     throw "Unexpected installed intrinsic header identity: $actualStageSha"
 }
+$stageFastfailHeader = Join-Path $includeRoot '_mingw.h'
+$actualStageFastfailSha = (Get-FileHash $stageFastfailHeader -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($actualStageFastfailSha -ne $installedFastfailHeaderSha) {
+    throw "Unexpected installed fastfail header identity: $actualStageFastfailSha"
+}
+
+$stageIncludeFiles = @(Get-ChildItem $includeRoot -Recurse -File | Sort-Object FullName)
+$headerPathsPath = Join-Path $controlsRoot 'header-paths.txt'
+$stageHeaderPaths = @(Write-RelativePathSet -Files $stageIncludeFiles -Root $includeRoot `
+    -OutputPath $headerPathsPath)
+$actualHeaderPathSetSha = (Get-FileHash $headerPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($stageHeaderPaths.Count -ne $expectedHeaderCount -or
+    $actualHeaderPathSetSha -ne $expectedHeaderPathSetSha) {
+    throw "Unexpected installed header path set: count=$($stageHeaderPaths.Count), sha256=$actualHeaderPathSetSha"
+}
+$stagedDifferences = @()
+foreach ($file in $stageIncludeFiles) {
+    $relativePath = $file.FullName.Substring($includeRoot.Length + 1)
+    $baselinePath = Join-Path $BaselineIncludeRoot $relativePath
+    if (-not (Test-Path $baselinePath -PathType Leaf)) {
+        throw "Staged header is absent from baseline toolchain: $relativePath"
+    }
+    $stageSha = (Get-FileHash $file.FullName -Algorithm SHA256).Hash.ToLowerInvariant()
+    $baselineSha = (Get-FileHash $baselinePath -Algorithm SHA256).Hash.ToLowerInvariant()
+    if ($stageSha -ne $baselineSha) {
+        $stagedDifferences += $relativePath.Replace('\', '/')
+    }
+}
+if ($stagedDifferences.Count -ne 1 -or
+    $stagedDifferences[0] -ne 'psdk_inc/intrin-impl.h') {
+    throw "Unexpected staged differences from deployed toolchain: $($stagedDifferences -join ', ')"
+}
 
 $compilerTarget = (& $Compiler -dumpmachine).Trim()
 if ($LASTEXITCODE -ne 0 -or $compilerTarget -ne $target) {
@@ -142,7 +236,7 @@ if ($LASTEXITCODE -ne 0 -or $compilerTarget -ne $target) {
 
 $baselineAssembly = Join-Path $controlsRoot 'baseline-interlocked-exchange.s'
 $codegenFixture = Join-Path $repositoryRoot 'tests\arm64-interlocked-exchange-ordering.c'
-& $Compiler -O2 -S -I $baselineIncludeRoot $codegenFixture -o $baselineAssembly
+& $Compiler -O2 -S -I $baselineCodegenIncludeRoot $codegenFixture -o $baselineAssembly
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }
@@ -167,6 +261,11 @@ if ($LASTEXITCODE -ne 0) {
 if ($LASTEXITCODE -ne 0) {
     exit $LASTEXITCODE
 }
+& $c89Test -Compiler $Compiler -IncludeRoot $includeRoot `
+    -OutputDirectory (Join-Path $controlsRoot 'c89')
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
 
 $runtimeExecutable = Join-Path $controlsRoot 'runtime\interlocked-exchange-runtime.exe'
 $runtimeMachine = Get-PeMachine $runtimeExecutable
@@ -179,6 +278,18 @@ if ($compilerMachine -ne 0xaa64) {
 }
 $bashMachine = Get-PeMachine $Bash
 $archivePath = Join-Path $OutputRoot 'provider.tar.zst'
+$archiveCommand = @'
+set -euo pipefail
+root=$(cygpath -u "$1")
+tar --sort=name --mtime=@0 --owner=0 --group=0 --numeric-owner \
+    --format=posix --pax-option=delete=atime,delete=ctime \
+    -I "zstd -19 -T0" -cf "$root/provider.tar.zst" \
+    -C "$root/stage" mingwarm64
+'@
+& $Bash -c $archiveCommand -- $OutputRoot
+if ($LASTEXITCODE -ne 0) {
+    exit $LASTEXITCODE
+}
 
 $stageFiles = @(Get-ChildItem $stageRoot -Recurse -File | Sort-Object FullName)
 $manifest = foreach ($file in $stageFiles) {
@@ -192,19 +303,26 @@ $manifestPath = Join-Path $controlsRoot 'stage-manifest.json'
 $manifest | ConvertTo-Json -Depth 4 | Set-Content $manifestPath -Encoding utf8NoBOM
 
 $handoff = [ordered]@{
-    schema = 'mingw-w64-arm64-interlocked-header-provider-v2'
+    schema = 'mingw-w64-arm64-interlocked-header-provider-v3'
     source = [ordered]@{
         commit = $actualCommit
         original_header_sha256 = $actualOriginalSha
         patched_header_sha256 = $actualPatchedSha
+        original_fastfail_header_sha256 = $actualOriginalFastfailSha
+        patched_fastfail_header_sha256 = $actualPatchedFastfailSha
         changed_paths = $changedPaths
     }
     recipe = [ordered]@{
         patch_sha256 = (Get-FileHash (Join-Path $PSScriptRoot 'mingw-w64-arm64-interlocked-exchange-ordering.patch') -Algorithm SHA256).Hash.ToLowerInvariant()
         applier_sha256 = (Get-FileHash $applier -Algorithm SHA256).Hash.ToLowerInvariant()
+        fastfail_patch_sha256 = $actualFastfailPatchSha
+        fastfail_patch_hash_normalization = 'UTF-8 text with CRLF and lone CR normalized to LF'
+        fastfail_patch_worktree_sha256 = (Get-FileHash $fastfailPatch -Algorithm SHA256).Hash.ToLowerInvariant()
+        fastfail_applier_sha256 = (Get-FileHash $fastfailApplier -Algorithm SHA256).Hash.ToLowerInvariant()
         preparation_script_sha256 = (Get-FileHash $PSCommandPath -Algorithm SHA256).Hash.ToLowerInvariant()
         codegen_test_sha256 = (Get-FileHash $codegenTest -Algorithm SHA256).Hash.ToLowerInvariant()
         runtime_test_sha256 = (Get-FileHash $runtimeTest -Algorithm SHA256).Hash.ToLowerInvariant()
+        c89_test_sha256 = (Get-FileHash $c89Test -Algorithm SHA256).Hash.ToLowerInvariant()
     }
     provider = [ordered]@{
         root = $stageRoot
@@ -214,6 +332,12 @@ $handoff = [ordered]@{
         manifest = $manifestPath
         manifest_sha256 = (Get-FileHash $manifestPath -Algorithm SHA256).Hash.ToLowerInvariant()
         installed_header_sha256 = $actualStageSha
+        installed_fastfail_header_sha256 = $actualStageFastfailSha
+        header_count = $stageHeaderPaths.Count
+        header_paths = $headerPathsPath
+        header_paths_sha256 = $actualHeaderPathSetSha
+        baseline_include_root = (Resolve-Path $BaselineIncludeRoot).Path
+        staged_differences_from_baseline = $stagedDifferences
         archive = $archivePath
         archive_sha256 = (Get-FileHash $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
         archive_bytes = (Get-Item $archivePath).Length
@@ -233,6 +357,7 @@ $handoff = [ordered]@{
         baseline_codegen = 'reproduced acquire-only __aarch64_swp4_sync and __aarch64_swp8_sync'
         codegen = 'passed'
         runtime = 'passed'
+        c89 = 'passed'
         runtime_executable_sha256 = (Get-FileHash $runtimeExecutable -Algorithm SHA256).Hash.ToLowerInvariant()
         runtime_pe_machine = ('0x{0:x4}' -f $runtimeMachine)
         expected_helpers = @('__aarch64_swp4_acq_rel', '__aarch64_swp8_acq_rel')
