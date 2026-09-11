@@ -302,20 +302,26 @@ def deterministic_zip(root, archive):
     if archive.resolve().is_relative_to(root.resolve()):
         raise ArtifactError("ZIP output must be outside the input tree")
     rows = inventory(root)
+    directories = {safe_path(path.relative_to(root).as_posix()) + "/" for path in root.rglob("*") if path.is_dir()}
+    names = sorted(set(rows) | directories)
     with zipfile.ZipFile(archive, "x", compression=zipfile.ZIP_DEFLATED, compresslevel=9) as dest:
-        for name in sorted(rows):
+        for name in names:
             info = zipfile.ZipInfo(name, (2026, 8, 31, 0, 0, 0))
             info.create_system = 3
-            info.external_attr = 0o100644 << 16
+            info.external_attr = (0o40755 << 16) | 0x10 if name in directories else 0o100644 << 16
             info.compress_type = zipfile.ZIP_DEFLATED
-            dest.writestr(info, (root / name).read_bytes(), compresslevel=9)
+            dest.writestr(info, b"" if name in directories else (root / name).read_bytes(), compresslevel=9)
     with zipfile.ZipFile(archive) as verify:
-        if verify.namelist() != sorted(rows):
+        if verify.namelist() != names:
             raise ArtifactError("Archive order or file set changed")
         for item in verify.infolist():
+            if item.is_dir():
+                if item.filename not in directories:
+                    raise ArtifactError("Unexpected archive directory")
+                continue
             if hashlib.sha256(verify.read(item)).hexdigest() != rows[item.filename]["sha256"]:
                 raise ArtifactError("Archive readback differs")
-    return {"sha256": sha256(archive), "size": archive.stat().st_size, "files": len(rows)}
+    return {"sha256": sha256(archive), "size": archive.stat().st_size, "files": len(rows), "directories": len(directories)}
 
 
 def main():

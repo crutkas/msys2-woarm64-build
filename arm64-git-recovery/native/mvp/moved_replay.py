@@ -9,7 +9,7 @@ import subprocess
 import sys
 import zipfile
 
-from artifact import ArtifactError, deterministic_zip, inventory, sha256, write_json
+from artifact import ArtifactError, deterministic_zip, inventory, safe_path, sha256, write_json
 
 
 def extract(archive, target, expected):
@@ -17,15 +17,19 @@ def extract(archive, target, expected):
         raise ArtifactError("Moved extraction must be fresh")
     target.mkdir(parents=True)
     with zipfile.ZipFile(archive) as source:
-        if set(source.namelist()) != set(expected):
+        if {item.filename for item in source.infolist() if not item.is_dir()} != set(expected):
             raise ArtifactError("Archive entries differ from the source manifest")
         for item in source.infolist():
-            destination = target / item.filename
+            destination = target / safe_path(item.filename)
+            if item.is_dir():
+                destination.mkdir(parents=True, exist_ok=True)
+                continue
             destination.parent.mkdir(parents=True, exist_ok=True)
             with source.open(item) as src, destination.open("xb") as dest:
                 shutil.copyfileobj(src, dest)
     for name in ("tmp", "var/tmp", "etc", "home"):
-        (target / name).mkdir(parents=True, exist_ok=True)
+        if not (target / name).is_dir():
+            raise ArtifactError("Archive omitted a required runtime directory")
     if inventory(target) != expected:
         raise ArtifactError("Fresh extracted bytes differ")
 

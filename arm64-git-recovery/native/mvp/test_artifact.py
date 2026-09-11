@@ -4,6 +4,7 @@ from pathlib import Path
 import tarfile
 import tempfile
 import unittest
+import zipfile
 
 from artifact import ArtifactError, assemble, deterministic_zip, package_entries, safe_path, sha256
 
@@ -69,6 +70,21 @@ class ArtifactControls(unittest.TestCase):
             (root / "payload").write_bytes(b"data")
             with self.assertRaises(ArtifactError):
                 deterministic_zip(root, root / "archive.zip")
+
+    def test_empty_runtime_directories_survive_archive_extraction(self):
+        with tempfile.TemporaryDirectory() as temporary:
+            root = Path(temporary)
+            source = root / "source"
+            source.mkdir()
+            (source / "payload").write_bytes(b"data")
+            (source / "tmp").mkdir()
+            (source / "var/tmp").mkdir(parents=True)
+            result = deterministic_zip(source, root / "archive.zip")
+            self.assertEqual(result["directories"], 3)
+            with zipfile.ZipFile(root / "archive.zip") as archive:
+                archive.extractall(root / "extracted")
+            self.assertTrue((root / "extracted/tmp").is_dir())
+            self.assertTrue((root / "extracted/var/tmp").is_dir())
 
 
 if __name__ == "__main__":
