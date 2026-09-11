@@ -1,0 +1,91 @@
+{
+  "SchemaVersion": 1,
+  "Status": "append-only-qualification-clarification",
+  "RecordedAt": "2026-09-11T04:01:00.0707066Z",
+  "Reporter": "f6ea7713-2cec-41d5-b3f9-b4373e60fa33",
+  "OriginalSealedQualificationAndFailures": [
+    {
+      "SHA256": "a8234d5f98d75b8a33ae004afe71c817c65cf839aed8e896b2b9e81f669b2d5e",
+      "Path": "C:\\ap11-accd-gettext01\\delivery-02\\qualification.json"
+    },
+    {
+      "SHA256": "e43b0f5d7261618dabea1f55d3c16da9a56af986fc0b0fcaf16c4773155f6526",
+      "Path": "C:\\ap11-accd-pcre2-mvp01\\delivery-01\\qualification.json"
+    },
+    {
+      "SHA256": "de0f264747318afb27c49c28fedcf2a659ef44a0c1d88b7220c0e8b4e54722b5",
+      "Path": "C:\\ap11-accd-gettext01\\clone-baseline-comparison\\result.json"
+    }
+  ],
+  "OriginalFilesModified": false,
+  "NewEvidence": [
+    {
+      "Path": "C:\\ap11-accd-gettext01\\clarifications\\native-sh-clone-01\\evidence\\result.json",
+      "Original": "C:\\ag-mvp-f6-20260911\\bare-clone-path-trace-01\\result.json",
+      "SHA256": "5e9e4e7f92da866cc2952ea635c1a558cb27f8a8c486f893e46158148f28ec5f"
+    },
+    {
+      "Path": "C:\\ap11-accd-gettext01\\clarifications\\native-sh-clone-01\\evidence\\with-native-usr.stderr",
+      "Original": "C:\\ag-mvp-f6-20260911\\bare-clone-path-trace-01\\with-native-usr.stderr",
+      "SHA256": "2df6045fb04308d834ccadc5196fc7a3613656b55d5adc2d7ff09c59c5a4db50"
+    },
+    {
+      "Path": "C:\\ap11-accd-gettext01\\clarifications\\native-sh-clone-01\\evidence\\with-native-usr.trace2.jsonl",
+      "Original": "C:\\ag-mvp-f6-20260911\\bare-clone-path-trace-01\\with-native-usr.trace2.jsonl",
+      "SHA256": "8eca8e0372ecdabbb20951986d60566de5176530e46916382674181fd9b5322b"
+    },
+    {
+      "Path": "C:\\ap11-accd-gettext01\\clarifications\\native-sh-clone-01\\evidence\\without-native-usr.stderr",
+      "Original": "C:\\ag-mvp-f6-20260911\\bare-clone-path-trace-01\\without-native-usr.stderr",
+      "SHA256": "ac18739d1850e56fb1fcb2ad3114751879dff400a954014d69598fbcd90cd0fd"
+    },
+    {
+      "Path": "C:\\ap11-accd-gettext01\\clarifications\\native-sh-clone-01\\evidence\\without-native-usr.trace2.jsonl",
+      "Original": "C:\\ag-mvp-f6-20260911\\bare-clone-path-trace-01\\without-native-usr.trace2.jsonl",
+      "SHA256": "edb0e2703a191cc6e5c60f7af1d085fe8c4288c2a93c5554d3438e159c15a594"
+    }
+  ],
+  "WithoutNativeUsr": {
+    "Classification": "FAILURE retained: the subset lacks the dynamically invoked shell",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-moved-c\\mingwarm64\\bin;C:\\Windows\\System32",
+    "RawExit": 3221225477
+  },
+  "WithNativeUsr": {
+    "Classification": "PASS for this clone command after supplying the genuine existing native shell dependency",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-moved-c\\mingwarm64\\bin;C:\\ag-mvp-f6-20260911\\diagnostic-projection-03\\usr\\bin;C:\\Windows\\System32",
+    "RawExit": 0
+  },
+  "ActualDynamicCommand": "sh.exe -c quoted git-upload-pack command",
+  "ShellOnDisk": {
+    "path": "C:\\ag-mvp-f6-20260911\\diagnostic-projection-03\\usr\\bin\\sh.exe",
+    "machine": "0xAA64",
+    "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+    "evidence": "Static PE machine only; not a runtime or dependency-closure assertion"
+  },
+  "BundledRuntimeOnDisk": {
+    "path": "C:\\ag-mvp-f6-20260911\\diagnostic-projection-03\\usr\\bin\\msys-2.0.dll",
+    "machine": "0xAA64",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "evidence": "Static PE machine only; not a runtime or dependency-closure assertion"
+  },
+  "EvidenceScope": "Git trace proves shell selection and upload-pack child exit0. PE/hash readback identifies the selected shell and bundled907 runtime on disk; this appendendum does not invent a DLL-load observation absent from the trace.",
+  "RuntimeBoundary": "MinGW Git and libintl/PCRE2 do not statically import MSYS. This Git clone transport dynamically launches the native MSYS shell, which has its own runtime dependency. Providing that real dependency is not force-loading MSYS into the C DLL.",
+  "Correction": "The preserved bare-clone AV in the restricted MinGW-only PATH was caused by an incomplete command dependency closure, not an official libintl-specific failure or a universal clone failure. Static PE import closure alone did not reveal the dynamic shell requirement.",
+  "StillTrue": [
+    "Original official/revoked/restored A/B/A raw0xC0000005 results are unchanged",
+    "Git has an undesirable crash failure mode when the shell dependency is missing",
+    "The supported complete artifact supplies the real native shell rather than a stub",
+    "Full-release/default-NLS exclusions and limited intake verdicts are unchanged",
+    "No new build, payload execution or binary/source changes were performed by this leaf for this clarification"
+  ],
+  "IntakeExports": [
+    {
+      "SHA256": "ac7849fd9934f5773ab1aa9a49aba30e78c371645af13944cf06d65c6c6661f1",
+      "Path": "C:\\ap11-native-provider-intake\\official-clangarm64-libintl-limited-mvp-v1\\export.json"
+    },
+    {
+      "SHA256": "77837f952344405b330ee730169b83f45ce300a8a74a5cc32b498752f55dbee8",
+      "Path": "C:\\ap11-native-provider-intake\\pcre2-current-byte-limited-mvp-v1\\export.json"
+    }
+  ]
+}

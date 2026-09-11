@@ -1,0 +1,360 @@
+{
+  "schema": 1,
+  "status": "independent-live-HTTPS-TLS-confirmation-verified-read-only",
+  "peer_evidence": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-02\\live-tls\\independent-tls-evidence-01.json",
+    "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc",
+    "size": 13094
+  },
+  "cases": {
+    "candidate-01": {
+      "identity": {
+        "path": "C:\\ag-mvp-f6-20260911\\candidate-01.manifest.json",
+        "sha256": "a2052594e723bbc0f419cc546c19252b804af51d2440e64a29c847056bb316c3"
+      },
+      "custody_files": 12376,
+      "root": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces",
+      "command": [
+        "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\git.exe",
+        "-c",
+        "pack.threads=1",
+        "clone",
+        "--depth=1",
+        "--",
+        "https://github.com/octocat/Hello-World.git",
+        "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\real public HTTPS clone"
+      ],
+      "raw_exit": 128,
+      "helper_generation": {
+        "pid": 20464,
+        "creation_filetime": 134335839054013820,
+        "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\libexec\\git-core\\git-remote-https.exe",
+        "machine": "0xAA64",
+        "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+        "raw_exit": 128
+      },
+      "actual_tls_modules": [
+        {
+          "pid": 20464,
+          "creation_filetime": 134335839054013820,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+          "machine": "0xAA64",
+          "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669"
+        },
+        {
+          "pid": 20464,
+          "creation_filetime": 134335839054013820,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+          "machine": "0xAA64",
+          "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48"
+        },
+        {
+          "pid": 20464,
+          "creation_filetime": 134335839054013820,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+          "machine": "0xAA64",
+          "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a"
+        }
+      ],
+      "relative_bundles_present": [
+        {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\etc\\ssl\\certs\\ca-bundle.crt",
+          "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+          "size": 243754
+        },
+        {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\ssl\\certs\\ca-bundle.crt",
+          "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+          "size": 243754
+        }
+      ],
+      "compiled_literal": {
+        "image": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+          "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+          "size": 1680675
+        },
+        "offset": 1117512,
+        "encoding": "ASCII",
+        "value": "/mingwarm64/etc/ssl/certs/ca-bundle.crt",
+        "section": ".rdata"
+      },
+      "shipped_CA_config": {
+        "file": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\etc\\gitconfig",
+          "sha256": "06bed432ec081719f640328b8e4e6403f2b31120f29dc2f72eb1ba7bc3ba5ee1",
+          "size": 62
+        },
+        "text": "[http]\n    sslBackend = openssl\n[credential]\n    helper =\n"
+      },
+      "created_processes": 3,
+      "observed_processes": 3,
+      "module_coverage": "Best-effort ordinary-process sampling, NOT complete load-event coverage",
+      "cause_scope": "CA default relocation failure; not attributed to crypto provenance"
+    },
+    "named ZIP": {
+      "identity": {
+        "path": "C:\\ag-mvp-f6-20260911\\first-artifact-901256b\\arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip",
+        "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+        "size": 186366963
+      },
+      "custody_files": 12392,
+      "root": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces",
+      "command": [
+        "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\git.exe",
+        "-c",
+        "pack.threads=1",
+        "clone",
+        "--depth=1",
+        "--",
+        "https://github.com/octocat/Hello-World.git",
+        "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\real public HTTPS clone"
+      ],
+      "raw_exit": 0,
+      "helper_generation": {
+        "pid": 19536,
+        "creation_filetime": 134335841375272335,
+        "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\libexec\\git-core\\git-remote-https.exe",
+        "image_query_errors": [],
+        "machine": "0xAA64",
+        "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+        "raw_exit": 0
+      },
+      "actual_tls_modules": [
+        {
+          "pid": 19536,
+          "creation_filetime": 134335841375272335,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+          "machine": "0xAA64",
+          "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669"
+        },
+        {
+          "pid": 19536,
+          "creation_filetime": 134335841375272335,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+          "machine": "0xAA64",
+          "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a"
+        },
+        {
+          "pid": 19536,
+          "creation_filetime": 134335841375272335,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+          "machine": "0xAA64",
+          "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48"
+        }
+      ],
+      "relative_bundles_present": [
+        {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\etc\\ssl\\certs\\ca-bundle.crt",
+          "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+          "size": 243754
+        },
+        {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\ssl\\certs\\ca-bundle.crt",
+          "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+          "size": 243754
+        }
+      ],
+      "compiled_literal": {
+        "image": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+          "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+          "size": 1680675
+        },
+        "offset": 1117512,
+        "encoding": "ASCII",
+        "value": "/mingwarm64/etc/ssl/certs/ca-bundle.crt",
+        "section": ".rdata"
+      },
+      "shipped_CA_config": {
+        "file": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\etc\\gitconfig",
+          "sha256": "fdd36dd2363c0f85bc01156db367b18a50506e08e7dee580e0d676db7f5ca527",
+          "size": 112
+        },
+        "text": "[http]\n    sslBackend = openssl\n    sslCAInfo = %(prefix)/etc/ssl/certs/ca-bundle.crt\n[credential]\n    helper =\n"
+      },
+      "created_processes": 5,
+      "observed_processes": 5,
+      "module_coverage": "Best-effort ordinary-process sampling, NOT complete load-event coverage",
+      "cause_scope": "Real HTTPS clone succeeded through shipped prefix-relative CA config, but actually loaded the superseded crypto pair; NOT current admitted TLS evidence"
+    }
+  },
+  "all_verified_reference_files": [
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\intake.json",
+      "sha256": "b843b4b4796132749fa9385aa31c643e408fa346ffb9a59ced062788a7818f35",
+      "size": 2189264
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\request.json",
+      "sha256": "9f5bcb7283c5b5b64628673b922ecdca3cf3e778ead3c23217e220a25d583658",
+      "size": 1614
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\launch.json",
+      "sha256": "16ee93d6f8c6635b4f14925cf20a13e67caceace7c681108d99e6a055ae9044f",
+      "size": 597
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\observation.json",
+      "sha256": "4ea0787c89f7f8c5b3d8c9f1b7d19665d31c93688af67bc9f0fc1a25b25fbea7",
+      "size": 30921
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\output.log",
+      "sha256": "573081d73623df0bf3aa6e76b1a37a1e51241ccbe1fc7d67214204935bf902e4",
+      "size": 264
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+      "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+      "size": 1680675
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+      "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48",
+      "size": 918276
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+      "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a",
+      "size": 4870487
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\environment-policy.json",
+      "sha256": "50a1e3f59bb0a51b303115005125a600f7752a52d929bf3f3077187d727bae74",
+      "size": 1687
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\etc\\ssl\\certs\\ca-bundle.crt",
+      "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+      "size": 243754
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\ssl\\certs\\ca-bundle.crt",
+      "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+      "size": 243754
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\etc\\gitconfig",
+      "sha256": "06bed432ec081719f640328b8e4e6403f2b31120f29dc2f72eb1ba7bc3ba5ee1",
+      "size": 62
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-system-config\\output.log",
+      "sha256": "1fb7cfb29455778fb991bad40a3b477706b52b091f8b659b43cc70a6d3426bf3",
+      "size": 327
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\intake.json",
+      "sha256": "9bf376600cd047912cdddb5c88f6b89301727c2b9e7bbb55ecc6e4416aba2602",
+      "size": 6229477
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\request.json",
+      "sha256": "9b9d57c32579ef48943dc365cc43ce7a77e3d4cd5453befd817488e5fc664b64",
+      "size": 2057
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\launch.json",
+      "sha256": "51204cd9f8bb79cfe7f324f4c30a73dd78d52351bd79945afe7448601292273e",
+      "size": 588
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\observation.json",
+      "sha256": "b7de629ef8de80297a8e4c9c083fddac2e41dbe87f441cf6952ffbf392c23fd8",
+      "size": 48028
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\output.log",
+      "sha256": "e0a08859bd1397fd6fb95ed6e99881ef5e9a0191b174b84e916234b91685f515",
+      "size": 110
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+      "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+      "size": 1680675
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+      "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a",
+      "size": 4870487
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+      "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48",
+      "size": 918276
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\environment-policy.json",
+      "sha256": "b908f0bc808e09339adeaf2c959b7667f7a54f27bc3d393f7942d2ea8c4afdcf",
+      "size": 1675
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\etc\\ssl\\certs\\ca-bundle.crt",
+      "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+      "size": 243754
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\ssl\\certs\\ca-bundle.crt",
+      "sha256": "8b347435463fdfb8400da4599d2e1af448ae8426ca7546c417aa289cb1c61bfa",
+      "size": 243754
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\etc\\gitconfig",
+      "sha256": "fdd36dd2363c0f85bc01156db367b18a50506e08e7dee580e0d676db7f5ca527",
+      "size": 112
+    },
+    {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-system-config\\output.log",
+      "sha256": "bc8d77b193ebdf2700ef2211bc37bc43a75890c04853dc7e32255d523ebd6f33",
+      "size": 513
+    },
+    {
+      "path": "C:\\ap09-ca5f\\curl-packages-v2\\export-12\\export.json",
+      "sha256": "546d8ca66282b89803d6423f36db1f562fadf759e8d4a7e11870cb485ea84dd8",
+      "size": 18726
+    },
+    {
+      "path": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\export.json",
+      "sha256": "cc62db912148d55d70c2a869f1aff3b8a5aec6385bcbfb0ce26b8af78aeab8d0",
+      "size": 2106
+    },
+    {
+      "path": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\packages\\mingw-w64-aarch64-openssl-3.6.4-1-any.pkg.tar.zst",
+      "sha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+      "size": 13478480
+    },
+    {
+      "path": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\export.json",
+      "sha256": "4c3a57be0859f70a355a6d133604cf278cd06fc8406f734344bf15331ebf1a62",
+      "size": 1967
+    },
+    {
+      "path": "C:\\ap11-native-provider-intake\\input-v18-revoked-free.json",
+      "sha256": "3d129458c38268f2e6c845172f838e2cfeb803720528bc7278315ce3310e5c2e",
+      "size": 7572
+    },
+    {
+      "path": "C:\\ag-mvp-f6-20260911\\first-artifact-901256b\\arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip",
+      "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+      "size": 186366963
+    },
+    {
+      "path": "C:\\ag-mvp-f6-20260911\\first-artifact-901256b\\artifact-receipt.json",
+      "sha256": "dfdce4e6ef60896aca0d810c165d6ed9bfbc5a6e9b9f7adc6a270a66c4bd33b0",
+      "size": 5881
+    }
+  ],
+  "static_helper_SHA256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+  "relationship": "The same git-remote-https PE hash lacks static libcurl/OpenSSL import edges, yet live samples show those DLLs loaded. The static graph was complete for its declared imports, not a bound on process/runtime TLS exposure.",
+  "conclusions": [
+    "Superseded SSL819faab1 and crypto0d35dfe5 were actually used by the public HTTPS clone helper in BOTH independently preserved artifact generations.",
+    "Candidate-01 clone failed raw128 from trust-anchor path lookup. Relative bundles existed; libcurl's ASCII .rdata default at offset1117512 points to /mingwarm64/etc/ssl/certs/ca-bundle.crt. This immediate cause is separate from crypto admission.",
+    "The named ZIP clone passed raw0 using its already-shipped %(prefix) CA configuration, without verifier repairs. The candidate-01 CA failure must not be carried to that generation.",
+    "The named ZIP's successful HTTPS operation still loaded the superseded pair; functional success does not admit those crypto bytes.",
+    "Ordinary module sampling proves named modules were loaded in exact PID/birth generations, not exhaustive load-event coverage.",
+    "The original29staticDLL rows,21seed graph counts and81/22/59 blocker arithmetic remain unchanged. No payload was swapped or re-executed by this report author."
+  ]
+}

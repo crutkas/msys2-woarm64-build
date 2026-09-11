@@ -1,0 +1,26 @@
+{
+  "values": {
+    "SystemRoot": "C:\\Windows",
+    "WINDIR": "C:\\Windows",
+    "COMSPEC": "C:\\Windows\\system32\\cmd.exe",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+    "PROGRAMDATA": "C:\\ProgramData",
+    "PATH": "C:\\Windows\\System32",
+    "HOME": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\private user home",
+    "USERPROFILE": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\private user home",
+    "TEMP": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\private temporary files",
+    "TMP": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\private temporary files",
+    "GIT_CONFIG_GLOBAL": "nul",
+    "GIT_TERMINAL_PROMPT": "0"
+  },
+  "reasons": {
+    "PATH": "Baseline has only native Windows System32; no artifact PATH repair or bootstrap directories",
+    "HOME/USERPROFILE": "Fresh empty private user directory; no real user Git/SSH credentials or configuration",
+    "TEMP/TMP": "Fresh verifier-owned temporary files, not preseeded candidate configuration",
+    "GIT_CONFIG_GLOBAL": "NUL blocks real user global Git config; shipped system config remains enabled",
+    "GIT_TERMINAL_PROMPT": "Disable credential prompts for public HTTPS, not authentication substitution",
+    "PROGRAMDATA": "Unmodified OS location, explicitly supplied; no files or ACLs changed there"
+  },
+  "unset": "Every other inherited environment variable is omitted, including proxies, auth tokens, GIT_EXEC_PATH, SSL_CERT_FILE, GIT_SSL_CAINFO and MSYS conversion controls",
+  "artifact_files_preseeded": []
+}

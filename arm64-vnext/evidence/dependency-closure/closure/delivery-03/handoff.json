@@ -1,0 +1,72 @@
+{
+  "schema": 3,
+  "status": "static-closure-amended-with-live-TLS-and-generation-specific-CA-results",
+  "previous_revision": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-02\\handoff.json",
+    "sha256": "58d02d74c48618bfefe8847bcea8dd11ce3b9975bee393440c9f9b63f6350195",
+    "size": 2583
+  },
+  "original_revision": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\handoff.json",
+    "sha256": "723462dad11535c8c76ca724bdec7c5fd4333e0aed15c0e7c308716c8021d3e4",
+    "size": 3385
+  },
+  "previous_reports_and_evidence_unchanged": true,
+  "report": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\report.md",
+    "sha256": "ef08ded7023f223655ff63c9b49aebab3716d03498473ca9a6a925d32f48166f",
+    "size": 17337
+  },
+  "TLS_confirmation": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\live-tls-confirmation.json",
+    "sha256": "802d61391687857f2ce6297da1d11aa3d5e5d4b7040dfce4eebf786008f6aaa8",
+    "size": 19466
+  },
+  "standalone_curl_confirmation": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\standalone-curl-confirmation.json",
+    "sha256": "3a9f5f01b601b907d3469b01b1ad2b160aff0d59a49c5d81557ffa8a38c08d2e",
+    "size": 3305
+  },
+  "peer_TLS_evidence": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-02\\live-tls\\independent-tls-evidence-01.json",
+    "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc",
+    "size": 13094
+  },
+  "peer_full_report": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\live-tls\\independent-full-mixed-report.json",
+    "sha256": "c44fb3f8238980bea3545938362e7e84ea5cb806780ea58b354261e3d3447c9b",
+    "size": 45071
+  },
+  "static_counts_unchanged": {
+    "seed_consumers": 21,
+    "package_PE_nodes": 29,
+    "distinct_private_DLL_files": 10,
+    "normal_import_edges": 516,
+    "delay_import_edges": 0,
+    "distinct_windows_leaves": 19,
+    "missing_DLL_names": 0,
+    "private_symbol_failures": 0,
+    "MSYS_imports": 0
+  },
+  "admission_counts_unchanged": {
+    "unadmitted-superseded-bytes": 2,
+    "admitted-selected-package": 5,
+    "admitted-limited-role": 3,
+    "Windows-satisfied": 19
+  },
+  "full_release_blocker_rows": 81,
+  "gettext_related_rows": 22,
+  "other_rows": 59,
+  "live_raw_results": {
+    "candidate01_Git_HTTPS": 128,
+    "named_ZIP_Git_HTTPS": 0,
+    "named_ZIP_curl_HTTPS": 77
+  },
+  "exports": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\export-inventory.json",
+    "sha256": "efa7d61a5eb3817f9be4cc6b3e890e34412a8694e1816dab4f5e1f7415081cbf",
+    "size": 27561
+  },
+  "no_new_payload_execution_substitution_or_admission": true,
+  "scope": "Both observed generations really loaded superseded crypto on HTTPS. Candidate01 Git and named curl have CA failures; named Git succeeds via shipped config. None implies admitted TLS or a complete dynamic closure."
+}

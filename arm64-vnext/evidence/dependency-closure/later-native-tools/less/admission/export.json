@@ -1,0 +1,53 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:08:36.5023388Z",
+  "status": "ADMITTED_NATIVE_MSYS_LESS704_RUNTIME907_SCOPED",
+  "providerClass": "native-msys-less-runtime907",
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "compatibility": "Qualified only with runtime-907 cohort; d70 compatibility not claimed"
+  },
+  "packages": [
+    {
+      "name": "less",
+      "path": "packages/less-704-1-aarch64.pkg.tar.zst",
+      "sha256": "fe9b92485b8062f0ddddb209e93fd5200d2bed42442478f3a0dd3badfa4cf847"
+    }
+  ],
+  "evidence": {
+    "independentPackageReadback": {
+      "path": "independent-package-readback.json",
+      "sha256": "ef77f73f7dd1fd129fefba6b57f1b086885749f132ff99a639eaac1148a5fdef"
+    },
+    "freshReadback": {
+      "path": "fresh-readback.json",
+      "sha256": "5e0066c6a81dce8b58b27a442d33a2a42acc49867c34d971ddbc2683393fce46"
+    },
+    "producerExport": {
+      "path": "evidence/producer-export.json",
+      "sha256": "257a9f18724477eb349456a56f9ee2d4a392e979fe0b7896431f11bb59820a50"
+    },
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "2acb7812d739b89a3d9a98616edf71c5e3765a3b057be35a7a21b1b2ddcc6889"
+    }
+  },
+  "qualification": {
+    "strictOriginalFixtures": "18/18 PASS, 2,245 steps, raw 0",
+    "observation": "169/169, zero high exits",
+    "movedRoot": true,
+    "pty": true,
+    "unicodePcre2": true,
+    "largeFileBytes": 4294969239,
+    "largeFileAssertionsBeforeAndAfter": 4,
+    "freshPackageReadback": "less 704, lesskey 704, and numeric lessecho quotes raw 0"
+  },
+  "limitations": [
+    "Runtime-907 remains separately nonadmitted as the full-release runtime",
+    "No d70 compatibility claim",
+    "Dynamic shell escape, OSC8, remote-host, and man helpers are not supplied by this package",
+    "The corrected strict suite is valid only in one coherent runtime usr/bin layout; the earlier split-layout failures remain preserved",
+    "The source tag archive is SHA256-pinned and is not claimed as detached-signature verified",
+    "Full release remains incomplete"
+  ]
+}

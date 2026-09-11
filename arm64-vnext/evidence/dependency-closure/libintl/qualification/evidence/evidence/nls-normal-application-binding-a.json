@@ -1,0 +1,35 @@
+{
+  "Status": "observed-expected-exit",
+  "Name": "nls-normal-application-binding-a",
+  "Executable": "C:\\Program Files\\Python314-arm64\\python.exe",
+  "ExecutableSHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+  "Arguments": [
+    "-I",
+    "-c",
+    "import ctypes, gettext, hashlib, json, pathlib\nprefix=pathlib.Path(r\"C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\")\nmo=prefix/'share/locale/fr/LC_MESSAGES/gettext-runtime.mo'\nwith mo.open('rb') as f: oracle=gettext.GNUTranslations(f)\nlib=ctypes.CDLL(str(prefix/'bin/libintl-8.dll'))\nfor name, args in [('libintl_setlocale',[ctypes.c_int,ctypes.c_char_p]),('libintl_bindtextdomain',[ctypes.c_char_p,ctypes.c_char_p]),('libintl_bind_textdomain_codeset',[ctypes.c_char_p,ctypes.c_char_p]),('libintl_dgettext',[ctypes.c_char_p,ctypes.c_char_p])]:\n    fn=getattr(lib,name); fn.argtypes=args; fn.restype=ctypes.c_char_p\nlocale=lib.libintl_setlocale(0,b'')\nbefore=lib.libintl_bindtextdomain(b'gettext-runtime',None)\noriginal=lib.libintl_dgettext(b'gettext-runtime',b'too many arguments')\nbound=lib.libintl_bindtextdomain(b'gettext-runtime',str(prefix/'share/locale').encode())\ncodec=lib.libintl_bind_textdomain_codeset(b'gettext-runtime',b'UTF-8')\nactual=lib.libintl_dgettext(b'gettext-runtime',b'too many arguments').decode('utf-8')\nresult={'scope':'Public application domain binding, not repair of CLI compiled default','locale':locale.decode(),'catalog':str(mo),'catalog_sha256':hashlib.sha256(mo.read_bytes()).hexdigest(),'default_directory':before.decode(),'default_translation':original.decode(),'bound_directory':bound.decode(),'codec':codec.decode(),'expected':oracle.gettext('too many arguments'),'actual':actual,'passed':actual==oracle.gettext('too many arguments') and actual!='too many arguments'}\nprint(json.dumps(result,ensure_ascii=True),flush=True)\nraise SystemExit(0 if result['passed'] else 1)"
+  ],
+  "Environment": {
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD",
+    "GIT_TERMINAL_PROMPT": "0",
+    "SystemRoot": "C:\\Windows",
+    "WINDIR": "C:\\Windows",
+    "LANGUAGE": "fr",
+    "HOME": "C:\\ap11-accd-gettext01\\home",
+    "TMP": "C:\\ap11-accd-gettext01\\tmp",
+    "LC_ALL": "fr_FR.UTF-8",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "LANG": "fr_FR.UTF-8",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin;C:\\Windows\\System32",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\home",
+    "TEMP": "C:\\ap11-accd-gettext01\\tmp"
+  },
+  "WorkingDirectory": "C:\\ap11-accd-gettext01",
+  "PID": 24500,
+  "RawExit": 0,
+  "ExpectedExit": 0,
+  "StartedAt": "2026-09-11T03:35:58.2107410Z",
+  "Stdout": "C:\\ap11-accd-gettext01\\evidence\\nls-normal-application-binding-a.stdout.log",
+  "Stderr": "C:\\ap11-accd-gettext01\\evidence\\nls-normal-application-binding-a.stderr.log",
+  "CompletedAt": "2026-09-11T03:35:58.3523103Z"
+}

@@ -1,0 +1,32 @@
+{
+  "Status": "observed-expected-exit",
+  "Name": "libtre-typed-regex-moved-b",
+  "Executable": "C:\\Program Files\\Python314-arm64\\python.exe",
+  "ExecutableSHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+  "Arguments": [
+    "-I",
+    "-c",
+    "import ctypes,json\np=r\"C:\\ap11-accd-gettext01\\projection-moved-b\\mingwarm64\\bin\\libtre-5.dll\"\nclass Regex(ctypes.Structure): _fields_=[('re_nsub',ctypes.c_size_t),('value',ctypes.c_void_p)]\nclass Match(ctypes.Structure): _fields_=[('start',ctypes.c_int),('end',ctypes.c_int)]\nlib=ctypes.CDLL(p);lib.tre_regcomp.argtypes=[ctypes.POINTER(Regex),ctypes.c_char_p,ctypes.c_int];lib.tre_regexec.argtypes=[ctypes.POINTER(Regex),ctypes.c_char_p,ctypes.c_size_t,ctypes.POINTER(Match),ctypes.c_int];lib.tre_regfree.argtypes=[ctypes.POINTER(Regex)]\nr=Regex(); compiled=lib.tre_regcomp(ctypes.byref(r),b'^(native)-([0-9]+)$',1)\nif compiled: raise RuntimeError('tre_regcomp returned '+str(compiled))\ntry:\n    m=(Match*3)(); matched=lib.tre_regexec(ctypes.byref(r),b'native-123',3,m,0); offsets=[[x.start,x.end] for x in m]; no_match=lib.tre_regexec(ctypes.byref(r),b'wrong',0,None,0)\nfinally: lib.tre_regfree(ctypes.byref(r))\nresult={'compiled':compiled,'matched':matched,'offsets':offsets,'nonmatch':no_match,'passed':matched==0 and offsets==[[0,10],[0,6],[7,10]] and no_match==1,'regex_struct_size':ctypes.sizeof(Regex),'header_sha256':'4082a45bf2bfac3421311286dd972dbb730669fedab843d02df3d0ad47228962'}\nprint(json.dumps(result)); raise SystemExit(0 if result['passed'] else 1)"
+  ],
+  "Environment": {
+    "GIT_TERMINAL_PROMPT": "0",
+    "WINDIR": "C:\\Windows",
+    "HOME": "C:\\ap11-accd-gettext01\\home",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\home",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "SystemRoot": "C:\\Windows",
+    "TEMP": "C:\\ap11-accd-gettext01\\tmp",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-moved-b\\mingwarm64\\bin;C:\\Windows\\System32",
+    "TMP": "C:\\ap11-accd-gettext01\\tmp",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD"
+  },
+  "WorkingDirectory": "C:\\ap11-accd-gettext01",
+  "PID": 12700,
+  "RawExit": 0,
+  "ExpectedExit": 0,
+  "StartedAt": "2026-09-11T03:42:38.7107543Z",
+  "Stdout": "C:\\ap11-accd-gettext01\\evidence\\libtre-typed-regex-moved-b.stdout.log",
+  "Stderr": "C:\\ap11-accd-gettext01\\evidence\\libtre-typed-regex-moved-b.stderr.log",
+  "CompletedAt": "2026-09-11T03:42:38.8527682Z"
+}

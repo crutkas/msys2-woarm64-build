@@ -1,0 +1,193 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T06:54:38.4794877Z",
+  "status": "full-release-incomplete-current-provider-handoffs-v5",
+  "input": {
+    "path": "C:\\ap11-native-provider-intake\\input-v18-revoked-free.json",
+    "sha256": "3d129458c38268f2e6c845172f838e2cfeb803720528bc7278315ce3310e5c2e"
+  },
+  "audit": {
+    "path": "C:\\ap11-native-provider-intake\\audit-v18-qualified-openssl.json",
+    "sha256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb",
+    "status": "incomplete",
+    "git_splits": 15,
+    "selected_packages": 64,
+    "payload_files": 16633,
+    "native_arm64_pes": 267,
+    "blockers": 81
+  },
+  "newlyAdmittedProvider": {
+    "role": "native-mingw-openssl-qualified",
+    "path": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\export.json",
+    "sha256": "4c3a57be0859f70a355a6d133604cf278cd06fc8406f734344bf15331ebf1a62",
+    "note": "Does not provide nativeMSYS msys-crypto-3.dll."
+  },
+  "exactPreparedBlockedHandoffs": [
+    {
+      "role": "native-msys-less",
+      "status": "blocked-on-native-msys-pcre2",
+      "blockerReceipt": {
+        "path": "C:\\ap15-d207\\less-native-01\\evidence\\missing-native-msys-pcre2-handoff.json",
+        "sha256": "83a7ca6948d3c162a54c60946f9195e643058c6d4ef07bf4161c4f5121a4bd06"
+      },
+      "lessSourcePreparation": {
+        "path": "C:\\ap15-d207\\less-native-01\\evidence\\source-preparation.json",
+        "sha256": "497ecfc8debfe0dfed4720f75aef45f3905775a11aab98ac2579520b79461b8e"
+      },
+      "pcre2SourcePreparation": {
+        "path": "C:\\ap15-d207\\less-native-01\\evidence\\pcre2-source-preparation.json",
+        "sha256": "ab9ae707afeac5c8210213c45e67e0b1597c111b12cc34a0f4754faed70e56d5"
+      },
+      "pcre2SignatureVerification": {
+        "path": "C:\\ap15-d207\\less-native-01\\evidence\\pcre2-signature-verification-attempt-04.json",
+        "sha256": "34877361290cedf102102f65cd4cea0a4dd5b7faf799ecae19053e972ae355f2",
+        "rawExit": 0,
+        "primaryFingerprint": "A95536204A3BB489715231282A98E77EB6F24CA8"
+      },
+      "runtimeCohort": {
+        "root": "C:\\ag-readline-e138-01\\combined-20260911-01",
+        "inputs_json_sha256": "69bde4474dc5c93660a598fac1ca8d3f97907cdabdbd4a454f51adeace711d34",
+        "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "compiler_sha256": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+        "runtime_import_sha256": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c",
+        "crt0_sha256": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737",
+        "ncurses_runtime_sha256": "e2d03ae2ac264d8788f3cd7ea4917c51c9b26ac59ee574e4cade633a96de3585",
+        "ncurses_import_sha256": "c3586f62adebdf306f829ed47612fa6872256ff8c8bc5d977bfc1a0209678fd0"
+      },
+      "requiredProvider": {
+        "package_runtime": "libpcre2_8 10.48-1 aarch64",
+        "package_devel": "pcre2-devel 10.48-1 aarch64",
+        "runtime_file": "usr/bin/msys-pcre2-8-0.dll",
+        "headers": [
+          "usr/include/pcre2.h",
+          "usr/include/pcre2posix.h"
+        ],
+        "libraries": [
+          "usr/lib/libpcre2-8.dll.a",
+          "usr/lib/libpcre2-8.a"
+        ],
+        "metadata": [
+          ".PKGINFO",
+          "license",
+          "dependency/provides ownership"
+        ],
+        "proofs": [
+          "AA64 PE32+ identity",
+          "exact msys-2.0.dll runtime-907 binding",
+          "import closure",
+          "upstream checks with raw exits",
+          "native regex API behavior",
+          "private-path scan",
+          "moved-root execution"
+        ]
+      },
+      "forbiddenSubstitutions": [
+        "MINGWARM64 libpcre2-8.dll",
+        "x86-64 msys-pcre2-8-0.dll",
+        "renamed or aliased DLL",
+        "disabled PCRE2 support",
+        "static feature reduction"
+      ],
+      "searchResult": {
+        "candidate_runtime_dlls": 17,
+        "aa64": 0,
+        "x86_64": 17,
+        "common_sha256": "fceb2fdacaecfd102c8ce3480feb738c6127df4fea6c6b0d7ba1b70fed577303",
+        "native_sdk_handoffs": 0,
+        "intake_clearance": false
+      },
+      "compileJobLaunched": false,
+      "lessPackageProduced": false,
+      "nextPermittedAction": "A separate provider must publish the exact native MSYS PCRE2 handoff; intake must then explicitly clear one sequential compile/test job for PCRE2 plus less."
+    }
+  ],
+  "remainingAuditBlockers": [
+    "managed-admission-not-supplied:mingw-w64-aarch64-git-credential-manager",
+    "missing-dll:mingwarm64/bin/git-receive-pack.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/git-shell.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/git-upload-archive.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/git-upload-pack.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/git.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/libidn2-0.dll:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/libtre-5.dll:libintl-8.dll",
+    "missing-dll:mingwarm64/bin/scalar.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-daemon.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-http-backend.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-http-fetch.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-http-push.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-imap-send.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-remote-ftp.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-remote-ftps.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-remote-http.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-remote-https.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-sh-i18n--envsubst.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git-shell.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/git.exe:libintl-8.dll",
+    "missing-dll:mingwarm64/libexec/git-core/scalar.exe:libintl-8.dll",
+    "missing-native-self-hosting-evidence",
+    "payload-file-not-supplied:etc/profile",
+    "payload-file-not-supplied:mingwarm64/bin/git-credential-helper-selector.exe",
+    "payload-file-not-supplied:mingwarm64/bin/git-credential-manager.exe",
+    "payload-file-not-supplied:usr/bin/cat.exe",
+    "payload-file-not-supplied:usr/bin/cp.exe",
+    "payload-file-not-supplied:usr/bin/env.exe",
+    "payload-file-not-supplied:usr/bin/find.exe",
+    "payload-file-not-supplied:usr/bin/less.exe",
+    "payload-file-not-supplied:usr/bin/mkdir.exe",
+    "payload-file-not-supplied:usr/bin/perl.exe",
+    "payload-file-not-supplied:usr/bin/rm.exe",
+    "payload-file-not-supplied:usr/bin/sed.exe",
+    "payload-file-not-supplied:usr/bin/sort.exe",
+    "payload-file-not-supplied:usr/bin/ssh-add.exe",
+    "payload-file-not-supplied:usr/bin/ssh-agent.exe",
+    "payload-file-not-supplied:usr/bin/ssh-keygen.exe",
+    "payload-file-not-supplied:usr/bin/ssh.exe",
+    "payload-file-not-supplied:usr/bin/uniq.exe",
+    "private-runtime-path:mingwarm64/bin/libcurl-4.dll:C:/ap08-d207/curl-chain-01/variants/openssl/prefix/mingwarm64/bin",
+    "private-runtime-path:mingwarm64/bin/tcl86.dll:C:/ap10-ca5f/git-full-01/bootstrap/mingwarm64/bin",
+    "private-runtime-path:mingwarm64/bin/tcl86.dll:C:/ap10-ca5f/git-full-01/bootstrap/mingwarm64/lib/tcl8.6",
+    "private-runtime-path:mingwarm64/bin/tcl86.dll:C:/ap10-ca5f/git-full-01/bootstrap/mingwarm64/share/man",
+    "provider-not-supplied:antiword",
+    "provider-not-supplied:connect",
+    "provider-not-supplied:coreutils",
+    "provider-not-supplied:dash",
+    "provider-not-supplied:docx2txt",
+    "provider-not-supplied:dos2unix",
+    "provider-not-supplied:findutils",
+    "provider-not-supplied:gnupg",
+    "provider-not-supplied:less",
+    "provider-not-supplied:mingw-w64-aarch64-gettext",
+    "provider-not-supplied:mingw-w64-aarch64-git-credential-manager",
+    "provider-not-supplied:mintty",
+    "provider-not-supplied:nano",
+    "provider-not-supplied:odt2txt",
+    "provider-not-supplied:openssh",
+    "provider-not-supplied:patch",
+    "provider-not-supplied:perl",
+    "provider-not-supplied:perl-Authen-SASL",
+    "provider-not-supplied:perl-DBI",
+    "provider-not-supplied:perl-Error",
+    "provider-not-supplied:perl-JSON",
+    "provider-not-supplied:perl-MIME-tools",
+    "provider-not-supplied:perl-Net-SMTP-SSL",
+    "provider-not-supplied:perl-TermReadKey",
+    "provider-not-supplied:perl-libwww",
+    "provider-not-supplied:sed",
+    "provider-not-supplied:ssh-pageant",
+    "provider-not-supplied:subversion",
+    "provider-not-supplied:tar",
+    "provider-not-supplied:tig",
+    "provider-not-supplied:unzip",
+    "provider-not-supplied:vim",
+    "provider-not-supplied:which",
+    "provider-not-supplied:winpty",
+    "provider-not-supplied:xpdf-tools",
+    "provider-not-supplied:xz"
+  ],
+  "policy": [
+    "Missing input is not proof a component was never built; the listed handoff is the exact currently evidenced requirement.",
+    "No compile/test clearance is granted until a genuine runtime-907 AA64 nativeMSYS PCRE2 runtime plus SDK handoff is supplied.",
+    "No MINGW, x86-64, renamed/aliased DLL, disabled PCRE2, or static feature reduction is accepted.",
+    "No audit rerun or release archive was produced for this blocker-only ledger update."
+  ]
+}

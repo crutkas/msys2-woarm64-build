@@ -1,0 +1,35 @@
+{
+  "Status": "observed-expected-exit",
+  "Name": "libtre-error-api-moved-b",
+  "Executable": "C:\\Program Files\\Python314-arm64\\python.exe",
+  "ExecutableSHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+  "Arguments": [
+    "-I",
+    "-c",
+    "import ctypes,json,pathlib\np=pathlib.Path(r\"C:\\ap11-accd-gettext01\\projection-moved-b\\mingwarm64\\bin\")\nintl=ctypes.CDLL(str(p/'libintl-8.dll')); intl.libintl_setlocale.argtypes=[ctypes.c_int,ctypes.c_char_p]; intl.libintl_setlocale.restype=ctypes.c_char_p\nlocale=intl.libintl_setlocale(0,b'')\nlib=ctypes.CDLL(str(p/'libtre-5.dll'))\nlib.tre_regerror.argtypes=[ctypes.c_int,ctypes.c_void_p,ctypes.c_char_p,ctypes.c_size_t];lib.tre_regerror.restype=ctypes.c_size_t\nr=[]\nfor error in (1,2,3,4,5):\n    n=lib.tre_regerror(error,None,None,0)\n    if not 1<=n<=4096: raise RuntimeError('Invalid required error-buffer length')\n    b=ctypes.create_string_buffer(n); written=lib.tre_regerror(error,None,b,n)\n    r.append({'error':error,'required':n,'returned':written,'text':b.value.decode('utf-8'),'nul_terminated':b.raw[-1]==0,'length_matches':written==n})\nprint(json.dumps({'scope':'actual libtre C error API, not full regex or NLS qualification','locale':repr(locale),'cases':r}))"
+  ],
+  "Environment": {
+    "LANGUAGE": "fr",
+    "LANG": "fr_FR.UTF-8",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\home",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "TMP": "C:\\ap11-accd-gettext01\\tmp",
+    "SystemRoot": "C:\\Windows",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-moved-b\\mingwarm64\\bin;C:\\Windows\\System32",
+    "LC_ALL": "fr_FR.UTF-8",
+    "TEMP": "C:\\ap11-accd-gettext01\\tmp",
+    "GIT_TERMINAL_PROMPT": "0",
+    "WINDIR": "C:\\Windows",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "HOME": "C:\\ap11-accd-gettext01\\home"
+  },
+  "WorkingDirectory": "C:\\ap11-accd-gettext01",
+  "PID": 18904,
+  "RawExit": 0,
+  "ExpectedExit": 0,
+  "StartedAt": "2026-09-11T03:38:45.0788524Z",
+  "Stdout": "C:\\ap11-accd-gettext01\\evidence\\libtre-error-api-moved-b.stdout.log",
+  "Stderr": "C:\\ap11-accd-gettext01\\evidence\\libtre-error-api-moved-b.stderr.log",
+  "CompletedAt": "2026-09-11T03:38:45.6729825Z"
+}

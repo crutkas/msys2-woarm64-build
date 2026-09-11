@@ -1,0 +1,47 @@
+{
+  "schema": 1,
+  "status": "current-provider-admission-revoked",
+  "recorded_utc": "2026-09-10T04:29:29.0662199Z",
+  "producer_rejection": {
+    "path": "C:\\ap12-ca5f\\gettext-identity-rejection-01\\rejection.json",
+    "sha256": "9cfced0a3234bd363d7543476079604e6853aeeb476692ffd0d55484bbeb3f36"
+  },
+  "package": {
+    "name": "mingw-w64-aarch64-gettext",
+    "rejected_declared_version": "0.26-1",
+    "reported_actual_version": "1.0",
+    "archive_sha256": "7abded5bc03698083363a22b1103afc5bacb710561002c21e7c585ed803a7e46"
+  },
+  "affected_exports": [
+    {
+      "role": "network-runtime",
+      "path": "C:\\ap09-ca5f\\curl-packages-v2\\export-12\\export.json",
+      "sha256": "546d8ca66282b89803d6423f36db1f562fadf759e8d4a7e11870cb485ea84dd8"
+    },
+    {
+      "role": "native-python",
+      "path": "C:\\ap12-ca5f\\python-provider-export-01\\export.json",
+      "sha256": "c9dda99aa3d0125da21f1a38e4b00c6f6f46d4423c3aa910dfb332be0a36de81"
+    }
+  ],
+  "historical_diagnostics": [
+    {
+      "path": "C:\\ap11-native-provider-intake\\input-v10.json",
+      "sha256": "625e7bfa5170b505ad33517e3cb8bbaaa5a1016b974282941552becf68d2ef76"
+    },
+    {
+      "path": "C:\\ap11-native-provider-intake\\audit-v10.json",
+      "sha256": "636a80099a8fd582503dd98dc99bb987bb848b4a8f4ced89973a1b6b8580c3ef"
+    }
+  ],
+  "release_effect": "No current authoritative combined input exists until every reference to the rejected archive is replaced consistently by the sealed truthful 1.0-1 export and re-audited.",
+  "replacement_gate": [
+    "new archive hash",
+    "truthful 1.0-1 PKGINFO",
+    "exact source and recipe binding",
+    "private-prefix-free payload",
+    "native ARM64 import inventory",
+    "current Git/gettext consumer ABI and runtime receipts",
+    "licenses and explicit omissions"
+  ]
+}

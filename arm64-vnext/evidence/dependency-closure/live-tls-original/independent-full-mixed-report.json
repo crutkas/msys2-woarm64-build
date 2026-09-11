@@ -1,0 +1,1027 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-11T07:14:24.215290+00:00",
+  "status": "MIXED RESULTS; current provider admission NOT satisfied",
+  "independence": "Verifier built no Git/Bash/HTTPS component in either audited generation; all Tcl/Tk functionality excluded conservatively under coordinator's conflict-of-interest ruling",
+  "generations": {
+    "candidate-01": {
+      "custody": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\intake.json",
+        "sha256": "b843b4b4796132749fa9385aa31c643e408fa346ffb9a59ced062788a7818f35",
+        "size": 2189264
+      },
+      "extraction": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces",
+      "file_count": 12376,
+      "all_pe_count": 333,
+      "non_aa64": [],
+      "pe_parse_errors": [],
+      "static_unresolved_imports": [],
+      "static_audit": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\static-audit.json",
+        "sha256": "eee8a56ffcc282c9554b4f3772695ff3ca0d75d0e2d954c60757730ce7722f3b",
+        "size": 15547378
+      },
+      "path_triage": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\candidate-01-path-triage.json",
+        "sha256": "0467abdab196d902546f1e60454ee0b24bafb381056d994ff18980ac462bb196",
+        "size": 16324624
+      },
+      "post_replay_file_changes": [],
+      "producer_input_unchanged": true,
+      "producer_manifest_or_receipt_unchanged": true,
+      "self_contained_metadata_files_present": [],
+      "Tcl_Tk_functional_verdict_excluded_file_count": 1020,
+      "environment": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\environment-policy.json",
+        "sha256": "50a1e3f59bb0a51b303115005125a600f7752a52d929bf3f3077187d727bae74",
+        "size": 1687
+      },
+      "behavior": {
+        "cases": [
+          {
+            "case": "documented-launcher",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher\\observation.json",
+              "sha256": "b38ab3cd0d4c87436ce1dcb32f681d9c4e02927f242b77b6f42bca05924ca460",
+              "size": 2989
+            },
+            "status": "observed",
+            "parent_raw_exit": 1,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "documented-launcher-correct-CMD-transport",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\observation.json",
+              "sha256": "a8db052e91c0dfea577bfc2f126e7f15964d987eb35c971dfc276ad78b3613ec",
+              "size": 18582
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 4
+          },
+          {
+            "case": "git-add",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-add\\observation.json",
+              "sha256": "b1c895d1e90e60cea6e308a72db8b7f60746b8a419f76d36b73676bbea4291f3",
+              "size": 7731
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "git-commit",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-commit\\observation.json",
+              "sha256": "e7c648bf4e2108dd214e743c673327cc65611efeaa30980f962adaaabd2bb343",
+              "size": 14978
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 2,
+            "observed": 2,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "git-exec-path",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-exec-path\\observation.json",
+              "sha256": "a0e7cef4644bd8368caec19b7a74f13a6603576e702bbf9e43d35175155ace9d",
+              "size": 7482
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "git-fsck",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-fsck\\observation.json",
+              "sha256": "b94e7dc2d988369250d96761983ce755c14c4ae2ce297681e505c9ed9511420a",
+              "size": 28771
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 4,
+            "observed": 4,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 5
+          },
+          {
+            "case": "git-grep",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-grep\\observation.json",
+              "sha256": "99dd388afe2bc3e051bc436df00bd579d5589793822fba66af612891dd2ee8d3",
+              "size": 6831
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-https-clone",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\observation.json",
+              "sha256": "4ea0787c89f7f8c5b3d8c9f1b7d19665d31c93688af67bc9f0fc1a25b25fbea7",
+              "size": 30921
+            },
+            "status": "observed",
+            "parent_raw_exit": 128,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 3
+          },
+          {
+            "case": "git-init",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-init\\observation.json",
+              "sha256": "b3283233338be9f65770f74ff2295105d8be1bd4ee1ff21d9af9fcf4a23626d0",
+              "size": 7482
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "git-log",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-log\\observation.json",
+              "sha256": "8f593693cc9d604f4a84d3133218a8a24bc3ad3c6310dd2aafeb9a70093d7920",
+              "size": 7731
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "git-status",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-status\\observation.json",
+              "sha256": "976fee9a61d446623043923d502a7b4f38b9fc2cad822c4c21b68ec0afe2fb77",
+              "size": 7615
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-system-config",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-system-config\\observation.json",
+              "sha256": "adf942638a6cc8c13163f828390a2a34d67ebeafc1b4ba302c3902ceae483aa6",
+              "size": 7731
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "hook-add",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-add\\observation.json",
+              "sha256": "c65887b52bc796157cd252b595db24128e23c0a53f01d3f078d13e72fac64161",
+              "size": 7642
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "hook-commit",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-commit\\observation.json",
+              "sha256": "2c157fd1c51a03292ef3d24d5daead7bfe1a80cbd3fc503957ae40ef0a3c2085",
+              "size": 22675
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 3
+          },
+          {
+            "case": "local-bare-clone",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\local-bare-clone\\observation.json",
+              "sha256": "1d4078fb21a28a02949a3cb2cf43999c1ef23d5d3f32396cc96086f93d6d92d5",
+              "size": 23168
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 3
+          },
+          {
+            "case": "named-sh",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\named-sh\\observation.json",
+              "sha256": "dfc7dbeb16d94eda174d9239d882d457299322c64570761434efceaeffde6c55",
+              "size": 7320
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "native-version",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\native-version\\observation.json",
+              "sha256": "d6a03826b47d066286bdf901cf39719f6a74f216bbefa9255f5d28aa9eefdbda",
+              "size": 7393
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          }
+        ],
+        "unique_measured_generations": 29,
+        "raw_nonzero_processes": [
+          {
+            "case": "documented-launcher",
+            "pid": 18632,
+            "creation_filetime": 134335838977163057,
+            "image": "C:\\Windows\\System32\\cmd.exe",
+            "machine": "0xAA64",
+            "sha256": "70644b93923db5f2c400f87e4b7f54db9b55b7d1a8b07bb4d89908a206cce808",
+            "raw_exit": 1
+          },
+          {
+            "case": "git-https-clone",
+            "pid": 11872,
+            "creation_filetime": 134335839050407074,
+            "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\git.exe",
+            "machine": "0xAA64",
+            "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+            "raw_exit": 128
+          },
+          {
+            "case": "git-https-clone",
+            "pid": 16464,
+            "creation_filetime": 134335839052780097,
+            "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\libexec\\git-core\\git.exe",
+            "machine": "0xAA64",
+            "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+            "raw_exit": 128
+          },
+          {
+            "case": "git-https-clone",
+            "pid": 20464,
+            "creation_filetime": 134335839054013820,
+            "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\libexec\\git-core\\git-remote-https.exe",
+            "machine": "0xAA64",
+            "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+            "raw_exit": 128
+          }
+        ],
+        "non_SystemRoot_external_process_images": [],
+        "non_SystemRoot_external_sampled_modules": [],
+        "module_coverage": "Ordinary-process sampling, not exhaustive DLL load tracing"
+      }
+    },
+    "named ZIP": {
+      "custody": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\intake.json",
+        "sha256": "9bf376600cd047912cdddb5c88f6b89301727c2b9e7bbb55ecc6e4416aba2602",
+        "size": 6229477
+      },
+      "extraction": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces",
+      "file_count": 12392,
+      "all_pe_count": 327,
+      "non_aa64": [],
+      "pe_parse_errors": [],
+      "static_unresolved_imports": [],
+      "static_audit": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\static-audit.json",
+        "sha256": "b147be24c9949a33616691b2d6d0fec1bb442a5c02dda3d567bfec0e270f733e",
+        "size": 15356486
+      },
+      "path_triage": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\named ZIP-path-triage.json",
+        "sha256": "1f1c2c05081fd2dacb9e74ea65ebf222fa72fddc184dffa693a75babad2ab63a",
+        "size": 16100151
+      },
+      "post_replay_file_changes": [],
+      "producer_input_unchanged": true,
+      "producer_manifest_or_receipt_unchanged": true,
+      "self_contained_metadata_files_present": [
+        "manifest.json",
+        "provenance.json",
+        "README-HANDOFF.md"
+      ],
+      "Tcl_Tk_functional_verdict_excluded_file_count": 1020,
+      "environment": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\environment-policy.json",
+        "sha256": "b908f0bc808e09339adeaf2c959b7667f7a54f27bc3d393f7942d2ea8c4afdcf",
+        "size": 1675
+      },
+      "behavior": {
+        "cases": [
+          {
+            "case": "documented-launcher",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\documented-launcher\\observation.json",
+              "sha256": "818e5ac9ec461e9bf0a25213155833d3ae379f607378405484bf0a6b21565e88",
+              "size": 22679
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 4
+          },
+          {
+            "case": "git-add",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-add\\observation.json",
+              "sha256": "146d2bf1c15200cdb7346a13ca75a07b7bf17fba0f6af470973930ee13719383",
+              "size": 7597
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-commit",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-commit\\observation.json",
+              "sha256": "0a1adbb5baa025d2171166f13c2e7c9509a567a1ed0df7b4cfaa65bcca60c8e2",
+              "size": 15059
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 2,
+            "observed": 2,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 3
+          },
+          {
+            "case": "git-exec-path",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-exec-path\\observation.json",
+              "sha256": "d277efff2ee6fe2e645c9a05f48a26ae79ac685020609506f2125329d3689316",
+              "size": 7349
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-fsck",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-fsck\\observation.json",
+              "sha256": "1da7719af9f562a5ab670c26cac41b25cd63f8488ff2ace9d2ae89b13f7b4ada",
+              "size": 28447
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 4,
+            "observed": 4,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 5
+          },
+          {
+            "case": "git-grep",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-grep\\observation.json",
+              "sha256": "579ceeb5ae5256c833408452efe7a0bac688a074d3ab711dcdced1e3b57288db",
+              "size": 7624
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-https-clone",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\observation.json",
+              "sha256": "b7de629ef8de80297a8e4c9c083fddac2e41dbe87f441cf6952ffbf392c23fd8",
+              "size": 48028
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 5,
+            "observed": 5,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 6
+          },
+          {
+            "case": "git-init",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-init\\observation.json",
+              "sha256": "f60f3a990d135665d991c45b5c234a0073e3091d13bf96865f90514dec69ffc8",
+              "size": 7375
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-log",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-log\\observation.json",
+              "sha256": "f5caa12b224e1aef347a87188be5ee6813fed7599b7eb5a31d34a796b6087570",
+              "size": 7597
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-status",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-status\\observation.json",
+              "sha256": "11328f7eef5f5bde9656da3294d22802d81d38dccfe3cda37af03e796cffd528",
+              "size": 7597
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "git-system-config",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-system-config\\observation.json",
+              "sha256": "64a2b7b4d7359f441555c45b7da1fb8bdc9c851e3e816af0a9588c6807b0cb1f",
+              "size": 7624
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "hook-add",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-add\\observation.json",
+              "sha256": "770ca81bfbd87b1a60af633bcfd43c3cb86753ca6700b0dc7b4e2cf2a42604e4",
+              "size": 7713
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "hook-commit",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-commit\\observation.json",
+              "sha256": "6b27a5822c6282323ddce4ec9979f4cec28a9a07a7a0b3acfba0dddf7a404d1a",
+              "size": 19136
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 3
+          },
+          {
+            "case": "https-fsck",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\observation.json",
+              "sha256": "561cf22451352fd357289c29beed554d9579f954b0edf866a1448f7e9462c6d2",
+              "size": 29027
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 4,
+            "observed": 4,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 4
+          },
+          {
+            "case": "https-log",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\observation.json",
+              "sha256": "63753233549f9e654f142dd4c809f525d732f932db5a5a965cc878dcb2443f3d",
+              "size": 7690
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "https-origin",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\observation.json",
+              "sha256": "355532747cf2bb29c5c671b246bdbdf3b6a6874e7c3343fbddc6c001e4949ebf",
+              "size": 2959
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "https-status",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\observation.json",
+              "sha256": "2e6ae865d3f66a55039cfadda65a2f3a845ea71b19f831fbf4e0717abbd40153",
+              "size": 7751
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          },
+          {
+            "case": "local-bare-clone",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone\\observation.json",
+              "sha256": "dd7fdbd2671d2e79dbb97598d25a36701b0acf73f8f8b88364ac85358dc52051",
+              "size": 74
+            },
+            "status": "observer-incomplete",
+            "parent_raw_exit": null,
+            "timed_out": null,
+            "created": null,
+            "observed": null,
+            "missing_events": null,
+            "unidentified": [],
+            "module_snapshot_error_count": 0,
+            "qualification": "VERIFIER-INCOMPLETE attempt; not an artifact result"
+          },
+          {
+            "case": "local-bare-clone-after-observer-race",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\observation.json",
+              "sha256": "7d7f18ce90471dbdb1272afaafa50662d99117921c3547f1edf4c4b79132a6d3",
+              "size": 18578
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 3,
+            "observed": 3,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 4
+          },
+          {
+            "case": "named-sh",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\named-sh\\observation.json",
+              "sha256": "c3186f3c918bf5051b58ee11206f3bd74d9e98cb014f9f8589aacbf255d84f44",
+              "size": 8458
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 1
+          },
+          {
+            "case": "native-version",
+            "record": {
+              "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\native-version\\observation.json",
+              "sha256": "a6e6b5dedb3287b1ed0398c8e1d0b6bfe39da0f7d9aa0d9d9ff9b182ba9c9bbc",
+              "size": 7464
+            },
+            "status": "observed",
+            "parent_raw_exit": 0,
+            "timed_out": false,
+            "created": 1,
+            "observed": 1,
+            "missing_events": [],
+            "unidentified": [],
+            "module_snapshot_error_count": 2
+          }
+        ],
+        "unique_measured_generations": 37,
+        "raw_nonzero_processes": [],
+        "non_SystemRoot_external_process_images": [],
+        "non_SystemRoot_external_sampled_modules": [],
+        "module_coverage": "Ordinary-process sampling, not exhaustive DLL load tracing"
+      }
+    }
+  },
+  "findings": [
+    {
+      "id": "TLS-01",
+      "severity": "blocking",
+      "generations": [
+        "candidate-01",
+        "named ZIP"
+      ],
+      "title": "Superseded OpenSSL bytes are shipped and actually loaded, without supersession disclosure",
+      "evidence": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\independent-tls-evidence-01.json",
+        "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc",
+        "size": 13094
+      },
+      "details": "Both manifest-bound generations ship libssl819faa/libcrypto0d35d from256c archive, which current provider v18 supersedes with02f2 under4c3a admission. Named ZIP README does not identify this crypto supersession. Its successful HTTPS clone is not evidence for the admitted replacement TLS stack."
+    },
+    {
+      "id": "CA-01",
+      "severity": "blocking-for-candidate01",
+      "generations": [
+        "candidate-01"
+      ],
+      "title": "Candidate-01 HTTPS clone fails after relocation despite bundled CA file",
+      "evidence": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\independent-tls-evidence-01.json",
+        "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc",
+        "size": 13094
+      },
+      "details": "Raw128: compiled libcurl /mingwarm64/etc/ssl/certs/ca-bundle.crt becomes C:/mingwarm64/... instead of the extracted bundle. Active shipped Git config has no sslCAInfo. No verifier workaround applied. Named ZIP has its own working %(prefix) config."
+    },
+    {
+      "id": "CA-02",
+      "severity": "shipped-tool-failure",
+      "generations": [
+        "named ZIP"
+      ],
+      "title": "Standalone shipped curl HTTPS still fails with the compiled absolute CA default",
+      "evidence": {
+        "request": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\request.json",
+          "sha256": "b223ee40180e726fa4160dbd1ea862f600b3c778188b92da5738fabf58aa778c",
+          "size": 1838
+        },
+        "output": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\output.log",
+          "sha256": "6629743422516870f9cdacb999280888ece4af9a77467dfe217795b662c2ed4d",
+          "size": 92
+        },
+        "observation": {
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\observation.json",
+          "sha256": "ec6c6145d29855437f2f242daed0175277b92c2384d5c6931dbeedafe5132e1b",
+          "size": 16569
+        },
+        "parent_raw_exit": 77,
+        "generation": {
+          "pid": 2644,
+          "creation_filetime": 134335842597890221,
+          "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\curl.exe",
+          "image_query_errors": [],
+          "machine": "0xAA64",
+          "sha256": "6ddfbcd7c5fcd015112d7e002727b20abc70b7e2c7f643b029cd8d70e9e196be",
+          "raw_exit": 77
+        },
+        "sampled_tls": [
+          {
+            "pid": 2644,
+            "creation_filetime": 134335842597890221,
+            "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+            "machine": "0xAA64",
+            "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669"
+          },
+          {
+            "pid": 2644,
+            "creation_filetime": 134335842597890221,
+            "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+            "machine": "0xAA64",
+            "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a"
+          },
+          {
+            "pid": 2644,
+            "creation_filetime": 134335842597890221,
+            "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+            "machine": "0xAA64",
+            "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48"
+          }
+        ]
+      },
+      "details": "curl.exe HTTPS HEAD raw77; the Git-specific prefix-relative config does not configure curl CLI. This is distinct from the successful named-ZIP Git clone. No CA repair applied."
+    },
+    {
+      "id": "LABEL-01",
+      "severity": "disclosure-risk",
+      "generations": [
+        "candidate-01"
+      ],
+      "title": "Candidate-01 tree does not carry its non-admission or limitation metadata inside the tree",
+      "details": "Only sibling disposition/manifest state NON-ADMITTED and publication false. A copied candidate tree loses those sibling labels. It is not a self-describing distributable artifact."
+    },
+    {
+      "id": "AUTH-01",
+      "severity": "historical-authorization-superseded",
+      "generations": [
+        "named ZIP"
+      ],
+      "title": "Historical detached receipt authorizes publication while current coordinator denies it",
+      "details": "Preserve historical receipt verbatim. Current coordinator has requested an additive named-ZIP-specific superseding disposition from the producer. Candidate01 disposition does not apply to the named ZIP; verifier performs no producer-side correction."
+    }
+  ],
+  "evidence": {
+    "tls": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\independent-tls-evidence-01.json",
+      "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc",
+      "size": 13094
+    },
+    "recreation": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\recreation.json",
+      "sha256": "460b857f7cfd59df3f313d4043bed24de724d423b0835525d6dc32d5d443b3cc",
+      "size": 781
+    },
+    "standalone_curl": {
+      "request": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\request.json",
+        "sha256": "b223ee40180e726fa4160dbd1ea862f600b3c778188b92da5738fabf58aa778c",
+        "size": 1838
+      },
+      "output": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\output.log",
+        "sha256": "6629743422516870f9cdacb999280888ece4af9a77467dfe217795b662c2ed4d",
+        "size": 92
+      },
+      "observation": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\observation.json",
+        "sha256": "ec6c6145d29855437f2f242daed0175277b92c2384d5c6931dbeedafe5132e1b",
+        "size": 16569
+      },
+      "parent_raw_exit": 77,
+      "generation": {
+        "pid": 2644,
+        "creation_filetime": 134335842597890221,
+        "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\curl.exe",
+        "image_query_errors": [],
+        "machine": "0xAA64",
+        "sha256": "6ddfbcd7c5fcd015112d7e002727b20abc70b7e2c7f643b029cd8d70e9e196be",
+        "raw_exit": 77
+      },
+      "sampled_tls": [
+        {
+          "pid": 2644,
+          "creation_filetime": 134335842597890221,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+          "machine": "0xAA64",
+          "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669"
+        },
+        {
+          "pid": 2644,
+          "creation_filetime": 134335842597890221,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+          "machine": "0xAA64",
+          "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a"
+        },
+        {
+          "pid": 2644,
+          "creation_filetime": 134335842597890221,
+          "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+          "machine": "0xAA64",
+          "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48"
+        }
+      ]
+    }
+  },
+  "reproduction": {
+    "actual_all_five_named_zip_bytes_equal": true,
+    "copies": [
+      {
+        "path": "C:\\ag-mvp-f6-20260911\\first-artifact-901256b\\arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip",
+        "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+        "size": 186366963
+      },
+      {
+        "path": "C:\\ag-mvp-f6-20260911\\first-artifact-901256b\\independent-recreation.zip",
+        "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+        "size": 186366963
+      },
+      {
+        "path": "C:\\ag-mvp-f6-20260911\\final-zip-readback-01\\recreated.zip",
+        "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+        "size": 186366963
+      },
+      {
+        "path": "C:\\ag-mvp-f6-20260911\\final ZIP readback 02\\recreated.zip",
+        "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+        "size": 186366963
+      },
+      {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\fresh independently recreated.zip",
+        "sha256": "7a4e99306da86abfc5591b96056ef06279bb8c4ca7353a7572a0e266abcdc854",
+        "size": 186366963
+      }
+    ],
+    "diagnostic_pair_bytes_equal": true,
+    "diagnostic_pair": [
+      {
+        "path": "C:\\ag-mvp-f6-20260911\\deterministic-diagnostic-01\\NON-ADMITTED-experimental-diagnostic.zip",
+        "sha256": "e002a72530958e4d9c590e74c557fafa8450ec9baa4431bcbc60559164e4f584",
+        "size": 186072330
+      },
+      {
+        "path": "C:\\ag-mvp-f6-20260911\\deterministic-diagnostic-01\\NON-ADMITTED-independent-recreation.zip",
+        "sha256": "e002a72530958e4d9c590e74c557fafa8450ec9baa4431bcbc60559164e4f584",
+        "size": 186072330
+      }
+    ],
+    "scope": "Actual fresh moved shipped-recipe archive repackaging, not rebuilding packages"
+  },
+  "positive_scopes": [
+    "Both generations' local Git init/add/commit/log/status/grep/fsck, real hook and bare clone succeeded",
+    "Correct raw CMD transport runs the documented console entry; no interactive PTY/job-control claim",
+    "Named ZIP public HTTPS clone succeeds without artifact repair and checks out7fd1a60b01f91b314f59955a4e4d4e80d8edf11d",
+    "Observed dynamic sh/git-upload-pack/git-remote-https helpers came from the respective extracted root"
+  ],
+  "harness_failures_preserved": [
+    {
+      "record": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher\\observation.json",
+        "sha256": "b38ab3cd0d4c87436ce1dcb32f681d9c4e02927f242b77b6f42bca05924ca460",
+        "size": 2989
+      },
+      "cause": "Verifier used CRT quoting for nested CMD /c; raw1 onlycmd created. Corrected raw Windows command line, no candidate/env changes; retry passed.",
+      "corrected": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\observation.json",
+        "sha256": "a8db052e91c0dfea577bfc2f126e7f15964d987eb35c971dfc276ad78b3613ec",
+        "size": 18582
+      }
+    },
+    {
+      "record": {
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone\\observation.json",
+        "sha256": "dd7fdbd2671d2e79dbb97598d25a36701b0acf73f8f8b88364ac85358dc52051",
+        "size": 74
+      },
+      "cause": "Verifier QueryFullProcessImageName WinError31 on short-lived child; attempt interrupted by job cleanup and explicitly observer-incomplete. Retry records metadata failure and retains raw status rather than inventing identity; fresh-destination clone passed."
+    }
+  ],
+  "environment_assistance": "All actual values logged per request and environment-policy. System32-only baselinePATH, fresh privateHOME/USERPROFILE/TMP/TEMP, GIT_CONFIG_GLOBAL=NUL and GIT_TERMINAL_PROMPT=0 for user-config/credential isolation. Original OS SystemRoot/WINDIR/COMSPEC/PATHEXT/PROGRAMDATA retained. Commit identity and pack.threads=1 supplied per command. NO CA, exec-path or artifact fixes. Shipped launcher sets its own documentedPATH; that is artifact behavior, not verifier repair.",
+  "limitations": [
+    "No new admitted-OpenSSL replacement candidate was provided in this run; follow-up needed",
+    "Ordinary module sampling is incomplete for short-lived DLL loads; no universal dynamic closure claim",
+    "No independent SSH authentication/service, GUI/Tk, interactive PTY/editor/pager or Perl replay",
+    "Embedded debug/source/test-data strings are not counted as operational defects",
+    "Named ZIP current publication/admission remains denied regardless of historical receipt or byte determinism"
+  ],
+  "verifier_scripts": {
+    "audit.py": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\audit.py",
+      "sha256": "6fcd35c47a7e9ac9c1f6b89b9aec1107dcc009903b3c5c7d0045d3741cbfc38c",
+      "size": 13802
+    },
+    "finalize.py": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\finalize.py",
+      "sha256": "8d55f563565fd4e717f77a077c40a9ef6db2547b15881b05a65dfb8e01a08da4",
+      "size": 20415
+    },
+    "observe.py": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\observe.py",
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "size": 12973
+    },
+    "replay.py": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\replay.py",
+      "sha256": "c458aae08826ba601a68a6046109ccdd7e6121b9138b2dab730c034af85c5b00",
+      "size": 7320
+    },
+    "tls_evidence.py": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\tls_evidence.py",
+      "sha256": "1b092a43bbc2fc8840f84ffaf01afd1607d336fbbe784c8c220837dd3e12aaec",
+      "size": 5257
+    }
+  },
+  "producer_writes": false,
+  "new_grant": 3,
+  "drain": {
+    "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\drain.json",
+    "sha256": "eae42556e90e07b4c3af8c32a4dcb07c54d8fdc96c478bd2f9ce5667e06ef657",
+    "size": 21019
+  }
+}

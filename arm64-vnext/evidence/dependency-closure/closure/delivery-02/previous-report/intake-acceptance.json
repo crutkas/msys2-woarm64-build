@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T07:13:51.6455353Z",
+  "status": "accepted-read-only-audit-supplement-not-provider-admission",
+  "authoritativeAudit": {
+    "path": "C:\\ap11-native-provider-intake\\audit-v18-qualified-openssl.json",
+    "sha256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb",
+    "status": "incomplete",
+    "blockerRows": 81,
+    "unchanged": true
+  },
+  "measuredSnapshot": {
+    "root": "C:\\ag-mvp-f6-20260911\\limited-candidate-02",
+    "manifest": {
+      "path": "C:\\ag-mvp-f6-20260911\\limited-candidate-02.manifest.json",
+      "sha256": "708394d8b303874307db541d278b9891d2b1fde1a9948e5266a3a992555e33f1"
+    },
+    "consumerBoundary": {
+      "path": "C:\\ag-mvp-f6-20260911\\libintl-consumer-boundary-01.json",
+      "sha256": "ecaa96a91879c81ec43ea3f51b359994881f08510ce58fb74d45fd6c56d88718"
+    }
+  },
+  "evidence": {
+    "handoff": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\handoff.json",
+      "sha256": "723462dad11535c8c76ca724bdec7c5fd4333e0aed15c0e7c308716c8021d3e4"
+    },
+    "report": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\report.md",
+      "sha256": "22b79d6d71afc5103a36efae48753debd02062de572ed9f7c97767a25bb517df"
+    },
+    "dllAdmissionTable": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\dll-admission-table.csv",
+      "sha256": "ac964ec2e40b568128c060dc2b52c6ab8f67b5e5be5897563d7a0c5abb367644"
+    },
+    "remainingBlockers": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\remaining-59-blockers.csv",
+      "sha256": "bf30c9c0de6afe5bf5a52d29b3a35acff22fe3b06b956b29eb7f08d769d3dfaa"
+    },
+    "inventory": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\export-inventory.json",
+      "sha256": "88a038bd12119cc6663fad60e278f0dbb4334bd4032384c73c462f91109f0971"
+    }
+  },
+  "fixedPoint": {
+    "seedConsumers": 21,
+    "applicationPeNodes": 29,
+    "privateDllFiles": 10,
+    "normalImportEdges": 516,
+    "delayImportEdges": 0,
+    "windowsLeaves": 19,
+    "missingDllNames": 0,
+    "missingPrivateSymbols": 0,
+    "msysImports": 0,
+    "allApplicationPes": "AA64"
+  },
+  "admissionReconciliation": {
+    "admittedSelectedPackageDlls": 5,
+    "admittedLimitedRoleDlls": 3,
+    "supersededUnadmittedDlls": 2,
+    "windowsSatisfiedLeaves": 19,
+    "supersededBytes": [
+      {
+        "name": "libcrypto-3-arm64.dll",
+        "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a"
+      },
+      {
+        "name": "libssl-3-arm64.dll",
+        "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48"
+      }
+    ],
+    "currentOpenSsl": {
+      "packageSha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+      "admissionExport": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\export.json",
+      "admissionSha256": "4c3a57be0859f70a355a6d133604cf278cd06fc8406f734344bf15331ebf1a62",
+      "substitutedIntoMeasuredSnapshot": false
+    }
+  },
+  "blockerDecomposition": {
+    "gettextRelated": 22,
+    "missingLibintlEdges": 21,
+    "missingStrictGettextProvider": 1,
+    "other": 59,
+    "otherFamilies": {
+      "missingPackageProviders": 35,
+      "missingPayloadFiles": 18,
+      "privateOperationalPaths": 4,
+      "managedAdmission": 1,
+      "nativeSelfHosting": 1
+    },
+    "interpretation": "Rows overlap and are not unique DLLs, independent implementations, or effort estimates."
+  },
+  "limits": [
+    "This supplement does not admit any package or file",
+    "Limited file-role evidence does not satisfy strict package identity or transaction gates",
+    "Physical presence does not imply admission",
+    "Static import reachability does not cover process-launched helpers, plugins, configuration, certificates, hooks, pagers, or embedded/static code",
+    "The two old OpenSSL DLLs remain superseded and unadmitted",
+    "No full-release blocker is cleared and no archive is emitted"
+  ]
+}

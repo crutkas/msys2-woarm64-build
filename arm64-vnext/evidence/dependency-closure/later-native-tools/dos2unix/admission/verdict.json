@@ -1,0 +1,24 @@
+{
+  "decision": "admit",
+  "package": {
+    "name": "dos2unix",
+    "sha256": "db48658b51c185ec961606d8c46e169f21c1cb3758422995aba8476b5b286be6"
+  },
+  "provider_export": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\export.json",
+    "sha256": "a546fb9731b77ccbbcb28a8d3acce257162fb7ec2751431e4838837a8dabb366"
+  },
+  "retained_gates": [
+    "The package is runtime-907 scoped and does not claim d70 compatibility.",
+    "The exact runtime-907, libintl and libiconv DLLs are test-only dependency inputs outside package ownership.",
+    "The preserved x64-bootstrap alias failure is a cross-architecture symlink/argv0 harness failure; the unchanged target bytes pass through native runtime-907 execv.",
+    "The source recipe entry is unsigned; no detached-signature claim is made.",
+    "A second independent reproducibility rebuild and full-release admission are not claimed."
+  ],
+  "schema": 1,
+  "status": "admitted-runtime907-scoped",
+  "verification": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\verification.json",
+    "sha256": "6654141c4b91012288bd2067a8febbab31151050543e61c75a059ab8e302c4b7"
+  }
+}

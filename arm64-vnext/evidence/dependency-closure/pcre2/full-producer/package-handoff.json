@@ -1,0 +1,304 @@
+{
+  "SchemaVersion": 1,
+  "Status": "ready-for-pipeline-admission-native-mingw-pcre2",
+  "CompletedAt": "2026-09-08T05:31:14.4505568Z",
+  "Owner": {
+    "Branch": "crutkas-arm64-pcre2-package",
+    "ProjectSession": "2d784edf-958d-4290-9351-78fa9cf8e444",
+    "CliSession": "accd408a-aaf0-40b4-bc67-83995f29feec"
+  },
+  "Target": {
+    "PayloadPEMachine": "0xAA64",
+    "Epoch": "5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7",
+    "Manifest": {
+      "Path": "C:\\ap06-2160\\h1-manifest.json",
+      "SHA256": "80e5dd2079f540bb1c0ee448ce27d211c8e3608b1f9e690edbd0c628b88f7739"
+    },
+    "PointerModel": "LLP64",
+    "Triple": "aarch64-w64-mingw32",
+    "Host": "Windows ARM64",
+    "Prefix": "C:\\ap06-2160\\h1",
+    "Scope": "Exact header-only successor; original compiler/binutils/CRT/static library limitations remain, no later MSYS/FP/runtime fixes inferred",
+    "ARM64EC": false
+  },
+  "Package": {
+    "Provider": "Actual correctly named package; no fabricated aliases",
+    "PayloadInventory": {
+      "Field": "PayloadFiles",
+      "Receipt": {
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\readback\\readback.json",
+        "SHA256": "42f7353b298f50e14270895541417f0abc1d92ff1fe3d7d2035435cdb5a7516b"
+      }
+    },
+    "OriginalBuildArchive": {
+      "SHA256": "7460d0061581ce54d25a046860f6ce02bcde899256b58825a4b4ceb1fcfeac34",
+      "Path": "C:\\ap07-pcre2-accd01\\p2\\packages\\mingw-w64-aarch64-pcre2-10.48-3-any.pkg.tar.zst"
+    },
+    "Name": "mingw-w64-aarch64-pcre2",
+    "ExplicitProvides": [],
+    "Metadata": [
+      {
+        "RelativePath": "evidence\\metadata\\.BUILDINFO",
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\metadata\\.BUILDINFO",
+        "SHA256": "33db9ad8673a4592c1ebce8859851a3912285cf10f964f22061ea6b71ae328ac"
+      },
+      {
+        "RelativePath": "evidence\\metadata\\.MTREE",
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\metadata\\.MTREE",
+        "SHA256": "f34e180864348ea8359632ad522b382268eb2859dbbb1899aff92a326659649b"
+      },
+      {
+        "RelativePath": "evidence\\metadata\\.PKGINFO",
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\metadata\\.PKGINFO",
+        "SHA256": "eed4c91cf964f169f1d3e6442e4e14011b3f8443865efcba279355d3e926adb5"
+      }
+    ],
+    "Archive": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\mingw-w64-aarch64-pcre2-10.48-3-any.pkg.tar.zst",
+      "SHA256": "7460d0061581ce54d25a046860f6ce02bcde899256b58825a4b4ceb1fcfeac34"
+    },
+    "License": "BSD-3-Clause",
+    "Version": "10.48-3",
+    "PayloadFiles": 236,
+    "PacmanArchitecture": "any"
+  },
+  "Features": {
+    "GrepBzip2": true,
+    "JIT": "ARM-64 64bit, executable-memory allocation and actual execution verified",
+    "Static": true,
+    "Unicode": "17.0.0, UTF/UCP",
+    "NoFeatureWaivers": true,
+    "Editline": true,
+    "Shared": true,
+    "Libraries": [
+      "8",
+      "16",
+      "32",
+      "POSIX"
+    ],
+    "UTF8ExternalCallouts": true,
+    "GrepGzip": true
+  },
+  "Source": {
+    "Verification": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\commands\\makepkg-verifysource-04.json",
+      "SHA256": "b0b63562e51c4198bd1a587bcd6d30642df1d047482809f082a1f163eba04cda"
+    },
+    "CompilerFlagWorkarounds": false,
+    "Changes": [
+      "MINGWARM64 namespace and genuine direct host-generator dependencies",
+      "Explicit separate native dependency include/library roots",
+      "Strict static and shared upstream checks",
+      "POSIX alpha uses existing independent letter table, preserving table ABI",
+      "UTF-8 Windows external callouts use the wide spawn API",
+      "Unchanged upstream Windows locale oracles; CRLF-only comparison; published Git-for-Windows path/callout transport adaptations"
+    ],
+    "PreparedRecipe": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\recipe\\PKGBUILD",
+      "SHA256": "e53ec8670b901e007924a4baf66221257f3d1d65f787cce8ab2eb07f2ecf5998"
+    },
+    "RecipeCommit": "fbb9173f78adaea078046ea53e35cee47e7a5527",
+    "Signature": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\recipe\\pcre2-10.48.tar.bz2.sig",
+      "SHA256": "ba8560d0094c68de74d114df3dfe886709a4525530b537a5938e23e32fbafec9"
+    },
+    "OriginalRecipeSHA256": "0b94fbb011bf5f78960beb73e5c8d0fd026bace4bd671ca1ee22a3e373706107",
+    "RecipePreparation": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\inputs\\recipe-preparation-04.json",
+      "SHA256": "5b93bf39b726a16e872b8894794566199b5d213cfb18aa415101750ff3cf7016"
+    },
+    "Archive": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\recipe\\pcre2-10.48.tar.bz2",
+      "SHA256": "b6c68fdf6f3ac31388b50aa89ff0fc49c00c987c16e7b5146491d12003f2c8ed"
+    },
+    "GoldenOutputsChanged": false,
+    "SignerFingerprint": "A95536204A3BB489715231282A98E77EB6F24CA8",
+    "RecipeRepository": "msys2/MINGW-packages"
+  },
+  "Build": {
+    "SharedSuite": {
+      "Log": {
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\upstream-shared\\test-suite.log",
+        "SHA256": "7c0edb2d2c413f7409fdc91ff847e2312f9fc37b913501002257aacb6d647efd"
+      },
+      "Passed": 4,
+      "Skipped": 0,
+      "Total": 4,
+      "Failed": 0
+    },
+    "NativeObserver": {
+      "NativeTargetExits": 1434,
+      "Observed": 30856,
+      "UnrelayedHighExits": 0,
+      "Created": 30856,
+      "Receipt": {
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\build\\native-job.json",
+        "SHA256": "cd996dd4ca44dc2a4f3e545a05b290b3a7379f4f646fb7c68b6cebf3ddbab488"
+      },
+      "ParentRawExit": 0
+    },
+    "BootstrapScope": "Private emulated x64 MSYS orchestration and signed host generators, not native package payload",
+    "Engine": {
+      "Path": "C:\\ap06-2160\\parallel-v1\\engine.json",
+      "SHA256": "9e87d9c2b7235363ef14f407945078a1488bdca3bc8b3ef15fa26bbc0559f985"
+    },
+    "StaticSuite": {
+      "Log": {
+        "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\upstream-static\\test-suite.log",
+        "SHA256": "7c0edb2d2c413f7409fdc91ff847e2312f9fc37b913501002257aacb6d647efd"
+      },
+      "Passed": 4,
+      "Skipped": 0,
+      "Total": 4,
+      "Failed": 0
+    },
+    "Invocation": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\inputs\\invocation-contract-03.json",
+      "SHA256": "d6097d0121065686bb9d53485d82376072097a43d848c7f979dfdf02b9ebf59c"
+    },
+    "Result": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\build\\result.json",
+      "SHA256": "bef2a7eea0053b2718b6eb8f28b9f63c302c8a12e49a80f56f724f74d03a95fd"
+    },
+    "Jobs": 2
+  },
+  "ExtractedReadback": {
+    "ReadbackSource": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\.github\\scripts\\test-pcre2-package.ps1",
+      "SHA256": "47b77d73b7c5d5fd5fd3d04524a4f06141613477592d0446c45785c896d112ce"
+    },
+    "Receipt": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\readback\\readback.json",
+      "SHA256": "42f7353b298f50e14270895541417f0abc1d92ff1fe3d7d2035435cdb5a7516b"
+    },
+    "StaticAndSharedLocaleComparisons": 1024,
+    "Runs": 21,
+    "ExpectedInvalidPatternRawExit": 2,
+    "LiveModuleObservations": 5,
+    "SDKVersions": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\commands\\extracted-sdk-pkgconf-versions-01.json",
+      "SHA256": "84786c44065669d58790a855609f8dacc453f1f8fc7db8e872f84baf40778127"
+    },
+    "StaticAndSharedUpstreamJITAndPOSIX": true,
+    "SourceRevisionNote": "A transient empty startup module list is retried until all required modules are observed; the original failed readback is preserved. Package build engine and image gates unchanged.",
+    "SDKFlags": {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\commands\\extracted-sdk-pkgconf-flags-01.json",
+      "SHA256": "09d108a8d07802ad0ccb6e11679b542166a6395d8f521d7540c980bb37c99fa0"
+    },
+    "LocaleComparisonFailures": 0
+  },
+  "NativeProviders": [
+    {
+      "Receipt": {
+        "Path": "C:\\ap06-2160\\bz1\\package-handoff.json",
+        "SHA256": "ea8901f2d96a4a141f3a49ed3978b1372232fbcda6fe4d94453703b47177da11"
+      },
+      "Package": "bzip2 1.0.8-4"
+    },
+    {
+      "Receipt": {
+        "Path": "C:\\ap06-2160\\z2\\package-handoff.json",
+        "SHA256": "1377ea1bdf6d0227c25cf4b2cb1cbdf228b0ef14054467d9020135eb32ae33c4"
+      },
+      "Package": "zlib 1.3.2-2"
+    },
+    {
+      "Receipt": {
+        "Path": "C:\\ap06-2160\\restart01\\evidence\\wineditline-package-handoff-02.json",
+        "SHA256": "6f7694e293a225cdef01996f89c482fbe92ed3e1c68ac2ae303936a2514c9f07"
+      },
+      "Package": "wineditline 2.208-2"
+    }
+  ],
+  "MaintainedSources": [
+    {
+      "RelativePath": "source\\.gitattributes",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\.gitattributes",
+      "SHA256": "deab1828f545643db8301b9a1433e989f121254b0e5d277b43ce2a85804db7fd"
+    },
+    {
+      "RelativePath": "source\\.github\\scripts\\prepare-pcre2-recipe.ps1",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\.github\\scripts\\prepare-pcre2-recipe.ps1",
+      "SHA256": "e14901ec552870804d1bd9d7a187fbcfb17b1e56342b3f96ab8a38051f505e92"
+    },
+    {
+      "RelativePath": "source\\.github\\scripts\\test-pcre2-package.ps1",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\.github\\scripts\\test-pcre2-package.ps1",
+      "SHA256": "47b77d73b7c5d5fd5fd3d04524a4f06141613477592d0446c45785c896d112ce"
+    },
+    {
+      "RelativePath": "source\\tests\\native-pcre2-locale.c",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\tests\\native-pcre2-locale.c",
+      "SHA256": "bd90a15a5d7fa42b99182c2e9b0090702f9c6ed297e1bfe2a0c047552ea2b8b3"
+    },
+    {
+      "RelativePath": "source\\patches\\pcre2\\README.md",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\patches\\pcre2\\README.md",
+      "SHA256": "f4b6062e7962695fc8784ed5e73e71a4fce9b3d3d90743c82751bb71dcf5ebe3"
+    },
+    {
+      "RelativePath": "source\\patches\\pcre2\\0001-mingwarm64-and-strict-checks.patch",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\patches\\pcre2\\0001-mingwarm64-and-strict-checks.patch",
+      "SHA256": "11facbf0f6c8d7594c616ccdf9b588245accd30d1e671f3dc81b51e771653ac4"
+    },
+    {
+      "RelativePath": "source\\patches\\pcre2\\0002-posix-alpha-use-letter-table.patch",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\patches\\pcre2\\0002-posix-alpha-use-letter-table.patch",
+      "SHA256": "2ec77e31f2b0ae87269ff59a3810cd5ae50cefa7f3ca0c69b118ff728805b105"
+    },
+    {
+      "RelativePath": "source\\patches\\pcre2\\0003-native-windows-test-drivers.patch",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\patches\\pcre2\\0003-native-windows-test-drivers.patch",
+      "SHA256": "2758ced780aefc5a7ebb70aafbab3d641def7e8c2695863f4073fc8fafbe7456"
+    },
+    {
+      "RelativePath": "source\\patches\\pcre2\\0004-windows-utf8-callouts.patch",
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\source\\patches\\pcre2\\0004-windows-utf8-callouts.patch",
+      "SHA256": "09961e6b084fb7f14d8632bdae329420c5b9f844b03d9a32e713f7d8f01baae7"
+    }
+  ],
+  "Integration": {
+    "CommitsPushesCI": false,
+    "SharedPrefixesModified": false,
+    "FullGitDistributionClaim": false,
+    "EngineOwnership": "Pipeline owns engine, provider admission and shared installation",
+    "Copy": "Import the leaf scripts/test/PCRE2 patch folder into the owning worktree; do not copy imported engine files as leaf changes",
+    "Installation": "Exact archive may be admitted/installed by pipeline after its readers drain",
+    "Attributes": "Merge patches/pcre2/*.patch text eol=lf into existing .gitattributes; do not replace other rules"
+  },
+  "PreservedFailures": [
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\evidence\\makepkg-verifysource-01.json",
+      "SHA256": "9bab1cf70f7cc59056f16e85d274a59ab80430cca375d300c15713d57ca495e3"
+    },
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\evidence\\full-pcre2-package-01.json",
+      "SHA256": "924c3ebd0e2bfb7afa58ddbb27aeefc78271020803c8c0163f7939237cbbf923"
+    },
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\preserved-p1-failure\\result.json",
+      "SHA256": "40b8d990283f53e3fd5efa83f3826556f239bbf9d2b014e02603dbb5f5762e9c"
+    },
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\preserved-p1-failure\\native-job.json",
+      "SHA256": "409141ca78b9bb03e56c4ba2dc9a3dce6404f15e9eea0e1ce80a95c2f0f7f910"
+    },
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\evidence\\preserved-readback-failure\\readback.json",
+      "SHA256": "b1da4d40430c0b250d76432c629022804efe6fc18afbba220a3962abeb626af4"
+    },
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\grep-diagnostic-01\\native-job.json",
+      "SHA256": "e7bdd2fc1d6c38c623d394c941f7709b5e1dbc52a522496dee098ca33f0ed114"
+    },
+    {
+      "Path": "C:\\ap07-pcre2-accd01\\grep-diagnostic-02\\native-job.json",
+      "SHA256": "b0c6fb41b5b304f8393eb49a02d55c498be05cebdaa9825ef7f5e118050e0227"
+    }
+  ],
+  "ExportInventory": {
+    "Path": "C:\\ap07-pcre2-accd01\\delivery-01\\export-inventory.json",
+    "SHA256": "88257debe901e04964d775ed77bdef51ae203b749797cb490f1b86ee82f74779"
+  },
+  "EvidencePathPolicy": "Copied evidence retains its original recorded paths and bytes; the delivery archive is byte-identical, not a rebinding of old proof"
+}
