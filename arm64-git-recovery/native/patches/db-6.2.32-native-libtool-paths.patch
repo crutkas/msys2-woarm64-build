@@ -1,0 +1,36 @@
+--- a/dist/aclocal/libtool.m4
++++ b/dist/aclocal/libtool.m4
+@@ -2463,6 +2463,7 @@
+   esac
+   case $host_os in
+     mingw* | windows* | cegcc*) lt_sed_strip_eq='s|=\([[A-Za-z]]:\)|\1|g' ;;
++    cygwin*) lt_sed_strip_eq='s|=\([[A-Za-z]]:\)|\1|g;s|=/|/|g' ;;
+     *) lt_sed_strip_eq='s|=/|/|g' ;;
+   esac
+   lt_search_path_spec=`$CC -print-search-dirs | awk $lt_awk_arg | $SED -e "s/^libraries://" -e $lt_sed_strip_eq`
+@@ -2521,6 +2522,6 @@
+   # for these hosts.
+   case $host_os in
+-    mingw* | windows* | cegcc*) lt_search_path_spec=`$ECHO "$lt_search_path_spec" |\
++    cygwin* | mingw* | windows* | cegcc*) lt_search_path_spec=`$ECHO "$lt_search_path_spec" |\
+       $SED 's|/\([[A-Za-z]]:\)|\1|g'` ;;
+   esac
+   sys_lib_search_path_spec=`$ECHO "$lt_search_path_spec" | $lt_NL2SP`
+--- a/dist/configure
++++ b/dist/configure
+@@ -14788,6 +14788,7 @@
+   esac
+   case $host_os in
+     mingw* | windows* | cegcc*) lt_sed_strip_eq='s|=\([A-Za-z]:\)|\1|g' ;;
++    cygwin*) lt_sed_strip_eq='s|=\([A-Za-z]:\)|\1|g;s|=/|/|g' ;;
+     *) lt_sed_strip_eq='s|=/|/|g' ;;
+   esac
+   lt_search_path_spec=`$CC -print-search-dirs | awk $lt_awk_arg | $SED -e "s/^libraries://" -e $lt_sed_strip_eq`
+@@ -14846,6 +14847,6 @@
+   # for these hosts.
+   case $host_os in
+-    mingw* | windows* | cegcc*) lt_search_path_spec=`$ECHO "$lt_search_path_spec" |\
++    cygwin* | mingw* | windows* | cegcc*) lt_search_path_spec=`$ECHO "$lt_search_path_spec" |\
+       $SED 's|/\([A-Za-z]:\)|\1|g'` ;;
+   esac
+   sys_lib_search_path_spec=`$ECHO "$lt_search_path_spec" | $lt_NL2SP`

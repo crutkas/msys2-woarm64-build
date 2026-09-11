@@ -1,0 +1,195 @@
+#!/usr/bin/env bash
+set -euo pipefail
+[[ $# == 5 || $# == 6 ]] || { echo "usage: $0 PACKAGE SOURCE NATIVE_TOOLCHAIN OUTPUT JOBS [DEPENDENCY_STAGE]" >&2; exit 2; }
+package=$1 source_root=$(cygpath -u "$2") toolchain=$(cygpath -u "$3")
+output=$(cygpath -u "$4") jobs=$5
+[[ $jobs == 1 && -f $output/launch-inputs.json ]] || { echo "A launcher-owned output and exactly one job are required" >&2; exit 2; }
+: "${WOARM64_LIBRARY_LAUNCH_SEAL:?Run the receipt-verifying Python launcher first}"
+: "${WOARM64_NATIVE_DRIVER_ROOT:?Current native observer required}"
+[[ ${WOARM64_NATIVE_ARG_CONVERSION:-} == none ]] || { echo "MSYS native argument conversion must be explicitly none" >&2; exit 2; }
+[[ $(sha256sum "$output/launch-inputs.json" | cut -d ' ' -f1) == "$WOARM64_LIBRARY_LAUNCH_SEAL" ]] || { echo "Launch input seal changed" >&2; exit 2; }
+for fresh in source build stage; do
+    [[ ! -e "$output/$fresh" ]] || { echo "Refusing existing native library $fresh directory" >&2; exit 2; }
+done
+case "$package" in db-msys|libxcrypt|libiconv-bootstrap|zlib-msys|gettext-msys|xz-msys) ;; *) echo "Unsupported MSYS library profile" >&2; exit 2 ;; esac
+dependency=
+if [[ $# == 6 ]]; then dependency=$(cygpath -u "$6"); fi
+[[ $package != gettext-msys || -n $dependency ]] || { echo "Native iconv dependency required" >&2; exit 3; }
+[[ $package != xz-msys || -n $dependency ]] || { echo "Native iconv/gettext dependencies required" >&2; exit 3; }
+export PATH="$toolchain/bin:/usr/bin" LC_ALL=C
+unset CC CXX CPP CFLAGS CXXFLAGS CPPFLAGS LDFLAGS CONFIG_SITE GCC_EXEC_PREFIX COMPILER_PATH LIBRARY_PATH
+export CC=gcc CXX=g++ AR=ar RANLIB=ranlib LD=ld AS=as NM=nm STRIP=strip OBJDUMP=objdump
+export CFLAGS="-O2 -g -fstack-protector-strong" CXXFLAGS="-O2 -g -fstack-protector-strong" LDFLAGS="-Wl,--no-insert-timestamp"
+export MAKEFLAGS=-j1 MFLAGS=-j1 OMP_NUM_THREADS=1 CMAKE_BUILD_PARALLEL_LEVEL=1
+export CONFIG_SITE=/dev/null CCACHE_DISABLE=1
+if [[ -n $dependency ]]; then
+    export PATH="$dependency/usr/bin:$PATH"
+    export CPPFLAGS="-I$(cygpath -m "$dependency/usr/include")"
+    export LDFLAGS="$LDFLAGS -L$(cygpath -m "$dependency/usr/lib")"
+fi
+[[ $(gcc -dumpmachine) == aarch64-pc-cygwin ]] || { echo "Wrong compiler target" >&2; exit 3; }
+mkdir "$output"/{source,build,stage}
+cp -a "$source_root/." "$output/source/"
+export HOME="$output/home" TMPDIR="$output/temp" TMP="$output/temp" TEMP="$output/temp"
+export XDG_CACHE_HOME="$output/cache" CCACHE_DIR="$output/cache/ccache"
+exec > >(tee "$output/build.log") 2>&1
+if [[ $package == libxcrypt ]]; then
+    : "${WOARM64_LIBXCRYPT_TEST_PATCH:?Pinned static-symbol test adaptation required}"
+    : "${WOARM64_LIBXCRYPT_TEST_PATCH_SHA256:?Pinned static-symbol patch SHA required}"
+    : "${WOARM64_LIBXCRYPT_TEST_AFTER_SHA256:?Pinned adapted test SHA required}"
+    test_patch=$(cygpath -u "$WOARM64_LIBXCRYPT_TEST_PATCH")
+    [[ $(sha256sum "$test_patch" | cut -d ' ' -f1) == "$WOARM64_LIBXCRYPT_TEST_PATCH_SHA256" ]] || {
+        echo "Static-symbol patch seal changed" >&2; exit 3;
+    }
+    /usr/bin/patch --batch --forward --fuzz=0 --no-backup-if-mismatch -p1 -d "$output/source" -i "$test_patch"
+    [[ $(sha256sum "$output/source/test/symbols-static.pl" | cut -d ' ' -f1) == "$WOARM64_LIBXCRYPT_TEST_AFTER_SHA256" ]] || {
+        echo "Unexpected static-symbol test patch result" >&2; exit 3;
+    }
+fi
+cd "$output/build"
+if [[ $package == db-msys ]]; then
+    : "${WOARM64_DB_SOURCE_PATCH:?Reviewed native ARM64 detector patch required}"
+    : "${WOARM64_DB_SOURCE_PATCH_SHA256:?Detector patch SHA required}"
+    db_patch=$(cygpath -u "$WOARM64_DB_SOURCE_PATCH")
+    [[ $(sha256sum "$db_patch" | cut -d ' ' -f1) == "$WOARM64_DB_SOURCE_PATCH_SHA256" ]] || {
+        echo "DB source patch seal changed" >&2; exit 3;
+    }
+    /usr/bin/patch --batch --forward --fuzz=0 --no-backup-if-mismatch -p1 -d "$output/source" -i "$db_patch"
+    : "${WOARM64_DB_LIBTOOL_PATCH:?Reviewed native library-path patch required}"
+    : "${WOARM64_DB_LIBTOOL_PATCH_SHA256:?Library-path patch SHA required}"
+    path_patch=$(cygpath -u "$WOARM64_DB_LIBTOOL_PATCH")
+    [[ $(sha256sum "$path_patch" | cut -d ' ' -f1) == "$WOARM64_DB_LIBTOOL_PATCH_SHA256" ]] || {
+        echo "DB native library-path patch seal changed" >&2; exit 3;
+    }
+    /usr/bin/patch --batch --forward --fuzz=0 --no-backup-if-mismatch -p1 -d "$output/source" -i "$path_patch"
+    # This warning policy and serial build are inherited from the exact upstream MSYS recipe.
+    export CFLAGS="$CFLAGS -Wno-incompatible-pointer-types"
+    "$output/source/dist/configure" --prefix=/usr --build=aarch64-pc-cygwin \
+        --enable-compat185 --enable-shared --enable-static --enable-dynamic \
+        --enable-cxx --enable-dbm --disable-java --disable-tcl --disable-test
+    grep -qx 'build_libtool_libs=yes' libtool || {
+        echo "DB requires both native shared and static libraries" >&2; exit 3;
+    }
+    grep -qx '#define HAVE_DBM 1' db_config.h || { echo "DBM feature lost" >&2; exit 3; }
+    grep -qx '#define HAVE_MUTEX_ARM64_GCC_ASSEMBLY 1' db_config.h || {
+        echo "DB native ARM64 multiprocess mutex backend missing" >&2; exit 3;
+    }
+    [[ -s db_185.h && -s db_cxx.h ]] || { echo "DB compatibility/C++ headers missing" >&2; exit 3; }
+    probe="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/fixtures/native-db-link-probe.c"
+    for tag in c cxx; do
+        compiler=gcc flags=$CFLAGS
+        if [[ $tag == cxx ]]; then compiler=g++ flags=$CXXFLAGS; fi
+        ./libtool --mode=compile "$compiler" $flags -c "$probe" -o "db-path-probe-$tag.lo"
+        ./libtool --mode=link "$compiler" -avoid-version -no-undefined -rpath /usr/lib \
+            $LDFLAGS -o "libdb-path-probe-$tag.la" "db-path-probe-$tag.lo" -lpthread
+        [[ -s ".libs/msys-db-path-probe-$tag.dll" && -s ".libs/libdb-path-probe-$tag.dll.a" ]] || {
+            echo "Native $tag libtool must resolve the actual pthread import archive and build a shared DLL" >&2; exit 3;
+        }
+    done
+    make -j1
+    make -j1 DESTDIR="$output/stage" docdir=/usr/share/doc/db/html emode=755 fmode=644 install
+    for name in db db_cxx; do
+        cp -f "$output/stage/usr/lib/lib$name-6.2.a" "$output/stage/usr/lib/lib$name.a"
+        cp -f "$output/stage/usr/lib/lib$name-6.2.dll.a" "$output/stage/usr/lib/lib$name.dll.a"
+    done
+    install -Dm644 "$output/source/LICENSE" "$output/stage/usr/share/licenses/db/LICENSE"
+    printf '%s\n' 'build_host=windows-arm64-native-compiler' 'orchestration=private-x64-emulated-bootstrap' \
+        'profile=db-msys' 'Separate upstream checks, installed API proof and package admission pending.' > "$output/BUILD-STATUS.txt"
+    exit 0
+fi
+if [[ $package == zlib-msys ]]; then
+    cd "$output/source"
+    export MSYSTEM=CYGWIN
+    ./configure --prefix=/usr
+    make -j"$jobs" -f win32/Makefile.gcc CFLAGS="$CFLAGS" SHAREDLIB=msys-z.dll
+    export PATH="$PWD:$PATH"
+    make -j"$jobs" test
+    make -j1 -f win32/Makefile.gcc install DESTDIR="$output/stage" SHAREDLIB=msys-z.dll \
+        BINARY_PATH=/usr/bin INCLUDE_PATH=/usr/include LIBRARY_PATH=/usr/lib prefix=/usr SHARED_MODE=1
+    install -Dm644 zlib.3 "$output/stage/usr/share/man/man3/zlib.3"
+    install -Dm644 LICENSE "$output/stage/usr/share/licenses/zlib/LICENSE"
+    printf '%s\n' 'build_host=windows-arm64-native-compiler' 'orchestration=private-x64-emulated-bootstrap' \
+        'profile=zlib-msys' 'Native consumer and package admission still required.' > "$output/BUILD-STATUS.txt"
+    exit 0
+fi
+options=(--build=aarch64-pc-cygwin --host=aarch64-pc-cygwin --prefix=/usr --enable-static --enable-shared)
+case "$package" in
+    xz-msys)
+        : "${WOARM64_DOCUMENTATION_DRIVER:?An explicit qualified documentation driver is required}"
+        documentation_driver=$(cygpath -u "$WOARM64_DOCUMENTATION_DRIVER")
+        documentation_relay="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/doc-driver"
+        export PATH="$documentation_relay:$documentation_driver:$PATH" WOARM64_WINDOWS_DOXYGEN=1
+        command -v doxygen >/dev/null || {
+            echo "The pinned XZ package requires Doxygen; ask the bootstrap owner, do not disable documentation." >&2
+            exit 3
+        }
+        export MSYSTEM=CYGWIN lt_cv_deplibs_check_method=pass_all
+        options+=(--enable-doxygen --enable-nls --enable-threads=posix
+                  "--with-libintl-prefix=$dependency/usr" "--with-libiconv-prefix=$dependency/usr")
+        ;;
+    libxcrypt)
+        options+=(--disable-failure-tokens --disable-xcrypt-compat-files --disable-obsolete-api
+                  --enable-hashes=all --disable-symvers)
+        ;;
+    libiconv-bootstrap)
+        options+=(--without-libintl-prefix --enable-extra-encodings --disable-nls)
+        ;;
+    gettext-msys)
+        options+=(--with-included-libcroco --with-included-libunistring --with-included-libxml
+                  --with-included-glib --with-included-gettext "--with-libiconv-prefix=$dependency/usr"
+                  --without-emacs --disable-java --disable-native-java --disable-csharp --disable-openmp)
+        export PATH="$PWD/gettext-runtime/intl/.libs:$PWD/gettext-runtime/libasprintf/.libs:$PWD/gettext-tools/src/.libs:$PWD/gettext-tools/gnulib-lib/.libs:$PWD/gettext-tools/libgettextpo/.libs:$PATH"
+        ;;
+esac
+"$output/source/configure" "--cache-file=$output/cache/config.cache" "${options[@]}"
+if [[ $package == xz-msys ]]; then
+    for feature in ENABLE_NLS MYTHREAD_POSIX; do
+        grep -qx "#define $feature 1" config.h || {
+            echo "Required XZ configuration feature was not enabled: $feature" >&2
+            exit 3
+        }
+    done
+fi
+libtools=(libtool)
+if [[ $package == gettext-msys ]]; then
+    libtools=(gettext-runtime/libtool gettext-runtime/libasprintf/libtool gettext-tools/libtool)
+fi
+for configured in "${libtools[@]}"; do
+    if [[ ! -f $configured ]] || ! grep -qx 'build_libtool_libs=yes' "$configured"; then
+        echo "The configured libtool cannot build shared MSYS libraries: $configured; refusing static-only fallback." >&2
+        exit 3
+    fi
+done
+make -j"$jobs"
+case "$package" in
+    libxcrypt)
+        [[ -f "$toolchain/bin/msys-2.0.dll" && -f "$PWD/.libs/msys-crypt-2.dll" ]] || {
+            echo "Exact native TC runtime and private crypt DLL are required; no PATH fallback" >&2
+            exit 3
+        }
+        export PATH="$PWD/.libs:$toolchain/bin:/usr/bin"
+        printf '%s\n' "$PATH" > "$output/native-test-path.txt"
+        ;;
+    libiconv-bootstrap) export PATH="$PWD/lib/.libs:$PWD/libcharset/lib/.libs:$PWD/srclib/.libs:$PATH" ;;
+    xz-msys) export PATH="$PWD/src/liblzma/.libs:$PATH" ;;
+esac
+dispatcher="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)/native-msys-test-dispatch.sh"
+make -j"$jobs" "LOG_COMPILER=/usr/bin/bash $dispatcher" check
+make -j1 DESTDIR="$output/stage" install
+mkdir -p "$output/stage/usr/share/licenses/$package"
+count=0
+for license in COPYING COPYING.LIB COPYING.LIB.LIBXCRYPT COPYING.LIB.LIBCRYPT COPYING.LESSER COPYING.RUNTIME LICENSING; do
+    if [[ -f "$output/source/$license" ]]; then
+        cp "$output/source/$license" "$output/stage/usr/share/licenses/$package/"
+        count=$((count + 1))
+    fi
+done
+[[ $count -gt 0 ]] || { echo "Missing source license payload" >&2; exit 4; }
+if [[ $package == xz-msys ]]; then
+    for license in COPYING.0BSD COPYING.GPLv2 COPYING.GPLv3 COPYING.LGPLv2.1; do
+        [[ -s "$output/source/$license" ]] || { echo "Missing XZ license: $license" >&2; exit 4; }
+        cp "$output/source/$license" "$output/stage/usr/share/licenses/$package/"
+    done
+fi
+printf '%s\n' 'build_host=windows-arm64-native-compiler' 'orchestration=private-x64-emulated-bootstrap' \
+    "profile=$package" 'Native consumer and package admission still required.' > "$output/BUILD-STATUS.txt"

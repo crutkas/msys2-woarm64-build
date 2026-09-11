@@ -1,0 +1,115 @@
+--- a/TestChannel.c
++++ b/TestChannel.c
+@@ -94,6 +94,7 @@
+ typedef int (*PRED) __P((void *));
+ 
+ static int await_condition __P((PRED, void *, long));
++static int become_master __P((DB_ENV *));
+ static int check_dbt_string __P((DBT *, const char *));
+ static void clear_rpt __P((DB_ENV *));
+ static void clear_rpt_int __P((struct report *));
+@@ -394,7 +395,6 @@
+ #ifdef HAVE_REPLICATION
+ 	DB_ENV *dbenv1, *dbenv2, *dbenv3;
+ 	DB_CHANNEL *ch;
+-	DB_REP_STAT *stats;
+ 	DB_SITE *dbsite;
+ 	DBT dbt, rdbts[10], resp;
+ 	struct channel_test_globals *g;
+@@ -405,7 +405,7 @@
+ 	void *pointer, *vp, *buffer;
+ 	u_int8_t short_buf[4];
+ 	size_t sz;
+-	int done, eid, ret;
++	int eid, ret;
+ 	u_int ports[3];
+ 	
+ #ifdef _WIN32
+@@ -582,24 +582,7 @@
+ 	((struct env_info *)dbenv2->app_private)->startupdone = 0;
+ 	CuAssertTrue(ct, (ret = dbenv1->repmgr_start(dbenv1, 0, DB_REP_CLIENT)) == 0);
+ 	sleep(1);		/* workaround for 19329 */
+-	for (done = 0; ; ) {
+-		/*
+-		 * Become master, and then make sure it really happened.
+-		 * Occasionally a race develops, where we're still holding on to
+-		 * the msg lockout at env3 at this point, in which case the
+-		 * rep_start() call (underlying our repmgr_start() call here) is
+-		 * simply dropped on the floor.
+-		 */ 
+-		CuAssertTrue(ct, (ret = dbenv3->repmgr_start(dbenv3,
+-			    0, DB_REP_MASTER)) == 0);
+-		CuAssertTrue(ct, (ret = dbenv3->rep_stat(dbenv3,
+-			    &stats, 0)) == 0);
+-		done = stats->st_status == DB_REP_MASTER;
+-		free(stats);
+-		if (done)
+-			break;
+-		sleep(1);
+-	};
++	CuAssertTrue(ct, (ret = become_master(dbenv3)) == 0);
+ 
+ 	/*
+ 	 * !!!
+@@ -634,8 +617,7 @@
+ 
+ 	printf("switch master again, to ``self''\n");
+ 	CuAssertTrue(ct, (ret = dbenv3->repmgr_start(dbenv3, 0, DB_REP_CLIENT)) == 0);
+-	CuAssertTrue(ct, (ret = dbenv2->repmgr_start(dbenv2, 0, DB_REP_MASTER)) == 0);
+-	/* No need to wait for env2 to see that env2 has become master. */
++	CuAssertTrue(ct, (ret = become_master(dbenv2)) == 0);
+ 
+ 	clear_rpt(dbenv1);
+ 	clear_rpt(dbenv2);
+@@ -829,6 +811,46 @@
+ 	return (ans);
+ }
+ 
++struct master_transition {
++	DB_ENV *dbenv;
++	int ret;
++};
++
++static int
++try_master(void *ctx)
++{
++	struct master_transition *transition = ctx;
++	DB_ENV *dbenv = transition->dbenv;
++	DB_REP_STAT *stats;
++	int ready;
++
++	/* A successful repmgr_start can be ignored during message lockout. */
++	if ((transition->ret =
++	    dbenv->repmgr_start(dbenv, 0, DB_REP_MASTER)) != 0 ||
++	    (transition->ret = dbenv->rep_stat(dbenv, &stats, 0)) != 0)
++		return (1);
++	ready = stats->st_status == DB_REP_MASTER &&
++	    stats->st_master == stats->st_env_id;
++	free(stats);
++	return (ready);
++}
++
++static int
++become_master(DB_ENV *dbenv)
++{
++	struct master_transition transition;
++
++	transition.dbenv = dbenv;
++	transition.ret = 0;
++	if (!await_condition(try_master, &transition, 60)) {
++		dbenv->errx(dbenv, "master promotion not achieved in 60 seconds");
++		return (DB_TIMEOUT);
++	}
++	if (transition.ret != 0)
++		dbenv->err(dbenv, transition.ret, "master promotion");
++	return (transition.ret);
++}
++
+ static int
+ await_condition(pred, ctx, limit)
+ 	PRED pred;
+@@ -1366,4 +1388,3 @@
+ 	return (0);
+ #endif /* HAVE_REPLICATION */
+ }
+-
