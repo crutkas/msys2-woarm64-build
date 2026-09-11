@@ -4,6 +4,10 @@ source `dirname ${BASH_SOURCE[0]}`/../../config.sh
 
 PACKAGE_REPOSITORY=$1
 
+if [[ "$FLAVOR" == "CROSS" ]]; then
+    bash "$(dirname "${BASH_SOURCE[0]}")/verify-texinfo.sh"
+fi
+
 ARGUMENTS="--syncdeps \
     --rmdeps \
     --noconfirm \
