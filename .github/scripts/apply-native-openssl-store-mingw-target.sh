@@ -18,7 +18,7 @@ actual=${actual%% *}
 case $actual in
     "$original_sha")
         sed 's/\r$//' "$patch_file" |
-            patch --batch --forward -p1 -d "$source_root"
+            patch --batch --forward --fuzz=0 -p1 -d "$source_root"
         ;;
     "$patched_sha")
         ;;

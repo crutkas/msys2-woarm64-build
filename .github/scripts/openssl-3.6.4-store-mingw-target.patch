@@ -1,6 +1,8 @@
+diff --git a/test/recipes/90-test_store.t b/test/recipes/90-test_store.t
+index aa95f84..48b45d1 100644
 --- a/test/recipes/90-test_store.t
 +++ b/test/recipes/90-test_store.t
-@@ -20,6 +20,7 @@ my $use_md5 = !disabled("md5");
+@@ -22,6 +22,7 @@ my $use_md5 = !disabled("md5");
  my $use_des = !(disabled("des") || disabled("legacy")); # also affects 3des and pkcs12 app
  my $use_dsa = !disabled("dsa");
  my $use_ecc = !disabled("ec");
@@ -19,7 +21,7 @@
  if ($do_test_ossltest_store) {
      # test loading with apps 'org.openssl.engine:' loader, using the
 @@ -201,7 +203,8 @@ indir "store_$$" => sub {
-                                 to_abs_file($file)])));
+                 ok(run(app([@storeutl, "-noout", to_abs_file($file)])));
                SKIP:
                  {
 -                    skip "file: tests disabled on MingW", 4  if $^O =~ /^msys$/;
@@ -59,7 +61,7 @@
                      ok(!run(app([@storeutl,  "-noout", $_])));
                  }
 @@ -261,7 +267,8 @@ indir "store_$$" => sub {
-                                 to_abs_file($dir, 1)])));
+                 ok(run(app([@storeutl,  "-noout", to_abs_file($dir, 1)])));
                SKIP:
                  {
 -                    skip "file: tests disabled on MingW", 1  if $^O =~ /^msys$/;
