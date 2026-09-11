@@ -1,0 +1,137 @@
+{
+  "generatedAt": "2026-09-11T15:20:40.7908329Z",
+  "status": "prepared-source-only-no-configure-no-build",
+  "source": {
+    "pinnedSource": "\\\\wsl.localhost\\Ubuntu\\root\\arm64-vnext-20260905\\git\\prepared\\perl-guards-03",
+    "output": "C:\\ap06-78\\perl-recovery-20260911-08\\perl-root08-source-prep-01\\source-deref",
+    "files": 6508,
+    "inventoryPath": "C:\\ap06-78\\perl-recovery-20260911-08\\perl-root08-source-prep-01\\source.inventory.tsv",
+    "inventorySha256": "d6f217e055ac32d7967545178d369f4154efb6ddf4bf299bb1d10b370e97538d",
+    "aggregateLineSha256": "c3241263a5acd7a78fb24d83bf7ad9ad2e6d8e6559fcbbd5963f28167ea0e9b0"
+  },
+  "overlays": [
+    {
+      "path": "hints\\msys.sh",
+      "pinned": {
+        "sha256": "a63bac07d2307ace38db4503e5d866882166f586c6b13e2eef1e6d4488ccba90",
+        "length": 2582
+      },
+      "prepared": {
+        "sha256": "87d2311e32f004106439a24a7dd669651cee4d2a5e258f00e9014af6841d4098",
+        "length": 2626
+      },
+      "overlaySource": {
+        "path": "C:\\ap06-78\\perl-recovery-20260910-07-focused\\source-deref\\hints\\msys.sh",
+        "sha256": "87d2311e32f004106439a24a7dd669651cee4d2a5e258f00e9014af6841d4098",
+        "length": 2626
+      },
+      "matchesOverlay": true
+    },
+    {
+      "path": "Makefile.SH",
+      "pinned": {
+        "sha256": "917da0c1786991be11ed519d4a53995b0177d8b601436da17c0993d4ca9493e2",
+        "length": 53131
+      },
+      "prepared": {
+        "sha256": "1bb4bf8f847ba261a4610793857b58b737fb620dcafd15f9fe5160fdf11a2dc8",
+        "length": 53209
+      },
+      "overlaySource": {
+        "path": "C:\\ap06-78\\perl-recovery-20260910-07-focused\\source-deref\\Makefile.SH",
+        "sha256": "1bb4bf8f847ba261a4610793857b58b737fb620dcafd15f9fe5160fdf11a2dc8",
+        "length": 53209
+      },
+      "matchesOverlay": true
+    },
+    {
+      "path": "cygwin\\cygwin.c",
+      "pinned": {
+        "sha256": "cca3d5b003d8b8421c177f6f4239ef791caf59ea692b91ff264451e57f846624",
+        "length": 14893
+      },
+      "prepared": {
+        "sha256": "f567970d78169549a1493ce9f45ea6a7e2f0077fd51dba0def50a3638ad21919",
+        "length": 14894
+      },
+      "overlaySource": {
+        "path": "C:\\ap06-78\\perl-recovery-20260910-07-focused\\source-deref\\cygwin\\cygwin.c",
+        "sha256": "f567970d78169549a1493ce9f45ea6a7e2f0077fd51dba0def50a3638ad21919",
+        "length": 14894
+      },
+      "matchesOverlay": true
+    },
+    {
+      "path": "cpan\\Win32\\t\\GetShortPathName.t",
+      "pinned": {
+        "sha256": "7e138c9396b9acca563bd24fe4c0ee46e05c22899c30ebab316bbdf5a112825f",
+        "length": 792
+      },
+      "prepared": {
+        "sha256": "ccd21dc0e6a6c98019ce8652776806b1bf9fb4e8813fb4efae0ce88a13089284",
+        "length": 882
+      },
+      "overlaySource": {
+        "path": "C:\\ap06-78\\perl-recovery-20260910-07-focused\\source-deref\\cpan\\Win32\\t\\GetShortPathName.t",
+        "sha256": "ccd21dc0e6a6c98019ce8652776806b1bf9fb4e8813fb4efae0ce88a13089284",
+        "length": 882
+      },
+      "matchesOverlay": true
+    }
+  ],
+  "provenance": {
+    "root06Prepare": "C:\\ap06-78\\perl-recovery-20260910-06\\prepare-root06-pthread-context.json",
+    "root06PrepareSha256": "18828084062b06504e2d98ab6022bfc09c689ed4811a2e687440d0c37c67b5db",
+    "root07Focused": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root07-focused-fixes-03.json",
+    "root07FocusedSha256": "10791a442390bfc7be6c471a1a5b6b75b0a3b6f60e685c46563e613c6a14e9c3",
+    "moduleMatrix": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root08-module-matrix-01\\root08-module-matrix-01.json",
+    "moduleMatrixSha256": "2e049280c475c0bdc034d85f4f362e4e1cd0a2d1cf89c3b806467c3e2a0d5b05"
+  },
+  "dependencyInputs": {
+    "berkeleyDbHandoff": "C:\\ag-db-e138-01\\combined-20260911\\handoff\\handoff.json",
+    "berkeleyDbHandoffSha256": "167bc33b653aa3b12925865ab68ca5e1e7ecf268e10270b0218d514b32f6723b",
+    "libxcryptSmoke": "C:\\ap06-78\\perl-recovery-20260911-08\\libxcrypt-907-smoke-01\\libxcrypt-907-smoke-01.json",
+    "libxcryptSmokeSha256": "5f6a79a678f7ff3d5d9af2cb0b5f4ca36ae5d620a9e8c0d3cb101d7d9a90f7ee",
+    "gdbmProvider": "pending from 2f98; do not consume root08 gdbm-dest or msys-id attempts as provider input"
+  },
+  "configureTemplate": {
+    "baseArgs": [
+      "-des",
+      "-Dusethreads",
+      "-Ud_thread_local",
+      "-Dosname=msys",
+      "-Doptimize=-O2 -g",
+      "-Dprefix=/usr",
+      "-Dvendorprefix=/usr",
+      "-Dprivlib=/usr/share/perl5/core_perl",
+      "-Darchlib=/usr/lib/perl5/core_perl",
+      "-Dsitelib=/usr/share/perl5/site_perl",
+      "-Dsitearch=/usr/lib/perl5/site_perl",
+      "-Dvendorlib=/usr/share/perl5/vendor_perl",
+      "-Dvendorarch=/usr/lib/perl5/vendor_perl",
+      "-Dscriptdir=/usr/bin/core_perl",
+      "-Dsitescript=/usr/bin/site_perl",
+      "-Dvendorscript=/usr/bin/vendor_perl",
+      "-Dinc_version_list=none",
+      "-Dman1ext=1perl",
+      "-Dman3ext=3perl",
+      "-Darchname=aarch64-msys-threads",
+      "-Dmyarchname=aarch64-msys",
+      "-Dlibperl=msys-perl5_38.dll",
+      "-Dusrinc=/cygdrive/c/ap06-78/perl-recovery-20260910-06/toolchain/aarch64-pc-cygwin/include",
+      "-Dcc=gcc",
+      "-Dld=gcc",
+      "-Accflags=-O2 -g -fwrapv"
+    ],
+    "requiredWhenGdbmAdmitted": [
+      "Add real admitted DB/libxcrypt/GDBM include directories to Configure search path, not forced i_db/i_gdbm/d_crypt answers",
+      "Add real admitted DB/libxcrypt/GDBM library directories to Configure search path",
+      "Run Configure in a fresh copy and verify i_db=define, i_gdbm=define, d_crypt=define and DB_File/GDBM_File enter dynamic_ext naturally"
+    ]
+  },
+  "notProviderAdmission": [
+    "Source prep only; no Configure/build/check/install/package was run",
+    "GDBM provider still pending",
+    "No Perl provider admission claimed"
+  ]
+}

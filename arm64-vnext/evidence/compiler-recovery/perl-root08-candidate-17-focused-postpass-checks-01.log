@@ -1,0 +1,327 @@
+--- focused feature ---
+1..93
+# From lib/feature/api
+ok 1 - test feature enabled by bundle
+ok 2 - test features enabled explicitly
+# From lib/feature/bareword_filehandles
+ok 3 - defaults and explicitly on
+ok 4 - check atan2() with a handle doesn't trigger bareword filehandle errors
+ok 5 - print HANDLE LIST, printf HANDLE LIST, print HANDLE, printf HANDLE
+ok 6 - say HANDLE LIST, say HANDLE
+ok 7 - readline FOO, readline, <>, <FOO>
+ok 8 - truncate
+ok 9 - stat, lstat, -X
+ok 10 - open, close, eof, fileno
+ok 11 - flock
+ok 12 - getc, read, seek, tell
+ok 13 - select
+ok 14 - sysopen, sysread, syswrite, sysseek
+ok 15 - pipe
+ok 16 - socket, connect, bind, listen
+ok 17 - accept
+ok 18 - accept some more
+ok 19 - send, recv, setsockopt, getsockopt
+ok 20 - shutdown, getsockname, getpeername
+ok 21 - socketpair
+ok 22 - binmode, ioctl, fcntl
+ok 23 - opendir, closedir, readdir
+ok 24 - seekdir, telldir, rewinddir
+ok 25 - file tests
+ok 26 - subroutine calls
+ok 27 - method calls
+# From lib/feature/bits
+ok 28 - check clearing $^H clears the bits
+ok 29 - check copying $^H restores the bits
+ok 30 - check deleting entries (via feature.pm) clears the bits
+ok 31 - check deleting entries (bypass feature.pm) clears the bits
+# From lib/feature/bundle
+ok 32 - test from lib/feature/bundle at line 4
+ok 33 - test from lib/feature/bundle at line 10
+ok 34 - test from lib/feature/bundle at line 16
+ok 35 - test from lib/feature/bundle at line 22
+ok 36 - test from lib/feature/bundle at line 29
+ok 37 - test from lib/feature/bundle at line 35
+ok 38 - test from lib/feature/bundle at line 41
+ok 39 - test from lib/feature/bundle at line 47
+ok 40 - test from lib/feature/bundle at line 53
+ok 41 - test from lib/feature/bundle at line 59
+ok 42 - test from lib/feature/bundle at line 65
+ok 43 - test from lib/feature/bundle at line 71
+ok 44 - test from lib/feature/bundle at line 82
+ok 45 - test from lib/feature/bundle at line 91
+ok 46 - test from lib/feature/bundle at line 99
+ok 47 - $^H accidentally enabling all features
+# From lib/feature/implicit
+ok 48 - test from lib/feature/implicit at line 4
+ok 49 - test from lib/feature/implicit at line 10
+ok 50 - test from lib/feature/implicit at line 16
+ok 51 - test from lib/feature/implicit at line 22
+ok 52 - test from lib/feature/implicit at line 28
+ok 53 - test from lib/feature/implicit at line 34
+ok 54 - test from lib/feature/implicit at line 42
+ok 55 - test from lib/feature/implicit at line 50
+ok 56 - test from lib/feature/implicit at line 58
+ok 57 - test from lib/feature/implicit at line 62
+ok 58 - test from lib/feature/implicit at line 77
+ok 59 - test from lib/feature/implicit at line 88
+# From lib/feature/indirect
+ok 60 - feature indirect
+ok 61 - METHOD BLOCK
+ok 62 - METHOD SCALAR
+ok 63 - FUNCMETH SCALAR
+# From lib/feature/multidimensional
+ok 64 - simple
+# From lib/feature/nonesuch
+ok 65 - test from lib/feature/nonesuch at line 4
+ok 66 - test from lib/feature/nonesuch at line 9
+ok 67 - test from lib/feature/nonesuch at line 14
+ok 68 - test from lib/feature/nonesuch at line 19
+# From lib/feature/removed
+ok 69 - test from lib/feature/removed at line 4
+ok 70 - test from lib/feature/removed at line 9
+# From lib/feature/say
+ok 71 - test from lib/feature/say at line 5
+ok 72 - test from lib/feature/say at line 14
+ok 73 - test from lib/feature/say at line 21
+ok 74 - test from lib/feature/say at line 28
+ok 75 - test from lib/feature/say at line 38
+ok 76 - test from lib/feature/say at line 50
+# From lib/feature/switch
+ok 77 - test from lib/feature/switch at line 5
+ok 78 - test from lib/feature/switch at line 12
+ok 79 - test from lib/feature/switch at line 19
+ok 80 - test from lib/feature/switch at line 26
+ok 81 - test from lib/feature/switch at line 33
+ok 82 - test from lib/feature/switch at line 38
+ok 83 - test from lib/feature/switch at line 44
+ok 84 - test from lib/feature/switch at line 50
+ok 85 - test from lib/feature/switch at line 56
+ok 86 - test from lib/feature/switch at line 62
+ok 87 - test from lib/feature/switch at line 73
+ok 88 - test from lib/feature/switch at line 84
+ok 89 - test from lib/feature/switch at line 95
+ok 90 - test from lib/feature/switch at line 105
+ok 91 - test from lib/feature/switch at line 116
+ok 92 - test from lib/feature/switch at line 127
+ok 93 - test from lib/feature/switch at line 134
+feature_rc=0
+--- focused cygwin ---
+1..16
+ok 1 - perl pid translates to itself
+ok 2 - parent pid translates to itself
+ok 3 - winpid to pid
+ok 4 - pid to winpid
+ok 5 - win to posix path: t/lib
+ok 6 - posix to win path: t\lib
+ok 7 - posix to absolute win path
+ok 8 - win to absolute posix path
+ok 9 - check / for binmount
+ok 10 - check / mount_flags
+ok 11 - check cygdrive mount_flags
+ok 12 - cygdrive mount prefix  = /cygdrive
+ok 13 - cygdrive mount prefix2 = /cygdrive
+ok 14 - non empty mount_table
+ok 15 - same root mount flags
+ok 16 - bug\#38628 legacy
+cygwin_rc=0
+--- focused db btree ---
+1..197
+ok 1
+ok 2
+ok 3
+ok 4
+ok 5
+ok 6
+ok 7
+ok 8
+ok 9
+ok 10
+ok 11
+ok 12
+ok 13
+ok 14
+ok 15
+ok 16
+ok 17
+ok 18
+ok 19
+ok 20
+ok 21
+ok 22
+ok 23
+ok 24
+ok 25
+ok 26
+ok 27
+ok 28
+ok 29
+ok 30
+ok 31
+ok 32
+ok 33
+ok 34
+ok 35
+ok 36
+ok 37
+ok 38
+ok 39
+ok 40
+ok 41
+ok 42
+ok 43
+ok 44
+ok 45
+ok 46
+ok 47
+ok 48
+ok 49
+ok 50
+ok 51
+ok 52
+ok 53
+ok 54
+ok 55
+ok 56
+ok 57
+ok 58
+ok 59
+ok 60
+ok 61
+ok 62
+ok 63
+ok 64
+ok 65
+ok 66
+ok 67
+ok 68
+ok 69
+ok 70
+ok 71
+ok 72
+ok 73
+ok 74
+ok 75
+ok 76
+ok 77
+ok 78
+ok 79
+ok 80
+ok 81
+ok 82
+ok 83
+ok 84
+ok 85
+ok 86
+ok 87
+ok 88
+ok 89
+ok 90
+ok 91
+ok 92
+ok 93
+ok 94
+ok 95
+ok 96
+ok 97
+ok 98
+ok 99
+ok 100
+ok 101
+ok 102
+ok 103
+ok 104
+ok 105
+ok 106
+ok 107
+ok 108
+ok 109
+ok 110
+ok 111
+ok 112
+ok 113
+ok 114
+ok 115
+ok 116
+ok 117
+ok 118
+ok 119
+ok 120
+ok 121
+ok 122
+ok 123
+ok 124
+ok 125
+ok 126
+ok 127
+ok 128
+ok 129
+ok 130
+ok 131
+ok 132
+ok 133
+ok 134
+ok 135
+ok 136
+ok 137
+ok 138
+ok 139
+ok 140
+ok 141
+ok 142
+ok 143
+ok 144
+ok 145
+ok 146
+ok 147
+ok 148
+ok 149
+ok 150
+ok 151
+ok 152
+ok 153
+ok 154
+ok 155
+ok 156
+ok 157
+ok 158
+ok 159
+ok 160
+ok 161
+ok 162
+ok 163
+ok 164
+ok 165
+ok 166
+ok 167
+ok 168
+ok 169
+ok 170
+ok 171
+ok 172
+ok 173
+ok 174
+ok 175
+ok 176
+ok 177
+ok 178
+ok 179
+ok 180
+ok 181
+ok 182
+ok 183
+ok 184
+ok 185
+ok 186
+ok 187
+ok 188
+ok 189
+ok 190
+ok 191
+ok 192
+ok 193
+ok 194
+ok 195
+# db_ver 6.002032
+ok 196
+ok 197
+db_btree_rc=0

@@ -1,0 +1,34 @@
+{
+  "state": "blocked",
+  "currentTask": "Candidate-17 handoff sealed with deterministic Perl-side fixes and remaining fork-safe libxcrypt/runtime blocker.",
+  "why": "Candidate-09 GDBM probe segfault was reproduced as PATH-order/runtime identity issue: toolchain/combined msys-2.0 before launching Bash /usr/bin crashes; /usr/bin first passes GDBM probe while preserving admitted DB/GDBM/crypt private prefix selection.",
+  "lastProgressAt": "2026-09-11T23:37:18.4449006Z",
+  "evidence": {
+    "candidate17": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root08-candidate-commands-17",
+    "generatorSha256": "ae2f5a193a24ad64bd0b114d4760ee553bd76e6ce320226c80cb5aaa2fff57d0",
+    "manifestSha256": "17e477f9078187daae97af2beb0e2b4514e8145fd48aa063e874c616dbaff63a",
+    "configureExitCode": 0,
+    "configureLogSha256": "01f698c08a6576aed510fa7f2a1038414f924470aa7e6f532680582a7e16eefe",
+    "verifyExitCode": 0,
+    "verifyLogSha256": "c063ff35332bec6c49422b1c39d19fe78266b6f81e18c2d01b8ea77bd84c91c3",
+    "priorCandidate16ForkStressExit": 0,
+    "priorCandidate16ForkStressLogSha256": "bef392db38914c63d5e0f76a693b6a243822846c95539aa09e60bf6631e69290",
+    "buildInstallTestExitCode": 255,
+    "buildInstallTestLog": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root08-candidate-commands-17\\build-install-test-root08.log",
+    "buildInstallTestLogSha256": "cf289f9468d9b494b6d92079d7345a6dbef576df394365b56f166ef7e98843d8",
+    "candidate17Handoff": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root08-candidate-17-handoff.json",
+    "candidate17HandoffSha256": "67fcabe29cabe53a19fc38338414b3700db2b08f9e0a88f955cd931d9d602571",
+    "installedCoreSmokeLog": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\78f0f9ba-f19f-4afd-aa4a-1837904263a6\\files\\perl-recovery-20260910\\root08-candidate-commands-17\\installed-core-smoke-02.log",
+    "installedCoreSmokeLogSha256": "69b38e7b3bce2a2ed8368098e3c70be7d71642d1b05c558018d278a4c566de4d",
+    "libcryptStaticObservedSha256": "76b3bba8df6644773541f8fb1eccf42df35375a7153f934d75a465d7fdd44c5e"
+  },
+  "activeProcesses": [],
+  "compileJobs": {
+    "limit": 2,
+    "planned": 0,
+    "current": 0,
+    "note": "No active processes."
+  },
+  "blocker": "Full harness process exit remains blocked by MSYS fork/open3 relocation of admitted msys-crypt-2.dll after All tests successful / Result: PASS. Static libcrypt.a exists but was not consumed because that would change dynamic runtime semantics.",
+  "nextAction": "Provider/intake needs a fork-safe/rebased admitted libxcrypt/runtime disposition or approved rebase tooling; then rerun candidate-17 command set or regenerate from generator SHA ae2f5a193a24ad64bd0b114d4760ee553bd76e6ce320226c80cb5aaa2fff57d0."
+}

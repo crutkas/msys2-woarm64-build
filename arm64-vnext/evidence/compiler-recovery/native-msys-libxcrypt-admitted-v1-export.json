@@ -1,0 +1,72 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:54:13.6056468Z",
+  "status": "ADMITTED_NATIVE_MSYS_LIBXCRYPT_RUNTIME907_SCOPED",
+  "providerClass": "native-msys-libxcrypt-runtime907",
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "runtimePackageAdmitted": false
+  },
+  "packages": [
+    {
+      "name": "libxcrypt",
+      "path": "packages/libxcrypt-4.5.2-3-aarch64.pkg.tar.zst",
+      "sha256": "c458e3434d82abf881a659392b289d7524f06ed19b75882acb0c30c025a94480"
+    },
+    {
+      "name": "libxcrypt-devel",
+      "path": "packages/libxcrypt-devel-4.5.2-3-aarch64.pkg.tar.zst",
+      "sha256": "c313513c9587309777a1d74a5f6f570754d92f2d0672f487fb864208d05475f2"
+    }
+  ],
+  "exactRuntimePayloads": {
+    "msys-crypt-2.dll": "24c34def01e21adca813e832b78f66a297e3293715e619aef2c28533648ffec1"
+  },
+  "evidence": {
+    "independentVerification": {
+      "path": "independent-verification.json",
+      "sha256": "190c24d3967edc2d3838f6b7a74f1bec161394ac722dc660d21d15160a0b254d"
+    },
+    "freshReadback": {
+      "path": "fresh-readback.json",
+      "sha256": "28e76b847a3b730877c5721549ab50230dbb71f341f9ac5139f79a98c80b4d3c"
+    },
+    "producerExport": {
+      "path": "evidence/producer-export.json",
+      "sha256": "910376ea87a01df680e4ee6dd120c34fda924cb265b5ec28c67ca4de68cc9d78"
+    },
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "27dcedadd19e2a594910b6668a32f0f2b78157c9dfcbf2edf54b65502cc7965d"
+    }
+  },
+  "supersedes": [
+    {
+      "name": "libxcrypt",
+      "sha256": "47bf08ac989f20e0574a1728f511327bf1cb8b17d9fb628953e7138b6c033f65",
+      "disposition": "rejected runtime-visible private source paths"
+    },
+    {
+      "name": "libxcrypt-devel",
+      "sha256": "eb8c494af45079cc6e06c54d254132170cb7ffdddef521aac177da33b7e1d37f",
+      "disposition": "rejected with paired runtime package"
+    }
+  ],
+  "dependencyClosure": {
+    "admittedOpenSslZlibExportSha256": "d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1",
+    "admittedOpenSshPackageSha256": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+    "opensshMetadataRequiresLibxcrypt": true,
+    "directConsumerRawExit": 0,
+    "directConsumerAlgorithms": [
+      "preferred-method",
+      "sha512crypt"
+    ]
+  },
+  "limitations": [
+    "Runtime-907 remains externally owned and nonadmitted as the full-release runtime",
+    "OpenSSH remains client-only with its admitted feature and hardening limitations",
+    "Static development archives retain nonoperational debug/toolchain provenance and have no zero-strings claim",
+    "The six former runtime-visible source paths are now canonical /usr/src/debug/libxcrypt-4.5.2 paths; no private machine roots remain",
+    "No d70 compatibility, Bash compatibility, Perl admission, server feature, or full-release completion claim"
+  ]
+}

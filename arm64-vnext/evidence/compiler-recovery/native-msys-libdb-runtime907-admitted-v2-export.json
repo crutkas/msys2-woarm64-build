@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T08:50:48.582048-07:00",
+  "status": "ADMITTED_NATIVE_MSYS_LIBDB_RUNTIME907_SCOPED",
+  "providerClass": "native-msys-libdb-runtime907",
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "runtimePackageAdmitted": false
+  },
+  "packages": [
+    {
+      "name": "libdb",
+      "path": "packages/libdb-6.2.32-6-aarch64.pkg.tar.zst",
+      "sha256": "56b0f33798aa84bf3de5545916a7f19bb0ab401dce63ca0ce5d6f8583dc7d0e4"
+    }
+  ],
+  "evidence": {
+    "independentVerification": {
+      "path": "independent-verification.json",
+      "sha256": "795f392f61b14a89721fd25ebabbf88f35d62dc6806faa322c6f2720613f67bc"
+    },
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "167bc33b653aa3b12925865ab68ca5e1e7ecf268e10270b0218d514b32f6723b"
+    },
+    "producerIndependentSourceVerification": {
+      "path": "evidence/independent-source-verification.json",
+      "sha256": "87483d097e6871512e9cc93cfde9304ee65d157d69394049b16585f575d3a590"
+    },
+    "freshReadback": {
+      "path": "fresh-readback.json",
+      "sha256": "0a4a2891c458eca4ef2139f0ea032aeec36842b1afb0ad3857808ec6aa5d9aa6"
+    }
+  },
+  "limitations": [
+    "Runtime-907 scoped; runtime package remains separately nonadmitted",
+    "Only the libdb runtime package is admitted; db utilities, libdb-devel, and db-docs remain outside this provider",
+    "The original producer package remains preserved; only the machine-private .BUILDINFO builddir and its corresponding .MTREE size/SHA entry were changed",
+    "Runtime DLL debug sections retain exact build-time source provenance; no runtime-visible non-debug private paths were found",
+    "Unsigned local package; no repository-signature claim",
+    "No full upstream, full C++ SDK, Perl, Git, or full-release completion claim"
+  ]
+}

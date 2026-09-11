@@ -1,0 +1,76 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:49:48.389323+00:00",
+  "status": "PRIVATE_NATIVE_MSYS_LIBDB_C_SDK_RUNTIME907_BUILD_INPUT",
+  "scope": "C-only headers and dynamic import libraries for private DB_File Configure/build; not a pacman package or assembler provider",
+  "sourcePackage": {
+    "path": "C:\\ag-db-e138-01\\combined-20260911\\packages\\libdb-devel-6.2.32-6-aarch64.pkg.tar.zst",
+    "sha256": "3482137d697d63bd157d22be332400a21f1019d6f2a2f2b58cc92126d8d1542a",
+    "packageAdmitted": false
+  },
+  "pairedRuntimeProvider": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-libdb-runtime907-admitted-v1\\export.json",
+    "sha256": "ebf75d4e8470990d5e3f3c03fe7a7d0fbdf644ab55bf9a7f562d0c05351b63b4",
+    "package": "libdb",
+    "runtimeDlls": {
+      "msys-db-6.2.dll": "059c11c7e09f26bc963743a0f75ff9b9ba47b43a815e0a8df3f1ce60acab2dd0",
+      "msys-db_cxx-6.2.dll": "88897ea65c17a73dd75ef44befe79749318beef089667cceb68e8056fe43322a"
+    }
+  },
+  "producerEvidence": {
+    "path": "C:\\ag-db-e138-01\\combined-20260911\\handoff\\handoff.json",
+    "sha256": "167bc33b653aa3b12925865ab68ca5e1e7ecf268e10270b0218d514b32f6723b",
+    "ordinaryCLinkAndRuntimeProof": true
+  },
+  "files": [
+    {
+      "path": "usr/include/db.h",
+      "size": 133695,
+      "sha256": "7d332fa4b7e942102626cf0493cb2d6a5f74cc3349a883a9484d0170b20e2e48",
+      "sourcePackageMember": "usr/include/db.h"
+    },
+    {
+      "path": "usr/include/db_185.h",
+      "size": 5983,
+      "sha256": "fe9205a160673514c550332ee4cd637e85aa314f1f8ea6d57c77471dda937da4",
+      "sourcePackageMember": "usr/include/db_185.h"
+    },
+    {
+      "path": "usr/lib/libdb-6.2.dll.a",
+      "size": 1370916,
+      "sha256": "62a01e3eea786558953509c95d21a47c141368a0dd1da74b4509b1989b89219e",
+      "sourcePackageMember": "usr/lib/libdb-6.2.dll.a"
+    },
+    {
+      "path": "usr/lib/libdb.dll.a",
+      "size": 1370916,
+      "sha256": "62a01e3eea786558953509c95d21a47c141368a0dd1da74b4509b1989b89219e",
+      "sourcePackageMember": "usr/lib/libdb.dll.a"
+    }
+  ],
+  "excludedSourceMembers": {
+    "usr/include/db_cxx.h": "C++ SDK is not admitted",
+    "usr/lib/libdb-6.2.a": "Static archive contains build-root provenance and is not needed for dynamic DB_File linkage",
+    "usr/lib/libdb.a": "Static archive contains build-root provenance and is not needed for dynamic DB_File linkage",
+    "usr/lib/libdb-6.2.la": "Libtool metadata is not needed for DB_File and the full devel package is not admitted",
+    "usr/lib/libdb_cxx-6.2.a": "C++ SDK is not admitted",
+    "usr/lib/libdb_cxx.a": "C++ SDK is not admitted",
+    "usr/lib/libdb_cxx-6.2.dll.a": "C++ SDK is not admitted",
+    "usr/lib/libdb_cxx.dll.a": "C++ SDK is not admitted",
+    "usr/lib/libdb_cxx-6.2.la": "C++ SDK is not admitted"
+  },
+  "controls": {
+    "allSelectedHashesMatched": true,
+    "copiedBytesUnchanged": true,
+    "staticArchivesExcluded": true,
+    "cxxHeadersAndLibrariesExcluded": true,
+    "dynamicImportLibraryMatchesProducerCLinkProof": true
+  },
+  "copyAuthority": "May be copied byte-for-byte into a new owned private runtime-907 build/test root. Do not modify the source package, producer roots, or admitted runtime package.",
+  "limitations": [
+    "Private build input only; not an admitted libdb-devel package or assembler provider",
+    "DB_File must dynamically link to the admitted libdb runtime package",
+    "No forced Configure answers",
+    "No C++ SDK, static DB linkage, full Perl, runtime-907 package, or full-release admission"
+  ]
+}
