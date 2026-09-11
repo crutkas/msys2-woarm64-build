@@ -171,7 +171,7 @@ def main():
         provenance["source_identity_resolution"] = resolution
         provenance["source_identity_resolution_sha256"] = spec["source_resolution"]["sha256"]
     write_json(payload / "provenance.json", provenance)
-    write_json(payload / "replay-results.json", {name: {"passed": result.get("passed"), "source_sha256": spec["evidence"][name]["sha256"]}
+    write_json(payload / "replay-results.json", {name: {"passed": result.get("passed", result.get("Passed")), "source_sha256": spec["evidence"][name]["sha256"]}
                                               for name, result in results.items()})
     with (payload / "process-attestation.jsonl").open("x", encoding="utf-8", newline="\n") as stream:
         for case in results["entrypoints"].get("cases", []):
