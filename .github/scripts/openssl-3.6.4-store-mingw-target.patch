@@ -1,0 +1,70 @@
+--- a/test/recipes/90-test_store.t
++++ b/test/recipes/90-test_store.t
+@@ -20,6 +20,7 @@ my $use_md5 = !disabled("md5");
+ my $use_des = !(disabled("des") || disabled("legacy")); # also affects 3des and pkcs12 app
+ my $use_dsa = !disabled("dsa");
+ my $use_ecc = !disabled("ec");
++my $mingw_target = config('target') =~ /^mingw/;
+ 
+ my @noexist_files =
+     ( "test/blahdiblah.pem",
+@@ -121,7 +122,8 @@ my $n = 4 + scalar @methods
+ # Test doesn't work under msys because the file name munging doesn't work
+ # correctly with the "ot:" prefix
+ my $do_test_ossltest_store =
+-    !(disabled("engine") || disabled("dynamic-engine") || $^O =~ /^msys$/);
++    !(disabled("engine") || disabled("dynamic-engine")
++      || $^O =~ /^msys$/ || $mingw_target);
+ 
+ if ($do_test_ossltest_store) {
+     # test loading with apps 'org.openssl.engine:' loader, using the
+@@ -201,7 +203,8 @@ indir "store_$$" => sub {
+                                 to_abs_file($file)])));
+               SKIP:
+                 {
+-                    skip "file: tests disabled on MingW", 4  if $^O =~ /^msys$/;
++                    skip "file: tests disabled on MingW", 4
++                        if $^O =~ /^msys$/ || $mingw_target;
+ 
+                     ok(run(app([@storeutl, "-noout",
+                                 to_abs_file_uri($file)])));
+@@ -229,7 +232,8 @@ indir "store_$$" => sub {
+ 
+               SKIP:
+                 {
+-                    skip "file: tests disabled on MingW", 2  if $^O =~ /^msys$/;
++                    skip "file: tests disabled on MingW", 2
++                        if $^O =~ /^msys$/ || $mingw_target;
+ 
+                     ok(run(app([@storeutl, "-noout", "-passin",
+                                 "pass:password", to_abs_file_uri($_)])));
+@@ -241,7 +245,8 @@ indir "store_$$" => sub {
+             foreach (values %generated_file_files) {
+               SKIP:
+                 {
+-                    skip "file: tests disabled on MingW", 1  if $^O =~ /^msys$/;
++                    skip "file: tests disabled on MingW", 1
++                        if $^O =~ /^msys$/ || $mingw_target;
+ 
+                     ok(run(app([@storeutl,  "-noout", $_])));
+                 }
+@@ -249,7 +254,8 @@ indir "store_$$" => sub {
+             foreach (@noexist_file_files) {
+               SKIP:
+                 {
+-                    skip "file: tests disabled on MingW", 1  if $^O =~ /^msys$/;
++                    skip "file: tests disabled on MingW", 1
++                        if $^O =~ /^msys$/ || $mingw_target;
+ 
+                     ok(!run(app([@storeutl,  "-noout", $_])));
+                 }
+@@ -261,7 +267,8 @@ indir "store_$$" => sub {
+                                 to_abs_file($dir, 1)])));
+               SKIP:
+                 {
+-                    skip "file: tests disabled on MingW", 1  if $^O =~ /^msys$/;
++                    skip "file: tests disabled on MingW", 1
++                        if $^O =~ /^msys$/ || $mingw_target;
+ 
+                     ok(run(app([@storeutl,  "-noout",
+                                 to_abs_file_uri($dir, 1)])));
