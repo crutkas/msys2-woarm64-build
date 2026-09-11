@@ -76,7 +76,7 @@ for repo in child source; do
 done
 case_pass git-init-commit two-real-repositories
 printf '#!/bin/sh\nprintf "hook-ok\\n" > .git/hook-observed\n' > source/.git/hooks/pre-commit
-chmod +x source/.git/hooks/pre-commit
+[[ -x source/.git/hooks/pre-commit ]]
 printf 'positive\n' >> source/payload.txt
 git -C source commit -am hook-positive
 [[ $(cat source/.git/hook-observed) == hook-ok ]]

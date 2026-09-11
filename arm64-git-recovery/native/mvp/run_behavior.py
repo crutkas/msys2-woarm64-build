@@ -29,7 +29,7 @@ def main():
     env.update({"PATH": os.pathsep.join(map(str, (root / "mingwarm64/bin", root / "usr/bin",
                                                 Path(os.environ["SystemRoot"]) / "System32"))),
                 "HOME": str(output / "home"), "USERPROFILE": str(output / "home"),
-                "TMP": str(output), "TEMP": str(output), "MSYSTEM": "MINGWARM64"})
+                "TMP": str(output), "TEMP": str(output), "MSYSTEM": "MINGWARM64", "MSYS": "winsymlinks:sys"})
     script = Path(__file__).with_name("behavior.sh")
     command = [root / "usr/bin/bash.exe", "--noprofile", "--norc", script.as_posix(),
                (output / "work").as_posix(), args.https_repository]

@@ -47,7 +47,7 @@ def main():
     env.update({"PATH": os.pathsep.join(map(str, (view / "mingwarm64/bin", view / "usr/bin",
                                                 Path(os.environ["SystemRoot"]) / "System32"))),
                 "HOME": str(output / "home"), "USERPROFILE": str(output / "home"),
-                "TMP": str(output), "TEMP": str(output), "MSYSTEM": "MINGWARM64",
+                "TMP": str(output), "TEMP": str(output), "MSYSTEM": "MINGWARM64", "MSYS": "winsymlinks:sys",
                 "WOARM64_NATIVE_EXIT_DIR": str(relays), "WOARM64_EXIT_CONTRACT_SOURCE_SHA256": helper_source["sha256"],
                 "MVP_EXPECTED_EXIT_HELPER": "/usr/bin/msys-exit-contract.exe"})
     generation = [sys.executable, "-I", "-B", str(driver / "write-msys-exit-contracts.py"),

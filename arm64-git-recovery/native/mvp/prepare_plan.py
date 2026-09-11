@@ -12,7 +12,7 @@ def runtime_file(name, group):
     low = name.lower()
     if low.endswith((".a", ".la", ".pdb", ".debug", ".o", ".obj", ".pc")):
         return False
-    if "/include/" in low or "/cmake/" in low or "/libexec/gcc/" in low or "/aarch64-w64-mingw32/" in low:
+    if "/include/" in low or "/cmake/" in low or "/libexec/gcc/" in low or "/lib/gcc/" in low or "/aarch64-w64-mingw32/" in low:
         return False
     if group == "git":
         return True

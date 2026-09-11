@@ -89,7 +89,7 @@ def main():
                                                 Path(os.environ["SystemRoot"]) / "System32"))),
                 "HOME": str(output / "home"), "USERPROFILE": str(output / "home"),
                 "GIT_CONFIG_NOSYSTEM": "1", "GIT_CONFIG_GLOBAL": str(empty),
-                "GIT_TERMINAL_PROMPT": "0", "MSYSTEM": "MINGWARM64"})
+                "GIT_TERMINAL_PROMPT": "0", "MSYSTEM": "MINGWARM64", "MSYS": "winsymlinks:sys"})
     git = root / "mingwarm64/bin/git.exe"
     init = subprocess.run([git, "init", "--bare", output / "repo.git"], env=env, capture_output=True, timeout=30)
     if init.returncode:
