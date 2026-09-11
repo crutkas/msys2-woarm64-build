@@ -1,0 +1,15 @@
+#!/usr/bin/env bash
+set -euo pipefail
+
+: "${OPENSSL_RELEASE_GCC_REAL:?}"
+: "${OPENSSL_RELEASE_BUILD_SOURCE:?}"
+: "${OPENSSL_RELEASE_BUILD_ROOT:?}"
+
+exec "$OPENSSL_RELEASE_GCC_REAL" \
+    "-ffile-prefix-map=$OPENSSL_RELEASE_BUILD_SOURCE=/usr/src/openssl-3.6.4" \
+    "-fdebug-prefix-map=$OPENSSL_RELEASE_BUILD_SOURCE=/usr/src/openssl-3.6.4" \
+    "-fmacro-prefix-map=$OPENSSL_RELEASE_BUILD_SOURCE=/usr/src/openssl-3.6.4" \
+    "-ffile-prefix-map=$OPENSSL_RELEASE_BUILD_ROOT=/usr/src/openssl-build" \
+    "-fdebug-prefix-map=$OPENSSL_RELEASE_BUILD_ROOT=/usr/src/openssl-build" \
+    "-fmacro-prefix-map=$OPENSSL_RELEASE_BUILD_ROOT=/usr/src/openssl-build" \
+    "$@"
