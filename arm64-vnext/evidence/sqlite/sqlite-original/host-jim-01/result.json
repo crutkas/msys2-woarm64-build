@@ -1,0 +1,110 @@
+{
+  "schema": 1,
+  "status": "host-only-native-arm64-jim-zero-nonzero-argv-passed",
+  "scope": "Host-only native ARM64 MinGW Jim; not target SQLite/Tcl/lemon",
+  "launcher": {
+    "pid": 25124,
+    "creation_filetime": 134333329285169423,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\prove-sqlite-host-jim.py"
+    ]
+  },
+  "source_sha256": "20f8554be6bd4ba142870f1a4ade1e96115cf5a07704e3522c08b25f9f405ae0",
+  "steps": [
+    {
+      "command": [
+        "C:\\ag-sqlite-e138-01\\host-compiler\\bin\\gcc.exe",
+        "-O1",
+        "C:\\ag-sqlite-e138-01\\prepared\\source\\autosetup\\jimsh0.c",
+        "-o",
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\jimsh.exe"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 18828,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 5,
+        "observed_processes": 5,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\host-jim-01\\compile.native-job.json",
+          "sha256": "c366eb4851f55e905785b02512d6b00be735368273e16cc9f2e927188ecc4a4c",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    {
+      "name": "zero",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\jimsh.exe",
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\zero.tcl"
+      ],
+      "expected_exit": 0,
+      "process": {
+        "passed": true,
+        "pid": 23440,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\host-jim-01\\zero.native-job.json",
+          "sha256": "7d0425adcae61d3fb66aa2f0589b4466b3a808e6004b8cca3820692d965bf216",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    {
+      "name": "nonzero",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\jimsh.exe",
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\nonzero.tcl"
+      ],
+      "expected_exit": 7,
+      "process": {
+        "passed": false,
+        "pid": 26416,
+        "exit": 7,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\host-jim-01\\nonzero.native-job.json",
+          "sha256": "4c8e8ed2b5924017d55c7dfe4804ebcfc10e973b1ac957861ffcd0f04446dff0",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    {
+      "name": "argv",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\jimsh.exe",
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\argv.tcl",
+        "space value",
+        "/usr",
+        "C:/owned/path"
+      ],
+      "expected_exit": 0,
+      "process": {
+        "passed": true,
+        "pid": 13284,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\host-jim-01\\argv.native-job.json",
+          "sha256": "f38644ef83bacee65818c7ad3519f8e9fd96a0c32b641da9a54b039b206dddc7",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    }
+  ],
+  "exe_sha256": "81268bd5f19c37a6159d4aca82b8a27c62980d9b1e625b5a1cd3d4ee6c2e29f9"
+}

@@ -1,0 +1,24 @@
+TCL PHASE inherited
+TCL WOARM64_ENV_INHERITED=<inherited-marker>
+TCL WOARM64_ENV_NEW=<absent>
+TCL CCACHE_DISABLE=<1>
+TCL TMPDIR=</c/ag-sqlite-e138-01/temp>
+native-C PHASE child runtime=C:\ag-sqlite-e138-01\tcl\usr\bin\msys-2.0.dll long=8 pointer=8
+native-C WOARM64_ENV_INHERITED POSIX=<inherited-marker> WIN32=<absent>
+native-C WOARM64_ENV_NEW POSIX=<absent> WIN32=<absent>
+native-C CCACHE_DISABLE POSIX=<1> WIN32=<absent>
+native-C TMPDIR POSIX=</c/ag-sqlite-e138-01/temp> WIN32=<absent>
+foreign-MSYS-bash inherited=<absent> new=<absent> CCACHE_DISABLE=<absent> TMPDIR=<absent>
+{"child": "native-Windows-Python", "environment": {"CCACHE_DISABLE": "1", "TMPDIR": "C:\\ag-sqlite-e138-01\\temp", "WOARM64_ENV_INHERITED": "inherited-marker", "WOARM64_ENV_NEW": null}}
+TCL PHASE mutated
+TCL WOARM64_ENV_INHERITED=<tcl-replaced>
+TCL WOARM64_ENV_NEW=<tcl-new>
+TCL CCACHE_DISABLE=<tcl-marker>
+TCL TMPDIR=</c/ag-sqlite-e138-01/temp>
+native-C PHASE child runtime=C:\ag-sqlite-e138-01\tcl\usr\bin\msys-2.0.dll long=8 pointer=8
+native-C WOARM64_ENV_INHERITED POSIX=<tcl-replaced> WIN32=<absent>
+native-C WOARM64_ENV_NEW POSIX=<tcl-new> WIN32=<absent>
+native-C CCACHE_DISABLE POSIX=<tcl-marker> WIN32=<absent>
+native-C TMPDIR POSIX=</c/ag-sqlite-e138-01/temp> WIN32=<absent>
+foreign-MSYS-bash inherited=<absent> new=<absent> CCACHE_DISABLE=<absent> TMPDIR=<absent>
+{"child": "native-Windows-Python", "environment": {"CCACHE_DISABLE": "tcl-marker", "TMPDIR": "C:\\ag-sqlite-e138-01\\temp", "WOARM64_ENV_INHERITED": "tcl-replaced", "WOARM64_ENV_NEW": "tcl-new"}}

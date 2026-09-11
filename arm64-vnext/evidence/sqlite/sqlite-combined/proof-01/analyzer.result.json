@@ -1,0 +1,161 @@
+{
+  "name": "analyzer",
+  "command": [
+    "C:\\Program Files\\Python314-arm64\\python.exe",
+    "-B",
+    "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\capture-native-exception.py",
+    "--executable",
+    "C:\\ag-sqlite-combined-01\\inputs-01\\runtime\\usr\\bin\\sqlite3_analyzer.exe",
+    "--output",
+    "C:\\ag-sqlite-combined-01\\proof-01\\analyzer.capture",
+    "--path-directory",
+    "C:\\ag-sqlite-combined-01\\inputs-01\\runtime\\usr\\bin",
+    "--tcl-environment",
+    "--",
+    "/c/ag-sqlite-combined-01/proof-01/cli.sqlite"
+  ],
+  "process": {
+    "passed": true,
+    "pid": 4592,
+    "exit": 0,
+    "timed_out": false,
+    "created_processes": 2,
+    "observed_processes": 2,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-sqlite-combined-01\\proof-01\\analyzer.native-job.json",
+      "sha256": "058c1a6ff4f9af808cbbdc759dc945634fc2126161602cb9a280c13403f14e3f",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "capture_sha256": "8bed3cf65b4ef4d4195782a89f807b45c29fc80f7a870585ce7cc5e1d80be23a",
+  "raw_exit": 0,
+  "stdout": "/** Disk-Space Utilization Report For /c/ag-sqlite-combined-01/proof-01/cli.sqlite\n\nPage size in bytes................................ 4096      \nPages in the whole file (measured)................ 2         \nPages in the whole file (calculated).............. 2         \nPages that store data............................. 2          100.0% \nPages on the freelist (per header)................ 0            0.0% \nPages on the freelist (calculated)................ 0            0.0% \nPages of auto-vacuum overhead..................... 0            0.0% \nNumber of tables in the database.................. 2         \nNumber of WITHOUT ROWID tables.................... 0         \nNumber of indices................................. 0         \nNumber of defined indices......................... 0         \nNumber of implied indices......................... 0         \nSize of the file in bytes......................... 8192      \nBytes of user payload stored...................... 18           0.22% \n\n*** Page counts for all tables with their indices *****************************\n\nSQLITE_SCHEMA..................................... 1           50.0% \nT................................................. 1           50.0% \n\n*** Page counts for all tables and indices separately *************************\n\nSQLITE_SCHEMA..................................... 1           50.0% \nT................................................. 1           50.0% \n\n*** All tables ****************************************************************\n\nPercentage of total database...................... 100.0%    \nNumber of entries................................. 3         \nBytes of storage consumed......................... 8192      \nBytes of payload.................................. 81           0.99% \nBytes of metadata................................. 128          1.6% \nAverage payload per entry......................... 27.00     \nAverage unused bytes per entry.................... 2661.00   \nAverage metadata per entry........................ 42.67     \nMaximum payload per entry......................... 63        \nEntries that use overflow......................... 0            0.0% \nPrimary pages used................................ 2         \nOverflow pages used............................... 0         \nTotal pages used.................................. 2         \nUnused bytes on primary pages..................... 7983        97.4% \nUnused bytes on overflow pages.................... 0         \nUnused bytes on all pages......................... 7983        97.4% \n\n*** Table SQLITE_SCHEMA *******************************************************\n\nPercentage of total database......................  50.0%    \nNumber of entries................................. 1         \nBytes of storage consumed......................... 4096      \nBytes of payload.................................. 63           1.5% \nBytes of metadata................................. 112          2.7% \nB-tree depth...................................... 1         \nAverage payload per entry......................... 63.00     \nAverage unused bytes per entry.................... 3921.00   \nAverage metadata per entry........................ 112.00    \nMaximum payload per entry......................... 63        \nEntries that use overflow......................... 0            0.0% \nPrimary pages used................................ 1         \nOverflow pages used............................... 0         \nTotal pages used.................................. 1         \nUnused bytes on primary pages..................... 3921        95.7% \nUnused bytes on overflow pages.................... 0         \nUnused bytes on all pages......................... 3921        95.7% \n\n*** Table T *******************************************************************\n\nPercentage of total database......................  50.0%    \nNumber of entries................................. 2         \nBytes of storage consumed......................... 4096      \nBytes of payload.................................. 18           0.44% \nBytes of metadata................................. 16           0.39% \nB-tree depth...................................... 1         \nAverage payload per entry......................... 9.00      \nAverage unused bytes per entry.................... 2031.00   \nAverage metadata per entry........................ 8.00      \nMaximum payload per entry......................... 9         \nEntries that use overflow......................... 0            0.0% \nPrimary pages used................................ 1         \nOverflow pages used............................... 0         \nTotal pages used.................................. 1         \nUnused bytes on primary pages..................... 4062        99.17% \nUnused bytes on overflow pages.................... 0         \nUnused bytes on all pages......................... 4062        99.17% \n\n*** Definitions ***************************************************************\n\nPage size in bytes\n\n    The number of bytes in a single page of the database file.  \n    Usually 1024.\n\nNumber of pages in the whole file\n\n    The number of 4096-byte pages that go into forming the complete\n    database\n\nPages that store data\n\n    The number of pages that store data, either as primary B*Tree pages or\n    as overflow pages.  The number at the right is the data pages divided by\n    the total number of pages in the file.\n\nPages on the freelist\n\n    The number of pages that are not currently in use but are reserved for\n    future use.  The percentage at the right is the number of freelist pages\n    divided by the total number of pages in the file.\n\nPages of auto-vacuum overhead\n\n    The number of pages that store data used by the database to facilitate\n    auto-vacuum. This is zero for databases that do not support auto-vacuum.\n\nNumber of tables in the database\n\n    The number of tables in the database, including the SQLITE_SCHEMA table\n    used to store schema information.\n\nNumber of indices\n\n    The total number of indices in the database.\n\nNumber of defined indices\n\n    The number of indices created using an explicit CREATE INDEX statement.\n\nNumber of implied indices\n\n    The number of indices used to implement PRIMARY KEY or UNIQUE constraints\n    on tables.\n\nSize of the file in bytes\n\n    The total amount of disk space used by the entire database files.\n\nBytes of user payload stored\n\n    The total number of bytes of user payload stored in the database. The\n    schema information in the SQLITE_SCHEMA table is not counted when\n    computing this number.  The percentage at the right shows the payload\n    divided by the total file size.\n\nPercentage of total database\n\n    The amount of the complete database file that is devoted to storing\n    information described by this category.\n\nNumber of entries\n\n    The total number of B-Tree key/value pairs stored under this category.\n\nBytes of storage consumed\n\n    The total amount of disk space required to store all B-Tree entries\n    under this category.  The is the total number of pages used times\n    the pages size.\n\nBytes of payload\n\n    The amount of payload stored under this category.  Payload is the data\n    part of table entries and the key part of index entries.  The percentage\n    at the right is the bytes of payload divided by the bytes of storage \n    consumed.\n\nBytes of metadata\n\n    The amount of formatting and structural information stored in the\n    table or index.  Metadata includes the btree page header, the cell pointer\n    array, the size field for each cell, the left child pointer or non-leaf\n    cells, the overflow pointers for overflow cells, and the rowid value for\n    rowid table cells.  In other words, metadata is everything that is neither\n    unused space nor content.  The record header in the payload is counted as\n    content, not metadata.\n\nAverage payload per entry\n\n    The average amount of payload on each entry.  This is just the bytes of\n    payload divided by the number of entries.\n\nAverage unused bytes per entry\n\n    The average amount of free space remaining on all pages under this\n    category on a per-entry basis.  This is the number of unused bytes on\n    all pages divided by the number of entries.\n\nNon-sequential pages\n\n    The number of pages in the table or index that are out of sequence.\n    Many filesystems are optimized for sequential file access so a small\n    number of non-sequential pages might result in faster queries,\n    especially for larger database files that do not fit in the disk cache.\n    Note that after running VACUUM, the root page of each table or index is\n    at the beginning of the database file and all other pages are in a\n    separate part of the database file, resulting in a single non-\n    sequential page.\n\nMaximum payload per entry\n\n    The largest payload size of any entry.\n\nEntries that use overflow\n\n    The number of entries that user one or more overflow pages.\n\nTotal pages used\n\n    This is the number of pages used to hold all information in the current\n    category.  This is the sum of index, primary, and overflow pages.\n\nIndex pages used\n\n    This is the number of pages in a table B-tree that hold only key (rowid)\n    information and no data.\n\nPrimary pages used\n\n    This is the number of B-tree pages that hold both key and data.\n\nOverflow pages used\n\n    The total number of overflow pages used for this category.\n\nUnused bytes on index pages\n\n    The total number of bytes of unused space on all index pages.  The\n    percentage at the right is the number of unused bytes divided by the\n    total number of bytes on index pages.\n\nUnused bytes on primary pages\n\n    The total number of bytes of unused space on all primary pages.  The\n    percentage at the right is the number of unused bytes divided by the\n    total number of bytes on primary pages.\n\nUnused bytes on overflow pages\n\n    The total number of bytes of unused space on all overflow pages.  The\n    percentage at the right is the number of unused bytes divided by the\n    total number of bytes on overflow pages.\n\nUnused bytes on all pages\n\n    The total number of bytes of unused space on all primary and overflow \n    pages.  The percentage at the right is the number of unused bytes \n    divided by the total number of bytes.\n\n*******************************************************************************\nThe entire text of this report can be sourced into any SQL database\nengine for further analysis.  All of the text above is an SQL comment.\nThe data used to generate this report follows:\n*/\nBEGIN;\nCREATE TABLE space_used(\n   name clob,        -- Name of a table or index in the database file\n   tblname clob,     -- Name of associated table\n   is_index boolean, -- TRUE if it is an index, false for a table\n   is_without_rowid boolean, -- TRUE if WITHOUT ROWID table  \n   nentry int,       -- Number of entries in the BTree\n   leaf_entries int, -- Number of leaf entries\n   depth int,        -- Depth of the b-tree\n   payload int,      -- Total amount of data stored in this table or index\n   ovfl_payload int, -- Total amount of data stored on overflow pages\n   ovfl_cnt int,     -- Number of entries that use overflow\n   mx_payload int,   -- Maximum payload size\n   int_pages int,    -- Number of interior pages used\n   leaf_pages int,   -- Number of leaf pages used\n   ovfl_pages int,   -- Number of overflow pages used\n   int_unused int,   -- Number of unused bytes on interior pages\n   leaf_unused int,  -- Number of unused bytes on primary pages\n   ovfl_unused int,  -- Number of unused bytes on overflow pages\n   gap_cnt int,      -- Number of gaps in the page layout\n   compressed_size int  -- Total bytes stored on disk\n);\nINSERT INTO space_used VALUES('sqlite_schema','sqlite_schema',0,0,1,1,1,63,0,0,63,0,1,0,0,3921,0,0,4096);\nINSERT INTO space_used VALUES('t','t',0,0,2,2,1,18,0,0,9,0,1,0,0,4062,0,0,4096);\nCOMMIT;\n",
+  "stderr": "",
+  "loaded_modules": {
+    "sqlite3_analyzer.exe": {
+      "path": "C:\\ag-sqlite-combined-01\\inputs-01\\runtime\\usr\\bin\\sqlite3_analyzer.exe",
+      "sha256": "a73cb04a7337ed52b88a9e752f4739a6224ad1cd2e1e6145971771ffff7cdfaf"
+    },
+    "ntdll.dll": {
+      "path": "C:\\Windows\\System32\\ntdll.dll",
+      "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+    },
+    "kernel32.dll": {
+      "path": "C:\\Windows\\System32\\kernel32.dll",
+      "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+    },
+    "kernelbase.dll": {
+      "path": "C:\\Windows\\System32\\KernelBase.dll",
+      "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+    },
+    "msys-2.0.dll": {
+      "path": "C:\\ag-sqlite-combined-01\\inputs-01\\runtime\\usr\\bin\\msys-2.0.dll",
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+    },
+    "libtcl8.6.dll": {
+      "path": "C:\\ag-sqlite-combined-01\\inputs-01\\runtime\\usr\\bin\\libtcl8.6.dll",
+      "sha256": "85cf03e86f5ed0aa365c4bb132bdecc451a59c05f8acd7a6e13c168ef8393450"
+    },
+    "user32.dll": {
+      "path": "C:\\Windows\\System32\\user32.dll",
+      "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383"
+    },
+    "win32u.dll": {
+      "path": "C:\\Windows\\System32\\win32u.dll",
+      "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335"
+    },
+    "gdi32.dll": {
+      "path": "C:\\Windows\\System32\\gdi32.dll",
+      "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc"
+    },
+    "ucrtbase.dll": {
+      "path": "C:\\Windows\\System32\\ucrtbase.dll",
+      "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+    },
+    "gdi32full.dll": {
+      "path": "C:\\Windows\\System32\\gdi32full.dll",
+      "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb"
+    },
+    "msvcp_win.dll": {
+      "path": "C:\\Windows\\System32\\msvcp_win.dll",
+      "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4"
+    },
+    "sechost.dll": {
+      "path": "C:\\Windows\\System32\\sechost.dll",
+      "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+    },
+    "msys-z.dll": {
+      "path": "C:\\ag-sqlite-combined-01\\inputs-01\\runtime\\usr\\bin\\msys-z.dll",
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+    },
+    "advapi32.dll": {
+      "path": "C:\\Windows\\System32\\advapi32.dll",
+      "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+    },
+    "msvcrt.dll": {
+      "path": "C:\\Windows\\System32\\msvcrt.dll",
+      "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+    },
+    "rpcrt4.dll": {
+      "path": "C:\\Windows\\System32\\rpcrt4.dll",
+      "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+    },
+    "cryptbase.dll": {
+      "path": "C:\\Windows\\System32\\cryptbase.dll",
+      "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+    },
+    "bcryptprimitives.dll": {
+      "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+      "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+    },
+    "imm32.dll": {
+      "path": "C:\\Windows\\System32\\imm32.dll",
+      "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33"
+    },
+    "netapi32.dll": {
+      "path": "C:\\Windows\\System32\\netapi32.dll",
+      "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+    },
+    "samcli.dll": {
+      "path": "C:\\Windows\\System32\\samcli.dll",
+      "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+    },
+    "samlib.dll": {
+      "path": "C:\\Windows\\System32\\samlib.dll",
+      "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+    },
+    "netutils.dll": {
+      "path": "C:\\Windows\\System32\\netutils.dll",
+      "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+    },
+    "uxtheme.dll": {
+      "path": "C:\\Windows\\System32\\uxtheme.dll",
+      "sha256": "1b362b0bdc412c2ec9c1b27c24d73a04cbdb63ff4487cd1de27c003ca12a8679"
+    },
+    "combase.dll": {
+      "path": "C:\\Windows\\System32\\combase.dll",
+      "sha256": "caf3fc442da8057cf1bea166654a8254058252c8f20e472f5d23b6d69262736e"
+    },
+    "msctf.dll": {
+      "path": "C:\\Windows\\System32\\msctf.dll",
+      "sha256": "4cd4d7a9d859383c70c4f7de149ce1034863c336e1f86aafe0f77243d0f41786"
+    },
+    "iphlpapi.dll": {
+      "path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+      "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b"
+    },
+    "dnsapi.dll": {
+      "path": "C:\\Windows\\System32\\dnsapi.dll",
+      "sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319"
+    },
+    "dsparse.dll": {
+      "path": "C:\\Windows\\System32\\dsparse.dll",
+      "sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d"
+    },
+    "nsi.dll": {
+      "path": "C:\\Windows\\System32\\nsi.dll",
+      "sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2"
+    }
+  }
+}

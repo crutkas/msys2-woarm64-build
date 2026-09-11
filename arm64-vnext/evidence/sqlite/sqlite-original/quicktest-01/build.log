@@ -1,0 +1,27 @@
+/c/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/sqlite-native-tcl.sh /c/ag-sqlite-e138-01/prepared/source/tool/srctree-check.tcl
+/c/ag-sqlite-e138-01/compiler/bin/gcc.exe -g -o srcck1.exe /c/ag-sqlite-e138-01/prepared/source/tool/srcck1.c
+./srcck1.exe sqlite3.c
+/c/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/sqlite-native-tcl.sh /c/ag-sqlite-e138-01/prepared/source/test/testrunner.tcl mdevtest --jobs 1
+built testset in 291ms..
+00:01 bld(0/10) r1 fuzz(0/54) tcl(0/2476)                                      FAILED: Build All-Debug (sessionfuzz) (0)                                      
+FAILED: Build All-Debug (fuzzcheck-ubsan) (0)                                  
+00:04 bld(2/10) f2 r1 fuzz(0/54) tcl(0/2476) ETC 00:12                         FAILED: Build All-Debug (fuzzcheck-asan) (0)                                   
+00:08 bld(3/10) f3 r1 fuzz(0/54) tcl(0/2476) ETC 00:07                         FAILED: Build All-Debug (fuzzcheck) (0)                                        
+00:10 bld(4/10) f4 r1 fuzz(0/54) tcl(0/2476) ETC 00:08                         FAILED: Build All-Debug (testfixture) (0)                                      
+FAILED: Build All-O0 (sessionfuzz) (0)                                         
+00:13 bld(6/10) f6 r1 fuzz(0/54) tcl(0/2476) ETC 00:04                         FAILED: Build All-O0 (fuzzcheck) (0)                                           
+FAILED: Build All-O0 (testfixture) (0)                                         
+00:14 bld(8/10) f8 fuzz(0/54) tcl(0/2476) ETC 00:00                            
+8 failures:
+FAILED: Build All-O0 (testfixture)
+FAILED: Build All-O0 (fuzzcheck)
+FAILED: Build All-O0 (sessionfuzz)
+FAILED: Build All-Debug (testfixture)
+FAILED: Build All-Debug (fuzzcheck)
+FAILED: Build All-Debug (fuzzcheck-asan)
+FAILED: Build All-Debug (fuzzcheck-ubsan)
+FAILED: Build All-Debug (sessionfuzz)
+2504 jobs skipped due to prior failures
+Test database is /c/ag-sqlite-e138-01/build-06/testrunner.db
+Test log is /c/ag-sqlite-e138-01/build-06/testrunner.log
+8 errors out of 8 tests in 00:14 

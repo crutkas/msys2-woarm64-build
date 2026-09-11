@@ -1,0 +1,355 @@
+{
+  "version": "1",
+  "pip_version": "26.1.2",
+  "install": [
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/ed/ae/0da2f2214fc183338af1afe5a103a2052fd03464e8eafbd827abff58a4d0/asyncssh-2.22.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "d16465ccdf1ed20eba1131b14415b155e047f6f5be0d19f39c2e0b61331ee0e7"
+          },
+          "hash": "sha256=d16465ccdf1ed20eba1131b14415b155e047f6f5be0d19f39c2e0b61331ee0e7"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": true,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "asyncssh",
+        "version": "2.22.0",
+        "dynamic": [
+          "license-file"
+        ],
+        "summary": "AsyncSSH: Asynchronous SSHv2 client and server library",
+        "description": ".. image:: https://readthedocs.org/projects/asyncssh/badge/?version=latest\n    :target: https://asyncssh.readthedocs.io/en/latest/?badge=latest\n    :alt: Documentation Status\n\n.. image:: https://img.shields.io/pypi/v/asyncssh.svg\n    :target: https://pypi.python.org/pypi/asyncssh/\n    :alt: AsyncSSH PyPI Project\n\n\nAsyncSSH: Asynchronous SSH for Python\n=====================================\n\nAsyncSSH is a Python package which provides an asynchronous client and\nserver implementation of the SSHv2 protocol on top of the Python 3.10+\nasyncio framework.\n\n.. code:: python\n\n  import asyncio, asyncssh, sys\n\n  async def run_client():\n      async with asyncssh.connect('localhost') as conn:\n          result = await conn.run('echo \"Hello!\"', check=True)\n          print(result.stdout, end='')\n\n  try:\n      asyncio.get_event_loop().run_until_complete(run_client())\n  except (OSError, asyncssh.Error) as exc:\n      sys.exit('SSH connection failed: ' + str(exc))\n\nCheck out the `examples`__ to get started!\n\n__ http://asyncssh.readthedocs.io/en/stable/#client-examples\n\nFeatures\n--------\n\n* Full support for SSHv2, SFTP, and SCP client and server functions\n\n  * Shell, command, and subsystem channels\n  * Environment variables, terminal type, and window size\n  * Direct and forwarded TCP/IP channels\n  * OpenSSH-compatible direct and forwarded UNIX domain socket channels\n  * OpenSSH-compatible TUN/TAP channels and packet forwarding\n  * Local and remote TCP/IP port forwarding\n  * Local and remote UNIX domain socket forwarding\n  * Dynamic TCP/IP port forwarding via SOCKS\n  * X11 forwarding support on both the client and the server\n  * SFTP protocol version 3 with OpenSSH extensions\n\n    * Experimental support for SFTP versions 4-6, when requested\n\n  * SCP protocol support, including third-party remote to remote copies\n\n* Multiple simultaneous sessions on a single SSH connection\n* Multiple SSH connections in a single event loop\n* Byte and string based I/O with settable encoding\n* A variety of `key exchange`__, `encryption`__, and `MAC`__ algorithms\n\n  * Including post-quantum kex algorithms ML-KEM and SNTRUP\n\n* Support for `gzip compression`__\n\n  * Including OpenSSH variant to delay compression until after auth\n\n* User and host-based public key, password, and keyboard-interactive\n  authentication methods\n\n* Many types and formats of `public keys and certificates`__\n\n  * Including OpenSSH-compatible support for U2F and FIDO2 security keys\n  * Including PKCS#11 support for accessing PIV security tokens\n  * Including support for X.509 certificates as defined in RFC 6187\n\n* Support for accessing keys managed by `ssh-agent`__ on UNIX systems\n\n  * Including agent forwarding support on both the client and the server\n\n* Support for accessing keys managed by PuTTY's Pageant agent on Windows\n* Support for accessing host keys via OpenSSH's ssh-keysign\n* OpenSSH-style `known_hosts file`__ support\n* OpenSSH-style `authorized_keys file`__ support\n* Partial support for `OpenSSH-style configuration files`__\n* Compatibility with OpenSSH \"Encrypt then MAC\" option for better security\n* Time and byte-count based session key renegotiation\n* Designed to be easy to extend to support new forms of key exchange,\n  authentication, encryption, and compression algorithms\n\n__ http://asyncssh.readthedocs.io/en/stable/api.html#key-exchange-algorithms\n__ http://asyncssh.readthedocs.io/en/stable/api.html#encryption-algorithms\n__ http://asyncssh.readthedocs.io/en/stable/api.html#mac-algorithms\n__ http://asyncssh.readthedocs.io/en/stable/api.html#compression-algorithms\n__ http://asyncssh.readthedocs.io/en/stable/api.html#public-key-support\n__ http://asyncssh.readthedocs.io/en/stable/api.html#ssh-agent-support\n__ http://asyncssh.readthedocs.io/en/stable/api.html#known-hosts\n__ http://asyncssh.readthedocs.io/en/stable/api.html#authorized-keys\n__ http://asyncssh.readthedocs.io/en/stable/api.html#config-file-support\n\nLicense\n-------\n\nThis package is released under the following terms:\n\n  Copyright (c) 2013-2025 by Ron Frederick <ronf@timeheart.net> and others.\n\n  This program and the accompanying materials are made available under\n  the terms of the Eclipse Public License v2.0 which accompanies this\n  distribution and is available at:\n\n    http://www.eclipse.org/legal/epl-2.0/\n\n  This program may also be made available under the following secondary\n  licenses when the conditions for such availability set forth in the\n  Eclipse Public License v2.0 are satisfied:\n\n     GNU General Public License, Version 2.0, or any later versions of\n     that license\n\n  SPDX-License-Identifier: EPL-2.0 OR GPL-2.0-or-later\n\nFor more information about this license, please see the `Eclipse\nPublic License FAQ <https://www.eclipse.org/legal/epl-2.0/faq.php>`_.\n\nPrerequisites\n-------------\n\nTo use AsyncSSH 2.0 or later, you need the following:\n\n* Python 3.10 or later\n* cryptography (PyCA) 39.0 or later\n\nInstallation\n------------\n\nInstall AsyncSSH by running:\n\n  ::\n\n    pip install asyncssh\n\nOptional Extras\n^^^^^^^^^^^^^^^\n\nThere are some optional modules you can install to enable additional\nfunctionality:\n\n* Install bcrypt from https://pypi.python.org/pypi/bcrypt\n  if you want support for OpenSSH private key encryption.\n\n* Install fido2 from https://pypi.org/project/fido2 if you want support\n  for key exchange and authentication with U2F/FIDO2 security keys.\n\n* Install python-pkcs11 from https://pypi.org/project/python-pkcs11 if\n  you want support for accessing PIV keys on PKCS#11 security tokens.\n\n* Install gssapi from https://pypi.python.org/pypi/gssapi if you\n  want support for GSSAPI key exchange and authentication on UNIX.\n\n* Install liboqs from https://github.com/open-quantum-safe/liboqs\n  if you want support for the OpenSSH post-quantum key exchange\n  algorithms based on ML-KEM and SNTRUP.\n\n* Install libnettle from http://www.lysator.liu.se/~nisse/nettle/\n  if you want support for UMAC cryptographic hashes.\n\n* Install pyOpenSSL from https://pypi.python.org/pypi/pyOpenSSL\n  if you want support for X.509 certificate authentication.\n\n* Install pywin32 from https://pypi.python.org/pypi/pywin32 if you\n  want support for using the Pageant agent or support for GSSAPI\n  key exchange and authentication on Windows.\n\nAsyncSSH defines the following optional PyPI extra packages to make it\neasy to install any or all of these dependencies:\n\n  | bcrypt\n  | fido2\n  | gssapi\n  | pkcs11\n  | pyOpenSSL\n  | pywin32\n\nFor example, to install bcrypt, fido2, gssapi, pkcs11, and pyOpenSSL\non UNIX, you can run:\n\n  ::\n\n    pip install 'asyncssh[bcrypt,fido2,gssapi,pkcs11,pyOpenSSL]'\n\nTo install bcrypt, fido2, pkcs11, pyOpenSSL, and pywin32 on Windows,\nyou can run:\n\n  ::\n\n    pip install 'asyncssh[bcrypt,fido2,pkcs11,pyOpenSSL,pywin32]'\n\nNote that you will still need to manually install the libnettle library\nfor UMAC support. Unfortunately, since liboqs and libnettle are not\nPython packages, they cannot be directly installed using pip.\n\nInstalling the development branch\n^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n\nIf you would like to install the development branch of asyncssh directly\nfrom Github, you can use the following command to do this:\n\n  ::\n\n      pip install git+https://github.com/ronf/asyncssh@develop\n\nMailing Lists\n-------------\n\nThree mailing lists are available for AsyncSSH:\n\n* `asyncssh-announce@googlegroups.com`__: Project announcements\n* `asyncssh-dev@googlegroups.com`__: Development discussions\n* `asyncssh-users@googlegroups.com`__: End-user discussions\n\n__ http://groups.google.com/d/forum/asyncssh-announce\n__ http://groups.google.com/d/forum/asyncssh-dev\n__ http://groups.google.com/d/forum/asyncssh-users\n",
+        "description_content_type": "text/x-rst",
+        "author_email": "Ron Frederick <ronf@timeheart.net>",
+        "license": "EPL-2.0 OR GPL-2.0-or-later",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "License :: OSI Approved",
+          "Operating System :: MacOS :: MacOS X",
+          "Operating System :: POSIX",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Topic :: Internet",
+          "Topic :: Security :: Cryptography",
+          "Topic :: Software Development :: Libraries :: Python Modules",
+          "Topic :: System :: Networking"
+        ],
+        "requires_dist": [
+          "cryptography>=39.0",
+          "typing_extensions>=4.0.0",
+          "bcrypt>=3.1.3; extra == \"bcrypt\"",
+          "fido2>=2; extra == \"fido2\"",
+          "gssapi>=1.2.0; extra == \"gssapi\"",
+          "libnacl>=1.4.2; extra == \"libnacl\"",
+          "python-pkcs11>=0.7.0; extra == \"pkcs11\"",
+          "pyOpenSSL>=23.0.0; extra == \"pyopenssl\"",
+          "pywin32>=227; extra == \"pywin32\""
+        ],
+        "requires_python": ">=3.10",
+        "project_url": [
+          "Homepage, http://asyncssh.timeheart.net",
+          "Documentation, https://asyncssh.readthedocs.io",
+          "Source, https://github.com/ronf/asyncssh",
+          "Tracker, https://github.com/ronf/asyncssh/issues"
+        ],
+        "provides_extra": [
+          "bcrypt",
+          "fido2",
+          "gssapi",
+          "libnacl",
+          "pkcs11",
+          "pyopenssl",
+          "pywin32"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/2e/af/9b302da4c87b0beb9db4e756386a7c6c5b8003cd0e742277888d352ae91d/cryptography-46.0.3-cp311-abi3-win_arm64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "5d7f93296ee28f68447397bf5198428c9aeeab45705a55d53a6343455dcb2c3c"
+          },
+          "hash": "sha256=5d7f93296ee28f68447397bf5198428c9aeeab45705a55d53a6343455dcb2c3c"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "cryptography",
+        "version": "46.0.3",
+        "summary": "cryptography is a package which provides cryptographic recipes and primitives to Python developers.",
+        "description": "pyca/cryptography\n=================\n\n.. image:: https://img.shields.io/pypi/v/cryptography.svg\n    :target: https://pypi.org/project/cryptography/\n    :alt: Latest Version\n\n.. image:: https://readthedocs.org/projects/cryptography/badge/?version=latest\n    :target: https://cryptography.io\n    :alt: Latest Docs\n\n.. image:: https://github.com/pyca/cryptography/actions/workflows/ci.yml/badge.svg\n    :target: https://github.com/pyca/cryptography/actions/workflows/ci.yml?query=branch%3Amain\n\n``cryptography`` is a package which provides cryptographic recipes and\nprimitives to Python developers. Our goal is for it to be your \"cryptographic\nstandard library\". It supports Python 3.8+ and PyPy3 7.3.11+.\n\n``cryptography`` includes both high level recipes and low level interfaces to\ncommon cryptographic algorithms such as symmetric ciphers, message digests, and\nkey derivation functions. For example, to encrypt something with\n``cryptography``'s high level symmetric encryption recipe:\n\n.. code-block:: pycon\n\n    >>> from cryptography.fernet import Fernet\n    >>> # Put this somewhere safe!\n    >>> key = Fernet.generate_key()\n    >>> f = Fernet(key)\n    >>> token = f.encrypt(b\"A really secret message. Not for prying eyes.\")\n    >>> token\n    b'...'\n    >>> f.decrypt(token)\n    b'A really secret message. Not for prying eyes.'\n\nYou can find more information in the `documentation`_.\n\nYou can install ``cryptography`` with:\n\n.. code-block:: console\n\n    $ pip install cryptography\n\nFor full details see `the installation documentation`_.\n\nDiscussion\n~~~~~~~~~~\n\nIf you run into bugs, you can file them in our `issue tracker`_.\n\nWe maintain a `cryptography-dev`_ mailing list for development discussion.\n\nYou can also join ``#pyca`` on ``irc.libera.chat`` to ask questions or get\ninvolved.\n\nSecurity\n~~~~~~~~\n\nNeed to report a security issue? Please consult our `security reporting`_\ndocumentation.\n\n\n.. _`documentation`: https://cryptography.io/\n.. _`the installation documentation`: https://cryptography.io/en/latest/installation/\n.. _`issue tracker`: https://github.com/pyca/cryptography/issues\n.. _`cryptography-dev`: https://mail.python.org/mailman/listinfo/cryptography-dev\n.. _`security reporting`: https://cryptography.io/en/latest/security/\n\n",
+        "description_content_type": "text/x-rst; charset=UTF-8",
+        "author_email": "The Python Cryptographic Authority and individual contributors <cryptography-dev@python.org>",
+        "license_expression": "Apache-2.0 OR BSD-3-Clause",
+        "license_file": [
+          "LICENSE",
+          "LICENSE.APACHE",
+          "LICENSE.BSD"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Intended Audience :: Developers",
+          "Natural Language :: English",
+          "Operating System :: MacOS :: MacOS X",
+          "Operating System :: POSIX",
+          "Operating System :: POSIX :: BSD",
+          "Operating System :: POSIX :: Linux",
+          "Operating System :: Microsoft :: Windows",
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.8",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: Implementation :: CPython",
+          "Programming Language :: Python :: Implementation :: PyPy",
+          "Programming Language :: Python :: Free Threading :: 3 - Stable",
+          "Topic :: Security :: Cryptography"
+        ],
+        "requires_dist": [
+          "cffi>=1.14 ; python_full_version == '3.8.*' and platform_python_implementation != 'PyPy'",
+          "cffi>=2.0.0 ; python_full_version >= '3.9' and platform_python_implementation != 'PyPy'",
+          "typing-extensions>=4.13.2 ; python_full_version < '3.11'",
+          "bcrypt>=3.1.5 ; extra == 'ssh'",
+          "nox[uv]>=2024.4.15 ; extra == 'nox'",
+          "cryptography-vectors==46.0.3 ; extra == 'test'",
+          "pytest>=7.4.0 ; extra == 'test'",
+          "pytest-benchmark>=4.0 ; extra == 'test'",
+          "pytest-cov>=2.10.1 ; extra == 'test'",
+          "pytest-xdist>=3.5.0 ; extra == 'test'",
+          "pretend>=0.7 ; extra == 'test'",
+          "certifi>=2024 ; extra == 'test'",
+          "pytest-randomly ; extra == 'test-randomorder'",
+          "sphinx>=5.3.0 ; extra == 'docs'",
+          "sphinx-rtd-theme>=3.0.0 ; extra == 'docs'",
+          "sphinx-inline-tabs ; extra == 'docs'",
+          "pyenchant>=3 ; extra == 'docstest'",
+          "readme-renderer>=30.0 ; extra == 'docstest'",
+          "sphinxcontrib-spelling>=7.3.1 ; extra == 'docstest'",
+          "build>=1.0.0 ; extra == 'sdist'",
+          "ruff>=0.11.11 ; extra == 'pep8test'",
+          "mypy>=1.14 ; extra == 'pep8test'",
+          "check-sdist ; extra == 'pep8test'",
+          "click>=8.0.1 ; extra == 'pep8test'"
+        ],
+        "requires_python": ">=3.8, !=3.9.0, !=3.9.1",
+        "project_url": [
+          "homepage, https://github.com/pyca/cryptography",
+          "documentation, https://cryptography.io/",
+          "source, https://github.com/pyca/cryptography/",
+          "issues, https://github.com/pyca/cryptography/issues",
+          "changelog, https://cryptography.io/en/latest/changelog/"
+        ],
+        "provides_extra": [
+          "ssh",
+          "nox",
+          "test",
+          "test-randomorder",
+          "docs",
+          "docstest",
+          "sdist",
+          "pep8test"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/87/5b/da4e39efe18eeb89cf580ea9cfc66b6a7c3eadb808fc0cc1d3a295cb5a5d/cffi-2.1.1-cp314-cp314-win_arm64.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "ab36d55f9ed2d067327667c2fea18dda018eb628dd6347aa01dda6cf1f5d3836"
+          },
+          "hash": "sha256=ab36d55f9ed2d067327667c2fea18dda018eb628dd6347aa01dda6cf1f5d3836"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "cffi",
+        "version": "2.1.1",
+        "dynamic": [
+          "license-file"
+        ],
+        "summary": "Foreign Function Interface for Python calling C code.",
+        "description": "[![GitHub Actions Status](https://github.com/python-cffi/cffi/actions/workflows/ci.yaml/badge.svg?branch=main)](https://github.com/python-cffi/cffi/actions/workflows/ci.yaml?query=branch%3Amain++)\n[![PyPI version](https://img.shields.io/pypi/v/cffi.svg)](https://pypi.org/project/cffi)\n[![Read the Docs](https://img.shields.io/badge/docs-latest-blue.svg)][Documentation]\n\n\nCFFI\n====\n\nForeign Function Interface for Python calling C code.\n\nPlease see the [Documentation] or uncompiled in the `doc/` subdirectory.\n\nDownload\n--------\n\n[Download page](https://github.com/python-cffi/cffi/releases)\n\nSource Code\n-----------\n\nSource code is publicly available on\n[GitHub](https://github.com/python-cffi/cffi).\n\nContact\n-------\n\n[Mailing list](https://groups.google.com/forum/#!forum/python-cffi)\n\nTesting/development tips\n------------------------\n\nAfter `git clone` or `wget && tar`, we will get a directory called `cffi` or `cffi-x.x.x`. We call it `repo-directory`. To run tests under CPython, run the following in the `repo-directory`:\n\n    pip install pytest\n    pip install -e .  # editable install of CFFI for local development\n    pytest src/c/ testing/\n\n[Documentation]: http://cffi.readthedocs.org/\n",
+        "description_content_type": "text/markdown",
+        "author": "Armin Rigo, Maciej Fijalkowski",
+        "maintainer": "Matt Davis, Matt Clay",
+        "license_expression": "MIT-0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Programming Language :: Python",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3.15",
+          "Programming Language :: Python :: Free Threading :: 2 - Beta",
+          "Programming Language :: Python :: Implementation :: CPython"
+        ],
+        "requires_dist": [
+          "pycparser; implementation_name != \"PyPy\""
+        ],
+        "requires_python": ">=3.10",
+        "project_url": [
+          "Documentation, https://cffi.readthedocs.io/",
+          "Changelog, https://cffi.readthedocs.io/en/latest/whatsnew.html",
+          "Download, https://github.com/python-cffi/cffi/releases",
+          "Contact, https://groups.google.com/forum/#!forum/python-cffi",
+          "Source Code, https://github.com/python-cffi/cffi",
+          "Issue Tracker, https://github.com/python-cffi/cffi/issues"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/49/d3/b8441a820a491ddfc024b0b0cf0393375b75ea13866d9c66727e54c2fc80/typing_extensions-4.16.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+          },
+          "hash": "sha256=481caa481374e813c1b176ada14e97f1f67a4539ce9cfeb3f350d78d6370c2e8"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "typing_extensions",
+        "version": "4.16.0",
+        "summary": "Backported and Experimental Type Hints for Python 3.9+",
+        "description": "# Typing Extensions\n\n[![Chat at https://gitter.im/python/typing](https://badges.gitter.im/python/typing.svg)](https://gitter.im/python/typing)\n\n[Documentation](https://typing-extensions.readthedocs.io/en/latest/#) –\n[PyPI](https://pypi.org/project/typing-extensions/)\n\n## Overview\n\nThe `typing_extensions` module serves two related purposes:\n\n- Enable use of new type system features on older Python versions. For example,\n  `typing.TypeGuard` is new in Python 3.10, but `typing_extensions` allows\n  users on previous Python versions to use it too.\n- Enable experimentation with new type system PEPs before they are accepted and\n  added to the `typing` module.\n\n`typing_extensions` is treated specially by static type checkers such as\nmypy and pyright. Objects defined in `typing_extensions` are treated the same\nway as equivalent forms in `typing`.\n\n`typing_extensions` uses\n[Semantic Versioning](https://semver.org/). The\nmajor version will be incremented only for backwards-incompatible changes.\nTherefore, it's safe to depend\non `typing_extensions` like this: `typing_extensions ~=x.y`,\nwhere `x.y` is the first version that includes all features you need.\n[This](https://packaging.python.org/en/latest/specifications/version-specifiers/#compatible-release)\nis equivalent to `typing_extensions >=x.y, <(x+1)`. Do not depend on `~= x.y.z`\nunless you really know what you're doing; that defeats the purpose of\nsemantic versioning.\n\n## Included items\n\nSee [the documentation](https://typing-extensions.readthedocs.io/en/latest/#) for a\ncomplete listing of module contents.\n\n## Contributing\n\nSee [CONTRIBUTING.md](https://github.com/python/typing_extensions/blob/main/CONTRIBUTING.md)\nfor how to contribute to `typing_extensions`.\n\n",
+        "description_content_type": "text/markdown",
+        "keywords": [
+          "annotations",
+          "backport",
+          "checker",
+          "checking",
+          "function",
+          "hinting",
+          "hints",
+          "type",
+          "typechecking",
+          "typehinting",
+          "typehints",
+          "typing"
+        ],
+        "author_email": "\"Guido van Rossum, Jukka Lehtosalo, Łukasz Langa, Michael Lee\" <levkivskyi@gmail.com>",
+        "license_expression": "PSF-2.0",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Environment :: Console",
+          "Intended Audience :: Developers",
+          "Operating System :: OS Independent",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3 :: Only",
+          "Programming Language :: Python :: 3.9",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14",
+          "Programming Language :: Python :: 3.15",
+          "Topic :: Software Development"
+        ],
+        "requires_python": ">=3.9",
+        "project_url": [
+          "Bug Tracker, https://github.com/python/typing_extensions/issues",
+          "Changes, https://github.com/python/typing_extensions/blob/main/CHANGELOG.md",
+          "Documentation, https://typing-extensions.readthedocs.io/",
+          "Home, https://github.com/python/typing_extensions",
+          "Q & A, https://github.com/python/typing/discussions",
+          "Repository, https://github.com/python/typing_extensions"
+        ]
+      }
+    },
+    {
+      "download_info": {
+        "url": "https://files.pythonhosted.org/packages/0c/c3/44f3fbbfa403ea2a7c779186dc20772604442dde72947e7d01069cbe98e3/pycparser-3.0-py3-none-any.whl",
+        "archive_info": {
+          "hashes": {
+            "sha256": "b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992"
+          },
+          "hash": "sha256=b727414169a36b7d524c1c3e31839a521725078d7b2ff038656844266160a992"
+        }
+      },
+      "is_direct": false,
+      "is_yanked": false,
+      "requested": false,
+      "metadata": {
+        "metadata_version": "2.4",
+        "name": "pycparser",
+        "version": "3.0",
+        "dynamic": [
+          "license-file"
+        ],
+        "summary": "C parser in Python",
+        "description": "===============\npycparser v3.00\n===============\n\n\n.. image:: https://github.com/eliben/pycparser/workflows/pycparser-tests/badge.svg\n  :align: center\n  :target: https://github.com/eliben/pycparser/actions\n\n----\n\n.. contents::\n    :backlinks: none\n\n.. sectnum::\n\nIntroduction\n============\n\nWhat is pycparser?\n------------------\n\n**pycparser** is a parser for the C language, written in pure Python. It is a\nmodule designed to be easily integrated into applications that need to parse\nC source code.\n\nWhat is it good for?\n--------------------\n\nAnything that needs C code to be parsed. The following are some uses for\n**pycparser**, taken from real user reports:\n\n* C code obfuscator\n* Front-end for various specialized C compilers\n* Static code checker\n* Automatic unit-test discovery\n* Adding specialized extensions to the C language\n\nOne of the most popular uses of **pycparser** is in the `cffi\n<https://cffi.readthedocs.io/en/latest/>`_ library, which uses it to parse the\ndeclarations of C functions and types in order to auto-generate FFIs.\n\n**pycparser** is unique in the sense that it's written in pure Python - a very\nhigh level language that's easy to experiment with and tweak. To people familiar\nwith Lex and Yacc, **pycparser**'s code will be simple to understand. It also\nhas no external dependencies (except for a Python interpreter), making it very\nsimple to install and deploy.\n\nWhich version of C does pycparser support?\n------------------------------------------\n\n**pycparser** aims to support the full C99 language (according to the standard\nISO/IEC 9899). Some features from C11 are also supported, and patches to support\nmore are welcome.\n\n**pycparser** supports very few GCC extensions, but it's fairly easy to set\nthings up so that it parses code with a lot of GCC-isms successfully. See the\n`FAQ <https://github.com/eliben/pycparser/wiki/FAQ>`_ for more details.\n\nWhat grammar does pycparser follow?\n-----------------------------------\n\n**pycparser** very closely follows the C grammar provided in Annex A of the C99\nstandard (ISO/IEC 9899).\n\nHow is pycparser licensed?\n--------------------------\n\n`BSD license <https://github.com/eliben/pycparser/blob/master/LICENSE>`_.\n\nContact details\n---------------\n\nFor reporting problems with **pycparser** or submitting feature requests, please\nopen an `issue <https://github.com/eliben/pycparser/issues>`_, or submit a\npull request.\n\n\nInstalling\n==========\n\nPrerequisites\n-------------\n\n**pycparser** is being tested with modern versions of Python on\nLinux, macOS and Windows. See `the CI dashboard <https://github.com/eliben/pycparser/actions/workflows/ci.yml>`__\nfor details.\n\n**pycparser** has no external dependencies.\n\nInstallation process\n--------------------\n\nThe recommended way to install **pycparser** is with ``pip``::\n\n    > pip install pycparser\n\nUsing\n=====\n\nInteraction with the C preprocessor\n-----------------------------------\n\nIn order to be compilable, C code must be preprocessed by the C preprocessor -\n``cpp``. A compatible ``cpp`` handles preprocessing directives like ``#include`` and\n``#define``, removes comments, and performs other minor tasks that prepare the C\ncode for compilation.\n\nFor all but the most trivial snippets of C code **pycparser**, like a C\ncompiler, must receive preprocessed C code in order to function correctly. If\nyou import the top-level ``parse_file`` function from the **pycparser** package,\nit will interact with ``cpp`` for you, as long as it's in your PATH, or you\nprovide a path to it.\n\nNote also that you can use ``gcc -E`` or ``clang -E`` instead of ``cpp``. See\nthe ``using_gcc_E_libc.py`` example for more details. Windows users can download\nand install a binary build of Clang for Windows `from this website\n<http://llvm.org/releases/download.html>`_.\n\nWhat about the standard C library headers?\n------------------------------------------\n\nC code almost always ``#include``\\s various header files from the standard C\nlibrary, like ``stdio.h``. While (with some effort) **pycparser** can be made to\nparse the standard headers from any C compiler, it's much simpler to use the\nprovided \"fake\" standard includes for C11 in ``utils/fake_libc_include``. These\nare standard C header files that contain only the bare necessities to allow\nvalid parsing of the files that use them. As a bonus, since they're minimal, it\ncan significantly improve the performance of parsing large C files.\n\nThe key point to understand here is that **pycparser** doesn't really care about\nthe semantics of types. It only needs to know whether some token encountered in\nthe source is a previously defined type. This is essential in order to be able\nto parse C correctly.\n\nSee `this blog post\n<https://eli.thegreenplace.net/2015/on-parsing-c-type-declarations-and-fake-headers>`_\nfor more details.\n\nNote that the fake headers are not included in the ``pip`` package nor installed\nvia the package build (`#224 <https://github.com/eliben/pycparser/issues/224>`_).\n\nBasic usage\n-----------\n\nTake a look at the |examples|_ directory of the distribution for a few examples\nof using **pycparser**. These should be enough to get you started. Please note\nthat most realistic C code samples would require running the C preprocessor\nbefore passing the code to **pycparser**; see the previous sections for more\ndetails.\n\n.. |examples| replace:: ``examples``\n.. _examples: examples\n\n\nAdvanced usage\n--------------\n\nThe public interface of **pycparser** is well documented with comments in\n``pycparser/c_parser.py``. For a detailed overview of the various AST nodes\ncreated by the parser, see ``pycparser/_c_ast.cfg``.\n\nThere's also a `FAQ available here <https://github.com/eliben/pycparser/wiki/FAQ>`_.\nIn any case, you can always drop me an `email <eliben@gmail.com>`_ for help.\n\n\nModifying\n=========\n\nThere are a few points to keep in mind when modifying **pycparser**:\n\n* The code for **pycparser**'s AST nodes is automatically generated from a\n  configuration file - ``_c_ast.cfg``, by ``_ast_gen.py``. If you modify the AST\n  configuration, make sure to re-generate the code. This can be done by running\n  the ``_ast_gen.py`` script (from the repository root or the\n  ``pycparser`` directory).\n* Read the docstring in the constructor of the ``CParser`` class for details\n  on configuration and compatibility arguments.\n\n\nPackage contents\n================\n\nOnce you unzip the ``pycparser`` package, you'll see the following files and\ndirectories:\n\nREADME.rst:\n  This README file.\n\nLICENSE:\n  The pycparser license\n\nsetup.py:\n  Legacy installation script (build metadata lives in ``pyproject.toml``).\n\npyproject.toml:\n  Package metadata and build configuration.\n\nexamples/:\n  A directory with some examples of using **pycparser**\n\npycparser/:\n  The **pycparser** module source code.\n\ntests/:\n  Unit tests.\n\nutils/fake_libc_include:\n  Minimal standard C library include files that should allow to parse any C code.\n  Note that these headers now include C11 code, so they may not work when the\n  preprocessor is configured to an earlier C standard (like ``-std=c99``).\n\nutils/internal/:\n  Internal utilities for my own use. You probably don't need them.\n\n\nContributors\n============\n\nSome people have contributed to **pycparser** by opening issues on bugs they've\nfound and/or submitting patches. The list of contributors is in the CONTRIBUTORS\nfile in the source distribution. After **pycparser** moved to Github I stopped\nupdating this list because Github does a much better job at tracking\ncontributions.\n",
+        "description_content_type": "text/x-rst",
+        "author_email": "Eli Bendersky <eliben@gmail.com>",
+        "maintainer_email": "Eli Bendersky <eliben@gmail.com>",
+        "license_expression": "BSD-3-Clause",
+        "license_file": [
+          "LICENSE"
+        ],
+        "classifier": [
+          "Development Status :: 5 - Production/Stable",
+          "Programming Language :: Python :: 3",
+          "Programming Language :: Python :: 3.10",
+          "Programming Language :: Python :: 3.11",
+          "Programming Language :: Python :: 3.12",
+          "Programming Language :: Python :: 3.13",
+          "Programming Language :: Python :: 3.14"
+        ],
+        "requires_python": ">=3.10",
+        "project_url": [
+          "Homepage, https://github.com/eliben/pycparser"
+        ]
+      }
+    }
+  ],
+  "environment": {
+    "implementation_name": "cpython",
+    "implementation_version": "3.14.6",
+    "os_name": "nt",
+    "platform_machine": "ARM64",
+    "platform_release": "11",
+    "platform_system": "Windows",
+    "platform_version": "10.0.28000",
+    "python_full_version": "3.14.6",
+    "platform_python_implementation": "CPython",
+    "python_version": "3.14",
+    "sys_platform": "win32"
+  }
+}

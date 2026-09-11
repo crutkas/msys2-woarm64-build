@@ -1,0 +1,96 @@
+{
+  "schema": 1,
+  "status": "ordinary-native-sqlite-combined-runtime-apis-passed",
+  "launcher": {
+    "pid": 19696,
+    "creation_filetime": 134335706620395136,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\run-sqlite-combined-ordinary.py",
+      "--prepared",
+      "C:\\ag-sqlite-combined-01\\inputs-01",
+      "--sha256",
+      "075e13910ac21e1c4026e9874feca965596df00a1e69312c69da782b55a100b2",
+      "--output",
+      "C:\\ag-sqlite-combined-01\\ordinary-01"
+    ]
+  },
+  "prepared_sha256": "075e13910ac21e1c4026e9874feca965596df00a1e69312c69da782b55a100b2",
+  "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "combined_receipt_sha256": "f8c7c49b46fdf0844555b99d3c1e4d2c342817a8b01eef1e9f283875796e2b9b",
+  "jobs": 1,
+  "scope": "Ordinary non-debugger shared/static SQLite C API and direct helper APIs; no compiler rebuild",
+  "free_ram_gib": 31.055274963378906,
+  "steps": [
+    {
+      "name": "shared",
+      "command": [
+        "C:\\ag-sqlite-combined-01\\inputs-01\\consumers\\sqlite-api-shared.exe",
+        "/c/ag-sqlite-combined-01/ordinary-01/shared.sqlite"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 27300,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-combined-01\\ordinary-01\\shared.native-job.json",
+          "sha256": "695e91524dfac3a63252c19ec07131cabb6477c4d3d1273060463cd89875123c",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "log_sha256": "c2491d4183c5e497d9053af1e202c7f8b96d9c973dd75a3d4d3ae89ef7e55559"
+    },
+    {
+      "name": "static",
+      "command": [
+        "C:\\ag-sqlite-combined-01\\inputs-01\\consumers\\sqlite-api-static.exe",
+        "/c/ag-sqlite-combined-01/ordinary-01/static.sqlite"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 21160,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-combined-01\\ordinary-01\\static.native-job.json",
+          "sha256": "0ddfe59921ec55d64836404688db1b09828d631ae039fc1870568a31c2e479a4",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "log_sha256": "c2491d4183c5e497d9053af1e202c7f8b96d9c973dd75a3d4d3ae89ef7e55559"
+    },
+    {
+      "name": "helpers",
+      "command": [
+        "C:\\ag-sqlite-combined-01\\inputs-01\\consumers\\sqlite-helper-apis.exe",
+        "/c/ag-sqlite-combined-01/inputs-01/runtime/usr/bin",
+        "/c/ag-sqlite-combined-01/ordinary-01/helper.sqlite",
+        "/c/ag-sqlite-combined-01/ordinary-01/helper.sql"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 11920,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-combined-01\\ordinary-01\\helpers.native-job.json",
+          "sha256": "f7007e4ba0fff8260c3e67b9434cea18e8ea9c0871e26852b91117e6c10da69a",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "log_sha256": "b42157d02876006f77fcc551b67990263afdea8140cd0f3060ada3e646f43975"
+    }
+  ],
+  "inputs_unchanged": true
+}

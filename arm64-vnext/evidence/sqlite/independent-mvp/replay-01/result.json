@@ -1,0 +1,1585 @@
+{
+  "schema": 1,
+  "passed": true,
+  "launcher": {
+    "pid": 25224,
+    "creation_filetime": 134335745899623566,
+    "argv": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      "C:\\ag-mvp-independent-sqlite-20260911\\independent_replay.py",
+      "replay",
+      "--work",
+      "C:\\ag-mvp-independent-sqlite-20260911\\replay-01",
+      "--sha256",
+      "e1f8fd08e9c0bd098f7d7b830eb9c5bcdeb2000cf11f862f5483821d45d6097b"
+    ]
+  },
+  "max_concurrent_native_cases": 1,
+  "root": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces",
+  "candidate_manifest_sha256": "708394d8b303874307db541d278b9891d2b1fde1a9948e5266a3a992555e33f1",
+  "prepare_sha256": "e1f8fd08e9c0bd098f7d7b830eb9c5bcdeb2000cf11f862f5483821d45d6097b",
+  "source_commit": "fccdb7b97945f691c3f6ed231ad907719003f272",
+  "source_tree": "61c7aa257b75439d83f128c340018b4c0a80f6e6",
+  "steps": [
+    {
+      "name": "behavior",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\source\\arm64-git-recovery\\native\\mvp\\run_behavior.py",
+        "--root",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces",
+        "--output",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\behavior"
+      ],
+      "free_ram_gib_before": 37.153133392333984,
+      "process": {
+        "pid": 9332,
+        "exit": 0,
+        "timed_out": false,
+        "active_at_parent_exit": 0,
+        "active_at_boundary": 0,
+        "remaining_process_ids": [],
+        "remaining_process_details": [],
+        "created_processes": 229,
+        "passed": true
+      },
+      "result_sha256": "ba2faa1633c5f8a4855634495921a03ac1b66a06275abc2d751deade49f7c6d9",
+      "result": {
+        "cases": [
+          [
+            "native-uname",
+            "PASS",
+            "aarch64"
+          ],
+          [
+            "relocated-runtime-root",
+            "PASS",
+            "C:/ag-mvp-independent-sqlite-20260911/replay-01/moved candidate with spaces"
+          ],
+          [
+            "pipeline-sort-uniq",
+            "PASS",
+            "exact-bytes"
+          ],
+          [
+            "fork-wait",
+            "PASS",
+            "semantic-exit-7"
+          ],
+          [
+            "signal-usr1",
+            "PASS",
+            "native-bash-trap"
+          ],
+          [
+            "filesystem",
+            "PASS",
+            "copy-move-remove-spaces"
+          ],
+          [
+            "random-device",
+            "PASS",
+            "64-and-4096-bytes"
+          ],
+          [
+            "execvp-permission",
+            "PASS",
+            "semantic-exit-126"
+          ],
+          [
+            "git-init-commit",
+            "PASS",
+            "two-real-repositories"
+          ],
+          [
+            "git-hooks",
+            "PASS",
+            "positive-and-rejected-commit"
+          ],
+          [
+            "git-recursive-clone",
+            "PASS",
+            "exact-head-clean-fsck"
+          ],
+          [
+            "https-clone-fetch",
+            "PASS",
+            "https://github.com/octocat/Hello-World.git"
+          ]
+        ],
+        "command": [
+          "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+          "--noprofile",
+          "--norc",
+          "C:/ag-mvp-independent-sqlite-20260911/replay-01/source/arm64-git-recovery/native/mvp/behavior.sh",
+          "C:/ag-mvp-independent-sqlite-20260911/replay-01/behavior/work",
+          "https://github.com/octocat/Hello-World.git"
+        ],
+        "inputs_unchanged": true,
+        "passed": true,
+        "process": {
+          "active_at_boundary": 0,
+          "active_at_parent_exit": 0,
+          "created_processes": 228,
+          "exit": 0,
+          "passed": true,
+          "pid": 4696,
+          "remaining_process_details": [],
+          "remaining_process_ids": [],
+          "timed_out": false
+        },
+        "root": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces",
+        "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "schema": 1,
+        "scope": "Real local/network functional cases; parent raw status and bounded cleanup; all-child architecture/exit attestation is a separate required gate",
+        "script_sha256": "d154c0ed16e6455eafcc3870caa8bd07a06651b91d6076d89d991977655e7ded"
+      },
+      "passed": true
+    },
+    {
+      "name": "ssh",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\source\\arm64-git-recovery\\native\\mvp\\controlled_ssh.py",
+        "--client",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\ssh.exe",
+        "--bash",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+        "--test-driver",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\ssh-fixture-driver",
+        "--output",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\ssh",
+        "--pwsh",
+        "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.6.0_arm64__8wekyb3d8bbwe\\pwsh.exe"
+      ],
+      "free_ram_gib_before": 37.06375503540039,
+      "process": {
+        "pid": 21060,
+        "exit": 0,
+        "timed_out": false,
+        "active_at_parent_exit": 0,
+        "active_at_boundary": 0,
+        "remaining_process_ids": [],
+        "remaining_process_details": [],
+        "created_processes": 5,
+        "passed": true
+      },
+      "result_sha256": "40bef436eb084078a139f5d3f5dc2b70d56409c884ec6d137851d36f5992ced3",
+      "result": {
+        "cases": [
+          {
+            "name": "correct-host-key",
+            "passed": true,
+            "pid": 5180,
+            "raw_exit": 0,
+            "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+            "stdout_sha256": "d394683bbd102db1a0022462ab386aed0430b6aa5b018145a823aab876f9658b"
+          },
+          {
+            "name": "wrong-host-key",
+            "passed": true,
+            "pid": 7532,
+            "raw_exit": 255,
+            "stderr_sha256": "a39feeac9e9ecf1f4c9f3fd745ffeef45c286ee9451f82704a04f95401d7530d",
+            "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+          }
+        ],
+        "client_path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\ssh.exe",
+        "client_sha256": "fd87ccdfbd8be33d22b67fa3f1c94bb2327a3e7d24355bf7fd2485d356f1976d",
+        "events": [
+          {
+            "event": "connected",
+            "peer": [
+              "127.0.0.1",
+              53112
+            ]
+          },
+          {
+            "event": "public_key_auth",
+            "valid": true
+          },
+          {
+            "event": "public_key_auth",
+            "valid": true
+          },
+          {
+            "command": "prove aa39cce918fb525763f29a3dcdc6c01f",
+            "event": "authenticated_command",
+            "recv_cipher": "chacha20-poly1305@openssh.com",
+            "send_cipher": "chacha20-poly1305@openssh.com"
+          },
+          {
+            "event": "connected",
+            "peer": [
+              "127.0.0.1",
+              53113
+            ]
+          }
+        ],
+        "parent": {
+          "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+          "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+        },
+        "passed": true,
+        "port": 53111,
+        "schema": 1,
+        "scope": "Real encrypted loopback SSH handshake/public-key authentication and strict host-key rejection; portable fixture only, no installed service or real credentials"
+      },
+      "passed": true
+    },
+    {
+      "name": "attestation",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\source\\arm64-git-recovery\\native\\mvp\\attest_entrypoints.py",
+        "--root",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces",
+        "--output",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\attestation",
+        "--pwsh",
+        "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.6.0_arm64__8wekyb3d8bbwe\\pwsh.exe",
+        "--process-gate",
+        "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\Test-NativeArm64Process.ps1"
+      ],
+      "free_ram_gib_before": 37.10216522216797,
+      "process": {
+        "pid": 3228,
+        "exit": 0,
+        "timed_out": false,
+        "active_at_parent_exit": 0,
+        "active_at_boundary": 0,
+        "remaining_process_ids": [],
+        "remaining_process_details": [],
+        "created_processes": 6,
+        "passed": true
+      },
+      "result_sha256": "1ddc38098b5cb2b95522ce49776753081ef6ff0aed4b9e071bce9141bd77cd09",
+      "result": {
+        "cases": [
+          {
+            "command": [
+              "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+              "--noprofile",
+              "--norc",
+              "-c",
+              "printf 'ready\\n'; IFS= read -r reply; test \"$reply\" = finish"
+            ],
+            "modules": [
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+                "payload_path": "usr/bin/bash.exe",
+                "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+                "size": 7728825
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ntdll.dll",
+                "payload_path": null,
+                "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+                "size": 4448024
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\kernel32.dll",
+                "payload_path": null,
+                "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+                "size": 1498160
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\KernelBase.dll",
+                "payload_path": null,
+                "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+                "size": 7265336
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\user32.dll",
+                "payload_path": null,
+                "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+                "size": 2606976
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\win32u.dll",
+                "payload_path": null,
+                "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+                "size": 383032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32.dll",
+                "payload_path": null,
+                "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+                "size": 461992
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\msys-intl-8.dll",
+                "payload_path": "usr/bin/msys-intl-8.dll",
+                "sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+                "size": 754493
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ucrtbase.dll",
+                "payload_path": null,
+                "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+                "size": 2249600
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32full.dll",
+                "payload_path": null,
+                "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+                "size": 1928816
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\msys-iconv-2.dll",
+                "payload_path": "usr/bin/msys-iconv-2.dll",
+                "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+                "size": 2046237
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcp_win.dll",
+                "payload_path": null,
+                "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+                "size": 1307536
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\msys-2.0.dll",
+                "payload_path": "usr/bin/msys-2.0.dll",
+                "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+                "size": 30874017
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\sechost.dll",
+                "payload_path": null,
+                "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+                "size": 1203688
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\advapi32.dll",
+                "payload_path": null,
+                "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+                "size": 1364784
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcrt.dll",
+                "payload_path": null,
+                "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+                "size": 1339496
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\rpcrt4.dll",
+                "payload_path": null,
+                "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+                "size": 2167032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\cryptbase.dll",
+                "payload_path": null,
+                "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+                "size": 76280
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+                "payload_path": null,
+                "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+                "size": 1018816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\imm32.dll",
+                "payload_path": null,
+                "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+                "size": 339016
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\netapi32.dll",
+                "payload_path": null,
+                "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f",
+                "size": 187784
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\samcli.dll",
+                "payload_path": null,
+                "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c",
+                "size": 179200
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\samlib.dll",
+                "payload_path": null,
+                "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535",
+                "size": 433664
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\netutils.dll",
+                "payload_path": null,
+                "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6",
+                "size": 89120
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ws2_32.dll",
+                "payload_path": null,
+                "sha256": "67ebbfc3a456a5623e649e1dcb26deba2b58fa0e5e8cb09aa1e03ab7355a7a49",
+                "size": 854040
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\mswsock.dll",
+                "payload_path": null,
+                "sha256": "42b2c477d50c07a8c6aed14bcbbbda18720f141507e550da433a83e2d4a2c30e",
+                "size": 768816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+                "payload_path": null,
+                "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b",
+                "size": 358176
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\dnsapi.dll",
+                "payload_path": null,
+                "sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319",
+                "size": 2421072
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\dsparse.dll",
+                "payload_path": null,
+                "sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d",
+                "size": 78336
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\nsi.dll",
+                "payload_path": null,
+                "sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2",
+                "size": 53528
+              }
+            ],
+            "name": "bash",
+            "native_process": {
+              "MeasuredCount": 1,
+              "Passed": true,
+              "Processes": [
+                {
+                  "CreatedUtc": "2026-09-11T04:31:05.8891758Z",
+                  "ImagePath": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+                  "MachineAttributes": "0x00000003",
+                  "NativeArm64Process": true,
+                  "NativeMachine": "0xAA64",
+                  "ProcessId": 7796,
+                  "ProcessMachine": "0xAA64",
+                  "Wow64ProcessMachine": "0x0000"
+                }
+              ],
+              "RecordedUtc": "2026-09-11T04:31:07.5209972Z",
+              "RequestedCount": 1,
+              "SchemaVersion": 1,
+              "Scope": "Live ProcessMachineTypeInfo plus IsWow64Process2, process creation time, and executable path; not functional behavior, loaded-module closure, or binary-source provenance. Requires Windows 11.",
+              "Violations": []
+            },
+            "pid": 7796,
+            "process_gate_sha256": "268515f4c33fd7c871b797ee4cd93d9a45c1026b61f207e3d13249f205e1af1e",
+            "raw_exit": 0,
+            "responsive_stdout": "ready\n",
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "command": [
+              "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\git.exe",
+              "-C",
+              "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\attestation\\repo.git",
+              "cat-file",
+              "--batch"
+            ],
+            "modules": [
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\git.exe",
+                "payload_path": "mingwarm64/bin/git.exe",
+                "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9",
+                "size": 4118033
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ntdll.dll",
+                "payload_path": null,
+                "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+                "size": 4448024
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\kernel32.dll",
+                "payload_path": null,
+                "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+                "size": 1498160
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\KernelBase.dll",
+                "payload_path": null,
+                "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+                "size": 7265336
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\advapi32.dll",
+                "payload_path": null,
+                "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+                "size": 1364784
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcrt.dll",
+                "payload_path": null,
+                "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+                "size": 1339496
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\sechost.dll",
+                "payload_path": null,
+                "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+                "size": 1203688
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\rpcrt4.dll",
+                "payload_path": null,
+                "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+                "size": 2167032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ucrtbase.dll",
+                "payload_path": null,
+                "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+                "size": 2249600
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\user32.dll",
+                "payload_path": null,
+                "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+                "size": 2606976
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\win32u.dll",
+                "payload_path": null,
+                "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+                "size": 383032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32.dll",
+                "payload_path": null,
+                "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+                "size": 461992
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32full.dll",
+                "payload_path": null,
+                "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+                "size": 1928816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcp_win.dll",
+                "payload_path": null,
+                "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+                "size": 1307536
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ws2_32.dll",
+                "payload_path": null,
+                "sha256": "67ebbfc3a456a5623e649e1dcb26deba2b58fa0e5e8cb09aa1e03ab7355a7a49",
+                "size": 854040
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libintl-8.dll",
+                "payload_path": "mingwarm64/bin/libintl-8.dll",
+                "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+                "size": 268288
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libiconv-2.dll",
+                "payload_path": "mingwarm64/bin/libiconv-2.dll",
+                "sha256": "5eb3e024adbeb40e990530b64498fa5305b4ebeaa34db971196f92317f70a35d",
+                "size": 1108992
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libpcre2-8.dll",
+                "payload_path": "mingwarm64/bin/libpcre2-8.dll",
+                "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+                "size": 856400
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libz.dll",
+                "payload_path": "mingwarm64/bin/libz.dll",
+                "sha256": "24e27cb2d1693635634b322e8090aab315fe512ce97beced95bf92b18ef79818",
+                "size": 236947
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\cryptbase.dll",
+                "payload_path": null,
+                "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+                "size": 76280
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\imm32.dll",
+                "payload_path": null,
+                "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+                "size": 339016
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+                "payload_path": null,
+                "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+                "size": 1018816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ntmarta.dll",
+                "payload_path": null,
+                "sha256": "7efffbd2bddd094895e9757675b636787638b7ec61a12f551b3514a226459fdb",
+                "size": 361832
+              }
+            ],
+            "name": "git",
+            "native_process": {
+              "MeasuredCount": 1,
+              "Passed": true,
+              "Processes": [
+                {
+                  "CreatedUtc": "2026-09-11T04:31:08.2342978Z",
+                  "ImagePath": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\git.exe",
+                  "MachineAttributes": "0x00000003",
+                  "NativeArm64Process": true,
+                  "NativeMachine": "0xAA64",
+                  "ProcessId": 19640,
+                  "ProcessMachine": "0xAA64",
+                  "Wow64ProcessMachine": "0x0000"
+                }
+              ],
+              "RecordedUtc": "2026-09-11T04:31:09.8547895Z",
+              "RequestedCount": 1,
+              "SchemaVersion": 1,
+              "Scope": "Live ProcessMachineTypeInfo plus IsWow64Process2, process creation time, and executable path; not functional behavior, loaded-module closure, or binary-source provenance. Requires Windows 11.",
+              "Violations": []
+            },
+            "pid": 19640,
+            "process_gate_sha256": "268515f4c33fd7c871b797ee4cd93d9a45c1026b61f207e3d13249f205e1af1e",
+            "raw_exit": 0,
+            "responsive_stdout": "0000000000000000000000000000000000000000 missing\n",
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "command": [
+              "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\libexec\\git-core\\git-remote-https.exe",
+              "origin",
+              "https://github.com/octocat/Hello-World.git"
+            ],
+            "modules": [
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\libexec\\git-core\\git-remote-https.exe",
+                "payload_path": "mingwarm64/libexec/git-core/git-remote-https.exe",
+                "sha256": "23f0ed83d9f815765f7bccd8a301e217d245c87ef1be36cf9239e30c077e8a6a",
+                "size": 2467115
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ntdll.dll",
+                "payload_path": null,
+                "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+                "size": 4448024
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\kernel32.dll",
+                "payload_path": null,
+                "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+                "size": 1498160
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\KernelBase.dll",
+                "payload_path": null,
+                "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+                "size": 7265336
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\advapi32.dll",
+                "payload_path": null,
+                "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+                "size": 1364784
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcrt.dll",
+                "payload_path": null,
+                "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+                "size": 1339496
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\sechost.dll",
+                "payload_path": null,
+                "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+                "size": 1203688
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\rpcrt4.dll",
+                "payload_path": null,
+                "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+                "size": 2167032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ucrtbase.dll",
+                "payload_path": null,
+                "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+                "size": 2249600
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\user32.dll",
+                "payload_path": null,
+                "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+                "size": 2606976
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\win32u.dll",
+                "payload_path": null,
+                "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+                "size": 383032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32.dll",
+                "payload_path": null,
+                "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+                "size": 461992
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32full.dll",
+                "payload_path": null,
+                "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+                "size": 1928816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcp_win.dll",
+                "payload_path": null,
+                "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+                "size": 1307536
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ws2_32.dll",
+                "payload_path": null,
+                "sha256": "67ebbfc3a456a5623e649e1dcb26deba2b58fa0e5e8cb09aa1e03ab7355a7a49",
+                "size": 854040
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libiconv-2.dll",
+                "payload_path": "mingwarm64/bin/libiconv-2.dll",
+                "sha256": "5eb3e024adbeb40e990530b64498fa5305b4ebeaa34db971196f92317f70a35d",
+                "size": 1108992
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libpcre2-8.dll",
+                "payload_path": "mingwarm64/bin/libpcre2-8.dll",
+                "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+                "size": 856400
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libintl-8.dll",
+                "payload_path": "mingwarm64/bin/libintl-8.dll",
+                "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+                "size": 268288
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libz.dll",
+                "payload_path": "mingwarm64/bin/libz.dll",
+                "sha256": "24e27cb2d1693635634b322e8090aab315fe512ce97beced95bf92b18ef79818",
+                "size": 236947
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\cryptbase.dll",
+                "payload_path": null,
+                "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+                "size": 76280
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\imm32.dll",
+                "payload_path": null,
+                "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+                "size": 339016
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+                "payload_path": null,
+                "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+                "size": 1018816
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+                "payload_path": "mingwarm64/bin/libcurl-4.dll",
+                "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+                "size": 1680675
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\bcrypt.dll",
+                "payload_path": null,
+                "sha256": "e08ecfb7d6b5e6997c5054a07b81c54d37a6855b723fcba460c422130a928592",
+                "size": 290592
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\Wldap32.dll",
+                "payload_path": null,
+                "sha256": "3a0351f2f0edc904e7017b97bbc5fdfefe62fc48cea38f9ea362cd9140a9b7de",
+                "size": 750592
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\mswsock.dll",
+                "payload_path": null,
+                "sha256": "42b2c477d50c07a8c6aed14bcbbbda18720f141507e550da433a83e2d4a2c30e",
+                "size": 768816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\crypt32.dll",
+                "payload_path": null,
+                "sha256": "9bbf4ff3065dd0a9acd6a665542381da5bb8f831e367338b6eafbd7712621535",
+                "size": 2724176
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\secur32.dll",
+                "payload_path": null,
+                "sha256": "1ca1148055f34f4e6adb4b4ffb83999b55fb6fdd111d1b130a01434a6a5fb4b6",
+                "size": 66048
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libbrotlidec.dll",
+                "payload_path": "mingwarm64/bin/libbrotlidec.dll",
+                "sha256": "4a9eaaa0f744148686064a5bb766aa68efc00e87ee1669e7b51495471cf33d09",
+                "size": 58094
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+                "payload_path": null,
+                "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b",
+                "size": 358176
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libcares-2.dll",
+                "payload_path": "mingwarm64/bin/libcares-2.dll",
+                "sha256": "363dc2c3c227c20c7d84b6037cc317af377d4df2640488c9510660f592118b9a",
+                "size": 281937
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libidn2-0.dll",
+                "payload_path": "mingwarm64/bin/libidn2-0.dll",
+                "sha256": "20a7f146b22d0674cc3d963bdf0b901cde2ac434b55b4b8190aee053f0d561bf",
+                "size": 847860
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+                "payload_path": "mingwarm64/bin/libcrypto-3-arm64.dll",
+                "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a",
+                "size": 4870487
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libngtcp2.dll",
+                "payload_path": "mingwarm64/bin/libngtcp2.dll",
+                "sha256": "8498672f15855fce36adc361d7d9b963483965376fde54376e3de0303aaf18e4",
+                "size": 490579
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libnghttp3-9.dll",
+                "payload_path": "mingwarm64/bin/libnghttp3-9.dll",
+                "sha256": "3f9c9fcb3c28537eae91f6bea90c3bdc49ea69b6588056505f6d607b2bd005ca",
+                "size": 319670
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libngtcp2_crypto_ossl-0.dll",
+                "payload_path": "mingwarm64/bin/libngtcp2_crypto_ossl-0.dll",
+                "sha256": "10d75a4bf7e5d7689a26c7eda101f016a2aa3149fe4dcc97ab6af6d56844b62f",
+                "size": 175702
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libnghttp2-14.dll",
+                "payload_path": "mingwarm64/bin/libnghttp2-14.dll",
+                "sha256": "013670f719ffe36a79d0b60fa0cf7a5feb14385f0ff668e61027ffa34c9deb90",
+                "size": 335282
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libpsl-5.dll",
+                "payload_path": "mingwarm64/bin/libpsl-5.dll",
+                "sha256": "ce66a8d86547c3aaff790354cf25ad9e122ba18422ff9a94308048095e2550d8",
+                "size": 195125
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+                "payload_path": "mingwarm64/bin/libssl-3-arm64.dll",
+                "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48",
+                "size": 918276
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libssh2.dll",
+                "payload_path": "mingwarm64/bin/libssh2.dll",
+                "sha256": "c4969a698e1b6e10fb24e70cce5d43a7b1bbca91a49c935dbde2000266f83630",
+                "size": 1643391
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libzstd.dll",
+                "payload_path": "mingwarm64/bin/libzstd.dll",
+                "sha256": "58f226e8c244c0931ba4de9d12db2877f285ac7ec35142a828aeeeac0946c824",
+                "size": 1228289
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libbrotlicommon.dll",
+                "payload_path": "mingwarm64/bin/libbrotlicommon.dll",
+                "sha256": "fe16d4d5692b2670794de146b246b14a39d5647775591d288613600d545e6bfa",
+                "size": 143992
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libngtcp2-16.dll",
+                "payload_path": "mingwarm64/bin/libngtcp2-16.dll",
+                "sha256": "d532b1197e8700a3838d2da25601821d43c31c965008d0f92d784b97b66ff642",
+                "size": 490579
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libunistring-5.dll",
+                "payload_path": "mingwarm64/bin/libunistring-5.dll",
+                "sha256": "db9e0e32a203c2279641f943577f676a316cbe3602d401eb0bf73b971f755eab",
+                "size": 6662149
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\sspicli.dll",
+                "payload_path": null,
+                "sha256": "34ed0262acc3385a4a1e60d2eb2bb18f21a255bada13050cd8a0b7355fdba477",
+                "size": 522912
+              }
+            ],
+            "name": "https-helper",
+            "native_process": {
+              "MeasuredCount": 1,
+              "Passed": true,
+              "Processes": [
+                {
+                  "CreatedUtc": "2026-09-11T04:31:10.3261852Z",
+                  "ImagePath": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\libexec\\git-core\\git-remote-https.exe",
+                  "MachineAttributes": "0x00000003",
+                  "NativeArm64Process": true,
+                  "NativeMachine": "0xAA64",
+                  "ProcessId": 7588,
+                  "ProcessMachine": "0xAA64",
+                  "Wow64ProcessMachine": "0x0000"
+                }
+              ],
+              "RecordedUtc": "2026-09-11T04:31:11.9812579Z",
+              "RequestedCount": 1,
+              "SchemaVersion": 1,
+              "Scope": "Live ProcessMachineTypeInfo plus IsWow64Process2, process creation time, and executable path; not functional behavior, loaded-module closure, or binary-source provenance. Requires Windows 11.",
+              "Violations": []
+            },
+            "pid": 7588,
+            "process_gate_sha256": "268515f4c33fd7c871b797ee4cd93d9a45c1026b61f207e3d13249f205e1af1e",
+            "raw_exit": 0,
+            "responsive_stdout": "stateless-connect\nfetch\nget\noption\npush\ncheck-connectivity\nobject-format\n\n",
+            "stderr": "",
+            "stdout": ""
+          },
+          {
+            "command": [
+              "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\python.exe",
+              "-I",
+              "-S",
+              "-c",
+              "import ssl,sqlite3,hashlib,ctypes,sys; assert sys.maxsize > 2**32; print('python-native-modules-ready',flush=True); assert input() == 'finish'"
+            ],
+            "modules": [
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\python.exe",
+                "payload_path": "mingwarm64/bin/python.exe",
+                "sha256": "c55badc4658c6a5e01f21959ae813a66060b786b3297b67991b27a673327652f",
+                "size": 99518
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ntdll.dll",
+                "payload_path": null,
+                "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+                "size": 4448024
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\kernel32.dll",
+                "payload_path": null,
+                "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+                "size": 1498160
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\KernelBase.dll",
+                "payload_path": null,
+                "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+                "size": 7265336
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ucrtbase.dll",
+                "payload_path": null,
+                "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+                "size": 2249600
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libpython3.12.dll",
+                "payload_path": "mingwarm64/bin/libpython3.12.dll",
+                "sha256": "8997aa2a57b39e60bb9454eff536c1100a9cbefb375a08d1b67a592333a6de6d",
+                "size": 5597172
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\advapi32.dll",
+                "payload_path": null,
+                "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+                "size": 1364784
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcrt.dll",
+                "payload_path": null,
+                "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+                "size": 1339496
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\sechost.dll",
+                "payload_path": null,
+                "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+                "size": 1203688
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\rpcrt4.dll",
+                "payload_path": null,
+                "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+                "size": 2167032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\bcrypt.dll",
+                "payload_path": null,
+                "sha256": "e08ecfb7d6b5e6997c5054a07b81c54d37a6855b723fcba460c422130a928592",
+                "size": 290592
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ws2_32.dll",
+                "payload_path": null,
+                "sha256": "67ebbfc3a456a5623e649e1dcb26deba2b58fa0e5e8cb09aa1e03ab7355a7a49",
+                "size": 854040
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\version.dll",
+                "payload_path": null,
+                "sha256": "c89d4b66ac2a6a48db72ff00673ec519dbc9c137e49285a5e83c87d70836abef",
+                "size": 72592
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\cryptbase.dll",
+                "payload_path": null,
+                "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+                "size": 76280
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+                "payload_path": null,
+                "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+                "size": 1018816
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_ssl.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_ssl.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "df08eddd868443d7f0b1becdf9f73ca9099da7f9e65b1f0ff678514754cfc6fc",
+                "size": 185539
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+                "payload_path": "mingwarm64/bin/libssl-3-arm64.dll",
+                "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48",
+                "size": 918276
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+                "payload_path": "mingwarm64/bin/libcrypto-3-arm64.dll",
+                "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a",
+                "size": 4870487
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\user32.dll",
+                "payload_path": null,
+                "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+                "size": 2606976
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\win32u.dll",
+                "payload_path": null,
+                "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+                "size": 383032
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32.dll",
+                "payload_path": null,
+                "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+                "size": 461992
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\gdi32full.dll",
+                "payload_path": null,
+                "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+                "size": 1928816
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\msvcp_win.dll",
+                "payload_path": null,
+                "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+                "size": 1307536
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\crypt32.dll",
+                "payload_path": null,
+                "sha256": "9bbf4ff3065dd0a9acd6a665542381da5bb8f831e367338b6eafbd7712621535",
+                "size": 2724176
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\imm32.dll",
+                "payload_path": null,
+                "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+                "size": 339016
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_socket.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_socket.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "88d3d994bf33a664342a64276e435e19866d7929f8ae8d1d2ed45f22c4d13b8c",
+                "size": 145826
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+                "payload_path": null,
+                "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b",
+                "size": 358176
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\math.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/math.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "e78bf57fc80623692eb29c6cbb3de1031f134fd6dfefd7f65abde4eeaed605fb",
+                "size": 66697
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\select.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/select.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "73ba875ec2ab76e516872f038a193284cf7bf5265a5dca71dfedbbbd8f83e0d9",
+                "size": 23001
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_struct.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_struct.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "dde66f80ef9fb14e08748b31c34577ca773356019feb1019c6bbcabd9e00d44e",
+                "size": 51534
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\binascii.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/binascii.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "33f68f565c8fb684fbd0c26b4bc9538ad3e921052a20f34d39e418d4eba47540",
+                "size": 33971
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libz.dll",
+                "payload_path": "mingwarm64/bin/libz.dll",
+                "sha256": "24e27cb2d1693635634b322e8090aab315fe512ce97beced95bf92b18ef79818",
+                "size": 236947
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_datetime.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_datetime.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "798bcff3f62f7410aded3bac4ea635acd8f91dbd306f4af327a68f1f6a6e1160",
+                "size": 119093
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_sqlite3.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_sqlite3.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "5b4d614463bf64b84f338305be26cc8a1f7577f5d2c3ff5a175bebd4f04624e1",
+                "size": 114438
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libsqlite3-0.dll",
+                "payload_path": "mingwarm64/bin/libsqlite3-0.dll",
+                "sha256": "93401396e8c0641a96afd3c6232b01b3c1e4010d7aa504d9a4d59ad3131cdcea",
+                "size": 1446125
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_hashlib.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_hashlib.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "d2d288df2fe19d2a2b7fef69cb3f6b5f0259456c5de9ad14219c3371c823eeca",
+                "size": 58699
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_blake2.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_blake2.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "b17a53ebd15bacad222261e1e0e3f7fd6beb40411afa5d41cbb29ddbd19f0992",
+                "size": 49056
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\lib\\python3.12\\lib-dynload\\_ctypes.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "payload_path": "mingwarm64/lib/python3.12/lib-dynload/_ctypes.cp312-mingw_aarch64_ucrt_gnu.pyd",
+                "sha256": "36e09662e1000381297d8613ae45d1cce518f2e1a1a5cca6f6c0fa7252a50eab",
+                "size": 178228
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\ole32.dll",
+                "payload_path": null,
+                "sha256": "b7034c17619f8b706f57b6392bf02c75bbfa4f3b84d49c5d5addf1591132f320",
+                "size": 2838400
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\combase.dll",
+                "payload_path": null,
+                "sha256": "caf3fc442da8057cf1bea166654a8254058252c8f20e472f5d23b6d69262736e",
+                "size": 7135136
+              },
+              {
+                "location": "Windows system",
+                "machine": "0xAA64",
+                "path": "C:\\Windows\\System32\\oleaut32.dll",
+                "payload_path": null,
+                "sha256": "7ddf2f8b1661daf1cd3b9a3d4e98589d25514f6d67c2efc833890cb7f391fd6b",
+                "size": 1706744
+              },
+              {
+                "location": "payload",
+                "machine": "0xAA64",
+                "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\libffi-8.dll",
+                "payload_path": "mingwarm64/bin/libffi-8.dll",
+                "sha256": "a69790a4183fad93a69f479f12c6b6726d306b1fd820eb7d09a22606b7e43b76",
+                "size": 339337
+              }
+            ],
+            "name": "python",
+            "native_process": {
+              "MeasuredCount": 1,
+              "Passed": true,
+              "Processes": [
+                {
+                  "CreatedUtc": "2026-09-11T04:31:12.6040445Z",
+                  "ImagePath": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\mingwarm64\\bin\\python.exe",
+                  "MachineAttributes": "0x00000003",
+                  "NativeArm64Process": true,
+                  "NativeMachine": "0xAA64",
+                  "ProcessId": 27668,
+                  "ProcessMachine": "0xAA64",
+                  "Wow64ProcessMachine": "0x0000"
+                }
+              ],
+              "RecordedUtc": "2026-09-11T04:31:15.3374999Z",
+              "RequestedCount": 1,
+              "SchemaVersion": 1,
+              "Scope": "Live ProcessMachineTypeInfo plus IsWow64Process2, process creation time, and executable path; not functional behavior, loaded-module closure, or binary-source provenance. Requires Windows 11.",
+              "Violations": []
+            },
+            "pid": 27668,
+            "process_gate_sha256": "268515f4c33fd7c871b797ee4cd93d9a45c1026b61f207e3d13249f205e1af1e",
+            "raw_exit": 0,
+            "responsive_stdout": "python-native-modules-ready\r\n",
+            "stderr": "",
+            "stdout": ""
+          }
+        ],
+        "passed": true,
+        "schema": 1,
+        "scope": "Responsive live Bash/Git/HTTPS entrypoint MachineTypeInfo and complete module snapshots at explicit protocol checkpoints; not all-descendant module completeness"
+      },
+      "passed": true
+    }
+  ],
+  "scope": "Independent exact final limited candidate at a new spaced path; no final archive/admission/all-short-child module or negative-observer claim",
+  "native_cases_serial": true,
+  "limitations": [
+    "Limited native engineering artifact, not RTM or a strict full-release package transaction.",
+    "No native Perl provider: Perl-dependent commands, git-svn, git-send-email and related integrations are unsupported.",
+    "GCM, mintty, full editors, service integration and installer/signing are not supplied.",
+    "Use Git-Bash-Native.cmd for the supported console entry; upstream git-bash.exe expects the absent mintty.",
+    "POSIX chmod/stty/false utility providers are withheld; Bash builtins remain available.",
+    "Utility supported locale is LC_ALL=C with explicit MSYS system-file symlinks and noacl mounts.",
+    "Source-specific commit/tree and reproducibility evidence is incomplete for some retained package providers; no identity is fabricated.",
+    "libintl-8.dll contains compiled default /clangarm64/share/locale; unbound/default-domain localization is not admitted.",
+    "Official gettext CLI default French lookup failed before and after moving; no CLI/tools/docs/catalogs are shipped.",
+    "libidn2 and libtre translated diagnostics are not admitted; only their functional semantics are admitted.",
+    "The qualification subset fixture bare-clone access violation is not attributable to this projection (official/revoked/restored-official all failed there). Full-artifact clone behavior is outside this verdict and must be tracked by the artifact owner.",
+    "This limited verdict does not clear the strict full-release package identity or canonical /mingwarm64 provider gate.",
+    "No PCRE2-specific signed source archive, exact CMake command, or independently reproducible build receipt is available; do not claim a fresh/reproducible PCRE2 build.",
+    "The original package metadata comes from the umbrella network-provider export; this intake does not rewrite it or create a replacement package.",
+    "Full upstream PCRE2 suite was not rerun.",
+    "Retained pcre2test has no readline/editline support; CLI tools are not projected.",
+    "The newer 10.48-3 package exports libpcre2-8-0.dll and remains incompatible with current Git imports; no alias is permitted.",
+    "All 37 executables retain absolute producer source/build/include paths. For the 34 Coreutils commands these are classified as source/debug provenance and moved-root controls pass; they still prevent any reproducible-build claim.",
+    "find, xargs and sed embed the private bootstrap locale directory and are admitted only with LC_ALL=C; translated diagnostics/NLS relocation are not admitted.",
+    "Historical Coreutils suite is incomplete: 48 PASS, 41 FAIL, 23 SKIP, 4 ERROR.",
+    "No original native13 PKGBUILD or complete compiler-input manifest exists.",
+    "chmod mode semantics, stty PTY/conhost closure and false negative exit are withheld rather than normalized.",
+    "No full provider, full suite, arbitrary locale, package provides, or strict package-manager transaction is claimed.",
+    "Portable Win32-OpenSSH client, not the native MSYS OpenSSH provider Git for Windows normally ships.",
+    "GSSAPI/Heimdal integration, installed services, FIDO/PKCS11 hardware and real credential-store operations are not qualified.",
+    "Only software public-key handshake, exact command response and wrong-host-key rejection are positively exercised; SCP/SFTP and agent service workflows are not claimed.",
+    "Native MSYS OpenSSH candidate 00882b9e is explicitly rejected and excluded due private path/untested OpenSSL provenance; this role does not waive that rejection."
+  ],
+  "private_candidate_unchanged": true,
+  "original_candidate_unchanged": true,
+  "source_export_unchanged": true,
+  "fixture_unchanged": true,
+  "owned_jobs_drained": true,
+  "ephemeral_fixture_private_key": {
+    "sha256": "585368b142f1373b5ba533be80deee57b144e8bb2423d7e6f84151a0f887c586",
+    "removed": true
+  }
+}

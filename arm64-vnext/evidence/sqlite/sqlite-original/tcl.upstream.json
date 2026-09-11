@@ -1,0 +1,4782 @@
+{
+  "schema": 1,
+  "status": "installed-native-msys-tcl-core-api-and-dll-closure-passed",
+  "package": "tcl-msys",
+  "input_identities": {
+    "C:\\ag-e138920f\\tcl-msys-finish-03\\result.json": "ccaff96d6d54bcd77bc5e9e53de062738211a29190a12b9f0a23a883ac633a32",
+    "C:\\ag-e138920f\\tc-guard-01.copy.json": "e5b870bebc90c953a992963850c3f087cd41adde8d4f2317fab09dec569e451e",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\zlib-msys-01.result.json": "e206df14f9a4aa12dca6c88e13427e03ca2d0233100f243426c7cd9b5bfe4960",
+    "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-super-giggle\\arm64-git-recovery\\native\\fixtures\\native-msys-tcl-core.tcl": "6736f4c413d360d7a73f66db7d42c9e8605353ef7c13b525c0842cb8a8c616f2",
+    "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-super-giggle\\arm64-git-recovery\\native\\capture-native-exception.py": "b5265ba881a53b1fa07e09dfb576058854f5380f8e17560e4baf0d28434b6be1",
+    "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-super-giggle\\arm64-git-recovery\\native\\test-native-msys-tcl.py": "e1cbb5da1a05fb078283a9148d3421318d69f26207c6208fd4c379585244e666",
+    "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-super-giggle\\arm64-git-recovery\\native\\native_job_runner.py": "ce76f288e329df76138fc0e54ba65b68cf29ed2bdaf332ef659261b9c39e0799",
+    "C:\\ag-e138920f\\tcl-bootstrap-01\\msys64\\msys64\\etc\\fstab": "387ca1e86c1a18a143eb077ca194ad44c0a2faf98795a0d437f2d210d5a6df18",
+    "C:\\ag-e138920f\\tc-guard-01\\bin\\msys-2.0.dll": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\zlib-msys-01\\stage\\usr\\bin\\msys-z.dll": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+  },
+  "runtime_configuration": {
+    "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\etc\\fstab",
+    "sha256": "387ca1e86c1a18a143eb077ca194ad44c0a2faf98795a0d437f2d210d5a6df18",
+    "scope": "Exact distro configuration in this private relocated runtime only; no SDK, registry or global mount changes"
+  },
+  "scope": "Installed native MSYS LP64 Tcl arithmetic/Unicode/file/zlib/Itcl/TDBC-core/thread APIs and actual DLL closure; no database connections, GUI, accounts or full-suite claim",
+  "process": {
+    "passed": true,
+    "pid": 22712,
+    "exit": 0,
+    "timed_out": false,
+    "created_processes": 2,
+    "observed_processes": 2,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\native-job.json",
+      "sha256": "a6ba169fbacfa7ebd059b078ea2bdb7b8b205e4f09f34d58a3a56b645c281831",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "loaded_modules": {
+    "tclsh8.6.exe": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\bin\\tclsh8.6.exe",
+      "sha256": "9c145307a6d41c3b560d236f1e188465e40b620241c2627946ec05c3e36d6c79"
+    },
+    "ntdll.dll": {
+      "path": "C:\\Windows\\System32\\ntdll.dll",
+      "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+    },
+    "kernel32.dll": {
+      "path": "C:\\Windows\\System32\\kernel32.dll",
+      "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+    },
+    "kernelbase.dll": {
+      "path": "C:\\Windows\\System32\\KernelBase.dll",
+      "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+    },
+    "libtcl8.6.dll": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\bin\\libtcl8.6.dll",
+      "sha256": "85cf03e86f5ed0aa365c4bb132bdecc451a59c05f8acd7a6e13c168ef8393450"
+    },
+    "user32.dll": {
+      "path": "C:\\Windows\\System32\\user32.dll",
+      "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383"
+    },
+    "win32u.dll": {
+      "path": "C:\\Windows\\System32\\win32u.dll",
+      "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335"
+    },
+    "gdi32.dll": {
+      "path": "C:\\Windows\\System32\\gdi32.dll",
+      "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc"
+    },
+    "ucrtbase.dll": {
+      "path": "C:\\Windows\\System32\\ucrtbase.dll",
+      "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+    },
+    "gdi32full.dll": {
+      "path": "C:\\Windows\\System32\\gdi32full.dll",
+      "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb"
+    },
+    "msvcp_win.dll": {
+      "path": "C:\\Windows\\System32\\msvcp_win.dll",
+      "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4"
+    },
+    "sechost.dll": {
+      "path": "C:\\Windows\\System32\\sechost.dll",
+      "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+    },
+    "msys-z.dll": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\bin\\msys-z.dll",
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+    },
+    "msys-2.0.dll": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\bin\\msys-2.0.dll",
+      "sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16"
+    },
+    "advapi32.dll": {
+      "path": "C:\\Windows\\System32\\advapi32.dll",
+      "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+    },
+    "msvcrt.dll": {
+      "path": "C:\\Windows\\System32\\msvcrt.dll",
+      "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+    },
+    "rpcrt4.dll": {
+      "path": "C:\\Windows\\System32\\rpcrt4.dll",
+      "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+    },
+    "cryptbase.dll": {
+      "path": "C:\\Windows\\System32\\cryptbase.dll",
+      "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+    },
+    "bcryptprimitives.dll": {
+      "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+      "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+    },
+    "imm32.dll": {
+      "path": "C:\\Windows\\System32\\imm32.dll",
+      "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33"
+    },
+    "netapi32.dll": {
+      "path": "C:\\Windows\\System32\\netapi32.dll",
+      "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+    },
+    "samcli.dll": {
+      "path": "C:\\Windows\\System32\\samcli.dll",
+      "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+    },
+    "samlib.dll": {
+      "path": "C:\\Windows\\System32\\samlib.dll",
+      "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+    },
+    "netutils.dll": {
+      "path": "C:\\Windows\\System32\\netutils.dll",
+      "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+    },
+    "uxtheme.dll": {
+      "path": "C:\\Windows\\System32\\uxtheme.dll",
+      "sha256": "1b362b0bdc412c2ec9c1b27c24d73a04cbdb63ff4487cd1de27c003ca12a8679"
+    },
+    "combase.dll": {
+      "path": "C:\\Windows\\System32\\combase.dll",
+      "sha256": "caf3fc442da8057cf1bea166654a8254058252c8f20e472f5d23b6d69262736e"
+    },
+    "msctf.dll": {
+      "path": "C:\\Windows\\System32\\msctf.dll",
+      "sha256": "4cd4d7a9d859383c70c4f7de149ce1034863c336e1f86aafe0f77243d0f41786"
+    },
+    "iphlpapi.dll": {
+      "path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+      "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b"
+    },
+    "dnsapi.dll": {
+      "path": "C:\\Windows\\System32\\dnsapi.dll",
+      "sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319"
+    },
+    "dsparse.dll": {
+      "path": "C:\\Windows\\System32\\dsparse.dll",
+      "sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d"
+    },
+    "nsi.dll": {
+      "path": "C:\\Windows\\System32\\nsi.dll",
+      "sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2"
+    },
+    "libitcl4.2.2.dll": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\lib\\itcl4.2.2\\libitcl4.2.2.dll",
+      "sha256": "8aae411fa1ac1c9e592604704794320e79342850844f84b9c1f8b7b3e90097b7"
+    },
+    "libtdbc1.1.3.dll": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\lib\\tdbc1.1.3\\libtdbc1.1.3.dll",
+      "sha256": "4a2617a7b183c02ba83b0500abb76c9ffc8dd69e42505bd7029f3c6d3aad94d7"
+    },
+    "libthread2.8.7.dll": {
+      "path": "C:\\ag-e138920f\\tcl-msys-api-03\\relocated\\usr\\lib\\thread2.8.7\\libthread2.8.7.dll",
+      "sha256": "f21dd9df55bfe36f8a0c6c65ed8d407460acb6a71056075589c962bfe264a2be"
+    }
+  },
+  "stage_files": {
+    "etc/fstab": {
+      "sha256": "387ca1e86c1a18a143eb077ca194ad44c0a2faf98795a0d437f2d210d5a6df18",
+      "size": 228
+    },
+    "usr/bin/libtcl8.6.dll": {
+      "sha256": "85cf03e86f5ed0aa365c4bb132bdecc451a59c05f8acd7a6e13c168ef8393450",
+      "size": 13403188
+    },
+    "usr/bin/msys-2.0.dll": {
+      "sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16",
+      "size": 30970741
+    },
+    "usr/bin/msys-z.dll": {
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "size": 83968
+    },
+    "usr/bin/tclsh8.6.exe": {
+      "sha256": "9c145307a6d41c3b560d236f1e188465e40b620241c2627946ec05c3e36d6c79",
+      "size": 69640
+    },
+    "usr/include/fakemysql.h": {
+      "sha256": "d1f359880fb635b9820aa25edc05b4278aafbb1aeac479d43b821ecc3c331af2",
+      "size": 8941
+    },
+    "usr/include/fakepq.h": {
+      "sha256": "35484a2ebb1776130d4667ecf75d73b5a8a20dee53b7d767454850bf175cdc82",
+      "size": 1189
+    },
+    "usr/include/fakesql.h": {
+      "sha256": "54a2c05cb836a0bc5a18585fe8d5772129955b7702c4021ca599817d78837849",
+      "size": 6495
+    },
+    "usr/include/itcl.h": {
+      "sha256": "a336aed3ab7222ab271e11c937e6e3c9dd5d68b096e6a0658ed43823344ef8e8",
+      "size": 5515
+    },
+    "usr/include/itcl2TclOO.h": {
+      "sha256": "164ee67fcb9ecc0d57a4333fd2f2a81ebd7e89b723aebc84166baefcdacd91b4",
+      "size": 1888
+    },
+    "usr/include/itclDecls.h": {
+      "sha256": "51c5f9db1cd99f62a6eda9bdcf313491df4fdd99da312d87db592e00b68f4096",
+      "size": 7176
+    },
+    "usr/include/itclInt.h": {
+      "sha256": "cb6be8b2dc85ee2370130d97dbb862b87d814fdac7a389175ee8103d0de9dad1",
+      "size": 37305
+    },
+    "usr/include/itclIntDecls.h": {
+      "sha256": "b5c7a1f287f5feb9ea9a8a28b71baeb7fed64d0a4c7cdc51d95572b7395005e6",
+      "size": 43298
+    },
+    "usr/include/itclMigrate2TclCore.h": {
+      "sha256": "d34aae5fe46401adefcc50105d67f0a01daab3bee229bee199cc674cffe8754d",
+      "size": 2929
+    },
+    "usr/include/itclTclIntStubsFcn.h": {
+      "sha256": "b1371133a80e845ca3e29dbe3adf7c72853e4aa4ee0b1081b225d24a1cc943ba",
+      "size": 1719
+    },
+    "usr/include/mysqlStubs.h": {
+      "sha256": "f593d20bf354e5215848ccf81c01265486e8532bc87ed818eb65fa53aae424b6",
+      "size": 5629
+    },
+    "usr/include/odbcStubs.h": {
+      "sha256": "dc1ad3f3d365a28b926ff264d932466ce7d44661905b118bc732c2205b1c3149",
+      "size": 5051
+    },
+    "usr/include/pqStubs.h": {
+      "sha256": "c89330cabcc19f70e8071059880b80c2b45c09165c6eeb77d01e69a2b2a65f58",
+      "size": 3584
+    },
+    "usr/include/tcl.h": {
+      "sha256": "75dc3aecd316fbac2e12611c034609c41fb9163710c15b527ff85cc1f337e1e9",
+      "size": 93911
+    },
+    "usr/include/tclDecls.h": {
+      "sha256": "711a97e0ce0a4ed8aea54b3a76d481cefb50b134da8b6d4d049b27c512247be8",
+      "size": 172796
+    },
+    "usr/include/tclInt.h": {
+      "sha256": "4c59a2022a4902d7db13ae744c76a61e9a3818f045ed1a0eca879eb4f7523aa4",
+      "size": 193165
+    },
+    "usr/include/tclIntDecls.h": {
+      "sha256": "c93cac6c560a58a0cfdd794f5340acad357113f4541dcc33cdebab346191bd57",
+      "size": 56808
+    },
+    "usr/include/tclIntPlatDecls.h": {
+      "sha256": "c6fe35aef886fe002a025f9d896f0327005dbcfdc7384bd3d0c8380ed817f150",
+      "size": 23191
+    },
+    "usr/include/tclOO.h": {
+      "sha256": "e52e5d7eb9582f5126ceb840496e0592d7a9afd76e41425b8eac97eb8350be80",
+      "size": 4282
+    },
+    "usr/include/tclOODecls.h": {
+      "sha256": "2bef1b29a83b3bb3d2a75deb0fc6abd6e6bc5a7389b337cf92dcba83bd7e9f59",
+      "size": 9495
+    },
+    "usr/include/tclOOInt.h": {
+      "sha256": "51cde10129e4d0e66b559ef68b4b37dda54ea61f42d1dd0363e272e2e2696462",
+      "size": 23789
+    },
+    "usr/include/tclOOIntDecls.h": {
+      "sha256": "5ec5363b9a315fb4d7a3a550286826692d9cabd7b25f6ac2c855ba9af9034613",
+      "size": 7216
+    },
+    "usr/include/tclPlatDecls.h": {
+      "sha256": "b2326809444e9fa94f0df30d60084525baa8bafb796ec1e162daf6440386715a",
+      "size": 3562
+    },
+    "usr/include/tclPort.h": {
+      "sha256": "b79fd3ba585ea82ad991ccc994a2bb2f284720ef055560936aa6cbab7b9e9e25",
+      "size": 1198
+    },
+    "usr/include/tclThread.h": {
+      "sha256": "ecab348638e23727e9d72db22bb57b54aaa1530162b21b015d786b6f71eb7820",
+      "size": 821
+    },
+    "usr/include/tclTomMath.h": {
+      "sha256": "a5855f57262781a0c18203449a37b9217f3d285da1dde44e7b90139375ac0796",
+      "size": 30282
+    },
+    "usr/include/tclTomMathDecls.h": {
+      "sha256": "6049e9dd2867cbd53ccd2c73ad7d6b5dc8c4e704332bee3393d9114ce5683235",
+      "size": 26462
+    },
+    "usr/include/tclUnixPort.h": {
+      "sha256": "24ce5b9e3df99870580b3a02caf45f99d3d7eb5526eec11b7f80a08146a3e6db",
+      "size": 21046
+    },
+    "usr/include/tdbc.h": {
+      "sha256": "99995b3300ff2cee5812a1f31bfbbe1d075e30ec25fa89920646e8c4a8c0fc0f",
+      "size": 1680
+    },
+    "usr/include/tdbcDecls.h": {
+      "sha256": "c74af560bef803efaee5ede34e5b99f12c9f8c6cb18d76727c0f39de4ef96f59",
+      "size": 1497
+    },
+    "usr/include/tdbcInt.h": {
+      "sha256": "8bcb1f4ed1078f99697db3bb2849bd9633da08f8c369f97b48668900a1c0e816",
+      "size": 934
+    },
+    "usr/lib/itcl4.2.2/itcl.tcl": {
+      "sha256": "91f8cefd4fd95f1e9c4a224a7aa3378f382eb64416106e6075ef498df685e1b1",
+      "size": 5153
+    },
+    "usr/lib/itcl4.2.2/itclConfig.sh": {
+      "sha256": "711c27be6ea2b9ccb9d8752829042ccdccb78c2e02dfa5ab2015a8df07400dc4",
+      "size": 3028
+    },
+    "usr/lib/itcl4.2.2/itclHullCmds.tcl": {
+      "sha256": "f6b5a1261320622bda4fc1136b05390bc83290616d4e85196c72b76a63fdf874",
+      "size": 21056
+    },
+    "usr/lib/itcl4.2.2/itclWidget.tcl": {
+      "sha256": "14727385f87246a5277e6c8bbaf93d994f380bbeb77a30e7469071f41f7e9a7d",
+      "size": 12651
+    },
+    "usr/lib/itcl4.2.2/libitcl4.2.2.dll": {
+      "sha256": "8aae411fa1ac1c9e592604704794320e79342850844f84b9c1f8b7b3e90097b7",
+      "size": 2534565
+    },
+    "usr/lib/itcl4.2.2/libitclstub4.2.2.a": {
+      "sha256": "a3ea1be6f823fd5b9eb2a5d4d0796addf0a516076722596e4f95ab6e0a87033e",
+      "size": 65780
+    },
+    "usr/lib/itcl4.2.2/pkgIndex.tcl": {
+      "sha256": "69373af8123b277461cff998fb3de54ee81dacf58a1b696f48e0f54044f938d7",
+      "size": 438
+    },
+    "usr/lib/libtcl8.6.dll.a": {
+      "sha256": "324ea886830cce1a739a371a577aba4ad32500a8b7032b571eed40ff16639ff5",
+      "size": 1084762
+    },
+    "usr/lib/libtclstub8.6.a": {
+      "sha256": "a0d076d16a92304e593038cd0b6629321d7d7659de422a51495058928dc73193",
+      "size": 243382
+    },
+    "usr/lib/pkgconfig/tcl.pc": {
+      "sha256": "af86d11d78078a689f78f73874ac6a0ebe9bf37f465f61c70a5b3f7300fd4a1d",
+      "size": 420
+    },
+    "usr/lib/tcl8/8.4/platform/shell-1.1.4.tm": {
+      "sha256": "2f812a0550716b88930174a8ca245698427cd286680c0968558ae269ab52440d",
+      "size": 5977
+    },
+    "usr/lib/tcl8/8.4/platform-1.0.18.tm": {
+      "sha256": "24630064571ade8d27bfeff84cae09ffec452a0ec3ccd984ff31e8a7821c27e1",
+      "size": 10984
+    },
+    "usr/lib/tcl8/8.5/msgcat-1.6.1.tm": {
+      "sha256": "d6b9cabb03539e116aecb80efc7a69d43f936075f6ad5c77dfa5d46dad7ddc7f",
+      "size": 33926
+    },
+    "usr/lib/tcl8/8.5/tcltest-2.5.3.tm": {
+      "sha256": "184ed6dad4756ef822320298ceb8c05be228018a6ec25b534077b6a9353ff76b",
+      "size": 103526
+    },
+    "usr/lib/tcl8/8.6/http-2.9.5.tm": {
+      "sha256": "225041fe160c0778dbb07134cb9836e83e8fb28188958ad78eb9992f5655762b",
+      "size": 111709
+    },
+    "usr/lib/tcl8/8.6/tdbc/sqlite3-1.1.3.tm": {
+      "sha256": "93f763819749a0430485960dd89a8aa3051dee7b2522142817e0923e2dede02c",
+      "size": 19299
+    },
+    "usr/lib/tcl8.6/auto.tcl": {
+      "sha256": "2a176e7467c15f12198662db68b9deda0726f4f744166c85060b894ce676d055",
+      "size": 20875
+    },
+    "usr/lib/tcl8.6/clock.tcl": {
+      "sha256": "7f27d400b088a0e72adeb48d17059892e95f08a2a03970bd74cdfb35b106618b",
+      "size": 128893
+    },
+    "usr/lib/tcl8.6/encoding/ascii.enc": {
+      "sha256": "294c97175fd0894093b866e73548ae660aeed0c3cc1e73867eb66e52d34c0dd2",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/big5.enc": {
+      "sha256": "465ae2d4880b8006b1476cd60facf676875438244c1d93a7dbe4cde1035e745f",
+      "size": 92873
+    },
+    "usr/lib/tcl8.6/encoding/cns11643.enc": {
+      "sha256": "0a95f67f90b1cdd407a78ea4032af9eb996fc38864c46d74b42b3a7f7eda0c8a",
+      "size": 97050
+    },
+    "usr/lib/tcl8.6/encoding/cp1250.enc": {
+      "sha256": "1b42df7e7d6b0feb17cb0bc8d97e6ce6899492306dd880c48a39d1a2f0279004",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1251.enc": {
+      "sha256": "2d1bed2422e131a140087faf1b12b8a46f7de3b6413bae8bc395c06f0d70b9b0",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1252.enc": {
+      "sha256": "14df3ae30e81e7620be6bbb7a9e42083af1ae04d94cf1203565f8a3c0542ace0",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1253.enc": {
+      "sha256": "2174d94e1c1d5ad93717b9e8c20569ed95a8af51b2d3ab2bce99f1a887049c0e",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1254.enc": {
+      "sha256": "bc4cbe4c99fd65abea45fbdaf28cc1d5c42119280125fbbd5c2c11892ae460b2",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1255.enc": {
+      "sha256": "f8bd79ae5a90e5390d77dc31cb3065b0f93cb8813c9e67accec72e2db2027a08",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1256.enc": {
+      "sha256": "bbacea81d4f7a3a7f3c036273a4534d31dbf8b6b5cca2bcc4c00cb1593cf03d8",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1257.enc": {
+      "sha256": "4151434a714fc82228677c39b07908c4e19952fc058e26e7c3ebab7724ce0c77",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp1258.enc": {
+      "sha256": "0cdb59e255ccd7dcf4af847c9b020aeaee78ce7fcf5f214ebcf123328acf9f24",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/cp437.enc": {
+      "sha256": "d707a1f03514806e714f01cbfcb7c9f9973acdc80c2d67bbd4e6f85223a50952",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp737.enc": {
+      "sha256": "8bfca34869b3f9a3b2fc71b02cbac41512af6d1f8ab17d2564e65320f88ede10",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp775.enc": {
+      "sha256": "44fb04b5c72b584b6283a99b34789690c627b5083c5df6e8b5b7ab2c68903c06",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp850.enc": {
+      "sha256": "55aa2d13b789b3125f5c9d0dc5b6e3a90d79426d3b7825dcd604f56d4c6e36a2",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp852.enc": {
+      "sha256": "5266b6f18c3144cfadbcb7b1d27f0a7eaa1c641fd3b33905e42e4549fd373770",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp855.enc": {
+      "sha256": "e3f071c63ac43af66061506ef2c574c35f7bf48553fb5158ae41d9230c1a10df",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp857.enc": {
+      "sha256": "e39985c6a238086b54427475519c9e0285750707db521d1820e639723c01c36f",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp860.enc": {
+      "sha256": "6db59139627d29abd36f38ed2e0de2a6b234a7d7e681c7dbaf8b888f1cac49a5",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp861.enc": {
+      "sha256": "a43a5b58bfc57bd723b12bbdea9f6e1a921360b36d2d52c420f37299788442d3",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp862.enc": {
+      "sha256": "aea716d490c35439621a8f00ca7e4397ef1c70428e206c5036b7af25f1c3d82f",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp863.enc": {
+      "sha256": "13b5cb481e0216a8fc28bfa9d0f6b060cdf5c457b3e12435ca826eb2ef52b068",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp864.enc": {
+      "sha256": "e87ec076f950fcd58189e362e1505dd55b0c8f4fa7dd1a9331c5c111d2ce569f",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp865.enc": {
+      "sha256": "407fc0fe06d2a057e9ba0109ea9356cab38f27756d135ef3b06a85705b616f50",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp866.enc": {
+      "sha256": "82633643cd326543915acc5d28a634b5795274cd39974d3955e51d7330ba9338",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp869.enc": {
+      "sha256": "27f16e3dd02b2212c4980ea09bdc068cf01584a1b8bb91456c03fcababe0931e",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp874.enc": {
+      "sha256": "3e067363fc07662ebe52ba617c2aad364920f2af395b3416297400859acd78bb",
+      "size": 1090
+    },
+    "usr/lib/tcl8.6/encoding/cp932.enc": {
+      "sha256": "9d33df6e1cfdd2cf2553f5e2758f457d710caff5f8c69968f2665accd6e9a6fd",
+      "size": 48207
+    },
+    "usr/lib/tcl8.6/encoding/cp936.enc": {
+      "sha256": "619330192984a80f93ac6f2e4e5eaa463fd3dddc75c1f65f3975f33e0dd7a0bb",
+      "size": 132509
+    },
+    "usr/lib/tcl8.6/encoding/cp949.enc": {
+      "sha256": "26bcb620472433962717712d04597a63264c8e444459432565c4c113de0a240b",
+      "size": 130423
+    },
+    "usr/lib/tcl8.6/encoding/cp950.enc": {
+      "sha256": "1fb9a3d52d432ea2d6cd43927cebf9f58f309a236e1b11d20fe8d5a5fb944e6e",
+      "size": 91831
+    },
+    "usr/lib/tcl8.6/encoding/dingbats.enc": {
+      "sha256": "3bde9ae7eaf9be799c84b2aa4e80d78be8acbaca1e486f10b9bdd42e3aeddcb2",
+      "size": 1093
+    },
+    "usr/lib/tcl8.6/encoding/ebcdic.enc": {
+      "sha256": "17a7d45f3b82f2a42e1d36b13db5ced077945a3e82700947cd1f803dd2a60dbf",
+      "size": 1054
+    },
+    "usr/lib/tcl8.6/encoding/euc-cn.enc": {
+      "sha256": "546392237f47d71cee1daa1aae287d94d93216a1fabd648b50f59ddce7e8ae35",
+      "size": 85574
+    },
+    "usr/lib/tcl8.6/encoding/euc-jp.enc": {
+      "sha256": "3bfb42c4d36d1763693aefce87f6277a11ad5a756d691deda804d9d0edcb3093",
+      "size": 82537
+    },
+    "usr/lib/tcl8.6/encoding/euc-kr.enc": {
+      "sha256": "1f1ad4c4079b33b706e948a735a8c3042f40cc68065c48c220d0f56fd048c33b",
+      "size": 93918
+    },
+    "usr/lib/tcl8.6/encoding/gb12345.enc": {
+      "sha256": "0c0df17bfece897a1da7765c822453b09866573028cecced13e2efee02bcccc4",
+      "size": 86619
+    },
+    "usr/lib/tcl8.6/encoding/gb1988.enc": {
+      "sha256": "a2717ae09e0cf2d566c245dc5c5889d326661b40db0d5d9a6d95b8e6b0f0e753",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/gb2312-raw.enc": {
+      "sha256": "ec11bfd49c715cd89fb9d387a07cf54261e0f4a1ccec1a810e02c7b38ad2f285",
+      "size": 84532
+    },
+    "usr/lib/tcl8.6/encoding/gb2312.enc": {
+      "sha256": "546392237f47d71cee1daa1aae287d94d93216a1fabd648b50f59ddce7e8ae35",
+      "size": 85574
+    },
+    "usr/lib/tcl8.6/encoding/iso2022-jp.enc": {
+      "sha256": "e12928e8b5754d49d0d3e799135de2b480ba84b5dbaa0e350d9846fa67f943ec",
+      "size": 192
+    },
+    "usr/lib/tcl8.6/encoding/iso2022-kr.enc": {
+      "sha256": "6ac0f1845a56a1a537b9a6d9bcb724dddf3d3a5e61879ae925931b1c0534fbb7",
+      "size": 115
+    },
+    "usr/lib/tcl8.6/encoding/iso2022.enc": {
+      "sha256": "753dda518a7e9f6dc0309721b1faae58c9661f545801da9f04728391f70be2d0",
+      "size": 226
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-1.enc": {
+      "sha256": "754ef6bf3a564228ab0b56dde391521dcc1a6c83cfb95d4b761141e71d2e8e87",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-10.enc": {
+      "sha256": "79f6470d9bebd30832b3a9ca59cd1fdca28c5be6373bd01d949eee1ba51aa7a8",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-11.enc": {
+      "sha256": "ad939139ff7140970bde3d91180f7c4d703d7fcf67a02c71392de1980dc560e4",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-13.enc": {
+      "sha256": "33c6072a006ba4e9513d7b7fd3d08b1c745ca1079b6d796c36b2a5ae8e4ae02b",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-14.enc": {
+      "sha256": "8d737283289baf8c08ef1dd7e47a6c775dace480419c5e2a92d6c0e85bb5b381",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-15.enc": {
+      "sha256": "c7b0377f30e42048492e4710fe5a0a54fa9865395b8a6748f7dac53b901284f9",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-16.enc": {
+      "sha256": "c40ca014b88f97ae62ae1a816c5963b1ed432a77d84d89c3a764ba15c8a23708",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-2.enc": {
+      "sha256": "0e0732480338a229cc3ad4cdde09021a0a81902dc6edfb5f12203e2aff44668f",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-3.enc": {
+      "sha256": "73342c27cf55f625d3db90c5fc8e7340ffdf85a51872dbfb1d0a8cb1e43ec5da",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-4.enc": {
+      "sha256": "17745bdd299779e91d41db0cee26cdc7132da3666907a94210b591ced5a55adb",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-5.enc": {
+      "sha256": "bc5ed164d15321404bbdcad0d647c322ffab1659462182dbd3945439d9ecbae7",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-6.enc": {
+      "sha256": "f502e07ae3f19ccdc31e434049cfc733dd5df85487c0160b0331e40241ad0274",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-7.enc": {
+      "sha256": "013b3b2911c66bc1ca54e510814af4954c310da10737f9b2a2474d714be2ab39",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-8.enc": {
+      "sha256": "e1d207917aa3483d9110e24a0cc0cd1e0e5843c8bfc901cfee7a6d872dd945a9",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/iso8859-9.enc": {
+      "sha256": "1cdcf510c38464e5284edcfaec334e3fc516236c1ca3b9ab91ca878c23866914",
+      "size": 1094
+    },
+    "usr/lib/tcl8.6/encoding/jis0201.enc": {
+      "sha256": "480f61d0e1a75dee59bf9a66de0bb78faae4e87fd6317f93480412123277d442",
+      "size": 1092
+    },
+    "usr/lib/tcl8.6/encoding/jis0208.enc": {
+      "sha256": "118ea160ef29e11b46dec57af2c44405934dd8a7c49d2bc8b90c94e8baa6138b",
+      "size": 80453
+    },
+    "usr/lib/tcl8.6/encoding/jis0212.enc": {
+      "sha256": "24a9d379fda39f2bcc0580ca3e0bd2e99ae279af5e2841c9e7dbe7f931d19cc0",
+      "size": 70974
+    },
+    "usr/lib/tcl8.6/encoding/koi8-r.enc": {
+      "sha256": "7142b1120b993d6091197574090fe04be3ea64ffc3ad5a167a4b5e0b42c9f062",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/koi8-u.enc": {
+      "sha256": "bbb729b906f5fc3b7ee6694b208b206d19a9d4dc571e235b9c94dcdd4a323a2a",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/ksc5601.enc": {
+      "sha256": "0f8b530ad0decbf8dd81da8291b8b0f976c643b5a292db84680b31ecfbe5d00a",
+      "size": 92877
+    },
+    "usr/lib/tcl8.6/encoding/macCentEuro.enc": {
+      "sha256": "8f3089f4b2ca47b7ac4cb78375b2bfac01268113a7c67d020f8b5b7f2c25bbda",
+      "size": 1096
+    },
+    "usr/lib/tcl8.6/encoding/macCroatian.enc": {
+      "sha256": "8d0b6a882b742c5cce938241328606c111dda0cb83334ebedcda17605f3641ae",
+      "size": 1096
+    },
+    "usr/lib/tcl8.6/encoding/macCyrillic.enc": {
+      "sha256": "eb135a89519f2e004282ded21b11c3af7ccb2320c9772f2df7d1a4a1b674e491",
+      "size": 1096
+    },
+    "usr/lib/tcl8.6/encoding/macDingbats.enc": {
+      "sha256": "8fbcc63cb289afaae15b438752c1746f413f3b79ba5845c2ef52ba1104f8bda6",
+      "size": 1096
+    },
+    "usr/lib/tcl8.6/encoding/macGreek.enc": {
+      "sha256": "f7bff98228ded981ec9a4d1d0da62247a8d23f158926e3acbec3cce379c998c2",
+      "size": 1093
+    },
+    "usr/lib/tcl8.6/encoding/macIceland.enc": {
+      "sha256": "633f5e3e75bf1590c94ab9cbf3538d0f0a7a319db9016993908452d903d9c4fd",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/macJapan.enc": {
+      "sha256": "2a6856298ec629a16bdd924711dfe3f3b1e3a882ddf04b7310785d83ec0d566c",
+      "size": 48028
+    },
+    "usr/lib/tcl8.6/encoding/macRoman.enc": {
+      "sha256": "68f22bad30daa81b215925416c1cc83360b3bb87efc342058929731ac678ff37",
+      "size": 1093
+    },
+    "usr/lib/tcl8.6/encoding/macRomania.enc": {
+      "sha256": "71ae80adfb437b7bc88f3c76fd37074449b3526e7aa5776d2b9fd5a43c066fa8",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/macThai.enc": {
+      "sha256": "cead5eb2b0b44ef4003fbcb2e49ca0503992ba1d6540d11acbbb84fdbbd6e79a",
+      "size": 1092
+    },
+    "usr/lib/tcl8.6/encoding/macTurkish.enc": {
+      "sha256": "f703b7f74cc6f5faa959f51c757c94623677e27013bcae23befba01a392646d9",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/macUkraine.enc": {
+      "sha256": "4c94e7fbe183379805056d960ab624d78879e43278262e4d6b98ab78e5fefea8",
+      "size": 1095
+    },
+    "usr/lib/tcl8.6/encoding/shiftjis.enc": {
+      "sha256": "7502587d52e7810228f2ecb45ac4319ea0f5c008b7ac91053b920010dc6ddf94",
+      "size": 41862
+    },
+    "usr/lib/tcl8.6/encoding/symbol.enc": {
+      "sha256": "73fd2b5e14309d8c036d334f137b9edf1f7b32dbd45491cf93184818582d0671",
+      "size": 1091
+    },
+    "usr/lib/tcl8.6/encoding/tis-620.enc": {
+      "sha256": "5918b5e1def09781efd28751b6883665aaee29f1d244f0891edecda9bf6a4b63",
+      "size": 1092
+    },
+    "usr/lib/tcl8.6/history.tcl": {
+      "sha256": "9b6e400eb85440ec64ab66b4ac111546585740c9ca61fd156400d7153cbad9f4",
+      "size": 7900
+    },
+    "usr/lib/tcl8.6/http1.0/http.tcl": {
+      "sha256": "acbff9b5ef75790920b95023156fad80b18aff8cafc4a6dc03893f9388e053a2",
+      "size": 9689
+    },
+    "usr/lib/tcl8.6/http1.0/pkgIndex.tcl": {
+      "sha256": "420c4b3088c9dacd21bc348011cac61d7cb283b9bee78ae72eed764ab094651c",
+      "size": 735
+    },
+    "usr/lib/tcl8.6/init.tcl": {
+      "sha256": "91a8af8dbdb70ed296bfe407126f84f96f2107afedd1e969b63e526034bf13e3",
+      "size": 24806
+    },
+    "usr/lib/tcl8.6/msgs/af.msg": {
+      "sha256": "2981965bd23a93a09eb5b4a334acb15d00645d645c596a5ecadb88bfa0b6a908",
+      "size": 989
+    },
+    "usr/lib/tcl8.6/msgs/af_za.msg": {
+      "sha256": "3c2f5f631ed3603ef0d5bcb31c51b2353c5c27839c806a036f3b7007af7f3de8",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/ar.msg": {
+      "sha256": "bf984ec7cf619e700fe7e00381ff58abe9bd2f4b3dd622eb2edaccc5e6681050",
+      "size": 1964
+    },
+    "usr/lib/tcl8.6/msgs/ar_in.msg": {
+      "sha256": "29a70eac43b1f3aa189d8ae4d92658e07783965bae417fb66ee5f69cfcb564f3",
+      "size": 259
+    },
+    "usr/lib/tcl8.6/msgs/ar_jo.msg": {
+      "sha256": "78116e7e706c7d1e3e7446094709819fb39a50c2a2302f92d6a498e06ed4a31b",
+      "size": 1812
+    },
+    "usr/lib/tcl8.6/msgs/ar_lb.msg": {
+      "sha256": "7c970efeb55c53758143df42cc452a3632f805487ca69db57e37c1f478a7571b",
+      "size": 1812
+    },
+    "usr/lib/tcl8.6/msgs/ar_sy.msg": {
+      "sha256": "aef17b94a0db878e2f0fb49d982057c5b663289e3a8e0e2b195dcec37e8555b1",
+      "size": 1812
+    },
+    "usr/lib/tcl8.6/msgs/be.msg": {
+      "sha256": "d790e54217a4bf9a7e1dcb4f3399b5861728918e93cd3f00b63f1349bdb71c57",
+      "size": 2105
+    },
+    "usr/lib/tcl8.6/msgs/bg.msg": {
+      "sha256": "e737d8dc724aa3b9ec07165c13e8628c6a8ac1e80345e10dc77e1fc62a6d86f1",
+      "size": 1819
+    },
+    "usr/lib/tcl8.6/msgs/bn.msg": {
+      "sha256": "297d4d7cae6e99db3ca6ee793519512bff65013cf261cf90ded4d28d3d4f826f",
+      "size": 2286
+    },
+    "usr/lib/tcl8.6/msgs/bn_in.msg": {
+      "sha256": "7d3a956663c529d07c8a9610414356de717f3a2a2ce9b331b052367270acea94",
+      "size": 259
+    },
+    "usr/lib/tcl8.6/msgs/ca.msg": {
+      "sha256": "14ff564fab584571e954be20d61c2facb096fe2b3ef369cc5ecb7c25c2d92d5a",
+      "size": 1102
+    },
+    "usr/lib/tcl8.6/msgs/cs.msg": {
+      "sha256": "49cf452eef0b8970bc56a7b8e040ba088215508228a77032cba0035522412f86",
+      "size": 1300
+    },
+    "usr/lib/tcl8.6/msgs/da.msg": {
+      "sha256": "ca58ff5baa9681d9162e094e833470077b7555bb09eee8e8dd41881b108008a0",
+      "size": 1156
+    },
+    "usr/lib/tcl8.6/msgs/de.msg": {
+      "sha256": "cc3672969c1dd223eadd9a226e00cac731d8245532408b75ab9a70e9edd28673",
+      "size": 1222
+    },
+    "usr/lib/tcl8.6/msgs/de_at.msg": {
+      "sha256": "80513a9969a12a8fb01802d6fc3015712a4efdda64552911a1bb3ea7a098d02c",
+      "size": 812
+    },
+    "usr/lib/tcl8.6/msgs/de_be.msg": {
+      "sha256": "7573581dec27e90b0c7d34057d9f4ef89727317d55f2c4e0428a47740fb1eb7a",
+      "size": 1223
+    },
+    "usr/lib/tcl8.6/msgs/el.msg": {
+      "sha256": "9b2f91be34024fbcf645f6ef92460e5f944ca6a16268b79478ab904b2934d357",
+      "size": 2252
+    },
+    "usr/lib/tcl8.6/msgs/en_au.msg": {
+      "sha256": "b85c9a373ff0f036151432652dd55c182b0704bd0625ea84bed1727ec0de3dd8",
+      "size": 300
+    },
+    "usr/lib/tcl8.6/msgs/en_be.msg": {
+      "sha256": "596ac02204c845aa74451fc527645549f2a3318cb63051fcacb2bf948fd77351",
+      "size": 305
+    },
+    "usr/lib/tcl8.6/msgs/en_bw.msg": {
+      "sha256": "340804f73b620686ab698b2202191d69227e736b1652271c99f2cfef03d72296",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/en_ca.msg": {
+      "sha256": "c9fe2223c4949ac0a193f321fc0fd7c344a9e49a54b00f8a4c30404798658631",
+      "size": 288
+    },
+    "usr/lib/tcl8.6/msgs/en_gb.msg": {
+      "sha256": "ae38ad5452314b0946c5cb9d3c89cdfc2ad214e146eb683b8d0ce3fe84070fe1",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/en_hk.msg": {
+      "sha256": "c9be2c9ad31d516b508d01e85bcca375aaf807d6d8cd7c658085d5007069fffd",
+      "size": 321
+    },
+    "usr/lib/tcl8.6/msgs/en_ie.msg": {
+      "sha256": "e7868c80fd59d18bb15345d29f5292856f639559cffd42ee649c16c7938bf58d",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/en_in.msg": {
+      "sha256": "71e5367fe839afc4338c50d450f111728e097538ecaccc1b17b10238001b0bb1",
+      "size": 310
+    },
+    "usr/lib/tcl8.6/msgs/en_nz.msg": {
+      "sha256": "812db204e4cb8266207a4e948fba3dd1efe4d071bbb793f9743a4320a1ceebe3",
+      "size": 300
+    },
+    "usr/lib/tcl8.6/msgs/en_ph.msg": {
+      "sha256": "be107f5fae1e303ea766075c52ef2146ef149eda37662776e18e93685b176cdc",
+      "size": 321
+    },
+    "usr/lib/tcl8.6/msgs/en_sg.msg": {
+      "sha256": "b8d354519bd4eb1004eb7b25f4e23fd3ee7f533a5f491a46d19fd520ed34c930",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/en_za.msg": {
+      "sha256": "98ce9ca4bb590ba5f922d6a196e5381e19c64e7682cdbef914f2dce6745a7332",
+      "size": 245
+    },
+    "usr/lib/tcl8.6/msgs/en_zw.msg": {
+      "sha256": "91088bbbf58a704185dec13dbd421296bbd271a1aebbcb3ef85a99cecd848ff8",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/eo.msg": {
+      "sha256": "50df3e0e669502ed08dd778d0afedf0f71993be388b0fcaa1065d1c91bd22d83",
+      "size": 1231
+    },
+    "usr/lib/tcl8.6/msgs/es.msg": {
+      "sha256": "fff2f08a5be202c81e469e16d4de1f8a0c1cfe556cda063da071279f29314837",
+      "size": 1180
+    },
+    "usr/lib/tcl8.6/msgs/es_ar.msg": {
+      "sha256": "af530acd69676678c95b803a29a44642ed2d2f2d077cf0f47b53ff24bac03b2e",
+      "size": 242
+    },
+    "usr/lib/tcl8.6/msgs/es_bo.msg": {
+      "sha256": "24b58de38cd4cb2abd08d1eda6c9454ffde7ed1a33367b457d7702434a0a55ee",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_cl.msg": {
+      "sha256": "12ad1546eb391989105d80b41a87686d3b30626d0c42a73705f33b2d711950cc",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_co.msg": {
+      "sha256": "1b4979874c3f025317dfcf0b06fc8cee080a28ff3e8efe1de9e899f6d4f4d21e",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_cr.msg": {
+      "sha256": "7ac5fc35bc422a5445603e0430236e62cca3558787811de22305f72d439eb4bb",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_do.msg": {
+      "sha256": "847c14c297dbe4d8517debaa8ed555f3daedf843d6bad1f411598631a0bd3507",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_ec.msg": {
+      "sha256": "2086ee8d7398d5e60e5c3048843b388437bd6f2507d2293ca218936e3bf61e59",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_gt.msg": {
+      "sha256": "1bc22af98267d635e3f07615a264a716940a2b1faa5caa3aff54d4c5a4a34370",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_hn.msg": {
+      "sha256": "a2d25880c64309552aaced082deed1ee006482a14cab97db524e9983ee84acfc",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_mx.msg": {
+      "sha256": "d0faa9d7997d5696bff92384144e0b9dfb2e4c38375817613f81a89c06ec6383",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_ni.msg": {
+      "sha256": "4b28b46981bbb78cbd2b22060e2dd018c66fcff1cee52755425ad4900a90d6c3",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_pa.msg": {
+      "sha256": "6832dc5ab9f610883784cf702691fcf16850651bc1c6a77a0efa81f43bc509ac",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_pe.msg": {
+      "sha256": "cc826c93682ef19d29ab6304657e07802c70cf18b1e5ea99c3480df6d2383983",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_pr.msg": {
+      "sha256": "19563225ce7875696c6aa2c156e6438292de436b58f8d7c23253e3132069f9a2",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_py.msg": {
+      "sha256": "94ff64201c27ab04f362617dd56b7d85b223bcca0735124196e7669270c591f0",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_sv.msg": {
+      "sha256": "e3268c95e9b7d471f5fd2436c17318d5a796220ba39cebebcd39fbb0141a49ce",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_uy.msg": {
+      "sha256": "ba557a3c656275a0c870fb8466f2237850f5a7cf2d001919896725bb3d3eaa4b",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/es_ve.msg": {
+      "sha256": "64f796c5e3e300448a1f309a0da7d43548cc40511036ff3a3e0c917e32147d62",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/et.msg": {
+      "sha256": "ccc2b4738db16fafb48bfc77c9e2f8be17bc19e4140e48b61f3ef1ce7c9f3a8c",
+      "size": 1206
+    },
+    "usr/lib/tcl8.6/msgs/eu.msg": {
+      "sha256": "7dcc4966a5c13a52b6d1db62be200b9b5a1decbaccfcaf15045dd03a2c3e3faa",
+      "size": 985
+    },
+    "usr/lib/tcl8.6/msgs/eu_es.msg": {
+      "sha256": "935164a2d2d14815906b438562889b31139519b3a8e8db3d2ac152a77ec591dc",
+      "size": 287
+    },
+    "usr/lib/tcl8.6/msgs/fa.msg": {
+      "sha256": "f9ca4819e8c8b044d7d68c97fc67e0f4ccd6245e30024161dab24d0f7c3a9683",
+      "size": 1664
+    },
+    "usr/lib/tcl8.6/msgs/fa_in.msg": {
+      "sha256": "6360ce0f31ee593e311b275f3c1f1ed427e237f31010a4280ef2c58aa6f2633a",
+      "size": 1957
+    },
+    "usr/lib/tcl8.6/msgs/fa_ir.msg": {
+      "sha256": "cf492cbd73a6c230725225d70566b6e46d5730bd3f63879781de4433965620be",
+      "size": 417
+    },
+    "usr/lib/tcl8.6/msgs/fi.msg": {
+      "sha256": "be0d2dce08e6cd786bc3b07a1fb1adc5b2cf12053c99eacddaacddb8802dfb9c",
+      "size": 1145
+    },
+    "usr/lib/tcl8.6/msgs/fo.msg": {
+      "sha256": "f249dd1698ed1687e13654c04d08b829193027a2fecc24222ec854b59350466a",
+      "size": 986
+    },
+    "usr/lib/tcl8.6/msgs/fo_fo.msg": {
+      "sha256": "7145b57ac5c074bca968580b337c04a71bbd6efb93afaf291c1361fd700dc791",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/fr.msg": {
+      "sha256": "7a87e418b6d8d14d8c11d63708b38d607d28f7ddbf39606c7d8fba22be7892ca",
+      "size": 1205
+    },
+    "usr/lib/tcl8.6/msgs/fr_be.msg": {
+      "sha256": "980e703dfb1eede7de48c958f6b501ed4251f69cb0fbce0fca85555f5acf134a",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/fr_ca.msg": {
+      "sha256": "f16e212d5d1f6e83a9fc4e56874e4c7b8f1947ee882610a73199480319efa529",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/fr_ch.msg": {
+      "sha256": "ab160bfdeb5c3adf071e01c78312a81ee4223bbf5470ab880972bbf5965291f3",
+      "size": 281
+    },
+    "usr/lib/tcl8.6/msgs/ga.msg": {
+      "sha256": "057c75c1ad70653733dce43ea5bf151500f39314e8b0236ee80f8d5db623627f",
+      "size": 1141
+    },
+    "usr/lib/tcl8.6/msgs/ga_ie.msg": {
+      "sha256": "2072e48c98b480db5677188836485b4605d5a9d99870ac73b5bfe9dcc6db46f4",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/gl.msg": {
+      "sha256": "c71a07169cdbe9962616d28f38c32d641da277e53e67f8e3a69eb320c1e2b88c",
+      "size": 950
+    },
+    "usr/lib/tcl8.6/msgs/gl_es.msg": {
+      "sha256": "bc2b0424cf27bef67f309e2b6dffef4d39c46f15d91c15e83e070c7fd4e20c9c",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/gv.msg": {
+      "sha256": "75aa686ff901c9e66e51d36e8e78e5154b57ee9045784568f6a8798ea9689207",
+      "size": 1037
+    },
+    "usr/lib/tcl8.6/msgs/gv_gb.msg": {
+      "sha256": "823af00f4e44613e929d32770edb214132b6e210e872751624824da5f0b78448",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/he.msg": {
+      "sha256": "d27adaf74ebb18d6964882cf931260331b93ae4b283427f9a0db147a83de1d55",
+      "size": 1938
+    },
+    "usr/lib/tcl8.6/msgs/hi.msg": {
+      "sha256": "fafe65db09bdcb863742fda8705bcd1c31b59e0dd8a3b347ea6dec2596cee0e9",
+      "size": 1738
+    },
+    "usr/lib/tcl8.6/msgs/hi_in.msg": {
+      "sha256": "29c7ca358fffcaf94753c7cc2f63b58386234b75552fa3272c2e36f253770c3f",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/hr.msg": {
+      "sha256": "9e14d8f7f54be953983f198c8d59f38842c5f73419a5e81be6460b3623e7307a",
+      "size": 1121
+    },
+    "usr/lib/tcl8.6/msgs/hu.msg": {
+      "sha256": "314f4180c05de4a4860f65af6460900fff77f12c08edd728f68ca0065126b9ae",
+      "size": 1327
+    },
+    "usr/lib/tcl8.6/msgs/id.msg": {
+      "sha256": "1f1b0f5dede0263bd81773a78e98af551f36361accb315b618c8ae70a5fe781e",
+      "size": 914
+    },
+    "usr/lib/tcl8.6/msgs/id_id.msg": {
+      "sha256": "db81643ba1fd115e9d547943a889a56dfc0c81b63f21b1edc1955c6884c1b2f5",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/is.msg": {
+      "sha256": "6767115fff2da05f49a28bad78853fac6fc716186b985474d6d30764e1727c40",
+      "size": 1255
+    },
+    "usr/lib/tcl8.6/msgs/it.msg": {
+      "sha256": "c7d84001855586a0bab236a6a5878922d9c4a2ea1799bf18544869359750c0df",
+      "size": 1240
+    },
+    "usr/lib/tcl8.6/msgs/it_ch.msg": {
+      "sha256": "2ee356ffa2491a5a60bdf7d7febfac426824904738615a0c1d07aef6bda3b76f",
+      "size": 244
+    },
+    "usr/lib/tcl8.6/msgs/ja.msg": {
+      "sha256": "1fa391a6b22ddba5fb0431dfe0507f0b0754140b424700f1675f72c279ab0a0a",
+      "size": 1645
+    },
+    "usr/lib/tcl8.6/msgs/kl.msg": {
+      "sha256": "1b00229df5a979a040339bbc72d448f39968fee5cc24f07241c9f6129a9b53dd",
+      "size": 978
+    },
+    "usr/lib/tcl8.6/msgs/kl_gl.msg": {
+      "sha256": "f99da45138a8aebfd92747fc28992f0c315c6c4ad97710eaf9427263bffa139c",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/ko.msg": {
+      "sha256": "f6e2b0d116d2c9ac90dda430b6892371d87a4ecfb6955318978ed6f6e9d546a6",
+      "size": 1566
+    },
+    "usr/lib/tcl8.6/msgs/ko_kr.msg": {
+      "sha256": "31a4b74f51c584354907251c55fe5ce894d2c9618156a1dc6f5a979bc350db17",
+      "size": 346
+    },
+    "usr/lib/tcl8.6/msgs/kok.msg": {
+      "sha256": "d236d5b27184b1e813e686d901418117f22d67024e6944018fc4b633df9ff744",
+      "size": 1958
+    },
+    "usr/lib/tcl8.6/msgs/kok_in.msg": {
+      "sha256": "bee07f14c7f4fc93b62ac318f89d2ed0dd6ff30d2bf21c2874654ff0292a6c4b",
+      "size": 254
+    },
+    "usr/lib/tcl8.6/msgs/kw.msg": {
+      "sha256": "f49f4e1c7142bf7a82fc2b9fc075171ae45903fe69131478c15219d72bbaad33",
+      "size": 966
+    },
+    "usr/lib/tcl8.6/msgs/kw_gb.msg": {
+      "sha256": "7a8a539c8b990aeffea06188b98dc437fd2a6e89ff66483ef334994e73fd0ec9",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/lt.msg": {
+      "sha256": "510d8eed3040b50afaf6a3c85bc98847f1b4d5d8a685c5ec06acc2491b890101",
+      "size": 1255
+    },
+    "usr/lib/tcl8.6/msgs/lv.msg": {
+      "sha256": "fd95b38a3bebd59468bdc2890bac59df31c352e17f2e77c82471e1ca89469802",
+      "size": 1219
+    },
+    "usr/lib/tcl8.6/msgs/mk.msg": {
+      "sha256": "f384dd88523147cef42aa871d323fc4cbee338ff67cc5c95aec7940c0e531ae3",
+      "size": 2105
+    },
+    "usr/lib/tcl8.6/msgs/mr.msg": {
+      "sha256": "eb2e2b7a41854af68cef5881cf1fbf4d38e70d2fab2c3f3ce5901aa5cc56fc15",
+      "size": 1807
+    },
+    "usr/lib/tcl8.6/msgs/mr_in.msg": {
+      "sha256": "f75a29bb323db4354b0c759cb1c8c5a4ffc376dffd74274ca60a36994816a75c",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/ms.msg": {
+      "sha256": "831f611ee851a64bf1ba5f9a5441ec1d50722fa9f15b4227707fe1927f754de4",
+      "size": 910
+    },
+    "usr/lib/tcl8.6/msgs/ms_my.msg": {
+      "sha256": "d05948d75c06669addb9708bc5fb48e6b651d4e62ef1b327ef8a3f605fd5271c",
+      "size": 259
+    },
+    "usr/lib/tcl8.6/msgs/mt.msg": {
+      "sha256": "d115718818e3e3367847ce35bb5ff0361d08993d9749d438c918f8eb87ad8814",
+      "size": 690
+    },
+    "usr/lib/tcl8.6/msgs/nb.msg": {
+      "sha256": "bc401889dd934c49d10d99b471441be2b536b1722739c7b0ab7de7629680f602",
+      "size": 1157
+    },
+    "usr/lib/tcl8.6/msgs/nl.msg": {
+      "sha256": "49128b36b88e380188059c4b593c317382f32e29d1adc18d58d14d142459a2bb",
+      "size": 1079
+    },
+    "usr/lib/tcl8.6/msgs/nl_be.msg": {
+      "sha256": "9cd54ec24cbdbec5e4fe543dda8ca95390678d432d33201fa1c32b61f8fe225a",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/nn.msg": {
+      "sha256": "5ee93a8c245722deb64b68eff50c081f24da5de43d999c006a10c484e1d3b4ed",
+      "size": 1148
+    },
+    "usr/lib/tcl8.6/msgs/pl.msg": {
+      "sha256": "c39595ddc0095eb4ae9e66db02ee175b31ac3da1f649eb88fa61b911f838f753",
+      "size": 1211
+    },
+    "usr/lib/tcl8.6/msgs/pt.msg": {
+      "sha256": "9f2bffa3b4d8783b2cfb2ced9cc4319acf06988f61829a1e5291d55b19854e88",
+      "size": 1127
+    },
+    "usr/lib/tcl8.6/msgs/pt_br.msg": {
+      "sha256": "e383b20484ee90c00054d52dd5af473b2ac9dc50c14d459a579ef5f44271d256",
+      "size": 279
+    },
+    "usr/lib/tcl8.6/msgs/ro.msg": {
+      "sha256": "d2e14be188350d343927d5380eb5672039fe9a37e9a9957921b40e4619b36027",
+      "size": 1172
+    },
+    "usr/lib/tcl8.6/msgs/ru.msg": {
+      "sha256": "c2a3a0be5bc5a46a6a63c4de34e317b402bad40c22fb2936e1a4f53c1e2f625f",
+      "size": 2039
+    },
+    "usr/lib/tcl8.6/msgs/ru_ua.msg": {
+      "sha256": "ae5d3df23f019455f3edfc3262aac2b00098881f09b9a934c0d26c0ab896700c",
+      "size": 242
+    },
+    "usr/lib/tcl8.6/msgs/sh.msg": {
+      "sha256": "00f119701c9f3eba273701a6a731adafd7b8902f6bccf34e61308984456e193a",
+      "size": 1160
+    },
+    "usr/lib/tcl8.6/msgs/sk.msg": {
+      "sha256": "043dece6ea7c83956b3300b95f8a0e92badaa8fc29d6c510706649d1d810679a",
+      "size": 1203
+    },
+    "usr/lib/tcl8.6/msgs/sl.msg": {
+      "sha256": "bd488c9d791abedf698b66b768e2bf24251ffeaf06f53fb3746cab457710ff77",
+      "size": 1164
+    },
+    "usr/lib/tcl8.6/msgs/sq.msg": {
+      "sha256": "cb27007e138315b064576c17931280cfe6e6929efc3dafd7171713d204cfc3bf",
+      "size": 1267
+    },
+    "usr/lib/tcl8.6/msgs/sr.msg": {
+      "sha256": "313e8cdbbc0288aed922b9927a7331d0faa2e451d4174b1f5b76c5c9faec8f9b",
+      "size": 2035
+    },
+    "usr/lib/tcl8.6/msgs/sv.msg": {
+      "sha256": "4f32e1518be3270f4db80136fac0031c385dd3ce133faa534f141cf459c6113a",
+      "size": 1167
+    },
+    "usr/lib/tcl8.6/msgs/sw.msg": {
+      "sha256": "6b5ab8ae265db436b15d32263a8870ec55c7c0c07415b3f9baac37f73bc704e5",
+      "size": 991
+    },
+    "usr/lib/tcl8.6/msgs/ta.msg": {
+      "sha256": "30a142a48e57f194ecc3aa9243930f3e6e1b4e8b331a8cdd2705ec9c280dccbb",
+      "size": 1835
+    },
+    "usr/lib/tcl8.6/msgs/ta_in.msg": {
+      "sha256": "aa57d5fb5cc3f59ec6a3f99d7a5184403809aa3a3bc02ed0842507d4218b683d",
+      "size": 251
+    },
+    "usr/lib/tcl8.6/msgs/te.msg": {
+      "sha256": "42c34d02a6079c4d0d683750b3809f345637bc6d814652c3fb0b344b66b70c79",
+      "size": 2102
+    },
+    "usr/lib/tcl8.6/msgs/te_in.msg": {
+      "sha256": "88bdaf4b25b684b0320a2e11d3fe77dddd25e3b17141bd7ed1d63698c480e4ba",
+      "size": 411
+    },
+    "usr/lib/tcl8.6/msgs/th.msg": {
+      "sha256": "f9641a6ebe3845ce5d36ced473749f5909c90c52e405f074a6da817ef6f39867",
+      "size": 2305
+    },
+    "usr/lib/tcl8.6/msgs/tr.msg": {
+      "sha256": "df7c4ba67457cb47eef0f5ca8e028ff466acdd877a487697dc48ecac7347ac47",
+      "size": 1133
+    },
+    "usr/lib/tcl8.6/msgs/uk.msg": {
+      "sha256": "cf2e78ef3322f0121e958098ef5f92da008344657a73439eac658cb6bf3d72bd",
+      "size": 2113
+    },
+    "usr/lib/tcl8.6/msgs/vi.msg": {
+      "sha256": "9c69094c0bd52d5ae8448431574eae8ee4be31ec2e8602366df6c6bf4bc89a58",
+      "size": 1421
+    },
+    "usr/lib/tcl8.6/msgs/zh.msg": {
+      "sha256": "ef81b41ec69f67a394ece2b3983b67b3d0c8813624c2bfa1d8a8c15b21608ac9",
+      "size": 3330
+    },
+    "usr/lib/tcl8.6/msgs/zh_cn.msg": {
+      "sha256": "85f91cf6e316774aa5d0c1eca85c88e591fd537165bb79929c5e6a1ca99e56c8",
+      "size": 312
+    },
+    "usr/lib/tcl8.6/msgs/zh_hk.msg": {
+      "sha256": "d123e0b4c2614f680808b58cca0c140ba187494b2c8bcf8c604c7eb739c70882",
+      "size": 752
+    },
+    "usr/lib/tcl8.6/msgs/zh_sg.msg": {
+      "sha256": "2683517766af9da0d87b7a862de9adea82d9a1454fc773a9e3c1a6d92aba947a",
+      "size": 339
+    },
+    "usr/lib/tcl8.6/msgs/zh_tw.msg": {
+      "sha256": "d582406c51a3db1eadf6507c50a1f85740fda7da8e27fc1438feb6242900cb12",
+      "size": 346
+    },
+    "usr/lib/tcl8.6/opt0.4/optparse.tcl": {
+      "sha256": "895caa15a5fbf9f499bfea6ad65b23f0bd4880426a71c65d95a49a443c9402cd",
+      "size": 32705
+    },
+    "usr/lib/tcl8.6/opt0.4/pkgIndex.tcl": {
+      "sha256": "fe8d1229176043ee197f3db750bd6cadf265d7b3d127c87cdc2f0e10e2c6a549",
+      "size": 608
+    },
+    "usr/lib/tcl8.6/package.tcl": {
+      "sha256": "c13dcf4d1659a987671290592258b436d26dcfda06125761ef1f040c68698b67",
+      "size": 23244
+    },
+    "usr/lib/tcl8.6/parray.tcl": {
+      "sha256": "ebe5a2b4cbbcd7fd3f7a6f76d68d7856301db01b350c040942a7b806a46e0014",
+      "size": 816
+    },
+    "usr/lib/tcl8.6/safe.tcl": {
+      "sha256": "c58b6ff351471bab27550198353e105d389ddd22cf39fd18c62335d4c929541d",
+      "size": 40934
+    },
+    "usr/lib/tcl8.6/tclAppInit.c": {
+      "sha256": "4dfc82f0eab16a8d401378415181436f532ca33a56769ba569e8a9bd79419e00",
+      "size": 4511
+    },
+    "usr/lib/tcl8.6/tclIndex": {
+      "sha256": "962c60eb7e050061462ff72cec9741a7f18307af4aaa68d7665174f904842d13",
+      "size": 5539
+    },
+    "usr/lib/tcl8.6/tm.tcl": {
+      "sha256": "e88cc073643187c0a3bea35bac7ad698c317abe1387a80163cd1d98533f9eefa",
+      "size": 11824
+    },
+    "usr/lib/tcl8.6/word.tcl": {
+      "sha256": "b0592b0e1fd6c3c0e704168d4af97e9d5cab89b5cf5176e19ed5bd5f5eb2a175",
+      "size": 4876
+    },
+    "usr/lib/tclConfig.sh": {
+      "sha256": "5cb55c73b27d4f70e55fd55c517f1868c01ee9106a37ff1e7a8dc0923c03fbfa",
+      "size": 7828
+    },
+    "usr/lib/tclooConfig.sh": {
+      "sha256": "9a3210c14cba9aead381e376ff4bb454cc3dfd96f9d112fc66d8770e5197c17d",
+      "size": 773
+    },
+    "usr/lib/tdbc1.1.3/libtdbc1.1.3.dll": {
+      "sha256": "4a2617a7b183c02ba83b0500abb76c9ffc8dd69e42505bd7029f3c6d3aad94d7",
+      "size": 235795
+    },
+    "usr/lib/tdbc1.1.3/libtdbcstub1.1.3.a": {
+      "sha256": "a81fe85affba7c642ef5a03b057031a1f9eb00ac5a3f2f4b4cbe06c4e77a0c7f",
+      "size": 49342
+    },
+    "usr/lib/tdbc1.1.3/pkgIndex.tcl": {
+      "sha256": "455ec0adf3b8999f15b08b602dd5b6dede76b27953fa2c4ec8d6557b41c411c4",
+      "size": 834
+    },
+    "usr/lib/tdbc1.1.3/tdbc.tcl": {
+      "sha256": "2985b90c234bdbebcd3b931aee7785820e336e4beca6edc398cb03252ecb007a",
+      "size": 26703
+    },
+    "usr/lib/tdbc1.1.3/tdbcConfig.sh": {
+      "sha256": "357767f6834625b3b951b0c7f32ae2157d6958477c9966db2d9e404258748591",
+      "size": 3463
+    },
+    "usr/lib/tdbcmysql1.1.3/libtdbcmysql1.1.3.dll": {
+      "sha256": "11e3ecb88c3e3982420e2f50adf6c7d22da0edaa283c6fd3f3507ef08993c120",
+      "size": 498534
+    },
+    "usr/lib/tdbcmysql1.1.3/pkgIndex.tcl": {
+      "sha256": "ba4c6d9e88bb5679ff3275f0304d19f524dba08b1d6ed392ceff4811cee2c6ac",
+      "size": 543
+    },
+    "usr/lib/tdbcmysql1.1.3/tdbcmysql.tcl": {
+      "sha256": "7cc5cb4a13cd99c4e34eb89eba0454a1dbb1fb84c125928a70aa8b3dbc6feaea",
+      "size": 6623
+    },
+    "usr/lib/tdbcodbc1.1.3/libtdbcodbc1.1.3.dll": {
+      "sha256": "6047ac1c325e04baa43419f655277ebbcbbf1eba475337629ef6a179b807180a",
+      "size": 539321
+    },
+    "usr/lib/tdbcodbc1.1.3/pkgIndex.tcl": {
+      "sha256": "94e785424ec426d060b73a123036534da997a0cbe6a3bd634f228382bc1797cf",
+      "size": 534
+    },
+    "usr/lib/tdbcodbc1.1.3/tdbcodbc.tcl": {
+      "sha256": "88af09b5429d09c42f3f57304e0f08e261ae539ea3c154899507d90ca82693d5",
+      "size": 15620
+    },
+    "usr/lib/tdbcpostgres1.1.3/libtdbcpostgres1.1.3.dll": {
+      "sha256": "411aa8c55f2c3d30d1977e6dd93d806d2d2487b3b9e18107f2bd91bf13bd3c14",
+      "size": 476992
+    },
+    "usr/lib/tdbcpostgres1.1.3/pkgIndex.tcl": {
+      "sha256": "cb467a5abd489b2f2e6adf61eb3ab5bef5a3e4afb8f6e95a31f18e3d388b51e8",
+      "size": 570
+    },
+    "usr/lib/tdbcpostgres1.1.3/tdbcpostgres.tcl": {
+      "sha256": "58ba4fe2b016dead9252075d3b29e2bcf46d1a0ce4edefeb56e259ed425a3d20",
+      "size": 4363
+    },
+    "usr/lib/thread2.8.7/libthread2.8.7.dll": {
+      "sha256": "f21dd9df55bfe36f8a0c6c65ed8d407460acb6a71056075589c962bfe264a2be",
+      "size": 859997
+    },
+    "usr/lib/thread2.8.7/pkgIndex.tcl": {
+      "sha256": "fee5231b2c446b934c046cfe48b1ad8b04811ce7e3bc1a96577d81d5bcc8e5c6",
+      "size": 2395
+    },
+    "usr/lib/thread2.8.7/ttrace.tcl": {
+      "sha256": "c24c25bdde9b5751e7d58c1ede4c87b07ebf8994164e920c16ed34368ac3d342",
+      "size": 29530
+    },
+    "usr/share/aclocal/tcl.m4": {
+      "sha256": "f37516c8ac910d0f0809f03bb48ebcd05829ef9fadbf683a105275ee5a72f15f",
+      "size": 98432
+    },
+    "usr/share/licenses/tcl/LICENSE": {
+      "sha256": "c0a69a2bfd757361ec7e6143973b103c90409316b49e9c88db26ad6388e79f16",
+      "size": 2255
+    },
+    "usr/share/man/man1/tclsh.1": {
+      "sha256": "d192b807eebcfb22f9b7f79cb1e0c83bc1614bf76cd04e1349b1eb2653e98af9",
+      "size": 11867
+    },
+    "usr/share/man/man3/attemptckalloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/attemptckrealloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/ckalloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/ckfree.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/ckrealloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/DString.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Notifier.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/RegExp.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_Access.3": {
+      "sha256": "8f211ea96042e8133c3914bad910da5023868ccca2fdc20c287037bfaf210d00",
+      "size": 8781
+    },
+    "usr/share/man/man3/Tcl_AddErrorInfo.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_AddObjErrorInfo.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_AlertNotifier.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_Alloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/Tcl_AllocStatBuf.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_AllowExceptions.3": {
+      "sha256": "ef964d09858ad2e99de869b9a6ca989c722c409cf430ee3bef14a7de37bede78",
+      "size": 7405
+    },
+    "usr/share/man/man3/Tcl_AppendAllObjTypes.3": {
+      "sha256": "accacfc5bb70699f3b80acf8fc2aea790166822a6533ec26ce4959579a964a58",
+      "size": 16220
+    },
+    "usr/share/man/man3/Tcl_AppendElement.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_AppendExportList.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_AppendFormatToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendLimitedToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendObjToErrorInfo.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_AppendObjToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendPrintfToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_AppendResultVA.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_AppendStringsToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendStringsToObjVA.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppendUnicodeToObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_AppInit.3": {
+      "sha256": "162cf3c6b2f6e938282b2a445a7c3986b05450fa5148b1995f49025535829585",
+      "size": 8795
+    },
+    "usr/share/man/man3/Tcl_AsyncCreate.3": {
+      "sha256": "99e97890438f42efc0d0ea65a445bd8c66da8d26e2a58859d5c014caa36f6cd5",
+      "size": 12528
+    },
+    "usr/share/man/man3/Tcl_AsyncDelete.3": {
+      "sha256": "99e97890438f42efc0d0ea65a445bd8c66da8d26e2a58859d5c014caa36f6cd5",
+      "size": 12528
+    },
+    "usr/share/man/man3/Tcl_AsyncInvoke.3": {
+      "sha256": "99e97890438f42efc0d0ea65a445bd8c66da8d26e2a58859d5c014caa36f6cd5",
+      "size": 12528
+    },
+    "usr/share/man/man3/Tcl_AsyncMark.3": {
+      "sha256": "99e97890438f42efc0d0ea65a445bd8c66da8d26e2a58859d5c014caa36f6cd5",
+      "size": 12528
+    },
+    "usr/share/man/man3/Tcl_AsyncReady.3": {
+      "sha256": "99e97890438f42efc0d0ea65a445bd8c66da8d26e2a58859d5c014caa36f6cd5",
+      "size": 12528
+    },
+    "usr/share/man/man3/Tcl_AttemptAlloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/Tcl_AttemptRealloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/Tcl_AttemptSetObjLength.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_BackgroundError.3": {
+      "sha256": "1cb1f0bfcc990ca7b25ca814c4598a6a5cde7b50c900479718b44618010fb82b",
+      "size": 8959
+    },
+    "usr/share/man/man3/Tcl_BackgroundException.3": {
+      "sha256": "1cb1f0bfcc990ca7b25ca814c4598a6a5cde7b50c900479718b44618010fb82b",
+      "size": 8959
+    },
+    "usr/share/man/man3/Tcl_Backslash.3": {
+      "sha256": "44508d2a69071fe6cbd4373fb45f9f4225f6ae105ee548f01a88ed5d884a1d33",
+      "size": 7249
+    },
+    "usr/share/man/man3/Tcl_BadChannelOption.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_CallWhenDeleted.3": {
+      "sha256": "c6c5621c7b0f7f77fc9cf53c283368f723d9b180b3a166ed94465570ff0bbcd2",
+      "size": 8301
+    },
+    "usr/share/man/man3/Tcl_Canceled.3": {
+      "sha256": "b94fbe282f75bea95fe268580fe9b6e5d9ae0170f5e9e9479f75e9776c6de77e",
+      "size": 8640
+    },
+    "usr/share/man/man3/Tcl_CancelEval.3": {
+      "sha256": "b94fbe282f75bea95fe268580fe9b6e5d9ae0170f5e9e9479f75e9776c6de77e",
+      "size": 8640
+    },
+    "usr/share/man/man3/Tcl_CancelIdleCall.3": {
+      "sha256": "4ca247be80ac316fd2097334a77b13a3fc0c75f06b839abd5837eadda9978ce9",
+      "size": 9214
+    },
+    "usr/share/man/man3/Tcl_ChannelBlockModeProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelBuffered.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelClose2Proc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelCloseProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelFlushProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelGetHandleProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelGetOptionProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelHandlerProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelInputProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelName.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelOutputProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelSeekProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelSetOptionProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelThreadActionProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelTruncateProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelVersion.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelWatchProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_ChannelWideSeekProc.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_Chdir.3": {
+      "sha256": "638422decaff470462f03361a418f1002a51c78709758a6bca70a5fa6452615d",
+      "size": 7534
+    },
+    "usr/share/man/man3/Tcl_ClassGetMetadata.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ClassSetConstructor.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ClassSetDestructor.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ClassSetMetadata.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ClearChannelHandlers.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_Close.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_CommandComplete.3": {
+      "sha256": "13726cfa46324428c7e922605488cdef56c4e7fac2dca743ffb75b3ba7602459",
+      "size": 6765
+    },
+    "usr/share/man/man3/Tcl_CommandTraceInfo.3": {
+      "sha256": "038eee27bee7e8f1aea7393c62a1c8ff3e2bba049d63f70be32985d5cc85c1b5",
+      "size": 12574
+    },
+    "usr/share/man/man3/Tcl_Concat.3": {
+      "sha256": "c38da6f10e3a3a5ff4dc3f568ae4044113cb895694a520c08b5dcc89b3eaba31",
+      "size": 7533
+    },
+    "usr/share/man/man3/Tcl_ConcatObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_ConditionFinalize.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_ConditionNotify.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_ConditionWait.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_ConvertCountedElement.3": {
+      "sha256": "a50edca0ce1c58ab1188d10a5c833206fe42cbd22916a42631b0d51cb2b749dc",
+      "size": 13479
+    },
+    "usr/share/man/man3/Tcl_ConvertElement.3": {
+      "sha256": "a50edca0ce1c58ab1188d10a5c833206fe42cbd22916a42631b0d51cb2b749dc",
+      "size": 13479
+    },
+    "usr/share/man/man3/Tcl_ConvertToType.3": {
+      "sha256": "accacfc5bb70699f3b80acf8fc2aea790166822a6533ec26ce4959579a964a58",
+      "size": 16220
+    },
+    "usr/share/man/man3/Tcl_CopyObjectInstance.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_CreateAlias.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_CreateAliasObj.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_CreateChannel.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_CreateChannelHandler.3": {
+      "sha256": "25f822f0c76b1ae63d016bc7369e2e30747a0f6a67f62642a5bcbf2f62ab8660",
+      "size": 9538
+    },
+    "usr/share/man/man3/Tcl_CreateChild.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_CreateCloseHandler.3": {
+      "sha256": "dcfe151ec46aec7456247a8fb05919f4611732d3332ddbf5c6a12711c5fc0685",
+      "size": 7585
+    },
+    "usr/share/man/man3/Tcl_CreateCommand.3": {
+      "sha256": "7cc91ddeddaa0c12620b7dacf602679d8a0e6ba9fde4719c5082e8489f2616f3",
+      "size": 12110
+    },
+    "usr/share/man/man3/Tcl_CreateEncoding.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_CreateEnsemble.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_CreateEventSource.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_CreateExitHandler.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_CreateFileHandler.3": {
+      "sha256": "1cffbff7872ac23aa114f807f59ad87022f7fc3664785f4c13c24bb5f0ef4914",
+      "size": 9397
+    },
+    "usr/share/man/man3/Tcl_CreateHashEntry.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_CreateInterp.3": {
+      "sha256": "73f7914202603b875b59f41302711194613a1a3932b61397e356f7ffc53fb38b",
+      "size": 12833
+    },
+    "usr/share/man/man3/Tcl_CreateMathFunc.3": {
+      "sha256": "ea6750e03e7e3b0333bc88e202cc3dab6e884dbb9a57202c40c582823003b4fe",
+      "size": 12847
+    },
+    "usr/share/man/man3/Tcl_CreateNamespace.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_CreateObjCommand.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_CreateObjTrace.3": {
+      "sha256": "275165153517bde6a91fb0813f2cff82d8f2cf8d27286918464ed51f02a639ad",
+      "size": 14320
+    },
+    "usr/share/man/man3/Tcl_CreateSlave.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_CreateThread.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_CreateThreadExitHandler.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_CreateTimerHandler.3": {
+      "sha256": "7695a50d2f9277963f8a3f1b719bea437878dca91a5c490400c9cd0eb67b953b",
+      "size": 8673
+    },
+    "usr/share/man/man3/Tcl_CreateTrace.3": {
+      "sha256": "275165153517bde6a91fb0813f2cff82d8f2cf8d27286918464ed51f02a639ad",
+      "size": 14320
+    },
+    "usr/share/man/man3/Tcl_CutChannel.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_DecrRefCount.3": {
+      "sha256": "e6b1c1d0b12d9bc3d05d7e4e13783c925b8d1a4804326cfa8e65130dc00e4f1f",
+      "size": 19920
+    },
+    "usr/share/man/man3/Tcl_DeleteAssocData.3": {
+      "sha256": "f9eeca959a6692f781e5aed3d38e2cc0fdafa634f21f7179ab3850b4802db75b",
+      "size": 9336
+    },
+    "usr/share/man/man3/Tcl_DeleteChannelHandler.3": {
+      "sha256": "25f822f0c76b1ae63d016bc7369e2e30747a0f6a67f62642a5bcbf2f62ab8660",
+      "size": 9538
+    },
+    "usr/share/man/man3/Tcl_DeleteCloseHandler.3": {
+      "sha256": "dcfe151ec46aec7456247a8fb05919f4611732d3332ddbf5c6a12711c5fc0685",
+      "size": 7585
+    },
+    "usr/share/man/man3/Tcl_DeleteCommand.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_DeleteCommandFromToken.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_DeleteEvents.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_DeleteEventSource.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_DeleteExitHandler.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_DeleteFileHandler.3": {
+      "sha256": "1cffbff7872ac23aa114f807f59ad87022f7fc3664785f4c13c24bb5f0ef4914",
+      "size": 9397
+    },
+    "usr/share/man/man3/Tcl_DeleteHashEntry.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_DeleteHashTable.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_DeleteInterp.3": {
+      "sha256": "73f7914202603b875b59f41302711194613a1a3932b61397e356f7ffc53fb38b",
+      "size": 12833
+    },
+    "usr/share/man/man3/Tcl_DeleteNamespace.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_DeleteThreadExitHandler.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_DeleteTimerHandler.3": {
+      "sha256": "7695a50d2f9277963f8a3f1b719bea437878dca91a5c490400c9cd0eb67b953b",
+      "size": 8673
+    },
+    "usr/share/man/man3/Tcl_DeleteTrace.3": {
+      "sha256": "275165153517bde6a91fb0813f2cff82d8f2cf8d27286918464ed51f02a639ad",
+      "size": 14320
+    },
+    "usr/share/man/man3/Tcl_DetachChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_DetachPids.3": {
+      "sha256": "0b82c40075fe8f41dcf0f60fa252032427fe9ad4bcab0d793a07863599e50790",
+      "size": 8875
+    },
+    "usr/share/man/man3/Tcl_DictObjDone.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjFirst.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjGet.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjNext.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjPut.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjPutKeyList.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjRemove.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjRemoveKeyList.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DictObjSize.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_DiscardInterpState.3": {
+      "sha256": "85ba4845eb273ee45236ee5d5bc2d749aaf0ff583621cbb5da17a6fddef9c974",
+      "size": 11102
+    },
+    "usr/share/man/man3/Tcl_DiscardResult.3": {
+      "sha256": "85ba4845eb273ee45236ee5d5bc2d749aaf0ff583621cbb5da17a6fddef9c974",
+      "size": 11102
+    },
+    "usr/share/man/man3/Tcl_DontCallWhenDeleted.3": {
+      "sha256": "c6c5621c7b0f7f77fc9cf53c283368f723d9b180b3a166ed94465570ff0bbcd2",
+      "size": 8301
+    },
+    "usr/share/man/man3/Tcl_DoOneEvent.3": {
+      "sha256": "36bb8461c7642d3b171c97915e392540af11509b512ab244c44ea5ad1b59e66f",
+      "size": 9930
+    },
+    "usr/share/man/man3/Tcl_DoWhenIdle.3": {
+      "sha256": "4ca247be80ac316fd2097334a77b13a3fc0c75f06b839abd5837eadda9978ce9",
+      "size": 9214
+    },
+    "usr/share/man/man3/Tcl_DStringAppend.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringAppendElement.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringEndSublist.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringFree.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringGetResult.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringInit.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringLength.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringResult.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringSetLength.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringStartSublist.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringTrunc.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DStringValue.3": {
+      "sha256": "b3707fe606dd312aea375530d1a9dff4e977a3eee88f708ed0e77ee07a393649",
+      "size": 11871
+    },
+    "usr/share/man/man3/Tcl_DumpActiveMemory.3": {
+      "sha256": "266d45a4b23d18211a244c084dbb085d41af423e970707a6626d091919dc38ab",
+      "size": 8051
+    },
+    "usr/share/man/man3/Tcl_DuplicateObj.3": {
+      "sha256": "e6b1c1d0b12d9bc3d05d7e4e13783c925b8d1a4804326cfa8e65130dc00e4f1f",
+      "size": 19920
+    },
+    "usr/share/man/man3/Tcl_Eof.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_ErrnoId.3": {
+      "sha256": "71cc8c04d34104e50295c37e1f366675d6c603791033a29d33a2dc763269b249",
+      "size": 7886
+    },
+    "usr/share/man/man3/Tcl_ErrnoMsg.3": {
+      "sha256": "71cc8c04d34104e50295c37e1f366675d6c603791033a29d33a2dc763269b249",
+      "size": 7886
+    },
+    "usr/share/man/man3/Tcl_Eval.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_EvalEx.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_EvalFile.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_EvalObjEx.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_EvalObjv.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_EvalTokens.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_EvalTokensStandard.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_EventuallyFree.3": {
+      "sha256": "77bb4e78f770dbfe9310631975bb0816741620423190946dfe29ebfb953245f6",
+      "size": 10357
+    },
+    "usr/share/man/man3/Tcl_Exit.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_ExitThread.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_Export.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_ExposeCommand.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_ExprBoolean.3": {
+      "sha256": "bb208d00ed8e256c0a557f241f700f657d1ef449d8207c6691fed9c48283cc23",
+      "size": 9483
+    },
+    "usr/share/man/man3/Tcl_ExprBooleanObj.3": {
+      "sha256": "eb68a3cced7333b02637c9e7bc4d2e7cbc75663242d75c8a04ab4e6b0a8c9ef2",
+      "size": 9490
+    },
+    "usr/share/man/man3/Tcl_ExprDouble.3": {
+      "sha256": "bb208d00ed8e256c0a557f241f700f657d1ef449d8207c6691fed9c48283cc23",
+      "size": 9483
+    },
+    "usr/share/man/man3/Tcl_ExprDoubleObj.3": {
+      "sha256": "eb68a3cced7333b02637c9e7bc4d2e7cbc75663242d75c8a04ab4e6b0a8c9ef2",
+      "size": 9490
+    },
+    "usr/share/man/man3/Tcl_ExprLong.3": {
+      "sha256": "bb208d00ed8e256c0a557f241f700f657d1ef449d8207c6691fed9c48283cc23",
+      "size": 9483
+    },
+    "usr/share/man/man3/Tcl_ExprLongObj.3": {
+      "sha256": "eb68a3cced7333b02637c9e7bc4d2e7cbc75663242d75c8a04ab4e6b0a8c9ef2",
+      "size": 9490
+    },
+    "usr/share/man/man3/Tcl_ExprObj.3": {
+      "sha256": "eb68a3cced7333b02637c9e7bc4d2e7cbc75663242d75c8a04ab4e6b0a8c9ef2",
+      "size": 9490
+    },
+    "usr/share/man/man3/Tcl_ExprString.3": {
+      "sha256": "bb208d00ed8e256c0a557f241f700f657d1ef449d8207c6691fed9c48283cc23",
+      "size": 9483
+    },
+    "usr/share/man/man3/Tcl_ExternalToUtf.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_ExternalToUtfDString.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_Finalize.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_FinalizeNotifier.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_FinalizeThread.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_FindCommand.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_FindEnsemble.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_FindExecutable.3": {
+      "sha256": "aedd45c67cb0d4f76497570a9749d247ee57a38d795eab2146eb6f3e6552262d",
+      "size": 8174
+    },
+    "usr/share/man/man3/Tcl_FindHashEntry.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_FindNamespace.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_FindSymbol.3": {
+      "sha256": "e081ead81a6277abe7931f79f8b9d5b9c9c3638eb5b957883ec61ecdea553264",
+      "size": 8675
+    },
+    "usr/share/man/man3/Tcl_FirstHashEntry.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_Flush.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_ForgetImport.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_Format.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_Free.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/Tcl_FreeEncoding.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_FreeParse.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_FreeResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_FSAccess.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSChdir.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSConvertToPathType.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSCopyDirectory.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSCopyFile.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSCreateDirectory.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSData.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSDeleteFile.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSEqualPaths.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSEvalFile.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSEvalFileEx.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSFileAttrsGet.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSFileAttrsSet.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSFileAttrStrings.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSFileSystemInfo.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetCwd.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetFileSystemForPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetInternalRep.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetNativePath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetNormalizedPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetPathType.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetTranslatedPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSGetTranslatedStringPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSJoinPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSJoinToPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSLink.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSListVolumes.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSLoadFile.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSLstat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSMatchInDirectory.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSMountsChanged.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSNewNativePath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSOpenFileChannel.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSPathSeparator.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSRegister.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSRemoveDirectory.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSRenameFile.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSSplitPath.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSUnloadFile.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSUnregister.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_FSUtime.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetAccessTimeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetAlias.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetAliasObj.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetAssocData.3": {
+      "sha256": "f9eeca959a6692f781e5aed3d38e2cc0fdafa634f21f7179ab3850b4802db75b",
+      "size": 9336
+    },
+    "usr/share/man/man3/Tcl_GetBignumFromObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_GetBlocksFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetBlockSizeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetBoolean.3": {
+      "sha256": "84372e9e5db7c42705904d7bd286cd020ca02874fe2fd0fc7a0a9410e382a3ad",
+      "size": 9534
+    },
+    "usr/share/man/man3/Tcl_GetBooleanFromObj.3": {
+      "sha256": "32878c10b6f9f7f41cd6ecbf98374ce037eb5cfc61e8d41a7a8c5dd408b0b6a4",
+      "size": 9513
+    },
+    "usr/share/man/man3/Tcl_GetByteArrayFromObj.3": {
+      "sha256": "2829b64ecf9dc37ebd1bfa1607a38a2a8c3f141504b1fda96c5f6e33a8580fc9",
+      "size": 9925
+    },
+    "usr/share/man/man3/Tcl_GetChangeTimeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_GetChannelBufferSize.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetChannelError.3": {
+      "sha256": "67e6445fae15008f686c661d3622ee72c275087ac4ef86aec85af14426c68d5f",
+      "size": 11985
+    },
+    "usr/share/man/man3/Tcl_GetChannelErrorInterp.3": {
+      "sha256": "67e6445fae15008f686c661d3622ee72c275087ac4ef86aec85af14426c68d5f",
+      "size": 11985
+    },
+    "usr/share/man/man3/Tcl_GetChannelHandle.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetChannelInstanceData.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetChannelMode.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetChannelName.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetChannelNames.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_GetChannelNamesEx.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_GetChannelOption.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_GetChannelThread.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetChannelType.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_GetCharLength.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetChild.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetClassAsObject.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_GetCommandFromObj.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_GetCommandFullName.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_GetCommandInfo.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_GetCommandInfoFromToken.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_GetCommandName.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_GetCurrentNamespace.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_GetCurrentThread.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_GetCwd.3": {
+      "sha256": "638422decaff470462f03361a418f1002a51c78709758a6bca70a5fa6452615d",
+      "size": 7534
+    },
+    "usr/share/man/man3/Tcl_GetDefaultEncodingDir.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetDeviceTypeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetDouble.3": {
+      "sha256": "84372e9e5db7c42705904d7bd286cd020ca02874fe2fd0fc7a0a9410e382a3ad",
+      "size": 9534
+    },
+    "usr/share/man/man3/Tcl_GetDoubleFromObj.3": {
+      "sha256": "5897c30aba7d8dc4122963470a7a6226ecfaedf6edf3ddd7cabbbff966d33bef",
+      "size": 8427
+    },
+    "usr/share/man/man3/Tcl_GetEncoding.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetEncodingFromObj.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetEncodingName.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetEncodingNameFromEnvironment.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetEncodingNames.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetEncodingSearchPath.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_GetEnsembleFlags.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_GetEnsembleMappingDict.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_GetEnsembleNamespace.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_GetEnsembleParameterList.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_GetEnsembleSubcommandList.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_GetEnsembleUnknownHandler.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_GetErrno.3": {
+      "sha256": "71cc8c04d34104e50295c37e1f366675d6c603791033a29d33a2dc763269b249",
+      "size": 7886
+    },
+    "usr/share/man/man3/Tcl_GetErrorLine.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_GetFSDeviceFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetFSInodeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetGlobalNamespace.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_GetGroupIdFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetHashKey.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_GetHashValue.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_GetHostName.3": {
+      "sha256": "4907f6bf7590b8d5a5614fde7c18d15fc2b1cb2a14a851bf62bc2a3021b01bb2",
+      "size": 6435
+    },
+    "usr/share/man/man3/Tcl_GetIndexFromObj.3": {
+      "sha256": "5c76019cf9055a3cbbd95fcd94ce46f1d898450093dd4858de7e84db51705a50",
+      "size": 10504
+    },
+    "usr/share/man/man3/Tcl_GetIndexFromObjStruct.3": {
+      "sha256": "5c76019cf9055a3cbbd95fcd94ce46f1d898450093dd4858de7e84db51705a50",
+      "size": 10504
+    },
+    "usr/share/man/man3/Tcl_GetInt.3": {
+      "sha256": "84372e9e5db7c42705904d7bd286cd020ca02874fe2fd0fc7a0a9410e382a3ad",
+      "size": 9534
+    },
+    "usr/share/man/man3/Tcl_GetInterpPath.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetIntFromObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_GetLinkCountFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetLongFromObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_GetMaster.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetMathFuncInfo.3": {
+      "sha256": "ea6750e03e7e3b0333bc88e202cc3dab6e884dbb9a57202c40c582823003b4fe",
+      "size": 12847
+    },
+    "usr/share/man/man3/Tcl_GetMemoryInfo.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/Tcl_GetModeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetModificationTimeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetNameOfExecutable.3": {
+      "sha256": "aedd45c67cb0d4f76497570a9749d247ee57a38d795eab2146eb6f3e6552262d",
+      "size": 8174
+    },
+    "usr/share/man/man3/Tcl_GetNamespaceUnknownHandler.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_GetObjectAsClass.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_GetObjectCommand.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_GetObjectFromObj.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_GetObjectName.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_GetObjectNamespace.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_GetObjResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_GetObjType.3": {
+      "sha256": "accacfc5bb70699f3b80acf8fc2aea790166822a6533ec26ce4959579a964a58",
+      "size": 16220
+    },
+    "usr/share/man/man3/Tcl_GetOpenFile.3": {
+      "sha256": "7cb9b73ff0eb118fa8829fb66fa0889862b480a4a1024099757c622940d9fb3f",
+      "size": 7900
+    },
+    "usr/share/man/man3/Tcl_GetParent.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetPathType.3": {
+      "sha256": "ce24b34a12375201a77fc84ea02cfd9fcd4d7ce59186077cd07a652a2913a378",
+      "size": 9205
+    },
+    "usr/share/man/man3/Tcl_GetRange.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetRegExpFromObj.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_GetReturnOptions.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_Gets.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_GetServiceMode.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_GetSizeFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetSlave.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_GetsObj.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_GetStackedChannel.3": {
+      "sha256": "87bf39abd82b969de2c3e642b92992e1efa4ac8f278b8dad5940fe7dd04763d4",
+      "size": 9684
+    },
+    "usr/share/man/man3/Tcl_GetStartupScript.3": {
+      "sha256": "006332052a3c13e966de40830d0295c8e850d937ede67f840dccc71573b2febc",
+      "size": 15038
+    },
+    "usr/share/man/man3/Tcl_GetStdChannel.3": {
+      "sha256": "b4d286ab5fe2c9fc2a6fb4960e69743df80a2991d20736637e709208acfbd3ad",
+      "size": 9390
+    },
+    "usr/share/man/man3/Tcl_GetString.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetStringFromObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetStringResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_GetThreadData.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_GetTime.3": {
+      "sha256": "3a6c860a5b38741f31432c221d9d7dec95bcb2a6455fc03aa4f13fde812ad36d",
+      "size": 10166
+    },
+    "usr/share/man/man3/Tcl_GetTopChannel.3": {
+      "sha256": "87bf39abd82b969de2c3e642b92992e1efa4ac8f278b8dad5940fe7dd04763d4",
+      "size": 9684
+    },
+    "usr/share/man/man3/Tcl_GetUniChar.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetUnicode.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetUnicodeFromObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_GetUserIdFromStat.3": {
+      "sha256": "bb2efd9ad0f4e167dcc65dacf29ccb25dfe70204a08df3e90583044c07032a81",
+      "size": 74456
+    },
+    "usr/share/man/man3/Tcl_GetVar.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_GetVar2.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_GetVar2Ex.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_GetVersion.3": {
+      "sha256": "593eddf87e65b88444c645f9c162bba147de8a6f77263ebcd6927b8ed1c3c3f1",
+      "size": 7423
+    },
+    "usr/share/man/man3/Tcl_GetWideIntFromObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_GlobalEval.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_GlobalEvalObj.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_HashStats.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_HideCommand.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_Import.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_IncrRefCount.3": {
+      "sha256": "e6b1c1d0b12d9bc3d05d7e4e13783c925b8d1a4804326cfa8e65130dc00e4f1f",
+      "size": 19920
+    },
+    "usr/share/man/man3/Tcl_Init.3": {
+      "sha256": "5514e83ff4e2e956ae227e25a673180ba42b5a5cf9f1d495619204425bc8c40a",
+      "size": 6511
+    },
+    "usr/share/man/man3/Tcl_InitCustomHashTable.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_InitHashTable.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_InitMemory.3": {
+      "sha256": "266d45a4b23d18211a244c084dbb085d41af423e970707a6626d091919dc38ab",
+      "size": 8051
+    },
+    "usr/share/man/man3/Tcl_InitNotifier.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_InitObjHashTable.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_InitStubs.3": {
+      "sha256": "9eda7290742a697cc9c147638a7d81476e746775d73caf5e6f7c7f0b3501e725",
+      "size": 9299
+    },
+    "usr/share/man/man3/Tcl_InputBlocked.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_InputBuffered.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_Interp.3": {
+      "sha256": "0d414e3f88021b8198117f0e5c32707dcb54e4d44c94ca11c11fe1c1e89e15ea",
+      "size": 11852
+    },
+    "usr/share/man/man3/Tcl_InterpActive.3": {
+      "sha256": "73f7914202603b875b59f41302711194613a1a3932b61397e356f7ffc53fb38b",
+      "size": 12833
+    },
+    "usr/share/man/man3/Tcl_InterpDeleted.3": {
+      "sha256": "73f7914202603b875b59f41302711194613a1a3932b61397e356f7ffc53fb38b",
+      "size": 12833
+    },
+    "usr/share/man/man3/Tcl_InvalidateStringRep.3": {
+      "sha256": "e6b1c1d0b12d9bc3d05d7e4e13783c925b8d1a4804326cfa8e65130dc00e4f1f",
+      "size": 19920
+    },
+    "usr/share/man/man3/Tcl_IsChannelExisting.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_IsChannelRegistered.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_IsChannelShared.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_IsEnsemble.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_IsSafe.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_IsShared.3": {
+      "sha256": "e6b1c1d0b12d9bc3d05d7e4e13783c925b8d1a4804326cfa8e65130dc00e4f1f",
+      "size": 19920
+    },
+    "usr/share/man/man3/Tcl_IsStandardChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_JoinPath.3": {
+      "sha256": "ce24b34a12375201a77fc84ea02cfd9fcd4d7ce59186077cd07a652a2913a378",
+      "size": 9205
+    },
+    "usr/share/man/man3/Tcl_JoinThread.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_LimitAddHandler.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitCheck.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitExceeded.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitGetCommands.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitGetGranularity.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitGetTime.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitReady.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitRemoveHandler.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitSetCommands.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitSetGranularity.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitSetTime.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitTypeEnabled.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitTypeExceeded.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitTypeReset.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LimitTypeSet.3": {
+      "sha256": "79b178bcb8fb8e8f84b61bdb6f53ec881204bc946e4c6aa2e0a3d4b33859a19c",
+      "size": 13652
+    },
+    "usr/share/man/man3/Tcl_LinkVar.3": {
+      "sha256": "d12a292ecfb0b9c9702152122ebbcc8c599bbc60f0caea88ec746b2b26f7899f",
+      "size": 16269
+    },
+    "usr/share/man/man3/Tcl_ListMathFuncs.3": {
+      "sha256": "ea6750e03e7e3b0333bc88e202cc3dab6e884dbb9a57202c40c582823003b4fe",
+      "size": 12847
+    },
+    "usr/share/man/man3/Tcl_ListObjAppendElement.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_ListObjAppendList.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_ListObjGetElements.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_ListObjIndex.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_ListObjLength.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_ListObjReplace.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_LoadFile.3": {
+      "sha256": "e081ead81a6277abe7931f79f8b9d5b9c9c3638eb5b957883ec61ecdea553264",
+      "size": 8675
+    },
+    "usr/share/man/man3/Tcl_LogCommandInfo.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_Main.3": {
+      "sha256": "006332052a3c13e966de40830d0295c8e850d937ede67f840dccc71573b2febc",
+      "size": 15038
+    },
+    "usr/share/man/man3/Tcl_MainEx.3": {
+      "sha256": "006332052a3c13e966de40830d0295c8e850d937ede67f840dccc71573b2febc",
+      "size": 15038
+    },
+    "usr/share/man/man3/Tcl_MainExW.3": {
+      "sha256": "006332052a3c13e966de40830d0295c8e850d937ede67f840dccc71573b2febc",
+      "size": 15038
+    },
+    "usr/share/man/man3/Tcl_MakeFileChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_MakeSafe.3": {
+      "sha256": "9d678d80e693a9e406dc22b517425d6fcafaf15bcd5fb825441f8be86ec38cd4",
+      "size": 16334
+    },
+    "usr/share/man/man3/Tcl_MakeTcpClientChannel.3": {
+      "sha256": "9a8369b6673d47e3662e355f11c2cd4342c838bd9ca070825c8f0e23c0edb6ea",
+      "size": 13291
+    },
+    "usr/share/man/man3/TCL_MEM_DEBUG.3": {
+      "sha256": "38924a337ad60e0d2e7aa31e97ce2ce326c522bd608eb35282a98739cb68c759",
+      "size": 9496
+    },
+    "usr/share/man/man3/Tcl_Merge.3": {
+      "sha256": "a50edca0ce1c58ab1188d10a5c833206fe42cbd22916a42631b0d51cb2b749dc",
+      "size": 13479
+    },
+    "usr/share/man/man3/Tcl_MethodDeclarerClass.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_MethodDeclarerObject.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_MethodIsPublic.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_MethodIsType.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_MethodName.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_MutexFinalize.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_MutexLock.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_MutexUnlock.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/man3/Tcl_NewBignumObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_NewBooleanObj.3": {
+      "sha256": "32878c10b6f9f7f41cd6ecbf98374ce037eb5cfc61e8d41a7a8c5dd408b0b6a4",
+      "size": 9513
+    },
+    "usr/share/man/man3/Tcl_NewByteArrayObj.3": {
+      "sha256": "2829b64ecf9dc37ebd1bfa1607a38a2a8c3f141504b1fda96c5f6e33a8580fc9",
+      "size": 9925
+    },
+    "usr/share/man/man3/Tcl_NewDictObj.3": {
+      "sha256": "9505846e988cfd37a5c457bb0204b315193284bcee78aac5fac7f6f96f5784dd",
+      "size": 16387
+    },
+    "usr/share/man/man3/Tcl_NewDoubleObj.3": {
+      "sha256": "5897c30aba7d8dc4122963470a7a6226ecfaedf6edf3ddd7cabbbff966d33bef",
+      "size": 8427
+    },
+    "usr/share/man/man3/Tcl_NewInstanceMethod.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_NewIntObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_NewListObj.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_NewLongObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_NewMethod.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_NewObj.3": {
+      "sha256": "e6b1c1d0b12d9bc3d05d7e4e13783c925b8d1a4804326cfa8e65130dc00e4f1f",
+      "size": 19920
+    },
+    "usr/share/man/man3/Tcl_NewObjectInstance.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_NewStringObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_NewUnicodeObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_NewWideIntObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_NextHashEntry.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_NotifyChannel.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_NRAddCallback.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NRCallObjProc.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NRCmdSwap.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NRCreateCommand.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NREvalObj.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NREvalObjv.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NRExprObj.3": {
+      "sha256": "5b49eabd22cb1f96d7be6499e1cdb4e1f245c14622d4229dbfe0f7053d642c5f",
+      "size": 13662
+    },
+    "usr/share/man/man3/Tcl_NumUtfChars.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_ObjectContextInvokeNext.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ObjectContextIsFiltering.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ObjectContextMethod.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ObjectContextObject.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ObjectContextSkippedArgs.3": {
+      "sha256": "159583b041f96c71385ac6157bf907be50d38e6fe8be0ae819eb8042457c7ff3",
+      "size": 16467
+    },
+    "usr/share/man/man3/Tcl_ObjectDeleted.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ObjectGetMetadata.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ObjectGetMethodNameMapper.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ObjectSetMetadata.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ObjectSetMethodNameMapper.3": {
+      "sha256": "2297332baad1053e19c2923355470da8d7a8b7405dfb1f597de16dce1df53138",
+      "size": 17168
+    },
+    "usr/share/man/man3/Tcl_ObjGetVar2.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_ObjPrintf.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_ObjSetVar2.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_OOInitStubs.3": {
+      "sha256": "b03f1328950f8abb4efe4fbac5a0b3774934ba5f0eefc41fef90f6d49cff090e",
+      "size": 7771
+    },
+    "usr/share/man/man3/Tcl_OpenCommandChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_OpenFileChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_OpenTcpClient.3": {
+      "sha256": "9a8369b6673d47e3662e355f11c2cd4342c838bd9ca070825c8f0e23c0edb6ea",
+      "size": 13291
+    },
+    "usr/share/man/man3/Tcl_OpenTcpServer.3": {
+      "sha256": "9a8369b6673d47e3662e355f11c2cd4342c838bd9ca070825c8f0e23c0edb6ea",
+      "size": 13291
+    },
+    "usr/share/man/man3/Tcl_OutputBuffered.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_Panic.3": {
+      "sha256": "aeec87ed2c9ef024d467e8d3017114b6965f0fb891d7c576fd9c0083b69c3736",
+      "size": 9192
+    },
+    "usr/share/man/man3/Tcl_PanicVA.3": {
+      "sha256": "aeec87ed2c9ef024d467e8d3017114b6965f0fb891d7c576fd9c0083b69c3736",
+      "size": 9192
+    },
+    "usr/share/man/man3/Tcl_ParseArgsObjv.3": {
+      "sha256": "4b81da0da10add856329be7ca571a18356cf779e0bc2c297b9679e520d4fcbf0",
+      "size": 13061
+    },
+    "usr/share/man/man3/Tcl_ParseBraces.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_ParseCommand.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_ParseExpr.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_ParseQuotedString.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_ParseVar.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_ParseVarName.3": {
+      "sha256": "188a5c05250078226a5b244e95d033429172464810fbdc1016a451941b5d18a7",
+      "size": 26888
+    },
+    "usr/share/man/man3/Tcl_PkgPresent.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PkgPresentEx.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PkgProvide.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PkgProvideEx.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PkgRequire.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PkgRequireEx.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PkgRequireProc.3": {
+      "sha256": "90b449bdb95a64aeadd4e57b8095a58d9e1c738441debd94513117c4f4dba1e6",
+      "size": 9212
+    },
+    "usr/share/man/man3/Tcl_PosixError.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_Preserve.3": {
+      "sha256": "77bb4e78f770dbfe9310631975bb0816741620423190946dfe29ebfb953245f6",
+      "size": 10357
+    },
+    "usr/share/man/man3/Tcl_PrintDouble.3": {
+      "sha256": "0713032a8f7579b9b096c172d83a9dadcf176cc354bc3561b3de065938825b3b",
+      "size": 7703
+    },
+    "usr/share/man/man3/Tcl_PutEnv.3": {
+      "sha256": "486ef73e405f2d33784e3d180e8cd48d58c1f703f8d3f48b44c8b5f8307b2b3a",
+      "size": 6857
+    },
+    "usr/share/man/man3/Tcl_QueryTimeProc.3": {
+      "sha256": "3a6c860a5b38741f31432c221d9d7dec95bcb2a6455fc03aa4f13fde812ad36d",
+      "size": 10166
+    },
+    "usr/share/man/man3/Tcl_QueueEvent.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_Read.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_ReadChars.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_ReadRaw.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_Realloc.3": {
+      "sha256": "0cfb96a9f0bad753cb8771122e61b8b0c2af346db3ca9f7dfa73b5c0c1550850",
+      "size": 9191
+    },
+    "usr/share/man/man3/Tcl_ReapDetachedProcs.3": {
+      "sha256": "0b82c40075fe8f41dcf0f60fa252032427fe9ad4bcab0d793a07863599e50790",
+      "size": 8875
+    },
+    "usr/share/man/man3/Tcl_RecordAndEval.3": {
+      "sha256": "54582f9fb5bbfb601a4d90caab7d161c7261adc2774ba1c1429329a3e8db643c",
+      "size": 7851
+    },
+    "usr/share/man/man3/Tcl_RecordAndEvalObj.3": {
+      "sha256": "a08141f4d79f705061a7a0477d28b292e2a2433c981fafc146bd6f49d30b3b4a",
+      "size": 7724
+    },
+    "usr/share/man/man3/Tcl_RegExpCompile.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegExpExec.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegExpExecObj.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegExpGetInfo.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegExpMatch.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegExpMatchObj.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegExpRange.3": {
+      "sha256": "7aea8cb2c0afc16c9a465003c7e3728c7f600de1d4a7bbbbd27691d10caddd90",
+      "size": 21050
+    },
+    "usr/share/man/man3/Tcl_RegisterChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_RegisterConfig.3": {
+      "sha256": "d3ef65ed0f1c6b769e43ff450483ea4b290f38cce7bdf124de859728fccba10d",
+      "size": 10139
+    },
+    "usr/share/man/man3/Tcl_RegisterObjType.3": {
+      "sha256": "accacfc5bb70699f3b80acf8fc2aea790166822a6533ec26ce4959579a964a58",
+      "size": 16220
+    },
+    "usr/share/man/man3/Tcl_Release.3": {
+      "sha256": "77bb4e78f770dbfe9310631975bb0816741620423190946dfe29ebfb953245f6",
+      "size": 10357
+    },
+    "usr/share/man/man3/Tcl_ResetResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_RestoreInterpState.3": {
+      "sha256": "85ba4845eb273ee45236ee5d5bc2d749aaf0ff583621cbb5da17a6fddef9c974",
+      "size": 11102
+    },
+    "usr/share/man/man3/Tcl_RestoreResult.3": {
+      "sha256": "85ba4845eb273ee45236ee5d5bc2d749aaf0ff583621cbb5da17a6fddef9c974",
+      "size": 11102
+    },
+    "usr/share/man/man3/Tcl_SaveInterpState.3": {
+      "sha256": "85ba4845eb273ee45236ee5d5bc2d749aaf0ff583621cbb5da17a6fddef9c974",
+      "size": 11102
+    },
+    "usr/share/man/man3/Tcl_SaveResult.3": {
+      "sha256": "85ba4845eb273ee45236ee5d5bc2d749aaf0ff583621cbb5da17a6fddef9c974",
+      "size": 11102
+    },
+    "usr/share/man/man3/Tcl_ScanCountedElement.3": {
+      "sha256": "a50edca0ce1c58ab1188d10a5c833206fe42cbd22916a42631b0d51cb2b749dc",
+      "size": 13479
+    },
+    "usr/share/man/man3/Tcl_ScanElement.3": {
+      "sha256": "a50edca0ce1c58ab1188d10a5c833206fe42cbd22916a42631b0d51cb2b749dc",
+      "size": 13479
+    },
+    "usr/share/man/man3/Tcl_Seek.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_ServiceAll.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_ServiceEvent.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_ServiceModeHook.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_SetAssocData.3": {
+      "sha256": "f9eeca959a6692f781e5aed3d38e2cc0fdafa634f21f7179ab3850b4802db75b",
+      "size": 9336
+    },
+    "usr/share/man/man3/Tcl_SetBignumObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_SetBooleanObj.3": {
+      "sha256": "32878c10b6f9f7f41cd6ecbf98374ce037eb5cfc61e8d41a7a8c5dd408b0b6a4",
+      "size": 9513
+    },
+    "usr/share/man/man3/Tcl_SetByteArrayLength.3": {
+      "sha256": "2829b64ecf9dc37ebd1bfa1607a38a2a8c3f141504b1fda96c5f6e33a8580fc9",
+      "size": 9925
+    },
+    "usr/share/man/man3/Tcl_SetByteArrayObj.3": {
+      "sha256": "2829b64ecf9dc37ebd1bfa1607a38a2a8c3f141504b1fda96c5f6e33a8580fc9",
+      "size": 9925
+    },
+    "usr/share/man/man3/Tcl_SetChannelBufferSize.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_SetChannelError.3": {
+      "sha256": "67e6445fae15008f686c661d3622ee72c275087ac4ef86aec85af14426c68d5f",
+      "size": 11985
+    },
+    "usr/share/man/man3/Tcl_SetChannelErrorInterp.3": {
+      "sha256": "67e6445fae15008f686c661d3622ee72c275087ac4ef86aec85af14426c68d5f",
+      "size": 11985
+    },
+    "usr/share/man/man3/Tcl_SetChannelOption.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_SetCommandInfo.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_SetCommandInfoFromToken.3": {
+      "sha256": "0d5f8d5ebe18807a3ad179e3cd6714291be4bddc56e9a09de074635f64e78b1e",
+      "size": 18992
+    },
+    "usr/share/man/man3/Tcl_SetDefaultEncodingDir.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_SetDoubleObj.3": {
+      "sha256": "5897c30aba7d8dc4122963470a7a6226ecfaedf6edf3ddd7cabbbff966d33bef",
+      "size": 8427
+    },
+    "usr/share/man/man3/Tcl_SetEncodingSearchPath.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_SetEnsembleFlags.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_SetEnsembleMappingDict.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_SetEnsembleParameterList.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_SetEnsembleSubcommandList.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_SetEnsembleUnknownHandler.3": {
+      "sha256": "48486a0d6dfdddb07de65e5da4696879052465ac1161383a0705a664be58bc48",
+      "size": 15274
+    },
+    "usr/share/man/man3/Tcl_SetErrno.3": {
+      "sha256": "71cc8c04d34104e50295c37e1f366675d6c603791033a29d33a2dc763269b249",
+      "size": 7886
+    },
+    "usr/share/man/man3/Tcl_SetErrorCode.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_SetErrorCodeVA.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_SetErrorLine.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_SetExitProc.3": {
+      "sha256": "522c92c63cb0798d6219978104468e658a13838bacbe6528fc9ee2f65d165d25",
+      "size": 11771
+    },
+    "usr/share/man/man3/Tcl_SetHashValue.3": {
+      "sha256": "65ffb0b157f57a04bad46bfb7963e1f26cee74a94ce6d13f3e31bec7d629cde5",
+      "size": 19380
+    },
+    "usr/share/man/man3/Tcl_SetIntObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_SetListObj.3": {
+      "sha256": "30dd7acbe7e717198a5c2842690135a2f90b7b44912f6d3332af5b7445e3d1da",
+      "size": 16349
+    },
+    "usr/share/man/man3/Tcl_SetLongObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_SetMainLoop.3": {
+      "sha256": "006332052a3c13e966de40830d0295c8e850d937ede67f840dccc71573b2febc",
+      "size": 15038
+    },
+    "usr/share/man/man3/Tcl_SetMaxBlockTime.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_SetNamespaceUnknownHandler.3": {
+      "sha256": "dfbe0397e099e844acb40f5068a99801fdfa4eee95f17bf69e871b0a5ead1dbf",
+      "size": 12177
+    },
+    "usr/share/man/man3/Tcl_SetNotifier.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_SetObjErrorCode.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_SetObjLength.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_SetObjResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_SetPanicProc.3": {
+      "sha256": "aeec87ed2c9ef024d467e8d3017114b6965f0fb891d7c576fd9c0083b69c3736",
+      "size": 9192
+    },
+    "usr/share/man/man3/Tcl_SetRecursionLimit.3": {
+      "sha256": "319751de3e53342419cc1198a1a86878f8f918180cc8df603514795ac399f6da",
+      "size": 7656
+    },
+    "usr/share/man/man3/Tcl_SetResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_SetReturnOptions.3": {
+      "sha256": "2c050f4390a10b7b604cdec2c4d52e9c1dc26ab483544545d326ac15018a5268",
+      "size": 19576
+    },
+    "usr/share/man/man3/Tcl_SetServiceMode.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_SetStartupScript.3": {
+      "sha256": "006332052a3c13e966de40830d0295c8e850d937ede67f840dccc71573b2febc",
+      "size": 15038
+    },
+    "usr/share/man/man3/Tcl_SetStdChannel.3": {
+      "sha256": "b4d286ab5fe2c9fc2a6fb4960e69743df80a2991d20736637e709208acfbd3ad",
+      "size": 9390
+    },
+    "usr/share/man/man3/Tcl_SetStringObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_SetSystemEncoding.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_SetTimeProc.3": {
+      "sha256": "3a6c860a5b38741f31432c221d9d7dec95bcb2a6455fc03aa4f13fde812ad36d",
+      "size": 10166
+    },
+    "usr/share/man/man3/Tcl_SetTimer.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_SetUnicodeObj.3": {
+      "sha256": "d8561fceb817f262c6db1a093e4dace0a75b81a6993181627a1bd2270dcdd645",
+      "size": 22779
+    },
+    "usr/share/man/man3/Tcl_SetVar.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_SetVar2.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_SetVar2Ex.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_SetWideIntObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_SignalId.3": {
+      "sha256": "fd24cc1e15ab03c6d7eddcefb96ff60b8a06ce0502d1478dac331ff80af4046f",
+      "size": 6800
+    },
+    "usr/share/man/man3/Tcl_SignalMsg.3": {
+      "sha256": "fd24cc1e15ab03c6d7eddcefb96ff60b8a06ce0502d1478dac331ff80af4046f",
+      "size": 6800
+    },
+    "usr/share/man/man3/Tcl_Sleep.3": {
+      "sha256": "c06b75d96db7521daab7228e7b54404487c135bdc0eabe37d668d5bfe86fb83e",
+      "size": 6861
+    },
+    "usr/share/man/man3/Tcl_SourceRCFile.3": {
+      "sha256": "3b81c8872c639a8626e3f3bc26d818368580bc7b3606cbd903fea1bafc28b1c3",
+      "size": 6639
+    },
+    "usr/share/man/man3/Tcl_SpliceChannel.3": {
+      "sha256": "6def4aad298399587136001a2518ce98f1f6e7b5e330aace2b1d8d19bad16f78",
+      "size": 45293
+    },
+    "usr/share/man/man3/Tcl_SplitList.3": {
+      "sha256": "a50edca0ce1c58ab1188d10a5c833206fe42cbd22916a42631b0d51cb2b749dc",
+      "size": 13479
+    },
+    "usr/share/man/man3/Tcl_SplitPath.3": {
+      "sha256": "ce24b34a12375201a77fc84ea02cfd9fcd4d7ce59186077cd07a652a2913a378",
+      "size": 9205
+    },
+    "usr/share/man/man3/Tcl_StackChannel.3": {
+      "sha256": "87bf39abd82b969de2c3e642b92992e1efa4ac8f278b8dad5940fe7dd04763d4",
+      "size": 9684
+    },
+    "usr/share/man/man3/Tcl_StandardChannels.3": {
+      "sha256": "c2cfce0b0cf23bc71dbe683210ada21100afec6b703eec849373ae5182033115",
+      "size": 10645
+    },
+    "usr/share/man/man3/Tcl_Stat.3": {
+      "sha256": "8f211ea96042e8133c3914bad910da5023868ccca2fdc20c287037bfaf210d00",
+      "size": 8781
+    },
+    "usr/share/man/man3/Tcl_StaticPackage.3": {
+      "sha256": "00bd7803b95ee301e35ea0ebd1164a136a410a97f1b336851915d42548a4ffcf",
+      "size": 8713
+    },
+    "usr/share/man/man3/Tcl_StringCaseMatch.3": {
+      "sha256": "29d7bdefcefea074ff49cbe46a7c5511275b76a171edc1f98b4cbbabac585867",
+      "size": 7418
+    },
+    "usr/share/man/man3/Tcl_StringMatch.3": {
+      "sha256": "29d7bdefcefea074ff49cbe46a7c5511275b76a171edc1f98b4cbbabac585867",
+      "size": 7418
+    },
+    "usr/share/man/man3/Tcl_SubstObj.3": {
+      "sha256": "d647f5875a7f184bf6eca2bcc109aebde34e578461f238f94a70f5ace5be07ff",
+      "size": 8545
+    },
+    "usr/share/man/man3/Tcl_TakeBignumFromObj.3": {
+      "sha256": "74f6e6798f9da1c978b6a4e7decafeb9a93ba153799718a89ac9611a7aae106e",
+      "size": 12155
+    },
+    "usr/share/man/man3/Tcl_Tell.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_ThreadAlert.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_ThreadQueueEvent.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_TraceCommand.3": {
+      "sha256": "038eee27bee7e8f1aea7393c62a1c8ff3e2bba049d63f70be32985d5cc85c1b5",
+      "size": 12574
+    },
+    "usr/share/man/man3/Tcl_TraceVar.3": {
+      "sha256": "94aa8d1c021cb48c484cbf6b3d1c9b8ed64f21ef44056ebdf79ee1c34d8231ec",
+      "size": 22670
+    },
+    "usr/share/man/man3/Tcl_TraceVar2.3": {
+      "sha256": "94aa8d1c021cb48c484cbf6b3d1c9b8ed64f21ef44056ebdf79ee1c34d8231ec",
+      "size": 22670
+    },
+    "usr/share/man/man3/Tcl_TransferResult.3": {
+      "sha256": "2408684f756ed805def5b5b7143795e23b7e21aa6713eae116d762e69d048f2a",
+      "size": 16718
+    },
+    "usr/share/man/man3/Tcl_TranslateFileName.3": {
+      "sha256": "f0eb44ccc928c88c1e93d6a6a00cc2055b95ae5d34fc196a867f098a07860bb1",
+      "size": 8668
+    },
+    "usr/share/man/man3/Tcl_TruncateChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_Ungets.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_UniChar.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharAtIndex.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharCaseMatch.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharIsAlnum.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsAlpha.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsControl.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsDigit.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsGraph.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsLower.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsPrint.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsPunct.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsSpace.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsUpper.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharIsWordChar.3": {
+      "sha256": "acf48eaf9ac12500c987bbb96fd1447e9f4c42052de69103a217af8672ea9288",
+      "size": 8319
+    },
+    "usr/share/man/man3/Tcl_UniCharLen.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharNcasecmp.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharNcmp.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharToLower.3": {
+      "sha256": "a9fa1b9c569cdd7600b92a4e8816a651bda5096b0e11c6e4599d8b8a289d0432",
+      "size": 8859
+    },
+    "usr/share/man/man3/Tcl_UniCharToTitle.3": {
+      "sha256": "a9fa1b9c569cdd7600b92a4e8816a651bda5096b0e11c6e4599d8b8a289d0432",
+      "size": 8859
+    },
+    "usr/share/man/man3/Tcl_UniCharToUpper.3": {
+      "sha256": "a9fa1b9c569cdd7600b92a4e8816a651bda5096b0e11c6e4599d8b8a289d0432",
+      "size": 8859
+    },
+    "usr/share/man/man3/Tcl_UniCharToUtf.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UniCharToUtfDString.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UnlinkVar.3": {
+      "sha256": "d12a292ecfb0b9c9702152122ebbcc8c599bbc60f0caea88ec746b2b26f7899f",
+      "size": 16269
+    },
+    "usr/share/man/man3/Tcl_UnregisterChannel.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_UnsetVar.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_UnsetVar2.3": {
+      "sha256": "db3ce7183f7eeb174e78ec50e3c10f08405a3304aec220e44950712ddf29c0ca",
+      "size": 16090
+    },
+    "usr/share/man/man3/Tcl_UnstackChannel.3": {
+      "sha256": "87bf39abd82b969de2c3e642b92992e1efa4ac8f278b8dad5940fe7dd04763d4",
+      "size": 9684
+    },
+    "usr/share/man/man3/Tcl_UntraceCommand.3": {
+      "sha256": "038eee27bee7e8f1aea7393c62a1c8ff3e2bba049d63f70be32985d5cc85c1b5",
+      "size": 12574
+    },
+    "usr/share/man/man3/Tcl_UntraceVar.3": {
+      "sha256": "94aa8d1c021cb48c484cbf6b3d1c9b8ed64f21ef44056ebdf79ee1c34d8231ec",
+      "size": 22670
+    },
+    "usr/share/man/man3/Tcl_UntraceVar2.3": {
+      "sha256": "94aa8d1c021cb48c484cbf6b3d1c9b8ed64f21ef44056ebdf79ee1c34d8231ec",
+      "size": 22670
+    },
+    "usr/share/man/man3/Tcl_UpdateLinkedVar.3": {
+      "sha256": "d12a292ecfb0b9c9702152122ebbcc8c599bbc60f0caea88ec746b2b26f7899f",
+      "size": 16269
+    },
+    "usr/share/man/man3/Tcl_UpVar.3": {
+      "sha256": "69c4d63fc814a16b0a08bd772c5231db683592d9796fd6ba51f5dabb01ef3667",
+      "size": 8668
+    },
+    "usr/share/man/man3/Tcl_UpVar2.3": {
+      "sha256": "69c4d63fc814a16b0a08bd772c5231db683592d9796fd6ba51f5dabb01ef3667",
+      "size": 8668
+    },
+    "usr/share/man/man3/Tcl_UtfAtIndex.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfBackslash.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfCharComplete.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfFindFirst.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfFindLast.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfNcasecmp.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfNcmp.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfNext.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfPrev.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfToExternal.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_UtfToExternalDString.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_UtfToLower.3": {
+      "sha256": "a9fa1b9c569cdd7600b92a4e8816a651bda5096b0e11c6e4599d8b8a289d0432",
+      "size": 8859
+    },
+    "usr/share/man/man3/Tcl_UtfToTitle.3": {
+      "sha256": "a9fa1b9c569cdd7600b92a4e8816a651bda5096b0e11c6e4599d8b8a289d0432",
+      "size": 8859
+    },
+    "usr/share/man/man3/Tcl_UtfToUniChar.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfToUniCharDString.3": {
+      "sha256": "f17c7f2ad857d67bec2549d586ce3df51af1ae7a556a4c54ca757dfae19ccdf7",
+      "size": 17802
+    },
+    "usr/share/man/man3/Tcl_UtfToUpper.3": {
+      "sha256": "a9fa1b9c569cdd7600b92a4e8816a651bda5096b0e11c6e4599d8b8a289d0432",
+      "size": 8859
+    },
+    "usr/share/man/man3/Tcl_ValidateAllMemory.3": {
+      "sha256": "266d45a4b23d18211a244c084dbb085d41af423e970707a6626d091919dc38ab",
+      "size": 8051
+    },
+    "usr/share/man/man3/Tcl_VarEval.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_VarEvalVA.3": {
+      "sha256": "e658b7d4d5f799782671995af046514d0833d395641decbcf5c61a481ef943af",
+      "size": 14603
+    },
+    "usr/share/man/man3/Tcl_VarTraceInfo.3": {
+      "sha256": "94aa8d1c021cb48c484cbf6b3d1c9b8ed64f21ef44056ebdf79ee1c34d8231ec",
+      "size": 22670
+    },
+    "usr/share/man/man3/Tcl_VarTraceInfo2.3": {
+      "sha256": "94aa8d1c021cb48c484cbf6b3d1c9b8ed64f21ef44056ebdf79ee1c34d8231ec",
+      "size": 22670
+    },
+    "usr/share/man/man3/Tcl_WaitForEvent.3": {
+      "sha256": "38009d7329a606e2d67ca0ba21f0ddc33c54970dd54df536285c342c9d94cbff",
+      "size": 35630
+    },
+    "usr/share/man/man3/Tcl_WaitPid.3": {
+      "sha256": "0b82c40075fe8f41dcf0f60fa252032427fe9ad4bcab0d793a07863599e50790",
+      "size": 8875
+    },
+    "usr/share/man/man3/Tcl_WinTCharToUtf.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_WinUtfToTChar.3": {
+      "sha256": "7934409b6ad386be8eba74666501c57eb9eff164fa47bb4d7cd38170834958a8",
+      "size": 32457
+    },
+    "usr/share/man/man3/Tcl_Write.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_WriteChars.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_WriteObj.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_WriteRaw.3": {
+      "sha256": "2041bf403351b591795d62b9ec08249cac2f8b4a4ce86acfd9c653510a9a4fef",
+      "size": 37058
+    },
+    "usr/share/man/man3/Tcl_WrongNumArgs.3": {
+      "sha256": "ab00102e587a3c7051e0204fd58feddb187bc807bd94dc49fa0603cff0b38ebd",
+      "size": 8672
+    },
+    "usr/share/man/man3/Tcl_ZlibAdler32.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibCRC32.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibDeflate.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibInflate.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamChecksum.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamClose.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamEof.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamGet.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamGetCommandName.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamInit.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tcl_ZlibStreamPut.3": {
+      "sha256": "0e2e80f61276a06609e38ddbf47fc162167a55d393762cfa3838b005052e3d6c",
+      "size": 18437
+    },
+    "usr/share/man/man3/Tdbc_Init.3": {
+      "sha256": "947102e312265d224cd9570dee750a1164f8f7b41dae6404382b4d42cb9f9082",
+      "size": 4573
+    },
+    "usr/share/man/man3/Thread.3": {
+      "sha256": "218f9f9d0755ec6a762a8a748a2717d8eaff403106d6bbcf88955d7c313aac9b",
+      "size": 15620
+    },
+    "usr/share/man/mann/after.n": {
+      "sha256": "945c82731cd9ad251833f221f650f800ecf9c4d2acfcf3281cdb763d555ffce0",
+      "size": 11381
+    },
+    "usr/share/man/mann/append.n": {
+      "sha256": "e1dda5678b69faa7fc0ac3f277ebc6a28257f9a57d382a0228eccfab9a41e775",
+      "size": 7108
+    },
+    "usr/share/man/mann/apply.n": {
+      "sha256": "154172ab5082927e041905558b0fe86c384692455b65fbf4563a9eb4175d734a",
+      "size": 9085
+    },
+    "usr/share/man/mann/argc.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/argv.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/argv0.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/array.n": {
+      "sha256": "192b29407b7f75c203c0530065214904f339497f43f963bae5e214b67148f6ae",
+      "size": 13477
+    },
+    "usr/share/man/mann/auto_execok.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/auto_import.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/auto_load.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/auto_mkindex.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/auto_path.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/auto_qualify.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/auto_reset.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/bgerror.n": {
+      "sha256": "12d8b5d71ab4862de718d1cd0cd46dfe0e963cb00836d2107d24fdac1ac543c4",
+      "size": 9864
+    },
+    "usr/share/man/mann/binary.n": {
+      "sha256": "fca41b8277764aa11fa2d9295d12357d368dff44a9b5e052613a04165a75f88d",
+      "size": 41435
+    },
+    "usr/share/man/mann/body.n": {
+      "sha256": "03445b207dbb07d993cc8816e8086ab32b1b0ed8fc03ea5ca6227baf36f0e957",
+      "size": 9795
+    },
+    "usr/share/man/mann/break.n": {
+      "sha256": "f101ba2b507417448a494b66330643008d494557ea4c431e14cba17bbc73a12c",
+      "size": 7135
+    },
+    "usr/share/man/mann/case.n": {
+      "sha256": "c76a2a0d5008a4f875970132f63e99a58ada68888256bdc1f150e43c72085a4f",
+      "size": 8352
+    },
+    "usr/share/man/mann/catch.n": {
+      "sha256": "edf8a51eda21a5a2170f1613e38fb6d08f82f0139d0c228b01e2751f04df9a62",
+      "size": 11425
+    },
+    "usr/share/man/mann/cd.n": {
+      "sha256": "e38f0720855c52151306cc90c477aed341b9b6b074ff308201527740b9cfd948",
+      "size": 6938
+    },
+    "usr/share/man/mann/chan.n": {
+      "sha256": "925f1f8ac25406d7ea5295e89f36dc754d38bd091cd19bbc8af09fded903a2b2",
+      "size": 45376
+    },
+    "usr/share/man/mann/class.n": {
+      "sha256": "a11ea386694e7d1b6cdd82d37f1afc209123e8d977686fde5996d0d9ea6ede72",
+      "size": 26695
+    },
+    "usr/share/man/mann/clock.n": {
+      "sha256": "2d6049a2313828f157867e88b33c60213321b4c7cd71c2d81033a6c99b0133fe",
+      "size": 47404
+    },
+    "usr/share/man/mann/close.n": {
+      "sha256": "4934940a9c02f6723c37efc4f5abd9deb843b07092510a30f595025589f69242",
+      "size": 10156
+    },
+    "usr/share/man/mann/code.n": {
+      "sha256": "c267c4cff7e2c3eee17ad8c15c847b1ed12ecb0004bd904b6d523915929afce2",
+      "size": 8778
+    },
+    "usr/share/man/mann/concat.n": {
+      "sha256": "d2b7d2b153adf1b68c281af73284b14bd68cb8bb68419fc69d3c72f94f4d979f",
+      "size": 7480
+    },
+    "usr/share/man/mann/configbody.n": {
+      "sha256": "033e09455a66e89d0ba60df76d7ee6f262b82ae2d21f04eeb9087e331f4a3c2f",
+      "size": 9529
+    },
+    "usr/share/man/mann/continue.n": {
+      "sha256": "07177d242988642222c785af96871612053ba61b05bb3dc268e4cdd3c4e78edf",
+      "size": 7163
+    },
+    "usr/share/man/mann/coroutine.n": {
+      "sha256": "196cac21c1a27278a54541fff4e84976cf5d55393fc9394fde7453bdf38d7c0f",
+      "size": 12445
+    },
+    "usr/share/man/mann/dde.n": {
+      "sha256": "9a2f23793b4877b7ce2a793433542fd22478b1c84ae7ec146415178b9b21d3cf",
+      "size": 13991
+    },
+    "usr/share/man/mann/delete.n": {
+      "sha256": "fc6edead4cb97c28739715116a5a82fc0fd36328147572fa04b2546ffcd12ada",
+      "size": 8217
+    },
+    "usr/share/man/mann/dict.n": {
+      "sha256": "f517ff92c149924c812884bc58c874d518d16796147e30ed818814d0361bf743",
+      "size": 24701
+    },
+    "usr/share/man/mann/encoding.n": {
+      "sha256": "49053685896adee8ebe0fabf7dd4fff43b82b899bb341b6a9f269d8bc7583d17",
+      "size": 9351
+    },
+    "usr/share/man/mann/ensemble.n": {
+      "sha256": "4818da59f58b5782c5d34522fa798014f8f531a96f01e5ed6b218a3995fdf120",
+      "size": 11692
+    },
+    "usr/share/man/mann/env.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/eof.n": {
+      "sha256": "408e1e069b119f28e76ccf4d0ae35cf8b54aab67af8d8807517b6a22181d38c4",
+      "size": 7380
+    },
+    "usr/share/man/mann/error.n": {
+      "sha256": "52aef6761e59565af27b35a4ebcd10e46e25c0e20eb096bfe799ea19b3047f89",
+      "size": 8177
+    },
+    "usr/share/man/mann/errorCode.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/errorInfo.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/eval.n": {
+      "sha256": "42b29bb6455eb3a9061d2778c9a0d36d60d6fd10bb7030ad6990d74ff0c29f95",
+      "size": 8559
+    },
+    "usr/share/man/mann/exec.n": {
+      "sha256": "d9cc3d7e0fc901f976f1a0c771a57e0fee46be01a9e244e92faef02b1d2c4706",
+      "size": 22474
+    },
+    "usr/share/man/mann/exit.n": {
+      "sha256": "876ab4e19bbe455b083abf2a0cd545cd79d7fb4428362c2b09e4ac4f4885f6b1",
+      "size": 7170
+    },
+    "usr/share/man/mann/expr.n": {
+      "sha256": "528ea032df54a1843ba0e60d28abf026223e73d86c9daa00e10bc9b7652081e4",
+      "size": 22851
+    },
+    "usr/share/man/mann/fblocked.n": {
+      "sha256": "288f1881b1ad8f57c197f817114d7bec6dca141c0ca9aac698cc978fc78db7d5",
+      "size": 2365
+    },
+    "usr/share/man/mann/fconfigure.n": {
+      "sha256": "82cae69ea27164efb8f28fef06dbafcf80900f036ed83c9a80f6a26a4b38d3be",
+      "size": 18126
+    },
+    "usr/share/man/mann/fcopy.n": {
+      "sha256": "ea6a82c5115deabcc286cfeff6217bd4e29d7e0ec424f1ce815c8c473c654919",
+      "size": 12415
+    },
+    "usr/share/man/mann/file.n": {
+      "sha256": "e9a4441776f5b184f590e956621a5dd11f8b4a902bc4fce458bb1ca78b5f8211",
+      "size": 28182
+    },
+    "usr/share/man/mann/fileevent.n": {
+      "sha256": "2fc2cc74c78a045003fee48cb23adecf5c4c2eb94d42de206a77c41c407d0955",
+      "size": 12472
+    },
+    "usr/share/man/mann/filename.n": {
+      "sha256": "8bf7f877c01723a486f55bbe9db9b6eba7a908747a2db43273075cad24b4c915",
+      "size": 13149
+    },
+    "usr/share/man/mann/find.n": {
+      "sha256": "659dbd7b37620aa84c88a7537e765beed4b97ec5149c6631620078cfc83c1a0c",
+      "size": 8561
+    },
+    "usr/share/man/mann/flush.n": {
+      "sha256": "a608685a95addfe1a1a9dbea0f33842fb3fd6fd36a8cb2818e43198dbc98d151",
+      "size": 7357
+    },
+    "usr/share/man/mann/for.n": {
+      "sha256": "46404c96ffcd2c521665da07614c00f2c705a9a369b97acd9c10a38d1b8b4cbe",
+      "size": 8752
+    },
+    "usr/share/man/mann/foreach.n": {
+      "sha256": "7978b710152a4ea9adf9a3f2eeadb2cb1ab1c5ded45e1671c23ab18df5d6d38f",
+      "size": 9016
+    },
+    "usr/share/man/mann/format.n": {
+      "sha256": "878619ee7a8a2b47773b173e54ff77888fb9c07c7c26bf3dadc31b712a0cb39e",
+      "size": 16383
+    },
+    "usr/share/man/mann/gets.n": {
+      "sha256": "84f5920472b2ede9a0f231b99a929355deafd07d761761e15ad37e5c092e667d",
+      "size": 8313
+    },
+    "usr/share/man/mann/glob.n": {
+      "sha256": "e09e6849ca59c260e7cba6940e55e6eff0e2a4abbb4b87e7ea370af42fd4cc18",
+      "size": 14267
+    },
+    "usr/share/man/mann/global.n": {
+      "sha256": "9ca0ede28dda8c6f0baa39d31a204393496a1c9ed465405a01cf83141e15f9b7",
+      "size": 7663
+    },
+    "usr/share/man/mann/history.n": {
+      "sha256": "f5bebcf0118ae8e156cae47250fc3218a611d09e3e93b4290f22b9ea8b0b73d6",
+      "size": 9986
+    },
+    "usr/share/man/mann/http.n": {
+      "sha256": "f13d1c93c0093a682bc3a5524d2c3f25d6bda48b9e2db47f7d7403f6a778b762",
+      "size": 36759
+    },
+    "usr/share/man/mann/if.n": {
+      "sha256": "058fa4c2996fe6cb940ba6792303bac6216f2dff5ed95120810266b3012edcdd",
+      "size": 8227
+    },
+    "usr/share/man/mann/incr.n": {
+      "sha256": "204f9df4d8721973e5e8864b64eb58b9eb71f035903af5e9e3c8e8da60191c35",
+      "size": 7458
+    },
+    "usr/share/man/mann/info.n": {
+      "sha256": "444091184225a4b44c8d023c2e690cd35edc103a063bb190bf3e9dcf7d9d5dae",
+      "size": 35288
+    },
+    "usr/share/man/mann/interp.n": {
+      "sha256": "57abeedd528238ae1a7480065edaf13d3f3a00f2611ce2beca386eca4a022c83",
+      "size": 49027
+    },
+    "usr/share/man/mann/is.n": {
+      "sha256": "002bf0237999f21dfc8cb30f3ab6e41fa726eb6e6d81225828b740b2e02439e2",
+      "size": 7886
+    },
+    "usr/share/man/mann/itcl.n": {
+      "sha256": "b439714e41e44b292d28fb6b47d96a4ed4759bf0fb41f64023322252d70a8849",
+      "size": 13066
+    },
+    "usr/share/man/mann/itclcomponent.n": {
+      "sha256": "f9e873b0aaa713d481f0212785f7ddcefedc05ece293475dacfc6d9812f1f595",
+      "size": 7255
+    },
+    "usr/share/man/mann/itcldelegate.n": {
+      "sha256": "47126f45a3991a55afe2735ae5763ecea5e5e61f85de78f8e457fdab13e1de30",
+      "size": 12366
+    },
+    "usr/share/man/mann/itclextendedclass.n": {
+      "sha256": "b86f53860a37cb5110519d029e52b89863ff27586d8ec91c78bc28a115ea45ac",
+      "size": 28002
+    },
+    "usr/share/man/mann/itcloption.n": {
+      "sha256": "955d476271496639dc50103171d6e7b3336b86b6a1c85d6ad3f76801b5fdb744",
+      "size": 11181
+    },
+    "usr/share/man/mann/itclvars.n": {
+      "sha256": "58a23357c5f020321c5011de932417ce74eaa6312871933b5d302b3592ee0ccb",
+      "size": 9535
+    },
+    "usr/share/man/mann/itclwidget.n": {
+      "sha256": "e7120d08a65d42831907353881426d4735637483245ab8cfcdf28a52f4943a84",
+      "size": 27181
+    },
+    "usr/share/man/mann/join.n": {
+      "sha256": "0ea270192abd7fbe8dac602733a1f54bb9c5af0cffd92232862a97c9268e54a2",
+      "size": 6971
+    },
+    "usr/share/man/mann/lappend.n": {
+      "sha256": "258e5d9c5e3d91034a1ab4e8b22214fdf4ba70094f655bc03634a43466a95f7a",
+      "size": 7314
+    },
+    "usr/share/man/mann/lassign.n": {
+      "sha256": "4a93f88bb3a527da523eb4dd0465a9b28d6fa7b6876e5c601ac49ee0681234f3",
+      "size": 7674
+    },
+    "usr/share/man/mann/library.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/lindex.n": {
+      "sha256": "bf13af5b2b80238aa888529a143ae7889ac362b76edbf68c9842c54fb68a2e3c",
+      "size": 9130
+    },
+    "usr/share/man/mann/linsert.n": {
+      "sha256": "6e3d181aaee22d26bf1005924d490f2ce9166f02272b389aebc53e4468eb19e2",
+      "size": 7954
+    },
+    "usr/share/man/mann/list.n": {
+      "sha256": "48365d87073040a16bc518dc8107c0c05d6d649b5cc461776135be6599623051",
+      "size": 7422
+    },
+    "usr/share/man/mann/llength.n": {
+      "sha256": "7bab18c8ab542805d550f9a8215422860ff96b52e906927293d14cf4aa858847",
+      "size": 7100
+    },
+    "usr/share/man/mann/lmap.n": {
+      "sha256": "7a660c2b55e1eb4cd1edb6cd2dbb81fdc891e29176ec21e78c36c1e07667da0b",
+      "size": 8898
+    },
+    "usr/share/man/mann/load.n": {
+      "sha256": "7cc4518e66d0c0d6dd3e126285aa6322fe570311ddab349d24935cbee710dd71",
+      "size": 13700
+    },
+    "usr/share/man/mann/local.n": {
+      "sha256": "f359b116135021f56ec9c8d13ab209fc72cf487c7939a43a7881cff988d7d490",
+      "size": 7672
+    },
+    "usr/share/man/mann/lrange.n": {
+      "sha256": "8a6a9ad3b343443ccd1bb03488469ccd229ce6d4f43ea332aba999325cf77479",
+      "size": 8015
+    },
+    "usr/share/man/mann/lrepeat.n": {
+      "sha256": "dbd60b29582707071dd2e7aa280846d09defc7cf1c570314ac66db0ee9c2f694",
+      "size": 6965
+    },
+    "usr/share/man/mann/lreplace.n": {
+      "sha256": "94ca33cabad28cfe611dbc1e8efcc9b11226d4ab67ad5525ca59f253f44f10b0",
+      "size": 9120
+    },
+    "usr/share/man/mann/lreverse.n": {
+      "sha256": "d6bc4baf3c43c4229774b50bb4e65e7d79a65763b75ce6ad6766db5c372b89c1",
+      "size": 6650
+    },
+    "usr/share/man/mann/lsearch.n": {
+      "sha256": "a08795d39ea41ce2a15b30eb1961c274cb05cc8837e9ac73c2052f92cddd55b2",
+      "size": 13136
+    },
+    "usr/share/man/mann/lset.n": {
+      "sha256": "ca83649bfef12ae2671b5abb65b9b44845d28499f3a6da96b5a1d5beb9173983",
+      "size": 10271
+    },
+    "usr/share/man/mann/lsort.n": {
+      "sha256": "6c4d8c5acae16432873e85b704d54621455dabe90e893f806fd59d727a6b3979",
+      "size": 13323
+    },
+    "usr/share/man/mann/mathfunc.n": {
+      "sha256": "248517b4cdb849c8c5da40a6e826e69ff9062e65c7c69ef25c7c90abc81ae970",
+      "size": 15400
+    },
+    "usr/share/man/mann/mathop.n": {
+      "sha256": "6bbb3bd1aef9e99b4d140b88718fee742b9f42e920ce574903e292f06d518dc3",
+      "size": 16812
+    },
+    "usr/share/man/mann/memory.n": {
+      "sha256": "67528c56674c3ba29902e0c810075f020953d9a0f9656796b688073dd6897c23",
+      "size": 10379
+    },
+    "usr/share/man/mann/msgcat.n": {
+      "sha256": "fd48ac689b98d6ec3eca43d9ea0f45439977504789d3f36c1aad2c2604ef0438",
+      "size": 29242
+    },
+    "usr/share/man/mann/my.n": {
+      "sha256": "0230308686dd50c5a6b282033e0fdb6531925d0d1cf1a12ed6a51cb79f57673c",
+      "size": 7444
+    },
+    "usr/share/man/mann/namespace.n": {
+      "sha256": "ad68c6d086c085b7918512ae912a9ef5986cd146dcdb70c0e686063020f2ce16",
+      "size": 41941
+    },
+    "usr/share/man/mann/next.n": {
+      "sha256": "67738801d94948e18174c4a26bb7930a7dc811edf25f8d90f7446560b3617da3",
+      "size": 13430
+    },
+    "usr/share/man/mann/nextto.n": {
+      "sha256": "67738801d94948e18174c4a26bb7930a7dc811edf25f8d90f7446560b3617da3",
+      "size": 13430
+    },
+    "usr/share/man/mann/oo_class.n": {
+      "sha256": "aaa2426070725227900555acb39bb3705f315d19c1aa9ca1241ec4927b05d58c",
+      "size": 10654
+    },
+    "usr/share/man/mann/oo_copy.n": {
+      "sha256": "1800c9784771e3dd2ae60d40b7c9e82af6a420a99d4edeb25d596019e1c72cea",
+      "size": 8661
+    },
+    "usr/share/man/mann/oo_define.n": {
+      "sha256": "609e3918a6467f6b2231a2b897ed6e50cfb7491beec90cb0263adbc0eda1eb63",
+      "size": 23326
+    },
+    "usr/share/man/mann/oo_objdefine.n": {
+      "sha256": "609e3918a6467f6b2231a2b897ed6e50cfb7491beec90cb0263adbc0eda1eb63",
+      "size": 23326
+    },
+    "usr/share/man/mann/oo_object.n": {
+      "sha256": "bb888d2b188e1e7f157ee5e6f9b8eca788f96fbc1e15d9c19629aeccad610d42",
+      "size": 10771
+    },
+    "usr/share/man/mann/open.n": {
+      "sha256": "39e337ee44951c7ab102ce7118759b240cb014bd48f47d519db22badb2c7a52b",
+      "size": 23406
+    },
+    "usr/share/man/mann/package.n": {
+      "sha256": "202db4feec70c21de84ca7a1796ef161761c962dffa463ec880ef6bcebb63ffa",
+      "size": 19183
+    },
+    "usr/share/man/mann/packagens.n": {
+      "sha256": "cd86a632544716cf221b7452acdccd63ff3892d3a7ee0d37be2e957821fd0061",
+      "size": 7713
+    },
+    "usr/share/man/mann/parray.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/pid.n": {
+      "sha256": "2207845f5cfc22e82ed5e085c0785de262f1de59a5653aca9731528dba70fda9",
+      "size": 7320
+    },
+    "usr/share/man/mann/pkg_create.n": {
+      "sha256": "cd86a632544716cf221b7452acdccd63ff3892d3a7ee0d37be2e957821fd0061",
+      "size": 7713
+    },
+    "usr/share/man/mann/pkg_mkIndex.n": {
+      "sha256": "5861edeb92a11dd8a3ef6587fa7a4540fa5fa8fd82fad722c3685e9d361342a8",
+      "size": 16417
+    },
+    "usr/share/man/mann/pkgMkIndex.n": {
+      "sha256": "5861edeb92a11dd8a3ef6587fa7a4540fa5fa8fd82fad722c3685e9d361342a8",
+      "size": 16417
+    },
+    "usr/share/man/mann/platform.n": {
+      "sha256": "325017b78952a52ff06a78a491d13248ceab0128cb2f672b032a1b342d9eb396",
+      "size": 9080
+    },
+    "usr/share/man/mann/platform_shell.n": {
+      "sha256": "8acf1f224fd51a633843766f14bf9c8859fdc3a5a9885cacb793cd4c0ac029cb",
+      "size": 8036
+    },
+    "usr/share/man/mann/proc.n": {
+      "sha256": "f63fc7f93168966b82bafc93bdd8d9dddfb72215384c248d1e1a3f0229d0de67",
+      "size": 10787
+    },
+    "usr/share/man/mann/puts.n": {
+      "sha256": "49202527ffcd26b9de0835d61c377b6307a826c80367bf578fe4b1af1549a43f",
+      "size": 9227
+    },
+    "usr/share/man/mann/pwd.n": {
+      "sha256": "537fb636379e59704e47c56e08e30002040023453a274a86f50c34528ce0e232",
+      "size": 6965
+    },
+    "usr/share/man/mann/re_syntax.n": {
+      "sha256": "89e605acb26e85f81659ca068f1c522d1a220e50e50f99b9a615c4eb6f9e0424",
+      "size": 34474
+    },
+    "usr/share/man/mann/read.n": {
+      "sha256": "7caf704c53e447b8efa2c1494ecf35783c28706df4324f88d80522dbe2e67c9c",
+      "size": 9367
+    },
+    "usr/share/man/mann/refchan.n": {
+      "sha256": "bdbc5ecf1ed916f1bef93333693c221fcc8fbec300fbb3db93021d517bf2f860",
+      "size": 20972
+    },
+    "usr/share/man/mann/regexp.n": {
+      "sha256": "24a3471a2f76589f1744b11f398245941e6fd07db0d8b64d886ff9dcb0ef36d3",
+      "size": 12767
+    },
+    "usr/share/man/mann/registry.n": {
+      "sha256": "edd8569335e338f903ed496dd9b717fc01a46f5eb2102a8fbacffba667e9e2e2",
+      "size": 13616
+    },
+    "usr/share/man/mann/regsub.n": {
+      "sha256": "3010feb688149fd44cf3e10e095100f926505ad769e27d44268a4126923737fc",
+      "size": 11877
+    },
+    "usr/share/man/mann/rename.n": {
+      "sha256": "4d1ab265fc16a828d960ada458e5ceda5e07491e169cbbb70efa86ae0d1726f0",
+      "size": 7237
+    },
+    "usr/share/man/mann/return.n": {
+      "sha256": "a6ebd70b4c5813010ffe50eb3a81069be3e5bd42865fe8453668d849d081c0fa",
+      "size": 19203
+    },
+    "usr/share/man/mann/safe.n": {
+      "sha256": "3972a99e650bc3894b861151da39d27dba8f995df385d3683391475b1f742f02",
+      "size": 21754
+    },
+    "usr/share/man/mann/scan.n": {
+      "sha256": "c9b976953107126ef8b97fee4715e00333f939428734f996e3b60db2feb0437a",
+      "size": 17149
+    },
+    "usr/share/man/mann/scope.n": {
+      "sha256": "e7680ab3100ebb9e0461e3a97d99a3a0586847c5aee0e2560dcf61339ebb2604",
+      "size": 8318
+    },
+    "usr/share/man/mann/seek.n": {
+      "sha256": "6ed57b428c4e004e7309a18c00df6948566e6fefea08041cb3fc8d6b9d09a9be",
+      "size": 8663
+    },
+    "usr/share/man/mann/self.n": {
+      "sha256": "cec5c669e9308164fcbbb576bc721b0e7c22fb3825454f5de4d6548d20cf5c85",
+      "size": 11080
+    },
+    "usr/share/man/mann/set.n": {
+      "sha256": "a463691be9dfd67cd76b72701796e8ff94cd9be0fefe408228ae649ad169f2fe",
+      "size": 8289
+    },
+    "usr/share/man/mann/socket.n": {
+      "sha256": "2850c31c96e5967eda77493957e6c61815b822281d10faf07825e7f134d257fe",
+      "size": 15539
+    },
+    "usr/share/man/mann/source.n": {
+      "sha256": "677a8a291c0d91f25c01cd251c1565a96dd7c2092059b9933829d3063757c340",
+      "size": 8030
+    },
+    "usr/share/man/mann/split.n": {
+      "sha256": "fb4e266e0a70bc859f74edb9e36cf52312f63eb54446f09a74aa6a1afbcb0425",
+      "size": 8463
+    },
+    "usr/share/man/mann/string.n": {
+      "sha256": "a2f90f523de01a79d4001095639a3eaa47d2c690de15d7dcda68f452e429935c",
+      "size": 24763
+    },
+    "usr/share/man/mann/subst.n": {
+      "sha256": "0c171712a6079f0eb09c3e73fe7f18cc5680c468025490a3695f553a079bda78",
+      "size": 10535
+    },
+    "usr/share/man/mann/switch.n": {
+      "sha256": "66fafcb1be524f4f78768b5faf1b9a55d88ad6ab163433766a75227bdf37cbe3",
+      "size": 12366
+    },
+    "usr/share/man/mann/tailcall.n": {
+      "sha256": "d5ddab9012d36ae18db8268c9cd160b9c4a15764f76a2a1e64c9680195eb33de",
+      "size": 7729
+    },
+    "usr/share/man/mann/Tcl.n": {
+      "sha256": "4e21664c032d9d9a07088c2263270247fdbeecf3b051e5fbf2f7e91f464a6393",
+      "size": 16465
+    },
+    "usr/share/man/mann/tcl_endOfWord.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/tcl_findLibrary.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/tcl_interactive.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_library.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_nonwordchars.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_patchLevel.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_pkgPath.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_platform.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_precision.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_prefix.n": {
+      "sha256": "5184015a3ca1e3ba9d70d49950777eb4e919aec9997937a3bb94aa18f0c3d6dc",
+      "size": 9130
+    },
+    "usr/share/man/mann/tcl_rcFileName.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_startOfNextWord.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/tcl_startOfPreviousWord.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/tcl_traceCompile.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_traceExec.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_version.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcl_wordBreakAfter.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/tcl_wordBreakBefore.n": {
+      "sha256": "eeeb3fe3a3b233d30cc01c213b12669aec786031b90f35e2d1b972cef2bc6a6d",
+      "size": 20465
+    },
+    "usr/share/man/mann/tcl_wordchars.n": {
+      "sha256": "0331c54b0fd6b3ccefd086c51bcc9667b70c4cf2a154710d81a32044a9386fd4",
+      "size": 27536
+    },
+    "usr/share/man/mann/tcltest.n": {
+      "sha256": "9b9fbbee4b0f0191e53df49835b78a780adb1459272b0c2e04eb46dcc4e64923",
+      "size": 52949
+    },
+    "usr/share/man/mann/tdbc.n": {
+      "sha256": "4eb93b4d85932585afbb860d4ebeb6ea260d9da0c2f38a02bbdfb8c0a6c9a337",
+      "size": 2417
+    },
+    "usr/share/man/mann/tdbc_connection.n": {
+      "sha256": "bbda03d846bfe392b8ebbfe3b5cc2c69c2a2d5c49b05730b40ac254429ea322a",
+      "size": 16585
+    },
+    "usr/share/man/mann/tdbc_mapSqlState.n": {
+      "sha256": "3a94c3d49300880c75584ab7fe022d1d5cd2a3ac7943a0a29a46726401fc19d6",
+      "size": 2286
+    },
+    "usr/share/man/mann/tdbc_mysql.n": {
+      "sha256": "4108ad3578189c026403bfd0a645e053ac045116ea031c51cbce583d408d6518",
+      "size": 6612
+    },
+    "usr/share/man/mann/tdbc_odbc.n": {
+      "sha256": "6c9bbfcfc704eab8e8a03fd78a324ef3283d81d6aa41d925e9250b795948c588",
+      "size": 8006
+    },
+    "usr/share/man/mann/tdbc_postgres.n": {
+      "sha256": "15a5bece1f60354166871bd338a621d6cf13c1f269c66f3e6f75ebefc661d579",
+      "size": 6139
+    },
+    "usr/share/man/mann/tdbc_resultset.n": {
+      "sha256": "fa880a6e59e90466dfa03be6da7d9d641019225a83d5b70547697c33c3f1d6a0",
+      "size": 7561
+    },
+    "usr/share/man/mann/tdbc_sqlite3.n": {
+      "sha256": "0aa7d574731c43142190d5914303ee2396c6e543c0afdf957486485edfb166db",
+      "size": 3784
+    },
+    "usr/share/man/mann/tdbc_statement.n": {
+      "sha256": "4ff64052207e2da16315cebffea95451caedda806d76adda8787599be623366b",
+      "size": 8418
+    },
+    "usr/share/man/mann/tdbc_tokenize.n": {
+      "sha256": "de8ffe7fb354a01f09dea2d47223bb6ad49c75b6a28aa0e5a29fe1bbe5deeee0",
+      "size": 2454
+    },
+    "usr/share/man/mann/tell.n": {
+      "sha256": "8d82f19bbab5892c126bddc7f16966e548ffade4c9939f07c62d39d1f4f73673",
+      "size": 7382
+    },
+    "usr/share/man/mann/thread.n": {
+      "sha256": "093cf5f894cfc648aaa19d5c6d7d164de9d6af3fde536dd6371b52595b585289",
+      "size": 31545
+    },
+    "usr/share/man/mann/throw.n": {
+      "sha256": "b534d33b7a3fff1da099f5a7ec062dd42dfd9b8697ee0ae9d3307438dafe2998",
+      "size": 7554
+    },
+    "usr/share/man/mann/time.n": {
+      "sha256": "b75b8773b47d7eefbd601ad61ef540be3e1c13cdd21f3d4edc5a07177d4e5a7c",
+      "size": 6940
+    },
+    "usr/share/man/mann/timerate.n": {
+      "sha256": "d6da016b1f2044e795bb161e0e41f7802ca9307ce9f3a7d4a3cfd2ed373dcff3",
+      "size": 11131
+    },
+    "usr/share/man/mann/tm.n": {
+      "sha256": "f71038039818138aa389098f5747a80bb91b857042bbd3a9381faf06a80876b1",
+      "size": 16464
+    },
+    "usr/share/man/mann/tpool.n": {
+      "sha256": "b7d7f9fc2e1cac62bd1f779a266ad87036d757da4701dbd763a7df95457c1cf1",
+      "size": 17193
+    },
+    "usr/share/man/mann/trace.n": {
+      "sha256": "046c458dd3a1e72f0a24fd0cdc69e5ded2902a512652be4eb61f2a6fbef069d6",
+      "size": 23895
+    },
+    "usr/share/man/mann/transchan.n": {
+      "sha256": "0f71d9773e60ab94b0e03e8bcda608aab48e71e52129d4e863b4392fda827b7e",
+      "size": 12543
+    },
+    "usr/share/man/mann/try.n": {
+      "sha256": "5c7de1ed678e50842d2bc35470095e993822eef2346405ed77a19a444da86e3b",
+      "size": 9843
+    },
+    "usr/share/man/mann/tsv.n": {
+      "sha256": "01eb3291c7c7e080a3d936b99b0e72c73fc376ba70a558d527a4158c4bd3e445",
+      "size": 21036
+    },
+    "usr/share/man/mann/ttrace.n": {
+      "sha256": "68aca7e270b1a999736a7dc1f7bc7c84cd90e54ff70ea9d8db3262daaa5cfffa",
+      "size": 15342
+    },
+    "usr/share/man/mann/unknown.n": {
+      "sha256": "a1b1b006424294e873588f846ffca99a883d3d36b401912d37d55a06b4607974",
+      "size": 9925
+    },
+    "usr/share/man/mann/unload.n": {
+      "sha256": "f171d72871f7d1db6136145817170a759952c493849a80adbd4b9cf57dae8aed",
+      "size": 13085
+    },
+    "usr/share/man/mann/unset.n": {
+      "sha256": "be409ee74079f0ecb6153d969cff9a835bc076291e52cde2ca19252ca2cf39b3",
+      "size": 8016
+    },
+    "usr/share/man/mann/update.n": {
+      "sha256": "7485fc95a7c74d87572cdae35650ce85157ec8fbdad1a76d061f1cca22d3d9db",
+      "size": 8127
+    },
+    "usr/share/man/mann/uplevel.n": {
+      "sha256": "071b052b8400f47e4672c431e2a07a8077b4cdf4c767068cb347eb4664847469",
+      "size": 9815
+    },
+    "usr/share/man/mann/upvar.n": {
+      "sha256": "20bd224581389fcff6dac9dd76a67c05469c3c2f1176428066ea59c14d9b19c7",
+      "size": 10464
+    },
+    "usr/share/man/mann/variable.n": {
+      "sha256": "bd37950dedc0f53e5e74909135087292d57db7af263480ba4b31fcab5816c419",
+      "size": 9019
+    },
+    "usr/share/man/mann/vwait.n": {
+      "sha256": "a5962e8912a08e3c8795b53627205767b09307a5db0cb02657f2b0b5545154e2",
+      "size": 12831
+    },
+    "usr/share/man/mann/while.n": {
+      "sha256": "e79832cbb41969ab20247d9387a8eb70a3752ab61207bc8fee77c5cb628095e7",
+      "size": 8005
+    },
+    "usr/share/man/mann/yield.n": {
+      "sha256": "196cac21c1a27278a54541fff4e84976cf5d55393fc9394fde7453bdf38d7c0f",
+      "size": 12445
+    },
+    "usr/share/man/mann/yieldto.n": {
+      "sha256": "196cac21c1a27278a54541fff4e84976cf5d55393fc9394fde7453bdf38d7c0f",
+      "size": 12445
+    },
+    "usr/share/man/mann/zlib.n": {
+      "sha256": "62fb4798427962d3f26e0ec1abebda49a6024013a1f1b28bdd863c5249d354e0",
+      "size": 21450
+    }
+  },
+  "inputs_unchanged": true
+}

@@ -1,0 +1,182 @@
+{
+  "dump_sha256": "0f85925b5904b4d2e986a10508b6b1dca0d059612b592b646deae621e977353a",
+  "scope": "Offline frame-pointer evidence, not a complete unwind",
+  "threads": [
+    {
+      "tid": 4276,
+      "pc": {
+        "address": "0x7ffb3aff15f4",
+        "module": "C:\\Windows\\System32\\ntdll.dll",
+        "rva": "0x15f4"
+      },
+      "lr": {
+        "address": "0x7ffb364c7df8",
+        "module": "C:\\Windows\\System32\\KERNELBASE.dll",
+        "rva": "0x107df8"
+      },
+      "sp": "0x7ffffc3d0",
+      "frames": [
+        {
+          "address": "0x7ffa8f975de0",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x5de0",
+          "symbol": "cygwait(void*, _LARGE_INTEGER*, unsigned int)\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/cygwait.cc:79"
+        },
+        {
+          "address": "0x7ffa8fa55f58",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0xe5f58",
+          "symbol": "fhandler_pipe_fifo::raw_write(void const*, unsigned long)\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/fhandler/pipe.cc:634"
+        },
+        {
+          "address": "0x7ffa8fa01904",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x91904",
+          "symbol": "write\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/syscalls.cc:1373"
+        },
+        {
+          "address": "0x7ffa8fab519c",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x14519c",
+          "symbol": "??\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/build/winsup/cygwin/sigfe.s:104"
+        },
+        {
+          "address": "0x7ffa9535c618",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\libtcl8.6.dll",
+          "rva": "0xbc618",
+          "symbol": "FlushChannel\nC:/ag-e138920f/tcl-msys-02/source/generic/tclIO.c:2762"
+        },
+        {
+          "address": "0x7ffa9535fa50",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\libtcl8.6.dll",
+          "rva": "0xbfa50",
+          "symbol": "Tcl_Flush\nC:/ag-e138920f/tcl-msys-02/source/generic/tclIO.c:6727"
+        },
+        {
+          "address": "0x7ffa95361bf4",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\libtcl8.6.dll",
+          "rva": "0xc1bf4",
+          "symbol": "Tcl_FlushObjCmd\nC:/ag-e138920f/tcl-msys-02/source/generic/tclIOCmd.c:259"
+        },
+        {
+          "address": "0x7ffa952b769c",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\libtcl8.6.dll",
+          "rva": "0x1769c",
+          "symbol": "TclNRRunCallbacks\nC:/ag-e138920f/tcl-msys-02/source/generic/tclBasic.c:4598"
+        },
+        {
+          "address": "0x7ffa952b96a8",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\libtcl8.6.dll",
+          "rva": "0x196a8",
+          "symbol": "TclEvalEx\nC:/ag-e138920f/tcl-msys-02/source/generic/tclBasic.c:5469"
+        },
+        {
+          "address": "0x7ffa952bab84",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\libtcl8.6.dll",
+          "rva": "0x1ab84",
+          "symbol": "Tcl_EvalEx\nC:/ag-e138920f/tcl-msys-02/source/generic/tclBasic.c:5132"
+        },
+        {
+          "address": "0x7ff7bc213cdc",
+          "module": "C:\\ag-sqlite-e138-01\\veryquick-per-file-02\\testfixture.exe",
+          "rva": "0x1b3cdc",
+          "symbol": "main\nC:\\ag-sqlite-e138-01\\build-06/tclsqlite-ex.c:7823"
+        },
+        {
+          "address": "0x7ffa8f978190",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x8190",
+          "symbol": "dll_crt0_1(void*)\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/dcrt0.cc:1028"
+        }
+      ]
+    },
+    {
+      "tid": 24536,
+      "pc": {
+        "address": "0x7ffb3aff1064",
+        "module": "C:\\Windows\\System32\\ntdll.dll",
+        "rva": "0x1064"
+      },
+      "lr": {
+        "address": "0x7ffb364aa92c",
+        "module": "C:\\Windows\\System32\\KERNELBASE.dll",
+        "rva": "0xea92c"
+      },
+      "sp": "0x8000bfc660",
+      "frames": [
+        {
+          "address": "0x7ffa8f9f21e4",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x821e4",
+          "symbol": "wait_sig\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/sigproc.cc:1498"
+        },
+        {
+          "address": "0x7ffa8f974ab0",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x4ab0",
+          "symbol": "cygthread::callfunc(bool)\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/cygthread.cc:132"
+        },
+        {
+          "address": "0x7ffa8f975154",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x5154",
+          "symbol": "cygthread::stub(void*)\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/cygthread.cc:180"
+        },
+        {
+          "address": "0x7ffa8f975b0c",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x5b0c",
+          "symbol": "_cygtls::call2(unsigned int (*)(void*, void*), void*, void*)\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/cygtls.cc:41"
+        },
+        {
+          "address": "0x7ffa8f975bc4",
+          "module": "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\msys-2.0.dll",
+          "rva": "0x5bc4",
+          "symbol": "exception::~exception()\n/root/arm64-vnext-20260905/runtime/ucontext-20260907-03/source/winsup/cygwin/local_includes/exception.h:66"
+        },
+        {
+          "address": "0x7ffb38fe94d0",
+          "module": "C:\\Windows\\System32\\kernel32.dll",
+          "rva": "0x94d0"
+        },
+        {
+          "address": "0x7ffb3b0c7e64",
+          "module": "C:\\Windows\\System32\\ntdll.dll",
+          "rva": "0xd7e64"
+        },
+        {
+          "address": "0x0"
+        }
+      ]
+    },
+    {
+      "tid": 17992,
+      "pc": {
+        "address": "0x7ffb3aff2eb4",
+        "module": "C:\\Windows\\System32\\ntdll.dll",
+        "rva": "0x2eb4"
+      },
+      "lr": {
+        "address": "0x7ffb3b0a6960",
+        "module": "C:\\Windows\\System32\\ntdll.dll",
+        "rva": "0xb6960"
+      },
+      "sp": "0x80001ffb50",
+      "frames": [
+        {
+          "address": "0x7ffb38fe94d0",
+          "module": "C:\\Windows\\System32\\kernel32.dll",
+          "rva": "0x94d0"
+        },
+        {
+          "address": "0x7ffb3b0c7e64",
+          "module": "C:\\Windows\\System32\\ntdll.dll",
+          "rva": "0xd7e64"
+        },
+        {
+          "address": "0x0"
+        }
+      ]
+    }
+  ]
+}

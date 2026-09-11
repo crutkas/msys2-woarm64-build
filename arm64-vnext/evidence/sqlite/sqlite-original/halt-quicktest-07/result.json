@@ -1,0 +1,39 @@
+{
+  "scope": "Upstream administrative control only, not test execution or a passing suite",
+  "launcher": {
+    "pid": 21300,
+    "creation_filetime": 134333391175294335,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\control-sqlite-runner.py",
+      "--runner",
+      "C:\\ag-sqlite-e138-01\\quicktest-build-07",
+      "--source",
+      "C:\\ag-sqlite-e138-01\\host-source-04",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\halt-quicktest-07",
+      "--operation",
+      "halt"
+    ]
+  },
+  "command": [
+    "C:\\ag-sqlite-e138-01\\build-06\\testfixture.exe",
+    "/c/ag-sqlite-e138-01/host-source-04/test/testrunner.tcl",
+    "halt"
+  ],
+  "process": {
+    "passed": true,
+    "pid": 14012,
+    "exit": 0,
+    "timed_out": false,
+    "created_processes": 1,
+    "observed_processes": 1,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-sqlite-e138-01\\halt-quicktest-07\\native-job.json",
+      "sha256": "da7999ab29231bb111d2e653937728e86f6c9e12615fbef05fc9e1b12bcb31ca",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  }
+}

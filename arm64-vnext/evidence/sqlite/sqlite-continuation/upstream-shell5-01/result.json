@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "launcher": {
+    "pid": 8292,
+    "creation_filetime": 134334870667666522,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\run-sqlite-upstream-shell5.py",
+      "--output",
+      "C:\\ag-sqlite-resume-01\\upstream-shell5-01"
+    ]
+  },
+  "jobs": 1,
+  "command": [
+    "C:\\ag-sqlite-resume-01\\shell-composition-02\\runtime\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "/c/ag-sqlite-resume-01/upstream-shell5-01/inputs/driver.sh",
+    "/c/ag-sqlite-resume-01/upstream-shell5-01",
+    "/c/ag-sqlite-resume-01/shell-composition-02/runtime",
+    "/c/ag-sqlite-e138-01/prepared/source"
+  ],
+  "minimum_free_ram_gib": 33.78958511352539,
+  "scope": "Entire original shell5.test only; native Bash/d70 candidate composition, not full quicktest admission",
+  "source_sha256": "2914085f9f40ac55b46737c06881f6f1d2f95f176b9753dff029c5289959a679",
+  "testfixture_sha256": "1c624aa778ffb2946544cc737bb720aecf337d38831a035ab5ab5a596a77f771",
+  "sqlite_sha256": "3899f2d63fabfe4e490a68539e5c9c8a81126f578d0eb634a6a3a33a8dd803b5",
+  "candidate_prepare_sha256": "fd803cf6d9885123391ae916663fbca5d1d8166a347a1dabd0b7247772303dd0",
+  "provider_admission": false,
+  "process": {
+    "passed": false,
+    "pid": 8268,
+    "exit": 1,
+    "timed_out": false,
+    "created_processes": 110,
+    "observed_processes": 110,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-sqlite-resume-01\\upstream-shell5-01\\native-job.json",
+      "sha256": "7542074c8d4ded7e38d8361d255c7dda1aba875a8fa6b8078d44b1c1b7107bc6",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "errors": 1,
+  "tests": 53,
+  "shell5_1_8_passed": false,
+  "verbose_sha256": "b938aa80f208e5ccbe507147f42d932687d8ea20b9b95e1c51881c13d4077260",
+  "inputs_unchanged": true
+}

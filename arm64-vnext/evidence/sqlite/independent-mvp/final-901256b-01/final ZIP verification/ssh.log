@@ -1,0 +1,19 @@
+Traceback (most recent call last):
+  File "C:\ag-mvp-independent-sqlite-20260911\final-901256b-01\source\arm64-git-recovery\native\mvp\controlled_ssh.py", line 278, in <module>
+    main()
+    ~~~~^^
+  File "C:\ag-mvp-independent-sqlite-20260911\final-901256b-01\source\arm64-git-recovery\native\mvp\controlled_ssh.py", line 270, in main
+    report.update(asyncio.run(exercise(client, driver, output, bash, git)))
+                  ~~~~~~~~~~~^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  File "C:\Program Files\Python314-arm64\Lib\asyncio\runners.py", line 205, in run
+    return runner.run(main)
+           ~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python314-arm64\Lib\asyncio\runners.py", line 128, in run
+    return self._loop.run_until_complete(task)
+           ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~^^^^^^
+  File "C:\Program Files\Python314-arm64\Lib\asyncio\base_events.py", line 719, in run_until_complete
+    return future.result()
+           ~~~~~~~~~~~~~^^
+  File "C:\ag-mvp-independent-sqlite-20260911\final-901256b-01\source\arm64-git-recovery\native\mvp\controlled_ssh.py", line 207, in exercise
+    raise ArtifactError("Real Git clone over the native SSH client failed")
+artifact.ArtifactError: Real Git clone over the native SSH client failed

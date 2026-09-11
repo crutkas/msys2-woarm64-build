@@ -1,0 +1,10 @@
+native interpreter /usr/bin/tclsh8.6
+TCL autosetup_tclsh=<absent>
+TCL CCACHE_DISABLE=1
+TCL MSYS2_ARG_CONV_EXCL=<absent>
+TCL SQLITE_TEST_TCL_CONFIG=/c/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+TCL TMPDIR=/c/ag-sqlite-e138-01/temp
+BEGIN foreign child environment
+BASH autosetup_tclsh=<absent> CCACHE_DISABLE=<absent> MSYS2_ARG_CONV_EXCL=<absent> SQLITE_TEST_TCL_CONFIG=<absent> TMPDIR=<absent>
+BEGIN direct named host Jim selftest
+C:/ag-sqlite-e138-01/host-jim-01/jimsh.exe

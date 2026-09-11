@@ -1,0 +1,119 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "phase": "configure",
+  "version": "3.53.4",
+  "jobs": 2,
+  "nested_jobs": 2,
+  "full_cpp_qualified": false,
+  "package_admission": false,
+  "launcher": {
+    "pid": 22324,
+    "creation_filetime": 134333318843289473,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\build-msys-sqlite.py",
+      "--phase",
+      "configure",
+      "--build",
+      "C:\\ag-sqlite-e138-01\\build-03",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\configure-03",
+      "--jobs",
+      "2"
+    ]
+  },
+  "command": [
+    "C:\\ag-sqlite-e138-01\\bootstrap\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "C:/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/build-msys-sqlite.sh",
+    "configure",
+    "C:\\ag-sqlite-e138-01",
+    "C:\\ag-sqlite-e138-01\\build-03",
+    "2",
+    "C:\\ag-sqlite-e138-01\\configure-03"
+  ],
+  "recipe": {
+    "version": "3.53.4",
+    "recipe_sha256": "6db1e1013349ee4189c267edc2b6640ef39c477d2f62bbc0a2d0cc97338a01c8",
+    "configure": [
+      "--prefix=/usr",
+      "--sysconfdir=/etc",
+      "--localstatedir=/var",
+      "--build=aarch64-pc-cygwin",
+      "--enable-shared",
+      "--enable-static",
+      "--enable-readline",
+      "--disable-editline",
+      "--out-implib",
+      "--soname=legacy",
+      "--dll-basename=msys-sqlite3-0",
+      "--all"
+    ],
+    "cppflags": [
+      "-DSQLITE_ENABLE_DBSTAT_VTAB=1",
+      "-DSQLITE_ENABLE_DBPAGE_VTAB=1",
+      "-DSQLITE_ENABLE_STAT4=1",
+      "-DSQLITE_ENABLE_UNLOCK_NOTIFY=1",
+      "-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1",
+      "-DSQLITE_OMIT_LOOKASIDE",
+      "-DSQLITE_SECURE_DELETE=1",
+      "-DSQLITE_ENABLE_SESSION=1",
+      "-DSQLITE_ENABLE_PREUPDATE_HOOK=1",
+      "-DSQLITE_SOUNDEX=1",
+      "-DSQLITE_TEMP_STORE=1",
+      "-DSQLITE_USE_FCNTL_TRACE=1",
+      "-DUSE_SYSTEM_SQLITE=1",
+      "-DSQLITE_ENABLE_FTS3_PARENTHESIS=1",
+      "-DSQLITE_ENABLE_COLUMN_METADATA=1",
+      "-DSQLITE_USE_ALLOCA=1",
+      "-DSQLITE_ENABLE_EXPLAIN_COMMENTS=1",
+      "-DSQLITE_ENABLE_STMTVTAB=1",
+      "-DSQLITE_HAVE_ZLIB=1",
+      "-DSQLITE_ENABLE_MATH_FUNCTIONS=1"
+    ],
+    "notes": [
+      "The full recipe includes Tcl analyzer/bindings, readline, extensions, lemon and separate pinned documentation input.",
+      "Replace the upstream unbounded make -j with -j1, including nested extension builds.",
+      "Do not inherit make quicktest || true. Record any real failure or unavailable native symlink prerequisite honestly."
+    ]
+  },
+  "splits": [
+    "sqlite",
+    "libsqlite",
+    "libsqlite-devel",
+    "sqlite-doc",
+    "tcl-sqlite",
+    "sqlite-extensions",
+    "lemon"
+  ],
+  "tools": [
+    "sqlite3.exe",
+    "sqlite3_analyzer.exe",
+    "sqldiff.exe",
+    "dbhash.exe",
+    "rbu.exe"
+  ],
+  "build": "C:\\ag-sqlite-e138-01\\build-03",
+  "recipe_driver_sha256": "1454652289be1f8cf830df1aee565ae7c96586e733280300df949fce82b35a10",
+  "minimum_free_gib": 39.42710494995117,
+  "process": {
+    "passed": false,
+    "pid": 15260,
+    "exit": 1,
+    "timed_out": false,
+    "created_processes": 364,
+    "observed_processes": 364,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-sqlite-e138-01\\configure-03\\native-job.json",
+      "sha256": "420be7e14d8a207f56ebd6466476b6753b91489f718330c460e5028b5d1774f0",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "input_integrity_errors": [
+    "bootstrap: Source inventory differs: ['home/crutkasLocal/.cache/ccache/0/2/2cdea5e00c3555b1626b32a53eca60d8b8dfb8', 'home/crutkasLocal/.cache/ccache/0/4/9a571abc544ffa19c265448c22c25d908c6867', 'home/crutkasLocal/.cache/ccache/0/6/9e67c37785c17a23bba671c03db2624fe6a55e', 'home/crutkasLocal/.cache/ccache/0/CACHEDIR.TAG', 'home/crutkasLocal/.cache/ccache/0/d/b79657a7876aa0ad1673e65dcee1a98ce69953', 'home/crutkasLocal/.cache/ccache/0/stats', 'home/crutkasLocal/.cache/ccache/1/2/85212200bed378ee5c6f3673b43fc4562076d9', 'home/crutkasLocal/.cache/ccache/1/8/3e09bd290fb90dcf9c74422b4febc9e3685b79', 'home/crutkasLocal/.cache/ccache/1/CACHEDIR.TAG', 'home/crutkasLocal/.cache/ccache/1/e/20d46af284c4b6d22eb466c4216c0d95c298e1', 'home/crutkasLocal/.cache/ccache/1/stats', 'home/crutkasLocal/.cache/ccache/2/1/5db93803a4d13b67a082da6a2d64d942e710a8', 'home/crutkasLocal/.cache/ccache/2/1/ae5a537482a4c90c9132c2a1aff31ca6f499d4', 'home/crutkasLocal/.cache/ccache/2/1/cbf4666ccdb7695e56faa94e749d5264b64eff', 'home/crutkasLocal/.cache/ccache/2/2/8b633498755c95c79fb83fb3556fee0a364626', 'home/crutkasLocal/.cache/ccache/2/6/40efac76c40da9ce6d718fb50a93d9cfbc7461', 'home/crutkasLocal/.cache/ccache/2/8/0273eadf43b628e07514baad2a6418717854b6', 'home/crutkasLocal/.cache/ccache/2/CACHEDIR.TAG', 'home/crutkasLocal/.cache/ccache/2/d/965d45b7ded18259714f052389fb852f66ba58', 'home/crutkasLocal/.cache/ccache/2/stats']"
+  ]
+}

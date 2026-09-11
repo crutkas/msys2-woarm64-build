@@ -1,0 +1,909 @@
+### Build All-Debug (sessionfuzz) 8342ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_debug_sessionfuzz
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? yes
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  + memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_MEMSYS5 -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SELECTTRACE -DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_WHERETRACE -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Note: this is a debug build, so performance will suffer.
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'sessionfuzz'.  Stop.
+### Build All-Debug (fuzzcheck-ubsan) 7224ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_debug_fuzzcheck-ubsan
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? yes
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  + memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_MEMSYS5 -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SELECTTRACE -DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_WHERETRACE -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Note: this is a debug build, so performance will suffer.
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'fuzzcheck-ubsan'.  Stop.
+### Build All-Debug (fuzzcheck-asan) 7823ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_debug_fuzzcheck-asan
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? yes
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  + memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_MEMSYS5 -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SELECTTRACE -DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_WHERETRACE -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Note: this is a debug build, so performance will suffer.
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'fuzzcheck-asan'.  Stop.
+### Build All-Debug (fuzzcheck) 8672ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_debug_fuzzcheck
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? yes
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  + memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_MEMSYS5 -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SELECTTRACE -DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_WHERETRACE -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Note: this is a debug build, so performance will suffer.
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'fuzzcheck'.  Stop.
+### Build All-Debug (testfixture) 8250ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_debug_testfixture
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? yes
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  + memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_MEMSYS5 -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SELECTTRACE -DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_WHERETRACE -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Note: this is a debug build, so performance will suffer.
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'testfixture'.  Stop.
+### Build All-O0 (sessionfuzz) 7466ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_o0_sessionfuzz
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? no
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  - memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SESSION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'sessionfuzz'.  Stop.
+### Build All-O0 (fuzzcheck) 7380ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_o0_fuzzcheck
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? no
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  - memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SESSION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'fuzzcheck'.  Stop.
+### Build All-O0 (testfixture) 7384ms (failed)
+Existing private relay directory required
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = C:/ag-sqlite-e138-01/host-source-03
+Build dir  = C:/ag-sqlite-e138-01/quicktest-build-06/testrunner_bld_all_o0_testfixture
+C compiler... C:/ag-sqlite-e138-01/compiler/bin/gcc.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... C:/ag-sqlite-e138-01/compiler/bin/g++.exe  -IC:/ag-sqlite-e138-01/zlib/usr/include -IC:/ag-sqlite-e138-01/readline/usr/include -IC:/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler...C:/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? no
+Looking for install ... C:/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...ok
+Checking libs for deflate...-lz
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: C:/ag-sqlite-e138-01/tcl-config-hostwin/tclConfig.sh
+Using tclsh: C:/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/local/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/local/lib...yes
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Line-editing support for the sqlite3 shell: none
+Build shared library? yes
+Build static library? yes
+
+    NOTICE: auto-enabling --out-implib for environment [aarch64-pc-cygwin].
+    Use --out-implib=none to disable this special case
+    or --out-implib=auto to squelch this notice.
+
+
+    NOTICE: auto-enabling --dll-basename for environment [aarch64-pc-cygwin].
+    Use --dll-basename=default to disable this special case
+    or --dll-basename=auto to squelch this notice.
+
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  - memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SESSION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_THREADSAFE=1
+Shell options: -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_HAVE_ZLIB=1 -DSQLITE_STRICT_SUBTYPE=1
+Created Makefile from ../../host-source-03/Makefile.in
+Created sqlite3.pc from ../../host-source-03/sqlite3.pc.in
+Created sqlite_cfg.h
+make: *** No rule to make target 'testfixture'.  Stop.

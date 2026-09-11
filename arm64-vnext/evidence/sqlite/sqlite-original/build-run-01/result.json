@@ -1,0 +1,259 @@
+{
+  "schema": 1,
+  "status": "native-sqlite-phase-failed",
+  "phase": "build",
+  "version": "3.53.4",
+  "jobs": 2,
+  "nested_jobs": 2,
+  "full_cpp_qualified": false,
+  "package_admission": false,
+  "launcher": {
+    "pid": 2520,
+    "creation_filetime": 134333324795841225,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\build-msys-sqlite.py",
+      "--phase",
+      "build",
+      "--build",
+      "C:\\ag-sqlite-e138-01\\build-06",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\build-run-01",
+      "--jobs",
+      "2"
+    ]
+  },
+  "command": [
+    "C:\\ag-sqlite-e138-01\\bootstrap\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "C:/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/build-msys-sqlite.sh",
+    "build",
+    "C:\\ag-sqlite-e138-01",
+    "C:\\ag-sqlite-e138-01\\build-06",
+    "2",
+    "C:\\ag-sqlite-e138-01\\build-run-01"
+  ],
+  "recipe": {
+    "version": "3.53.4",
+    "recipe_sha256": "6db1e1013349ee4189c267edc2b6640ef39c477d2f62bbc0a2d0cc97338a01c8",
+    "configure": [
+      "--prefix=/usr",
+      "--sysconfdir=/etc",
+      "--localstatedir=/var",
+      "--build=aarch64-pc-cygwin",
+      "--enable-shared",
+      "--enable-static",
+      "--enable-readline",
+      "--disable-editline",
+      "--out-implib",
+      "--soname=legacy",
+      "--dll-basename=msys-sqlite3-0",
+      "--all"
+    ],
+    "cppflags": [
+      "-DSQLITE_ENABLE_DBSTAT_VTAB=1",
+      "-DSQLITE_ENABLE_DBPAGE_VTAB=1",
+      "-DSQLITE_ENABLE_STAT4=1",
+      "-DSQLITE_ENABLE_UNLOCK_NOTIFY=1",
+      "-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1",
+      "-DSQLITE_OMIT_LOOKASIDE",
+      "-DSQLITE_SECURE_DELETE=1",
+      "-DSQLITE_ENABLE_SESSION=1",
+      "-DSQLITE_ENABLE_PREUPDATE_HOOK=1",
+      "-DSQLITE_SOUNDEX=1",
+      "-DSQLITE_TEMP_STORE=1",
+      "-DSQLITE_USE_FCNTL_TRACE=1",
+      "-DUSE_SYSTEM_SQLITE=1",
+      "-DSQLITE_ENABLE_FTS3_PARENTHESIS=1",
+      "-DSQLITE_ENABLE_COLUMN_METADATA=1",
+      "-DSQLITE_USE_ALLOCA=1",
+      "-DSQLITE_ENABLE_EXPLAIN_COMMENTS=1",
+      "-DSQLITE_ENABLE_STMTVTAB=1",
+      "-DSQLITE_HAVE_ZLIB=1",
+      "-DSQLITE_ENABLE_MATH_FUNCTIONS=1"
+    ],
+    "notes": [
+      "The full recipe includes Tcl analyzer/bindings, readline, extensions, lemon and separate pinned documentation input.",
+      "Replace the upstream unbounded make -j with -j1, including nested extension builds.",
+      "Do not inherit make quicktest || true. Record any real failure or unavailable native symlink prerequisite honestly."
+    ]
+  },
+  "splits": [
+    "sqlite",
+    "libsqlite",
+    "libsqlite-devel",
+    "sqlite-doc",
+    "tcl-sqlite",
+    "sqlite-extensions",
+    "lemon"
+  ],
+  "tools": [
+    "sqlite3.exe",
+    "sqlite3_analyzer.exe",
+    "sqldiff.exe",
+    "dbhash.exe",
+    "rbu.exe"
+  ],
+  "build": "C:\\ag-sqlite-e138-01\\build-06",
+  "recipe_driver_sha256": "75a58ce2e866b2152c23ac736035239b85b6c5c6e48b836e65d45e85458b6f48",
+  "minimum_free_gib": 36.771949768066406,
+  "process": {
+    "passed": false,
+    "pid": 21560,
+    "exit": 2,
+    "timed_out": false,
+    "created_processes": 191,
+    "observed_processes": 191,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-sqlite-e138-01\\build-run-01\\native-job.json",
+      "sha256": "b30e25b5e789e05293e756ada8cd9aacefe710ce61384f647fcf0fa6cde784a7",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "build_files": {
+    ".main.mk.checks": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    ".tclenv.sh": {
+      "sha256": "296507c4a4e2f069b28bc75b10c8ce4f0a06c676c9b1bd108fa3bbf132e79771",
+      "size": 123
+    },
+    "config.log": {
+      "sha256": "661da397d199a568b93e4b788b796105870c88b636e9f927007523105ac9edf4",
+      "size": 4750
+    },
+    "configure-driver/etc/fstab": {
+      "sha256": "387ca1e86c1a18a143eb077ca194ad44c0a2faf98795a0d437f2d210d5a6df18",
+      "size": 228
+    },
+    "configure-driver/usr/bin/jimsh.exe": {
+      "sha256": "051f89af67b76c0533be94c35e17f9b9b23239fa4c4e0527664eb81fcfbc2631",
+      "size": 316828
+    },
+    "configure-driver/usr/bin/msys-2.0.dll": {
+      "sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16",
+      "size": 30970741
+    },
+    "ctime.c": {
+      "sha256": "d462af1d4e7472fe354742273787af6379574284ef87bf558ae7fddb623a4e5e",
+      "size": 19934
+    },
+    "fts5.c": {
+      "sha256": "5fabfff3777b5eaccb1c04cf5fe398bc2e10909c0ac5785311e95a71887264f1",
+      "size": 891877
+    },
+    "fts5.h": {
+      "sha256": "172dee881fb9905a825d51efaeb903cf9fc247262db54ca4c4b13de580f0fad4",
+      "size": 33442
+    },
+    "fts5parse.c": {
+      "sha256": "98d55a5739084af28868b1b5ab59d7f3a3abfe23df69874adc899b507f3e8993",
+      "size": 55491
+    },
+    "fts5parse.h": {
+      "sha256": "ff00411a7cee2961c6d9b499b6cd7b7ccb347b3c5bfa4aa7f828f0f103f8e98f",
+      "size": 720
+    },
+    "fts5parse.out": {
+      "sha256": "382424fc742b450f6f8cc9d188a1ef28aa1a06d3bc845e4f1c02ad20ca84c5be",
+      "size": 20150
+    },
+    "fts5parse.sql": {
+      "sha256": "db7f68a61bc753c9262b10a071f053f112d9a0438fe15fa9d30067e09031b57d",
+      "size": 7599
+    },
+    "fts5parse.y": {
+      "sha256": "7f1ff3d5d4bd5b9495addaa0a215f954e1a6d4a3970755b91411ecbcf38df982",
+      "size": 5190
+    },
+    "keywordhash.h": {
+      "sha256": "98cf611a9e4a76b7179d6fba2c62679173e03edfd4786d2b211dcc4b00ef8db4",
+      "size": 19138
+    },
+    "lemon.exe": {
+      "sha256": "2aa73c7d618f701f022c3564daa6a2cb1d0130fcbecc72bf76ca7c537e0eaf90",
+      "size": 442381
+    },
+    "lempar.c": {
+      "sha256": "4d82ab5091eda68963791599ab8635ad82e5bbb2de33f1ee5217b72c9659915a",
+      "size": 37397
+    },
+    "Makefile": {
+      "sha256": "70c728bd6cd63afaadd2b8287f626548e5f3f8698fe0ae6b9ed3deed25331fb6",
+      "size": 14499
+    },
+    "mkkeywordhash.exe": {
+      "sha256": "066291810b5325690f5f072abda25d95fb09ed2a751af04db6ede9fc065c08c2",
+      "size": 119147
+    },
+    "mksourceid.exe": {
+      "sha256": "0947fdc00e6d931327bb197139fe8fda97eb0424f74555d0f7156797694fe052",
+      "size": 139611
+    },
+    "opcodes.h": {
+      "sha256": "d4ca34a58ac17db9f391e0f83a440eb90849e4d92de039e9089a68b08ef4a98a",
+      "size": 15184
+    },
+    "parse.c": {
+      "sha256": "5bb64d219a3ab346f65a50f16714b240c0cec6a557a5470d7539438884c2375d",
+      "size": 266681
+    },
+    "parse.h": {
+      "sha256": "bf8058d86e0b5fb75168e288a35c88a651fe7ec4fe43bfdaccc3dae9d4e06674",
+      "size": 8556
+    },
+    "parse.out": {
+      "sha256": "9380ca11b5697225b9577147a4aae71dcb08b4e46268ba6a178b629f638073a3",
+      "size": 708739
+    },
+    "parse.sql": {
+      "sha256": "3c87b73e35e6706a0faa53edd60481aad2391118c25cbc56292151cb5f4cf8f8",
+      "size": 121778
+    },
+    "parse.y": {
+      "sha256": "19628d51a728421581e9075c7b4fd2c67218c5ad30718c7ae7ab0717c9e93185",
+      "size": 76543
+    },
+    "pkgIndex.tcl": {
+      "sha256": "3cc39f50fcf7a820a75b5c42a7c500d0ae92e55bc3ae50177eb2a244b5ab0948",
+      "size": 89
+    },
+    "pragma.h": {
+      "sha256": "a24992bb7b0e3e9192818af4a48625e37e7eb140f135cd94d1a6a8d2a06201c7",
+      "size": 23770
+    },
+    "shell.c": {
+      "sha256": "96ca701a308a66c91b17455c31d7629cdb271ce71233ee9a9c1fdc2ecb8f8607",
+      "size": 1185942
+    },
+    "sqlite3.h": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    "sqlite3.pc": {
+      "sha256": "64dbea1dbed1e275dcdc95e8f88357aaa064accfdfc5091c4f9bf6383352f488",
+      "size": 264
+    },
+    "sqlite_cfg.h": {
+      "sha256": "9b30f01fd7128734983e9a8856663eadf2e1307c39a4e0f725baaefe02968f83",
+      "size": 1505
+    },
+    "src-verify.exe": {
+      "sha256": "f3e2b2ab78f55eb395bc3fcb9c18a58f5e548121cc908843c472e1a9f8d82b7e",
+      "size": 148935
+    },
+    "tclsqlite-ex.c": {
+      "sha256": "81ade9d7c19eed9bd8bc8925dc6d6985f2eea2c69d6917a724191c496a2ef9b8",
+      "size": 251213
+    },
+    "tmp-1788858894202-2920393693.txt": {
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    }
+  },
+  "input_integrity_errors": []
+}

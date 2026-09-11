@@ -1,0 +1,61 @@
+{
+  "launcher": {
+    "pid": 11928,
+    "creation_filetime": 134333350260003505,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\diagnose-sqlite-foreign-environment.py"
+    ]
+  },
+  "steps": [
+    {
+      "name": "direct-host",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\host-jim-01\\jimsh.exe",
+        "C:\\ag-sqlite-e138-01\\host-source-02\\autosetup\\autosetup-test-tclsh"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 11384,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\foreign-environment-01\\direct-host.native-job.json",
+          "sha256": "4995082717ab9eff683f4feef6c5e32654bbccb08a6854c17bea32621f14e587",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    {
+      "name": "native-foreign",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\sqlite_tcl_relay.py",
+        "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\tclsh8.6.exe",
+        "/c/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/fixtures/sqlite-foreign-environment.tcl",
+        "/c/ag-sqlite-e138-01/bootstrap/usr/bin/bash.exe",
+        "/c/ag-sqlite-e138-01/host-jim-01/jimsh.exe",
+        "/c/ag-sqlite-e138-01/host-source-02/autosetup/autosetup-test-tclsh"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 11112,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 6,
+        "observed_processes": 6,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\foreign-environment-01\\native-foreign.native-job.json",
+          "sha256": "ccf168d15c93b2939f9b5f518c18d4e6df38392103f9f41f5234c670332f87c8",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    }
+  ]
+}

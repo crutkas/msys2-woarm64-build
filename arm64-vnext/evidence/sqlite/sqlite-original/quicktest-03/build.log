@@ -1,0 +1,14 @@
+/c/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/sqlite-native-tcl-script.sh /c/ag-sqlite-e138-01/host-source-02/tool/srctree-check.tcl
+/c/ag-sqlite-e138-01/host-jim-01/jimsh.exe /c/ag-sqlite-e138-01/host-source-02/tool/mkctimec.tcl
+Overwriting ctime.c...
+/c/ag-sqlite-e138-01/host-jim-01/jimsh.exe /c/ag-sqlite-e138-01/host-source-02/tool/mkpragmatab.tcl
+Overwriting pragma.h with new pragma table...
+/c/ag-sqlite-e138-01/host-jim-01/jimsh.exe /c/ag-sqlite-e138-01/host-source-02/tool/mkcombo.tcl /c/ag-sqlite-e138-01/host-source-02/ext/qrf/qrf.h /c/ag-sqlite-e138-01/host-source-02/ext/qrf/qrf.c /c/ag-sqlite-e138-01/host-source-02/src/tclsqlite.c -o tclsqlite-ex.c
+cat parse.h /c/ag-sqlite-e138-01/host-source-02/src/vdbe.c | /c/ag-sqlite-e138-01/host-jim-01/jimsh.exe /c/ag-sqlite-e138-01/host-source-02/tool/mkopcodeh.tcl >opcodes.h
+/c/ag-sqlite-e138-01/host-jim-01/jimsh.exe /c/ag-sqlite-e138-01/host-source-02/tool/mkopcodec.tcl opcodes.h >opcodes.c
+/c/ag-sqlite-e138-01/host-jim-01/jimsh.exe /c/ag-sqlite-e138-01/host-source-02/tool/mkshellc.tcl shell.c
+C:/ag-sqlite-e138-01/host-source-02/tool/mkshellc.tcl:12: Error: can't normalize "C:/ag-sqlite-e138-01/host-source-02/tool/mkshellc.tcl": No such file or directory
+Traceback (most recent call last):
+  File "C:/ag-sqlite-e138-01/host-source-02/tool/mkshellc.tcl", line 12
+    file normal C:/ag-sqlite-e138-01/host-source-02/tool/mkshellc.tcl
+make: *** [/c/ag-sqlite-e138-01/host-source-02/main.mk:2366: shell.c] Error 1

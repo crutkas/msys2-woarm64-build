@@ -1,0 +1,114 @@
+native-env PATH=/c/ag-sqlite-e138-01/compiler/bin:/usr/bin:/c/ag-sqlite-e138-01/readline/usr/bin:/c/ag-sqlite-e138-01/ncurses/usr/bin:/c/ag-sqlite-e138-01/zlib/usr/bin:/c/ag-sqlite-e138-01/bootstrap/usr/bin
+native-env HOME=/c/ag-sqlite-e138-01/home
+native-env TMP=/c/ag-sqlite-e138-01/temp
+native-env TEMP=/c/ag-sqlite-e138-01/temp
+native-env TMPDIR=/c/ag-sqlite-e138-01/temp
+native-env CCACHE=none
+native-env CCACHE_DISABLE=1
+native-env CCACHE_DIR=C:\ag-sqlite-e138-01\cache\ccache
+native-env MSYS2_ARG_CONV_EXCL=*
+native-env MSYS2_ENV_CONV_EXCL=WRAPPER;CC;CC_FOR_BUILD;CXX;AR;RANLIB;LD;AS;NM;STRIP;OBJDUMP;CFLAGS;CPPFLAGS;LDFLAGS;TCL_LIBRARY;TCLLIBPATH;TCLLIBDIR;TCLSH;TMP;TEMP;TMPDIR
+sqlite-native-tcl-path-interop-passed /usr/bin/tclsh8.6 8.6.12
+Configuring SQLite version 3.53.4
+Host System...aarch64-pc-cygwin
+Build System...aarch64-pc-cygwin
+Source dir = /c/ag-sqlite-e138-01/prepared/source
+Build dir  = /c/ag-sqlite-e138-01/build-05
+C compiler... /c/ag-sqlite-e138-01/compiler/bin/gcc.exe -O2 -g -fstack-protector-strong -pipe -D_FORTIFY_SOURCE=2 -DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_DBPAGE_VTAB=1 -DSQLITE_ENABLE_STAT4=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1 -DSQLITE_OMIT_LOOKASIDE -DSQLITE_SECURE_DELETE=1 -DSQLITE_ENABLE_SESSION=1 -DSQLITE_ENABLE_PREUPDATE_HOOK=1 -DSQLITE_SOUNDEX=1 -DSQLITE_TEMP_STORE=1 -DSQLITE_USE_FCNTL_TRACE=1 -DUSE_SYSTEM_SQLITE=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1 -DSQLITE_ENABLE_COLUMN_METADATA=1 -DSQLITE_USE_ALLOCA=1 -DSQLITE_ENABLE_EXPLAIN_COMMENTS=1 -DSQLITE_ENABLE_STMTVTAB=1 -DSQLITE_HAVE_ZLIB=1 -DSQLITE_ENABLE_MATH_FUNCTIONS=1 -I/c/ag-sqlite-e138-01/zlib/usr/include -I/c/ag-sqlite-e138-01/readline/usr/include -I/c/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+C++ compiler... /c/ag-sqlite-e138-01/compiler/bin/g++.exe -O2 -g -fstack-protector-strong -pipe -D_FORTIFY_SOURCE=2 -DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_DBPAGE_VTAB=1 -DSQLITE_ENABLE_STAT4=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1 -DSQLITE_OMIT_LOOKASIDE -DSQLITE_SECURE_DELETE=1 -DSQLITE_ENABLE_SESSION=1 -DSQLITE_ENABLE_PREUPDATE_HOOK=1 -DSQLITE_SOUNDEX=1 -DSQLITE_TEMP_STORE=1 -DSQLITE_USE_FCNTL_TRACE=1 -DUSE_SYSTEM_SQLITE=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1 -DSQLITE_ENABLE_COLUMN_METADATA=1 -DSQLITE_USE_ALLOCA=1 -DSQLITE_ENABLE_EXPLAIN_COMMENTS=1 -DSQLITE_ENABLE_STMTVTAB=1 -DSQLITE_HAVE_ZLIB=1 -DSQLITE_ENABLE_MATH_FUNCTIONS=1 -I/c/ag-sqlite-e138-01/zlib/usr/include -I/c/ag-sqlite-e138-01/readline/usr/include -I/c/ag-sqlite-e138-01/ncurses/usr/include/ncursesw
+Build C compiler.../c/ag-sqlite-e138-01/compiler/bin/gcc.exe
+Checking for stdlib.h...ok
+Checking for sys/types.h...ok
+Checking if -D_FILE_OFFSET_BITS=64 is needed...no
+SQLITE_DEBUG build? no
+Looking for install ... /c/ag-sqlite-e138-01/bootstrap/usr/bin/install
+Checking for int8_t...ok
+Checking for int16_t...ok
+Checking for int32_t...ok
+Checking for int64_t...ok
+Checking for intptr_t...ok
+Checking for uint8_t...ok
+Checking for uint16_t...ok
+Checking for uint32_t...ok
+Checking for uint64_t...ok
+Checking for uintptr_t...ok
+Checking for gmtime_r...ok
+Checking for isnan...ok
+Checking for localtime_r...ok
+Checking for localtime_s...not found
+Checking for usleep...ok
+Checking for utime...ok
+Checking for pread...ok
+Checking for pread64...not found
+Checking for pwrite...ok
+Checking for pwrite64...not found
+Checking libs for fdatasync...none needed
+Checking libs for nanosleep...none needed
+Checking for sys/types.h...(cached) ok
+Checking for sys/stat.h...ok
+Checking for dlfcn.h...ok
+Checking for unistd.h...ok
+Checking for stdlib.h...ok
+Checking for malloc.h...ok
+Checking for memory.h...ok
+Checking for string.h...ok
+Checking for strings.h...ok
+Checking for inttypes.h...ok
+Checking for zlib.h...not found
+Use amalgamation for builds? yes
+Use gcov? no
+test-runner flags: no
+Use #line macros in the amalgamation: no
+Checking whether the C compiler accepts -fsanitize=address...yes
+Checking whether the C compiler accepts -fsanitize=bounds-strict...yes
+Checking for a suitable tcl... 
+Using tclConfig.sh: /c/ag-sqlite-e138-01/tcl-config/tclConfig.sh
+Using tclsh: /c/ag-sqlite-e138-01/tcl/usr/bin/tclsh8.6
+Checking for TCL to use for code generation... 
+Checking for dirent.h...ok
+Checking for sys/time.h...ok
+Checking for realpath...ok
+TCL for code generation: jimsh
+Out-of tree build: not checking for EMSDK.
+Statically link tclsqlite3? no
+Statically link CLI shell? no
+Checking whether the C compiler accepts -rpath /usr/lib...no
+Checking whether the C compiler accepts -Wl,-rpath,/usr/lib...yes
+Checking whether the C compiler accepts -Wl,-soname,libsqlite3.so.0...yes
+Setting SONAME using: -Wl,-soname,libsqlite3.so.0
+Support threadsafe operation? Checking for libs...
+Checking libs for pthread_create...none needed
+Checking libs for pthread_mutexattr_init...none needed
+Checking libs for dlopen...none needed
+Loadable extension support enabled. 
+Checking libs for ceil...none needed
+Enabling math SQL functions
+ICU support is disabled.
+Checking for line-editing capability...
+Using readline flags: -I/c/ag-sqlite-e138-01/readline/usr/include -L/c/ag-sqlite-e138-01/readline/usr/lib -lreadline -L/c/ag-sqlite-e138-01/ncurses/usr/lib -lncursesw
+WARNING: [ sqlite-check-line-editing ]: readline-style completion disabled due to rl_completion_matches() signature mismatch
+Line-editing support for the sqlite3 shell: readline
+Build shared library? yes
+Build static library? yes
+Checking whether the C compiler accepts -Wl,--out-implib,libsqlite3.dll.a...yes
+Feature flags...
+  - fts3
+  + fts4
+  + fts5
+  + geopoly
+  + rtree
+  + session
+  - update-limit
+  - memsys5
+  - memsys3
+  - scanstatus
+  - column-metadata
+  + dbpage
+  + dbstat
+  + carray
+  + json
+Library feature flags: -DSQLITE_ENABLE_CARRAY -DSQLITE_ENABLE_COLUMN_METADATA=1 -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB=1 -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB=1 -DSQLITE_ENABLE_EXPLAIN_COMMENTS=1 -DSQLITE_ENABLE_FTS3_PARENTHESIS=1 -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_FTS5 -DSQLITE_ENABLE_GEOPOLY -DSQLITE_ENABLE_MATH_FUNCTIONS -DSQLITE_ENABLE_MATH_FUNCTIONS=1 -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_PREUPDATE_HOOK -DSQLITE_ENABLE_PREUPDATE_HOOK=1 -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_SESSION -DSQLITE_ENABLE_SESSION=1 -DSQLITE_ENABLE_STAT4=1 -DSQLITE_ENABLE_STMTVTAB=1 -DSQLITE_ENABLE_UNLOCK_NOTIFY=1 -DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1 -DSQLITE_OMIT_LOOKASIDE -DSQLITE_THREADSAFE=1
+Shell options: -DHAVE_READLINE=1 -DSQLITE_DQS=0 -DSQLITE_ENABLE_BYTECODE_VTAB -DSQLITE_ENABLE_DBPAGE_VTAB -DSQLITE_ENABLE_DBSTAT_VTAB -DSQLITE_ENABLE_EXPLAIN_COMMENTS -DSQLITE_ENABLE_FTS4 -DSQLITE_ENABLE_OFFSET_SQL_FUNC -DSQLITE_ENABLE_PERCENTILE -DSQLITE_ENABLE_RTREE -DSQLITE_ENABLE_STMTVTAB -DSQLITE_ENABLE_UNKNOWN_SQL_FUNCTION -DSQLITE_OMIT_READLINE_COMPLETION -DSQLITE_STRICT_SUBTYPE=1
+Created Makefile from ../prepared/source/Makefile.in
+Created sqlite3.pc from ../prepared/source/sqlite3.pc.in
+Created sqlite_cfg.h

@@ -1,0 +1,125 @@
+{
+  "schema": 1,
+  "status": "full-msys-sqlite-configure-native-windows-host-jim-passed",
+  "scope": "Same complete MSYS target configuration; host-only Jim change",
+  "launcher": {
+    "pid": 12516,
+    "creation_filetime": 134333341163674808,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\configure-sqlite-host-jim.py",
+      "--source",
+      "C:\\ag-sqlite-e138-01\\host-source-02",
+      "--build",
+      "C:\\ag-sqlite-e138-01\\build-host-config-02",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\configure-host-02"
+    ]
+  },
+  "command": [
+    "C:\\ag-sqlite-e138-01\\host-jim-01\\jimsh.exe",
+    "C:\\ag-sqlite-e138-01\\host-source-02\\autosetup\\autosetup",
+    "--prefix=/usr",
+    "--sysconfdir=/etc",
+    "--localstatedir=/var",
+    "--build=aarch64-pc-cygwin",
+    "--enable-shared",
+    "--enable-static",
+    "--enable-readline",
+    "--disable-editline",
+    "--out-implib",
+    "--soname=legacy",
+    "--dll-basename=msys-sqlite3-0",
+    "--all",
+    "--with-tcl=C:/ag-sqlite-e138-01/tcl-config-hostwin",
+    "--with-readline-cflags=-IC:/ag-sqlite-e138-01/readline/usr/include",
+    "--with-readline-ldflags=-LC:/ag-sqlite-e138-01/readline/usr/lib -lreadline -LC:/ag-sqlite-e138-01/ncurses/usr/lib -lncursesw"
+  ],
+  "build": "C:\\ag-sqlite-e138-01\\build-host-config-02",
+  "recipe": {
+    "version": "3.53.4",
+    "recipe_sha256": "6db1e1013349ee4189c267edc2b6640ef39c477d2f62bbc0a2d0cc97338a01c8",
+    "configure": [
+      "--prefix=/usr",
+      "--sysconfdir=/etc",
+      "--localstatedir=/var",
+      "--build=aarch64-pc-cygwin",
+      "--enable-shared",
+      "--enable-static",
+      "--enable-readline",
+      "--disable-editline",
+      "--out-implib",
+      "--soname=legacy",
+      "--dll-basename=msys-sqlite3-0",
+      "--all"
+    ],
+    "cppflags": [
+      "-DSQLITE_ENABLE_DBSTAT_VTAB=1",
+      "-DSQLITE_ENABLE_DBPAGE_VTAB=1",
+      "-DSQLITE_ENABLE_STAT4=1",
+      "-DSQLITE_ENABLE_UNLOCK_NOTIFY=1",
+      "-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1",
+      "-DSQLITE_OMIT_LOOKASIDE",
+      "-DSQLITE_SECURE_DELETE=1",
+      "-DSQLITE_ENABLE_SESSION=1",
+      "-DSQLITE_ENABLE_PREUPDATE_HOOK=1",
+      "-DSQLITE_SOUNDEX=1",
+      "-DSQLITE_TEMP_STORE=1",
+      "-DSQLITE_USE_FCNTL_TRACE=1",
+      "-DUSE_SYSTEM_SQLITE=1",
+      "-DSQLITE_ENABLE_FTS3_PARENTHESIS=1",
+      "-DSQLITE_ENABLE_COLUMN_METADATA=1",
+      "-DSQLITE_USE_ALLOCA=1",
+      "-DSQLITE_ENABLE_EXPLAIN_COMMENTS=1",
+      "-DSQLITE_ENABLE_STMTVTAB=1",
+      "-DSQLITE_HAVE_ZLIB=1",
+      "-DSQLITE_ENABLE_MATH_FUNCTIONS=1"
+    ],
+    "notes": [
+      "The full recipe includes Tcl analyzer/bindings, readline, extensions, lemon and separate pinned documentation input.",
+      "Replace the upstream unbounded make -j with -j1, including nested extension builds.",
+      "Do not inherit make quicktest || true. Record any real failure or unavailable native symlink prerequisite honestly."
+    ]
+  },
+  "host_jim_sha256": "81268bd5f19c37a6159d4aca82b8a27c62980d9b1e625b5a1cd3d4ee6c2e29f9",
+  "jobs": 1,
+  "source_manifest_sha256": "16011ced9dba7082c553987befc82d09137610675f0c7016704f399fa7e88a8e",
+  "minimum_free_gib": 38.81452178955078,
+  "process": {
+    "passed": true,
+    "pid": 24400,
+    "exit": 0,
+    "timed_out": false,
+    "created_processes": 212,
+    "observed_processes": 212,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-sqlite-e138-01\\configure-host-02\\native-job.json",
+      "sha256": "c1cc7992ca18aaed947213a4efc2e1d108258e58e8c2f11aaedcd74df71ecc92",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "files": {
+    "config.log": {
+      "sha256": "c165b7614fc074f0c8a580fb722870f6598aa3ed1db3c34254e58a2aa40cab6e",
+      "size": 4889
+    },
+    "conftest__.exe": {
+      "sha256": "320f44402b108d58ef6a6d6317caa0402f42723b304b645c77aa3e5bc7065d6b",
+      "size": 66113
+    },
+    "Makefile": {
+      "sha256": "d64d64c484c3a7f8034eac5b7f5d5e55a10f14ec8fc3022fd38dfb802242932b",
+      "size": 14812
+    },
+    "sqlite3.pc": {
+      "sha256": "f247153a4ebd98065755a36e95b42e863b1589b7a499d84b7880504392326cd4",
+      "size": 277
+    },
+    "sqlite_cfg.h": {
+      "sha256": "49adf2cecc4a8b7f104f3ddcda18a169ebcf062afe5c341b8e422062ae184782",
+      "size": 1565
+    }
+  }
+}

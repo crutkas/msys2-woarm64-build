@@ -1,0 +1,116 @@
+{
+  "name": "behavior",
+  "command": [
+    "C:\\Program Files\\Python314-arm64\\python.exe",
+    "-B",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\source\\arm64-git-recovery\\native\\mvp\\run_behavior.py",
+    "--root",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces",
+    "--output",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\behavior"
+  ],
+  "free_ram_gib_before": 37.153133392333984,
+  "process": {
+    "pid": 9332,
+    "exit": 0,
+    "timed_out": false,
+    "active_at_parent_exit": 0,
+    "active_at_boundary": 0,
+    "remaining_process_ids": [],
+    "remaining_process_details": [],
+    "created_processes": 229,
+    "passed": true
+  },
+  "result_sha256": "ba2faa1633c5f8a4855634495921a03ac1b66a06275abc2d751deade49f7c6d9",
+  "result": {
+    "cases": [
+      [
+        "native-uname",
+        "PASS",
+        "aarch64"
+      ],
+      [
+        "relocated-runtime-root",
+        "PASS",
+        "C:/ag-mvp-independent-sqlite-20260911/replay-01/moved candidate with spaces"
+      ],
+      [
+        "pipeline-sort-uniq",
+        "PASS",
+        "exact-bytes"
+      ],
+      [
+        "fork-wait",
+        "PASS",
+        "semantic-exit-7"
+      ],
+      [
+        "signal-usr1",
+        "PASS",
+        "native-bash-trap"
+      ],
+      [
+        "filesystem",
+        "PASS",
+        "copy-move-remove-spaces"
+      ],
+      [
+        "random-device",
+        "PASS",
+        "64-and-4096-bytes"
+      ],
+      [
+        "execvp-permission",
+        "PASS",
+        "semantic-exit-126"
+      ],
+      [
+        "git-init-commit",
+        "PASS",
+        "two-real-repositories"
+      ],
+      [
+        "git-hooks",
+        "PASS",
+        "positive-and-rejected-commit"
+      ],
+      [
+        "git-recursive-clone",
+        "PASS",
+        "exact-head-clean-fsck"
+      ],
+      [
+        "https-clone-fetch",
+        "PASS",
+        "https://github.com/octocat/Hello-World.git"
+      ]
+    ],
+    "command": [
+      "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+      "--noprofile",
+      "--norc",
+      "C:/ag-mvp-independent-sqlite-20260911/replay-01/source/arm64-git-recovery/native/mvp/behavior.sh",
+      "C:/ag-mvp-independent-sqlite-20260911/replay-01/behavior/work",
+      "https://github.com/octocat/Hello-World.git"
+    ],
+    "inputs_unchanged": true,
+    "passed": true,
+    "process": {
+      "active_at_boundary": 0,
+      "active_at_parent_exit": 0,
+      "created_processes": 228,
+      "exit": 0,
+      "passed": true,
+      "pid": 4696,
+      "remaining_process_details": [],
+      "remaining_process_ids": [],
+      "timed_out": false
+    },
+    "root": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces",
+    "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "schema": 1,
+    "scope": "Real local/network functional cases; parent raw status and bounded cleanup; all-child architecture/exit attestation is a separate required gate",
+    "script_sha256": "d154c0ed16e6455eafcc3870caa8bd07a06651b91d6076d89d991977655e7ded"
+  },
+  "passed": true
+}

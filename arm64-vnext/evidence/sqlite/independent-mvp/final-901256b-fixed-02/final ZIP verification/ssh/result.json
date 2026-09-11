@@ -1,0 +1,137 @@
+{
+  "cases": [
+    {
+      "name": "correct-host-key",
+      "passed": true,
+      "pid": 18016,
+      "raw_exit": 0,
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stdout_sha256": "c5a8d3079156cfbc738aea2efd8ee91a2e11bd958b100fcdd6bdc41dc282f673"
+    },
+    {
+      "name": "wrong-host-key",
+      "passed": true,
+      "pid": 19040,
+      "raw_exit": 255,
+      "stderr_sha256": "b08ddba86ad8f1f79adb9e4847fc5dc2ef940bc3844f7ca2064df967e3594e25",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "binary_bytes": 131072,
+      "expected_binary_sha256": "4ce152d66f7135c457cde22f021d2c20c1de435b3adb89a4bb8de7bb5580ccec",
+      "expected_head": "db6b0104c9587d83dbd3d6dca746a1779ba17f18",
+      "name": "git-encrypted-clone",
+      "observed_binary_sha256": "4ce152d66f7135c457cde22f021d2c20c1de435b3adb89a4bb8de7bb5580ccec",
+      "observed_head": "db6b0104c9587d83dbd3d6dca746a1779ba17f18",
+      "passed": true,
+      "raw_exit": 0
+    },
+    {
+      "expected_head": "a977cdf1a60bca2e79ccdd7d6dd52d10b06d9fad",
+      "name": "git-encrypted-fetch",
+      "observed_head": "a977cdf1a60bca2e79ccdd7d6dd52d10b06d9fad",
+      "passed": true,
+      "raw_exit": 0
+    },
+    {
+      "name": "git-wrong-host-key",
+      "passed": true,
+      "raw_exit": 128
+    }
+  ],
+  "client_path": "C:\\ag-mvp-independent-sqlite-20260911\\final-901256b-fixed-02\\final ZIP verification\\fresh moved Git Bash extraction\\usr\\bin\\ssh.exe",
+  "client_sha256": "fd87ccdfbd8be33d22b67fa3f1c94bb2327a3e7d24355bf7fd2485d356f1976d",
+  "events": [
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        54683
+      ]
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "command": "prove 1634693e23d40837124c8d71468f36f5",
+      "event": "authenticated_command",
+      "recv_cipher": "chacha20-poly1305@openssh.com",
+      "send_cipher": "chacha20-poly1305@openssh.com"
+    },
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        54684
+      ]
+    },
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        54685
+      ]
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "command": "git-upload-pack '/mvp.git'",
+      "event": "authenticated_git_upload_pack",
+      "git_protocol": "version=2",
+      "recv_cipher": "chacha20-poly1305@openssh.com",
+      "send_cipher": "chacha20-poly1305@openssh.com"
+    },
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        54688
+      ]
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "command": "git-upload-pack '/mvp.git'",
+      "event": "authenticated_git_upload_pack",
+      "git_protocol": "version=2",
+      "recv_cipher": "chacha20-poly1305@openssh.com",
+      "send_cipher": "chacha20-poly1305@openssh.com"
+    },
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        54689
+      ]
+    }
+  ],
+  "git": {
+    "path": "C:\\ag-mvp-independent-sqlite-20260911\\final-901256b-fixed-02\\final ZIP verification\\fresh moved Git Bash extraction\\mingwarm64\\bin\\git.exe",
+    "sha256": "aeaf9a82b90cdef99d404beb5c98968ac20cefc8cf47b51526e5768cd5ca03f9"
+  },
+  "parent": {
+    "path": "C:\\ag-mvp-independent-sqlite-20260911\\final-901256b-fixed-02\\final ZIP verification\\fresh moved Git Bash extraction\\usr\\bin\\bash.exe",
+    "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+  },
+  "passed": true,
+  "port": 54682,
+  "schema": 1,
+  "scope": "Real encrypted loopback SSH handshake/public-key authentication and strict host-key rejection; portable fixture only, no installed service or real credentials; actual Git upload-pack, encrypted clone/fetch, exact commits and fsck"
+}

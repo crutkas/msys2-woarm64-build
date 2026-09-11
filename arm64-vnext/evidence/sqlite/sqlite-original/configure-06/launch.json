@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "phase": "configure",
+  "version": "3.53.4",
+  "jobs": 2,
+  "nested_jobs": 2,
+  "full_cpp_qualified": false,
+  "package_admission": false,
+  "launcher": {
+    "pid": 10472,
+    "creation_filetime": 134333322722328728,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\build-msys-sqlite.py",
+      "--phase",
+      "configure",
+      "--build",
+      "C:\\ag-sqlite-e138-01\\build-06",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\configure-06",
+      "--jobs",
+      "2"
+    ]
+  },
+  "command": [
+    "C:\\ag-sqlite-e138-01\\bootstrap\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "C:/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-probable-lamp/arm64-git-recovery/native/build-msys-sqlite.sh",
+    "configure",
+    "C:\\ag-sqlite-e138-01",
+    "C:\\ag-sqlite-e138-01\\build-06",
+    "2",
+    "C:\\ag-sqlite-e138-01\\configure-06"
+  ],
+  "recipe": {
+    "version": "3.53.4",
+    "recipe_sha256": "6db1e1013349ee4189c267edc2b6640ef39c477d2f62bbc0a2d0cc97338a01c8",
+    "configure": [
+      "--prefix=/usr",
+      "--sysconfdir=/etc",
+      "--localstatedir=/var",
+      "--build=aarch64-pc-cygwin",
+      "--enable-shared",
+      "--enable-static",
+      "--enable-readline",
+      "--disable-editline",
+      "--out-implib",
+      "--soname=legacy",
+      "--dll-basename=msys-sqlite3-0",
+      "--all"
+    ],
+    "cppflags": [
+      "-DSQLITE_ENABLE_DBSTAT_VTAB=1",
+      "-DSQLITE_ENABLE_DBPAGE_VTAB=1",
+      "-DSQLITE_ENABLE_STAT4=1",
+      "-DSQLITE_ENABLE_UNLOCK_NOTIFY=1",
+      "-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1",
+      "-DSQLITE_OMIT_LOOKASIDE",
+      "-DSQLITE_SECURE_DELETE=1",
+      "-DSQLITE_ENABLE_SESSION=1",
+      "-DSQLITE_ENABLE_PREUPDATE_HOOK=1",
+      "-DSQLITE_SOUNDEX=1",
+      "-DSQLITE_TEMP_STORE=1",
+      "-DSQLITE_USE_FCNTL_TRACE=1",
+      "-DUSE_SYSTEM_SQLITE=1",
+      "-DSQLITE_ENABLE_FTS3_PARENTHESIS=1",
+      "-DSQLITE_ENABLE_COLUMN_METADATA=1",
+      "-DSQLITE_USE_ALLOCA=1",
+      "-DSQLITE_ENABLE_EXPLAIN_COMMENTS=1",
+      "-DSQLITE_ENABLE_STMTVTAB=1",
+      "-DSQLITE_HAVE_ZLIB=1",
+      "-DSQLITE_ENABLE_MATH_FUNCTIONS=1"
+    ],
+    "notes": [
+      "The full recipe includes Tcl analyzer/bindings, readline, extensions, lemon and separate pinned documentation input.",
+      "Replace the upstream unbounded make -j with -j1, including nested extension builds.",
+      "Do not inherit make quicktest || true. Record any real failure or unavailable native symlink prerequisite honestly."
+    ]
+  },
+  "splits": [
+    "sqlite",
+    "libsqlite",
+    "libsqlite-devel",
+    "sqlite-doc",
+    "tcl-sqlite",
+    "sqlite-extensions",
+    "lemon"
+  ],
+  "tools": [
+    "sqlite3.exe",
+    "sqlite3_analyzer.exe",
+    "sqldiff.exe",
+    "dbhash.exe",
+    "rbu.exe"
+  ],
+  "build": "C:\\ag-sqlite-e138-01\\build-06",
+  "recipe_driver_sha256": "75a58ce2e866b2152c23ac736035239b85b6c5c6e48b836e65d45e85458b6f48",
+  "minimum_free_gib": 39.7716178894043
+}

@@ -1,0 +1,81 @@
+symlink-1.0... Ok
+symlink-1.1...
+! symlink-1.1 expected: [/c/ag-sqlite-e138-01/quicktest-build-08/testdir0/testdir/test.db]
+! symlink-1.1 got:      [/c/ag-sqlite-e138-01/quicktest-build-08/testdir0/testdir/test.db2]
+symlink-1.1.2...
+! symlink-1.1.2 expected: [1 {unable to open database file}]
+! symlink-1.1.2 got:      [0 {}]
+symlink-1.1.3... Ok
+symlink-1.1.4...
+! symlink-1.1.4 expected: [1 {unable to open database: test.db2}]
+! symlink-1.1.4 got:      [0 {}]
+symlink-1.2.1... Ok
+symlink-1.2.2...
+! symlink-1.2.2 expected: [1]
+! symlink-1.2.2 got:      [0]
+symlink-1.2.3...
+! symlink-1.2.3 expected: [/c/ag-sqlite-e138-01/quicktest-build-08/testdir0/testdir/test.db]
+! symlink-1.2.3 got:      [/c/ag-sqlite-e138-01/quicktest-build-08/testdir0/testdir/test.db2]
+symlink-1.3...
+! symlink-1.3 expected: [1 {unable to open database file}]
+! symlink-1.3 got:      [0 {}]
+symlink-1.4... Ok
+symlink-1.5... Ok
+symlink-2.0... Ok
+symlink-2.1.1... Ok
+symlink-2.1.2...
+! symlink-2.1.2 expected: [1]
+! symlink-2.1.2 got:      [0]
+symlink-2.1.3... Ok
+symlink-2.1.4...
+! symlink-2.1.4 expected: [1]
+! symlink-2.1.4 got:      [0]
+symlink-2.1.5... Ok
+symlink-2.1.6...
+! symlink-2.1.6 expected: [1 2]
+! symlink-2.1.6 got:      []
+symlink-2.1.7... Ok
+symlink-2.2.1... Ok
+symlink-2.2.2...
+! symlink-2.2.2 expected: [1]
+! symlink-2.2.2 got:      [0]
+symlink-2.2.3... Ok
+symlink-2.2.4...
+! symlink-2.2.4 expected: [1]
+! symlink-2.2.4 got:      [0]
+symlink-2.2.5... Ok
+symlink-2.2.6...
+! symlink-2.2.6 expected: [1 2]
+! symlink-2.2.6 got:      []
+symlink-2.2.7... Ok
+symlink-3.1... Ok
+symlink-4.1... Ok
+symlink-4.2.1...
+Error: no such table: t1
+symlink-4.2.2...
+! symlink-4.2.2 expected: [1 0]
+! symlink-4.2.2 got:      [0 0]
+symlink-4.3.1...
+Error: no such table: t1
+symlink-4.3.2...
+! symlink-4.3.2 expected: [1 0 0]
+! symlink-4.3.2 got:      [0 0 0]
+symlink-4.4.0... Ok
+symlink-4.4.1... Ok
+symlink-4.4.2...
+! symlink-4.4.2 expected: [1 0]
+! symlink-4.4.2 got:      [0 1]
+symlink-5.0... Ok
+symlink-5.1... Ok
+symlink-5.2... Ok
+SQLite 2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e0945alt1
+17 errors out of 39 tests on DESKTOP-L5S0ICK CYGWIN_NT-10.0-28000 64-bit
+!Failures on these tests: symlink-1.1 symlink-1.1.2 symlink-1.1.4 symlink-1.2.2 symlink-1.2.3 symlink-1.3 symlink-2.1.2 symlink-2.1.4 symlink-2.1.6 symlink-2.2.2 symlink-2.2.4 symlink-2.2.6 symlink-4.2.1 symlink-4.2.2 symlink-4.3.1 symlink-4.3.2 symlink-4.4.2
+All memory allocations freed - no leaks
+Memory used:          now          0  max     231656  max-size      48000
+Allocation count:     now          0  max        688
+Page-cache used:      now          0  max          0  max-size       1032
+Page-cache overflow:  now          0  max       4120
+Maximum memory usage: 231656 bytes
+Current memory usage: 0 bytes
+Number of malloc()  : -1 calls

@@ -1,0 +1,142 @@
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/sqlite/usr/bin
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install sqlite3.exe "/c/ag-sqlite-e138-01/build-06/splits/sqlite/usr/bin"
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/sqlite/usr/share/man/man1
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install -m 0644 "/c/ag-sqlite-e138-01/prepared/source/sqlite3.1" "/c/ag-sqlite-e138-01/build-06/splits/sqlite/usr/share/man/man1"
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/libsqlite/usr/lib
+if [ x != "xlibsqlite3.dll.a" ] && [ -f "libsqlite3.dll.a" ]; then \
+	/c/ag-sqlite-e138-01/bootstrap/usr/bin/install libsqlite3.dll.a "/c/ag-sqlite-e138-01/build-06/splits/libsqlite/usr/lib"; \
+fi
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/libsqlite/usr/bin
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install msys-sqlite3-0.dll "/c/ag-sqlite-e138-01/build-06/splits/libsqlite/usr/bin"
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/lib/pkgconfig
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install -m 0644 sqlite3.pc "/c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/lib/pkgconfig"
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/include
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install -m 0644 sqlite3.h "/c/ag-sqlite-e138-01/prepared/source/src/sqlite3ext.h" "/c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/include"
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install -m 0644 libsqlite3.a "/c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/lib"
+if [ x != "xlibsqlite3.dll.a" ] && [ -f "libsqlite3.dll.a" ]; then \
+	/c/ag-sqlite-e138-01/bootstrap/usr/bin/install libsqlite3.dll.a "/c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/lib"; \
+fi
++ /c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d /c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/bin
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install msys-sqlite3-0.dll "/c/ag-sqlite-e138-01/build-06/splits/libsqlite-devel/usr/bin"
+. ./.tclenv.sh || exit $?; \
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install -d "/c/ag-sqlite-e138-01/build-06/splits/tcl-sqlite$TCLLIBDIR"; \
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install cygsqlite3.53.4.dll "/c/ag-sqlite-e138-01/build-06/splits/tcl-sqlite$TCLLIBDIR"; \
+/c/ag-sqlite-e138-01/bootstrap/usr/bin/install -m 0644 pkgIndex.tcl "/c/ag-sqlite-e138-01/build-06/splits/tcl-sqlite$TCLLIBDIR"
+make: Entering directory '/c/ag-sqlite-e138-01/build-06/ext/misc'
+mkdir -p /c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin
+cp -vp msys-sqlite3amatch-0.dll msys-sqlite3anycollseq-0.dll msys-sqlite3appendvfs-0.dll msys-sqlite3base64-0.dll msys-sqlite3base85-0.dll msys-sqlite3basexx-0.dll msys-sqlite3blobio-0.dll msys-sqlite3btreeinfo-0.dll msys-sqlite3cksumvfs-0.dll msys-sqlite3closure-0.dll msys-sqlite3completion-0.dll msys-sqlite3compress-0.dll msys-sqlite3csv-0.dll msys-sqlite3dbdump-0.dll msys-sqlite3decimal-0.dll msys-sqlite3eval-0.dll msys-sqlite3explain-0.dll msys-sqlite3fileio-0.dll msys-sqlite3fossildelta-0.dll msys-sqlite3fuzzer-0.dll msys-sqlite3ieee754-0.dll msys-sqlite3memstat-0.dll msys-sqlite3mmapwarm-0.dll msys-sqlite3nextchar-0.dll msys-sqlite3noop-0.dll msys-sqlite3normalize-0.dll msys-sqlite3pcachetrace-0.dll msys-sqlite3percentile-0.dll msys-sqlite3prefixes-0.dll msys-sqlite3qpvtab-0.dll msys-sqlite3randomjson-0.dll msys-sqlite3remember-0.dll msys-sqlite3rot13-0.dll msys-sqlite3series-0.dll msys-sqlite3sha1-0.dll msys-sqlite3shathree-0.dll msys-sqlite3showauth-0.dll msys-sqlite3spellfix-0.dll msys-sqlite3sqlar-0.dll msys-sqlite3sqlite3_stdio-0.dll msys-sqlite3stmt-0.dll msys-sqlite3stmtrand-0.dll msys-sqlite3templatevtab-0.dll msys-sqlite3tmstmpvfs-0.dll msys-sqlite3totype-0.dll msys-sqlite3uint-0.dll msys-sqlite3unionvtab-0.dll msys-sqlite3urifuncs-0.dll msys-sqlite3uuid-0.dll msys-sqlite3vfslog-0.dll msys-sqlite3vfsstat-0.dll msys-sqlite3vtablog-0.dll msys-sqlite3vtshim-0.dll msys-sqlite3wholenumber-0.dll msys-sqlite3zipfile-0.dll msys-sqlite3zorder-0.dll /c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin
+'msys-sqlite3amatch-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3amatch-0.dll'
+'msys-sqlite3anycollseq-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3anycollseq-0.dll'
+'msys-sqlite3appendvfs-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3appendvfs-0.dll'
+'msys-sqlite3base64-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3base64-0.dll'
+'msys-sqlite3base85-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3base85-0.dll'
+'msys-sqlite3basexx-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3basexx-0.dll'
+'msys-sqlite3blobio-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3blobio-0.dll'
+'msys-sqlite3btreeinfo-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3btreeinfo-0.dll'
+'msys-sqlite3cksumvfs-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3cksumvfs-0.dll'
+'msys-sqlite3closure-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3closure-0.dll'
+'msys-sqlite3completion-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3completion-0.dll'
+'msys-sqlite3compress-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3compress-0.dll'
+'msys-sqlite3csv-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3csv-0.dll'
+'msys-sqlite3dbdump-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3dbdump-0.dll'
+'msys-sqlite3decimal-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3decimal-0.dll'
+'msys-sqlite3eval-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3eval-0.dll'
+'msys-sqlite3explain-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3explain-0.dll'
+'msys-sqlite3fileio-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3fileio-0.dll'
+'msys-sqlite3fossildelta-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3fossildelta-0.dll'
+'msys-sqlite3fuzzer-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3fuzzer-0.dll'
+'msys-sqlite3ieee754-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3ieee754-0.dll'
+'msys-sqlite3memstat-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3memstat-0.dll'
+'msys-sqlite3mmapwarm-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3mmapwarm-0.dll'
+'msys-sqlite3nextchar-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3nextchar-0.dll'
+'msys-sqlite3noop-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3noop-0.dll'
+'msys-sqlite3normalize-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3normalize-0.dll'
+'msys-sqlite3pcachetrace-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3pcachetrace-0.dll'
+'msys-sqlite3percentile-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3percentile-0.dll'
+'msys-sqlite3prefixes-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3prefixes-0.dll'
+'msys-sqlite3qpvtab-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3qpvtab-0.dll'
+'msys-sqlite3randomjson-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3randomjson-0.dll'
+'msys-sqlite3remember-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3remember-0.dll'
+'msys-sqlite3rot13-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3rot13-0.dll'
+'msys-sqlite3series-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3series-0.dll'
+'msys-sqlite3sha1-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3sha1-0.dll'
+'msys-sqlite3shathree-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3shathree-0.dll'
+'msys-sqlite3showauth-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3showauth-0.dll'
+'msys-sqlite3spellfix-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3spellfix-0.dll'
+'msys-sqlite3sqlar-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3sqlar-0.dll'
+'msys-sqlite3sqlite3_stdio-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3sqlite3_stdio-0.dll'
+'msys-sqlite3stmt-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3stmt-0.dll'
+'msys-sqlite3stmtrand-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3stmtrand-0.dll'
+'msys-sqlite3templatevtab-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3templatevtab-0.dll'
+'msys-sqlite3tmstmpvfs-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3tmstmpvfs-0.dll'
+'msys-sqlite3totype-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3totype-0.dll'
+'msys-sqlite3uint-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3uint-0.dll'
+'msys-sqlite3unionvtab-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3unionvtab-0.dll'
+'msys-sqlite3urifuncs-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3urifuncs-0.dll'
+'msys-sqlite3uuid-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3uuid-0.dll'
+'msys-sqlite3vfslog-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3vfslog-0.dll'
+'msys-sqlite3vfsstat-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3vfsstat-0.dll'
+'msys-sqlite3vtablog-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3vtablog-0.dll'
+'msys-sqlite3vtshim-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3vtshim-0.dll'
+'msys-sqlite3wholenumber-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3wholenumber-0.dll'
+'msys-sqlite3zipfile-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3zipfile-0.dll'
+'msys-sqlite3zorder-0.dll' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/bin/msys-sqlite3zorder-0.dll'
+mkdir -p /c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions
+cp -vp /c/ag-sqlite-e138-01/prepared/source/ext/misc/amatch.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/anycollseq.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/appendvfs.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/base64.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/base85.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/basexx.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/blobio.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/btreeinfo.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/cksumvfs.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/closure.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/completion.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/compress.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/csv.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/dbdump.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/decimal.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/eval.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/explain.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/fileio.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/fossildelta.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/fuzzer.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/ieee754.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/memstat.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/mmapwarm.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/nextchar.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/noop.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/normalize.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/pcachetrace.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/percentile.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/prefixes.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/qpvtab.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/randomjson.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/remember.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/rot13.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/series.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/sha1.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/shathree.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/showauth.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/spellfix.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/sqlar.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/sqlite3_stdio.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/stmt.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/stmtrand.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/templatevtab.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/tmstmpvfs.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/totype.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/uint.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/unionvtab.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/urifuncs.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/uuid.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/vfslog.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/vfsstat.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/vtablog.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/vtshim.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/wholenumber.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/zipfile.c /c/ag-sqlite-e138-01/prepared/source/ext/misc/zorder.c /c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/amatch.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/amatch.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/anycollseq.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/anycollseq.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/appendvfs.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/appendvfs.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/base64.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/base64.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/base85.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/base85.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/basexx.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/basexx.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/blobio.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/blobio.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/btreeinfo.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/btreeinfo.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/cksumvfs.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/cksumvfs.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/closure.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/closure.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/completion.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/completion.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/compress.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/compress.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/csv.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/csv.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/dbdump.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/dbdump.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/decimal.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/decimal.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/eval.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/eval.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/explain.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/explain.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/fileio.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/fileio.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/fossildelta.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/fossildelta.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/fuzzer.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/fuzzer.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/ieee754.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/ieee754.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/memstat.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/memstat.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/mmapwarm.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/mmapwarm.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/nextchar.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/nextchar.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/noop.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/noop.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/normalize.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/normalize.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/pcachetrace.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/pcachetrace.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/percentile.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/percentile.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/prefixes.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/prefixes.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/qpvtab.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/qpvtab.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/randomjson.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/randomjson.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/remember.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/remember.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/rot13.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/rot13.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/series.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/series.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/sha1.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/sha1.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/shathree.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/shathree.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/showauth.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/showauth.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/spellfix.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/spellfix.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/sqlar.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/sqlar.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/sqlite3_stdio.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/sqlite3_stdio.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/stmt.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/stmt.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/stmtrand.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/stmtrand.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/templatevtab.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/templatevtab.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/tmstmpvfs.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/tmstmpvfs.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/totype.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/totype.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/uint.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/uint.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/unionvtab.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/unionvtab.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/urifuncs.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/urifuncs.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/uuid.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/uuid.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/vfslog.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/vfslog.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/vfsstat.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/vfsstat.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/vtablog.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/vtablog.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/vtshim.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/vtshim.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/wholenumber.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/wholenumber.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/zipfile.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/zipfile.c'
+'/c/ag-sqlite-e138-01/prepared/source/ext/misc/zorder.c' -> '/c/ag-sqlite-e138-01/build-06/splits/sqlite-extensions/usr/share/sqlite/extensions/zorder.c'
+make: Leaving directory '/c/ag-sqlite-e138-01/build-06/ext/misc'

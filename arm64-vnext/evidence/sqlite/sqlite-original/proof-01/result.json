@@ -1,0 +1,809 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "scope": "Native SQLite unit only; not full Git/SDK or provider admission",
+  "version": "3.53.4",
+  "full_cpp_qualified": false,
+  "launcher": {
+    "pid": 27020,
+    "creation_filetime": 134333332181246844,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\test-native-msys-sqlite.py",
+      "--build",
+      "C:\\ag-sqlite-e138-01\\build-06",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\proof-01"
+    ]
+  },
+  "jobs": 1,
+  "steps": [
+    {
+      "name": "compile-api-shared",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\compiler\\bin\\gcc.exe",
+        "-O2",
+        "-g",
+        "-fstack-protector-strong",
+        "-D_FORTIFY_SOURCE=2",
+        "-IC:/ag-sqlite-e138-01/proof-01/runtime/usr/include",
+        "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\fixtures\\sqlite-native-api.c",
+        "-LC:/ag-sqlite-e138-01/proof-01/runtime/usr/lib",
+        "-Wl,--no-insert-timestamp",
+        "-lsqlite3",
+        "-lz",
+        "-lm",
+        "-lpthread",
+        "-o",
+        "C:\\ag-sqlite-e138-01\\proof-01\\sqlite-api-shared.exe"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 25416,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 5,
+        "observed_processes": 5,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\compile-api-shared.native-job.json",
+          "sha256": "83f23f576117490e9c83fb147ba417b4222a9c925ce87776d0a4a73c7b11eee3",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    {
+      "name": "api-shared",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\capture-native-exception.py",
+        "--executable",
+        "C:\\ag-sqlite-e138-01\\proof-01\\sqlite-api-shared.exe",
+        "--output",
+        "C:\\ag-sqlite-e138-01\\proof-01\\api-shared.capture",
+        "--path-directory",
+        "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin",
+        "--runtime-directory",
+        "C:\\ag-sqlite-e138-01\\compiler\\bin",
+        "--tcl-environment",
+        "/c/ag-sqlite-e138-01/proof-01/api-shared.sqlite"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 17916,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\api-shared.native-job.json",
+          "sha256": "108b7e5413975c636b08151fb732425c305397e0cd2cbe87a2542d8f364bb389",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "capture_sha256": "97a652de8909b5301f8123388fdddcb29406f070eee8eb7dc851748507df2961",
+      "raw_exit": 0,
+      "stdout": "sqlite-native-api-passed version=3.53.4 long=8 pointer=8\n",
+      "stderr": "",
+      "loaded_modules": {
+        "sqlite-api-shared.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\sqlite-api-shared.exe",
+          "sha256": "53ecfaacefaabc5528dca3e9d27cde12a21e75fbf35592fae414483c85e0f357"
+        },
+        "ntdll.dll": {
+          "path": "C:\\Windows\\System32\\ntdll.dll",
+          "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+        },
+        "kernel32.dll": {
+          "path": "C:\\Windows\\System32\\kernel32.dll",
+          "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+        },
+        "kernelbase.dll": {
+          "path": "C:\\Windows\\System32\\KernelBase.dll",
+          "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+        },
+        "msys-2.0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin\\msys-2.0.dll",
+          "sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16"
+        },
+        "msys-sqlite3-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin\\msys-sqlite3-0.dll",
+          "sha256": "ab10026d3cb35252d9581256bbf803a825becdf521a541c6663fe7564889815f"
+        },
+        "advapi32.dll": {
+          "path": "C:\\Windows\\System32\\advapi32.dll",
+          "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+        },
+        "msvcrt.dll": {
+          "path": "C:\\Windows\\System32\\msvcrt.dll",
+          "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+        },
+        "sechost.dll": {
+          "path": "C:\\Windows\\System32\\sechost.dll",
+          "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+        },
+        "rpcrt4.dll": {
+          "path": "C:\\Windows\\System32\\rpcrt4.dll",
+          "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+        },
+        "cryptbase.dll": {
+          "path": "C:\\Windows\\System32\\cryptbase.dll",
+          "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+        },
+        "bcryptprimitives.dll": {
+          "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+          "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+        },
+        "netapi32.dll": {
+          "path": "C:\\Windows\\System32\\netapi32.dll",
+          "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+        },
+        "samcli.dll": {
+          "path": "C:\\Windows\\System32\\samcli.dll",
+          "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+        },
+        "ucrtbase.dll": {
+          "path": "C:\\Windows\\System32\\ucrtbase.dll",
+          "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+        },
+        "samlib.dll": {
+          "path": "C:\\Windows\\System32\\samlib.dll",
+          "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+        },
+        "netutils.dll": {
+          "path": "C:\\Windows\\System32\\netutils.dll",
+          "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+        }
+      }
+    },
+    {
+      "name": "compile-api-static",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\compiler\\bin\\gcc.exe",
+        "-O2",
+        "-g",
+        "-fstack-protector-strong",
+        "-D_FORTIFY_SOURCE=2",
+        "-IC:/ag-sqlite-e138-01/proof-01/runtime/usr/include",
+        "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\fixtures\\sqlite-native-api.c",
+        "-LC:/ag-sqlite-e138-01/proof-01/runtime/usr/lib",
+        "-Wl,--no-insert-timestamp",
+        "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\lib\\libsqlite3.a",
+        "-lz",
+        "-lm",
+        "-lpthread",
+        "-o",
+        "C:\\ag-sqlite-e138-01\\proof-01\\sqlite-api-static.exe"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 8356,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 5,
+        "observed_processes": 5,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\compile-api-static.native-job.json",
+          "sha256": "443e529f32b53f639b76308ee0920800600a32aace6411cd64e60e16f874d50c",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    {
+      "name": "api-static",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\capture-native-exception.py",
+        "--executable",
+        "C:\\ag-sqlite-e138-01\\proof-01\\sqlite-api-static.exe",
+        "--output",
+        "C:\\ag-sqlite-e138-01\\proof-01\\api-static.capture",
+        "--path-directory",
+        "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin",
+        "--runtime-directory",
+        "C:\\ag-sqlite-e138-01\\compiler\\bin",
+        "--tcl-environment",
+        "/c/ag-sqlite-e138-01/proof-01/api-static.sqlite"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 4760,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\api-static.native-job.json",
+          "sha256": "165eeb534e251d18be0e41ffaf45f917fe44836417f3db35cc4790eae059d3b8",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "capture_sha256": "47a2306b22657aa545b9149decdefebccc92f90125c9be752e4e629023cf384f",
+      "raw_exit": 0,
+      "stdout": "sqlite-native-api-passed version=3.53.4 long=8 pointer=8\n",
+      "stderr": "",
+      "loaded_modules": {
+        "sqlite-api-static.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\sqlite-api-static.exe",
+          "sha256": "6ad3a364e013bf67317438cb8a84f5abe12ca9221aac2522d54262da16114113"
+        },
+        "ntdll.dll": {
+          "path": "C:\\Windows\\System32\\ntdll.dll",
+          "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+        },
+        "kernel32.dll": {
+          "path": "C:\\Windows\\System32\\kernel32.dll",
+          "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+        },
+        "kernelbase.dll": {
+          "path": "C:\\Windows\\System32\\KernelBase.dll",
+          "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+        },
+        "msys-2.0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin\\msys-2.0.dll",
+          "sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16"
+        },
+        "advapi32.dll": {
+          "path": "C:\\Windows\\System32\\advapi32.dll",
+          "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+        },
+        "msvcrt.dll": {
+          "path": "C:\\Windows\\System32\\msvcrt.dll",
+          "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+        },
+        "sechost.dll": {
+          "path": "C:\\Windows\\System32\\sechost.dll",
+          "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+        },
+        "rpcrt4.dll": {
+          "path": "C:\\Windows\\System32\\rpcrt4.dll",
+          "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+        },
+        "cryptbase.dll": {
+          "path": "C:\\Windows\\System32\\cryptbase.dll",
+          "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+        },
+        "bcryptprimitives.dll": {
+          "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+          "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+        },
+        "netapi32.dll": {
+          "path": "C:\\Windows\\System32\\netapi32.dll",
+          "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+        },
+        "samcli.dll": {
+          "path": "C:\\Windows\\System32\\samcli.dll",
+          "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+        },
+        "ucrtbase.dll": {
+          "path": "C:\\Windows\\System32\\ucrtbase.dll",
+          "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+        },
+        "samlib.dll": {
+          "path": "C:\\Windows\\System32\\samlib.dll",
+          "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+        },
+        "netutils.dll": {
+          "path": "C:\\Windows\\System32\\netutils.dll",
+          "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+        }
+      }
+    },
+    {
+      "name": "cli",
+      "command": [
+        "C:\\Program Files\\Python314-arm64\\python.exe",
+        "-B",
+        "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\capture-native-exception.py",
+        "--executable",
+        "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin\\sqlite3.exe",
+        "--output",
+        "C:\\ag-sqlite-e138-01\\proof-01\\cli.capture",
+        "--path-directory",
+        "C:\\ag-sqlite-e138-01\\proof-01\\runtime\\usr\\bin",
+        "--runtime-directory",
+        "C:\\ag-sqlite-e138-01\\compiler\\bin",
+        "--tcl-environment",
+        "-batch",
+        "/c/ag-sqlite-e138-01/proof-01/cli.sqlite",
+        "CREATE TABLE t(id INTEGER PRIMARY KEY,value TEXT);INSERT INTO t VALUES(1,'native'),(2,'sqlite');SELECT sqlite_version(),count(*),sqrt(81),json_extract('{\"answer\":42}','$.answer') FROM t;PRAGMA integrity_check; PRAGMA compile_options;"
+      ],
+      "process": {
+        "passed": false,
+        "pid": 21972,
+        "exit": 2,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\proof-01\\cli.native-job.json",
+          "sha256": "2ef2a9bb6ec804b221e438cdfadcaa4f07538e954e343e316dea4a39366b539a",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    }
+  ],
+  "errors": [
+    "cli: native observer failed"
+  ],
+  "payload_pe": {
+    "usr/bin/captoinfo.exe": {
+      "sha256": "fe59dca6e15c6ff2afa285dceba87919f13b351c19d14374cae9126b4a4348da",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/clear.exe": {
+      "sha256": "88fc512505ef30a578959ae2e5da68c3506d44fb3186db63fa8323900406af38",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/dbhash.exe": {
+      "sha256": "f31e31ea0e883f15913d38c0b6e1daf4a4864755543dc818d001202a564707cc",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/infocmp.exe": {
+      "sha256": "d6ff4feda0a4eb48835b1b1d6f0d8cd33588d833e0e44616dcddb288f96b678e",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/infotocap.exe": {
+      "sha256": "fe59dca6e15c6ff2afa285dceba87919f13b351c19d14374cae9126b4a4348da",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/lemon.exe": {
+      "sha256": "2aa73c7d618f701f022c3564daa6a2cb1d0130fcbecc72bf76ca7c537e0eaf90",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/libtcl8.6.dll": {
+      "sha256": "85cf03e86f5ed0aa365c4bb132bdecc451a59c05f8acd7a6e13c168ef8393450",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-2.0.dll": {
+      "sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-formw6.dll": {
+      "sha256": "a94d5d798645ab8922a20f667b676ab31dbbe7713a69e2795f617ce338aded04",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-history8.dll": {
+      "sha256": "f48e5347c7610fd53ca8066f19f8b7d964a9c6d251718d3997a4dc8d46e34840",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-menuw6.dll": {
+      "sha256": "30f46658ac5dbc10f22844217dd13fb7da5c1d3b0ee4dbcaf7327dd9a96bfc5f",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-ncurses++w6.dll": {
+      "sha256": "bd599db06149f6479ae113a57a1016f472746d0b3086ebca6e77058416e986f4",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-ncursesw6.dll": {
+      "sha256": "e2d03ae2ac264d8788f3cd7ea4917c51c9b26ac59ee574e4cade633a96de3585",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-panelw6.dll": {
+      "sha256": "7f3e872c929062c8f54b5e7aeaed0adf4861f77f3255a95bb3fd66f00d1ed514",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-readline8.dll": {
+      "sha256": "bf2a0cd06cb4951b8ad37c3e74970d6550f2d5fc101c3eb8056f7127b42253a7",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3-0.dll": {
+      "sha256": "ab10026d3cb35252d9581256bbf803a825becdf521a541c6663fe7564889815f",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3amatch-0.dll": {
+      "sha256": "7d47ea370baaec949e580265ff86aee03b6deb3537af553717211e330fe2cbcd",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3anycollseq-0.dll": {
+      "sha256": "6ed8bca93614be02cfaa492f250ccab8798aea8b32706ebda02335ede9ab60b7",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3appendvfs-0.dll": {
+      "sha256": "24c9cab973d918bdd01b9e611c223536b409313dace98ea9e3edebbca4e2f2e8",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3base64-0.dll": {
+      "sha256": "d0266ec321405b75dd74a0481b34d0257a2282acc378f457e77e00ee445afc19",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3base85-0.dll": {
+      "sha256": "c2d013090d0ffd5fba83400740baaca4480ada177fec291f4c26523914b60932",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3basexx-0.dll": {
+      "sha256": "37cc9086ce3e625d7fd487b1e9a8d16bd502c205825ed9b120d04134ed729176",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3blobio-0.dll": {
+      "sha256": "7ede82e0cc0d466d8b5968a18d30bf667e8bad6e28352dffb34385310b1e7d88",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3btreeinfo-0.dll": {
+      "sha256": "1da414b70c8b9da300ac617defefd83c98fe796fa46478b102361948a16d3855",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3cksumvfs-0.dll": {
+      "sha256": "5273e8b54b0a11b5994ab9a836c4fe7c573fe43ac28e899f295d252745bb6875",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3closure-0.dll": {
+      "sha256": "60ed685d1f1ff79aa974b5b0fba9b1fbe1cc00cc4f32f95c22c83afd82b7c6a2",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3completion-0.dll": {
+      "sha256": "f4222b3315739f4e4173c7d4a0929e109f68856dd33e6c81ae04d1cceffe6df5",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3compress-0.dll": {
+      "sha256": "08d70ff9dc821480e0ba0c38e51eccfe396d32625fe2908f1175a6dcbb3f88cb",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3csv-0.dll": {
+      "sha256": "ef2ce7a7607cef2fd3e5f405a1c9e9f0f8b110a1f61a099d7b0767eee8176ed9",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3dbdump-0.dll": {
+      "sha256": "8bb68799696e0ea78d0aecb633d0d00f7d50746ca17e781790391be51cb24192",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3decimal-0.dll": {
+      "sha256": "853c94294be38bb93b002014315ff6820b044e9b11567c5f527af38cab14a855",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3eval-0.dll": {
+      "sha256": "b4ad4410b716a68eb51f6a21e01bce8f4b064e0631f86a67743c2204db18743b",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3explain-0.dll": {
+      "sha256": "795fa58534bb0b46514aa2b3d30513e05a68b957d3a929cee910f43596276adf",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3fileio-0.dll": {
+      "sha256": "e7e11e816192bc7a154987c975a25460bda479e86c489bd066433ea63d479a77",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3fossildelta-0.dll": {
+      "sha256": "289fb3e7fb2d1c81637371ec2fc84846fd9250fab9428c5be293d41cb1f0dffa",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3fuzzer-0.dll": {
+      "sha256": "13d5de951bdab6a9a551cd337921445c2e44af0e83ace2c5602a21c773fa289b",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3ieee754-0.dll": {
+      "sha256": "4a2de7710fc183b9ed9357d489e494cf85101f8969b693c909fe6549090eb962",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3memstat-0.dll": {
+      "sha256": "fc90193a9b0cff13798dcbbffb273644ede134e890ac5a413a5d8318b8290b39",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3mmapwarm-0.dll": {
+      "sha256": "eec63407cce311ede2903a28bbea4cf7de54571d59647ea0254315880caca8bc",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3nextchar-0.dll": {
+      "sha256": "070c469e9082e3b7e3680a537b56d9319bb7b465098b91fe528ba7ab4140d260",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3noop-0.dll": {
+      "sha256": "27e3ff196063826f194f067b81f0fe17caadc05d3576ea54762fd8c4f9024e2b",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3normalize-0.dll": {
+      "sha256": "f1266870a9330cbd6e4035338d7b610eaa2a372dd1002f0c822f039e4b64d2b3",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3pcachetrace-0.dll": {
+      "sha256": "93077fb5967beb28448a334c49baa8018c0a07bd355d340a24bce0b64a9b0281",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3percentile-0.dll": {
+      "sha256": "e883a5c26902d48df210ff898803e584c6fe97c5e703d57f983ab67b312be894",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3prefixes-0.dll": {
+      "sha256": "0ec4420d3104d7f8d21337be1d60354bc89a57dbd84b632e9d293fbe38d18d5b",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3qpvtab-0.dll": {
+      "sha256": "bc09746878c946176e10878d762b91a1aa42da03c2f545532fbae85f31e6b50f",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3randomjson-0.dll": {
+      "sha256": "56425e50e5b240b998b0a9a2ebf9aa70c271f810e85a21f5aba92fb936cd57ed",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3remember-0.dll": {
+      "sha256": "7e6bc793d24e6d283b91573534492eb48f71d5b0428a0abadc672c3f7d738a49",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3rot13-0.dll": {
+      "sha256": "8cf74441da30b3d1d2bc78bd2b20e66078e5f9ee8595826dd24189dc4c9b8d36",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3series-0.dll": {
+      "sha256": "80875c998a905092bacd62ce201c733d65546fc4978ac12fd6e0815eb7dc6d78",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3sha1-0.dll": {
+      "sha256": "e7fecf7fcc864090a1f1151bbb27aacd05a3c448eb915f55056db5e53c9ee451",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3shathree-0.dll": {
+      "sha256": "5066d2a423e1a6e10d7ca78e5b7422836ee9822a56f27d9267387c0bdfb910b1",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3showauth-0.dll": {
+      "sha256": "f6b4a779446f174431ae672d18acac5b4778e58dbd1dedb192cf2626dd5636f2",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3spellfix-0.dll": {
+      "sha256": "c7a3b82dfdd62078f5f17136d259f534e693339d500805853a00fdb85cf1f96a",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3sqlar-0.dll": {
+      "sha256": "ff40c65947490b6045529e931edc44918b395bf99bd885977f1d66333b06b48a",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3sqlite3_stdio-0.dll": {
+      "sha256": "a2b49b6f33a033a602e43eeaac5a8d9fa43fe8fe8808f5bd25d8e3fffc0001ce",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3stmt-0.dll": {
+      "sha256": "4526582b015bdf6d8abe5e329bde4786bab0464068939b5b1b39e4f22aa66967",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3stmtrand-0.dll": {
+      "sha256": "ccf48513bbb4d41716e6a78fcd5e894821374d3ee82470589bc43171c3667a6e",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3templatevtab-0.dll": {
+      "sha256": "8af30a3a6dcf3dcc4ee7dab8e583f79809369065e5bec8e9b72d94300b07e6e2",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3tmstmpvfs-0.dll": {
+      "sha256": "18137014af049c4bcac8d946101012a29a77afedd06fa8406d55ffee88bbc9fc",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3totype-0.dll": {
+      "sha256": "78bf11fa4e950f6b9af887f5dce6dd6056e6afc6796e6c82ed31c41847642460",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3uint-0.dll": {
+      "sha256": "f9fa12fe95af6c2fc50cd5b1850644e4db32cdfface70f59e61405a1df9efa56",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3unionvtab-0.dll": {
+      "sha256": "0de1bc6849bc9bc6a8845ca707c6f670c2e551dbb21af01e12e50efb9b1b810e",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3urifuncs-0.dll": {
+      "sha256": "433ca04e8a8dbe56a24b7a77fe707c922f6b0884817d054681015cee05e4bde9",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3uuid-0.dll": {
+      "sha256": "a5058e64c2ef46a403e81ea2f721967893235454876c90c01cdf498dc0a420b1",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3vfslog-0.dll": {
+      "sha256": "5d42554af63dfaf8131b9f1a96f08d7ba010d6df11235d766e6e3db0ce88c249",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3vfsstat-0.dll": {
+      "sha256": "4d6dc452b7a20a7e535073d73c0ccde41fb04b5782ff4cf19260c9dd5b05d635",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3vtablog-0.dll": {
+      "sha256": "8a90ae4d0d815e4ce3a9bdcbcfbcd6138a230e6a59d7baa7f70720b69eb5656e",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3vtshim-0.dll": {
+      "sha256": "c4209faf64a273021fe4f9e218b421f653b0a671d3c8a2fc799247bebd2dd4f5",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3wholenumber-0.dll": {
+      "sha256": "e02fa7105eea74888148a43fa6091a7d0717ee273f533b8d8c9c520aeb9b63cd",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3zipfile-0.dll": {
+      "sha256": "759cb422aca21407a9f015b507bc8c0ac3dcc947db4e9a9a5d707f303f76540c",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-sqlite3zorder-0.dll": {
+      "sha256": "06849cd5685dc86ead8eb4c86893e3f54e670d746e4686a6fc405024bcb4db47",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-ticw6.dll": {
+      "sha256": "bc74db372eff6a82a8e3e77ba3cc6f4c1c6f197ae03eec5a42138602ded92730",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/msys-z.dll": {
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/rbu.exe": {
+      "sha256": "06d33e268c72e259abe35eb727548a3bfbd220e165ccf4c8d3054b8d77be1b3d",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/reset.exe": {
+      "sha256": "048826d64055e8943c133309fa6958b21658ac496d5192fc7766d10e7e8fa3e0",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/sqldiff.exe": {
+      "sha256": "5a9711b90192d16c9d2c77c93f8834187cd2c966c31817da144ba77a067ac850",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/sqlite3.exe": {
+      "sha256": "3899f2d63fabfe4e490a68539e5c9c8a81126f578d0eb634a6a3a33a8dd803b5",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/sqlite3_analyzer.exe": {
+      "sha256": "a73cb04a7337ed52b88a9e752f4739a6224ad1cd2e1e6145971771ffff7cdfaf",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/tabs.exe": {
+      "sha256": "29aad2c053b83b8c38436b5fd14d1991b1755c01fe8a2e4fcb080ed883d04df3",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/tclsh8.6.exe": {
+      "sha256": "9c145307a6d41c3b560d236f1e188465e40b620241c2627946ec05c3e36d6c79",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/tic.exe": {
+      "sha256": "fe59dca6e15c6ff2afa285dceba87919f13b351c19d14374cae9126b4a4348da",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/toe.exe": {
+      "sha256": "5603e4c4443dc53905bebabcc50322a87b835c6fb823d1e0893434374d6328a2",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/tput.exe": {
+      "sha256": "57701d799c0e76e95ecf1330edf7fc23cb67c353eba7fbd7ee0ee7e4fe09b675",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/bin/tset.exe": {
+      "sha256": "048826d64055e8943c133309fa6958b21658ac496d5192fc7766d10e7e8fa3e0",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/itcl4.2.2/libitcl4.2.2.dll": {
+      "sha256": "8aae411fa1ac1c9e592604704794320e79342850844f84b9c1f8b7b3e90097b7",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/sqlite3.53.4/cygsqlite3.53.4.dll": {
+      "sha256": "ac542920d4b0fe88e61f2900cea512c728b0b409c9acd4dcdb04220414c8c1cb",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/tdbc1.1.3/libtdbc1.1.3.dll": {
+      "sha256": "4a2617a7b183c02ba83b0500abb76c9ffc8dd69e42505bd7029f3c6d3aad94d7",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/tdbcmysql1.1.3/libtdbcmysql1.1.3.dll": {
+      "sha256": "11e3ecb88c3e3982420e2f50adf6c7d22da0edaa283c6fd3f3507ef08993c120",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/tdbcodbc1.1.3/libtdbcodbc1.1.3.dll": {
+      "sha256": "6047ac1c325e04baa43419f655277ebbcbbf1eba475337629ef6a179b807180a",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/tdbcpostgres1.1.3/libtdbcpostgres1.1.3.dll": {
+      "sha256": "411aa8c55f2c3d30d1977e6dd93d806d2d2487b3b9e18107f2bd91bf13bd3c14",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "usr/lib/thread2.8.7/libthread2.8.7.dll": {
+      "sha256": "f21dd9df55bfe36f8a0c6c65ed8d407460acb6a71056075589c962bfe264a2be",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "sqlite-api-shared.exe": {
+      "sha256": "53ecfaacefaabc5528dca3e9d27cde12a21e75fbf35592fae414483c85e0f357",
+      "machine": 43620,
+      "optional_magic": 523
+    },
+    "sqlite-api-static.exe": {
+      "sha256": "6ad3a364e013bf67317438cb8a84f5abe12ca9221aac2522d54262da16114113",
+      "machine": 43620,
+      "optional_magic": 523
+    }
+  },
+  "input_integrity_errors": []
+}

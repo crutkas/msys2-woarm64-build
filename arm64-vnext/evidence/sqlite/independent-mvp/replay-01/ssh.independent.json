@@ -1,0 +1,92 @@
+{
+  "name": "ssh",
+  "command": [
+    "C:\\Program Files\\Python314-arm64\\python.exe",
+    "-B",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\source\\arm64-git-recovery\\native\\mvp\\controlled_ssh.py",
+    "--client",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\ssh.exe",
+    "--bash",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+    "--test-driver",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\ssh-fixture-driver",
+    "--output",
+    "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\ssh",
+    "--pwsh",
+    "C:\\Program Files\\WindowsApps\\Microsoft.PowerShell_7.6.6.0_arm64__8wekyb3d8bbwe\\pwsh.exe"
+  ],
+  "free_ram_gib_before": 37.06375503540039,
+  "process": {
+    "pid": 21060,
+    "exit": 0,
+    "timed_out": false,
+    "active_at_parent_exit": 0,
+    "active_at_boundary": 0,
+    "remaining_process_ids": [],
+    "remaining_process_details": [],
+    "created_processes": 5,
+    "passed": true
+  },
+  "result_sha256": "40bef436eb084078a139f5d3f5dc2b70d56409c884ec6d137851d36f5992ced3",
+  "result": {
+    "cases": [
+      {
+        "name": "correct-host-key",
+        "passed": true,
+        "pid": 5180,
+        "raw_exit": 0,
+        "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "stdout_sha256": "d394683bbd102db1a0022462ab386aed0430b6aa5b018145a823aab876f9658b"
+      },
+      {
+        "name": "wrong-host-key",
+        "passed": true,
+        "pid": 7532,
+        "raw_exit": 255,
+        "stderr_sha256": "a39feeac9e9ecf1f4c9f3fd745ffeef45c286ee9451f82704a04f95401d7530d",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "client_path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\ssh.exe",
+    "client_sha256": "fd87ccdfbd8be33d22b67fa3f1c94bb2327a3e7d24355bf7fd2485d356f1976d",
+    "events": [
+      {
+        "event": "connected",
+        "peer": [
+          "127.0.0.1",
+          53112
+        ]
+      },
+      {
+        "event": "public_key_auth",
+        "valid": true
+      },
+      {
+        "event": "public_key_auth",
+        "valid": true
+      },
+      {
+        "command": "prove aa39cce918fb525763f29a3dcdc6c01f",
+        "event": "authenticated_command",
+        "recv_cipher": "chacha20-poly1305@openssh.com",
+        "send_cipher": "chacha20-poly1305@openssh.com"
+      },
+      {
+        "event": "connected",
+        "peer": [
+          "127.0.0.1",
+          53113
+        ]
+      }
+    ],
+    "parent": {
+      "path": "C:\\ag-mvp-independent-sqlite-20260911\\replay-01\\moved candidate with spaces\\usr\\bin\\bash.exe",
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+    },
+    "passed": true,
+    "port": 53111,
+    "schema": 1,
+    "scope": "Real encrypted loopback SSH handshake/public-key authentication and strict host-key rejection; portable fixture only, no installed service or real credentials"
+  },
+  "passed": true
+}

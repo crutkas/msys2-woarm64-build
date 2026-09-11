@@ -1,0 +1,107 @@
+{
+  "schema": 1,
+  "status": "environment-observations-collected-not-a-qualification-pass",
+  "scope": "Synthetic inherited and mutated POSIX vs Windows environment, same-runtime/foreign-MSYS/native-Windows children",
+  "launcher": {
+    "pid": 12872,
+    "creation_filetime": 134333359935727718,
+    "command": [
+      "C:\\Program Files\\Python314-arm64\\python.exe",
+      "-B",
+      ".\\arm64-git-recovery\\native\\qualify-sqlite-environment.py",
+      "--output",
+      "C:\\ag-sqlite-e138-01\\environment-differential-02"
+    ]
+  },
+  "jobs": 1,
+  "max_simultaneous_parent_and_child": 2,
+  "minimum_free_gib": 37.979042053222656,
+  "steps": [
+    {
+      "name": "compile",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\compiler\\bin\\gcc.exe",
+        "-O2",
+        "-g",
+        "-fstack-protector-strong",
+        "-D_FORTIFY_SOURCE=2",
+        "C:\\ag-sqlite-e138-01\\environment-differential-02\\inputs\\sqlite-env-differential.c",
+        "-o",
+        "C:\\ag-sqlite-e138-01\\environment-differential-02\\native-env.exe"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 6080,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 5,
+        "observed_processes": 5,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\environment-differential-02\\compile.native-job.json",
+          "sha256": "98cc37cff07ed739a7275ad7c5966fdbfd4ebb708456c5a7b806770653c1a9d1",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    },
+    {
+      "name": "tcl",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\tcl\\usr\\bin\\tclsh8.6.exe",
+        "/c/ag-sqlite-e138-01/environment-differential-02/inputs/sqlite-env-differential.tcl",
+        "/c/ag-sqlite-e138-01/environment-differential-02/native-env.exe",
+        "/c/ag-sqlite-e138-01/bootstrap/usr/bin/bash.exe",
+        "/c/ag-sqlite-e138-01/environment-differential-02/inputs/sqlite-env-child.sh",
+        "C:/Program Files/Python314-arm64/python.exe",
+        "C:/ag-sqlite-e138-01/environment-differential-02/inputs/sqlite-env-child.py"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 14416,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 13,
+        "observed_processes": 13,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\environment-differential-02\\tcl.native-job.json",
+          "sha256": "608a73963c92e98cac71ed8fbcec34a1d3a9e4eba65695d8e7821962789b84a1",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "log_sha256": "dd1ff5eb11995d9cfb4a85c8626ba59aeb489c08430bbcdd6dc3f9b6239283fb"
+    },
+    {
+      "name": "c",
+      "command": [
+        "C:\\ag-sqlite-e138-01\\environment-differential-02\\native-env.exe",
+        "/c/ag-sqlite-e138-01/bootstrap/usr/bin/bash.exe",
+        "/c/ag-sqlite-e138-01/environment-differential-02/inputs/sqlite-env-child.sh",
+        "C:/Program Files/Python314-arm64/python.exe",
+        "C:/ag-sqlite-e138-01/environment-differential-02/inputs/sqlite-env-child.py"
+      ],
+      "process": {
+        "passed": true,
+        "pid": 25220,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 13,
+        "observed_processes": 13,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-sqlite-e138-01\\environment-differential-02\\c.native-job.json",
+          "sha256": "0631bc225e484d5f9bb7485b55c59b4336d23386606bdb8ea9fe010e775112b9",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      },
+      "log_sha256": "15874d6204aa49efbf811e71b264f945e4627b03ab5bc76ca72c8a10b0f04b2f"
+    }
+  ],
+  "input_source_hashes": {
+    "sqlite-env-child.py": "b3e9d192a8e39c2f3b3c6c34ea494270ec77bf46294197c13b1a12350b086559",
+    "sqlite-env-child.sh": "da53d2b9bbcaecc14ff31416bfc8ccf9555a836f345082f55bf96a327fd1567b",
+    "sqlite-env-differential.c": "0b7091e8e3728e39208fd8193d062c72353f03ede62bff4c25c51faadc1334b1",
+    "sqlite-env-differential.tcl": "7cf2340392bfcc2f19d7be7ea37a2bb2c5b6d2170903bb26a89fb84c8cffbc54"
+  }
+}

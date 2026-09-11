@@ -1,0 +1,541 @@
+{
+  "schema": 1,
+  "status": "native-msys-sqlite-shell-consumer-fixed-upstream-observer-gate-retained",
+  "version": "3.53.4",
+  "target": "aarch64-pc-cygwin",
+  "data_model": "MSYS LP64",
+  "previous_handoff": {
+    "path": "C:\\ag-sqlite-e138-01\\handoff-01\\result.json",
+    "sha256": "9bfa0f82b6456b546e654e53da68661555fee0d8a9656b592258a052c2edf718",
+    "all_seven_original_splits_unchanged": true
+  },
+  "fix_scope": [
+    "Provide actual native /bin/sh and awk in the same private runtime",
+    "Create real private /tmp; do not filter the missing-directory diagnostic"
+  ],
+  "baseline": {
+    "shell_pipe_passed": false,
+    "shell_import_passed": false,
+    "reason": "Native /bin/sh access and popen fail with ENOENT",
+    "tdbc_passed": true
+  },
+  "native_consumer": {
+    "passed": true,
+    "ordinary_and_captured": true,
+    "runtime_sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+    "bash_candidate_sha256": "6d76e238226f02579efad941e4e021ee5aea614b8a54bb6750f572f4acb62512",
+    "sqlite_tcl_zlib_files_unchanged": true,
+    "fstab_unchanged": true,
+    "steps": [
+      {
+        "name": "ordinary",
+        "command": [
+          "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin\\bash.exe",
+          "--noprofile",
+          "--norc",
+          "/c/ag-sqlite-resume-01/shell-composition-03/inputs/sqlite-shell-consumer.sh",
+          "/c/ag-sqlite-resume-01/shell-composition-03",
+          "ordinary"
+        ],
+        "process": {
+          "passed": true,
+          "pid": 21288,
+          "exit": 0,
+          "timed_out": false,
+          "created_processes": 12,
+          "observed_processes": 12,
+          "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+          "native_observation": {
+            "path": "C:\\ag-sqlite-resume-01\\shell-composition-03\\ordinary.native-job.json",
+            "sha256": "5830ecf87c3f4b5965948b3e86b9df88c53bffb84645e6a07d16cbcfe2be55b6",
+            "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+          }
+        },
+        "import_rows": [
+          [
+            "1",
+            "this is 1"
+          ],
+          [
+            "2",
+            "this is 2"
+          ],
+          [
+            "3",
+            "this is 3"
+          ],
+          [
+            "4",
+            "this is 4"
+          ],
+          [
+            "5",
+            "this is 5"
+          ]
+        ],
+        "tdbc_rows": [
+          [
+            1,
+            "native \u03bb \u96ea"
+          ],
+          [
+            3,
+            "committed"
+          ]
+        ],
+        "native_executables": [
+          "awk.exe",
+          "bash.exe",
+          "mkdir.exe",
+          "sh.exe",
+          "sqlite-shell-pipe.exe",
+          "sqlite3.exe",
+          "tclsh8.6.exe"
+        ]
+      },
+      {
+        "name": "captured",
+        "command": [
+          "C:\\Program Files\\Python314-arm64\\python.exe",
+          "-B",
+          "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-probable-lamp\\arm64-git-recovery\\native\\capture-native-exception.py",
+          "--executable",
+          "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin\\bash.exe",
+          "--output",
+          "C:\\ag-sqlite-resume-01\\shell-composition-03\\capture",
+          "--path-directory",
+          "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin",
+          "--tcl-environment",
+          "--",
+          "--noprofile",
+          "--norc",
+          "/c/ag-sqlite-resume-01/shell-composition-03/inputs/sqlite-shell-consumer.sh",
+          "/c/ag-sqlite-resume-01/shell-composition-03",
+          "captured"
+        ],
+        "process": {
+          "passed": true,
+          "pid": 11356,
+          "exit": 0,
+          "timed_out": false,
+          "created_processes": 13,
+          "observed_processes": 13,
+          "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+          "native_observation": {
+            "path": "C:\\ag-sqlite-resume-01\\shell-composition-03\\captured.native-job.json",
+            "sha256": "1c108fadda17648ef9b336be1f8826e37f222dda624b165375d0229bc3e1f58b",
+            "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+          }
+        },
+        "raw_target_exit": 0,
+        "loaded_modules": {
+          "bash.exe": {
+            "path": "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin\\bash.exe",
+            "sha256": "6d76e238226f02579efad941e4e021ee5aea614b8a54bb6750f572f4acb62512"
+          },
+          "ntdll.dll": {
+            "path": "C:\\Windows\\System32\\ntdll.dll",
+            "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+          },
+          "kernel32.dll": {
+            "path": "C:\\Windows\\System32\\kernel32.dll",
+            "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+          },
+          "kernelbase.dll": {
+            "path": "C:\\Windows\\System32\\KernelBase.dll",
+            "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+          },
+          "user32.dll": {
+            "path": "C:\\Windows\\System32\\user32.dll",
+            "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383"
+          },
+          "win32u.dll": {
+            "path": "C:\\Windows\\System32\\win32u.dll",
+            "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335"
+          },
+          "gdi32.dll": {
+            "path": "C:\\Windows\\System32\\gdi32.dll",
+            "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc"
+          },
+          "ucrtbase.dll": {
+            "path": "C:\\Windows\\System32\\ucrtbase.dll",
+            "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+          },
+          "gdi32full.dll": {
+            "path": "C:\\Windows\\System32\\gdi32full.dll",
+            "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb"
+          },
+          "msvcp_win.dll": {
+            "path": "C:\\Windows\\System32\\msvcp_win.dll",
+            "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4"
+          },
+          "sechost.dll": {
+            "path": "C:\\Windows\\System32\\sechost.dll",
+            "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+          },
+          "msys-iconv-2.dll": {
+            "path": "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin\\msys-iconv-2.dll",
+            "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215"
+          },
+          "msys-intl-8.dll": {
+            "path": "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin\\msys-intl-8.dll",
+            "sha256": "eef1befd674c9febcfe769601d8e10a1022b00dabffa383b866847b935eb054d"
+          },
+          "msys-2.0.dll": {
+            "path": "C:\\ag-sqlite-resume-01\\shell-composition-03\\runtime\\usr\\bin\\msys-2.0.dll",
+            "sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d"
+          },
+          "advapi32.dll": {
+            "path": "C:\\Windows\\System32\\advapi32.dll",
+            "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+          },
+          "msvcrt.dll": {
+            "path": "C:\\Windows\\System32\\msvcrt.dll",
+            "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+          },
+          "rpcrt4.dll": {
+            "path": "C:\\Windows\\System32\\rpcrt4.dll",
+            "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+          },
+          "cryptbase.dll": {
+            "path": "C:\\Windows\\System32\\cryptbase.dll",
+            "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+          },
+          "bcryptprimitives.dll": {
+            "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+            "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+          },
+          "imm32.dll": {
+            "path": "C:\\Windows\\System32\\imm32.dll",
+            "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33"
+          },
+          "netapi32.dll": {
+            "path": "C:\\Windows\\System32\\netapi32.dll",
+            "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+          },
+          "samcli.dll": {
+            "path": "C:\\Windows\\System32\\samcli.dll",
+            "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+          },
+          "samlib.dll": {
+            "path": "C:\\Windows\\System32\\samlib.dll",
+            "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+          },
+          "netutils.dll": {
+            "path": "C:\\Windows\\System32\\netutils.dll",
+            "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+          },
+          "iphlpapi.dll": {
+            "path": "C:\\Windows\\System32\\IPHLPAPI.DLL",
+            "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b"
+          },
+          "dnsapi.dll": {
+            "path": "C:\\Windows\\System32\\dnsapi.dll",
+            "sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319"
+          },
+          "dsparse.dll": {
+            "path": "C:\\Windows\\System32\\dsparse.dll",
+            "sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d"
+          },
+          "nsi.dll": {
+            "path": "C:\\Windows\\System32\\nsi.dll",
+            "sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2"
+          }
+        },
+        "import_rows": [
+          [
+            "1",
+            "this is 1"
+          ],
+          [
+            "2",
+            "this is 2"
+          ],
+          [
+            "3",
+            "this is 3"
+          ],
+          [
+            "4",
+            "this is 4"
+          ],
+          [
+            "5",
+            "this is 5"
+          ]
+        ],
+        "tdbc_rows": [
+          [
+            1,
+            "native \u03bb \u96ea"
+          ],
+          [
+            3,
+            "committed"
+          ]
+        ],
+        "native_executables": [
+          "awk.exe",
+          "bash.exe",
+          "mkdir.exe",
+          "sh.exe",
+          "sqlite-shell-pipe.exe",
+          "sqlite3.exe",
+          "tclsh8.6.exe"
+        ]
+      }
+    ]
+  },
+  "upstream_shell5": {
+    "assertions_passed": true,
+    "tests": 53,
+    "errors": 0,
+    "formerly_failing_case_passed": true,
+    "observer_passed": false,
+    "raw_exits": [
+      {
+        "pid": 10528,
+        "created": 134334872145335462,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 10328,
+        "parent_created": 134334872143425651
+      },
+      {
+        "pid": 15424,
+        "created": 134334872147028762,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 14836,
+        "parent_created": 134334872146812881
+      },
+      {
+        "pid": 22516,
+        "created": 134334872149571744,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 12372,
+        "parent_created": 134334872149439274
+      },
+      {
+        "pid": 17488,
+        "created": 134334872152495734,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 17456,
+        "parent_created": 134334872151673673
+      },
+      {
+        "pid": 2764,
+        "created": 134334872162521852,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 15688,
+        "parent_created": 134334872161585721
+      },
+      {
+        "pid": 27924,
+        "created": 134334872173899953,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 24552,
+        "parent_created": 134334872172785293
+      },
+      {
+        "pid": 21312,
+        "created": 134334872251565515,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 772,
+        "parent_created": 134334872250845597
+      },
+      {
+        "pid": 11364,
+        "created": 134334872282540347,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 17296,
+        "parent_created": 134334872282186397
+      },
+      {
+        "pid": 28156,
+        "created": 134334872285532998,
+        "executable": "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\bin\\sqlite3.exe",
+        "raw_exit": 256,
+        "parent_pid": 27240,
+        "parent_created": 134334872284062764
+      }
+    ],
+    "created_processes": 110,
+    "observed_processes": 110
+  },
+  "remaining_gates": [
+    "Runtime-aware provenance for nine raw-256 CLI exits; do not decode or promote them locally",
+    "Owning Bash full-suite/candidate admission",
+    "Original broader SQLite permission/symlink/WAL and missing sanitizer-library gates remain",
+    "Full SDK, Git, and provider admission are independent"
+  ],
+  "full_git_complete": false,
+  "provider_admission": false,
+  "full_cpp_qualified": false,
+  "full_upstream_qualified": false,
+  "launcher_drain": [
+    {
+      "pid": 3596,
+      "creation_filetime": 134334864559425703,
+      "state": "process-gone"
+    },
+    {
+      "pid": 14976,
+      "creation_filetime": 134334872011899692,
+      "state": "process-gone"
+    },
+    {
+      "pid": 24948,
+      "creation_filetime": 134334872106406336,
+      "state": "process-gone"
+    }
+  ],
+  "free_ram_gib_at_seal": 36.08207321166992,
+  "maximum_concurrent_target_jobs": 1,
+  "receipts": {
+    "C:\\ag-sqlite-e138-01\\handoff-01\\result.json": "9bfa0f82b6456b546e654e53da68661555fee0d8a9656b592258a052c2edf718",
+    "C:\\ag-sqlite-resume-01\\baseline-01\\result.json": "37e33ba0330acdf7cbeb48cb6eaaaf1092307466b7fb52f9f4dc22ac39848e21",
+    "C:\\ag-sqlite-resume-01\\shell-composition-03\\result.json": "b4a0ee773d0b06c946bce77f68acfb73c5f7157aef6e7f144eabed05be3ea8cd",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\result.json": "a3db03945db18a5fcd6cb220d5f245a81929a9a2ff8077b957526198e0f7e634",
+    "C:\\ag-sqlite-resume-01\\shell-composition-03\\prepare.json": "8fc7a3ff9d0f869936311218282314989f0740e782b34f91202bf251113dc4d4",
+    "C:\\ag-sqlite-resume-01\\baseline-01\\launch.json": "d8b845359649a10ed0c6e228dec0bc10d3ed2096bc3d20cc69461dc68deea534",
+    "C:\\ag-sqlite-resume-01\\shell-composition-01\\prepare.json": "b87b32dea074bc1d3de573e11c8cf22de099dc9a1df4a7b69da8cc8eb67f2543",
+    "C:\\ag-sqlite-resume-01\\shell-composition-02\\prepare.json": "fd803cf6d9885123391ae916663fbca5d1d8166a347a1dabd0b7247772303dd0",
+    "C:\\ag-sqlite-resume-01\\shell-composition-02\\launch.json": "087a5cbca4ebec3e984eeaca65f99ae51afb7a8faed1ff119b4315e40a907d16",
+    "C:\\ag-sqlite-resume-01\\shell-composition-02\\result.json": "7e5b9c64d52bef13860d6b6c416665bd322937e58288bdeb94fa7bbc45cc1b84",
+    "C:\\ag-sqlite-resume-01\\shell-composition-02\\ordinary.native-job.json": "c0202b191f61ef4ed1de7e15e64ee5fc94a5948b470e17b9b8f447b5ca11662b",
+    "C:\\ag-sqlite-resume-01\\shell-composition-02\\captured.native-job.json": "bdf34fc0b0ce7c62260faa2a499aa46d6d6b8434c4deb655e8dcde8cf0555cb3",
+    "C:\\ag-sqlite-resume-01\\shell-composition-03\\launch.json": "ba38ca3d4dfb5f60804bfe818226e4a77c11567eefffb006565b74291020e58b",
+    "C:\\ag-sqlite-resume-01\\shell-composition-03\\ordinary.native-job.json": "5830ecf87c3f4b5965948b3e86b9df88c53bffb84645e6a07d16cbcfe2be55b6",
+    "C:\\ag-sqlite-resume-01\\shell-composition-03\\captured.native-job.json": "1c108fadda17648ef9b336be1f8826e37f222dda624b165375d0229bc3e1f58b",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-01\\launch.json": "378b38cc8d9c3a433a9dffbe44e5ccf383547104570f0ebed4463970db8ffa7e",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-01\\result.json": "ee20eaadf2d6f393ff36ced97fea15022c88e6134a3909c90259fff970505ed8",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-01\\native-job.json": "7542074c8d4ded7e38d8361d255c7dda1aba875a8fa6b8078d44b1c1b7107bc6",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-01\\shell5-verbose.txt": "b938aa80f208e5ccbe507147f42d932687d8ea20b9b95e1c51881c13d4077260",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\launch.json": "c728bdadbe4d710ea7e208f6f9966f22b8f3886125e0495ae2910248f6f36677",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\native-job.json": "d37347e3aa57e24c43e4031f92cc1e10702cbcbec52aa966a0828cdd1e98f1b2",
+    "C:\\ag-sqlite-resume-01\\upstream-shell5-02\\shell5-verbose.txt": "13b5bff84813d397cb9f3c1150d3bbc24bfb29a56024ab881df744853d358aaa"
+  },
+  "source_delta": {
+    "prepare-sqlite-shell-consumer.py": {
+      "before": null,
+      "after": {
+        "sha256": "ec377da0c70babe594ed2b32ab5bca4c905b7baa2d828fa7de2cb14bbedcb68a",
+        "size": 2417
+      }
+    },
+    "sqlite_test_results.py": {
+      "before": {
+        "sha256": "04175655d226e51d8414132a1892f112d965934f46fa25e2bc5e9297c07a0cf6",
+        "size": 1176
+      },
+      "after": {
+        "sha256": "d2000371e710b064e547031963b62a987fe968dcd177a6056b48b55393aeedeb",
+        "size": 1703
+      }
+    },
+    "fixtures/sqlite-shell-consumer.sh": {
+      "before": null,
+      "after": {
+        "sha256": "c62644dad2ff224747e3f95b58bf99023dd3bd5d6317b06d68495d32be770e40",
+        "size": 1005
+      }
+    },
+    "resume-native-sqlite.py": {
+      "before": null,
+      "after": {
+        "sha256": "3085b29b64f6e39fc860daa9b60fc130b36457cb1008700fabff07dd2850e45b",
+        "size": 11013
+      }
+    },
+    "fixtures/sqlite-tdbc-consumer.tcl": {
+      "before": null,
+      "after": {
+        "sha256": "733a6173969b65855d6e604bff9cfadd2678e7b62e04f0b84f05a02cd68ddacc",
+        "size": 1997
+      }
+    },
+    "sqlite-shell-candidate.json": {
+      "before": null,
+      "after": {
+        "sha256": "0c9017a4d1e061972089a41cf6acecaabbcc7f28b2fea679db77febc8fa93ab5",
+        "size": 1841
+      }
+    },
+    "sqlite_consumer_inputs.py": {
+      "before": null,
+      "after": {
+        "sha256": "16e888d011653e9b55234f683efebfbb0dac80c4b458fb3f8a9d122e67197dc6",
+        "size": 5422
+      }
+    },
+    "README.sqlite.md": {
+      "before": {
+        "sha256": "f5279a4f0d373f321ec2d0cc7a6e9c75fc255e9667ed0f3839f62ab38dea5552",
+        "size": 7100
+      },
+      "after": {
+        "sha256": "33d809ff85c517f1f99112d3bc50aad7133f955b923a0aa8933ebd9d995eac86",
+        "size": 9186
+      }
+    },
+    "seal-sqlite-continuation.py": {
+      "before": null,
+      "after": {
+        "sha256": "0189bf4b95e996549073b38dcf4b997a4866aba964746cc6d4cd64707732505c",
+        "size": 6977
+      }
+    },
+    "test_sqlite_test_results.py": {
+      "before": {
+        "sha256": "9139f62fb394cf6b8d03fd7b7d87f1c5559fcaaabb8d55bdacdd3e154c789111",
+        "size": 2194
+      },
+      "after": {
+        "sha256": "442147ba2d1b4b75f5293ba71c8e3f24a74c7cd2bda599148614f1f9e2386317",
+        "size": 2981
+      }
+    },
+    "fixtures/sqlite-shell-pipe.c": {
+      "before": null,
+      "after": {
+        "sha256": "b99564f53d1821f77a6d666dc2a83eaca1931124ae27ac9efd04b1dbb824461d",
+        "size": 865
+      }
+    },
+    "fixtures/sqlite-upstream-shell5.sh": {
+      "before": null,
+      "after": {
+        "sha256": "6efc868d390e5c3bf94e40533f426610c7c544d705d2e9ea4d33984020d79e29",
+        "size": 632
+      }
+    },
+    "test_sqlite_consumer_inputs.py": {
+      "before": null,
+      "after": {
+        "sha256": "03a10f2cd5764e29401ee8392af2545ed6d7d89ccbaac04c56bf4d0859cdb2de",
+        "size": 2512
+      }
+    },
+    "run-sqlite-upstream-shell5.py": {
+      "before": null,
+      "after": {
+        "sha256": "92ea8940745fa1c24e191e4ff220216d1417e9be770733409d354da073748574",
+        "size": 5719
+      }
+    },
+    "run-sqlite-shell-consumer.py": {
+      "before": null,
+      "after": {
+        "sha256": "fce7ae7e2567ad6ffb169e6c8db2a6137b1d0a98f2ebb8e2aba4601336c08bbd",
+        "size": 8687
+      }
+    }
+  }
+}
