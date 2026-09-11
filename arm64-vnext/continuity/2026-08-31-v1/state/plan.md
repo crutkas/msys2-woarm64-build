@@ -26,8 +26,10 @@ evidence locators, not portable inputs or permission to modify an owner's tree.
 
 **OPEN ON THE COMBINED-RUNTIME BASE; FIX PUBLISHED IN PR 34.** `gentls_offsets` greps `.long`, while ARM64
 GCC emits `.word` for these 32-bit constants. A plain `make` can silently
-overwrite the correct **1,822-byte / 59-entry** `tlsoffsets` with **56 bytes of
-zeros**, despite the parser returning success. The known-good SHA-256 is
+overwrite the correct **1,822-byte / 59-entry** `tlsoffsets` with a **56-byte
+text file declaring two zero offsets**, despite the parser returning success.
+**Wording correction:** the earlier "56 bytes of zeros" phrasing below meant
+the two `.equ` zero-offset declarations, **not 56 NUL bytes**. The known-good SHA-256 is
 `49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566`.
 This is a measured failure, not an unresolved hypothesis about directive width.
 
@@ -43,10 +45,12 @@ head `df7d66f9b1433c50dd7cd234b0d8bd1213418b22`, based on combined-runtime
 `563662010c2f2072ad90f28713611caabdf70dbb`. It has not been merged into that base.
 
 The old 16-case proposal incorrectly returned 0 for a newly exercised case with
-**both changed generator inputs and corrupt `sigfe.s`**. The successor validates
+**both changed generator inputs and corrupt prior `sigfe.s`**: Make silently
+replaced the corrupt prior output rather than rejecting it. This does not claim
+the replacement assembly remained corrupt. The successor validates
 the prior output set/hashes **before comparing inputs**, and its producer
 reports **26 actual-Make + 40 TLS cases**, including rejection of the known
-56-byte zero output. Application handoff [E16] identifies this distinct
+56-byte text containing two zero offsets. Application handoff [E16] identifies this distinct
 successor; the old 16-case proof is not relabeled as covering the new case.
 This is generation/ARM64 object proof, not another full runtime rebuild.
 Landing must preserve the parent source/evidence and active-reader boundaries.

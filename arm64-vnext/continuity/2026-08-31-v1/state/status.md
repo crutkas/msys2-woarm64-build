@@ -43,7 +43,9 @@ decision, not an action authorized for a session. The plan records this
 correction and the separate-base CI-fix propagation decision explicitly.
 
 **Live hazard:** plain Make can replace the correct 1,822-byte / 59-entry TLS
-offsets with 56 bytes of zeros. The guard proposal in build PR 11 at `cc56765f`
+offsets with a 56-byte **text file containing two zero offsets, not 56 NUL
+bytes** (correcting the earlier "bytes of zeros" wording).
+The guard proposal in build PR 11 at `cc56765f`
 has an independent successor published in runtime PR 34 at `df7d66f9`, still
 unmerged into PR 33's base. This corrects the earlier not-applied status; the
 new changed-input/corrupt-output case requires the successor's distinct proof.

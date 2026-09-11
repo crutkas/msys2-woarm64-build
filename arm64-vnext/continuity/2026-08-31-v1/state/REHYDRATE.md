@@ -38,6 +38,8 @@ foreach ($n in 32,33,34) {
     "refs/pull/$n/head:refs/remotes/origin/recovery-pr$n"
   if ($LASTEXITCODE -ne 0) { throw "Could not recover runtime PR $n" }
 }
+git -C .\build-recovery fetch origin crutkas-native-provider-intake
+if ($LASTEXITCODE -ne 0) { throw 'Could not recover the provider branch (no PR)' }
 ```
 
 Read the evidence directory on each fetched branch. Do not merge branches just
@@ -51,6 +53,8 @@ git -C .\build-recovery worktree add --detach ..\closure-evidence `
   7368ba69e60e7092792c10ee5f1c5c8aea3923da
 git -C .\runtime-recovery worktree add --detach ..\generation-evidence `
   2af0ec0c244f522b65ace15be71deab4f3c528ad
+git -C .\build-recovery worktree add --detach ..\provider-evidence `
+  3ebc0c133105c77496ae80d4ea76fad7ed463c80
 ```
 
 Those are evidence-publication identities, not substitutions for the qualified
@@ -77,7 +81,7 @@ merely because another receipt mentions it**.
 | Mechanical/runtime exit contracts (`0af73d1b`) | Runtime PR 32 and build `crutkas-native-exit-observer-contract`, PR 12 | Qualified source is pushed at the heads below. Complete native proof publication locator has not yet been confirmed to this document; inspect those branches' new evidence directories. Do not mistake source/tests alone for preserved native execution receipts. |
 | Berkeley DB (`2f98bedd`) | Build repo, `crutkas-native-berkeley-db`, PR 13 | Root-cause source is published at `4ff861de52ae8ec5fb36fd1d853f916bb1b21640`. Owner evidence publication requested. Exact completed D70 matrix and timing handoffs are backed up here in `programme-reconciliation/source-receipts/`; complete package/SDK custody requires the owner's export. |
 | MVP assembly and replacement-TLS candidate (`f6ea7713`) | Build repo, `crutkas-full-native-git-assembly`, draft PR 14 | Owner evidence publication requested. Qualified candidate/ZIP binary preservation is **not confirmed here**; do not assume the 186 MB named ZIP is in Git. Independent verification and dependency-closure exports above preserve measured identities and failures even if a binary must be rebuilt. |
-| Provider ledger/admission (`a2dd0a44`, pipeline `2160ef10`) | Build repo, `crutkas-native-provider-intake` | **Published and remote directories confirmed** at `3ebc0c133105c77496ae80d4ea76fad7ed463c80`: [`arm64-vnext/evidence/provider-intake/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-intake/README.md) covers ordered contracts, rejected libintl-selection captures and limited roles; [`arm64-vnext/evidence/provider-admission/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-admission/README.md) covers strict authority, OpenSSL/header scopes and ledger v20-v42. Provider-intake `manifest.json` SHA-256 `df94ef731519e129e1dde7b497be7b501726366c2326b85b3f0f9291b1f8c65e` was verified from GitHub bytes. **No archives or payload binaries** are included: replacement OpenSSL payload custody is still separate. |
+| Provider ledger/admission (`a2dd0a44`, pipeline `2160ef10`) | Build repo, [`crutkas-native-provider-intake`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-provider-intake); **NO PR** (creation returned 422 twice, per coordinator) | **Published and remote directories confirmed** at `3ebc0c133105c77496ae80d4ea76fad7ed463c80`: [`arm64-vnext/evidence/provider-intake/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-intake/README.md) covers ordered contracts, rejected libintl-selection captures and limited roles; [`arm64-vnext/evidence/provider-admission/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-admission/README.md) covers strict authority, OpenSSL/header scopes and ledger v20-v42. Provider-intake `manifest.json` SHA-256 `df94ef731519e129e1dde7b497be7b501726366c2326b85b3f0f9291b1f8c65e` was verified from GitHub bytes. **No archives or payload binaries** are included: replacement OpenSSL payload custody is still separate. Search this branch directly, not only the PR list. |
 
 **Publication gaps are explicit, not absence claims.** Owners were pushing in
 parallel during shutdown. If an entry says requested/unconfirmed, inspect that
@@ -329,8 +333,16 @@ should register credentials/runners unilaterally.
   in `plan.md`. Verify actual selected source/output, not just exit 0.
 - `gentls_offsets` matched `.long` while ARM64 GCC emitted `.word`: correct
   1,822-byte/59-entry offsets (`49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566`)
-  could become 56 bytes of zeros. The original 16-case guard also missed the
-  changed-generator-plus-corrupt-output case. PR 34's successor validates prior
+  could become a **56-byte text file declaring two zero offsets**.
+  **Wording correction:** earlier summaries called this "56 zero bytes" or
+  "56 bytes of zeros"; it is **not 56 NUL bytes**. The text is
+  `.equ _cygtls.local_clib, 0` followed by `.equ _cygtls.local_clib_p, 0`,
+  each newline-terminated: plausible assembly with missing/nonrepresentative
+  offsets, not an obvious binary-garbage file. The original 16-case guard also
+  missed the changed-generator-plus-corrupt-prior-output case: old Make
+  **silently replaced the corrupt prior `sigfe` and exited 0 rather than
+  rejecting it**. The evidence does not say the replacement assembly remained
+  corrupt. PR 34's successor validates prior
   output hashes **before** input comparison; 26 actual-Make + 40 TLS cases are
   distinct successor evidence, not a retroactive upgrade of the 16-case proof.
 - Keep raw unsigned Windows DWORD exits. PR 12 interprets POSIX wait words
@@ -348,6 +360,11 @@ should register credentials/runners unilaterally.
   as history. New roots, source changes or rebuilt binaries need new identities
   and appropriately scoped evidence. No fake package provides, renamed
   incompatible DLLs, disabled signature/native gates or verifier repairs.
+- **Receipts govern over summaries, including coordinator summaries.** Several
+  shutdown briefings were stale or wrong and were corrected by the owners of
+  the actual measurements. Keep those corrections visible, re-derive counts
+  from the bound record, and retain explicit scope flags rather than defending
+  an authoritative-sounding headline.
 
 ## 8. First actions for a fresh session
 
