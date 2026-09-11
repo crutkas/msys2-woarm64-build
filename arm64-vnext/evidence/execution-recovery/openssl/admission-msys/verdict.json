@@ -1,0 +1,36 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:17:28.1220208Z",
+  "decision": "ADMIT_OPENSSL_AND_ZLIB_SIX_PACKAGES_REJECT_LIBXCRYPT_PAIR",
+  "export": {
+    "path": "export.json",
+    "sha256": "d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1"
+  },
+  "controlsPassed": [
+    "All eight producer package hashes and metadata read back exactly with zero duplicate ownership",
+    "The admitted six OpenSSL/zlib packages have canonical .BUILDINFO paths and no private metadata/runtime-PE markers",
+    "OpenSSL source archives, signatures, signer fingerprints, and pinned MSYS2 recipe identities are bound",
+    "OpenSSL full suite 4,535 PASS and 51,951/51,951 observation evidence is hash-bound",
+    "OpenSSL canonical /usr paths, default and legacy providers, dasync engine, and exact library identities are preserved",
+    "Fresh affected closure replay raw 0: OpenSSL version/providers/engine and OpenSSH version; 10/10 processes observed",
+    "zlib package preserves exact msys-z.dll and clean package metadata/payload"
+  ],
+  "rejected": {
+    "packages": [
+      "libxcrypt",
+      "libxcrypt-devel"
+    ],
+    "reason": "Exact required msys-crypt-2.dll contains six C:/ag-e138920f/... source paths in .rdata, plus 294 debug-section paths. This contradicts the claimed absence of private-root metadata and cannot be waived or binary-patched.",
+    "evidence": {
+      "path": "evidence/libxcrypt-private-path-scan.json",
+      "sha256": "ded247b910e80fbc1d220419a8a8f50f4914eb15f16752f25f810b590b5cae5f"
+    }
+  },
+  "gatesRetained": [
+    "Runtime-907 remains externally owned and nonadmitted as the full-release runtime",
+    "OpenSSH remains client-only with its previously admitted feature and hardening limitations",
+    "libxcrypt and libxcrypt-devel are excluded from this export pending source-origin removal of six runtime-visible private source paths",
+    "Static development archives retain exact build-time debug provenance and were not rewritten",
+    "No d70 compatibility or full-release completion claim"
+  ]
+}

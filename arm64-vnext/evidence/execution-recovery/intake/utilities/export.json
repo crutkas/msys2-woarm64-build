@@ -1,0 +1,60 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T14:29:21.7555125Z",
+  "status": "VERIFIED_EVIDENCE_ONLY_RUNTIME907_UTILITY_CONSUMER",
+  "providerClass": "native-msys-runtime907-utility-fixture",
+  "packageOwner": "msys2-runtime utilities",
+  "sourceArchive": {
+    "path": "source/msys2-runtime-arm64-utilities-907.zip",
+    "sha256": "530a2cb169723a62737d4c446f784e6c9f221f72a1cff2cf8fe62b1296037020"
+  },
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "runtimePackageAdmitted": false
+  },
+  "utilities": [
+    {
+      "name": "ps.exe",
+      "path": "fixture/usr/bin/ps.exe",
+      "sha256": "5a90f4d5def276de5c15da392397b07f3bc2373cce19ba23cd3b06f695d13fe2",
+      "peMachine": "0xaa64"
+    },
+    {
+      "name": "mount.exe",
+      "path": "fixture/usr/bin/mount.exe",
+      "sha256": "1bfa94f6e9c5a3a76a76f6d29c4e7dc046211f35ffde5b8881201025240cbba3",
+      "peMachine": "0xaa64"
+    },
+    {
+      "name": "cygpath.exe",
+      "path": "fixture/usr/bin/cygpath.exe",
+      "sha256": "67388133d52450aedfc6b8717cbc23ea98e0156b859a7b53febd6103f31438fd",
+      "peMachine": "0xaa64"
+    }
+  ],
+  "evidence": {
+    "independentVerification": {
+      "path": "independent-verification.json",
+      "sha256": "bb673f46c37dc9088101ca364c0d6855581bd5511e94a6b9f37582b230bc6705"
+    },
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "cd73ba927a511c147512407cafb1e31b6d8e1fbba614e7ccfe7fe1e4fc64e9ef"
+    }
+  },
+  "consumption": {
+    "privateRuntime907TestFixture": true,
+    "perlLibCygwinReplay": true,
+    "assemblerPackageProvider": false,
+    "shippingPayload": false,
+    "completeRuntimePackage": false
+  },
+  "limitations": [
+    "No pacman package metadata or complete msys2-runtime ownership surface",
+    "Runtime-907 remains externally owned and nonadmitted by this export",
+    "All three utility PEs contain an embedded producer .copilot build path",
+    "Evidence JSON and maps remain external and must never be copied into shipping payload",
+    "No d70 compatibility claim",
+    "No Perl admission claim"
+  ]
+}

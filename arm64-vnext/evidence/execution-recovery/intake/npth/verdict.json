@@ -1,0 +1,30 @@
+{
+  "decision": "admit",
+  "packages": [
+    {
+      "name": "libnpth",
+      "sha256": "a98dcd5f7f8b76f70355ab4dc1570c82f0450ac0d13279f051d3a96d9355b41b"
+    },
+    {
+      "name": "libnpth-devel",
+      "sha256": "387e77ec59f74a605329fc0599c4a7aa7e6cea7fd22abc337e6c6f1ec777d83b"
+    }
+  ],
+  "provider_export": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-npth-runtime907-admitted-v1\\export.json",
+    "sha256": "4bbcba03eb6cb90fe27eee618447aed2ee15fced0df973811a15a22f60576094"
+  },
+  "retained_gates": [
+    "The package pair is runtime-907 scoped and does not claim d70 compatibility or full-release runtime admission.",
+    "The genuine gcc-libs dependency is unsupplied and unqualified for runtime-907; the known d70 gcc-libs provider is consumption-forbidden for this package pair.",
+    "The exact pinned recipe disables make check, so upstream tests were not run and no upstream test-pass claim is made.",
+    "Runtime-907 remains externally owned; no GnuPG admission follows.",
+    "Packages are unsigned; no reproducibility or full-release completion is claimed."
+  ],
+  "schema": 1,
+  "status": "admitted-runtime907-scoped-with-unsupplied-gcc-libs",
+  "verification": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-npth-runtime907-admitted-v1\\verification.json",
+    "sha256": "9ada017095111c0fa0958cac84c7d35ef0868ba0f7378f741657f918a7475a4c"
+  }
+}

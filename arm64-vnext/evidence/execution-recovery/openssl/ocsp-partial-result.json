@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "status": "partial-conclusive-failure-run-stopped",
+  "recorded_utc": "2026-09-10T12:11:43.5538693-07:00",
+  "scope": "Complete OpenSSL suite exploration after the OCSP lifecycle fix; intentionally ended after decisive unrelated failures to release resources for the Bash critical path. No complete-suite result claimed.",
+  "repository_commit": "2681710d61e97f089bc44d0aba20ccd397a52930",
+  "log": {
+    "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\full-check-01\\observer.log",
+    "sha256": "9e5c81fff5179d8b6245b19ae40d68ceb2d9498b0d2bb198c362de7a5ea369e0",
+    "not_ok_assertions": 226,
+    "dubious_recipe_results": 9,
+    "last_recipe_line": "15-test_pkey.t ........................... "
+  },
+  "native_relays": {
+    "directory": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\full-check-01\\native-exit-relays",
+    "record_count": 2707,
+    "raw_exit_groups": [
+      {
+        "raw_exit": 0,
+        "count": 2579
+      },
+      {
+        "raw_exit": 1,
+        "count": 126
+      },
+      {
+        "raw_exit": 3,
+        "count": 1
+      },
+      {
+        "raw_exit": 3221225725,
+        "count": 1
+      }
+    ],
+    "nonzero_count": 128
+  },
+  "confirmed_failures": [
+    "01-test_symbol_presence.t missing crypto and ssl symbols",
+    "02-test_errstr.t Windows error-string mismatches",
+    "04-test_bioprint.t: bioprinttest.exe raw 0xC00000FD stack overflow after formatting mismatches",
+    "15-test_ml_dsa_codecs.t reported 57 failed assertions"
+  ],
+  "termination": {
+    "reason": "The run was already conclusively nonpassing and was consuming the resource window needed for a wholly fresh corrected Bash build.",
+    "observer_pid": 7816,
+    "observer_creation": "2026-09-10T11:20:15-07:00",
+    "observer_stopped": true,
+    "observer_result_available": false,
+    "live_owned_processes": 0
+  },
+  "preserved_success": {
+    "ocsp_package_gate": "C:\\ag-openssl-e138-01\\ocsp-handoff-02\\handoff.json",
+    "ocsp_package_gate_sha256": "72a3bb5ebb2290dac4b9cd564d997da0ec57563af15783a3978873014262592a"
+  },
+  "crash": {
+    "executable": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\mingw-w64-openssl\\src\\build-MINGWARM64\\test\\bioprinttest.exe",
+    "sha256": "1315b2b748212f52e22ca0b48bef50d82f22d1bfab8c73d408d24c558a848c58",
+    "raw_exit": 3221225725,
+    "hex": "0xC00000FD",
+    "relay": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\full-check-01\\native-exit-relays\\22976-1fe66a70fd0e4fbdb81ac790cf48028f.json"
+  }
+}

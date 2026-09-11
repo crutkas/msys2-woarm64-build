@@ -1,0 +1,166 @@
+{
+  "limitations": [
+    "The package pair is runtime-907 scoped and does not claim d70 compatibility or full-release runtime admission.",
+    "Runtime-907, libintl and libiconv remain externally owned dependencies.",
+    "The runtime package retains its genuine sh dependency; no runtime-907 shell admission follows.",
+    "The devel package retains genuine libiconv-devel and gettext-devel dependencies; no devel dependency admission follows.",
+    "The preserved upstream disposition is 14 passes, zero failures and one original config-script skip.",
+    "Packages are unsigned; no reproducibility rebuild, GnuPG admission or full-release completion is claimed."
+  ],
+  "ownership": {
+    "duplicate_paths": 0,
+    "errorref_owned": "usr/share/libgpg-error/errorref.txt",
+    "errorref_sha256": "09649185fe3f0e2c457c249d0eb6f756a3fbde2380ea513f3d5ae9331966156a",
+    "native_arm64_pes": 3,
+    "payload_files": 38,
+    "pkgconfig": "usr/lib/pkgconfig/gpg-error.pc",
+    "pkgconfig_libs_private": "-lintl -liconv",
+    "private_path_hits_including_metadata": 0,
+    "relocated_stage_matches_package_union": true
+  },
+  "packages": [
+    {
+      "architecture": "aarch64",
+      "depends": [
+        "sh",
+        "libiconv",
+        "libintl"
+      ],
+      "licenses": [
+        "spdx:LGPL-2.1-or-later"
+      ],
+      "mtree_validated_by_assembler": true,
+      "name": "libgpg-error",
+      "native_arm64_pes": [
+        {
+          "imports": [
+            "KERNEL32.dll",
+            "msys-2.0.dll",
+            "msys-gpg-error-0.dll",
+            "msys-intl-8.dll"
+          ],
+          "machine": "0xaa64",
+          "path": "usr/bin/gpg-error.exe",
+          "sha256": "86064e553a969853a028a3ab0b8895fd908dd20ebf91062cd3087c9420f87884"
+        },
+        {
+          "imports": [
+            "KERNEL32.dll",
+            "msys-2.0.dll",
+            "msys-intl-8.dll"
+          ],
+          "machine": "0xaa64",
+          "path": "usr/bin/msys-gpg-error-0.dll",
+          "sha256": "430523cb61643713d0925bf1e4ad2f308e83a3ea2b108ae2ccbc11ec5f8a2ce9"
+        },
+        {
+          "imports": [
+            "KERNEL32.dll",
+            "msys-2.0.dll"
+          ],
+          "machine": "0xaa64",
+          "path": "usr/bin/yat2m.exe",
+          "sha256": "2fffce55b50da1be4bee7441f294b09515034fe26328890798b10bb0c401ce7b"
+        }
+      ],
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libgpg-error-runtime907-admitted-v1\\packages\\libgpg-error-1.61-1-aarch64.pkg.tar.zst",
+      "payload_files": 25,
+      "sha256": "84fd115f913e648e14fb3a45d2d78c2f3adecae7631e199e16161be008066474",
+      "version": "1.61-1"
+    },
+    {
+      "architecture": "aarch64",
+      "depends": [
+        "libiconv-devel",
+        "gettext-devel"
+      ],
+      "licenses": [
+        "spdx:LGPL-2.1-or-later"
+      ],
+      "mtree_validated_by_assembler": true,
+      "name": "libgpg-error-devel",
+      "native_arm64_pes": [],
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libgpg-error-runtime907-admitted-v1\\packages\\libgpg-error-devel-1.61-1-aarch64.pkg.tar.zst",
+      "payload_files": 13,
+      "sha256": "91dde99332267759c4a65dbbb8f98cdddd44ea2d74465fefbda62d43680a1745",
+      "version": "1.61-1"
+    }
+  ],
+  "relocated_control": {
+    "canonical_sysconf": "/usr/etc/provider-control.conf",
+    "consumer_exit": 0,
+    "consumer_machine": "0xAA64",
+    "consumer_sha256": "0753ce612a9b08c7bbbde1f5a38f7e116e882767ece8e7b721f798a28c0d6b97",
+    "errorref_present_hidden_differ": true,
+    "exact_successor_dll_loaded": "C:\\ap13-dcb\\libgpg-error-provider-06\\relocated-root\\usr\\bin\\msys-gpg-error-0.dll",
+    "german_locale_present_hidden_differ": true
+  },
+  "retained_upstream": {
+    "failed": 0,
+    "passed": 14,
+    "skipped": 1
+  },
+  "runtime": {
+    "cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "d70_compatibility_claimed": false,
+    "libgpg_error_dll": "430523cb61643713d0925bf1e4ad2f308e83a3ea2b108ae2ccbc11ec5f8a2ce9",
+    "libiconv": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+    "libintl": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c"
+  },
+  "schema": 1,
+  "source": {
+    "adapted_pkgbuild_sha256": "04c8ff63fe1bf2e5d0987f2bced15f752eff2eab720471bf0c1a1ee2db8cc97a",
+    "archive": {
+      "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgpg-error-1.61-1-canonical-02\\sources\\libgpg-error-1.61.tar.bz2",
+      "sha256": "7a85413f2bc354f4f8aa832b718af122e48965e9e0eb9012ee659c13c6385c93"
+    },
+    "build_references": [
+      {
+        "name": "adaptation",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgpg-error-1.61-1-canonical-02\\adaptation.json",
+        "sha256": "4b2b0f51c68fcc2b04145f91c76521429783ec4c34f8de00947d149f37543eb0"
+      },
+      {
+        "name": "build_log",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgpg-error-1.61-1-canonical-02\\build.log",
+        "sha256": "36bef8e365b11f7976ee76143917e71c5ae8e4d5cc7eab67943e1559f351f903"
+      },
+      {
+        "name": "build_result",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgpg-error-1.61-1-canonical-02\\build-result.json",
+        "sha256": "e2fe9327fd498aaa60e7a1be5a57ba55703381a455d7235a9c0469173434388d"
+      },
+      {
+        "name": "native_job",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgpg-error-1.61-1-canonical-02\\native-job.json",
+        "sha256": "89ac4f61289b37e14db2eb40006f2766e46136d9182713107506e5b7fcc4f673"
+      }
+    ],
+    "provider_export": {
+      "path": "C:\\ap13-dcb\\libgpg-error-provider-06\\export.json",
+      "sha256": "d383c1716c9e6883f928bb99b18463b9b8edf93599dc38b593639531dba4321d"
+    },
+    "provider_handoff": {
+      "path": "C:\\ap13-dcb\\libgpg-error-provider-06\\handoff.json",
+      "sha256": "31684919fd326090b64f1636d8329b4fcf7b0804ff08fc53f3518df780120324"
+    },
+    "recipe_commit": "8eda87f4db83c8bbb8f62160d845c0b0b4527928",
+    "signature": {
+      "official_release_fingerprints_previously_verified": [
+        "6DAA6E64A76D2840571B4902528897B826403ADA",
+        "AC8E115BF73E2D8D47FA9908E98E9B2D19C6C8BD"
+      ],
+      "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgpg-error-1.61-1-canonical-02\\sources\\libgpg-error-1.61.tar.bz2.sig",
+      "recipe_validpgpkeys_unchanged": true,
+      "sha256": "9b20f1e6046aaa3fe16fcd65587fd0fa5e34ceb4830f8eadc856c3e80ad57ad3"
+    }
+  },
+  "status": "verified",
+  "supersedes_rejected_provider": {
+    "disposition": "Rejected provider-02 package identities remain preserved and excluded.",
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-libgpg-error-rejected-v1\\verdict.json",
+      "sha256": "3f8778fd7802a10c57e01fc1ac0519d92a03cf14fb4e488f4a5b8baa209e3456"
+    }
+  }
+}

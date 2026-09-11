@@ -1,0 +1,198 @@
+{
+  "schema": "mingw-w64-arm64-interlocked-header-package-export-v2",
+  "created_utc": "2026-09-11T08:55:46.3966622Z",
+  "repository": {
+    "commit": "43fd9f1136487030763d48d978749522ae311cad",
+    "branch": "crutkas-native-execution-recovery"
+  },
+  "replacement": {
+    "package_name": "mingw-w64-aarch64-headers-git",
+    "package_version": "70d63e7c9-3",
+    "package_sha256": "7b5658afcba1f0943af8078b570b9749f4871660c09bb160235c22ffcea403bb",
+    "provider_sha256": "dd606c0d006e064adc84cf6b1baee3bf6074eb77e8f190663780e3839c0aee32",
+    "provider_manifest_sha256": "1fa2ba3b28ed4ae95614b81bb1bef3f1a16c7bfafdad5aa1716db686261124a0",
+    "payload_manifest_sha256": "b1d76452dfa6c01c58bac985cdb3be8a9b021d361c8a721b6fd5f5413fdcb32f"
+  },
+  "full_deployed_header_delta": {
+    "deployed_count": 2528,
+    "deployed_path_set_sha256": "a441d95442647b3e5e11976509d32cea46a625c07bdc986e75ba689945da4321",
+    "shipped_count": 1685,
+    "shipped_path_set_sha256": "c780e3df61a8154bf783634b355d9906658ad46536d5da0bb28cc3b857742681",
+    "shipped_only_count": 0,
+    "baseline_only_count": 843,
+    "baseline_only_path_set_sha256": "8bf8d4141d58ed4cfd9f08f61eceb750d25195b15f15d04ae288a80435ccf080",
+    "baseline_only_classification": {
+      "cxx_headers": 831,
+      "generated_c_sources": 12,
+      "other": 0
+    },
+    "shared_content_differences": [
+      "psdk_inc/intrin-impl.h"
+    ]
+  },
+  "reproducibility": {
+    "provider_roots": [
+      "C:\\ag-compiler-e138-01\\interlocked-header-provider-16",
+      "C:\\ag-compiler-e138-01\\interlocked-header-provider-17"
+    ],
+    "provider_handoff_sha256": [
+      "b8ebbecf84628dfa906563da4030d121ca43ad991e37cdf0ba81f9e3e74c22c5",
+      "9fd267283b6f765a2f82ce817313b010d93e060218e45e5f2a23f0ec3870f40a"
+    ],
+    "package_roots": [
+      "C:\\ag-compiler-e138-01\\interlocked-header-package-24",
+      "C:\\ag-compiler-e138-01\\interlocked-header-package-25"
+    ],
+    "package_handoff_sha256": [
+      "2b50bf824a091b9604c744074fdd11ab3f85f3619e218d39a5b216e1d7798052",
+      "78e7ebbc04a6ae3c2ee4868d9f20f8f1d7d7918a00a6ca3764d0f2db4f13c2d2"
+    ],
+    "byte_identical": true
+  },
+  "source": {
+    "mingw_w64_commit": "70d63e7c9a477b8b275a9782b289fbf1614b6e9e",
+    "interlocked_header_sha256": "8e0d3b2f2f94969faf166d8d9a0d4eb5e358a32be6bd7e99fc76e552ebfc909a",
+    "fastfail_source_sha256": "73f341f1783674ce3cd7c58a4e4aa545ece9f8e16e81474b0b0ac4f3fbd3f633",
+    "installed_fastfail_header_sha256": "dc7a4b6814d2529862e4e254935adddf1c6ffddb0cd5069d8146513c5f81efb9",
+    "fastfail_patch_lf_sha256": "5c89fe22fe5b9a63b43ca4e82b6c1f9fee802cd259a75cf238a821d44529ebd6"
+  },
+  "controls": {
+    "c89_windows_h": "passed",
+    "aa64_codegen": "passed",
+    "aa64_runtime": "passed",
+    "runtime_pe_machine": "0xaa64",
+    "winpthreads_license": "included",
+    "metadata_normalization": "passed",
+    "fresh_root_transaction": "passed",
+    "pacman_qkk": "passed",
+    "ownership_overlap_files": 1685,
+    "monolithic_gcc_conflict": "rejected with exact LC_ALL=C diagnostics"
+  },
+  "dependencies": {
+    "compiler_sha256": "3428a1fc184ab39dd5f84f74395063e22fb5ff45eac0743e85996c2b2ea7f011",
+    "compiler_target": "aarch64-w64-mingw32",
+    "native_find_path": "C:\\ag-utils-e138-01\\native-utilities-06\\stage\\usr\\bin\\find.exe",
+    "native_find_sha256": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+    "native_utilities_manifest": "C:\\ag-utils-e138-01\\native-utilities-06\\native-bash-test-utilities.manifest.json",
+    "native_utilities_manifest_sha256": "300bda77f05606c6f49390297695d0507d769b2dc527843c746b0f6e1b72c9aa"
+  },
+  "revoked_or_withdrawn": {
+    "pkgrel2_verdict": "C:\\ap11-native-provider-intake\\interlocked-header-package-revoked-v1\\verdict.json",
+    "pkgrel2_verdict_sha256": "3d54d161e4ac1b646bb2088350fd8c2ca8fbbb5975a2aee30eb2e369f949dd4d",
+    "export23_verdict": "C:\\ap11-native-provider-intake\\interlocked-header-export23-withdrawn-v1\\verdict.json",
+    "export23_verdict_sha256": "d0e71d9817507f2847cccff3b2a09a5d0788810787e13802d07cdc79abbd2b54"
+  },
+  "scope": "Bootstrap-only MinGW-w64 ARM64 C and winpthreads headers. The exact 843 deployed-only paths are 831 C++ headers and 12 generated C sources. This package intentionally conflicts with mingw-w64-aarch64-gcc and is not an in-place ownership migration or full toolchain package.",
+  "files": [
+    {
+      "name": ".BUILDINFO",
+      "bytes": 6913,
+      "sha256": "1e547e5b60c8521b12dd67342f84d3bcc991ec8d3792b1034eaee6a64f70e9df"
+    },
+    {
+      "name": ".MTREE",
+      "bytes": 81982,
+      "sha256": "2f99f826592ff99ff03bcc8168503c432160ba6d63313d518610e0df85691440"
+    },
+    {
+      "name": ".PKGINFO",
+      "bytes": 436,
+      "sha256": "8856aa344f03ef2a95d6637e2ef2339f69ab3e60077c63af46a5db3413e4f311"
+    },
+    {
+      "name": "mingw-w64-aarch64-headers-git-70d63e7c9-3-any.pkg.tar.zst",
+      "bytes": 6159576,
+      "sha256": "7b5658afcba1f0943af8078b570b9749f4871660c09bb160235c22ffcea403bb"
+    },
+    {
+      "name": "ownership-conflict-transaction.log",
+      "bytes": 424,
+      "sha256": "8a16fffb0103324c9cc351fbdce4fd2625325f4bf8b24e2c38c456a62aaa5793"
+    },
+    {
+      "name": "package-24-handoff.json",
+      "bytes": 6995,
+      "sha256": "2b50bf824a091b9604c744074fdd11ab3f85f3619e218d39a5b216e1d7798052"
+    },
+    {
+      "name": "package-25-handoff.json",
+      "bytes": 6995,
+      "sha256": "78e7ebbc04a6ae3c2ee4868d9f20f8f1d7d7918a00a6ca3764d0f2db4f13c2d2"
+    },
+    {
+      "name": "package-baseline-header-paths.txt",
+      "bytes": 53820,
+      "sha256": "a441d95442647b3e5e11976509d32cea46a625c07bdc986e75ba689945da4321"
+    },
+    {
+      "name": "package-baseline-only-header-paths.txt",
+      "bytes": 33191,
+      "sha256": "8bf8d4141d58ed4cfd9f08f61eceb750d25195b15f15d04ae288a80435ccf080"
+    },
+    {
+      "name": "package-payload-manifest.json",
+      "bytes": 305445,
+      "sha256": "b1d76452dfa6c01c58bac985cdb3be8a9b021d361c8a721b6fd5f5413fdcb32f"
+    },
+    {
+      "name": "package-readback-only-header-paths.txt",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "name": "package-shipped-header-paths.txt",
+      "bytes": 20629,
+      "sha256": "c780e3df61a8154bf783634b355d9906658ad46536d5da0bb28cc3b857742681"
+    },
+    {
+      "name": "PKGBUILD",
+      "bytes": 814,
+      "sha256": "5123b3a71c699463110e83405312618b3aab8167dc9f99304135c82062edba9b"
+    },
+    {
+      "name": "provider-16-handoff.json",
+      "bytes": 5272,
+      "sha256": "b8ebbecf84628dfa906563da4030d121ca43ad991e37cdf0ba81f9e3e74c22c5"
+    },
+    {
+      "name": "provider-17-handoff.json",
+      "bytes": 5272,
+      "sha256": "9fd267283b6f765a2f82ce817313b010d93e060218e45e5f2a23f0ec3870f40a"
+    },
+    {
+      "name": "provider-baseline-header-paths.txt",
+      "bytes": 53820,
+      "sha256": "a441d95442647b3e5e11976509d32cea46a625c07bdc986e75ba689945da4321"
+    },
+    {
+      "name": "provider-baseline-only-header-paths.txt",
+      "bytes": 33191,
+      "sha256": "8bf8d4141d58ed4cfd9f08f61eceb750d25195b15f15d04ae288a80435ccf080"
+    },
+    {
+      "name": "provider-shipped-header-paths.txt",
+      "bytes": 20629,
+      "sha256": "c780e3df61a8154bf783634b355d9906658ad46536d5da0bb28cc3b857742681"
+    },
+    {
+      "name": "provider-stage-manifest.json",
+      "bytes": 304428,
+      "sha256": "1fa2ba3b28ed4ae95614b81bb1bef3f1a16c7bfafdad5aa1716db686261124a0"
+    },
+    {
+      "name": "provider-stage-only-header-paths.txt",
+      "bytes": 1,
+      "sha256": "01ba4719c80b6fe911b091a7c05124b64eeece964e09c058ef8f9805daca546b"
+    },
+    {
+      "name": "provider.tar.zst",
+      "bytes": 6070764,
+      "sha256": "dd606c0d006e064adc84cf6b1baee3bf6074eb77e8f190663780e3839c0aee32"
+    },
+    {
+      "name": "representative-ownership-query.txt",
+      "bytes": 107,
+      "sha256": "e7ba4af63a0159446ab044f2f35e77a4c4f8f503636a9324b971e61fab94b5b9"
+    }
+  ]
+}

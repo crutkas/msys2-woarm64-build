@@ -1,0 +1,88 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T10:29:35.2228598Z",
+  "status": "ADMITTED_NATIVE_MSYS_RUNTIME907_PACKAGE_PROVIDER",
+  "providerClass": "native-msys-bzip2-pcre2-runtime907",
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "compatibility": "qualified only with runtime-907 cohort; d70 compatibility not claimed"
+  },
+  "packages": [
+    {
+      "name": "bzip2",
+      "path": "packages/bzip2-1.0.8-4-aarch64.pkg.tar.zst",
+      "sha256": "6ffe518ad29bab8d3ce71445b4e5876888d77851d26313f38c5aabfcce132cdb"
+    },
+    {
+      "name": "libbz2",
+      "path": "packages/libbz2-1.0.8-4-aarch64.pkg.tar.zst",
+      "sha256": "4dd2074dfd348e56ec9b1c9bf375da99125cbcba21a3c4f23f42b1bb30d0db3e"
+    },
+    {
+      "name": "libbz2-devel",
+      "path": "packages/libbz2-devel-1.0.8-4-aarch64.pkg.tar.zst",
+      "sha256": "a87256afd525e9e14f382c5dfd5b17255ee3ea1a05f6edea20ede46c90ccc883"
+    },
+    {
+      "name": "pcre2",
+      "path": "packages/pcre2-10.48-1-aarch64.pkg.tar.zst",
+      "sha256": "746513aab1510250ba1a99ca02c8684eb522e8ba2d4c4428b8449d67f657dc24"
+    },
+    {
+      "name": "libpcre2_8",
+      "path": "packages/libpcre2_8-10.48-1-aarch64.pkg.tar.zst",
+      "sha256": "b2ade919f7ad755dd908bc930719ef60ad40f6eb3a30563124cee7c3b900f028"
+    },
+    {
+      "name": "libpcre2_16",
+      "path": "packages/libpcre2_16-10.48-1-aarch64.pkg.tar.zst",
+      "sha256": "fb100e30e990cfe3c9b1ab632d1bc16d26efc0e9f4b7cbe9bcd6599baae78832"
+    },
+    {
+      "name": "libpcre2_32",
+      "path": "packages/libpcre2_32-10.48-1-aarch64.pkg.tar.zst",
+      "sha256": "1f79cc44e677f8f4d414affca87d7fda5ebdc0bc2a0b6b3e78dbaeccdcffef5e"
+    },
+    {
+      "name": "libpcre2posix",
+      "path": "packages/libpcre2posix-10.48-1-aarch64.pkg.tar.zst",
+      "sha256": "8244f5d308a836e69f6578b6d3e1df3a720040842e741fb1c352462c261a6d70"
+    },
+    {
+      "name": "pcre2-devel",
+      "path": "packages/pcre2-devel-10.48-1-aarch64.pkg.tar.zst",
+      "sha256": "4c1b9406548982e5d53fc45b5ff1ca168d84177fef6b2b365561c24457f041ef"
+    }
+  ],
+  "evidence": {
+    "independentVerification": {
+      "path": "independent-verification.json",
+      "sha256": "5ba741b0df1c392d1da40149b870d941addbad8a88b16b7e32134c3cb94acf3b"
+    },
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "c6c5a29ea81b83ba3640e5cfbe329ed27f84faa8dabb0f19c4b28e38f79a8013"
+    },
+    "payloadManifest": {
+      "path": "manifests/package-payload-manifest.json",
+      "sha256": "1507f1b3e4139f2b2013e2f2782661a172967c2423fe43e70c5bb66f627488fa"
+    },
+    "packageMetadata": {
+      "path": "evidence/independent-pkginfo-check.json",
+      "sha256": "d2105d1df2cd725945816fc8cbfa939fe4751a0842fcb953b6111627cd74c1e2"
+    }
+  },
+  "admission": {
+    "bzip2": true,
+    "pcre2": true,
+    "less": false,
+    "lessBuildGate": "cleared for runtime-907-bound producer build only",
+    "releaseArchive": false
+  },
+  "limitations": [
+    "Does not admit or package msys2-runtime runtime-907",
+    "Does not establish compatibility with admitted d70 runtime",
+    "Does not admit less",
+    "Full release remains incomplete"
+  ]
+}

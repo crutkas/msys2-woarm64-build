@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:17:28.1220208Z",
+  "scope": "Fresh affected OpenSSL/OpenSSH consumer startup against exact packaged dependency bytes and runtime-907",
+  "runtime": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "exactDependencies": {
+    "msys-crypto-3.dll": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+    "msys-ssl-3.dll": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+    "msys-z.dll": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+    "msys-crypt-2.dll": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe",
+    "openssl.exe": "2106bc4981c5723b86a2afd8a8a51b68da98d8ced8a2235a08d420a48cd0540b",
+    "ssh.exe": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051"
+  },
+  "result": {
+    "parentRawExit": 0,
+    "created": 10,
+    "observed": 10,
+    "unobserved": 0,
+    "unresolved": 0,
+    "unrelayedHigh": 0,
+    "activeResidual": 0,
+    "opensslVersion": "OpenSSL 3.6.4 25 Aug 2026",
+    "platform": "Cygwin-aarch64",
+    "opensslDir": "/usr/ssl",
+    "enginesDir": "/usr/lib/openssl/engines-3",
+    "modulesDir": "/usr/lib/ossl-modules",
+    "defaultProvider": "active",
+    "legacyProvider": "active",
+    "dasyncEngine": "loaded",
+    "sshVersion": "OpenSSH_10.5p1, OpenSSL 3.6.4 25 Aug 2026"
+  },
+  "evidence": {
+    "observer": {
+      "path": "evidence/consumer-native-job.json",
+      "sha256": "2a8661be9fefbb1b4d86260fcfeb06c3a5bbaa3f266c14f162ec4f5e97488793"
+    },
+    "log": {
+      "path": "evidence/consumer-observer.log",
+      "sha256": "147becac036bcb3fbf0395c5bfb7ce493b71c323336969ae8a1623105da3ca1d"
+    }
+  },
+  "boundary": "The exact libxcrypt DLL was present only to exercise the affected OpenSSH closure. Its package remains rejected for shipping because private source paths occur in .rdata."
+}

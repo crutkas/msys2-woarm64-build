@@ -1,0 +1,42 @@
+{
+  "schema": 1,
+  "status": "v12-cygwin-w32api-overlay-controls-qualified",
+  "runs": [
+    {
+      "case": "fresh",
+      "exit": 0
+    },
+    {
+      "case": "idempotent",
+      "exit": 0
+    },
+    {
+      "case": "tracked-drift",
+      "exit": 1
+    },
+    {
+      "case": "untracked-drift",
+      "exit": 1
+    }
+  ],
+  "output": "C:\\ag-compiler-e138-01\\cygwin-w32api-overlay-controls-84",
+  "source": "C:\\ag-compiler-e138-01\\cygwin-w32api-source-27",
+  "recipeInputs": {
+    "test": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\test-cygwin-w32api-overlay.py",
+      "sha256": "398a77e9b6503db11f9a8954290f04abf97917b601aae557e92216852b35f9df"
+    },
+    "prepare": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\prepare-cygwin-w32api-arm64-overlay.py",
+      "sha256": "8210ea8293d42b631426bf72817ee1fcb6913835f154af8fdc1fc0f2101a6947"
+    },
+    "common": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-w32api-common.py",
+      "sha256": "953118e62fa08a26be69c430046e5cffdb4e8f725d2d3863796ce756b7698bda"
+    },
+    "sourceLock": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-w32api-source-lock.json",
+      "sha256": "2eab26b4cf3deac716cf3ef5f725579656df79e0059997de9efc2397158fc23e"
+    }
+  }
+}

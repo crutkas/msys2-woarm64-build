@@ -1,0 +1,1825 @@
+﻿2026-09-11T08:04:59.9929848Z Current runner version: '2.337.0'
+2026-09-11T08:04:59.9958250Z ##[group]Runner Image Provisioner
+2026-09-11T08:04:59.9959580Z Hosted Compute Agent
+2026-09-11T08:04:59.9960480Z Version: 20260828.587
+2026-09-11T08:04:59.9961377Z Commit: abac92662cab4cc7352de4f9f9d2e2419aad9c29
+2026-09-11T08:04:59.9962076Z Build Date: 2026-08-28T16:44:25Z
+2026-09-11T08:04:59.9962705Z Worker ID: {f6b1729a-ccca-4d97-b2d0-333d5fb1886c}
+2026-09-11T08:04:59.9963797Z Azure Region: northcentralus
+2026-09-11T08:04:59.9964415Z ##[endgroup]
+2026-09-11T08:04:59.9965900Z ##[group]Operating System
+2026-09-11T08:04:59.9966524Z Microsoft Windows Server 2025
+2026-09-11T08:04:59.9967078Z 10.0.26100
+2026-09-11T08:04:59.9967585Z Datacenter
+2026-09-11T08:04:59.9968047Z ##[endgroup]
+2026-09-11T08:04:59.9968531Z ##[group]Runner Image
+2026-09-11T08:04:59.9969084Z Image: windows-2025-vs2026
+2026-09-11T08:04:59.9969631Z Version: 20260907.229.1
+2026-09-11T08:04:59.9971073Z Included Software: https://github.com/actions/runner-images/blob/win25-vs2026/20260907.229/images/windows/Windows2025-VS2026-Readme.md
+2026-09-11T08:04:59.9972710Z Image Release: https://github.com/actions/runner-images/releases/tag/win25-vs2026%2F20260907.229
+2026-09-11T08:04:59.9973668Z ##[endgroup]
+2026-09-11T08:04:59.9974776Z ##[group]GITHUB_TOKEN Permissions
+2026-09-11T08:04:59.9976573Z Contents: read
+2026-09-11T08:04:59.9977120Z Metadata: read
+2026-09-11T08:04:59.9977645Z Packages: read
+2026-09-11T08:04:59.9978136Z ##[endgroup]
+2026-09-11T08:04:59.9980122Z Secret source: Actions
+2026-09-11T08:04:59.9980997Z Cache mode: write
+2026-09-11T08:04:59.9981674Z Prepare workflow directory
+2026-09-11T08:05:00.0731516Z Prepare all required actions
+2026-09-11T08:05:00.0804942Z Getting action download info
+2026-09-11T08:05:00.3104831Z Download action repository 'Windows-on-ARM-Experiments/setup-msys2@main' (SHA:813d75cc630f7932cf669c1e9cb7fcf1c435741c)
+2026-09-11T08:05:00.6161916Z Download action repository 'actions/checkout@v4' (SHA:11d5960a326750d5838078e36cf38b85af677262)
+2026-09-11T08:05:00.7259271Z Download action repository 'actions/cache@v4' (SHA:0057852bfaa89a56745cba8c7296529d2fc39830)
+2026-09-11T08:05:00.8599631Z Download action repository 'actions/upload-artifact@v4' (SHA:ea165f8d65b6e75b540449e92b4886f43607fa02)
+2026-09-11T08:05:01.2129693Z Uses: crutkas/msys2-woarm64-build/.github/workflows/build-package.yml@refs/pull/11/merge (979105e687b274240e9099ac8fff95e466a0e8b6)
+2026-09-11T08:05:01.2134572Z ##[group] Inputs
+2026-09-11T08:05:01.2135727Z   package_name: mingw-w64-cross-mingwarm64-crt
+2026-09-11T08:05:01.2136573Z   packages_repository: Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:05:01.2137339Z   packages_branch: woarm64
+2026-09-11T08:05:01.2137860Z   runner_arch: x86_64
+2026-09-11T08:05:01.2138754Z   build_with_native: false
+2026-09-11T08:05:01.2140654Z   needs: {
+  "mingw-w64-cross-mingwarm64-headers": {
+    "result": "success",
+    "outputs": {}
+  },
+  "mingw-w64-cross-mingwarm64-binutils": {
+    "result": "success",
+    "outputs": {}
+  },
+  "mingw-w64-cross-mingwarm64-gcc-stage1": {
+    "result": "success",
+    "outputs": {}
+  }
+}
+2026-09-11T08:05:01.2142627Z   dependencies: mingw-w64-cross-mingw64-winpthreads
+2026-09-11T08:05:01.2143276Z ##[endgroup]
+2026-09-11T08:05:01.2144248Z Complete job name: MinGW cross-compilation toolchain / mingw-w64-cross-mingwarm64-crt / Build mingw-w64-cross-mingwarm64-crt
+2026-09-11T08:05:01.3585931Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:05:01.3595329Z ##[group]Run Windows-on-ARM-Experiments/setup-msys2@main
+2026-09-11T08:05:01.3596225Z with:
+2026-09-11T08:05:01.3596653Z   msystem: MSYS
+2026-09-11T08:05:01.3597101Z   path-type: minimal
+2026-09-11T08:05:01.3597547Z   update: true
+2026-09-11T08:05:01.3599880Z   cache: true
+2026-09-11T08:05:01.3600305Z   install: false
+2026-09-11T08:05:01.3600736Z   pacboy: false
+2026-09-11T08:05:01.3601155Z   release: true
+2026-09-11T08:05:01.3601581Z   location: RUNNER_TEMP
+2026-09-11T08:05:01.3602066Z   platform-check-severity: fatal
+2026-09-11T08:05:01.3602901Z env:
+2026-09-11T08:05:01.3607715Z   GH_TOKEN: ***
+2026-09-11T08:05:01.3608230Z   FLAVOR: CROSS
+2026-09-11T08:05:01.3608654Z   CLEAN_BUILD: 1
+2026-09-11T08:05:01.3609092Z ##[endgroup]
+2026-09-11T08:05:01.5611254Z ##[group]Downloading MSYS2...
+2026-09-11T08:05:02.2726541Z ##[endgroup]
+2026-09-11T08:05:02.2728231Z ##[group]Extracting MSYS2...
+2026-09-11T08:05:02.2742112Z [command]C:\hostedtoolcache\windows\msys2-installer\0.0.20241208\x64\base.exe -y
+2026-09-11T08:05:02.5449115Z 
+2026-09-11T08:05:02.5453395Z 7-Zip SFX 22.01 ZS v1.5.5 R3 (x64) : Copyright (c) 1999-2022 Igor Pavlov, 2016-2023 Tino Reichardt : 2023-06-18
+2026-09-11T08:05:02.5457186Z 
+2026-09-11T08:05:02.5459182Z Extracting archive: C:\hostedtoolcache\windows\msys2-installer\0.0.20241208\x64\base.exe
+2026-09-11T08:05:02.5462662Z --
+2026-09-11T08:05:02.5465938Z Path = C:\hostedtoolcache\windows\msys2-installer\0.0.20241208\x64\base.exe
+2026-09-11T08:05:02.5468390Z Type = 7z
+2026-09-11T08:05:02.5469060Z 
+2026-09-11T08:05:02.7464476Z   0%
+2026-09-11T08:05:02.7465744Z     
+2026-09-11T08:05:02.9499770Z   0% 487 - msys64\usr\share\locale\ro\LC_MESSAGES
+2026-09-11T08:05:02.9502063Z                                                  
+2026-09-11T08:05:03.1523842Z   0% 1066 - msys64\etc\pki\ca-trust\extracted\openssl\ca-bundle.trust.crt
+2026-09-11T08:05:03.1527136Z                                                                          
+2026-09-11T08:05:03.3555520Z   4% 1354 - msys64\usr\lib\perl5\core_perl\File\Spec\VMS.pm
+2026-09-11T08:05:03.3556381Z                                                            
+2026-09-11T08:05:03.5589179Z   5% 1772 - msys64\usr\lib\terminfo\61\att5620-1
+2026-09-11T08:05:03.5590319Z                                                 
+2026-09-11T08:05:03.7621292Z   5% 2283 - msys64\usr\lib\terminfo\64\dtc382
+2026-09-11T08:05:03.7622193Z                                              
+2026-09-11T08:05:03.9653655Z   5% 2799 - msys64\usr\lib\terminfo\6d\ms-terminal
+2026-09-11T08:05:03.9654514Z                                                   
+2026-09-11T08:05:04.1682307Z   5% 3302 - msys64\usr\lib\terminfo\73\screen-256color-bce-s
+2026-09-11T08:05:04.1683486Z                                                             
+2026-09-11T08:05:04.3714427Z   6% 3798 - msys64\usr\lib\terminfo\76\vt220d
+2026-09-11T08:05:04.3715018Z                                              
+2026-09-11T08:05:04.5744598Z   6% 4231 - msys64\usr\lib\terminfo\78\xterm-pcolor
+2026-09-11T08:05:04.5745132Z                                                    
+2026-09-11T08:05:04.7781449Z   6% 4478 - msys64\usr\share\bash-completion\completions\dmypy
+2026-09-11T08:05:04.7782648Z                                                               
+2026-09-11T08:05:04.9807998Z   7% 5007 - msys64\usr\share\bash-completion\completions\sha384sum
+2026-09-11T08:05:04.9808539Z                                                                   
+2026-09-11T08:05:05.1844331Z   8% 5476 - msys64\usr\share\doc\xz\api\check_8h.html
+2026-09-11T08:05:05.1844941Z                                                      
+2026-09-11T08:05:05.3885902Z  14% 5889 - msys64\usr\share\locale\de\LC_TIME\coreutils.mo
+2026-09-11T08:05:05.3886643Z                                                            
+2026-09-11T08:05:05.5903093Z  21% 6261 - msys64\usr\share\locale\ml\LC_MESSAGES\p11-kit.mo
+2026-09-11T08:05:05.5903799Z                                                              
+2026-09-11T08:05:05.7961796Z  31% 6602 - msys64\usr\share\locale\zh_CN\LC_MESSAGES\bash.mo
+2026-09-11T08:05:05.7962972Z                                                              
+2026-09-11T08:05:05.9979606Z  33% 7041 - msys64\usr\share\man\man1\msggrep.1.gz
+2026-09-11T08:05:05.9980214Z                                                   
+2026-09-11T08:05:06.1998331Z  33% 7318 - msys64\usr\share\man\man3\addchnstr.3x.gz
+2026-09-11T08:05:06.1999482Z                                                      
+2026-09-11T08:05:06.4030388Z  33% 7835 - msys64\usr\share\man\man3\curl_easy_header.3.gz
+2026-09-11T08:05:06.4031097Z                                                            
+2026-09-11T08:05:06.6060077Z  34% 8359 - msys64\usr\share\man\man3\libssh2_channel_flush_stderr.3.gz
+2026-09-11T08:05:06.6060831Z                                                                        
+2026-09-11T08:05:06.8089447Z  34% 8859 - msys64\usr\share\man\man3\slk_restore_sp.3x.gz
+2026-09-11T08:05:06.8089918Z                                                           
+2026-09-11T08:05:07.0129132Z  39% 9329 - msys64\usr\share\perl5\core_perl\B\Deparse.pm
+2026-09-11T08:05:07.0129898Z                                                          
+2026-09-11T08:05:07.2190444Z  42% 9734 - msys64\usr\share\perl5\core_perl\Test\More.pm
+2026-09-11T08:05:07.2192967Z                                                          
+2026-09-11T08:05:07.4191318Z  44% 10061 - msys64\usr\share\perl5\core_perl\unicore\lib\IdType\DefaultI.pl
+2026-09-11T08:05:07.4192266Z                                                                             
+2026-09-11T08:05:07.6209750Z  44% 10304 - msys64\usr\share\perl5\core_perl\unicore\lib\Sc\Gong.pl
+2026-09-11T08:05:07.6210449Z                                                                     
+2026-09-11T08:05:07.8249057Z  46% 10770 - msys64\usr\share\terminfo\61\apple-uterm
+2026-09-11T08:05:07.8249757Z                                                      
+2026-09-11T08:05:08.0291846Z  46% 11310 - msys64\usr\share\terminfo\64\dgunix+fixed
+2026-09-11T08:05:08.0292296Z                                                       
+2026-09-11T08:05:08.2307584Z  46% 11861 - msys64\usr\share\terminfo\6d\mlterm
+2026-09-11T08:05:08.2308023Z                                                 
+2026-09-11T08:05:08.4344212Z  46% 12370 - msys64\usr\share\terminfo\73\sc410
+2026-09-11T08:05:08.4345163Z                                                
+2026-09-11T08:05:08.6716754Z  46% 12910 - msys64\usr\share\terminfo\76\vt52-basic
+2026-09-11T08:05:08.6717596Z                                                     
+2026-09-11T08:05:08.8716207Z  47% 13264 - msys64\usr\share\terminfo\78\xterm+nopcfkeys
+2026-09-11T08:05:08.8716826Z                                                          
+2026-09-11T08:05:09.0756920Z  47% 13777 - msys64\usr\share\zoneinfo\Etc\GMT+5
+2026-09-11T08:05:09.0757328Z                                                 
+2026-09-11T08:05:09.2777308Z  47% 14305 - msys64\usr\share\zoneinfo\posix\Australia\Darwin
+2026-09-11T08:05:09.2778498Z                                                              
+2026-09-11T08:05:09.4810503Z  47% 14800 - msys64\usr\share\zoneinfo\right\Asia\Bangkok
+2026-09-11T08:05:09.4811224Z                                                          
+2026-09-11T08:05:09.6852904Z  48% 15315 - msys64\var\lib\pacman\local\libgdbm-1.24-1\mtree
+2026-09-11T08:05:09.6853416Z                                                              
+2026-09-11T08:05:09.8867405Z  55% 15662 - msys64\usr\bin\lessecho.exe
+2026-09-11T08:05:09.8870623Z                                         
+2026-09-11T08:05:10.0913639Z  71% 15806 - msys64\usr\bin\nologin.exe
+2026-09-11T08:05:10.0915102Z                                        
+2026-09-11T08:05:10.2204105Z  92% 15899 - msys64\usr\bin\truncate.exe
+2026-09-11T08:05:10.2204813Z                                         
+2026-09-11T08:05:10.2208462Z Everything is Ok
+2026-09-11T08:05:10.2227752Z ##[endgroup]
+2026-09-11T08:05:10.2228354Z ##[group]Disable Key Refresh...
+2026-09-11T08:05:10.2246067Z ##[endgroup]
+2026-09-11T08:05:10.2262588Z ##[group]Restoring package cache...
+2026-09-11T08:05:10.4492920Z Cache hit for: msys2-pkgs-upd:true-conf:e3037f2a
+2026-09-11T08:05:11.2087985Z Received 56461616 of 56461616 (100.0%), 84.4 MBs/sec
+2026-09-11T08:05:11.2090296Z Cache Size: ~54 MB (56461616 B)
+2026-09-11T08:05:11.2163645Z [command]"C:\Program Files\Git\usr\bin\tar.exe" -xf D:/a/_temp/5ced1b48-1474-405a-ae20-d39042109d5d/cache.tzst -P -C D:/a/msys2-woarm64-build/msys2-woarm64-build --force-local --use-compress-program "zstd -d"
+2026-09-11T08:05:11.7545607Z Cache restored successfully
+2026-09-11T08:05:11.7587999Z Cache restore for msys2-pkgs-upd:true-conf:e3037f2a, got msys2-pkgs-upd:true-conf:e3037f2a-files:39aab8f62deff80df2227eef400342049c000b74
+2026-09-11T08:05:11.7590549Z Cache restore for msys2-pkgs-upd:true-conf:e3037f2a, got msys2-pkgs-upd:true-conf:e3037f2a-files:39aab8f62deff80df2227eef400342049c000b74
+2026-09-11T08:05:11.7592215Z ##[endgroup]
+2026-09-11T08:05:11.7593012Z ##[group]Starting MSYS2 for the first time...
+2026-09-11T08:05:11.8804957Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'uname' '-a'"
+2026-09-11T08:05:11.9749169Z MSYS2 is starting for the first time. Executing the initial setup.
+2026-09-11T08:05:12.0919666Z Copying skeleton files.
+2026-09-11T08:05:12.0920257Z These files are for the users to personalise their msys2 experience.
+2026-09-11T08:05:12.0920611Z 
+2026-09-11T08:05:12.0920770Z They will never be overwritten nor automatically updated.
+2026-09-11T08:05:12.0921011Z 
+2026-09-11T08:05:12.1434693Z './.bashrc' -> '/home/runneradmin/.bashrc'
+2026-09-11T08:05:12.1601186Z './.bash_logout' -> '/home/runneradmin/.bash_logout'
+2026-09-11T08:05:12.1769430Z './.bash_profile' -> '/home/runneradmin/.bash_profile'
+2026-09-11T08:05:12.1940705Z './.profile' -> '/home/runneradmin/.profile'
+2026-09-11T08:05:12.2530987Z 'C:\Windows\system32\drivers\etc\hosts' -> '/etc/hosts'
+2026-09-11T08:05:12.3115494Z 'C:\Windows\system32\drivers\etc\protocol' -> '/etc/protocols'
+2026-09-11T08:05:12.3647233Z 'C:\Windows\system32\drivers\etc\services' -> '/etc/services'
+2026-09-11T08:05:12.4173300Z 'C:\Windows\system32\drivers\etc\networks' -> '/etc/networks'
+2026-09-11T08:05:12.6129108Z gpg: /etc/pacman.d/gnupg/trustdb.gpg: trustdb created
+2026-09-11T08:05:12.6215827Z gpg: no ultimately trusted keys found
+2026-09-11T08:05:12.9243099Z gpg: starting migration from earlier GnuPG versions
+2026-09-11T08:05:12.9838744Z gpg: porting secret keys from '/etc/pacman.d/gnupg/secring.gpg' to gpg-agent
+2026-09-11T08:05:12.9842313Z gpg: migration succeeded
+2026-09-11T08:05:13.0070103Z ==> Generating pacman master key. This may take some time.
+2026-09-11T08:05:13.0270206Z gpg: Generating pacman keyring master key...
+2026-09-11T08:05:13.5709542Z gpg: directory '/etc/pacman.d/gnupg/openpgp-revocs.d' created
+2026-09-11T08:05:13.5968389Z gpg: revocation certificate stored as '/etc/pacman.d/gnupg/openpgp-revocs.d/A9EF189F95669F12CF36988B447C1B644007E42A.rev'
+2026-09-11T08:05:13.5969491Z gpg: Done
+2026-09-11T08:05:13.6167840Z ==> Updating trust database...
+2026-09-11T08:05:13.6639846Z gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+2026-09-11T08:05:13.6640626Z gpg: depth: 0  valid:   1  signed:   0  trust: 0-, 0q, 0n, 0m, 0f, 1u
+2026-09-11T08:05:13.7970110Z ==> Appending keys from msys2.gpg...
+2026-09-11T08:05:14.4185876Z ==> Locally signing trusted keys in keyring...
+2026-09-11T08:05:14.9595370Z   -> Locally signed 5 keys.
+2026-09-11T08:05:14.9759107Z ==> Importing owner trust values...
+2026-09-11T08:05:14.9966798Z gpg: setting ownertrust to 4
+2026-09-11T08:05:14.9967768Z gpg: setting ownertrust to 4
+2026-09-11T08:05:14.9968297Z gpg: setting ownertrust to 4
+2026-09-11T08:05:14.9968770Z gpg: setting ownertrust to 4
+2026-09-11T08:05:14.9969589Z gpg: setting ownertrust to 4
+2026-09-11T08:05:15.0271207Z ==> Disabling revoked keys in keyring...
+2026-09-11T08:05:15.2719564Z   -> Disabled 4 keys.
+2026-09-11T08:05:15.2891316Z ==> Updating trust database...
+2026-09-11T08:05:15.3344374Z gpg: marginals needed: 3  completes needed: 1  trust model: pgp
+2026-09-11T08:05:15.3376476Z gpg: depth: 0  valid:   1  signed:   5  trust: 0-, 0q, 0n, 0m, 0f, 1u
+2026-09-11T08:05:15.3411979Z gpg: depth: 1  valid:   5  signed:   6  trust: 0-, 0q, 0n, 5m, 0f, 0u
+2026-09-11T08:05:15.3428208Z gpg: depth: 2  valid:   3  signed:   2  trust: 3-, 0q, 0n, 0m, 0f, 0u
+2026-09-11T08:05:15.3840145Z pacman-key (pacman) 6.1.0
+2026-09-11T08:05:15.3840780Z Copyright (c) 2010-2024 Pacman Development Team <pacman-dev@lists.archlinux.org>.
+2026-09-11T08:05:15.3841451Z 
+2026-09-11T08:05:15.3998819Z This is free software; see the source for copying conditions.
+2026-09-11T08:05:15.3999940Z There is NO WARRANTY, to the extent permitted by law.
+2026-09-11T08:05:15.6360329Z Initial setup complete. MSYS2 is now ready to use.
+2026-09-11T08:05:15.6545710Z MSYS_NT-10.0-26100 runnervmvmocb 3.5.4-0bc1222b.x86_64 2024-12-05 09:27 UTC x86_64 Msys
+2026-09-11T08:05:15.6602025Z ##[endgroup]
+2026-09-11T08:05:15.6602596Z ##[group]Disable CheckSpace...
+2026-09-11T08:05:15.7428703Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'sed' '-i' 's/^CheckSpace/#CheckSpace/g' '/etc/pacman.conf'"
+2026-09-11T08:05:16.0025438Z ##[endgroup]
+2026-09-11T08:05:16.0026061Z ##[group]Updating packages...
+2026-09-11T08:05:16.0876798Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'pacman' '--noconfirm' '-Syuu' '--overwrite' '*'"
+2026-09-11T08:05:16.9540237Z :: Synchronizing package databases...
+2026-09-11T08:05:17.9162018Z  clangarm64 downloading...
+2026-09-11T08:05:17.9162572Z  mingw32 downloading...
+2026-09-11T08:05:17.9162992Z  mingw64 downloading...
+2026-09-11T08:05:17.9163413Z  ucrt64 downloading...
+2026-09-11T08:05:17.9163825Z  clang32 downloading...
+2026-09-11T08:05:17.9164186Z  clang64 downloading...
+2026-09-11T08:05:17.9164530Z  msys downloading...
+2026-09-11T08:05:18.5309251Z :: Starting core system upgrade...
+2026-09-11T08:05:18.7365681Z warning: terminate other MSYS2 programs before proceeding
+2026-09-11T08:05:18.7366311Z resolving dependencies...
+2026-09-11T08:05:18.7476697Z looking for conflicting packages...
+2026-09-11T08:05:18.7500743Z 
+2026-09-11T08:05:18.7502057Z Packages (6) bash-5.3.015-1  filesystem-2026.03.06-1  mintty-1~3.8.3-1  msys2-runtime-3.6.10-3  pacman-6.1.0-25  pacman-mirrors-20260129-1
+2026-09-11T08:05:18.7502756Z 
+2026-09-11T08:05:18.7502871Z Total Installed Size:  58.34 MiB
+2026-09-11T08:05:18.7503179Z Net Upgrade Size:      -3.33 MiB
+2026-09-11T08:05:18.7503378Z 
+2026-09-11T08:05:18.7514140Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:05:18.7514592Z checking keyring...
+2026-09-11T08:05:18.8039847Z checking package integrity...
+2026-09-11T08:05:19.7412650Z loading package files...
+2026-09-11T08:05:19.7534438Z checking for file conflicts...
+2026-09-11T08:05:19.7574908Z :: Processing package changes...
+2026-09-11T08:05:19.7575361Z upgrading bash...
+2026-09-11T08:05:19.9415385Z upgrading filesystem...
+2026-09-11T08:05:20.0149767Z upgrading mintty...
+2026-09-11T08:05:20.1206016Z upgrading msys2-runtime...
+2026-09-11T08:05:20.3046290Z upgrading pacman-mirrors...
+2026-09-11T08:05:20.3130703Z upgrading pacman...
+2026-09-11T08:05:20.4195506Z warning: /etc/pacman.conf installed as /etc/pacman.conf.pacnew
+2026-09-11T08:05:20.7107023Z :: To complete this update all MSYS2 processes including this terminal will be closed. Confirm to proceed [Y/n] 
+2026-09-11T08:05:21.0822186Z ##[endgroup]
+2026-09-11T08:05:21.0822764Z ##[group]Killing remaining tasks...
+2026-09-11T08:05:21.1646341Z [command]C:\Windows\system32\taskkill.exe /F /FI "MODULES eq msys-2.0.dll"
+2026-09-11T08:05:21.3006802Z 
+2026-09-11T08:05:21.3007304Z INFO: No tasks running with the specified criteria.
+2026-09-11T08:05:21.3042966Z ##[endgroup]
+2026-09-11T08:05:21.3043577Z ##[group]Final system upgrade...
+2026-09-11T08:05:21.3962466Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'pacman' '--noconfirm' '-Syuu' '--overwrite' '*'"
+2026-09-11T08:05:22.1817555Z :: Synchronizing package databases...
+2026-09-11T08:05:23.0789128Z  clangarm64 downloading...
+2026-09-11T08:05:23.0789600Z  mingw32 downloading...
+2026-09-11T08:05:23.0791056Z  mingw64 downloading...
+2026-09-11T08:05:23.0791527Z  ucrt64 downloading...
+2026-09-11T08:05:23.0792039Z  clang64 downloading...
+2026-09-11T08:05:23.0792308Z  msys downloading...
+2026-09-11T08:05:23.5949646Z :: Starting core system upgrade...
+2026-09-11T08:05:23.7799777Z  there is nothing to do
+2026-09-11T08:05:23.7800274Z :: Starting full system upgrade...
+2026-09-11T08:05:23.8178691Z resolving dependencies...
+2026-09-11T08:05:23.8203329Z looking for conflicting packages...
+2026-09-11T08:05:23.8505887Z 
+2026-09-11T08:05:23.8511769Z Packages (78) bash-completion-2.18.0-1  brotli-1.2.0-1  bsdtar-3.8.9-1  ca-certificates-20260816-1  curl-8.22.0-1  dash-0.5.13.4-1  db-6.2.32-6  file-5.48-1  findutils-4.11.0-2  gawk-5.4.1-1  gcc-libs-15.3.0-1  gdbm-1.26-1  getent-2.18.90-6  gettext-0.22.5-1  gmp-6.3.0-2  gnupg-2.4.9-3  grep-1~3.0-7  gzip-1.14-2  inetutils-2.7-1  info-7.2-3  less-704-1  libargp-20260115-1  libasprintf-0.22.5-1  libassuan-3.0.2-1  libcurl-8.22.0-1  libdb-6.2.32-6  libedit-20240808_3.1-1  libexpat-2.8.4-1  libffi-3.8.0-1  libgcrypt-1.12.2-1  libgdbm-1.26-1  libgettextpo-0.22.5-1  libgnutls-3.8.13-2  libgpg-error-1.61-1  libhogweed-4.0-1  libiconv-1.19-1  libidn2-2.3.8-1  libintl-0.22.5-1  libksba-1.8.0-1  liblzma-5.8.3-1  libnettle-4.0-1  libnghttp2-1.70.0-1  libnghttp3-1.18.0-1  libngtcp2-1.25.0-1  libopenssl-3.6.4-1  libp11-kit-0.26.5-1  libpcre-8.45-5  libpcre2_8-10.48-1  libpsl-0.23.2-1  libreadline-8.3.003-1  libsqlite-3.53.4-1  libssh2-1.11.1-1  libtasn1-4.21.0-1  libunistring-1.4.2-1  libutil-linux-2.40.2-2  libxcrypt-4.5.2-1  libzstd-1.5.7-1  mpfr-4.2.2-1  msys2-keyring-1~20260814-1  msys2-launcher-1.5-3  nano-9.2-1  ncurses-6.6-2  nettle-4.0-1  openssl-3.6.4-1  p11-kit-0.26.5-1  pacman-contrib-1.10.6-2  perl-5.42.3-1  pinentry-1.3.3-1  rebase-4.5.0-5  tar-1.35-3  time-1.10-1  tzcode-2026c-1  util-linux-2.40.2-2  wget-1.25.0-2  which-2.25-1  xz-5.8.3-1  zlib-1.3.2-1  zstd-1.5.7-1
+2026-09-11T08:05:23.8516755Z 
+2026-09-11T08:05:23.8516854Z Total Installed Size:  181.58 MiB
+2026-09-11T08:05:23.8517104Z Net Upgrade Size:        8.97 MiB
+2026-09-11T08:05:23.8517265Z 
+2026-09-11T08:05:23.8644867Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:05:23.8645343Z checking keyring...
+2026-09-11T08:05:23.9190246Z checking package integrity...
+2026-09-11T08:05:34.1460024Z loading package files...
+2026-09-11T08:05:34.3165852Z checking for file conflicts...
+2026-09-11T08:05:34.3984921Z checking available disk space...
+2026-09-11T08:05:35.1184977Z :: Processing package changes...
+2026-09-11T08:05:35.1185493Z upgrading bash-completion...
+2026-09-11T08:05:36.2845321Z upgrading gcc-libs...
+2026-09-11T08:05:36.3053836Z upgrading brotli...
+2026-09-11T08:05:36.3183348Z upgrading libiconv...
+2026-09-11T08:05:36.4058370Z upgrading libexpat...
+2026-09-11T08:05:36.4111118Z upgrading liblzma...
+2026-09-11T08:05:36.4166762Z upgrading libopenssl...
+2026-09-11T08:05:36.4434036Z upgrading libzstd...
+2026-09-11T08:05:36.4510054Z upgrading zlib...
+2026-09-11T08:05:36.4600673Z upgrading bsdtar...
+2026-09-11T08:05:36.4707038Z upgrading openssl...
+2026-09-11T08:05:36.6040370Z upgrading libintl...
+2026-09-11T08:05:36.6093822Z upgrading findutils...
+2026-09-11T08:05:36.7013341Z upgrading libffi...
+2026-09-11T08:05:36.7198915Z upgrading ncurses...
+2026-09-11T08:05:44.3350763Z upgrading libpcre2_8...
+2026-09-11T08:05:44.3413588Z upgrading less...
+2026-09-11T08:05:44.3536371Z upgrading gzip...
+2026-09-11T08:05:44.3908011Z upgrading libxcrypt...
+2026-09-11T08:05:44.4018021Z upgrading info...
+2026-09-11T08:05:44.4262399Z upgrading libtasn1...
+2026-09-11T08:05:44.5008701Z upgrading libp11-kit...
+2026-09-11T08:05:44.5098175Z upgrading p11-kit...
+2026-09-11T08:05:44.7452662Z upgrading gmp...
+2026-09-11T08:05:44.7607227Z upgrading ca-certificates...
+2026-09-11T08:05:45.4133780Z upgrading libunistring...
+2026-09-11T08:05:45.4545059Z upgrading libidn2...
+2026-09-11T08:05:45.5320138Z installing libnghttp3...
+2026-09-11T08:05:45.5376570Z installing libngtcp2...
+2026-09-11T08:05:45.5452824Z upgrading libnghttp2...
+2026-09-11T08:05:45.5527911Z upgrading libpsl...
+2026-09-11T08:05:45.5646523Z upgrading libssh2...
+2026-09-11T08:05:45.7621574Z upgrading libcurl...
+2026-09-11T08:05:45.7694511Z upgrading curl...
+2026-09-11T08:05:46.3511785Z upgrading libpcre...
+2026-09-11T08:05:46.3568723Z upgrading grep...
+2026-09-11T08:05:46.4568454Z upgrading dash...
+2026-09-11T08:05:46.5831491Z upgrading libdb...
+2026-09-11T08:05:46.5956185Z upgrading db...
+2026-09-11T08:05:46.6117005Z upgrading file...
+2026-09-11T08:05:46.6433572Z upgrading mpfr...
+2026-09-11T08:05:46.6670621Z upgrading libreadline...
+2026-09-11T08:05:46.7120819Z upgrading gawk...
+2026-09-11T08:05:46.8340878Z upgrading libgdbm...
+2026-09-11T08:05:46.8398215Z upgrading gdbm...
+2026-09-11T08:05:46.8817802Z upgrading libargp...
+2026-09-11T08:05:46.8898669Z upgrading getent...
+2026-09-11T08:05:46.8965123Z upgrading libgettextpo...
+2026-09-11T08:05:46.9025842Z upgrading libasprintf...
+2026-09-11T08:05:46.9074891Z upgrading gettext...
+2026-09-11T08:05:47.1181557Z upgrading libgpg-error...
+2026-09-11T08:05:47.1628281Z upgrading libassuan...
+2026-09-11T08:05:47.1723329Z upgrading libgcrypt...
+2026-09-11T08:05:47.1860095Z upgrading libhogweed...
+2026-09-11T08:05:47.1913437Z upgrading libnettle...
+2026-09-11T08:05:47.1969809Z upgrading libgnutls...
+2026-09-11T08:05:47.2668852Z upgrading libksba...
+2026-09-11T08:05:47.2768673Z upgrading libsqlite...
+2026-09-11T08:05:47.2880748Z upgrading nettle...
+2026-09-11T08:05:47.3244554Z upgrading pinentry...
+2026-09-11T08:05:47.3316842Z upgrading gnupg...
+2026-09-11T08:05:52.0108865Z ==> Appending keys from msys2.gpg...
+2026-09-11T08:05:52.6153642Z ==> Updating trust database...
+2026-09-11T08:05:52.6416315Z gpg: no need for a trustdb check
+2026-09-11T08:05:52.7578856Z upgrading inetutils...
+2026-09-11T08:05:52.7791765Z upgrading libedit...
+2026-09-11T08:05:52.8341362Z upgrading libutil-linux...
+2026-09-11T08:05:52.8447934Z upgrading msys2-keyring...
+2026-09-11T08:05:53.2600238Z ==> Appending keys from msys2.gpg...
+2026-09-11T08:05:53.9268367Z ==> Updating trust database...
+2026-09-11T08:05:53.9496066Z gpg: next trustdb check due at 2027-02-10
+2026-09-11T08:05:54.0580075Z upgrading msys2-launcher...
+2026-09-11T08:05:54.0718397Z upgrading nano...
+2026-09-11T08:05:54.2045512Z upgrading which...
+2026-09-11T08:05:54.2126553Z upgrading xz...
+2026-09-11T08:05:54.6241851Z upgrading zstd...
+2026-09-11T08:05:54.6417158Z upgrading pacman-contrib...
+2026-09-11T08:05:54.7165119Z New optional dependencies for pacman-contrib
+2026-09-11T08:05:54.7165704Z     perl: for pacsearch [installed]
+2026-09-11T08:05:54.7166182Z     vim: default diff program for pacdiff
+2026-09-11T08:05:54.7166649Z upgrading perl...
+2026-09-11T08:05:56.9807965Z upgrading rebase...
+2026-09-11T08:05:56.9954596Z upgrading tar...
+2026-09-11T08:05:57.0907713Z upgrading time...
+2026-09-11T08:05:57.0973578Z upgrading tzcode...
+2026-09-11T08:05:59.4390053Z upgrading util-linux...
+2026-09-11T08:05:59.6767441Z upgrading wget...
+2026-09-11T08:05:59.8438236Z :: Running post-transaction hooks...
+2026-09-11T08:05:59.8438847Z (1/1) Updating the info directory file...
+2026-09-11T08:06:03.3732987Z ##[endgroup]
+2026-09-11T08:06:03.3733371Z ##[group]Saving package cache...
+2026-09-11T08:06:03.4567058Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'paccache' '-r' '-f' '-u' '-k0'"
+2026-09-11T08:06:04.4288335Z ==> no candidate packages found for pruning
+2026-09-11T08:06:04.5156660Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'paccache' '-r' '-f' '-k1'"
+2026-09-11T08:06:04.8705302Z ==> no candidate packages found for pruning
+2026-09-11T08:06:05.0227291Z Cache unchanged, skipping save for msys2-pkgs-upd:true-conf:e3037f2a-files:39aab8f62deff80df2227eef400342049c000b74
+2026-09-11T08:06:05.1113141Z [command]C:\Windows\system32\cmd.exe /D /S /C D:\a\_temp\setup-msys2\msys2.cmd -c "'pacman' '--noconfirm' '-Scc'"
+2026-09-11T08:06:05.9115161Z 
+2026-09-11T08:06:05.9116309Z Cache directory: /var/cache/pacman/pkg/
+2026-09-11T08:06:05.9317062Z :: Do you want to remove ALL files from cache? [Y/n] 
+2026-09-11T08:06:05.9317732Z removing all files from cache...
+2026-09-11T08:06:05.9318063Z 
+2026-09-11T08:06:05.9318267Z Database directory: /var/lib/pacman/
+2026-09-11T08:06:05.9343965Z :: Do you want to remove unused repositories? [Y/n] 
+2026-09-11T08:06:05.9344445Z removing unused sync repositories...
+2026-09-11T08:06:05.9399982Z ##[endgroup]
+2026-09-11T08:06:05.9869744Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:06:05.9871982Z ##[group]Run actions/checkout@v4
+2026-09-11T08:06:05.9872220Z with:
+2026-09-11T08:06:05.9872429Z   repository: crutkas/msys2-woarm64-build
+2026-09-11T08:06:05.9875070Z   token: ***
+2026-09-11T08:06:05.9875262Z   ssh-strict: true
+2026-09-11T08:06:05.9875449Z   ssh-user: git
+2026-09-11T08:06:05.9875648Z   persist-credentials: true
+2026-09-11T08:06:05.9875870Z   clean: true
+2026-09-11T08:06:05.9876064Z   sparse-checkout-cone-mode: true
+2026-09-11T08:06:05.9876298Z   fetch-depth: 1
+2026-09-11T08:06:05.9876480Z   fetch-tags: false
+2026-09-11T08:06:05.9876667Z   show-progress: true
+2026-09-11T08:06:05.9876885Z   lfs: false
+2026-09-11T08:06:05.9877087Z   submodules: false
+2026-09-11T08:06:05.9877280Z   set-safe-directory: true
+2026-09-11T08:06:05.9877512Z   allow-unsafe-pr-checkout: false
+2026-09-11T08:06:05.9877741Z env:
+2026-09-11T08:06:05.9880193Z   GH_TOKEN: ***
+2026-09-11T08:06:05.9880370Z   FLAVOR: CROSS
+2026-09-11T08:06:05.9880537Z   CLEAN_BUILD: 1
+2026-09-11T08:06:05.9880707Z   MSYSTEM: MSYS
+2026-09-11T08:06:05.9880876Z ##[endgroup]
+2026-09-11T08:06:06.1296809Z Syncing repository: crutkas/msys2-woarm64-build
+2026-09-11T08:06:06.1297649Z ##[group]Getting Git version info
+2026-09-11T08:06:06.1298134Z Working directory is 'D:\a\msys2-woarm64-build\msys2-woarm64-build'
+2026-09-11T08:06:06.2209768Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-11T08:06:06.5198757Z git version 2.55.0.windows.5
+2026-09-11T08:06:06.5260606Z ##[endgroup]
+2026-09-11T08:06:06.5284266Z Temporarily overriding HOME='D:\a\_temp\f38e0301-cb67-458a-8e6b-f5a6a12648fb' before making global git config changes
+2026-09-11T08:06:06.5285561Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-11T08:06:06.5296949Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\msys2-woarm64-build\msys2-woarm64-build
+2026-09-11T08:06:06.5924620Z Deleting the contents of 'D:\a\msys2-woarm64-build\msys2-woarm64-build'
+2026-09-11T08:06:06.5930841Z ##[group]Initializing the repository
+2026-09-11T08:06:06.5940874Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\msys2-woarm64-build\msys2-woarm64-build
+2026-09-11T08:06:06.6686255Z Initialized empty Git repository in D:/a/msys2-woarm64-build/msys2-woarm64-build/.git/
+2026-09-11T08:06:06.6734790Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/crutkas/msys2-woarm64-build
+2026-09-11T08:06:06.7319519Z ##[endgroup]
+2026-09-11T08:06:06.7319905Z ##[group]Disabling automatic garbage collection
+2026-09-11T08:06:06.7330585Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-09-11T08:06:06.7620694Z ##[endgroup]
+2026-09-11T08:06:06.7621058Z ##[group]Setting up auth
+2026-09-11T08:06:06.7634561Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-09-11T08:06:06.7927719Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-09-11T08:06:07.8990877Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-11T08:06:07.9296254Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-09-11T08:06:08.4832939Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-11T08:06:08.5133751Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-09-11T08:06:09.0727198Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-09-11T08:06:09.1050018Z ##[endgroup]
+2026-09-11T08:06:09.1050409Z ##[group]Fetching the repository
+2026-09-11T08:06:09.1063024Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --depth=1 origin +979105e687b274240e9099ac8fff95e466a0e8b6:refs/remotes/pull/11/merge
+2026-09-11T08:06:10.3479982Z From https://github.com/crutkas/msys2-woarm64-build
+2026-09-11T08:06:10.3480763Z  * [new ref]         979105e687b274240e9099ac8fff95e466a0e8b6 -> pull/11/merge
+2026-09-11T08:06:10.3521540Z ##[endgroup]
+2026-09-11T08:06:10.3522257Z ##[group]Determining the checkout info
+2026-09-11T08:06:10.3524203Z ##[endgroup]
+2026-09-11T08:06:10.3533723Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout disable
+2026-09-11T08:06:10.4092895Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all extensions.worktreeConfig
+2026-09-11T08:06:10.4392647Z ##[group]Checking out the ref
+2026-09-11T08:06:10.4402207Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force refs/remotes/pull/11/merge
+2026-09-11T08:06:10.6078725Z Note: switching to 'refs/remotes/pull/11/merge'.
+2026-09-11T08:06:10.6079156Z 
+2026-09-11T08:06:10.6079516Z You are in 'detached HEAD' state. You can look around, make experimental
+2026-09-11T08:06:10.6080286Z changes and commit them, and you can discard any commits you make in this
+2026-09-11T08:06:10.6081023Z state without impacting any branches by switching back to a branch.
+2026-09-11T08:06:10.6081345Z 
+2026-09-11T08:06:10.6081536Z If you want to create a new branch to retain commits you create, you may
+2026-09-11T08:06:10.6082177Z do so (now or later) by using -c with the switch command. Example:
+2026-09-11T08:06:10.6082451Z 
+2026-09-11T08:06:10.6082559Z   git switch -c <new-branch-name>
+2026-09-11T08:06:10.6082728Z 
+2026-09-11T08:06:10.6082824Z Or undo this operation with:
+2026-09-11T08:06:10.6082970Z 
+2026-09-11T08:06:10.6083053Z   git switch -
+2026-09-11T08:06:10.6083163Z 
+2026-09-11T08:06:10.6083370Z Turn off this advice by setting config variable advice.detachedHead to false
+2026-09-11T08:06:10.6083674Z 
+2026-09-11T08:06:10.6084006Z HEAD is now at 979105e Merge a0b773dbd64b4542d9b8de05911d23af51e87c25 into 50a973ce610083b44aa684a0418445df72b547ee
+2026-09-11T08:06:10.6221097Z ##[endgroup]
+2026-09-11T08:06:10.6592991Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-09-11T08:06:10.6860533Z 979105e687b274240e9099ac8fff95e466a0e8b6
+2026-09-11T08:06:10.7302572Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:06:10.7304224Z ##[group]Run actions/checkout@v4
+2026-09-11T08:06:10.7304506Z with:
+2026-09-11T08:06:10.7304798Z   repository: Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:06:10.7305165Z   ref: woarm64
+2026-09-11T08:06:10.7305438Z   sparse-checkout: mingw-w64-cross-mingwarm64-crt
+2026-09-11T08:06:10.7305876Z   path: D:\a\msys2-woarm64-build\msys2-woarm64-build/packages
+2026-09-11T08:06:10.7310342Z   token: ***
+2026-09-11T08:06:10.7310561Z   ssh-strict: true
+2026-09-11T08:06:10.7310766Z   ssh-user: git
+2026-09-11T08:06:10.7310981Z   persist-credentials: true
+2026-09-11T08:06:10.7311229Z   clean: true
+2026-09-11T08:06:10.7311489Z   sparse-checkout-cone-mode: true
+2026-09-11T08:06:10.7311758Z   fetch-depth: 1
+2026-09-11T08:06:10.7311958Z   fetch-tags: false
+2026-09-11T08:06:10.7312169Z   show-progress: true
+2026-09-11T08:06:10.7312377Z   lfs: false
+2026-09-11T08:06:10.7312565Z   submodules: false
+2026-09-11T08:06:10.7312772Z   set-safe-directory: true
+2026-09-11T08:06:10.7313021Z   allow-unsafe-pr-checkout: false
+2026-09-11T08:06:10.7313269Z env:
+2026-09-11T08:06:10.7316192Z   GH_TOKEN: ***
+2026-09-11T08:06:10.7316389Z   FLAVOR: CROSS
+2026-09-11T08:06:10.7316585Z   CLEAN_BUILD: 1
+2026-09-11T08:06:10.7316777Z   MSYSTEM: MSYS
+2026-09-11T08:06:10.7316963Z ##[endgroup]
+2026-09-11T08:06:10.8419238Z Syncing repository: Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:06:10.8428935Z ##[group]Getting Git version info
+2026-09-11T08:06:10.8429842Z Working directory is 'D:\a\msys2-woarm64-build\msys2-woarm64-build\packages'
+2026-09-11T08:06:10.9346183Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-11T08:06:10.9627955Z git version 2.55.0.windows.5
+2026-09-11T08:06:10.9670546Z ##[endgroup]
+2026-09-11T08:06:10.9688324Z Temporarily overriding HOME='D:\a\_temp\5ea480e7-b019-463c-9892-573a8d0739cd' before making global git config changes
+2026-09-11T08:06:10.9689057Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-11T08:06:10.9699738Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\msys2-woarm64-build\msys2-woarm64-build\packages
+2026-09-11T08:06:11.0005398Z ##[group]Initializing the repository
+2026-09-11T08:06:11.0016082Z [command]"C:\Program Files\Git\bin\git.exe" init D:\a\msys2-woarm64-build\msys2-woarm64-build\packages
+2026-09-11T08:06:11.0387357Z Initialized empty Git repository in D:/a/msys2-woarm64-build/msys2-woarm64-build/packages/.git/
+2026-09-11T08:06:11.0443125Z [command]"C:\Program Files\Git\bin\git.exe" remote add origin https://github.com/Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:06:11.0788117Z ##[endgroup]
+2026-09-11T08:06:11.0788734Z ##[group]Disabling automatic garbage collection
+2026-09-11T08:06:11.0799909Z [command]"C:\Program Files\Git\bin\git.exe" config --local gc.auto 0
+2026-09-11T08:06:11.1129135Z ##[endgroup]
+2026-09-11T08:06:11.1129674Z ##[group]Setting up auth
+2026-09-11T08:06:11.1144326Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-09-11T08:06:11.1462800Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-09-11T08:06:11.7022793Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-11T08:06:11.7323191Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-09-11T08:06:12.2775441Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-11T08:06:12.3101644Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-09-11T08:06:12.8826288Z [command]"C:\Program Files\Git\bin\git.exe" config --local http.https://github.com/.extraheader "AUTHORIZATION: basic ***"
+2026-09-11T08:06:12.9129886Z ##[endgroup]
+2026-09-11T08:06:12.9130987Z ##[group]Fetching the repository
+2026-09-11T08:06:12.9142897Z [command]"C:\Program Files\Git\bin\git.exe" -c protocol.version=2 fetch --no-tags --prune --no-recurse-submodules --filter=blob:none --depth=1 origin +refs/heads/woarm64*:refs/remotes/origin/woarm64* +refs/tags/woarm64*:refs/tags/woarm64*
+2026-09-11T08:06:13.4489065Z From https://github.com/Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:06:13.4489950Z  * [new branch]      woarm64    -> origin/woarm64
+2026-09-11T08:06:13.4490306Z  * [new branch]      woarm64-v1 -> origin/woarm64-v1
+2026-09-11T08:06:13.4530992Z ##[endgroup]
+2026-09-11T08:06:13.4531835Z ##[group]Determining the checkout info
+2026-09-11T08:06:13.4543311Z [command]"C:\Program Files\Git\bin\git.exe" branch --list --remote origin/woarm64
+2026-09-11T08:06:13.4862605Z   origin/woarm64
+2026-09-11T08:06:13.4893959Z ##[endgroup]
+2026-09-11T08:06:13.4894640Z ##[group]Setting up sparse checkout
+2026-09-11T08:06:13.4905372Z [command]"C:\Program Files\Git\bin\git.exe" sparse-checkout set mingw-w64-cross-mingwarm64-crt
+2026-09-11T08:06:13.5219959Z ##[endgroup]
+2026-09-11T08:06:13.5220335Z ##[group]Checking out the ref
+2026-09-11T08:06:13.5229559Z [command]"C:\Program Files\Git\bin\git.exe" checkout --progress --force -B woarm64 refs/remotes/origin/woarm64
+2026-09-11T08:06:13.9398549Z Switched to a new branch 'woarm64'
+2026-09-11T08:06:13.9415027Z branch 'woarm64' set up to track 'origin/woarm64'.
+2026-09-11T08:06:13.9458854Z ##[endgroup]
+2026-09-11T08:06:13.9785488Z [command]"C:\Program Files\Git\bin\git.exe" log -1 --format=%H
+2026-09-11T08:06:14.0047386Z 2cf651dad50d39951a182dea91c68c8ab62a36f6
+2026-09-11T08:06:14.0399128Z ##[group]Run `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/install-dependencies.sh \
+2026-09-11T08:06:14.0400033Z `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/install-dependencies.sh \
+2026-09-11T08:06:14.0400749Z   "git mingw-w64-x86_64-github-cli mingw-w64-x86_64-jq mingw-w64-cross-mingw64-winpthreads"
+2026-09-11T08:06:14.0404638Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-09-11T08:06:14.0404938Z env:
+2026-09-11T08:06:14.0407519Z   GH_TOKEN: ***
+2026-09-11T08:06:14.0407719Z   FLAVOR: CROSS
+2026-09-11T08:06:14.0407897Z   CLEAN_BUILD: 1
+2026-09-11T08:06:14.0408072Z   MSYSTEM: MSYS
+2026-09-11T08:06:14.0408245Z ##[endgroup]
+2026-09-11T08:06:14.3390836Z ++ set -o pipefail
+2026-09-11T08:06:14.3391247Z ++ FLAVOR=CROSS
+2026-09-11T08:06:14.3391539Z ++ CLEAN_BUILD=1
+2026-09-11T08:06:14.3391827Z ++ INSTALL_PACKAGE=0
+2026-09-11T08:06:14.3392126Z ++ NO_EXTRACT=0
+2026-09-11T08:06:14.3393092Z + DEPENDENCIES='git mingw-w64-x86_64-github-cli mingw-w64-x86_64-jq mingw-w64-cross-mingw64-winpthreads'
+2026-09-11T08:06:14.3393887Z + case $FLAVOR in
+2026-09-11T08:06:14.3394770Z + pacman -S --noconfirm git base-devel texinfo git mingw-w64-x86_64-github-cli mingw-w64-x86_64-jq mingw-w64-cross-mingw64-winpthreads
+2026-09-11T08:06:15.1380054Z resolving dependencies...
+2026-09-11T08:06:15.1527974Z looking for conflicting packages...
+2026-09-11T08:06:15.1623304Z 
+2026-09-11T08:06:15.1631860Z Packages (54) binutils-2.47-1  bison-3.8.2-5  diffutils-3.12-1  dos2unix-7.5.7-1  flex-2.6.4-4  heimdal-7.8.0-5  libcbor-0.14.0-2  libfido2-1.17.0-1  m4-1.4.21-1  make-4.4.1-3  mingw-w64-cross-mingw64-crt-14.0.0.r147.g31bd54ab7-1  mingw-w64-cross-mingw64-headers-14.0.0.r147.g31bd54ab7-1  mingw-w64-x86_64-gcc-libs-16.2.0-3  mingw-w64-x86_64-libwinpthread-14.0.0.r353.g6df76fa52-2  mingw-w64-x86_64-oniguruma-6.9.10-1  mingw-w64-x86_64-tzdata-2026c-1  openssh-10.5p1-2  patch-2.7.6-3  perl-Authen-SASL-2.2100-1  perl-Clone-0.50-2  perl-Convert-BinHex-1.125-2  perl-Encode-Locale-1.05-2  perl-Error-0.17030-1  perl-File-Listing-6.16-1  perl-HTML-Parser-3.85-1  perl-HTML-Tagset-3.24-1  perl-HTTP-Cookies-6.12-1  perl-HTTP-Daemon-6.17-1  perl-HTTP-Date-6.08-1  perl-HTTP-Message-7.04-1  perl-HTTP-Negotiate-6.01-3  perl-IO-HTML-1.004-2  perl-IO-Socket-SSL-2.099-1  perl-IO-Stringy-2.113-3  perl-LWP-MediaTypes-6.05-1  perl-MIME-tools-5.518-1  perl-MailTools-2.22-1  perl-Net-HTTP-6.24-1  perl-Net-SMTP-SSL-1.04-2  perl-Net-SSLeay-1.96-1  perl-TermReadKey-2.38-8  perl-TimeDate-2.35-1  perl-Try-Tiny-0.32-1  perl-URI-5.37-1  perl-WWW-RobotRules-6.03-1  perl-http-cookiejar-0.014-1  perl-libwww-6.83-2  winpty-0.4.3-3  base-devel-2026.08-3  git-2.55.0-1  mingw-w64-cross-mingw64-winpthreads-14.0.0.r147.g31bd54ab7-1  mingw-w64-x86_64-github-cli-2.100.0-1  mingw-w64-x86_64-jq-1.8.2-1  texinfo-7.2-3
+2026-09-11T08:06:15.1641240Z 
+2026-09-11T08:06:15.1641409Z Total Download Size:    44.87 MiB
+2026-09-11T08:06:15.1641859Z Total Installed Size:  389.19 MiB
+2026-09-11T08:06:15.1642137Z 
+2026-09-11T08:06:15.1642345Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:06:15.1642803Z :: Retrieving packages...
+2026-09-11T08:06:18.8595151Z  mingw-w64-x86_64-github-cli-2.100.0-1-any downloading...
+2026-09-11T08:06:18.8595858Z  git-2.55.0-1-x86_64 downloading...
+2026-09-11T08:06:18.8596639Z  mingw-w64-cross-mingw64-headers-14.0.0.r147.g31bd54ab7-1-x86_64 downloading...
+2026-09-11T08:06:18.8597591Z  binutils-2.47-1-x86_64 downloading...
+2026-09-11T08:06:18.8598410Z  mingw-w64-cross-mingw64-crt-14.0.0.r147.g31bd54ab7-1-x86_64 downloading...
+2026-09-11T08:06:18.8599063Z  texinfo-7.2-3-x86_64 downloading...
+2026-09-11T08:06:18.8599409Z  openssh-10.5p1-2-x86_64 downloading...
+2026-09-11T08:06:18.8599812Z  mingw-w64-x86_64-gcc-libs-16.2.0-3-any downloading...
+2026-09-11T08:06:18.8600203Z  bison-3.8.2-5-x86_64 downloading...
+2026-09-11T08:06:18.8600523Z  heimdal-7.8.0-5-x86_64 downloading...
+2026-09-11T08:06:18.8600843Z  make-4.4.1-3-x86_64 downloading...
+2026-09-11T08:06:18.8604756Z  dos2unix-7.5.7-1-x86_64 downloading...
+2026-09-11T08:06:18.8609165Z  diffutils-3.12-1-x86_64 downloading...
+2026-09-11T08:06:18.8609598Z  mingw-w64-x86_64-jq-1.8.2-1-any downloading...
+2026-09-11T08:06:18.8610058Z  flex-2.6.4-4-x86_64 downloading...
+2026-09-11T08:06:18.8610395Z  m4-1.4.21-1-x86_64 downloading...
+2026-09-11T08:06:18.8610713Z  winpty-0.4.3-3-x86_64 downloading...
+2026-09-11T08:06:18.8611179Z  mingw-w64-x86_64-oniguruma-6.9.10-1-any downloading...
+2026-09-11T08:06:18.8611725Z  perl-Net-SSLeay-1.96-1-x86_64 downloading...
+2026-09-11T08:06:18.8612172Z  mingw-w64-x86_64-tzdata-2026c-1-any downloading...
+2026-09-11T08:06:18.8612575Z  perl-MIME-tools-5.518-1-any downloading...
+2026-09-11T08:06:18.8613142Z  mingw-w64-cross-mingw64-winpthreads-14.0.0.r147.g31bd54ab7-1-x86_64 downloading...
+2026-09-11T08:06:18.8613653Z  perl-IO-Socket-SSL-2.099-1-any downloading...
+2026-09-11T08:06:18.8613968Z  perl-libwww-6.83-2-any downloading...
+2026-09-11T08:06:18.8614240Z  perl-URI-5.37-1-any downloading...
+2026-09-11T08:06:18.8614492Z  patch-2.7.6-3-x86_64 downloading...
+2026-09-11T08:06:18.8614753Z  libfido2-1.17.0-1-x86_64 downloading...
+2026-09-11T08:06:18.8615041Z  perl-HTML-Parser-3.85-1-x86_64 downloading...
+2026-09-11T08:06:18.8615354Z  perl-HTTP-Message-7.04-1-any downloading...
+2026-09-11T08:06:18.8615645Z  perl-TimeDate-2.35-1-any downloading...
+2026-09-11T08:06:18.8615923Z  perl-MailTools-2.22-1-any downloading...
+2026-09-11T08:06:18.8616212Z  perl-IO-Stringy-2.113-3-any downloading...
+2026-09-11T08:06:18.8616517Z  perl-Authen-SASL-2.2100-1-any downloading...
+2026-09-11T08:06:18.8616925Z  mingw-w64-x86_64-libwinpthread-14.0.0.r353.g6df76fa52-2-any downloading...
+2026-09-11T08:06:18.8617356Z  perl-Convert-BinHex-1.125-2-any downloading...
+2026-09-11T08:06:18.8617657Z  libcbor-0.14.0-2-x86_64 downloading...
+2026-09-11T08:06:18.8617948Z  perl-HTTP-Cookies-6.12-1-any downloading...
+2026-09-11T08:06:18.8618242Z  perl-Net-HTTP-6.24-1-any downloading...
+2026-09-11T08:06:18.8618529Z  perl-Error-0.17030-1-any downloading...
+2026-09-11T08:06:18.8618816Z  perl-TermReadKey-2.38-8-x86_64 downloading...
+2026-09-11T08:06:18.8619121Z  perl-HTTP-Daemon-6.17-1-any downloading...
+2026-09-11T08:06:18.8619430Z  perl-LWP-MediaTypes-6.05-1-any downloading...
+2026-09-11T08:06:18.8619730Z  perl-Try-Tiny-0.32-1-any downloading...
+2026-09-11T08:06:18.8620000Z  perl-Clone-0.50-2-x86_64 downloading...
+2026-09-11T08:06:18.8620267Z  perl-IO-HTML-1.004-2-any downloading...
+2026-09-11T08:06:18.8620830Z  perl-WWW-RobotRules-6.03-1-any downloading...
+2026-09-11T08:06:18.8621159Z  perl-http-cookiejar-0.014-1-any downloading...
+2026-09-11T08:06:18.8621480Z  perl-HTTP-Negotiate-6.01-3-any downloading...
+2026-09-11T08:06:18.8621795Z  perl-Encode-Locale-1.05-2-any downloading...
+2026-09-11T08:06:18.8622099Z  perl-HTML-Tagset-3.24-1-any downloading...
+2026-09-11T08:06:18.8622399Z  perl-File-Listing-6.16-1-any downloading...
+2026-09-11T08:06:18.8622700Z  perl-HTTP-Date-6.08-1-any downloading...
+2026-09-11T08:06:18.8622990Z  perl-Net-SMTP-SSL-1.04-2-any downloading...
+2026-09-11T08:06:18.8623261Z  base-devel-2026.08-3-any downloading...
+2026-09-11T08:06:18.8623505Z checking keyring...
+2026-09-11T08:06:18.9181873Z checking package integrity...
+2026-09-11T08:06:26.1565171Z loading package files...
+2026-09-11T08:06:26.2617213Z checking for file conflicts...
+2026-09-11T08:06:26.6996997Z checking available disk space...
+2026-09-11T08:06:26.7070667Z :: Processing package changes...
+2026-09-11T08:06:26.7071166Z installing heimdal...
+2026-09-11T08:06:27.5159287Z installing libcbor...
+2026-09-11T08:06:27.5195201Z installing libfido2...
+2026-09-11T08:06:27.5235358Z installing openssh...
+2026-09-11T08:06:27.5666998Z installing perl-Error...
+2026-09-11T08:06:27.5766216Z installing perl-Authen-SASL...
+2026-09-11T08:06:27.6046357Z installing perl-Encode-Locale...
+2026-09-11T08:06:27.6117468Z installing perl-HTTP-Date...
+2026-09-11T08:06:27.6187566Z installing perl-File-Listing...
+2026-09-11T08:06:27.6258332Z installing perl-HTML-Tagset...
+2026-09-11T08:06:27.6335190Z installing perl-Clone...
+2026-09-11T08:06:27.6399545Z installing perl-IO-HTML...
+2026-09-11T08:06:27.6470122Z installing perl-LWP-MediaTypes...
+2026-09-11T08:06:27.6554390Z installing perl-URI...
+2026-09-11T08:06:27.7353527Z installing perl-HTTP-Message...
+2026-09-11T08:06:27.7588647Z installing perl-HTML-Parser...
+2026-09-11T08:06:27.7770538Z installing perl-HTTP-Cookies...
+2026-09-11T08:06:27.7873222Z installing perl-HTTP-Daemon...
+2026-09-11T08:06:27.7930514Z installing perl-http-cookiejar...
+2026-09-11T08:06:27.8012983Z installing perl-HTTP-Negotiate...
+2026-09-11T08:06:27.8069846Z installing perl-Net-HTTP...
+2026-09-11T08:06:27.8201166Z installing perl-WWW-RobotRules...
+2026-09-11T08:06:27.8315219Z installing perl-Try-Tiny...
+2026-09-11T08:06:27.8402676Z installing perl-libwww...
+2026-09-11T08:06:27.8828827Z Optional dependencies for perl-libwww
+2026-09-11T08:06:27.8829528Z     perl-LWP-Protocol-https: for https:// url schemes
+2026-09-11T08:06:27.8830130Z installing perl-Convert-BinHex...
+2026-09-11T08:06:28.0287331Z module test... pass.
+2026-09-11T08:06:28.0299596Z installing perl-IO-Stringy...
+2026-09-11T08:06:28.0475377Z installing perl-TimeDate...
+2026-09-11T08:06:28.1285331Z installing perl-MailTools...
+2026-09-11T08:06:28.1625864Z installing perl-MIME-tools...
+2026-09-11T08:06:28.2111119Z installing perl-Net-SSLeay...
+2026-09-11T08:06:28.3036003Z installing perl-IO-Socket-SSL...
+2026-09-11T08:06:28.3191265Z installing perl-Net-SMTP-SSL...
+2026-09-11T08:06:28.3244815Z installing perl-TermReadKey...
+2026-09-11T08:06:28.3341722Z installing git...
+2026-09-11T08:06:29.0111721Z Optional dependencies for git
+2026-09-11T08:06:29.0112151Z     python: various helper scripts
+2026-09-11T08:06:29.0112414Z     subversion: git svn
+2026-09-11T08:06:29.0112652Z     aspell: spell checking in git gui
+2026-09-11T08:06:29.0112999Z installing binutils...
+2026-09-11T08:06:29.2880541Z installing m4...
+2026-09-11T08:06:29.2971616Z installing bison...
+2026-09-11T08:06:29.5031458Z installing diffutils...
+2026-09-11T08:06:29.5488636Z installing dos2unix...
+2026-09-11T08:06:29.6710555Z installing flex...
+2026-09-11T08:06:29.7096471Z installing make...
+2026-09-11T08:06:29.7487043Z installing patch...
+2026-09-11T08:06:29.7533514Z Optional dependencies for patch
+2026-09-11T08:06:29.7534094Z     ed: for patch -e functionality
+2026-09-11T08:06:29.7534598Z installing base-devel...
+2026-09-11T08:06:29.7559432Z installing texinfo...
+2026-09-11T08:06:30.4187663Z installing winpty...
+2026-09-11T08:06:30.4318818Z installing mingw-w64-x86_64-github-cli...
+2026-09-11T08:06:30.7107362Z Optional dependencies for mingw-w64-x86_64-github-cli
+2026-09-11T08:06:30.7108023Z     mingw-w64-x86_64-git: To interact with repositories
+2026-09-11T08:06:30.7108568Z installing mingw-w64-x86_64-libwinpthread...
+2026-09-11T08:06:30.7158246Z installing mingw-w64-x86_64-tzdata...
+2026-09-11T08:06:32.7272317Z installing mingw-w64-x86_64-gcc-libs...
+2026-09-11T08:06:32.7448446Z installing mingw-w64-x86_64-oniguruma...
+2026-09-11T08:06:32.7572408Z installing mingw-w64-x86_64-jq...
+2026-09-11T08:06:32.7714834Z installing mingw-w64-cross-mingw64-headers...
+2026-09-11T08:06:34.1702258Z installing mingw-w64-cross-mingw64-crt...
+2026-09-11T08:06:35.1027576Z installing mingw-w64-cross-mingw64-winpthreads...
+2026-09-11T08:06:35.1270247Z :: Running post-transaction hooks...
+2026-09-11T08:06:35.1270903Z (1/1) Updating the info directory file...
+2026-09-11T08:06:36.5079621Z ##[group]Run `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/download-artifacts.sh \
+2026-09-11T08:06:36.5080497Z `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/download-artifacts.sh \
+2026-09-11T08:06:36.5080976Z   34571963232 \
+2026-09-11T08:06:36.5081177Z   '{
+2026-09-11T08:06:36.5081405Z   "mingw-w64-cross-mingwarm64-headers": {
+2026-09-11T08:06:36.5081702Z     "result": "success",
+2026-09-11T08:06:36.5081934Z     "outputs": {}
+2026-09-11T08:06:36.5082130Z   },
+2026-09-11T08:06:36.5082354Z   "mingw-w64-cross-mingwarm64-binutils": {
+2026-09-11T08:06:36.5082646Z     "result": "success",
+2026-09-11T08:06:36.5082864Z     "outputs": {}
+2026-09-11T08:06:36.5083055Z   },
+2026-09-11T08:06:36.5083276Z   "mingw-w64-cross-mingwarm64-gcc-stage1": {
+2026-09-11T08:06:36.5083603Z     "result": "success",
+2026-09-11T08:06:36.5083830Z     "outputs": {}
+2026-09-11T08:06:36.5084024Z   }
+2026-09-11T08:06:36.5084181Z }'
+2026-09-11T08:06:36.5086471Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-09-11T08:06:36.5086771Z env:
+2026-09-11T08:06:36.5089876Z   GH_TOKEN: ***
+2026-09-11T08:06:36.5090086Z   FLAVOR: CROSS
+2026-09-11T08:06:36.5090259Z   CLEAN_BUILD: 1
+2026-09-11T08:06:36.5090426Z   MSYSTEM: MSYS
+2026-09-11T08:06:36.5090591Z ##[endgroup]
+2026-09-11T08:06:36.8177595Z ++ set -o pipefail
+2026-09-11T08:06:36.8178156Z ++ FLAVOR=CROSS
+2026-09-11T08:06:36.8178390Z ++ CLEAN_BUILD=1
+2026-09-11T08:06:36.8178576Z ++ INSTALL_PACKAGE=0
+2026-09-11T08:06:36.8178767Z ++ NO_EXTRACT=0
+2026-09-11T08:06:36.8179029Z + RUN_ID=34571963232
+2026-09-11T08:06:36.8179969Z + for ARG in "${@:2}"
+2026-09-11T08:06:36.8353794Z ++ echo $'{\n  "mingw-w64-cross-mingwarm64-headers": {\n    "result": "success",\n    "outputs": {}\n  },\n  "mingw-w64-cross-mingwarm64-binutils": {\n    "result": "success",\n    "outputs": {}\n  },\n  "mingw-w64-cross-mingwarm64-gcc-stage1": {\n    "result": "success",\n    "outputs": {}\n  }\n}'
+2026-09-11T08:06:36.8449155Z ++ /mingw64/bin/jq 'keys|join(" ")'
+2026-09-11T08:06:36.8623404Z ++ sed 's/"//g'
+2026-09-11T08:06:36.8728459Z + NEEDS='mingw-w64-cross-mingwarm64-binutils mingw-w64-cross-mingwarm64-gcc-stage1 mingw-w64-cross-mingwarm64-headers'
+2026-09-11T08:06:36.8729493Z + for NEED in $NEEDS
+2026-09-11T08:06:36.8729999Z + echo 'Downloading mingw-w64-cross-mingwarm64-binutils artifact.'
+2026-09-11T08:06:36.8730845Z + /mingw64/bin/gh run download 34571963232 -n mingw-w64-cross-mingwarm64-binutils
+2026-09-11T08:06:36.8731927Z Downloading mingw-w64-cross-mingwarm64-binutils artifact.
+2026-09-11T08:06:38.0222515Z + for NEED in $NEEDS
+2026-09-11T08:06:38.0223304Z + echo 'Downloading mingw-w64-cross-mingwarm64-gcc-stage1 artifact.'
+2026-09-11T08:06:38.0224473Z + /mingw64/bin/gh run download 34571963232 -n mingw-w64-cross-mingwarm64-gcc-stage1
+2026-09-11T08:06:38.0226227Z Downloading mingw-w64-cross-mingwarm64-gcc-stage1 artifact.
+2026-09-11T08:06:39.7004726Z + for NEED in $NEEDS
+2026-09-11T08:06:39.7005399Z Downloading mingw-w64-cross-mingwarm64-headers artifact.
+2026-09-11T08:06:39.7006370Z + echo 'Downloading mingw-w64-cross-mingwarm64-headers artifact.'
+2026-09-11T08:06:39.7007357Z + /mingw64/bin/gh run download 34571963232 -n mingw-w64-cross-mingwarm64-headers
+2026-09-11T08:06:40.6338898Z ##[group]Run `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/install-artifacts.sh
+2026-09-11T08:06:40.6340026Z `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/install-artifacts.sh
+2026-09-11T08:06:40.6342588Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-09-11T08:06:40.6342929Z env:
+2026-09-11T08:06:40.6345584Z   GH_TOKEN: ***
+2026-09-11T08:06:40.6345848Z   FLAVOR: CROSS
+2026-09-11T08:06:40.6346093Z   CLEAN_BUILD: 1
+2026-09-11T08:06:40.6346344Z   MSYSTEM: MSYS
+2026-09-11T08:06:40.6346608Z ##[endgroup]
+2026-09-11T08:06:40.9330357Z ++ set -o pipefail
+2026-09-11T08:06:40.9331132Z ++ FLAVOR=CROSS
+2026-09-11T08:06:40.9331620Z ++ CLEAN_BUILD=1
+2026-09-11T08:06:40.9332054Z ++ INSTALL_PACKAGE=0
+2026-09-11T08:06:40.9332550Z ++ NO_EXTRACT=0
+2026-09-11T08:06:40.9334672Z + pacman -U --noconfirm mingw-w64-cross-mingwarm64-binutils-2.44dev-1-x86_64.pkg.tar.zst mingw-w64-cross-mingwarm64-gcc-stage1-15.0.1dev-3-x86_64.pkg.tar.zst mingw-w64-cross-mingwarm64-headers-13.0.0dev-1-x86_64.pkg.tar.zst
+2026-09-11T08:06:41.5717795Z loading packages...
+2026-09-11T08:06:41.5718173Z resolving dependencies...
+2026-09-11T08:06:41.7722075Z looking for conflicting packages...
+2026-09-11T08:06:41.7730453Z 
+2026-09-11T08:06:41.7732008Z Packages (6) isl-0.28-1  mingw-w64-cross-common-binutils-2.47-1  mpc-1.4.1-1  mingw-w64-cross-mingwarm64-binutils-2.44dev-1  mingw-w64-cross-mingwarm64-gcc-stage1-15.0.1dev-3  mingw-w64-cross-mingwarm64-headers-13.0.0dev-1
+2026-09-11T08:06:41.7733621Z 
+2026-09-11T08:06:41.7733938Z Total Download Size:     3.72 MiB
+2026-09-11T08:06:41.7734508Z Total Installed Size:  279.17 MiB
+2026-09-11T08:06:41.7734856Z 
+2026-09-11T08:06:41.7737441Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:06:41.7737862Z :: Retrieving packages...
+2026-09-11T08:06:42.5612869Z  mingw-w64-cross-common-binutils-2.47-1-x86_64 downloading...
+2026-09-11T08:06:42.5613490Z  isl-0.28-1-x86_64 downloading...
+2026-09-11T08:06:42.5613878Z  mpc-1.4.1-1-x86_64 downloading...
+2026-09-11T08:06:42.5614286Z checking keyring...
+2026-09-11T08:06:42.6122408Z checking package integrity...
+2026-09-11T08:06:43.0662988Z loading package files...
+2026-09-11T08:06:43.0708417Z checking for file conflicts...
+2026-09-11T08:06:43.1669219Z checking available disk space...
+2026-09-11T08:06:43.1693184Z :: Processing package changes...
+2026-09-11T08:06:43.1694520Z installing mingw-w64-cross-common-binutils...
+2026-09-11T08:06:43.3646310Z installing mingw-w64-cross-mingwarm64-binutils...
+2026-09-11T08:06:43.5004102Z installing mpc...
+2026-09-11T08:06:43.5048839Z installing isl...
+2026-09-11T08:06:43.5147121Z installing mingw-w64-cross-mingwarm64-headers...
+2026-09-11T08:06:44.8923045Z installing mingw-w64-cross-mingwarm64-gcc-stage1...
+2026-09-11T08:06:45.2156430Z :: Running post-transaction hooks...
+2026-09-11T08:06:45.2156891Z (1/1) Updating the info directory file...
+2026-09-11T08:06:45.4327958Z ##[group]Run `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/pthread-headers-hack-before.sh
+2026-09-11T08:06:45.4328860Z `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/pthread-headers-hack-before.sh
+2026-09-11T08:06:45.4331212Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-09-11T08:06:45.4331483Z env:
+2026-09-11T08:06:45.4334124Z   GH_TOKEN: ***
+2026-09-11T08:06:45.4334317Z   FLAVOR: CROSS
+2026-09-11T08:06:45.4334488Z   CLEAN_BUILD: 1
+2026-09-11T08:06:45.4334659Z   MSYSTEM: MSYS
+2026-09-11T08:06:45.4334826Z ##[endgroup]
+2026-09-11T08:06:45.7566498Z ++ set -o pipefail
+2026-09-11T08:06:45.7566842Z ++ FLAVOR=CROSS
+2026-09-11T08:06:45.7567027Z ++ CLEAN_BUILD=1
+2026-09-11T08:06:45.7567220Z ++ INSTALL_PACKAGE=0
+2026-09-11T08:06:45.7567424Z ++ NO_EXTRACT=0
+2026-09-11T08:06:45.7567705Z + pacman -S --noconfirm mingw-w64-cross-mingw64-winpthreads
+2026-09-11T08:06:46.5638214Z warning: mingw-w64-cross-mingw64-winpthreads-14.0.0.r147.g31bd54ab7-1 is up to date -- reinstalling
+2026-09-11T08:06:46.5639187Z resolving dependencies...
+2026-09-11T08:06:46.5751401Z looking for conflicting packages...
+2026-09-11T08:06:46.5856145Z 
+2026-09-11T08:06:46.5856784Z Packages (1) mingw-w64-cross-mingw64-winpthreads-14.0.0.r147.g31bd54ab7-1
+2026-09-11T08:06:46.5857366Z 
+2026-09-11T08:06:46.5857513Z Total Installed Size:  1.21 MiB
+2026-09-11T08:06:46.5857926Z Net Upgrade Size:      0.00 MiB
+2026-09-11T08:06:46.5858204Z 
+2026-09-11T08:06:46.5861080Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:06:46.5861510Z checking keyring...
+2026-09-11T08:06:46.6312625Z checking package integrity...
+2026-09-11T08:06:46.7385274Z loading package files...
+2026-09-11T08:06:46.7405234Z checking for file conflicts...
+2026-09-11T08:06:46.7405766Z checking available disk space...
+2026-09-11T08:06:46.7423821Z :: Processing package changes...
+2026-09-11T08:06:46.7424311Z reinstalling mingw-w64-cross-mingw64-winpthreads...
+2026-09-11T08:06:46.8028805Z + cp /opt/x86_64-w64-mingw32/include/pthread_signal.h /opt/aarch64-w64-mingw32/include/
+2026-09-11T08:06:46.8242492Z + cp /opt/x86_64-w64-mingw32/include/pthread_unistd.h /opt/aarch64-w64-mingw32/include/
+2026-09-11T08:06:46.8418232Z + cp /opt/x86_64-w64-mingw32/include/pthread_time.h /opt/aarch64-w64-mingw32/include/
+2026-09-11T08:06:46.8833197Z ##[group]Run `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/enable-ccache.sh
+2026-09-11T08:06:46.8833999Z `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/enable-ccache.sh
+2026-09-11T08:06:46.8836482Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-09-11T08:06:46.8836773Z env:
+2026-09-11T08:06:46.8839815Z   GH_TOKEN: ***
+2026-09-11T08:06:46.8840019Z   FLAVOR: CROSS
+2026-09-11T08:06:46.8840202Z   CLEAN_BUILD: 1
+2026-09-11T08:06:46.8840381Z   MSYSTEM: MSYS
+2026-09-11T08:06:46.8840553Z ##[endgroup]
+2026-09-11T08:06:47.1842748Z ++ set -o pipefail
+2026-09-11T08:06:47.1843163Z ++ FLAVOR=CROSS
+2026-09-11T08:06:47.1843471Z ++ CLEAN_BUILD=1
+2026-09-11T08:06:47.1843771Z ++ INSTALL_PACKAGE=0
+2026-09-11T08:06:47.1844078Z ++ NO_EXTRACT=0
+2026-09-11T08:06:47.1929630Z ++ dirname /d/a/msys2-woarm64-build/msys2-woarm64-build/.github/scripts/enable-ccache.sh
+2026-09-11T08:06:47.2015069Z + DIR=/d/a/msys2-woarm64-build/msys2-woarm64-build/.github/scripts/../..
+2026-09-11T08:06:47.2098988Z ++ realpath /d/a/msys2-woarm64-build/msys2-woarm64-build/.github/scripts/../..
+2026-09-11T08:06:47.2215374Z + DIR=/d/a/msys2-woarm64-build/msys2-woarm64-build
+2026-09-11T08:06:47.2216343Z + CCACHE_DIR=/d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:06:47.2217265Z + [[ -n D:\a\msys2-woarm64-build\msys2-woarm64-build ]]
+2026-09-11T08:06:47.2218095Z + echo CCACHE_DIR=/d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:06:47.2314416Z ++ date -u --iso-8601=seconds
+2026-09-11T08:06:47.2435815Z + echo timestamp=2026-09-11T08:06:47+00:00
+2026-09-11T08:06:47.2438973Z + mkdir -p /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:06:47.2630978Z + pushd /
+2026-09-11T08:06:47.2632758Z / /d/a/msys2-woarm64-build/msys2-woarm64-build
+2026-09-11T08:06:47.2633526Z + echo ::group::/etc/makepkg.conf
+2026-09-11T08:06:47.2634168Z + apply_patch /d/a/msys2-woarm64-build/msys2-woarm64-build/patches/ccache/0001-makepkg.patch
+2026-09-11T08:06:47.2634894Z ##[group]/etc/makepkg.conf
+2026-09-11T08:06:47.2635386Z + patch -R -p1 --dry-run -b -i /d/a/msys2-woarm64-build/msys2-woarm64-build/patches/ccache/0001-makepkg.patch
+2026-09-11T08:06:47.2860693Z + patch -p1 -b -i /d/a/msys2-woarm64-build/msys2-woarm64-build/patches/ccache/0001-makepkg.patch
+2026-09-11T08:06:47.3016663Z (Stripping trailing CRs from patch; use --binary to disable.)
+2026-09-11T08:06:47.3020931Z patching file etc/makepkg.conf
+2026-09-11T08:06:47.3022344Z Hunk #1 succeeded at 64 (offset 1 line).
+2026-09-11T08:06:47.3042486Z + cat /etc/makepkg.conf
+2026-09-11T08:06:47.3226959Z #
+2026-09-11T08:06:47.3227325Z # /etc/makepkg.conf
+2026-09-11T08:06:47.3227705Z #
+2026-09-11T08:06:47.3227860Z 
+2026-09-11T08:06:47.3228053Z #########################################################################
+2026-09-11T08:06:47.3228847Z # SOURCE ACQUISITION
+2026-09-11T08:06:47.3229237Z #########################################################################
+2026-09-11T08:06:47.3229838Z #
+2026-09-11T08:06:47.3230306Z #-- The download utilities that makepkg should use to acquire sources
+2026-09-11T08:06:47.3230939Z #  Format: 'protocol::agent'
+2026-09-11T08:06:47.3231377Z DLAGENTS=('file::/usr/bin/curl -qgC - -o %o %u'
+2026-09-11T08:06:47.3232071Z           'ftp::/usr/bin/curl -qgfC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u'
+2026-09-11T08:06:47.3232895Z           'http::/usr/bin/curl -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
+2026-09-11T08:06:47.3233667Z           'https::/usr/bin/curl -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
+2026-09-11T08:06:47.3234324Z           'rsync::/usr/bin/rsync --no-motd -z %u %o'
+2026-09-11T08:06:47.3234951Z           'scp::/usr/bin/scp -C %u %o')
+2026-09-11T08:06:47.3235248Z 
+2026-09-11T08:06:47.3235372Z # Other common tools:
+2026-09-11T08:06:47.3235682Z # /usr/bin/snarf
+2026-09-11T08:06:47.3235982Z # /usr/bin/lftpget -c
+2026-09-11T08:06:47.3236290Z # /usr/bin/wget
+2026-09-11T08:06:47.3236465Z 
+2026-09-11T08:06:47.3239441Z #-- The package required by makepkg to download VCS sources
+2026-09-11T08:06:47.3240089Z #  Format: 'protocol::package'
+2026-09-11T08:06:47.3240485Z VCSCLIENTS=('bzr::breezy'
+2026-09-11T08:06:47.3240821Z             'fossil::fossil'
+2026-09-11T08:06:47.3241156Z             'git::git'
+2026-09-11T08:06:47.3241490Z             'hg::mercurial'
+2026-09-11T08:06:47.3241867Z             'svn::subversion')
+2026-09-11T08:06:47.3242029Z 
+2026-09-11T08:06:47.3242137Z #########################################################################
+2026-09-11T08:06:47.3242583Z # ARCHITECTURE, COMPILE FLAGS
+2026-09-11T08:06:47.3242903Z #########################################################################
+2026-09-11T08:06:47.3243176Z #
+2026-09-11T08:06:47.3243336Z CARCH="x86_64"
+2026-09-11T08:06:47.3243556Z + echo ::endgroup::
+2026-09-11T08:06:47.3243757Z + echo ::group::/etc/makepkg_mingw.conf
+2026-09-11T08:06:47.3244227Z + apply_patch /d/a/msys2-woarm64-build/msys2-woarm64-build/patches/ccache/0002-makepkg-mingw.patch
+2026-09-11T08:06:47.3244949Z + patch -R -p1 --dry-run -b -i /d/a/msys2-woarm64-build/msys2-woarm64-build/patches/ccache/0002-makepkg-mingw.patch
+2026-09-11T08:06:47.3245451Z CHOST="x86_64-pc-cygwin"
+2026-09-11T08:06:47.3245669Z RUST_CHOST="x86_64-pc-cygwin"
+2026-09-11T08:06:47.3245821Z 
+2026-09-11T08:06:47.3245904Z #-- Compiler and Linker Flags
+2026-09-11T08:06:47.3246186Z # -march (or -mcpu) builds exclusively for an architecture
+2026-09-11T08:06:47.3246611Z # -mtune optimizes for an architecture, but builds for whole processor family
+2026-09-11T08:06:47.3246963Z CC=gcc
+2026-09-11T08:06:47.3247112Z CXX=g++
+2026-09-11T08:06:47.3247265Z CPPFLAGS=
+2026-09-11T08:06:47.3247492Z CFLAGS="-march=nocona -msahf -mtune=generic -O2 -pipe"
+2026-09-11T08:06:47.3247840Z CXXFLAGS="-march=nocona -msahf -mtune=generic -O2 -pipe"
+2026-09-11T08:06:47.3248119Z LDFLAGS=""
+2026-09-11T08:06:47.3248321Z #-- Make Flags: change this for DistCC/SMP systems
+2026-09-11T08:06:47.3248997Z MAKEFLAGS="-j$(($(nproc)+1))"
+2026-09-11T08:06:47.3249243Z #-- Debugging flags
+2026-09-11T08:06:47.3249436Z DEBUG_CFLAGS="-ggdb -Og"
+2026-09-11T08:06:47.3249643Z DEBUG_CXXFLAGS="-ggdb -Og"
+2026-09-11T08:06:47.3249881Z 
+2026-09-11T08:06:47.3250072Z #########################################################################
+2026-09-11T08:06:47.3251322Z # BUILD ENVIRONMENT
+2026-09-11T08:06:47.3251708Z #########################################################################
+2026-09-11T08:06:47.3252177Z #
+2026-09-11T08:06:47.3252605Z # Makepkg defaults: BUILDENV=(!distcc !color !ccache check !sign)
+2026-09-11T08:06:47.3253373Z #  A negated environment option will do the opposite of the comments below.
+2026-09-11T08:06:47.3253998Z #
+2026-09-11T08:06:47.3254347Z #-- distcc:   Use the Distributed C/C++/ObjC compiler
+2026-09-11T08:06:47.3254885Z #-- color:    Colorize output messages
+2026-09-11T08:06:47.3255364Z #-- ccache:   Use ccache to cache compilation
+2026-09-11T08:06:47.3256271Z #-- check:    Run the check() function if present in the PKGBUILD
+2026-09-11T08:06:47.3256878Z #-- sign:     Generate PGP signature file
+2026-09-11T08:06:47.3257305Z #
+2026-09-11T08:06:47.3257616Z BUILDENV=(!distcc color ccache check !sign)
+2026-09-11T08:06:47.3258042Z #
+2026-09-11T08:06:47.3258489Z #-- If using DistCC, your MAKEFLAGS will also need modification. In addition,
+2026-09-11T08:06:47.3259301Z #-- specify a space-delimited list of hosts running in the DistCC cluster.
+2026-09-11T08:06:47.3259903Z #DISTCC_HOSTS=""
+2026-09-11T08:06:47.3260179Z #
+2026-09-11T08:06:47.3260481Z #-- Specify a directory for package building.
+2026-09-11T08:06:47.3260935Z #BUILDDIR=/tmp/makepkg
+2026-09-11T08:06:47.3261138Z 
+2026-09-11T08:06:47.3261319Z #########################################################################
+2026-09-11T08:06:47.3261831Z # GLOBAL PACKAGE OPTIONS
+2026-09-11T08:06:47.3262314Z #   These are default values for the options=() settings
+2026-09-11T08:06:47.3263330Z #########################################################################
+2026-09-11T08:06:47.3263631Z #
+2026-09-11T08:06:47.3263792Z # Makepkg defaults:
+2026-09-11T08:06:47.3264201Z # OPTIONS=(!strip docs libtool staticlibs emptydirs !zipman !purge !debug !lto !autodeps)
+2026-09-11T08:06:47.3264704Z #  A negated option will do the opposite of the comments below.
+2026-09-11T08:06:47.3265009Z #
+2026-09-11T08:06:47.3265238Z #-- strip:      Strip symbols from binaries/libraries
+2026-09-11T08:06:47.3265822Z #-- docs:       Save doc directories specified by DOC_DIRS
+2026-09-11T08:06:47.3266400Z #-- libtool:    Leave libtool (.la) files in packages
+2026-09-11T08:06:47.3266989Z #-- staticlibs: Leave static library (.a) files in packages
+2026-09-11T08:06:47.3267534Z #-- emptydirs:  Leave empty directories in packages
+2026-09-11T08:06:47.3268204Z #-- zipman:     Compress manual (man and info) pages in MAN_DIRS with gzip
+2026-09-11T08:06:47.3269239Z #-- purge:      Remove files specified by PURGE_TARGETS
+2026-09-11T08:06:47.3269895Z #-- debug:      Add debugging flags as specified in DEBUG_* variables
+2026-09-11T08:06:47.3270622Z #-- lto:        Add compile flags for building with link time optimization
+2026-09-11T08:06:47.3271275Z #-- autodeps:   Automatically add depends/provides
+2026-09-11T08:06:47.3271742Z #
+2026-09-11T08:06:47.3272297Z OPTIONS=(strip docs !libtool staticlibs emptydirs zipman purge !debug !lto !autodeps)
+2026-09-11T08:06:47.3272911Z 
+2026-09-11T08:06:47.3273316Z #-- File integrity checks to use. Valid: ck, md5, sha1, sha224, sha256, sha384, sha512, b2
+2026-09-11T08:06:47.3274042Z INTEGRITY_CHECK=(sha256)
+2026-09-11T08:06:47.3274588Z #-- Options to be used when stripping binaries. See `man strip' for details.
+2026-09-11T08:06:47.3275262Z STRIP_BINARIES="--strip-all"
+2026-09-11T08:06:47.3275879Z #-- Options to be used when stripping shared libraries. See `man strip' for details.
+2026-09-11T08:06:47.3276585Z STRIP_SHARED="--strip-unneeded"
+2026-09-11T08:06:47.3277243Z #-- Options to be used when stripping static libraries. See `man strip' for details.
+2026-09-11T08:06:47.3277947Z STRIP_STATIC="--strip-debug"
+2026-09-11T08:06:47.3278509Z #-- Manual (man and info) directories to compress (if zipman is specified)
+2026-09-11T08:06:47.3279435Z MAN_DIRS=({{,usr/}{,local/}{,share/},opt/*/}{man,info} mingw{32,64}{{,/local}{,/share},/opt/*}/{man,info})
+2026-09-11T08:06:47.3280502Z #-- Doc directories to remove (if !docs is specified)
+2026-09-11T08:06:47.3281386Z DOC_DIRS=({,usr/}{,local/}{,share/}{doc,gtk-doc} mingw{32,64}/{,local/}{,share/}{doc,gtk-doc} opt/*/{doc,gtk-doc})
+2026-09-11T08:06:47.3282343Z #-- Files to be removed from all packages (if purge is specified)
+2026-09-11T08:06:47.3283096Z PURGE_TARGETS=({,usr/}{,share}/info/dir mingw{32,64}/{,share}/info/dir .packlist *.pod)
+2026-09-11T08:06:47.3283843Z #-- Directory to store source code in for debug packages
+2026-09-11T08:06:47.3284347Z DBGSRCDIR="/usr/src/debug"
+2026-09-11T08:06:47.3284757Z #-- Prefix and directories for library autodeps
+2026-09-11T08:06:47.3285254Z LIB_DIRS=('lib:usr/lib' 'lib32:usr/lib32')
+2026-09-11T08:06:47.3285575Z 
+2026-09-11T08:06:47.3285842Z #########################################################################
+2026-09-11T08:06:47.3286372Z # PACKAGE OUTPUT
+2026-09-11T08:06:47.3286743Z #########################################################################
+2026-09-11T08:06:47.3287234Z #
+2026-09-11T08:06:47.3287659Z # Default: put built package and cached source in build directory
+2026-09-11T08:06:47.3288238Z #
+2026-09-11T08:06:47.3288732Z #-- Destination: specify a fixed directory where all packages will be placed
+2026-09-11T08:06:47.3289405Z #PKGDEST=/var/packages
+2026-09-11T08:06:47.3289960Z #-- Source cache: specify a fixed directory where source files will be cached
+2026-09-11T08:06:47.3290612Z #SRCDEST=/var/sources
+2026-09-11T08:06:47.3291202Z #-- Source packages: specify a fixed directory where all src packages will be placed
+2026-09-11T08:06:47.3291895Z #SRCPKGDEST=/var/srcpackages
+2026-09-11T08:06:47.3292661Z #-- Log files: specify a fixed directory where all log files will be placed
+2026-09-11T08:06:47.3293312Z #LOGDEST=/var/makepkglogs
+2026-09-11T08:06:47.3293863Z #-- Packager: name/email of the person or organization building packages
+2026-09-11T08:06:47.3294852Z #PACKAGER="John Doe <john@doe.com>"
+2026-09-11T08:06:47.3295311Z #-- Specify a key to use for package signing
+2026-09-11T08:06:47.3295751Z #GPGKEY=""
+2026-09-11T08:06:47.3295922Z 
+2026-09-11T08:06:47.3296095Z #########################################################################
+2026-09-11T08:06:47.3296574Z # COMPRESSION DEFAULTS
+2026-09-11T08:06:47.3296944Z #########################################################################
+2026-09-11T08:06:47.3297397Z #
+2026-09-11T08:06:47.3297678Z COMPRESSGZ=(gzip -c -f -n)
+2026-09-11T08:06:47.3298082Z COMPRESSBZ2=(bzip2 -c -f)
+2026-09-11T08:06:47.3298471Z COMPRESSXZ=(xz -c -z -T0 -)
+2026-09-11T08:06:47.3298876Z COMPRESSZST=(zstd -c -T0 -)
+2026-09-11T08:06:47.3299375Z COMPRESSLRZ=(lrzip -q)
+2026-09-11T08:06:47.3299749Z COMPRESSLZO=(lzop -q)
+2026-09-11T08:06:47.3300113Z COMPRESSZ=(compress -c -f)
+2026-09-11T08:06:47.3300510Z COMPRESSLZ4=(lz4 -q)
+2026-09-11T08:06:47.3300874Z COMPRESSLZ=(lzip -c -f)
+2026-09-11T08:06:47.3301129Z 
+2026-09-11T08:06:47.3301303Z #########################################################################
+2026-09-11T08:06:47.3301813Z # EXTENSION DEFAULTS
+2026-09-11T08:06:47.3302203Z #########################################################################
+2026-09-11T08:06:47.3302682Z #
+2026-09-11T08:06:47.3302957Z PKGEXT='.pkg.tar.zst'
+2026-09-11T08:06:47.3303325Z SRCEXT='.src.tar.zst'
+2026-09-11T08:06:47.3303526Z 
+2026-09-11T08:06:47.3303695Z #########################################################################
+2026-09-11T08:06:47.3304147Z # OTHER
+2026-09-11T08:06:47.3304797Z #########################################################################
+2026-09-11T08:06:47.3305266Z #
+2026-09-11T08:06:47.3305705Z #-- Command used to run pacman as root, instead of trying sudo and su
+2026-09-11T08:06:47.3306278Z PACMAN_AUTH=()
+2026-09-11T08:06:47.3306899Z ##[endgroup]
+2026-09-11T08:06:47.3307430Z ##[group]/etc/makepkg_mingw.conf
+2026-09-11T08:06:47.3423126Z + patch -p1 -b -i /d/a/msys2-woarm64-build/msys2-woarm64-build/patches/ccache/0002-makepkg-mingw.patch
+2026-09-11T08:06:47.3576658Z (Stripping trailing CRs from patch; use --binary to disable.)
+2026-09-11T08:06:47.3580687Z patching file etc/makepkg_mingw.conf
+2026-09-11T08:06:47.3582070Z Hunk #1 succeeded at 65 (offset -72 lines).
+2026-09-11T08:06:47.3601430Z + cat /etc/makepkg_mingw.conf
+2026-09-11T08:06:47.3761650Z #
+2026-09-11T08:06:47.3762331Z # /etc/makepkg_mingw.conf
+2026-09-11T08:06:47.3762683Z #
+2026-09-11T08:06:47.3762840Z 
+2026-09-11T08:06:47.3763033Z #########################################################################
+2026-09-11T08:06:47.3763775Z # SOURCE ACQUISITION
+2026-09-11T08:06:47.3764208Z #########################################################################
+2026-09-11T08:06:47.3765952Z #
+2026-09-11T08:06:47.3766438Z #-- The download utilities that makepkg should use to acquire sources
+2026-09-11T08:06:47.3767202Z #  Format: 'protocol::agent'
+2026-09-11T08:06:47.3767902Z DLAGENTS=('file::/usr/bin/curl -qgC - -o %o %u'
+2026-09-11T08:06:47.3768627Z           'ftp::/usr/bin/curl -qgfC - --ftp-pasv --retry 3 --retry-delay 3 -o %o %u'
+2026-09-11T08:06:47.3769905Z           'http::/usr/bin/curl -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
+2026-09-11T08:06:47.3770696Z           'https::/usr/bin/curl -qgb "" -fLC - --retry 3 --retry-delay 3 -o %o %u'
+2026-09-11T08:06:47.3771364Z           'rsync::/usr/bin/rsync --no-motd -z %u %o'
+2026-09-11T08:06:47.3771892Z           'scp::/usr/bin/scp -C %u %o')
+2026-09-11T08:06:47.3772188Z 
+2026-09-11T08:06:47.3772312Z # Other common tools:
+2026-09-11T08:06:47.3772623Z # /usr/bin/snarf
+2026-09-11T08:06:47.3772941Z # /usr/bin/lftpget -c
+2026-09-11T08:06:47.3773247Z # /usr/bin/wget
+2026-09-11T08:06:47.3773429Z 
+2026-09-11T08:06:47.3774018Z #-- The package required by makepkg to download VCS sources
+2026-09-11T08:06:47.3774586Z #  Format: 'protocol::package'
+2026-09-11T08:06:47.3774970Z VCSCLIENTS=('bzr::breezy'
+2026-09-11T08:06:47.3775322Z             'fossil::fossil'
+2026-09-11T08:06:47.3775665Z             'git::git'
+2026-09-11T08:06:47.3775993Z             'hg::mercurial'
+2026-09-11T08:06:47.3776334Z             'svn::subversion')
+2026-09-11T08:06:47.3776582Z 
+2026-09-11T08:06:47.3776773Z #########################################################################
+2026-09-11T08:06:47.3777291Z # ARCHITECTURE, COMPILE FLAGS
+2026-09-11T08:06:47.3777717Z #########################################################################
+2026-09-11T08:06:47.3778165Z #
+2026-09-11T08:06:47.3778300Z 
+2026-09-11T08:06:47.3778505Z if [ -e "/etc/makepkg_mingw.d/${MSYSTEM,,}.conf" ]; then
+2026-09-11T08:06:47.3779045Z   source "/etc/makepkg_mingw.d/${MSYSTEM,,}.conf"
+2026-09-11T08:06:47.3779475Z else
+2026-09-11T08:06:47.3779765Z   echo "Unsupported MSYSTEM: $MSYSTEM"
+2026-09-11T08:06:47.3780109Z   exit 1
+2026-09-11T08:06:47.3780257Z fi
+2026-09-11T08:06:47.3780344Z 
+2026-09-11T08:06:47.3780446Z # DirectX compatibility environment variable
+2026-09-11T08:06:47.3780732Z DXSDK_DIR=${MINGW_PREFIX}/${MINGW_CHOST}
+2026-09-11T08:06:47.3781526Z 
+2026-09-11T08:06:47.3781776Z #-- Make Flags: change this for DistCC/SMP systems
+2026-09-11T08:06:47.3782335Z MAKEFLAGS="-j$(($(nproc)+1))"
+2026-09-11T08:06:47.3782730Z #-- Debugging flags
+2026-09-11T08:06:47.3783076Z DEBUG_CFLAGS="-ggdb -Og"
+2026-09-11T08:06:47.3783859Z DEBUG_CXXFLAGS="-ggdb -Og"
+2026-09-11T08:06:47.3784152Z 
+2026-09-11T08:06:47.3785049Z ACLOCAL_PATH="${MINGW_PREFIX}/share/aclocal:/usr/share/aclocal"
+2026-09-11T08:06:47.3786182Z PKG_CONFIG_PATH="${MINGW_PREFIX}/lib/pkgconfig:${MINGW_PREFIX}/share/pkgconfig"
+2026-09-11T08:06:47.3786762Z 
+2026-09-11T08:06:47.3786954Z #########################################################################
+2026-09-11T08:06:47.3787492Z # BUILD ENVIRONMENT
+2026-09-11T08:06:47.3787915Z #########################################################################
+2026-09-11T08:06:47.3788389Z #
+2026-09-11T08:06:47.3788817Z # Makepkg defaults: BUILDENV=(!distcc !color !ccache check !sign)
+2026-09-11T08:06:47.3789616Z #  A negated environment option will do the opposite of the comments below.
+2026-09-11T08:06:47.3790570Z #
+2026-09-11T08:06:47.3790927Z #-- distcc:   Use the Distributed C/C++/ObjC compiler
+2026-09-11T08:06:47.3791418Z #-- color:    Colorize output messages
+2026-09-11T08:06:47.3791810Z #-- ccache:   Use ccache to cache compilation
+2026-09-11T08:06:47.3792420Z #-- check:    Run the check() function if present in the PKGBUILD
+2026-09-11T08:06:47.3793285Z #-- sign:     Generate PGP signature file
+2026-09-11T08:06:47.3793719Z #
+2026-09-11T08:06:47.3794051Z BUILDENV=(!distcc color ccache check !sign)
+2026-09-11T08:06:47.3794501Z #
+2026-09-11T08:06:47.3794977Z #-- If using DistCC, your MAKEFLAGS will also need modification. In addition,
+2026-09-11T08:06:47.3795850Z #-- specify a space-delimited list of hosts running in the DistCC cluster.
+2026-09-11T08:06:47.3796506Z #DISTCC_HOSTS=""
+2026-09-11T08:06:47.3796806Z #
+2026-09-11T08:06:47.3797137Z #-- Specify a directory for package building.
+2026-09-11T08:06:47.3797646Z #BUILDDIR=/tmp/makepkg
+2026-09-11T08:06:47.3797894Z 
+2026-09-11T08:06:47.3798076Z #########################################################################
+2026-09-11T08:06:47.3798600Z # GLOBAL PACKAGE OPTIONS
+2026-09-11T08:06:47.3799062Z #   These are default values for the options=() settings
+2026-09-11T08:06:47.3799637Z #########################################################################
+2026-09-11T08:06:47.3800118Z #
+2026-09-11T08:06:47.3800392Z # Makepkg defaults:
+2026-09-11T08:06:47.3801041Z # OPTIONS=(!strip docs libtool staticlibs emptydirs !zipman !purge !debug !lto !autodeps)
+2026-09-11T08:06:47.3801935Z #  A negated option will do the opposite of the comments below.
+2026-09-11T08:06:47.3802501Z #
+2026-09-11T08:06:47.3803925Z #-- strip:      Strip symbols from binaries/libraries
+2026-09-11T08:06:47.3804528Z #-- docs:       Save doc directories specified by DOC_DIRS
+2026-09-11T08:06:47.3804893Z #-- libtool:    Leave libtool (.la) files in packages
+2026-09-11T08:06:47.3805256Z #-- staticlibs: Leave static library (.a) files in packages
+2026-09-11T08:06:47.3805619Z #-- emptydirs:  Leave empty directories in packages
+2026-09-11T08:06:47.3806242Z #-- zipman:     Compress manual (man and info) pages in MAN_DIRS with gzip
+2026-09-11T08:06:47.3806641Z #-- purge:      Remove files specified by PURGE_TARGETS
+2026-09-11T08:06:47.3807002Z #-- debug:      Add debugging flags as specified in DEBUG_* variables
+2026-09-11T08:06:47.3807415Z #-- lto:        Add compile flags for building with link time optimization
+2026-09-11T08:06:47.3807795Z #-- autodeps:   Automatically add depends/provides
+2026-09-11T08:06:47.3808067Z #
+2026-09-11T08:06:47.3808381Z OPTIONS=(strip docs !libtool staticlibs emptydirs zipman purge !debug !lto !autodeps)
+2026-09-11T08:06:47.3809026Z 
+2026-09-11T08:06:47.3809408Z #-- File integrity checks to use. Valid: ck, md5, sha1, sha224, sha256, sha384, sha512, b2
+2026-09-11T08:06:47.3810097Z INTEGRITY_CHECK=(sha256)
+2026-09-11T08:06:47.3810624Z #-- Options to be used when stripping binaries. See `man strip' for details.
+2026-09-11T08:06:47.3811274Z STRIP_BINARIES="--strip-all"
+2026-09-11T08:06:47.3811920Z #-- Options to be used when stripping shared libraries. See `man strip' for details.
+2026-09-11T08:06:47.3812606Z STRIP_SHARED="--strip-unneeded"
+2026-09-11T08:06:47.3813246Z #-- Options to be used when stripping static libraries. See `man strip' for details.
+2026-09-11T08:06:47.3813846Z STRIP_STATIC="--strip-debug"
+2026-09-11T08:06:47.3814355Z #-- Manual (man and info) directories to compress (if zipman is specified)
+2026-09-11T08:06:47.3815750Z MAN_DIRS=("${MINGW_PREFIX#/}"{{,/local}{,/share},/opt/*}/{man,info})
+2026-09-11T08:06:47.3816186Z #-- Doc directories to remove (if !docs is specified)
+2026-09-11T08:06:47.3816557Z DOC_DIRS=("${MINGW_PREFIX#/}"/{,local/}{,share/}{doc,gtk-doc})
+2026-09-11T08:06:47.3816957Z #-- Files to be removed from all packages (if purge is specified)
+2026-09-11T08:06:47.3817377Z PURGE_TARGETS=("${MINGW_PREFIX#/}"/{,share/}info/dir .packlist *.pod)
+2026-09-11T08:06:47.3817955Z #-- Directory to store source code in for debug packages
+2026-09-11T08:06:47.3818264Z DBGSRCDIR="${MINGW_PREFIX}/src/debug"
+2026-09-11T08:06:47.3818785Z #-- Prefix and directories for library autodeps
+2026-09-11T08:06:47.3819402Z LIB_DIRS=("lib:${MINGW_PREFIX#/}/lib" "lib32:${MINGW_PREFIX#/}/lib32")
+2026-09-11T08:06:47.3819850Z 
+2026-09-11T08:06:47.3820011Z + echo ::endgroup::
+2026-09-11T08:06:47.3820295Z + popd
+2026-09-11T08:06:47.3820587Z + pacman -S --noconfirm ccache
+2026-09-11T08:06:47.3821029Z #########################################################################
+2026-09-11T08:06:47.3821411Z # PACKAGE OUTPUT
+2026-09-11T08:06:47.3821803Z #########################################################################
+2026-09-11T08:06:47.3822269Z #
+2026-09-11T08:06:47.3822982Z # Default: put built package and cached source in build directory
+2026-09-11T08:06:47.3823533Z #
+2026-09-11T08:06:47.3823999Z #-- Destination: specify a fixed directory where all packages will be placed
+2026-09-11T08:06:47.3824650Z #PKGDEST=/var/packages-mingw64
+2026-09-11T08:06:47.3825194Z #-- Source cache: specify a fixed directory where source files will be cached
+2026-09-11T08:06:47.3825872Z #SRCDEST=/var/sources
+2026-09-11T08:06:47.3826231Z #-- Source packages: specify a fixed directory where all src packages will be placed
+2026-09-11T08:06:47.3826661Z #SRCPKGDEST=/var/srcpackages-mingw64
+2026-09-11T08:06:47.3827017Z #-- Log files: specify a fixed directory where all log files will be placed
+2026-09-11T08:06:47.3827397Z #LOGDEST=/var/makepkglogs
+2026-09-11T08:06:47.3827773Z #-- Packager: name/email of the person or organization building packages
+2026-09-11T08:06:47.3828621Z #PACKAGER="John Doe <john@doe.com>"
+2026-09-11T08:06:47.3829069Z #-- Specify a key to use for package signing
+2026-09-11T08:06:47.3829492Z #GPGKEY=""
+2026-09-11T08:06:47.3829655Z 
+2026-09-11T08:06:47.3829823Z #########################################################################
+2026-09-11T08:06:47.3830306Z # COMPRESSION DEFAULTS
+2026-09-11T08:06:47.3830685Z #########################################################################
+2026-09-11T08:06:47.3831144Z #
+2026-09-11T08:06:47.3831440Z COMPRESSGZ=(gzip -c -f -n)
+2026-09-11T08:06:47.3831836Z COMPRESSBZ2=(bzip2 -c -f)
+2026-09-11T08:06:47.3832196Z COMPRESSXZ=(xz -c -z -T0 -)
+2026-09-11T08:06:47.3832566Z COMPRESSZST=(zstd -c -T0 -)
+2026-09-11T08:06:47.3832958Z COMPRESSLRZ=(lrzip -q)
+2026-09-11T08:06:47.3833307Z COMPRESSLZO=(lzop -q)
+2026-09-11T08:06:47.3833663Z COMPRESSZ=(compress -c -f)
+2026-09-11T08:06:47.3834018Z COMPRESSLZ4=(lz4 -q)
+2026-09-11T08:06:47.3834355Z COMPRESSLZ=(lzip -c -f)
+2026-09-11T08:06:47.3834584Z 
+2026-09-11T08:06:47.3834773Z #########################################################################
+2026-09-11T08:06:47.3835534Z # EXTENSION DEFAULTS
+2026-09-11T08:06:47.3835941Z #########################################################################
+2026-09-11T08:06:47.3836427Z #
+2026-09-11T08:06:47.3836709Z PKGEXT='.pkg.tar.zst'
+2026-09-11T08:06:47.3837052Z SRCEXT='.src.tar.zst'
+2026-09-11T08:06:47.3837254Z 
+2026-09-11T08:06:47.3837430Z #########################################################################
+2026-09-11T08:06:47.3837876Z # OTHER
+2026-09-11T08:06:47.3838164Z #########################################################################
+2026-09-11T08:06:47.3838594Z #
+2026-09-11T08:06:47.3839050Z #-- Command used to run pacman as root, instead of trying sudo and su
+2026-09-11T08:06:47.3839641Z PACMAN_AUTH=()
+2026-09-11T08:06:47.3840247Z ##[endgroup]
+2026-09-11T08:06:47.3840584Z /d/a/msys2-woarm64-build/msys2-woarm64-build
+2026-09-11T08:06:48.1917306Z resolving dependencies...
+2026-09-11T08:06:48.2122983Z looking for conflicting packages...
+2026-09-11T08:06:48.2139250Z 
+2026-09-11T08:06:48.2139637Z Packages (5) doctest-2.5.3-1  fmt-12.2.0-1  libblake3-1.8.7-1  libxxhash-0.8.3-1  ccache-4.14-1
+2026-09-11T08:06:48.2140050Z 
+2026-09-11T08:06:48.2140141Z Total Download Size:   0.96 MiB
+2026-09-11T08:06:48.2140398Z Total Installed Size:  3.18 MiB
+2026-09-11T08:06:48.2140852Z 
+2026-09-11T08:06:48.2144667Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:06:48.2145011Z :: Retrieving packages...
+2026-09-11T08:06:49.9126984Z  ccache-4.14-1-x86_64 downloading...
+2026-09-11T08:06:49.9127361Z  fmt-12.2.0-1-x86_64 downloading...
+2026-09-11T08:06:49.9127699Z  doctest-2.5.3-1-any downloading...
+2026-09-11T08:06:49.9128029Z  libblake3-1.8.7-1-x86_64 downloading...
+2026-09-11T08:06:49.9128353Z  libxxhash-0.8.3-1-x86_64 downloading...
+2026-09-11T08:06:49.9128650Z checking keyring...
+2026-09-11T08:06:49.9644455Z checking package integrity...
+2026-09-11T08:06:50.5195570Z loading package files...
+2026-09-11T08:06:50.5255765Z checking for file conflicts...
+2026-09-11T08:06:50.5289682Z checking available disk space...
+2026-09-11T08:06:50.5299485Z :: Processing package changes...
+2026-09-11T08:06:50.5300257Z installing fmt...
+2026-09-11T08:06:50.5577347Z installing doctest...
+2026-09-11T08:06:50.5732750Z installing libxxhash...
+2026-09-11T08:06:50.5783702Z installing libblake3...
+2026-09-11T08:06:50.5879683Z installing ccache...
+2026-09-11T08:06:51.1681631Z + pushd /usr/lib/ccache/bin
+2026-09-11T08:06:51.1686475Z /usr/lib/ccache/bin /d/a/msys2-woarm64-build/msys2-woarm64-build
+2026-09-11T08:06:51.1687443Z ##[group]Add aarch64 toolchain to ccache
+2026-09-11T08:06:51.1687950Z + echo '::group::Add aarch64 toolchain to ccache'
+2026-09-11T08:06:51.1688780Z + export MSYS=winsymlinks
+2026-09-11T08:06:51.1689124Z + MSYS=winsymlinks
+2026-09-11T08:06:51.1689490Z + ln -sf /usr/bin/ccache aarch64-w64-mingw32-c++
+2026-09-11T08:06:51.1966719Z + ln -sf /usr/bin/ccache aarch64-w64-mingw32-g++
+2026-09-11T08:06:51.2240241Z + ln -sf /usr/bin/ccache aarch64-w64-mingw32-gcc
+2026-09-11T08:06:51.2496357Z + echo ::endgroup::
+2026-09-11T08:06:51.2497051Z ##[endgroup]
+2026-09-11T08:06:51.2497337Z + popd
+2026-09-11T08:06:51.2501256Z /d/a/msys2-woarm64-build/msys2-woarm64-build
+2026-09-11T08:06:51.2743308Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:06:51.2744955Z ##[group]Run actions/cache/restore@v4
+2026-09-11T08:06:51.2745195Z with:
+2026-09-11T08:06:51.2745436Z   path: D:\a\msys2-woarm64-build\msys2-woarm64-build/ccache
+2026-09-11T08:06:51.2745856Z   key: mingw-w64-cross-mingwarm64-crt-ccache-2026-09-11T08:06:47+00:00
+2026-09-11T08:06:51.2746253Z   restore-keys: mingw-w64-cross-mingwarm64-crt-
+2026-09-11T08:06:51.2746548Z   enableCrossOsArchive: false
+2026-09-11T08:06:51.2746779Z   fail-on-cache-miss: false
+2026-09-11T08:06:51.2746986Z   lookup-only: false
+2026-09-11T08:06:51.2747173Z env:
+2026-09-11T08:06:51.2749751Z   GH_TOKEN: ***
+2026-09-11T08:06:51.2749938Z   FLAVOR: CROSS
+2026-09-11T08:06:51.2750134Z   CLEAN_BUILD: 1
+2026-09-11T08:06:51.2750307Z   MSYSTEM: MSYS
+2026-09-11T08:06:51.2750576Z   CCACHE_DIR: /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:06:51.2750910Z ##[endgroup]
+2026-09-11T08:06:51.4082438Z (node:8632) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-11T08:06:51.4150170Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-11T08:06:51.6089858Z Cache not found for input keys: mingw-w64-cross-mingwarm64-crt-ccache-2026-09-11T08:06:47+00:00, mingw-w64-cross-mingwarm64-crt-
+2026-09-11T08:06:51.6358835Z ##[group]Run `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/build-package.sh \
+2026-09-11T08:06:51.6359667Z `cygpath "D:\a\msys2-woarm64-build\msys2-woarm64-build"`/.github/scripts/build-package.sh \
+2026-09-11T08:06:51.6360183Z   Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:06:51.6362284Z shell: D:\a\_temp\setup-msys2\msys2.CMD {0}
+2026-09-11T08:06:51.6362556Z env:
+2026-09-11T08:06:51.6365829Z   GH_TOKEN: ***
+2026-09-11T08:06:51.6366036Z   FLAVOR: CROSS
+2026-09-11T08:06:51.6366219Z   CLEAN_BUILD: 1
+2026-09-11T08:06:51.6366394Z   MSYSTEM: MSYS
+2026-09-11T08:06:51.6366662Z   CCACHE_DIR: /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:06:51.6366995Z ##[endgroup]
+2026-09-11T08:06:51.9449971Z ++ set -o pipefail
+2026-09-11T08:06:51.9450379Z ++ FLAVOR=CROSS
+2026-09-11T08:06:51.9450698Z ++ CLEAN_BUILD=1
+2026-09-11T08:06:51.9451005Z ++ INSTALL_PACKAGE=0
+2026-09-11T08:06:51.9451404Z ++ NO_EXTRACT=0
+2026-09-11T08:06:51.9451878Z + PACKAGE_REPOSITORY=Windows-on-ARM-Experiments/MSYS2-packages
+2026-09-11T08:06:51.9452472Z + [[ CROSS == CROSS ]]
+2026-09-11T08:06:51.9537874Z ++ dirname /d/a/msys2-woarm64-build/msys2-woarm64-build/.github/scripts/build-package.sh
+2026-09-11T08:06:51.9629103Z + bash /d/a/msys2-woarm64-build/msys2-woarm64-build/.github/scripts/verify-texinfo.sh
+2026-09-11T08:06:52.1795312Z makeinfo=/usr/bin/makeinfo
+2026-09-11T08:06:52.1795802Z texi2any (GNU texinfo) 7.2
+2026-09-11T08:06:52.1796066Z 
+2026-09-11T08:06:52.1796262Z Copyright (C) 2024 Free Software Foundation, Inc.
+2026-09-11T08:06:52.1797348Z License GPLv3+: GNU GPL version 3 or later <http://gnu.org/licenses/gpl.html>
+2026-09-11T08:06:52.1798135Z This is free software: you are free to change and redistribute it.
+2026-09-11T08:06:52.1798776Z There is NO WARRANTY, to the extent permitted by law.
+2026-09-11T08:06:52.5698306Z GNU Texinfo generated a nonempty Info document.
+2026-09-11T08:06:52.6182163Z ++ '[' 0 = 1 ']'
+2026-09-11T08:06:52.6182890Z ++ echo ''
+2026-09-11T08:06:52.6273377Z ++ '[' 1 = 1 ']'
+2026-09-11T08:06:52.6274016Z ++ echo --cleanbuild
+2026-09-11T08:06:52.6361756Z ++ '[' 0 = 1 ']'
+2026-09-11T08:06:52.6362111Z ++ echo ''
+2026-09-11T08:06:52.6394459Z + ARGUMENTS='--syncdeps     --rmdeps     --noconfirm     --noprogressbar     --nocheck     --skippgpcheck     --force          --cleanbuild     '
+2026-09-11T08:06:52.6395108Z + command -v ccache
+2026-09-11T08:06:52.6400811Z + echo '::group::Ccache statistics before build'
+2026-09-11T08:06:52.6401304Z + ccache -svv
+2026-09-11T08:06:52.6401957Z ##[group]Ccache statistics before build
+2026-09-11T08:06:52.7005620Z Cache directory:                          /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:06:52.7006313Z Config file:                              /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache/ccache.conf
+2026-09-11T08:06:52.7006827Z Directory config file:
+2026-09-11T08:06:52.7007134Z System config file:                       /etc/ccache.conf
+2026-09-11T08:06:52.7007462Z Stats updated:                            never
+2026-09-11T08:06:52.7007821Z Stats zeroed:                             never
+2026-09-11T08:06:52.7008742Z Cacheable calls:                            0
+2026-09-11T08:06:52.7009205Z   Hits:                                     0
+2026-09-11T08:06:52.7009638Z     Direct:                                 0
+2026-09-11T08:06:52.7010074Z     Preprocessed:                           0
+2026-09-11T08:06:52.7010541Z   Misses:                                   0
+2026-09-11T08:06:52.7011330Z Uncacheable calls:                          0
+2026-09-11T08:06:52.7011781Z   Autoconf compile/link:                    0
+2026-09-11T08:06:52.7012215Z   Bad compiler arguments:                   0
+2026-09-11T08:06:52.7012648Z   Called for linking:                       0
+2026-09-11T08:06:52.7013091Z   Called for preprocessing:                 0
+2026-09-11T08:06:52.7013520Z   Ccache disabled:                          0
+2026-09-11T08:06:52.7016279Z   Compilation failed:                       0
+2026-09-11T08:06:52.7016836Z   Compiler output file missing:             0
+2026-09-11T08:06:52.7017330Z   Compiler produced empty output:           0
+2026-09-11T08:06:52.7017808Z   Compiler produced stdout:                 0
+2026-09-11T08:06:52.7018257Z   Could not use modules:                    0
+2026-09-11T08:06:52.7018702Z   Could not use precompiled header:         0
+2026-09-11T08:06:52.7019347Z   Forced recache:                           0
+2026-09-11T08:06:52.7019782Z   Multiple source files:                    0
+2026-09-11T08:06:52.7020207Z   No input file:                            0
+2026-09-11T08:06:52.7020634Z   Output to stdout:                         0
+2026-09-11T08:06:52.7021067Z   Preprocessing failed:                     0
+2026-09-11T08:06:52.7021525Z   Unsupported code directive:               0
+2026-09-11T08:06:52.7021983Z   Unsupported compiler option:              0
+2026-09-11T08:06:52.7022474Z   Unsupported environment variable:         0
+2026-09-11T08:06:52.7022788Z   Unsupported source encoding:              0
+2026-09-11T08:06:52.7023080Z   Unsupported source language:              0
+2026-09-11T08:06:52.7023343Z Errors:                                     0
+2026-09-11T08:06:52.7023612Z   Compiler check failed:                    0
+2026-09-11T08:06:52.7023879Z   Could not find compiler:                  0
+2026-09-11T08:06:52.7024146Z   Could not read or parse input file:       0
+2026-09-11T08:06:52.7024433Z   Could not write to output file:           0
+2026-09-11T08:06:52.7024698Z   Error hashing extra file:                 0
+2026-09-11T08:06:52.7024964Z   Input file modified during compilation:   0
+2026-09-11T08:06:52.7025225Z   Internal error:                           0
+2026-09-11T08:06:52.7025475Z   Missing cache file:                       0
+2026-09-11T08:06:52.7025714Z Local storage:
+2026-09-11T08:06:52.7025941Z   Cache size (GiB):                       0.0 / 5.0 ( 0.00%)
+2026-09-11T08:06:52.7026242Z   Files:                                    0
+2026-09-11T08:06:52.7026492Z   Cleanups:                                 0
+2026-09-11T08:06:52.7026736Z   Hits:                                     0
+2026-09-11T08:06:52.7026995Z   Misses:                                   0
+2026-09-11T08:06:52.7027246Z   Reads:                                    0
+2026-09-11T08:06:52.7027488Z   Writes:                                   0
+2026-09-11T08:06:52.7027722Z Remote storage:
+2026-09-11T08:06:52.7027933Z   Hits:                                     0
+2026-09-11T08:06:52.7028176Z   Misses:                                   0
+2026-09-11T08:06:52.7028412Z   Reads:                                    0
+2026-09-11T08:06:52.7029119Z   Writes:                                   0
+2026-09-11T08:06:52.7029362Z   Errors:                                   0
+2026-09-11T08:06:52.7029602Z   Timeouts:                                 0
+2026-09-11T08:06:52.7032427Z + echo ::endgroup::
+2026-09-11T08:06:52.7033237Z ##[endgroup]
+2026-09-11T08:06:52.7033564Z + echo '::group::Build package'
+2026-09-11T08:06:52.7034043Z + [[ Windows-on-ARM-Experiments/MSYS2-packages == *MINGW* ]]
+2026-09-11T08:06:52.7034578Z ##[group]Build package
+2026-09-11T08:06:52.7035013Z + makepkg --syncdeps --rmdeps --noconfirm --noprogressbar --nocheck --skippgpcheck --force --cleanbuild
+2026-09-11T08:06:53.5292347Z ==> Making package: mingw-w64-cross-mingwarm64-crt 13.0.0dev-1 (Fri, Sep 11, 2026  8:06:53 AM)
+2026-09-11T08:06:54.1717868Z ==> Checking runtime dependencies...
+2026-09-11T08:06:54.1984069Z ==> Checking buildtime dependencies...
+2026-09-11T08:06:54.8650128Z ==> Installing missing dependencies...
+2026-09-11T08:06:55.7166792Z resolving dependencies...
+2026-09-11T08:06:55.7385019Z looking for conflicting packages...
+2026-09-11T08:06:55.7428949Z 
+2026-09-11T08:06:55.7431499Z Packages (19) autoconf-wrapper-20260320-1  autoconf2.13-2.13-6  autoconf2.69-2.69-4  autoconf2.71-2.71-4  autoconf2.72-2.72-4  autoconf2.73-2.73-1  automake-wrapper-20260320-1  automake1.11-1.11.6-6  automake1.12-1.12.6-6  automake1.13-1.13.4-7  automake1.14-1.14.1-6  automake1.15-1.15.1-4  automake1.16-1.16.5-1  automake1.17-1.17-1  automake1.18-1.18.1-1  libltdl-2.6.2-1  libtool-2.6.2-1  pkgconf-3.0.7-1  autotools-2022.01.16-2
+2026-09-11T08:06:55.7433227Z 
+2026-09-11T08:06:55.7433347Z Total Download Size:    6.36 MiB
+2026-09-11T08:06:55.7433644Z Total Installed Size:  23.30 MiB
+2026-09-11T08:06:55.7433832Z 
+2026-09-11T08:06:55.7435921Z :: Proceed with installation? [Y/n] 
+2026-09-11T08:06:55.7436453Z :: Retrieving packages...
+2026-09-11T08:06:57.8278559Z  autoconf2.73-2.73-1-any downloading...
+2026-09-11T08:06:57.8279153Z  automake1.18-1.18.1-1-any downloading...
+2026-09-11T08:06:57.8279613Z  automake1.17-1.17-1-any downloading...
+2026-09-11T08:06:57.8280043Z  automake1.16-1.16.5-1-any downloading...
+2026-09-11T08:06:57.8280611Z  automake1.15-1.15.1-4-any downloading...
+2026-09-11T08:06:57.8280943Z  automake1.14-1.14.1-6-any downloading...
+2026-09-11T08:06:57.8281313Z  automake1.12-1.12.6-6-any downloading...
+2026-09-11T08:06:57.8281626Z  automake1.13-1.13.4-7-any downloading...
+2026-09-11T08:06:57.8281934Z  automake1.11-1.11.6-6-any downloading...
+2026-09-11T08:06:57.8282244Z  libtool-2.6.2-1-x86_64 downloading...
+2026-09-11T08:06:57.8282546Z  autoconf2.72-2.72-4-any downloading...
+2026-09-11T08:06:57.8282853Z  autoconf2.71-2.71-4-any downloading...
+2026-09-11T08:06:57.8283156Z  autoconf2.69-2.69-4-any downloading...
+2026-09-11T08:06:57.8283475Z  autoconf2.13-2.13-6-any downloading...
+2026-09-11T08:06:57.8283785Z  pkgconf-3.0.7-1-x86_64 downloading...
+2026-09-11T08:06:57.8284088Z  libltdl-2.6.2-1-x86_64 downloading...
+2026-09-11T08:06:57.8284442Z  autoconf-wrapper-20260320-1-any downloading...
+2026-09-11T08:06:57.8284827Z  automake-wrapper-20260320-1-any downloading...
+2026-09-11T08:06:57.8285177Z  autotools-2022.01.16-2-any downloading...
+2026-09-11T08:06:57.8285481Z checking keyring...
+2026-09-11T08:06:57.8842389Z checking package integrity...
+2026-09-11T08:07:00.1824523Z loading package files...
+2026-09-11T08:07:00.2119015Z checking for file conflicts...
+2026-09-11T08:07:00.2817738Z checking available disk space...
+2026-09-11T08:07:00.2838888Z :: Processing package changes...
+2026-09-11T08:07:00.2839335Z installing autoconf2.73...
+2026-09-11T08:07:00.3484890Z installing autoconf2.72...
+2026-09-11T08:07:00.4081400Z installing autoconf2.71...
+2026-09-11T08:07:00.4750901Z installing autoconf2.69...
+2026-09-11T08:07:00.5338482Z installing autoconf2.13...
+2026-09-11T08:07:00.5547195Z installing autoconf-wrapper...
+2026-09-11T08:07:00.5621205Z installing automake1.11...
+2026-09-11T08:07:00.6669942Z installing automake1.12...
+2026-09-11T08:07:00.7663848Z installing automake1.13...
+2026-09-11T08:07:00.8635525Z installing automake1.14...
+2026-09-11T08:07:00.9631098Z installing automake1.15...
+2026-09-11T08:07:01.0629590Z installing automake1.16...
+2026-09-11T08:07:01.1619112Z installing automake1.17...
+2026-09-11T08:07:01.2611095Z installing automake1.18...
+2026-09-11T08:07:01.3608519Z installing automake-wrapper...
+2026-09-11T08:07:01.3648956Z installing libltdl...
+2026-09-11T08:07:01.3749412Z installing libtool...
+2026-09-11T08:07:01.4285372Z installing pkgconf...
+2026-09-11T08:07:01.4525932Z installing autotools...
+2026-09-11T08:07:01.4565817Z :: Running post-transaction hooks...
+2026-09-11T08:07:01.4566184Z (1/1) Updating the info directory file...
+2026-09-11T08:07:04.9095705Z ==> Retrieving sources...
+2026-09-11T08:07:05.0092544Z   -> Cloning mingw-w64 git repo...
+2026-09-11T08:07:05.0294999Z Cloning into bare repository '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/mingw-w64'...
+2026-09-11T08:07:23.1882138Z ==> WARNING: Skipping verification of source file PGP signatures.
+2026-09-11T08:07:23.2084163Z ==> Validating source files with sha256sums...
+2026-09-11T08:07:23.2347323Z     mingw-w64 ... Skipped
+2026-09-11T08:07:23.2544944Z ==> Removing existing $srcdir/ directory...
+2026-09-11T08:07:23.3240525Z ==> Extracting sources...
+2026-09-11T08:07:23.3971851Z   -> Creating working copy of mingw-w64 git repo...
+2026-09-11T08:07:23.4172071Z Cloning into 'mingw-w64'...
+2026-09-11T08:07:23.5193942Z done.
+2026-09-11T08:07:24.5958787Z Updating files:  21% (1480/6855)
+2026-09-11T08:07:24.6379325Z Updating files:  22% (1509/6855)
+2026-09-11T08:07:24.6897447Z Updating files:  23% (1577/6855)
+2026-09-11T08:07:24.7334086Z Updating files:  24% (1646/6855)
+2026-09-11T08:07:24.7770989Z Updating files:  25% (1714/6855)
+2026-09-11T08:07:24.8233792Z Updating files:  26% (1783/6855)
+2026-09-11T08:07:24.8670623Z Updating files:  27% (1851/6855)
+2026-09-11T08:07:24.9094274Z Updating files:  28% (1920/6855)
+2026-09-11T08:07:24.9531919Z Updating files:  29% (1988/6855)
+2026-09-11T08:07:24.9964690Z Updating files:  30% (2057/6855)
+2026-09-11T08:07:25.0400236Z Updating files:  31% (2126/6855)
+2026-09-11T08:07:25.0847957Z Updating files:  32% (2194/6855)
+2026-09-11T08:07:25.1321216Z Updating files:  33% (2263/6855)
+2026-09-11T08:07:25.1776067Z Updating files:  34% (2331/6855)
+2026-09-11T08:07:25.2260069Z Updating files:  35% (2400/6855)
+2026-09-11T08:07:25.2790657Z Updating files:  36% (2468/6855)
+2026-09-11T08:07:25.3211682Z Updating files:  37% (2537/6855)
+2026-09-11T08:07:25.3646892Z Updating files:  38% (2605/6855)
+2026-09-11T08:07:25.4066114Z Updating files:  39% (2674/6855)
+2026-09-11T08:07:25.4498521Z Updating files:  40% (2742/6855)
+2026-09-11T08:07:25.4930289Z Updating files:  41% (2811/6855)
+2026-09-11T08:07:25.5343027Z Updating files:  42% (2880/6855)
+2026-09-11T08:07:25.5756988Z Updating files:  43% (2948/6855)
+2026-09-11T08:07:25.5789315Z Updating files:  44% (3017/6855)
+2026-09-11T08:07:25.6174919Z Updating files:  44% (3022/6855)
+2026-09-11T08:07:25.6594677Z Updating files:  45% (3085/6855)
+2026-09-11T08:07:25.7029262Z Updating files:  46% (3154/6855)
+2026-09-11T08:07:25.7467246Z Updating files:  47% (3222/6855)
+2026-09-11T08:07:25.7955804Z Updating files:  48% (3291/6855)
+2026-09-11T08:07:25.8402881Z Updating files:  49% (3359/6855)
+2026-09-11T08:07:25.8839670Z Updating files:  50% (3428/6855)
+2026-09-11T08:07:25.9265182Z Updating files:  51% (3497/6855)
+2026-09-11T08:07:25.9713535Z Updating files:  52% (3565/6855)
+2026-09-11T08:07:26.0137196Z Updating files:  53% (3634/6855)
+2026-09-11T08:07:26.0578193Z Updating files:  54% (3702/6855)
+2026-09-11T08:07:26.1605540Z Updating files:  55% (3771/6855)
+2026-09-11T08:07:26.2046265Z Updating files:  56% (3839/6855)
+2026-09-11T08:07:26.2494476Z Updating files:  57% (3908/6855)
+2026-09-11T08:07:26.2946619Z Updating files:  58% (3976/6855)
+2026-09-11T08:07:26.3391206Z Updating files:  59% (4045/6855)
+2026-09-11T08:07:26.3853209Z Updating files:  60% (4113/6855)
+2026-09-11T08:07:26.4284874Z Updating files:  61% (4182/6855)
+2026-09-11T08:07:26.4750482Z Updating files:  62% (4251/6855)
+2026-09-11T08:07:26.5235459Z Updating files:  63% (4319/6855)
+2026-09-11T08:07:26.5726272Z Updating files:  64% (4388/6855)
+2026-09-11T08:07:26.5771170Z Updating files:  65% (4456/6855)
+2026-09-11T08:07:26.6310182Z Updating files:  65% (4463/6855)
+2026-09-11T08:07:26.6804254Z Updating files:  66% (4525/6855)
+2026-09-11T08:07:26.7348592Z Updating files:  67% (4593/6855)
+2026-09-11T08:07:26.7887033Z Updating files:  68% (4662/6855)
+2026-09-11T08:07:26.8575409Z Updating files:  69% (4730/6855)
+2026-09-11T08:07:26.9102023Z Updating files:  70% (4799/6855)
+2026-09-11T08:07:26.9639361Z Updating files:  71% (4868/6855)
+2026-09-11T08:07:27.0132107Z Updating files:  72% (4936/6855)
+2026-09-11T08:07:27.0625168Z Updating files:  73% (5005/6855)
+2026-09-11T08:07:27.1115944Z Updating files:  74% (5073/6855)
+2026-09-11T08:07:27.1681588Z Updating files:  75% (5142/6855)
+2026-09-11T08:07:27.2200995Z Updating files:  76% (5210/6855)
+2026-09-11T08:07:27.2733930Z Updating files:  77% (5279/6855)
+2026-09-11T08:07:27.3636448Z Updating files:  78% (5347/6855)
+2026-09-11T08:07:27.4171521Z Updating files:  79% (5416/6855)
+2026-09-11T08:07:27.5067640Z Updating files:  80% (5484/6855)
+2026-09-11T08:07:27.5600082Z Updating files:  81% (5553/6855)
+2026-09-11T08:07:27.5842514Z Updating files:  82% (5622/6855)
+2026-09-11T08:07:27.6160266Z Updating files:  82% (5657/6855)
+2026-09-11T08:07:27.6714744Z Updating files:  83% (5690/6855)
+2026-09-11T08:07:27.7246038Z Updating files:  84% (5759/6855)
+2026-09-11T08:07:27.7831059Z Updating files:  85% (5827/6855)
+2026-09-11T08:07:27.8343488Z Updating files:  86% (5896/6855)
+2026-09-11T08:07:27.9051063Z Updating files:  87% (5964/6855)
+2026-09-11T08:07:27.9615939Z Updating files:  88% (6033/6855)
+2026-09-11T08:07:28.0282597Z Updating files:  89% (6101/6855)
+2026-09-11T08:07:28.0808166Z Updating files:  90% (6170/6855)
+2026-09-11T08:07:28.1302908Z Updating files:  91% (6239/6855)
+2026-09-11T08:07:28.1831182Z Updating files:  92% (6307/6855)
+2026-09-11T08:07:28.2383124Z Updating files:  93% (6376/6855)
+2026-09-11T08:07:28.2844693Z Updating files:  94% (6444/6855)
+2026-09-11T08:07:28.3277820Z Updating files:  95% (6513/6855)
+2026-09-11T08:07:28.3775427Z Updating files:  96% (6581/6855)
+2026-09-11T08:07:28.4236040Z Updating files:  97% (6650/6855)
+2026-09-11T08:07:28.4740845Z Updating files:  98% (6718/6855)
+2026-09-11T08:07:28.5316510Z Updating files:  99% (6787/6855)
+2026-09-11T08:07:28.5316985Z Updating files: 100% (6855/6855)
+2026-09-11T08:07:29.4343630Z Updating files: 100% (6855/6855), done.
+2026-09-11T08:07:29.4344054Z Switched to a new branch 'makepkg'
+2026-09-11T08:07:29.4887907Z ==> Starting prepare()...
+2026-09-11T08:07:29.7241186Z autoreconf-2.72: export WARNINGS=
+2026-09-11T08:07:29.7243987Z autoreconf-2.72: Entering directory '.'
+2026-09-11T08:07:29.7254766Z autoreconf-2.72: configure.ac: not using Gettext
+2026-09-11T08:07:30.7288658Z autoreconf-2.72: running: aclocal --force 
+2026-09-11T08:07:31.7923980Z autoreconf-2.72: configure.ac: tracing
+2026-09-11T08:07:32.4374780Z autoreconf-2.72: configure.ac: not using Libtool
+2026-09-11T08:07:32.4375454Z autoreconf-2.72: configure.ac: not using Intltool
+2026-09-11T08:07:32.4376053Z autoreconf-2.72: configure.ac: not using Gtkdoc
+2026-09-11T08:07:32.4376460Z autoreconf-2.72: running: /usr/bin/autoconf-2.72 --force
+2026-09-11T08:07:33.1039786Z autoreconf-2.72: running: /usr/bin/autoheader-2.72 --force
+2026-09-11T08:07:33.8070369Z autoreconf-2.72: running: automake --add-missing --copy --force-missing
+2026-09-11T08:07:41.7544038Z autoreconf-2.72: 'build-aux/install-sh' is updated
+2026-09-11T08:07:41.7582287Z autoreconf-2.72: 'build-aux/config.sub' is updated
+2026-09-11T08:07:41.7614982Z autoreconf-2.72: 'build-aux/config.guess' is updated
+2026-09-11T08:07:41.7620563Z autoreconf-2.72: Leaving directory '.'
+2026-09-11T08:07:41.8576711Z ==> Starting build()...
+2026-09-11T08:07:41.8582886Z ==> Building aarch64-w64-mingw32 CRT
+2026-09-11T08:07:43.5261430Z configure: loading site script /etc/config.site
+2026-09-11T08:07:43.6649142Z checking for a BSD-compatible install... /usr/bin/install -c
+2026-09-11T08:07:43.7097709Z checking whether build environment is sane... yes
+2026-09-11T08:07:43.8368649Z checking for aarch64-w64-mingw32-strip... aarch64-w64-mingw32-strip
+2026-09-11T08:07:43.8625584Z checking for a race-free mkdir -p... /usr/bin/mkdir -p
+2026-09-11T08:07:43.8633869Z checking for gawk... gawk
+2026-09-11T08:07:43.9815155Z checking whether make sets $(MAKE)... yes
+2026-09-11T08:07:44.1322278Z checking whether make supports nested variables... yes
+2026-09-11T08:07:44.2173507Z checking whether to enable maintainer-specific portions of Makefiles... no
+2026-09-11T08:07:44.3430626Z checking build system type... x86_64-pc-cygwin
+2026-09-11T08:07:44.4058708Z checking host system type... aarch64-w64-mingw32
+2026-09-11T08:07:44.4061004Z checking for sysroot... /opt/aarch64-w64-mingw32
+2026-09-11T08:07:44.4622881Z checking for a sed that does not truncate output... /usr/bin/sed
+2026-09-11T08:07:44.4787538Z checking for gawk... (cached) gawk
+2026-09-11T08:07:44.4795585Z checking for aarch64-w64-mingw32-gcc... aarch64-w64-mingw32-gcc
+2026-09-11T08:07:45.2178784Z checking whether we are cross compiling... yes
+2026-09-11T08:07:45.4346789Z checking for suffix of object files... o
+2026-09-11T08:07:45.6414531Z checking whether the compiler supports GNU C... yes
+2026-09-11T08:07:45.8363785Z checking whether aarch64-w64-mingw32-gcc accepts -g... yes
+2026-09-11T08:07:46.1218707Z checking for aarch64-w64-mingw32-gcc option to enable C11 features... none needed
+2026-09-11T08:07:46.2353307Z checking whether aarch64-w64-mingw32-gcc understands -c and -o together... yes
+2026-09-11T08:07:46.3610439Z checking whether make supports the include directive... yes (GNU style)
+2026-09-11T08:07:46.3614025Z checking dependency style of aarch64-w64-mingw32-gcc... none
+2026-09-11T08:07:46.8298643Z checking whether the compiler supports GNU C++... no
+2026-09-11T08:07:47.2724157Z checking whether g++ accepts -g... no
+2026-09-11T08:07:48.2011329Z checking for g++ option to enable C++11 features... unsupported
+2026-09-11T08:07:48.8841668Z checking for g++ option to enable C++98 features... unsupported
+2026-09-11T08:07:48.8845302Z checking dependency style of g++... none
+2026-09-11T08:07:49.1583405Z checking how to run the C preprocessor... aarch64-w64-mingw32-gcc -E
+2026-09-11T08:07:49.4362578Z checking for aarch64-w64-mingw32-ranlib... aarch64-w64-mingw32-ranlib
+2026-09-11T08:07:49.4373745Z checking for aarch64-w64-mingw32-dlltool... aarch64-w64-mingw32-dlltool
+2026-09-11T08:07:49.4384823Z checking for aarch64-w64-mingw32-ar... aarch64-w64-mingw32-ar
+2026-09-11T08:07:49.6810684Z checking the archiver (aarch64-w64-mingw32-ar) interface... ar
+2026-09-11T08:07:49.6814574Z checking dependency style of aarch64-w64-mingw32-gcc... none
+2026-09-11T08:07:49.6826026Z checking for aarch64-w64-mingw32-as... aarch64-w64-mingw32-as
+2026-09-11T08:07:49.7828009Z checking whether dlltool supports --temp-prefix... yes
+2026-09-11T08:07:49.7830154Z checking whether to build a w32api package for Cygwin... no
+2026-09-11T08:07:49.7833221Z checking whether to build the Win32 libraries... no
+2026-09-11T08:07:49.7835682Z checking whether to build the Win64 libraries... no
+2026-09-11T08:07:49.7837976Z checking whether to build the WinARM32 libraries... no
+2026-09-11T08:07:49.7840275Z checking whether to build the WinARM64 libraries... yes
+2026-09-11T08:07:49.7846653Z checking whether to enable globbing... no
+2026-09-11T08:07:49.7849031Z checking whether to enable private exports... no
+2026-09-11T08:07:49.7851101Z checking whether to enable delay import libs... no
+2026-09-11T08:07:49.7852927Z checking what to provide as libmsvcrt.a... ucrt
+2026-09-11T08:07:49.7854916Z checking whether to include support for Control Flow Guard... no
+2026-09-11T08:07:49.8080064Z checking whether to enable experimental features... no
+2026-09-11T08:07:49.9960168Z checking whether the compiler supports -municode... no
+2026-09-11T08:07:50.1408814Z checking whether the linker provides __ImageBase symbol... yes
+2026-09-11T08:07:50.3633141Z checking for stdio.h... yes
+2026-09-11T08:07:50.6134090Z checking for stdlib.h... yes
+2026-09-11T08:07:50.8634563Z checking for string.h... yes
+2026-09-11T08:07:51.1239190Z checking for inttypes.h... yes
+2026-09-11T08:07:51.3809844Z checking for stdint.h... yes
+2026-09-11T08:07:51.6519778Z checking for strings.h... yes
+2026-09-11T08:07:51.9170928Z checking for sys/stat.h... yes
+2026-09-11T08:07:52.1999726Z checking for sys/types.h... yes
+2026-09-11T08:07:52.4743973Z checking for unistd.h... yes
+2026-09-11T08:07:52.7584892Z checking for _mingw_mac.h... yes
+2026-09-11T08:07:52.7587836Z checking for warning levels... Level 3
+2026-09-11T08:07:52.9534345Z checking that generated files are newer than configure... done
+2026-09-11T08:07:52.9538581Z configure: creating ./config.status
+2026-09-11T08:07:54.3326759Z config.status: creating Makefile
+2026-09-11T08:07:55.0278300Z config.status: creating config.h
+2026-09-11T08:07:55.1827894Z config.status: executing depfiles commands
+2026-09-11T08:07:55.2016580Z configure: 
+2026-09-11T08:07:55.2017058Z configure: 
+2026-09-11T08:07:55.2017637Z configure: 
+2026-09-11T08:07:55.2018341Z configure: ------------------------------------------------------------------------
+2026-09-11T08:07:55.2019448Z configure: mingw-w64-runtime 4.0b
+2026-09-11T08:07:55.2020271Z configure: ------------------------------------------------------------------------
+2026-09-11T08:07:55.2021095Z configure: 
+2026-09-11T08:07:55.2021673Z configure: 
+2026-09-11T08:07:55.2022367Z configure: Configuration Options Summary:
+2026-09-11T08:07:55.2023548Z configure: 
+2026-09-11T08:07:55.2024944Z configure:   WinARM32 runtime.....: no
+2026-09-11T08:07:55.2025433Z configure:   WinARM64 runtime.....: yes
+2026-09-11T08:07:55.2026234Z configure:   Win32 runtime........: no
+2026-09-11T08:07:55.2027754Z configure:   Win64 runtime........: no
+2026-09-11T08:07:55.2029300Z configure:   C Warning Flags......: -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes
+2026-09-11T08:07:55.2030064Z configure:   C++ Warning Flags....: 
+2026-09-11T08:07:55.2030995Z configure:   Common Warning Flags.: -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline
+2026-09-11T08:07:55.2031618Z configure:   Default msvcrt.......: ucrt
+2026-09-11T08:07:55.2032874Z configure:   Control Flow Guard...: no
+2026-09-11T08:07:55.2033621Z configure: 
+2026-09-11T08:07:55.2034881Z configure:   DFP printf...........: no
+2026-09-11T08:07:55.2035394Z configure:   128-bit printf.......: no
+2026-09-11T08:07:55.2036624Z configure:   Custom printf........: no
+2026-09-11T08:07:55.2037661Z configure:   Softhmath............: no
+2026-09-11T08:07:55.2038450Z configure: 
+2026-09-11T08:07:55.8076488Z echo "static int __attribute__((unused)) __mingw_libm_dummy;" > _libm_dummy.c
+2026-09-11T08:07:55.8854006Z make  all-am
+2026-09-11T08:07:56.0701847Z make[1]: Entering directory '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/crt-aarch64-w64-mingw32'
+2026-09-11T08:07:56.1564269Z /usr/bin/mkdir -p libarm64 && aarch64-w64-mingw32-gcc -E -x c  /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/lib-common/kernel32.def.in -Wp,-w -P -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/def-include | sed -E 's/^([^ ]+)@[0-9]+( |$)/\1\2/' > libarm64/kernel32.def
+2026-09-11T08:07:56.4887456Z /usr/bin/mkdir -p libarm64 && aarch64-w64-mingw32-gcc -E -x c  /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/lib-common/ws2_32.def.in -Wp,-w -P -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/def-include | sed -E 's/^([^ ]+)@[0-9]+( |$)/\1\2/' > libarm64/ws2_32.def
+2026-09-11T08:07:56.5029611Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o libsrc/libarm64_libadsiid_a-activeds-uuid.o `test -f 'libsrc/activeds-uuid.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`libsrc/activeds-uuid.c
+2026-09-11T08:07:56.5232720Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o libsrc/libarm64_libdloadhelper_a-dloadhelper.o `test -f 'libsrc/dloadhelper.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`libsrc/dloadhelper.c
+2026-09-11T08:07:56.6705541Z rm -f libarm64/libdelayimp.a
+2026-09-11T08:07:56.6930917Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o libarm64_libm_a-_libm_dummy.o `test -f '_libm_dummy.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`_libm_dummy.c
+2026-09-11T08:07:56.7149709Z aarch64-w64-mingw32-ar cru libarm64/libdelayimp.a  
+2026-09-11T08:07:56.7303414Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o libsrc/libarm64_liblargeint_a-largeint.o `test -f 'libsrc/largeint.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`libsrc/largeint.c
+2026-09-11T08:07:56.7596268Z aarch64-w64-mingw32-ranlib libarm64/libdelayimp.a
+2026-09-11T08:07:57.0287621Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-dllmain.o `test -f 'misc/dllmain.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/dllmain.c
+2026-09-11T08:07:57.3688837Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"   -g -O2 -c -o misc/libarm64_libmingwex_a-mingw_longjmp.o `test -f 'misc/mingw_longjmp.S' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/mingw_longjmp.S
+2026-09-11T08:07:57.3906953Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"   -g -O2 -c -o misc/libarm64_libmingwex_a-mingw_getsp.o `test -f 'misc/mingw_getsp.S' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/mingw_getsp.S
+2026-09-11T08:07:57.4291302Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-alarm.o `test -f 'misc/alarm.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/alarm.c
+2026-09-11T08:07:57.6886850Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-delay-f.o `test -f 'misc/delay-f.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/delay-f.c
+2026-09-11T08:07:57.7416161Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-delay-n.o `test -f 'misc/delay-n.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/delay-n.c
+2026-09-11T08:07:57.7583033Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-delayimp.o `test -f 'misc/delayimp.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/delayimp.c
+2026-09-11T08:07:57.7977605Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-dirent.o `test -f 'misc/dirent.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/dirent.c
+2026-09-11T08:07:58.9813955Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-dirname.o `test -f 'misc/dirname.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/dirname.c
+2026-09-11T08:07:59.0265618Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-feclearexcept.o `test -f 'misc/feclearexcept.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/feclearexcept.c
+2026-09-11T08:07:59.3709305Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fegetenv.o `test -f 'misc/fegetenv.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fegetenv.c
+2026-09-11T08:07:59.4221713Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/delayimp.c: In function '__HrLoadAllImportsForDll':
+2026-09-11T08:07:59.4334231Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/delayimp.c:258:10: warning: array subscript 'struct _IMAGE_NT_HEADERS64[0]' is partly outside array bounds of 'IMAGE_DOS_HEADER[1]' [-Warray-bounds=]
+2026-09-11T08:07:59.4392838Z   258 |   if(pinh->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT].Size) {
+2026-09-11T08:07:59.4436054Z       |          ^~
+2026-09-11T08:07:59.4444525Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/delayimp.c:50:25: note: object '__ImageBase' of size 64
+2026-09-11T08:07:59.4490078Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fegetexceptflag.o `test -f 'misc/fegetexceptflag.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fegetexceptflag.c
+2026-09-11T08:07:59.4650528Z    50 | extern IMAGE_DOS_HEADER __ImageBase;
+2026-09-11T08:07:59.4727631Z       |                         ^~~~~~~~~~~
+2026-09-11T08:07:59.4754647Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/delayimp.c:260:45: warning: array subscript 'struct _IMAGE_NT_HEADERS64[0]' is partly outside array bounds of 'IMAGE_DOS_HEADER[1]' [-Warray-bounds=]
+2026-09-11T08:07:59.4786301Z   260 |     pidd = (PCImgDelayDescr) PtrFromRVA(pinh->OptionalHeader.DataDirectory[IMAGE_DIRECTORY_ENTRY_DELAY_IMPORT].VirtualAddress);
+2026-09-11T08:07:59.4806265Z       |                                             ^~
+2026-09-11T08:07:59.4829740Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/delayimp.c:52:53: note: in definition of macro 'PtrFromRVA'
+2026-09-11T08:07:59.4961432Z    52 | #define PtrFromRVA(RVA)   (((PBYTE)&__ImageBase) + (RVA))
+2026-09-11T08:07:59.5041440Z       |                                                     ^~~
+2026-09-11T08:07:59.5147050Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/delayimp.c:50:25: note: object '__ImageBase' of size 64
+2026-09-11T08:07:59.5150055Z    50 | extern IMAGE_DOS_HEADER __ImageBase;
+2026-09-11T08:07:59.5195950Z       |                         ^~~~~~~~~~~
+2026-09-11T08:07:59.7820666Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fegetround.o `test -f 'misc/fegetround.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fegetround.c
+2026-09-11T08:08:00.6195604Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-feholdexcept.o `test -f 'misc/feholdexcept.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/feholdexcept.c
+2026-09-11T08:08:01.1299153Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-feraiseexcept.o `test -f 'misc/feraiseexcept.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/feraiseexcept.c
+2026-09-11T08:08:01.7974455Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fesetenv.o `test -f 'misc/fesetenv.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fesetenv.c
+2026-09-11T08:08:02.0477245Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fesetexceptflag.o `test -f 'misc/fesetexceptflag.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fesetexceptflag.c
+2026-09-11T08:08:02.1188055Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fesetround.o `test -f 'misc/fesetround.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fesetround.c
+2026-09-11T08:08:02.4131580Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fetestexcept.o `test -f 'misc/fetestexcept.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fetestexcept.c
+2026-09-11T08:08:03.9465644Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-mingw_controlfp.o `test -f 'misc/mingw_controlfp.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/mingw_controlfp.c
+2026-09-11T08:08:04.6410775Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-mingw_setfp.o `test -f 'misc/mingw_setfp.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/mingw_setfp.c
+2026-09-11T08:08:04.6810474Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-feupdateenv.o `test -f 'misc/feupdateenv.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/feupdateenv.c
+2026-09-11T08:08:04.9442112Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-ftruncate.o `test -f 'misc/ftruncate.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/ftruncate.c
+2026-09-11T08:08:05.1730681Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-fwide.o `test -f 'misc/fwide.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/fwide.c
+2026-09-11T08:08:05.1963997Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-getlogin.o `test -f 'misc/getlogin.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/getlogin.c
+2026-09-11T08:08:05.3730924Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-getopt.o `test -f 'misc/getopt.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/getopt.c
+2026-09-11T08:08:05.6669767Z aarch64-w64-mingw32-gcc -DHAVE_CONFIG_H -I. -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt   -I/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/include "-I/opt/aarch64-w64-mingw32/include"  -pipe -std=gnu99 -fno-builtin -D_CRTBLD -D_WIN32_WINNT=0x0f00 -D__MSVCRT_VERSION__=0x600 -D__USE_MINGW_ANSI_STDIO=0   -Wall -Wextra -Wformat -Wstrict-aliasing -Wshadow -Wpacked -Winline -Wimplicit-function-declaration -Wmissing-noreturn -Wmissing-prototypes -g -O2 -c -o misc/libarm64_libmingwex_a-gettimeofday.o `test -f 'misc/gettimeofday.c' || echo '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/'`misc/gettimeofday.c
+2026-09-11T08:08:06.1769364Z In file included from /opt/aarch64-w64-mingw32/include/time.h:323,
+2026-09-11T08:08:06.1837599Z                  from /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/gettimeofday.c:6:
+2026-09-11T08:08:06.1922994Z /opt/aarch64-w64-mingw32/include/pthread_time.h:27:10: fatal error: pthread_compat.h: No such file or directory
+2026-09-11T08:08:06.2105178Z    27 | #include "pthread_compat.h"
+2026-09-11T08:08:06.2113805Z       |          ^~~~~~~~~~~~~~~~~~
+2026-09-11T08:08:06.2127973Z compilation terminated.
+2026-09-11T08:08:06.2171672Z make[1]: *** [Makefile:85024: misc/libarm64_libmingwex_a-gettimeofday.o] Error 1
+2026-09-11T08:08:06.2457561Z make[1]: *** Waiting for unfinished jobs....
+2026-09-11T08:08:07.2155371Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/mingw_setfp.c: In function '__mingw_setfp':
+2026-09-11T08:08:07.2197706Z /d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/mingw-w64/mingw-w64-crt/misc/mingw_setfp.c:297:60: warning: suggest parentheses around comparison in operand of '&' [-Wparentheses]
+2026-09-11T08:08:07.2209779Z   297 |     if (old_fpcr != fpcr && ~(old_fpcr >> 8) & fpsr & 0x9f != fpsr & 0x9f)
+2026-09-11T08:08:07.2281909Z       |                                                       ~~~~~^~~~~~~
+2026-09-11T08:08:07.8910391Z make[1]: Leaving directory '/d/a/msys2-woarm64-build/msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src/crt-aarch64-w64-mingw32'
+2026-09-11T08:08:07.8936254Z make: *** [Makefile:17274: all] Error 2
+2026-09-11T08:08:07.9517279Z ==> ERROR: A failure occurred in build().
+2026-09-11T08:08:07.9802588Z     Aborting...
+2026-09-11T08:08:08.0821476Z ==> Removing installed dependencies...
+2026-09-11T08:08:08.7339670Z checking dependencies...
+2026-09-11T08:08:08.7552069Z 
+2026-09-11T08:08:08.7554740Z Packages (19) autoconf-wrapper-20260320-1  autoconf2.13-2.13-6  autoconf2.69-2.69-4  autoconf2.71-2.71-4  autoconf2.72-2.72-4  autoconf2.73-2.73-1  automake-wrapper-20260320-1  automake1.11-1.11.6-6  automake1.12-1.12.6-6  automake1.13-1.13.4-7  automake1.14-1.14.1-6  automake1.15-1.15.1-4  automake1.16-1.16.5-1  automake1.17-1.17-1  automake1.18-1.18.1-1  autotools-2022.01.16-2  libltdl-2.6.2-1  libtool-2.6.2-1  pkgconf-3.0.7-1
+2026-09-11T08:08:08.7557371Z 
+2026-09-11T08:08:08.7557540Z Total Removed Size:  23.30 MiB
+2026-09-11T08:08:08.7558132Z 
+2026-09-11T08:08:08.7569281Z :: Do you want to remove these packages? [Y/n] 
+2026-09-11T08:08:08.7569691Z :: Running pre-transaction hooks...
+2026-09-11T08:08:08.7570283Z (1/1) Removing old entries from the info directory file...
+2026-09-11T08:08:10.5346068Z :: Processing package changes...
+2026-09-11T08:08:10.5346542Z removing autotools...
+2026-09-11T08:08:10.5352438Z removing pkgconf...
+2026-09-11T08:08:10.5723184Z removing libtool...
+2026-09-11T08:08:10.5897978Z removing libltdl...
+2026-09-11T08:08:10.5949743Z removing automake-wrapper...
+2026-09-11T08:08:10.5967242Z removing automake1.18...
+2026-09-11T08:08:10.6256755Z removing automake1.17...
+2026-09-11T08:08:10.6546306Z removing automake1.16...
+2026-09-11T08:08:10.6837734Z removing automake1.15...
+2026-09-11T08:08:10.7139435Z removing automake1.14...
+2026-09-11T08:08:10.7466647Z removing automake1.13...
+2026-09-11T08:08:10.7758095Z removing automake1.12...
+2026-09-11T08:08:10.8048671Z removing automake1.11...
+2026-09-11T08:08:10.8414454Z removing autoconf-wrapper...
+2026-09-11T08:08:10.8443918Z removing autoconf2.73...
+2026-09-11T08:08:10.8654664Z removing autoconf2.72...
+2026-09-11T08:08:10.8852303Z removing autoconf2.71...
+2026-09-11T08:08:10.9050691Z removing autoconf2.69...
+2026-09-11T08:08:10.9238562Z removing autoconf2.13...
+2026-09-11T08:08:10.9444909Z ##[error]Process completed with exit code 4.
+2026-09-11T08:08:10.9821078Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:08:10.9822455Z ##[group]Run actions/cache/save@v4
+2026-09-11T08:08:10.9822691Z with:
+2026-09-11T08:08:10.9822939Z   path: D:\a\msys2-woarm64-build\msys2-woarm64-build/ccache
+2026-09-11T08:08:10.9823355Z   key: mingw-w64-cross-mingwarm64-crt-ccache-2026-09-11T08:06:47+00:00
+2026-09-11T08:08:10.9823732Z   enableCrossOsArchive: false
+2026-09-11T08:08:10.9823940Z env:
+2026-09-11T08:08:10.9826690Z   GH_TOKEN: ***
+2026-09-11T08:08:10.9826876Z   FLAVOR: CROSS
+2026-09-11T08:08:10.9827044Z   CLEAN_BUILD: 1
+2026-09-11T08:08:10.9827208Z   MSYSTEM: MSYS
+2026-09-11T08:08:10.9827477Z   CCACHE_DIR: /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:08:10.9827832Z ##[endgroup]
+2026-09-11T08:08:11.1183309Z (node:6064) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-11T08:08:11.1184721Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-11T08:08:11.2240772Z [command]"C:\Program Files\Git\usr\bin\tar.exe" --posix -cf cache.tzst --exclude cache.tzst -P -C D:/a/msys2-woarm64-build/msys2-woarm64-build --files-from manifest.txt --force-local --use-compress-program "zstd -T0"
+2026-09-11T08:08:11.4816208Z (node:6064) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-11T08:08:11.6286243Z Sent 226210 of 226210 (100.0%), 1.4 MBs/sec
+2026-09-11T08:08:11.7301531Z Cache saved with key: mingw-w64-cross-mingwarm64-crt-ccache-2026-09-11T08:06:47+00:00
+2026-09-11T08:08:11.7592815Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:08:11.7594681Z ##[group]Run actions/upload-artifact@v4
+2026-09-11T08:08:11.7594953Z with:
+2026-09-11T08:08:11.7595166Z   name: mingw-w64-cross-mingwarm64-crt-build
+2026-09-11T08:08:11.7595443Z   retention-days: 1
+2026-09-11T08:08:11.7595845Z   path: D:\a\msys2-woarm64-build\msys2-woarm64-build/packages/mingw-w64-cross-mingwarm64-crt/src
+2026-09-11T08:08:11.7596303Z   if-no-files-found: warn
+2026-09-11T08:08:11.7596518Z   compression-level: 6
+2026-09-11T08:08:11.7596715Z   overwrite: false
+2026-09-11T08:08:11.7596906Z   include-hidden-files: false
+2026-09-11T08:08:11.7597121Z env:
+2026-09-11T08:08:11.7599645Z   GH_TOKEN: ***
+2026-09-11T08:08:11.7599861Z   FLAVOR: CROSS
+2026-09-11T08:08:11.7600034Z   CLEAN_BUILD: 1
+2026-09-11T08:08:11.7600437Z   MSYSTEM: MSYS
+2026-09-11T08:08:11.7600721Z   CCACHE_DIR: /d/a/msys2-woarm64-build/msys2-woarm64-build/ccache
+2026-09-11T08:08:11.7601043Z ##[endgroup]
+2026-09-11T08:08:11.9556606Z (node:8488) [DEP0040] DeprecationWarning: The `punycode` module is deprecated. Please use a userland alternative instead.
+2026-09-11T08:08:11.9557337Z (Use `node --trace-deprecation ...` to show where the warning was created)
+2026-09-11T08:08:13.5745762Z With the provided path, there will be 6901 files uploaded
+2026-09-11T08:08:13.5753912Z Artifact name is valid!
+2026-09-11T08:08:13.5755654Z Root directory input is valid!
+2026-09-11T08:08:13.9139009Z Beginning upload of artifact content to blob storage
+2026-09-11T08:08:17.7680431Z (node:8488) [DEP0169] DeprecationWarning: `url.parse()` behavior is not standardized and prone to errors that have security implications. Use the WHATWG URL API instead. CVEs are not issued for `url.parse()` vulnerabilities.
+2026-09-11T08:08:18.1384573Z Uploaded bytes 8388608
+2026-09-11T08:08:19.9450618Z Uploaded bytes 16777216
+2026-09-11T08:08:20.5622929Z Uploaded bytes 19497226
+2026-09-11T08:08:20.5917611Z Finished uploading artifact content to blob storage!
+2026-09-11T08:08:20.5922391Z SHA256 digest of uploaded artifact zip is 882fe929bfbd3a39dbed80fdf6764c807db86ece5c9c9552fea3ece5d8cfd691
+2026-09-11T08:08:20.5925446Z Finalizing artifact upload
+2026-09-11T08:08:20.8821360Z Artifact mingw-w64-cross-mingwarm64-crt-build.zip successfully finalized. Artifact ID 10190288857
+2026-09-11T08:08:20.8822900Z Artifact mingw-w64-cross-mingwarm64-crt-build has been successfully uploaded! Final size is 19497226 bytes. Artifact ID is 10190288857
+2026-09-11T08:08:20.8836736Z Artifact download URL: https://github.com/crutkas/msys2-woarm64-build/actions/runs/34571963232/artifacts/10190288857
+2026-09-11T08:08:20.9341316Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:08:20.9342686Z Post job cleanup.
+2026-09-11T08:08:21.1410178Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-11T08:08:21.1689182Z git version 2.55.0.windows.5
+2026-09-11T08:08:21.1753353Z Temporarily overriding HOME='D:\a\_temp\eae15897-ca6e-40e7-a032-a86623d4206a' before making global git config changes
+2026-09-11T08:08:21.1754441Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-11T08:08:21.1765534Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\msys2-woarm64-build\msys2-woarm64-build\packages
+2026-09-11T08:08:21.2075396Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-09-11T08:08:21.2381140Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-09-11T08:08:21.7840942Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-11T08:08:21.8102671Z http.https://github.com/.extraheader
+2026-09-11T08:08:21.8143621Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-09-11T08:08:21.8475130Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-09-11T08:08:22.3616638Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-11T08:08:22.3937833Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-09-11T08:08:22.9539624Z Node 20 is being deprecated. This workflow is running with Node 24 by default. If you need to temporarily use Node 20, you can set the ACTIONS_ALLOW_USE_UNSECURE_NODE_VERSION=true environment variable. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/
+2026-09-11T08:08:22.9540949Z Post job cleanup.
+2026-09-11T08:08:23.1510727Z [command]"C:\Program Files\Git\bin\git.exe" version
+2026-09-11T08:08:23.1781081Z git version 2.55.0.windows.5
+2026-09-11T08:08:23.1848959Z Temporarily overriding HOME='D:\a\_temp\d5ab0a39-02aa-41bc-b706-8fd3d26b65f5' before making global git config changes
+2026-09-11T08:08:23.1850154Z Adding repository directory to the temporary git global config as a safe directory
+2026-09-11T08:08:23.1860838Z [command]"C:\Program Files\Git\bin\git.exe" config --global --add safe.directory D:\a\msys2-woarm64-build\msys2-woarm64-build
+2026-09-11T08:08:23.2166719Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp core\.sshCommand
+2026-09-11T08:08:23.2475360Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'core\.sshCommand' && git config --local --unset-all 'core.sshCommand' || :\""
+2026-09-11T08:08:23.7749664Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp http\.https\:\/\/github\.com\/\.extraheader
+2026-09-11T08:08:23.8014619Z http.https://github.com/.extraheader
+2026-09-11T08:08:23.8059011Z [command]"C:\Program Files\Git\bin\git.exe" config --local --unset-all http.https://github.com/.extraheader
+2026-09-11T08:08:23.8372176Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "sh -c \"git config --local --name-only --get-regexp 'http\.https\:\/\/github\.com\/\.extraheader' && git config --local --unset-all 'http.https://github.com/.extraheader' || :\""
+2026-09-11T08:08:24.3852718Z [command]"C:\Program Files\Git\bin\git.exe" config --local --name-only --get-regexp ^includeIf\.gitdir:
+2026-09-11T08:08:24.4150244Z [command]"C:\Program Files\Git\bin\git.exe" submodule foreach --recursive "git config --local --show-origin --name-only --get-regexp remote.origin.url"
+2026-09-11T08:08:24.9903049Z Cleaning up orphan processes
+2026-09-11T08:08:24.9936710Z ##[warning]Node.js 20 is deprecated. The following actions target Node.js 20 but are being forced to run on Node.js 24: actions/cache/restore@v4, actions/cache/save@v4, actions/checkout@v4, actions/upload-artifact@v4, Windows-on-ARM-Experiments/setup-msys2@main. For more information see: https://github.blog/changelog/2025-09-19-deprecation-of-node-20-on-github-actions-runners/

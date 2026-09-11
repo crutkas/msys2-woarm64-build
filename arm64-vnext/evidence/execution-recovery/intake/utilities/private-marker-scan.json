@@ -1,0 +1,136 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T14:32:35.1164229Z",
+  "sourceFixture": "fixture/usr/bin",
+  "scanner": {
+    "tool": "Python 3 standard library custom PE/COFF scanner",
+    "algorithm": "Read DOS e_lfanew and COFF section table; resolve slash-encoded long section names through the COFF string table; search exact ASCII and UTF-16LE private markers; map each file offset into section raw ranges and calculate RVA.",
+    "searched": [
+      ".copilot",
+      "session-state",
+      "ap13-dcb",
+      "ap11-native-provider-intake"
+    ],
+    "utf16Hits": 0
+  },
+  "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot",
+  "results": [
+    {
+      "file": "ps.exe",
+      "sha256": "5a90f4d5def276de5c15da392397b07f3bc2373cce19ba23cd3b06f695d13fe2",
+      "hits": [
+        {
+          "fileOffset": "0x0001c97e",
+          "rva": "0x0003437e",
+          "section": ".debug_info",
+          "encodedSectionName": "/19",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        },
+        {
+          "fileOffset": "0x00026aa9",
+          "rva": "0x0003f2a9",
+          "section": ".debug_line",
+          "encodedSectionName": "/45",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        }
+      ]
+    },
+    {
+      "file": "mount.exe",
+      "sha256": "1bfa94f6e9c5a3a76a76f6d29c4e7dc046211f35ffde5b8881201025240cbba3",
+      "hits": [
+        {
+          "fileOffset": "0x00006b81",
+          "rva": "0x0000d381",
+          "section": ".debug_info",
+          "encodedSectionName": "/19",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        },
+        {
+          "fileOffset": "0x00009e0e",
+          "rva": "0x0001060e",
+          "section": ".debug_info",
+          "encodedSectionName": "/19",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        },
+        {
+          "fileOffset": "0x000114a9",
+          "rva": "0x000192a9",
+          "section": ".debug_line",
+          "encodedSectionName": "/45",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        },
+        {
+          "fileOffset": "0x00012cb7",
+          "rva": "0x0001aab7",
+          "section": ".debug_line",
+          "encodedSectionName": "/45",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        }
+      ]
+    },
+    {
+      "file": "cygpath.exe",
+      "sha256": "67388133d52450aedfc6b8717cbc23ea98e0156b859a7b53febd6103f31438fd",
+      "hits": [
+        {
+          "fileOffset": "0x0000779b",
+          "rva": "0x0000d39b",
+          "section": ".debug_info",
+          "encodedSectionName": "/19",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        },
+        {
+          "fileOffset": "0x00014ca9",
+          "rva": "0x0001b2a9",
+          "section": ".debug_line",
+          "encodedSectionName": "/45",
+          "sectionCharacteristics": "0x42000040",
+          "literal": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot"
+        }
+      ]
+    }
+  ],
+  "summary": {
+    "files": 3,
+    "asciiHits": 8,
+    "utf16Hits": 0,
+    "debugInfoHits": 4,
+    "debugLineHits": 4,
+    "nonDebugHits": 0
+  },
+  "classification": {
+    "sectionCharacteristics": "0x42000040 = initialized data + discardable + readable",
+    "origin": "DWARF compilation-directory and line-table path metadata emitted at compile origin",
+    "notObservedIn": [
+      ".text",
+      ".data",
+      ".rdata",
+      ".idata",
+      ".pdata",
+      ".xdata"
+    ],
+    "runtimeEffect": "none demonstrated; imports and behavior unchanged",
+    "shippingDisposition": "still prohibited by contract until a clean rebuild removes private markers at compile origin"
+  },
+  "remediation": {
+    "required": "Rebuild from source with deterministic compiler prefix mapping for the exact Windows worktree path and any slash-normalized equivalent, then independently rescan exact bytes.",
+    "candidateFlags": [
+      "-ffile-prefix-map=<producer-worktree>=/usr/src/msys2-runtime",
+      "-fdebug-prefix-map=<producer-worktree>=/usr/src/msys2-runtime",
+      "-fmacro-prefix-map=<producer-worktree>=/usr/src/msys2-runtime"
+    ],
+    "forbidden": [
+      "binary string patching",
+      "scan-ignore waiver",
+      "claiming strip alone proves source-path hygiene"
+    ]
+  }
+}

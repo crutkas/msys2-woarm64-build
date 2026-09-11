@@ -1,0 +1,45 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T10:29:35.2428604Z",
+  "decision": "ADMIT_RUNTIME907_SCOPED_NATIVE_MSYS_BZIP2_PCRE2_PROVIDER",
+  "export": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-bzip2-pcre2-admitted-v1\\export.json",
+    "sha256": "7032ded0427c23c698d043739349385d391220f3df30ff96a48670aa1c2a939b"
+  },
+  "sourceHandoff": {
+    "path": "C:\\ap15-d207\\less-native-01\\native-msys-provider-export-05\\handoff.json",
+    "sha256": "c6c5a29ea81b83ba3640e5cfbe329ed27f84faa8dabb0f19c4b28e38f79a8013"
+  },
+  "controlsPassed": [
+    "75/75 unique immutable referenced artifacts verified",
+    "9 package archive hashes and metadata read back",
+    "261/261 unique payload files byte-identical to producer readback",
+    "zero duplicate ownership, unsafe paths, or archive links",
+    "11/11 packaged PEs are AA64",
+    "17-PE moved-root closure has zero unresolved imports",
+    "pcre2grep and pcre2test exact dependency imports",
+    "runtime-907 and four supporting dependency DLL hashes exact",
+    "strict upstream PCRE2 raw0 with 4 PASS and no skip/xfail/error",
+    "independent moved-root pcre2grep version/config/positive/nonmatch/error controls",
+    "independent all-width Unicode/UCP/ANYCRLF/JIT/POSIX API raw0 with exact result hash",
+    "FlushInstructionCache import and zero legacy ARM cache-maintenance instructions",
+    "independent bzip2 help and 65536-byte roundtrip",
+    "zero private path/helper leaks; test-only closure excluded",
+    "nine raw .PKGINFO files preserved byte-for-byte and hashed independently"
+  ],
+  "historicalFailureDisposition": "Candidate-13 combined controller raw1 is retained as a post-check relative API fixture-path harness failure; it is neither normalized nor used as strict-suite failure. Unchanged packaged bytes pass independent API and moved-root controls.",
+  "lessGate": {
+    "decision": "CLEARED_FOR_PRODUCER_BUILD",
+    "scope": "less may build only against this admitted PCRE2/bzip2 provider and the exact runtime-907 cohort",
+    "lessAdmitted": false
+  },
+  "boundaries": [
+    "No d70 compatibility claim",
+    "No runtime-907 package admission",
+    "No shared prefix mutation",
+    "No product rebuild",
+    "No test-only helper admission",
+    "No release archive",
+    "Full release remains incomplete"
+  ]
+}

@@ -1,0 +1,118 @@
+{
+  "schema": 1,
+  "status": "pr11-crt-bootstrap-header-closure-qualified",
+  "createdUtc": "2026-09-11T16:03:11.1415797Z",
+  "scope": "Local review-ready patch only; no commit, push, PR mutation, CI rerun, runner registration, or downstream-stage claim.",
+  "upstream": {
+    "repository": "crutkas/msys2-woarm64-build",
+    "pullRequest": 11,
+    "head": "a0b773dbd64b4542d9b8de05911d23af51e87c25",
+    "run": 34571963232,
+    "job": 103192951301,
+    "failureLog": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\efd00553-3418-42bb-88cf-3ced38a3f833\\files\\crt-job-103192951301.log",
+      "sha256": "0936f68c3a1a2ddd70ea3c4fa873dce2e6836542157142c21c4e3ec432120e14",
+      "failure": "pthread_time.h:27:10: fatal error: pthread_compat.h: No such file or directory"
+    }
+  },
+  "rootCause": {
+    "removedDependency": "mingw-w64-cross-mingw64-winpthreads-14.0.0.r147.g31bd54ab7-1",
+    "previousCopiedHeaders": [
+      "pthread_signal.h",
+      "pthread_unistd.h",
+      "pthread_time.h"
+    ],
+    "missingTransitiveHeader": "pthread_compat.h",
+    "resolution": "Prepare the CRT package source first, stage all four compatibility headers from that exact ARM64 source checkout, then build with --noextract."
+  },
+  "source": {
+    "repository": "https://github.com/Windows-on-ARM-Experiments/mingw-woarm64.git",
+    "actualCommit": "92e63a665c6f217a41401feb69b4662928d370ba",
+    "recipeDeclaredCommit": "9d8da7d28c75dd70bcd7b6b5f9b360ebfe13194a",
+    "pkgbuildSha256": "d8d55d3eb3181935f25066435e221531833f9e19e1239cd664d84b4899c5bd6b",
+    "headers": {
+      "pthread_signal.h": {
+        "path": "mingw-w64-libraries/winpthreads/include/pthread_signal.h",
+        "sha256": "46915f25fb94f61ac4bdfa9b38736e6524a5b36bc42b00f7e87526fbc24287a6",
+        "bytes": 1304
+      },
+      "pthread_unistd.h": {
+        "path": "mingw-w64-libraries/winpthreads/include/pthread_unistd.h",
+        "sha256": "920925577b990df78791e757b557bf83c2c4f9a6b91e87b3178a97258b011da2",
+        "bytes": 5012
+      },
+      "pthread_time.h": {
+        "path": "mingw-w64-libraries/winpthreads/include/pthread_time.h",
+        "sha256": "08f987b1f590419dd1e9f7b55871422aacf96b476e99b0bca9fe58743a5c8657",
+        "bytes": 4768
+      },
+      "pthread_compat.h": {
+        "path": "mingw-w64-libraries/winpthreads/include/pthread_compat.h",
+        "sha256": "f49f8f267c60f7a6ec24c3ee770bdfa7efd3aee76e2f234089e9a9f75168e4db",
+        "bytes": 5582
+      }
+    }
+  },
+  "candidateInputs": {
+    "artifacts": [
+      {
+        "name": "mingw-w64-cross-mingwarm64-binutils-2.44dev-1-x86_64.pkg.tar.zst",
+        "sha256": "0fa3eda04923bcddddc0557ed57fe0cf5414251717da417d50e9c97ed8f72f1b",
+        "bytes": 12703908
+      },
+      {
+        "name": "mingw-w64-cross-mingwarm64-gcc-stage1-15.0.1dev-3-x86_64.pkg.tar.zst",
+        "sha256": "e696d0ad9deece69b07923b9b2c540d256854905e7f5c34d88eb12805dd4641f",
+        "bytes": 57629596
+      },
+      {
+        "name": "mingw-w64-cross-mingwarm64-headers-13.0.0dev-1-x86_64.pkg.tar.zst",
+        "sha256": "41a50cb4ad98d5c0b220614c7c429b03274e720adf1ac7da907be26af8aa53e7",
+        "bytes": 8888836
+      }
+    ],
+    "headerRoot": "PR11 run 34571963232 mingw-w64-cross-mingwarm64-headers artifact",
+    "compiler": {
+      "path": "C:\\ag-sqlite-e138-01\\host-compiler\\bin\\aarch64-w64-mingw32-gcc.exe",
+      "sha256": "3428a1fc184ab39dd5f84f74395063e22fb5ff45eac0743e85996c2b2ea7f011",
+      "target": "aarch64-w64-mingw32",
+      "version": "aarch64-w64-mingw32-gcc.exe (GCC) 15.0.1 20250131 (experimental)"
+    }
+  },
+  "controls": {
+    "shellSyntax": "passed",
+    "capturedThreeHeaderFailure": "passed",
+    "missingSourceHeaderRejectedWithoutOutput": "passed",
+    "pthreadTimeCompile": "passed",
+    "gettimeofdayCompile": "passed",
+    "gettimeofdayObject": {
+      "path": "crt-bootstrap-header-validation-03/gettimeofday.o",
+      "sha256": "8ffb8a9da1d66508d55cb7e1590b4ecfd3713162f9755fe137f9b71016f3e188",
+      "machine": "0xAA64"
+    },
+    "twoPhasePackageContract": "passed",
+    "downstreamHeaderRetention": "passed",
+    "x64DependencyRemoved": "passed",
+    "stdout": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\efd00553-3418-42bb-88cf-3ced38a3f833\\files\\crt-bootstrap-header-validation-03.stdout",
+      "sha256": "3690f003fb29b87e8e206e09f39297ca24bd3cd4e5ea9f915f005dae21ac90d2"
+    },
+    "stderr": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\efd00553-3418-42bb-88cf-3ced38a3f833\\files\\crt-bootstrap-header-validation-03.stderr",
+      "sha256": "a5f671de027dc8bd25731b2ac4b37d708b03bf3752208ac69af12535acfa4899"
+    },
+    "evidenceRoot": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\efd00553-3418-42bb-88cf-3ced38a3f833\\files\\crt-bootstrap-header-validation-03"
+  },
+  "patch": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\efd00553-3418-42bb-88cf-3ced38a3f833\\files\\pr11-crt-bootstrap-header-closure.patch",
+    "sha256": "4cc4f5387496e86911a56bef3c1fa1d690c57bf5f07888f441a9bd8747efe5d4",
+    "basedOn": "refs/remotes/origin/pr-11",
+    "files": [
+      ".github/scripts/build-package.sh",
+      ".github/scripts/pthread-headers-hack-before.sh",
+      ".github/scripts/pthread-headers-hack-after.sh",
+      ".github/scripts/test-mingwarm64-crt-bootstrap-headers.sh",
+      ".github/workflows/mingw-cross-toolchain.yml"
+    ]
+  }
+}

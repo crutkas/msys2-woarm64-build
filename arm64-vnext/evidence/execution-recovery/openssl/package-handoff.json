@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-11T06:21:59.6159972Z",
+  "status": "qualified-native-windows-arm64-openssl-package-readback",
+  "package": {
+    "name": "mingw-w64-aarch64-openssl",
+    "version": "3.6.4-1",
+    "path": "C:\\ag-openssl-e138-01\\package-04\\packages\\mingw-w64-aarch64-openssl-3.6.4-1-any.pkg.tar.zst",
+    "sha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+    "bytes": 13478480,
+    "archive_entries": 7665,
+    "payload_files": 7631,
+    "payload_bytes": 63347860
+  },
+  "qualification_source": {
+    "full_suite_handoff": "C:\\ag-openssl-e138-01\\full-check-03\\handoff.json",
+    "full_suite_handoff_sha256": "a1714700a43ed3e74ff9081061683a834a45371da078a2acba739d7cf87e853b",
+    "recipes": "355/355",
+    "tests": "4405/4405",
+    "observer": "81776/81776",
+    "unresolved": 0,
+    "unexplained_high_exits": 0
+  },
+  "recipe": {
+    "pkgbuild_sha256": "aa51b8f4219dc805fe2050c6cbf6bedb5a6862e76d5105189b52770f7ec08a84",
+    "makepkg_metadata_patch": ".github\\scripts\\makepkg-6.1-gnu-find-metadata.patch",
+    "makepkg_metadata_patch_sha256": "20f2221e3faeb98a00b9cb1d274d613b2c1ce695bfe6dd916daec2cb834d9c52",
+    "makepkg_log": "C:\\ag-openssl-e138-01\\package-04\\makepkg-output.log",
+    "makepkg_log_sha256": "e76b07c6c37cc1aba21e37c3e996003cda9a651df30cfdf4437b66d16c9eac98",
+    "package_attempts": "C:\\ag-openssl-e138-01\\package-04\\package-attempts.json"
+  },
+  "readback": {
+    "root": "C:\\ag-openssl-e138-01\\readback-01",
+    "payload_manifest_sha256": "23daf293e732ad4cd41ad8cded4322d943ce80f089af8ae667cea1ffed93d919",
+    "stage_readback_identical": true,
+    "pe_files": 7,
+    "all_pe_aarch64": true,
+    "payload_private_path_matches": 0,
+    "buildinfo_provenance_paths": [
+      "/c/ag-openssl-e138-01/package-04/recipe"
+    ],
+    "buildinfo_paths_classification": "intentional package build provenance metadata, absent from installed payload"
+  },
+  "exact_tested_pe_sha256": {
+    "mingwarm64/bin/openssl.exe": "e60131c64200b8fe1913a45d46d73867ebe6f1b68c6a0375d5c2600c5d8e9b93",
+    "mingwarm64/bin/libcrypto-3-arm64.dll": "dd210957efceb1999e38f2b5f5165c370fb6da6a1d7eff1185dd6edf1bc33818",
+    "mingwarm64/bin/libssl-3-arm64.dll": "c1220fb0a6faea975376bbdde558ec19f9ada0a5f5ab0a9b86db14ed0f896b61",
+    "mingwarm64/lib/engines-3/capi.dll": "a1b7f290f1e9d5abffe9f67a993c3de3ccba61d38dc926821774f963dde23f1f",
+    "mingwarm64/lib/engines-3/loader_attic.dll": "525d0ef91c1c6d3472d53ec9f4d59f76641dd4997de97ab9f13d49b55c883127",
+    "mingwarm64/lib/engines-3/padlock.dll": "ee65696e60a649a77a75612ba2dd2544c6fd4934bc8b63474ab401c65f893971",
+    "mingwarm64/lib/ossl-modules/legacy.dll": "d3a593cbefc94882a112ffc73c9f22a8e139bcf0ed0e7e299e21222da0c22e58"
+  },
+  "controls": {
+    "version": "OpenSSL 3.6.4, platform mingwarm64, OPENSSL_armcap=0x3d",
+    "default_provider": true,
+    "legacy_provider_without_environment_override": true,
+    "relocated_configdir": "C:/ag-openssl-e138-01/readback-01/mingwarm64/etc/ssl",
+    "relocated_modulesdir": "C:/ag-openssl-e138-01/readback-01/mingwarm64/lib/ossl-modules",
+    "sha256_digest": true,
+    "certificate_generate_and_verify": true,
+    "tls": {
+      "protocol": "TLSv1.3",
+      "cipher": "TLS_AES_256_GCM_SHA384",
+      "group": "X25519MLKEM768",
+      "verification": "OK",
+      "http_status": "200 ok"
+    }
+  },
+  "strip_disposition": "makepkg emitted nonfatal strip/objdump diagnostics, but all seven packaged PE payloads are byte-identical to the exact full-suite-tested build; no stripped PE was substituted"
+}

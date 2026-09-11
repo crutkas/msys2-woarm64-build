@@ -1,0 +1,530 @@
+{
+  "schema": 1,
+  "status": "blocked-current-native-observer-image-query-race",
+  "macro_generator_gate": "closed by actual pinned top/nested m4/aclocal/autoreconf; no no-op or shell splicing",
+  "regenerated_libiconv": {
+    "manifest": "C:\\ag-bash-e138-01\\libiconv-regenerated-02\\source.prepare.json",
+    "sha256": "6befa4da9eae65442e7ed6e27e0a2a1c600f4785daa67998549394442bd27e74"
+  },
+  "host_generators": {
+    "manifest": "C:\\ag-bash-e138-01\\host-bootstrap-02\\host-generators-02.json",
+    "sha256": "618ed8549fed89da4d44d902c79f156c1091097860c90eb8e62806e32250e0c4",
+    "files": 19682,
+    "signature_policy": "Required",
+    "additional_package": "automake1.18 1.18.1-1; original SHA plus independent public VALIDSIG verified"
+  },
+  "target_compiler_receipt_sha256": "ed4fa0a4844ee05deca009dc9346320d701ae93cd9f299dc0185a5358001d41c",
+  "runtime_sha256": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16",
+  "completed_components": {
+    "iconv-bridge-02": {
+      "stage": "C:\\ag-bash-e138-01\\iconv-bridge-02\\stage",
+      "manifest": "C:\\ag-bash-e138-01\\iconv-bridge-02\\stage.inventory.json",
+      "sha256": "45d7d144d0afcf76897d4b20376a5b15fff63bf974d03e2e5e7ee6c2556a6066",
+      "profile": "iconv-bridge",
+      "nls_enabled": false,
+      "classification": "temporary-NLS-off-iconv-CLI-bridge-not-final"
+    },
+    "gettext-runtime-01": {
+      "stage": "C:\\ag-bash-e138-01\\gettext-runtime-01\\stage",
+      "manifest": "C:\\ag-bash-e138-01\\gettext-runtime-01\\stage.inventory.json",
+      "sha256": "675e3b358606700dea6d3627b1677dfc7d8f5c95a3163101fe240b4c1c6124ca",
+      "profile": "gettext-runtime",
+      "nls_enabled": true,
+      "classification": "full-selected-native-NLS-component"
+    }
+  },
+  "completed_native_proofs": {
+    "iconv-bridge-static-proof-01": {
+      "result": "C:\\ag-bash-e138-01\\iconv-bridge-static-proof-01\\result.json",
+      "sha256": "6ae70b32d03603eaf0f6d80891a6f652fdbce8de90b0ca0c8a1f24f2ba730d49",
+      "pid": 6652,
+      "creation_filetime": 134333374407615205,
+      "process": {
+        "passed": true,
+        "pid": 21708,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-bash-e138-01\\iconv-bridge-static-proof-01\\native-job.json",
+          "sha256": "f9411847759463873708080356d73d75bdf52732a93c46cf5ee220fa0aeae741",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    "iconv-bridge-shared-proof-01": {
+      "result": "C:\\ag-bash-e138-01\\iconv-bridge-shared-proof-01\\result.json",
+      "sha256": "71e8518a4b1a08a49c28abc7994d0fcfa36eb1cfb07bbc6ea2d40897e1d93911",
+      "pid": 12300,
+      "creation_filetime": 134333374408021324,
+      "process": {
+        "passed": true,
+        "pid": 1096,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-bash-e138-01\\iconv-bridge-shared-proof-01\\native-job.json",
+          "sha256": "acfee745c7e51601ca307c65439eaf848d6b59ea2bdf22540430d67c03b59dd2",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    "gettext-static-proof-01": {
+      "result": "C:\\ag-bash-e138-01\\gettext-static-proof-01\\result.json",
+      "sha256": "bab101f092a63ee344111c88417a56870b02959dc7078246c402eaedcf56e1c5",
+      "pid": 3352,
+      "creation_filetime": 134333392155767275,
+      "process": {
+        "passed": true,
+        "pid": 15836,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-bash-e138-01\\gettext-static-proof-01\\native-job.json",
+          "sha256": "5c648c93d695c0ffb670d6a81945c5617c3050325af5e8aee4760f439a96ae07",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    "gettext-shared-proof-01": {
+      "result": "C:\\ag-bash-e138-01\\gettext-shared-proof-01\\result.json",
+      "sha256": "e41912fe4a9bf9ab566faea5171611ccd573ffd81feb28c97f7a103500ae9867",
+      "pid": 23184,
+      "creation_filetime": 134333392157462305,
+      "process": {
+        "passed": true,
+        "pid": 27192,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-bash-e138-01\\gettext-shared-proof-01\\native-job.json",
+          "sha256": "578e47c79f82254473a3f61699ef4f8cf8f6f79fe36575052e01c08c79487a7b",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    "asprintf-shared-proof-02": {
+      "result": "C:\\ag-bash-e138-01\\asprintf-shared-proof-02\\result.json",
+      "sha256": "adfc93c5ae2a4f4c1b5e0033ed8109ca7dc980be1ae0c1cd5a22131eb92b1053",
+      "pid": 13488,
+      "creation_filetime": 134333395909609745,
+      "process": {
+        "passed": true,
+        "pid": 26416,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-bash-e138-01\\asprintf-shared-proof-02\\native-job.json",
+          "sha256": "51fa60567b12b0a52b7a447b0ea2d69ee98fe01dee853d87dd89a68c1f6b95dc",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    },
+    "asprintf-static-proof-01": {
+      "result": "C:\\ag-bash-e138-01\\asprintf-static-proof-01\\result.json",
+      "sha256": "611f76378f4d564e32e0207e47dd1f65dc8baae70c469f658f372a6171a4912c",
+      "pid": 7052,
+      "creation_filetime": 134333397814010621,
+      "process": {
+        "passed": true,
+        "pid": 8100,
+        "exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+        "native_observation": {
+          "path": "C:\\ag-bash-e138-01\\asprintf-static-proof-01\\native-job.json",
+          "sha256": "b34faf73eebb77b67e9a89ab3e671c5f8f60c973ac4f04a264d8cadaaa56dd83",
+          "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+        }
+      }
+    }
+  },
+  "failed_attempt": {
+    "profile": "full-NLS iconv",
+    "root": "C:\\ag-bash-e138-01\\iconv-full-02",
+    "pid": 24608,
+    "creation_filetime": 134333395908736064,
+    "error": "native-job.py:203 QueryFullProcessImageNameW WinError31; observer aborted and produced no completed observation JSON",
+    "feature_configuration": {
+      "ENABLE_NLS": true,
+      "ENABLE_EXTRA": true
+    },
+    "scope": "compilation reached upstream checks; partial outputs unqualified, not an iconv test failure waiver",
+    "evidence": [
+      {
+        "path": "C:\\ag-bash-e138-01\\iconv-full-02\\launch.json",
+        "sha256": "d7cefbc3c3e3d0a492815dd525405931e43a56924146ab9783347149537074f1",
+        "bytes": 1394
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\iconv-full-02\\result.json",
+        "sha256": "fe969922c72419d72f2984e339961405bccfb328e66a8e81dbe3adf5820a4bab",
+        "bytes": 3112
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\iconv-full-02\\observed.log",
+        "sha256": "1e87093e1cdec82f89df42a89495274216ebf7da7f416e0f5368ddda1388cab0",
+        "bytes": 127181
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\iconv-full-02\\native-job.stderr",
+        "sha256": "5a7171c50cf1710512529e0ba493db001fbd28155551743ff9bc76160aaeda88",
+        "bytes": 729
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\iconv-full-02\\native-job.stdout",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    ]
+  },
+  "required_next_input": "Pipeline-qualified native observer with lossless process image-query race handling; never default unknown images to nonnative or ignore high exits",
+  "original_terminal_chain": {
+    "handoff": "C:\\ag-readline-e138-01\\chain-handoff-01\\handoff.json",
+    "sha256": "c5d0024793e88f90008aec126344116c961542dca9aa69f2051d9a7b9e3b4969",
+    "status": "complete and accepted"
+  },
+  "maintained_bundle": {
+    "path": "C:\\ag-bash-e138-01\\observer-gate-01\\maintained-bash-nls-continuation.zip",
+    "sha256": "5f111a20c1079c232dc46508c4912e305969f5ed828badd8cc6867c56b5aeefe",
+    "files": {
+      "assemble-bash-sdk.py": {
+        "sha256": "bec028c8efadcb9de2aef266e98ba3a6aa5cf7e23c0c3d7a191c4ae27db9ae7a",
+        "size": 3906
+      },
+      "bash_chain_inputs.py": {
+        "sha256": "8acbc7c31fae57d3962ee79bb64699e9500fb67f3ec03d76aa02d6fea022f82b",
+        "size": 11084
+      },
+      "bounded_process.py": {
+        "sha256": "226360eeabe3d7f89a7b77378ec1ee15524287eea8df3ccb84a6a5b79cedb619",
+        "size": 8988
+      },
+      "build-bash-nls.py": {
+        "sha256": "d01b0c7e3f9117d2ae6b49b5eb7a25d8b32f7fd44f4ea573d02b6a90c7b5c463",
+        "size": 11226
+      },
+      "build-bash-nls.sh": {
+        "sha256": "833ffaa003ef5c9305f9a1c477194d62dada39005ff91a1b682ffee2c6ba723a",
+        "size": 3434
+      },
+      "build-full-bash.py": {
+        "sha256": "37acb691599f6a86e0b46724f3c29f3c01764d612a2ffbb1bdf58ba89a2d0f1f",
+        "size": 6014
+      },
+      "build-full-bash.sh": {
+        "sha256": "57df1e51a3f30e82d5885ca757ca8f79b9cafb6a5fadc7e5e429684439706965",
+        "size": 3341
+      },
+      "build-libedit-static.py": {
+        "sha256": "8d73afc4c00828f4db6b0886144f97f3963c20db38019651bfd9ad42c7db759e",
+        "size": 5344
+      },
+      "build-libedit-static.sh": {
+        "sha256": "41c271445ec2e7d9aaf548b84a48364d16e5f81b78ce610a8b715ac9d8ff8e5e",
+        "size": 577
+      },
+      "build-ncurses-static-cxx.py": {
+        "sha256": "f28d9d80c41a35b4d1154c780fd628dcd5c9db1ead108b347dcf2ff73611ef1c",
+        "size": 5097
+      },
+      "build-ncurses-static-cxx.sh": {
+        "sha256": "a88c9cd1da2d47b42351c09ca1d7c307ca5abf933731912cb6d0700b3f0ea1de",
+        "size": 525
+      },
+      "build-readline-chain.py": {
+        "sha256": "267d5e461c52ecb53992babba995a1952c11b0489fe9e29ba06354a2996557a8",
+        "size": 12340
+      },
+      "build-readline-chain.sh": {
+        "sha256": "d32939b9c994882892a8d38c9f08cf542e7d580bbd2fb33262b319424dc888fb",
+        "size": 7259
+      },
+      "check-full-bash.py": {
+        "sha256": "38e473b2db626c2d4d0c47a5ee66cc508b39f3f91fc8438f27bd089e87c813ae",
+        "size": 5502
+      },
+      "check-full-bash.sh": {
+        "sha256": "5ce2c73d57e61dd8f31abb16a6cb06f891672161d2004f94e9b5d187cec7c7c7",
+        "size": 1086
+      },
+      "compiler_tools.py": {
+        "sha256": "84ca3101535a752a41bd0c322c4e864b4c34f3e7be5dedb7da8e8edebbd9293a",
+        "size": 5874
+      },
+      "copy-bash-generators.py": {
+        "sha256": "65f7b981fa9a6f3278845f65fd9467d9f6f2c9d60b04ee0891e98f42076d36cf",
+        "size": 5110
+      },
+      "export-readline-chain.py": {
+        "sha256": "b6e82aea26501c4ea84c26d391783dbe1bece31057cdb2514a8126e0bf89d0e9",
+        "size": 14416
+      },
+      "finish-libedit-wide.py": {
+        "sha256": "51998a8e3a77f1de0c46c23acfcdd18845f44d35b45d35550b0cb99e48053d06",
+        "size": 6607
+      },
+      "finish-libedit-wide.sh": {
+        "sha256": "d7b63feae2377b4c61db36160e8b4115be830fc42082d442bd4e5a8e34e68a3f",
+        "size": 1018
+      },
+      "finish-ncurses-chain.py": {
+        "sha256": "80e6246e33f5d671a805e49e70e38a8ebec769d924b4ab8c0f99e80ebe224e9d",
+        "size": 5787
+      },
+      "finish-ncurses-chain.sh": {
+        "sha256": "071ea085c123e7c82c33172e30e06b4b27a3e33df34c52e2c9fca712e6b45189",
+        "size": 3866
+      },
+      "finish-terminal-library.py": {
+        "sha256": "6e37bb2340d36dabb6e2a408d805374451462e6f238efe4129bc53666e5b028d",
+        "size": 5453
+      },
+      "finish-terminal-library.sh": {
+        "sha256": "74b46c151160c97e2365f82846d2dad940e9db9f258acac7223fe9bb1fe5eb24",
+        "size": 1938
+      },
+      "fixtures/msys-jmp-layout.c": {
+        "sha256": "1ce96955b036410c1dc9c11dac222d809297445aba14c8f5cbe784cfd2ba5439",
+        "size": 406
+      },
+      "fixtures/native-asprintf-api.cc": {
+        "sha256": "69d6fef3063106e389eeca1f25f13b834b762c99a8edd29a428a485deb8828fc",
+        "size": 1344
+      },
+      "fixtures/native-bash-nls.c": {
+        "sha256": "8656164cc7e7221afd045349eb30df50390f7792fad323225364acb025c7a694",
+        "size": 3525
+      },
+      "fixtures/native-curses-cpp.cc": {
+        "sha256": "bafc9d76ef14902e4fc2909c198f8daef611121badf053f6631d1af866ef5a99",
+        "size": 1095
+      },
+      "fixtures/native-editor-pty.c": {
+        "sha256": "32b08e5ec0b0be19208b64aa47ce825efac777cd6acb319572fda1ede6ef8498",
+        "size": 4892
+      },
+      "fixtures/native-history-api.c": {
+        "sha256": "5886cbd4ae6134829ede597c160606407faf062f334410183f99cb40465b581c",
+        "size": 1684
+      },
+      "fixtures/native-libedit-display-probe.c": {
+        "sha256": "fcd8015881e84f523390f8edf919eb8de26d1c42684d6e25a09c2bf4fa5f247a",
+        "size": 1050
+      },
+      "fixtures/native-nls.po": {
+        "sha256": "43b9b7a646afbe0213cf42df01c9fd7966dd23d7717d965a4b6618a5a9cf5b38",
+        "size": 323
+      },
+      "fixtures/native-terminal-library.c": {
+        "sha256": "0e7adc2ec0c58d615050fb24e03082b22a2235b16bdeddbf5b865f6c947787b6",
+        "size": 3426
+      },
+      "install-bash-automake.py": {
+        "sha256": "81d4b859637b1332fcd9042eeae14857ec44437d4c3eb2144fdace772d296312",
+        "size": 6660
+      },
+      "libedit-static.mk": {
+        "sha256": "30d0b5bcf806c08dc08af36efc0fffa9fbbd3565901dba4096527b9aed70dad2",
+        "size": 389
+      },
+      "native-msys-test-dispatch.sh": {
+        "sha256": "8617991c49f77b106237e87c453cfa06b7eb64303cd3e8e20625e5df9fbdc63d",
+        "size": 496
+      },
+      "native_job_runner.py": {
+        "sha256": "ce76f288e329df76138fc0e54ba65b68cf29ed2bdaf332ef659261b9c39e0799",
+        "size": 3549
+      },
+      "ncurses-static-cxx.mk": {
+        "sha256": "c680e606344980ecf90bb39c181edafedb7d7b122f5bbcb0274589d4d69284cc",
+        "size": 374
+      },
+      "package_posix.py": {
+        "sha256": "0e5f0532fd9ff2d520f0998d3a50442d51eac396ed69063e365691f1ccd63513",
+        "size": 6667
+      },
+      "patches/bash-5.3-record-all-tests.patch": {
+        "sha256": "958bda055ea918e4385f90992db5e0bd5a884f1591b5779045156d858020caf8",
+        "size": 955
+      },
+      "patches/libedit-20240808-display-cells-regression.c": {
+        "sha256": "d1583ca49e90c7bb38af76e8e8d6ed5d5753e345d230a30eeb6b385a8f2d3170",
+        "size": 12646
+      },
+      "patches/libedit-20240808-display-cells.patch": {
+        "sha256": "c013b66dd51b148c3647cd0af56a34ef0a755c5f7cb4b3aa071eaa66feae7b6f",
+        "size": 12195
+      },
+      "patches/libedit-20240808-display-cells.provenance.json": {
+        "sha256": "dfa863763c009efcf53a7223073bcf9ec3b216a26eeb799935e1525c2e9fdef7",
+        "size": 12492
+      },
+      "patches/libedit-20240808-read-ioctl.patch": {
+        "sha256": "aeebffc027cc07529e8bf066038f1ed0092d6caabb35f844bd7cbdf400c9d733",
+        "size": 208
+      },
+      "patches/libiconv-1.19-nested-macro-path.patch": {
+        "sha256": "688c8f914a002ae9e5ceabf3036faf8509bbc38d5bea4f6b590de61175c2d79f",
+        "size": 303
+      },
+      "patches/libxcrypt-coff-private-refptr-test.patch": {
+        "sha256": "fa63e5843c4ebb5ac10d48f5ec858a400a93624341d9a9fccf77fd4d1d32544c",
+        "size": 448
+      },
+      "patches/ncurses-6.6-debug-test-trace.patch": {
+        "sha256": "c551cfd903e210ed70719b178c4c98c5d44fc9123cab68e9d02d6284bfc9fa4c",
+        "size": 406
+      },
+      "patches/ncurses-6.6-header-test-basename.patch": {
+        "sha256": "3caf168f880d328081ffb9fd481b285afeb7fc0419f6357377bedf7b92ca17c8",
+        "size": 297
+      },
+      "patches/ncurses-6.6-out-of-tree-header-test.patch": {
+        "sha256": "61498befbeb6a1b7cc95c0f14fd9fc148d6607d0af4e8ae5a7de904a421fc893",
+        "size": 332
+      },
+      "patches/openssh-10.5p1-msys-setkey.patch": {
+        "sha256": "c97186ce129960982c20ee466dce3063651e7e88be3d751402b20ebb042c34d5",
+        "size": 262
+      },
+      "patches/openssh-10.5p1-msys.patch": {
+        "sha256": "aa58d266499c770bbe6c69cdace605021e88a838fdf5784a88e677ce7499172d",
+        "size": 1234
+      },
+      "patches/readline-8.3-history-example-link.patch": {
+        "sha256": "5aac3fb081525726cd78590d0d94855fb3c1f2361214382a054216edfe49b5f9",
+        "size": 697
+      },
+      "pe_exports.py": {
+        "sha256": "8ec807bff348ee65406cbd75935a68ce58cf4b404628be63a837c6d3a005d489",
+        "size": 3442
+      },
+      "readline_chain_inputs.py": {
+        "sha256": "a2348cb1a0088726c347806608a74b6d054e1b851b10b0290c7e9531a375f7d5",
+        "size": 8394
+      },
+      "record-ncurses-package-link.py": {
+        "sha256": "f08740d1b36b0f6d4b8d806d98af1448c76c570237868c3deda5d53a9bfcee68",
+        "size": 1771
+      },
+      "regenerate-bash-iconv.py": {
+        "sha256": "f6ec3ce1776d13f0a02a7908accf77a5cb5eaaa979a369cd332b0bf899e28879",
+        "size": 5686
+      },
+      "regenerate-bash-iconv.sh": {
+        "sha256": "7cb0eca6fc2c35c9438ef646d0ba0d80665c436c8c50eb94b315cb1fb686dab6",
+        "size": 994
+      },
+      "seal-ncurses-stage.py": {
+        "sha256": "2d51b7029c8a6e37013d8f606c8a9f976deaa149d665b68868d3b1db5e19a879",
+        "size": 4596
+      },
+      "seal-readline-chain.py": {
+        "sha256": "b8776744f97958c1a3486bdaeb882d7abfe25e671666aaa8c0853c237974cda2",
+        "size": 8713
+      },
+      "sources.lock.json": {
+        "sha256": "a9586151302c5a93ec35bdcb0ff9b6d50ffad0d923fdb593dd78c8ca5b933768",
+        "size": 18847
+      },
+      "sources.py": {
+        "sha256": "85a5e8e9bace1e0d04c04fc8d7e969f1e439376612fad246c7d8c612dfc8e7aa",
+        "size": 9225
+      },
+      "ssh-recipes.json": {
+        "sha256": "3dc32ca0cba24fc392f79266aadb7bdf366691b84bf712e2a10d60281293e220",
+        "size": 16645
+      },
+      "ssh_bootstrap.py": {
+        "sha256": "9f4383c0d7cd9b5c3a2f3bba458f6a9b7dc91f2d75446f4e98fd5381effeae97",
+        "size": 8055
+      },
+      "ssh_build_inputs.py": {
+        "sha256": "5ddd2a3ccb8dd00c67da49f8a95152854d35e852d661c9a04a31898cf187c8c4",
+        "size": 9859
+      },
+      "test-bash-nls.py": {
+        "sha256": "3572410f4ee9eee007f4e1ae4c2e49e357d2741cc51a0af5b87170323a6ac54b",
+        "size": 9632
+      },
+      "test-native-terminal-chain.py": {
+        "sha256": "37ff5d3b1d1957e24e16a2e5e9817603c4e0afbce3dce2653633cccfb28fd594",
+        "size": 16510
+      },
+      "test_bash_nls.py": {
+        "sha256": "4ef9d44ab4a7fe31d05e536cd2fc08d46b8528d6e95804088ef7bcfa9caa51a4",
+        "size": 1266
+      },
+      "test_bounded_process.py": {
+        "sha256": "0bdc76affc8182c9f4889d2c3aed54d5e26629f2e2d72df5f3c567b9b0c1cac1",
+        "size": 2945
+      },
+      "test_native_job_runner.py": {
+        "sha256": "3ee3a15de9488717bbf56d59ce48d922ae539443fd59a5b94355215218442d57",
+        "size": 3603
+      },
+      "test_posix_package.py": {
+        "sha256": "65ca6690ed6a5462b48d2c248b0a65476695140905007b9820336144406783bc",
+        "size": 2778
+      },
+      "test_readline_chain.py": {
+        "sha256": "b2e67c7ebf96b3f631a39b752f49c020b3537c9ceceeaa462ceb3f39a4992ea2",
+        "size": 4218
+      },
+      "test_ssh_bootstrap.py": {
+        "sha256": "5409136becd1812a64d13d9fc497c017754fe6006332ebf541e3b1849e33d8f5",
+        "size": 5182
+      },
+      "test_ssh_build_inputs.py": {
+        "sha256": "3b12463ead19ebca29313ca23fe13daa685c7e2cffa08deda9e5153c39b5a895",
+        "size": 10900
+      }
+    },
+    "Bash_full_build_check_recipes": "prepared but not executed because final NLS producer observation is blocked"
+  },
+  "helper_tests": {
+    "passed": 55,
+    "log": "C:\\ag-bash-e138-01\\observer-gate-01\\helper-tests.log",
+    "sha256": "f128b23aec51ff5a729861c089dc1d30faaddbee967004e557c0490f0ffa9aa0"
+  },
+  "allocation": {
+    "this_new_same_grant_returned": 2,
+    "native_active": 0,
+    "inside": "Git6",
+    "drain": {
+      "checked_utc": "2026-09-08T11:32:09.0056325Z",
+      "launcher_pid": 24608,
+      "launcher_creation_filetime": 134333395908736064,
+      "launcher_generation_gone": true,
+      "live_bash_root_images": [],
+      "drained": true,
+      "observer_failure": "QueryFullProcessImageNameW WinError31; no completed observation JSON",
+      "cpu_affinity_restored": true
+    }
+  },
+  "remaining": [
+    "qualified complete full-NLS iconv observation/API/translation rebind",
+    "full native Bash5.3.015 build/install/upstream checks/ownedPTY/NLS/API/DLL proof",
+    "pipeline-only package/signing/shared admission"
+  ],
+  "full_cpp_qualified": false,
+  "full_package_or_shared_admission": false,
+  "global_settings_changed": false
+}

@@ -1,0 +1,98 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T10:56:37.5452711Z",
+  "status": "ADMITTED_SCOPED_SDK_HEADER_PROVIDER",
+  "providerClass": "cygwin-msys-arm64-sdk-header-cohort",
+  "providerIdentity": "cygwin-w32api-arm64-v12-interlocked-819a6ec2-intake1",
+  "target": "aarch64-pc-cygwin",
+  "source": {
+    "repository": "https://github.com/mingw-w64/mingw-w64.git",
+    "revision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba",
+    "archiveSha256": "41878f44fe3b6c347fc99ab8a90d384f61bd3ae25cfb2a62a7e24d4f0d14f720",
+    "upstreamExport95": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-export-95\\handoff.json",
+      "sha256": "b093731b7c3b33c642cdaa0b3b93409443c338ac8db528f4b003bce9ce16391f"
+    },
+    "upstreamManifest95": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-export-95.manifest.json",
+      "sha256": "fe195ea1e42be22957c843fdb7210494662fdcda1392d6665901345e995c6527"
+    },
+    "upstreamManifest96": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-export-96.manifest.json",
+      "sha256": "fe195ea1e42be22957c843fdb7210494662fdcda1392d6665901345e995c6527"
+    }
+  },
+  "artifacts": {
+    "cohortRoot": "upstream/cohort",
+    "cohortManifest": {
+      "path": "upstream/cohort/manifest.json",
+      "sha256": "668a3a678aa4244d9429fabca0b5ff2ef5c8bb30463032fd630c143d05a28c23",
+      "files": 1656
+    },
+    "correctedHeader": {
+      "path": "upstream/cohort/include/psdk_inc/intrin-impl.h",
+      "sha256": "c1effd54a4cc7679fd9265648cac815d4e107738b8e8892bed78974da6273c47",
+      "bytes": 81140
+    },
+    "providerManifest": {
+      "path": "manifests/provider-files.json",
+      "sha256": "a99656631c8cc060eaa3264f70a923fde97a9c3125bb092d05ced489c2f1325d",
+      "files": 1760
+    },
+    "verification": {
+      "path": "independent-verification.json",
+      "sha256": "1bdf74f1a0d1736dd5a3db1e591fe47ade1f050897335f410703ea92e9102cc5"
+    },
+    "licenses": [
+      "licenses/COPYING",
+      "licenses/COPYING.MinGW-w64.txt",
+      "licenses/COPYING.MinGW-w64-runtime.txt",
+      "licenses/DISCLAIMER",
+      "licenses/DISCLAIMER.PD"
+    ]
+  },
+  "pathAuthority": {
+    "headers": 1656,
+    "baselineHeaders": 1656,
+    "changedHeaders": 1,
+    "changedPaths": [
+      "psdk_inc/intrin-impl.h"
+    ],
+    "missing": 0,
+    "extra": 0,
+    "unsafeOrPrivate": 0,
+    "links": 0
+  },
+  "consumer": {
+    "selection": [
+      "-isysroot",
+      "<export>/upstream/cohort"
+    ],
+    "compilerTarget": "aarch64-pc-cygwin",
+    "compilerSha256": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+    "runtimeQualificationSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "required": "fresh private Cygwin/MSYS ARM64 compiler/sysroot consumer build with explicit new artifact identity"
+  },
+  "admission": {
+    "allowed": "header-only Cygwin/MSYS ARM64 SDK/sysroot input for fresh private consumer rebuilds",
+    "forbidden": [
+      "substitution for the separate MinGW ARM64 bootstrap header provider",
+      "claiming GCC, CRT, runtime, package, Perl, OpenSSL, or full-release admission",
+      "installing into or mutating root06 or any shared prefix",
+      "treating unchanged existing binaries as consumers",
+      "forcing ARM intrinsic macros",
+      "claiming weak-memory stress coverage",
+      "claiming x64 execution"
+    ]
+  },
+  "audit": {
+    "fullReleaseAuditChanged": false,
+    "authoritativeAudit": {
+      "path": "C:\\ap11-native-provider-intake\\audit-v20-pcre2-runtime907-scoped.json",
+      "sha256": "e0951b48775b39c3c7c1f341756fb7e096192c0eb150e75ff4433f585874b0ac",
+      "status": "incomplete",
+      "blockers": 81
+    },
+    "reason": "SDK/header-only provider clears no current shipping/runtime package blocker and is not supplied to the assembler."
+  }
+}

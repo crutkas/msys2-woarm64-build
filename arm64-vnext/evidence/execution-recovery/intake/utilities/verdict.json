@@ -1,0 +1,27 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T14:29:21.7555125Z",
+  "decision": "ADMIT_PRIVATE_RUNTIME907_UTILITY_FIXTURE_ONLY",
+  "export": {
+    "path": "export.json",
+    "sha256": "c628bf05216083b1e4d5612e38f699ab536d354ad6cce5bcdaff53e5b93977c5"
+  },
+  "controlsPassed": [
+    "Archive SHA-256 exact",
+    "61 ZIP entries and zero unsafe paths",
+    "55/55 expanded files path- and byte-identical",
+    "54/54 SHA256SUMS entries exact",
+    "3/3 utility PEs AA64 and unmanaged",
+    "Exact declared imports and real libmsys-2.0.a/crt0 link maps",
+    "Fresh-root ps, mount, and cygpath controls raw 0",
+    "Exact runtime-907 loaded in producer module captures",
+    "No machine-private evidence copied into executable fixture"
+  ],
+  "gatesRetained": [
+    "Not an assembler-consumable package provider",
+    "Not a complete msys2-runtime package",
+    "Not shipping-approved because embedded producer paths remain in all three binaries",
+    "Runtime-907 and Perl remain separately gated",
+    "No audit rerun for this evidence-only intake"
+  ]
+}

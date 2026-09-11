@@ -1,0 +1,74 @@
+++ set -o pipefail
+++ FLAVOR=NATIVE_WITH_NATIVE
+++ CLEAN_BUILD=0
+++ INSTALL_PACKAGE=0
+++ NO_EXTRACT=0
++ [[ 4 == 0 ]]
++ [[ 4 == 4 ]]
+++ cd /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source
+++ pwd -P
++ source_root=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source
++ target_include=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target
++ receipt=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-receipt.json
++ pkgbuild=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/pr11-crt-PKGBUILD
++ expected_repository=https://github.com/Windows-on-ARM-Experiments/mingw-woarm64.git
++ expected_commit=92e63a665c6f217a41401feb69b4662928d370ba
++ declared_commit=9d8da7d28c75dd70bcd7b6b5f9b360ebfe13194a
++ headers=(pthread_signal.h pthread_unistd.h pthread_time.h pthread_compat.h)
++ expected_hashes=(46915f25fb94f61ac4bdfa9b38736e6524a5b36bc42b00f7e87526fbc24287a6 920925577b990df78791e757b557bf83c2c4f9a6b91e87b3178a97258b011da2 08f987b1f590419dd1e9f7b55871422aacf96b476e99b0bca9fe58743a5c8657 f49f8f267c60f7a6ec24c3ee770bdfa7efd3aee76e2f234089e9a9f75168e4db)
++ [[ -f /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/pr11-crt-PKGBUILD ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/pr11-crt-PKGBUILD ]]
++ grep -Fq '_commit='\''9d8da7d28c75dd70bcd7b6b5f9b360ebfe13194a'\''' /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/pr11-crt-PKGBUILD
++ grep -Fq git+https://github.com/Windows-on-ARM-Experiments/mingw-woarm64.git#branch=woarm64 /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/pr11-crt-PKGBUILD
+++ git -C /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source rev-parse HEAD
++ actual_commit=92e63a665c6f217a41401feb69b4662928d370ba
++ [[ 92e63a665c6f217a41401feb69b4662928d370ba == 92e63a665c6f217a41401feb69b4662928d370ba ]]
+++ git -C /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source remote get-url origin
++ origin=https://github.com/Windows-on-ARM-Experiments/mingw-woarm64.git
++ origin=https://github.com/Windows-on-ARM-Experiments/mingw-woarm64
++ [[ https://github.com/Windows-on-ARM-Experiments/mingw-woarm64 == https\://github\.com/Windows\-on\-ARM\-Experiments/mingw\-woarm64 ]]
++ source_include=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include
++ [[ -d /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target ]]
++ [[ ! -e /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-receipt.json ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-receipt.json ]]
++ for index in "${!headers[@]}"
++ header=pthread_signal.h
++ source_header=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_signal.h
++ [[ -f /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_signal.h ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_signal.h ]]
+++ sha256sum /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_signal.h
+++ cut '-d ' -f1
++ actual_hash=46915f25fb94f61ac4bdfa9b38736e6524a5b36bc42b00f7e87526fbc24287a6
++ [[ 46915f25fb94f61ac4bdfa9b38736e6524a5b36bc42b00f7e87526fbc24287a6 == 46915f25fb94f61ac4bdfa9b38736e6524a5b36bc42b00f7e87526fbc24287a6 ]]
++ [[ ! -e /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target/pthread_signal.h ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target/pthread_signal.h ]]
++ for index in "${!headers[@]}"
++ header=pthread_unistd.h
++ source_header=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_unistd.h
++ [[ -f /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_unistd.h ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_unistd.h ]]
+++ sha256sum /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_unistd.h
+++ cut '-d ' -f1
++ actual_hash=920925577b990df78791e757b557bf83c2c4f9a6b91e87b3178a97258b011da2
++ [[ 920925577b990df78791e757b557bf83c2c4f9a6b91e87b3178a97258b011da2 == 920925577b990df78791e757b557bf83c2c4f9a6b91e87b3178a97258b011da2 ]]
++ [[ ! -e /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target/pthread_unistd.h ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target/pthread_unistd.h ]]
++ for index in "${!headers[@]}"
++ header=pthread_time.h
++ source_header=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_time.h
++ [[ -f /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_time.h ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_time.h ]]
+++ sha256sum /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_time.h
+++ cut '-d ' -f1
++ actual_hash=08f987b1f590419dd1e9f7b55871422aacf96b476e99b0bca9fe58743a5c8657
++ [[ 08f987b1f590419dd1e9f7b55871422aacf96b476e99b0bca9fe58743a5c8657 == 08f987b1f590419dd1e9f7b55871422aacf96b476e99b0bca9fe58743a5c8657 ]]
++ [[ ! -e /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target/pthread_time.h ]]
++ [[ ! -L /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-target/pthread_time.h ]]
++ for index in "${!headers[@]}"
++ header=pthread_compat.h
++ source_header=/c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_compat.h
++ [[ -f /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_compat.h ]]
++ echo 'Missing regular source header: /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_compat.h'
+Missing regular source header: /c/Users/crutkasLocal/.copilot/session-state/efd00553-3418-42bb-88cf-3ced38a3f833/files/crt-bootstrap-header-validation-03/bad-source/mingw-w64-libraries/winpthreads/include/pthread_compat.h
++ exit 1

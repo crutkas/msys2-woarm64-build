@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "status": "package-04-succeeded-after-preserved-packaging-tool-failures",
+  "attempts": [
+    {
+      "root": "C:\\ag-openssl-e138-01\\package-01",
+      "status": "stopped-after-host-find-wait-hang",
+      "detail": "makepkg staged the payload, then host find.exe remained blocked in zipman find -exec stat metadata traversal after its stat child was gone; root preserved"
+    },
+    {
+      "root": "C:\\ag-openssl-e138-01\\package-02",
+      "status": "stopped-after-path-substitution-did-not-take-effect",
+      "detail": "makepkg resolved host /usr/bin/find despite a PATH-prepended d70 copy; host find/stat traversal stalled; root preserved"
+    },
+    {
+      "root": "C:\\ag-openssl-e138-01\\package-03",
+      "status": "stopped-after-d70-find-exec-stat-scale-stall",
+      "detail": "exported d70 find wrapper took effect, but one very large -exec d70 stat invocation stalled on the 6554-file manual set; exact processes drained; root preserved"
+    },
+    {
+      "root": "C:\\ag-openssl-e138-01\\package-04",
+      "status": "success",
+      "detail": "private makepkg 6.1 library patch replaced find -exec stat with find -printf, cached the manual symlink list, and computed hardlink-aware package size from inode/size/link metadata without child commands"
+    }
+  ]
+}

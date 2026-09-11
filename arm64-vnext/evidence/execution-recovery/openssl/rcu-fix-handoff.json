@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "created_utc": "2026-09-11T01:46:53.6408794Z",
+  "commit": "3e42e55",
+  "source": {
+    "file": "crypto/threads_win.c",
+    "original_sha256": "0f21e5027f84594ba7dd38942d374376b35d98ec765eee572110413d1c513940",
+    "patched_sha256": "92581e43c25267868475689c3721b9db0db1720d5a9d4af94a07cb949d401820"
+  },
+  "maintained_files": [
+    {
+      "path": ".github\\scripts\\openssl-3.6.4-windows-rcu-acquire.patch",
+      "sha256": "99763f42c12116522542ab37c9e9e0a76b6371e59b3f4016aa5b4fa36362105b"
+    },
+    {
+      "path": ".github\\scripts\\apply-native-openssl-windows-rcu-acquire.sh",
+      "sha256": "681fc495bb7d0e981884d946e3047910cac24d811eafeffde8db483507687524"
+    }
+  ],
+  "stress": {
+    "iterations_per_test": 8,
+    "tests": [
+      6,
+      7
+    ],
+    "result_path": "C:\\ag-openssl-e138-01\\crlf-focused-01\\thread-rcu-stress-01\\result.json",
+    "result_sha256": "caf988cc6d50cddcef87cc11d0870d2b9f93a252784e8a9a3d7e56393dc9b944",
+    "log_path": "C:\\ag-openssl-e138-01\\crlf-focused-01\\thread-rcu-stress-01\\output.log",
+    "log_sha256": "7eb0980d40d39bc25fcca2afbfb318370a47f688328139ccef8c3741c1952fe0"
+  },
+  "recipe_gate": {
+    "recipe": "90-test_threads.t",
+    "result_path": "C:\\ag-openssl-e138-01\\crlf-focused-01\\package-gate-13\\result.json",
+    "result_sha256": "7c7d176292ae34bbad06b75dac1b48016326b288f0dbacf52d9722183657487d",
+    "log_path": "C:\\ag-openssl-e138-01\\crlf-focused-01\\package-gate-13\\output.log",
+    "log_sha256": "dc7ebc63d5a017465d6c2d71f48823971abf82cd0419317adc7813ed06c950b8",
+    "parent_raw_exit": 0,
+    "created_processes": 1882,
+    "observed_processes": 1882
+  }
+}

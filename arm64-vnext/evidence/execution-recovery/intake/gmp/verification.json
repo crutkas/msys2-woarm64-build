@@ -1,0 +1,235 @@
+{
+  "header_canonicalization": {
+    "dll_bytes_unchanged": true,
+    "effective_public_cflags": "-O2 -g -std=gnu17 -fstack-protector-strong -Wno-attributes",
+    "other_payload_changes": false,
+    "path": "usr/include/gmp.h",
+    "sealed_sha256": "cc78816fecd2ac2f038c543eb52e4766df7872ea97bcccec05d7b6faecdf523d"
+  },
+  "limitations": [
+    "The package pair is runtime-907 scoped and does not claim d70 compatibility or full-release runtime admission.",
+    "Runtime-907 remains externally owned.",
+    "The raw native observer remains failed because expected upstream negative child exits are preserved; admission relies on the separately hash-bound qualified result and eight Automake summaries.",
+    "The generated gmp.h differs from the successful build only by canonicalizing __GMP_CFLAGS to the effective public flags; both DLL bytes are unchanged.",
+    "The existing d70 gcc-libs provider remains d70-scoped and is not relabeled or consumed as runtime-907 evidence.",
+    "Packages are unsigned; no GnuPG admission, reproducibility rebuild or full-release completion is claimed."
+  ],
+  "ownership": {
+    "duplicate_paths": 0,
+    "native_arm64_pes": 2,
+    "payload_files": 11,
+    "private_path_hits_including_metadata_ascii_utf16": 0,
+    "relocated_stage_matches_package_union": true
+  },
+  "package_delta": {
+    "gmp": {
+      "changed_members": [
+        ".BUILDINFO",
+        ".MTREE"
+      ],
+      "original_package_sha256": "e9deb569986574ff7d2d57a3ecc61110f276adfd59e79e6f7db54dc6146de4fb"
+    },
+    "gmp-devel": {
+      "changed_members": [
+        ".BUILDINFO",
+        ".MTREE",
+        "usr/include/gmp.h"
+      ],
+      "original_package_sha256": "a49c3ef22c551677644f9e282d93cbf9af299692b16186e3bbaedced1456f3ff"
+    }
+  },
+  "packages": [
+    {
+      "architecture": "aarch64",
+      "depends": [],
+      "licenses": [
+        "LGPL3"
+      ],
+      "mtree_validated_by_assembler": true,
+      "name": "gmp",
+      "native_arm64_pes": [
+        {
+          "imports": [
+            "KERNEL32.dll",
+            "msys-2.0.dll"
+          ],
+          "machine": "0xaa64",
+          "path": "usr/bin/msys-gmp-10.dll",
+          "sha256": "1b8ff6690dd5deb1a2ff21a1e5f1eb388be6a457e078cedc61ed8e3811a7481d"
+        },
+        {
+          "imports": [
+            "KERNEL32.dll",
+            "msys-2.0.dll",
+            "msys-gmp-10.dll"
+          ],
+          "machine": "0xaa64",
+          "path": "usr/bin/msys-gmpxx-4.dll",
+          "sha256": "3176862f26e0e3373f651d11f564b157076af504b55fba1e3184d2feced4c6d8"
+        }
+      ],
+      "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\packages\\gmp-6.3.0-1-aarch64.pkg.tar.zst",
+      "payload_files": 5,
+      "sha256": "0f53eb50e11440ab82ec00ea8e4dbeb659d4fda079b56ee10bac4164cb60f4ce",
+      "version": "6.3.0-1"
+    },
+    {
+      "architecture": "aarch64",
+      "depends": [
+        "gmp=6.3.0"
+      ],
+      "licenses": [
+        "LGPL3"
+      ],
+      "mtree_validated_by_assembler": true,
+      "name": "gmp-devel",
+      "native_arm64_pes": [],
+      "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\packages\\gmp-devel-6.3.0-1-aarch64.pkg.tar.zst",
+      "payload_files": 6,
+      "sha256": "bccfa3ddf128598fda3ef290fa8074bc680f28c13d43f64a6561774382242e31",
+      "version": "6.3.0-1"
+    }
+  ],
+  "raw_observer": {
+    "created_processes": 83394,
+    "observed_processes": 83394,
+    "parent_raw_exit": 0,
+    "passed": false,
+    "policy": "Expected upstream negative child exits are recorded, not rewritten, suppressed, or admitted by executable name.",
+    "unrelayed_high_exit_counts": {
+      "2816": 103,
+      "3221225477": 49
+    }
+  },
+  "relocated_control": {
+    "c_and_cxx_exit_zero": true,
+    "c_consumer_sha256": "188d8fee76fdcbf5c0e47e183335b98e067b083359bfab99087978916de1a427",
+    "cxx_consumer_sha256": "75db80003c72dab0d82c18ef6839e3de9054da0dfb7f516c1b023405677bb8ca",
+    "exact_successor_dlls_loaded": true
+  },
+  "runtime": {
+    "cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "d70_compatibility_claimed": false,
+    "gmp_dll": "1b8ff6690dd5deb1a2ff21a1e5f1eb388be6a457e078cedc61ed8e3811a7481d",
+    "gmpxx_dll": "3176862f26e0e3373f651d11f564b157076af504b55fba1e3184d2feced4c6d8"
+  },
+  "schema": 1,
+  "source": {
+    "adapted_pkgbuild_sha256": "7599bb3d2eb958c4889691e6eb41c1ff4d672467ba436f5115944cddcee687ce",
+    "archive": {
+      "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\sources\\gmp-6.3.0.tar.xz",
+      "sha256": "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898"
+    },
+    "build_references": [
+      {
+        "name": "adaptation",
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\adaptation.json",
+        "sha256": "eb4f319cb7a30fabcbd9168bb2f98d61103382ec87ede01e4c13240009e6739f"
+      },
+      {
+        "name": "build_log",
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build.log",
+        "sha256": "551644046dc1434fd98070be7740e8ddea9028f5afe511b2dba873fa106feff8"
+      },
+      {
+        "name": "build_result",
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build-result-qualified.json",
+        "sha256": "af07bd83968ac67987a2c4865c9922edbf1be8d82d878b9d7c5c4f1ac468a42d"
+      },
+      {
+        "name": "native_job",
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\native-job.json",
+        "sha256": "8d3f3d4a09fd1b287748a5f3d3387815f53fa2d30af204ad33fd41a782f81bfa"
+      }
+    ],
+    "provider_export": {
+      "path": "C:\\ap13-dcb\\gmp-provider-03\\export.json",
+      "sha256": "bf6b6b3c75a981db3460d11f2c013beae4fa875be6e52d9beda13b2e25231512"
+    },
+    "provider_handoff": {
+      "path": "C:\\ap13-dcb\\gmp-provider-03\\handoff.json",
+      "sha256": "36557c6d4232593af5ae6a2718e975c970c1682a4907e896ee51259467701ec4"
+    },
+    "recipe_commit": "49d2609852ffe8e18f6dd3ee7a7add0670a1d57c",
+    "signature": {
+      "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\sources\\gmp-6.3.0.tar.xz.sig",
+      "recipe_validpgpkeys_unchanged": true,
+      "sha256": "94def8c1a731854de684689126046ec93589147abd4cd0025f12d741d323aa82"
+    }
+  },
+  "status": "verified",
+  "upstream_tests": {
+    "aggregate": {
+      "failed": 0,
+      "passed": 199,
+      "skipped": 1,
+      "total": 200
+    },
+    "suites": {
+      "tests/cxx/test-suite.log": {
+        "failed": 0,
+        "passed": 22,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\cxx\\test-suite.log",
+        "sha256": "138027c7ce975380e0d881caa8aa2859445d34821e89e5fa9577e389ddad151d",
+        "skipped": 0,
+        "total": 22
+      },
+      "tests/misc/test-suite.log": {
+        "failed": 0,
+        "passed": 3,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\misc\\test-suite.log",
+        "sha256": "c8bce99b9c24107048069252406e5093d2dcf431cc7c4073a348cd3c3c6aed78",
+        "skipped": 0,
+        "total": 3
+      },
+      "tests/mpf/test-suite.log": {
+        "failed": 0,
+        "passed": 28,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\mpf\\test-suite.log",
+        "sha256": "3992c64ddf94b6ec7d67079d89d9508109ebe9b1abf52e6f9893ad7397cfb36c",
+        "skipped": 0,
+        "total": 28
+      },
+      "tests/mpn/test-suite.log": {
+        "failed": 0,
+        "passed": 52,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\mpn\\test-suite.log",
+        "sha256": "ca2a48252d6a0839174c5bba72c4d0749c4685107117663aafa33913b09aed56",
+        "skipped": 1,
+        "total": 53
+      },
+      "tests/mpq/test-suite.log": {
+        "failed": 0,
+        "passed": 15,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\mpq\\test-suite.log",
+        "sha256": "a1f9e7c9545757ab7da0f25b5ca4dc22ae2b0aff0c54c1fdd1f4fcce038a5b93",
+        "skipped": 0,
+        "total": 15
+      },
+      "tests/mpz/test-suite.log": {
+        "failed": 0,
+        "passed": 64,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\mpz\\test-suite.log",
+        "sha256": "59cabd19b34c2a12c6809f86030336ea3026e90a302d160f5d76c598c4345995",
+        "skipped": 0,
+        "total": 64
+      },
+      "tests/rand/test-suite.log": {
+        "failed": 0,
+        "passed": 7,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\rand\\test-suite.log",
+        "sha256": "bea584804e6bfde5c7ee626db5ee0cdf5bf185ef8c6899dc3a7371d2dc7cd78a",
+        "skipped": 0,
+        "total": 7
+      },
+      "tests/test-suite.log": {
+        "failed": 0,
+        "passed": 8,
+        "path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build\\gmp\\src\\gmp-6.3.0\\tests\\test-suite.log",
+        "sha256": "dc59f5cf892bdb341c711a26e8fdddf4d1452d0f41d9d097a68ff5379a2702b5",
+        "skipped": 0,
+        "total": 8
+      }
+    }
+  }
+}

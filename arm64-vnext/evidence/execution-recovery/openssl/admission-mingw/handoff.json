@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T06:34:57.397224Z",
+  "status": "qualified-mingwarm64-openssl-admitted-and-full-release-audited-incomplete",
+  "admission": {
+    "export": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\export.json",
+    "exportSha256": "4c3a57be0859f70a355a6d133604cf278cd06fc8406f734344bf15331ebf1a62",
+    "independentVerification": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\evidence\\independent-verification.json",
+    "independentVerificationSha256": "4a5e5eaf53dab95be509ba499a5d5bfaa06ae7c569c5b64f86c12d42663a54e3",
+    "package": {
+      "archive": "mingw-w64-aarch64-openssl-3.6.4-1-any.pkg.tar.zst",
+      "conflicts": [],
+      "depends": [],
+      "file_count": 7631,
+      "name": "mingw-w64-aarch64-openssl",
+      "provides": [],
+      "sha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+      "version": "3.6.4-1"
+    }
+  },
+  "closureSupersession": {
+    "network": {
+      "path": "C:\\ap11-native-provider-intake\\revoked-free-closures-v2\\network-export.json",
+      "sha256": "aa92b9ef76a7c0d2ffcd72b2f816ea30f0d0cbfc55e9d949eef073324e8817ae"
+    },
+    "python": {
+      "path": "C:\\ap11-native-provider-intake\\revoked-free-closures-v2\\python-export.json",
+      "sha256": "50135bf37587bf428930ccd6f3cc93bb0a0891fbd80bb74d18446911a5896c2f"
+    },
+    "oldOpenSslArchiveSha256": "256c79d70ee8a4dc65e6cc532242841373cedddabf67442e19205a026d1d80d3",
+    "newOpenSslArchiveSha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+    "oldRowsRemaining": 0,
+    "changedPackageIdentities": [
+      "mingw-w64-aarch64-openssl"
+    ]
+  },
+  "fullReleaseAudit": {
+    "input": "C:\\ap11-native-provider-intake\\input-v18-revoked-free.json",
+    "inputSha256": "3d129458c38268f2e6c845172f838e2cfeb803720528bc7278315ce3310e5c2e",
+    "report": "C:\\ap11-native-provider-intake\\audit-v18-qualified-openssl.json",
+    "reportSha256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb",
+    "assemblerSha256": "84ac403d6021bf50988015bf7308b3bd11c25c8c59ef76701f8ed6abafc51d6e",
+    "contractSha256": "df280277aa9cf4d43d530a84fa063c8949bd88f9442611617c97ebb0531a8e53",
+    "status": "incomplete",
+    "selectedPackages": 64,
+    "gitSplits": 15,
+    "payloadFiles": 16633,
+    "nativeArm64Pe": 267,
+    "blockerCount": 81,
+    "priorReport": "C:\\ap11-native-provider-intake\\audit-v17-revoked-free.json",
+    "priorReportSha256": "d71f2c02617dbc24e338065f5d5ef5e44f08669240fc40b21a9ad82a8823fc47",
+    "removedBlockers": [],
+    "addedBlockers": [],
+    "unchangedBlockerCount": 81,
+    "archiveEmitted": false
+  },
+  "remainingProducerHandoffs": {
+    "exactProviderNames": [
+      "antiword",
+      "connect",
+      "coreutils",
+      "dash",
+      "docx2txt",
+      "dos2unix",
+      "findutils",
+      "gnupg",
+      "less",
+      "mingw-w64-aarch64-gettext",
+      "mingw-w64-aarch64-git-credential-manager",
+      "mintty",
+      "nano",
+      "odt2txt",
+      "openssh",
+      "patch",
+      "perl",
+      "perl-Authen-SASL",
+      "perl-DBI",
+      "perl-Error",
+      "perl-JSON",
+      "perl-MIME-tools",
+      "perl-Net-SMTP-SSL",
+      "perl-TermReadKey",
+      "perl-libwww",
+      "sed",
+      "ssh-pageant",
+      "subversion",
+      "tar",
+      "tig",
+      "unzip",
+      "vim",
+      "which",
+      "winpty",
+      "xpdf-tools",
+      "xz"
+    ],
+    "exactPayloadPaths": [
+      "etc/profile",
+      "mingwarm64/bin/git-credential-helper-selector.exe",
+      "mingwarm64/bin/git-credential-manager.exe",
+      "usr/bin/cat.exe",
+      "usr/bin/cp.exe",
+      "usr/bin/env.exe",
+      "usr/bin/find.exe",
+      "usr/bin/less.exe",
+      "usr/bin/mkdir.exe",
+      "usr/bin/perl.exe",
+      "usr/bin/rm.exe",
+      "usr/bin/sed.exe",
+      "usr/bin/sort.exe",
+      "usr/bin/ssh-add.exe",
+      "usr/bin/ssh-agent.exe",
+      "usr/bin/ssh-keygen.exe",
+      "usr/bin/ssh.exe",
+      "usr/bin/uniq.exe"
+    ],
+    "managedComponent": "mingw-w64-aarch64-git-credential-manager requires actual approved evidence",
+    "nativeSelfHostingEvidence": "still missing under the strict assembler contract",
+    "gettext": "truthful mingw-w64-aarch64-gettext replacement remains absent; libintl import blockers remain",
+    "openssh": "current nativeMSYS candidate remains rejected; corrected canonical-prefix msys-crypto/OpenSSH replacement is pending",
+    "utilities": "limited 37-command projection is referenced by input v18 but intentionally supplies no coreutils/findutils/sed provides, so strict provider blockers remain"
+  },
+  "boundaries": [
+    "No native MSYS msys-crypto-3.dll or OpenSSH dependency claim is made.",
+    "No assembler or contract semantics were changed for this intake.",
+    "No complete release archive was emitted.",
+    "All pre-existing blockers remain visible and unchanged.",
+    "The superseded OpenSSL archive was not modified or relabeled.",
+    "The seven admitted OpenSSL PEs retain disclosed non-operational /root/arm64-vnext-20260905 CRT/toolchain provenance strings."
+  ],
+  "reproducibilitySourceSupplement": {
+    "path": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\evidence\\reproducibility-source-supplement.json",
+    "sha256": "ebc847a01445e56052f314f8d318290178c36bcf4b065c94d25b573faeb1d1ce",
+    "commit": "ce845fa0572cc58839d6c9a88a117bfc0e879cff",
+    "packageBytesChanged": false,
+    "auditResultChanged": false
+  }
+}

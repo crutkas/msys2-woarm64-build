@@ -1,0 +1,66 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T12:12:01.2248383Z",
+  "status": "incomplete",
+  "input": {
+    "path": "C:\\ap11-native-provider-intake\\input-v21-openssh-runtime907-scoped-final.json",
+    "sha256": "392783cce3d3a45b53826601915f00560a71795ffcfa5dd30b0e33145c8f4552"
+  },
+  "audit": {
+    "path": "C:\\ap11-native-provider-intake\\audit-v22-openssh-runtime907-scoped-final.json",
+    "sha256": "361389b1603afd327aab02cf4279fb8d26122c83dcbfddaec9c45a22cf3d36c5",
+    "exit": 2,
+    "blockers": 98,
+    "gitSplits": 15,
+    "selectedPackages": 67,
+    "payloadFiles": 16669,
+    "nativePeArm64": 278
+  },
+  "changes": {
+    "removedBlockers": [
+      "payload-file-not-supplied:usr/bin/ssh-add.exe",
+      "payload-file-not-supplied:usr/bin/ssh-agent.exe",
+      "payload-file-not-supplied:usr/bin/ssh-keygen.exe",
+      "payload-file-not-supplied:usr/bin/ssh.exe",
+      "provider-not-supplied:openssh"
+    ],
+    "addedBlockers": [
+      "missing-dll:usr/bin/ssh-add.exe:msys-crypto-3.dll",
+      "missing-dll:usr/bin/ssh-agent.exe:msys-crypto-3.dll",
+      "missing-dll:usr/bin/ssh-keygen.exe:msys-crypto-3.dll",
+      "missing-dll:usr/bin/ssh-keyscan.exe:msys-crypto-3.dll",
+      "missing-dll:usr/bin/ssh.exe:msys-crypto-3.dll",
+      "missing-dll:usr/lib/ssh/ssh-keysign.exe:msys-crypto-3.dll",
+      "missing-dll:usr/lib/ssh/ssh-pkcs11-helper.exe:msys-crypto-3.dll",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/build-receipt.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/build-receipt.json:session-state",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/consumer-receipt.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/consumer-receipt.json:session-state",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/sdk-manifest.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/sdk-manifest.json:session-state",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/source-manifest.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/libxcrypt/source-manifest.json:session-state",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/zlib/build-receipt.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/zlib/build-receipt.json:session-state",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/zlib/consumer-receipt.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/zlib/consumer-receipt.json:session-state",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/zlib/sdk-manifest.json:.copilot",
+      "private-path-or-marker:usr/share/woarm64-package-provenance/zlib/sdk-manifest.json:session-state",
+      "provider-not-supplied:openssl"
+    ],
+    "opensshSelected": true,
+    "interpretation": "OpenSSH package and four required client files are now supplied. Full release remains blocked by the unsupplied native MSYS OpenSSL package/import provider, incompatible current runtime/libxcrypt cohorts, private provenance in current zlib/libxcrypt packages, and unrelated outstanding providers."
+  },
+  "supersededPreliminary": {
+    "input": {
+      "path": "C:\\ap11-native-provider-intake\\input-v20-openssh-runtime907-scoped.json",
+      "sha256": "dfcf7dbf1d4d17310ab012485e5fd62d87146408873afe75bc2264cbf14cb9ac"
+    },
+    "audit": {
+      "path": "C:\\ap11-native-provider-intake\\audit-v21-openssh-runtime907-scoped.json",
+      "sha256": "7342e364a715e98aee1fd6284cba0652f6af3b53ee172dc83bb94790b14c0223"
+    },
+    "reason": "Preliminary audit preceded final dependency-boundary hashes; retained as non-authoritative evidence."
+  },
+  "releaseArchiveEmitted": false
+}

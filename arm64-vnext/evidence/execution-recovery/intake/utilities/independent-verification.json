@@ -1,0 +1,123 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T14:29:21.7555125Z",
+  "status": "VERIFIED_RUNTIME907_UTILITY_TEST_FIXTURE_ONLY",
+  "source": {
+    "handoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "cd73ba927a511c147512407cafb1e31b6d8e1fbba614e7ccfe7fe1e4fc64e9ef"
+    },
+    "archive": {
+      "path": "source/msys2-runtime-arm64-utilities-907.zip",
+      "sha256": "530a2cb169723a62737d4c446f784e6c9f221f72a1cff2cf8fe62b1296037020"
+    },
+    "sourceCommit": "563662010c2f2072ad90f28713611caabdf70dbb",
+    "sourceTreeManifestSha256": "2180cb8b66ae8cf7a6c121b856dd1d4a1a7dccea927a672c4e0cbaa385adce59"
+  },
+  "readback": {
+    "zipEntries": 61,
+    "unsafeEntries": 0,
+    "expandedFiles": 55,
+    "sourceExpandedFiles": 55,
+    "pathDifferences": 0,
+    "byteDifferences": 0,
+    "sha256SumEntries": 54,
+    "sha256SumMismatches": 0
+  },
+  "utilities": [
+    {
+      "sha256": "5a90f4d5def276de5c15da392397b07f3bc2373cce19ba23cd3b06f695d13fe2",
+      "imports": [
+        "ADVAPI32.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "ntdll.dll"
+      ],
+      "name": "ps.exe",
+      "size": 204118
+    },
+    {
+      "sha256": "1bfa94f6e9c5a3a76a76f6d29c4e7dc046211f35ffde5b8881201025240cbba3",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ],
+      "name": "mount.exe",
+      "size": 122321
+    },
+    {
+      "sha256": "67388133d52450aedfc6b8717cbc23ea98e0156b859a7b53febd6103f31438fd",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "ntdll.dll",
+        "SHELL32.dll",
+        "USERENV.dll"
+      ],
+      "name": "cygpath.exe",
+      "size": 167649
+    }
+  ],
+  "pe": {
+    "count": 3,
+    "aa64": 3,
+    "managed": 0,
+    "unexpectedImports": 0,
+    "libcygwinAliasImports": 0,
+    "normalMsysImportMaps": true
+  },
+  "runtime": {
+    "path": "fixture/usr/bin/msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "ownership": "external qualified runtime-907 test dependency; not exported or admitted by this utility intake",
+    "runtimeImportSha256": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c",
+    "crtSha256": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737"
+  },
+  "independentRelocatedControls": [
+    {
+      "name": "ps-version",
+      "rawExit": 0,
+      "output": "ps (cygwin) 3.6.10"
+    },
+    {
+      "name": "ps-default",
+      "rawExit": 0,
+      "result": "PID/PPID/PGID/WINPID row emitted"
+    },
+    {
+      "name": "mount",
+      "rawExit": 0,
+      "result": "private fixture mounted as / and /bin; root flags binary,noacl,auto; cygdrive flags binary,noacl,posix=0,user,noumount,auto"
+    },
+    {
+      "name": "cygpath-root-win",
+      "rawExit": 0,
+      "result": "fresh intake fixture Windows root"
+    },
+    {
+      "name": "cygpath-drive-posix",
+      "rawExit": 0,
+      "result": "/cygdrive/c"
+    }
+  ],
+  "producerBehavior": {
+    "perlCatPidWinPidRegex": true,
+    "mountLiteralUsrBin": true,
+    "cygpathRootAndDriveConversions": true,
+    "exactRuntimeLoadedForAllThree": true
+  },
+  "privatePathScan": {
+    "shippingEvidenceJsonContainsPrivatePaths": true,
+    "binaryEmbeddedBuildPathMarker": true,
+    "marker": ".copilot",
+    "embeddedPath": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-runtime\\crutkas-miniature-robot",
+    "disposition": "acceptable only for private test-fixture consumption; blocks final shipping/package admission"
+  },
+  "fixture": {
+    "root": "fixture",
+    "utilityFiles": 3,
+    "externalRuntimeFiles": 1,
+    "machinePrivateEvidenceCopiedIntoFixture": false
+  },
+  "conclusion": "Exact utility bytes are independently usable in a fresh runtime-907 test fixture. They are not a complete or shippable msys2-runtime package and must not be supplied to the full-release assembler."
+}

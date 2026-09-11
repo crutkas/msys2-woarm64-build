@@ -1,0 +1,109 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-11T06:28:24.0472095Z",
+  "status": "qualified-with-nonoperational-build-path-provenance",
+  "supersedes_claim": {
+    "receipt": "C:\\ag-openssl-e138-01\\package-04\\handoff.json",
+    "sha256": "4779da58f593e6c10f2672314d106adfa53f33e2007c20e33874685ca2f13342",
+    "correction": "payload_private_path_matches=0 covered C:/ag, /c/ag, SDK/bootstrap and session paths; it did not cover all compiler debug provenance"
+  },
+  "classification": {
+    "build_prefix": "/root/arm64-vnext-20260905",
+    "operational": false,
+    "reason": "strings are compiler/CRT source and build-directory debug provenance; runtime config and module resolution relocated to the extracted prefix",
+    "forbidden_workspace_matches": 0,
+    "forbidden_patterns": [
+      "C:/ag-",
+      "/c/ag-",
+      ".copilot",
+      "session-state",
+      "C:/Users"
+    ]
+  },
+  "pe_files": [
+    {
+      "path": "bin/libcrypto-3-arm64.dll",
+      "sha256": "dd210957efceb1999e38f2b5f5165c370fb6da6a1d7eff1185dd6edf1bc33818",
+      "build_provenance_count": 411,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtdll.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/libsrc/ws2tcpip/gai_strerrorA.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/libsrc/ws2tcpip/gai_strerrorW.c"
+      ]
+    },
+    {
+      "path": "bin/libssl-3-arm64.dll",
+      "sha256": "c1220fb0a6faea975376bbdde558ec19f9ada0a5f5ab0a9b86db14ed0f896b61",
+      "build_provenance_count": 151,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtdll.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/gccmain.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/natstart.c"
+      ]
+    },
+    {
+      "path": "bin/openssl.exe",
+      "sha256": "e60131c64200b8fe1913a45d46d73867ebe6f1b68c6a0375d5c2600c5d8e9b93",
+      "build_provenance_count": 326,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtexe.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/gccmain.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/natstart.c"
+      ]
+    },
+    {
+      "path": "lib/engines-3/capi.dll",
+      "sha256": "a1b7f290f1e9d5abffe9f67a993c3de3ccba61d38dc926821774f963dde23f1f",
+      "build_provenance_count": 131,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtdll.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/gccmain.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/natstart.c"
+      ]
+    },
+    {
+      "path": "lib/engines-3/loader_attic.dll",
+      "sha256": "525d0ef91c1c6d3472d53ec9f4d59f76641dd4997de97ab9f13d49b55c883127",
+      "build_provenance_count": 131,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtdll.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/gccmain.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/natstart.c"
+      ]
+    },
+    {
+      "path": "lib/engines-3/padlock.dll",
+      "sha256": "ee65696e60a649a77a75612ba2dd2544c6fd4934bc8b63474ab401c65f893971",
+      "build_provenance_count": 119,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtdll.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/gccmain.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/natstart.c"
+      ]
+    },
+    {
+      "path": "lib/ossl-modules/legacy.dll",
+      "sha256": "d3a593cbefc94882a112ffc73c9f22a8e139bcf0ed0e7e299e21222da0c22e58",
+      "build_provenance_count": 131,
+      "samples": [
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/crtdll.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/gccmain.c",
+        "/root/arm64-vnext-20260905/toolchain/build/mingw-crt-refptr-final",
+        "/root/arm64-vnext-20260905/toolchain/sources/mingw-woarm64/mingw-w64-crt/crt/natstart.c"
+      ]
+    }
+  ]
+}

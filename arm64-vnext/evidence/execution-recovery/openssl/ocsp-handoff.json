@@ -1,0 +1,102 @@
+{
+  "schema": 1,
+  "status": "native-openssl-ocsp-package-gate-qualified",
+  "recorded_utc": "2026-09-10T18:20:27.9390082+00:00",
+  "repository_commit": "2681710d61e97f089bc44d0aba20ccd397a52930",
+  "scope": "OpenSSL 3.6.4 native OCSP lifecycle correction qualified directly, through run_tests.pl, and through the package make test gate; no full-suite or provider admission claimed.",
+  "source": {
+    "preserved_path": "C:\\ap06-2160\\o2\\build\\mingw-w64-openssl\\src\\openssl-3.6.4\\test\\recipes\\82-test_ocsp_cert_chain.t",
+    "sha256": "924b413e933d24683d2e0e58fddd9c0be563f1e2035e06697f8c66a5a48ce166"
+  },
+  "fix": {
+    "patch": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\openssl-3.6.4-native-ocsp-lifecycle.patch",
+      "sha256": "ac067c91f5d3d928b9e411191fa316d67f7f22b8965390730405b358fe9ab973"
+    },
+    "apply_script": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\apply-native-openssl-ocsp-lifecycle.sh",
+      "sha256": "632b7e339a0b6dbc90384be69cc35f9dd28958d5ec6e6d241988fd1467d70893"
+    },
+    "patched_recipe_sha256": "ab0136c9734bd7f396fe49e5488afe13ddd2a7b4a49709953603a1c80b621adb",
+    "behavior": [
+      "Use noninteractive s_server -www mode while preserving status_verbose.",
+      "Bound OCSP responder to exactly one request and s_server to exactly one accept.",
+      "Close s_client stdin and concurrently drain all child output pipes.",
+      "Verify the explicit test root CA while ignoring only static fixture time validity.",
+      "Require raw-zero exits from s_client, s_server, and OCSP responder.",
+      "Retain the OCSP response-sent assertion."
+    ]
+  },
+  "reproduction": {
+    "unchanged_observer": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\unmodified-direct-01\\observer-result.json",
+      "sha256": "80b9b5f69941c6845ed002deeb8df332c1681db8b0b39c3f467a9a171c47c2af"
+    },
+    "unchanged_log": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\unmodified-direct-01\\observer.log",
+      "sha256": "7aba78b65df74b283aa45f2058dec02e5ab4d382beb16e13809a58b8d39224ca"
+    },
+    "live_samples": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\unmodified-02\\live-samples.jsonl",
+      "sha256": "ded6d32bc4417ad21755ae0ff37a9975ea8f5e60de31a16933a030c128639a6c"
+    },
+    "finding": "Unchanged recipe timed out with s_client and s_server established while the responder remained listen-only; client stdin was still owned by the parent and s_server interactive mode never initiated a completed OCSP exchange."
+  },
+  "qualification": {
+    "direct_observer": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\patched-direct-04\\observer-result.json",
+      "sha256": "52d4fa339d7d12e7d549e4f131710c15ffbc8f2bf96abc45b6d203acbc7d4853"
+    },
+    "direct_log": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\patched-direct-04\\observer.log",
+      "sha256": "f5c13b36b56fbd76a64456fe8c7c19d897ee288fb6d1687ca3997a477c4c6b1c"
+    },
+    "harness_observer": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\patched-harness-01\\observer-result.json",
+      "sha256": "ce2fec37c60277ee2e13a368e1c3d87fd24f4c337aed5f5dfceed7a55d6aace4"
+    },
+    "harness_log": {
+      "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\patched-harness-01\\observer.log",
+      "sha256": "a8e4bafbe02bf0a52f8f82132a808408ea0df49b1c8fb333b915ec7a30bf2032"
+    },
+    "assertions": 6,
+    "created": 36,
+    "observed": 36,
+    "native_raw_exits": [
+      0,
+      0,
+      0
+    ],
+    "parent_raw_exit": 0,
+    "passed": true,
+    "make_gate": {
+      "observer": {
+        "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\patched-make-01\\observer-result.json",
+        "sha256": "c0480eb78526a95ed1593f6a3b683b863653f8f869b139a6b2da7e03017ae902"
+      },
+      "log": {
+        "path": "C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\patched-make-01\\observer.log",
+        "sha256": "302e144ebcc72315723c5a05167039738a684d44e6e9fa4eed58faccc75a660a"
+      },
+      "parent_raw_exit": 0,
+      "created": 75,
+      "observed": 75,
+      "native_raw_exits": [
+        0,
+        0,
+        0
+      ],
+      "passed": true
+    }
+  },
+  "limitations": [
+    "The preserved OpenSSL build products were reused only after copying to a private root; this handoff does not claim a fresh OpenSSL package build.",
+    "The complete OpenSSL suite is now running in C:\\ag-openssl-e138-01\\ocsp-lifecycle-01\\full-check-01 and is not claimed by this handoff.",
+    "Provider admission remains pending.",
+    "The fixture certificate expired in 2024; -no_check_time is limited to fixture validity while explicit root-chain verification remains enabled."
+  ],
+  "supersedes": {
+    "path": "C:\\ag-openssl-e138-01\\ocsp-handoff-01\\handoff.json",
+    "sha256": "410da2dd680e5164b040f679bb91a6a628b08dca7127d4bd4a7c3119d7894858"
+  }
+}

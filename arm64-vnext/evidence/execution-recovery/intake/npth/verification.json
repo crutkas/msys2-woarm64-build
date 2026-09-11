@@ -1,0 +1,124 @@
+{
+  "limitations": [
+    "The package pair is runtime-907 scoped and does not claim d70 compatibility or full-release runtime admission.",
+    "The genuine gcc-libs dependency is unsupplied and unqualified for runtime-907; the known d70 gcc-libs provider is consumption-forbidden for this package pair.",
+    "The exact pinned recipe disables make check, so upstream tests were not run and no upstream test-pass claim is made.",
+    "Runtime-907 remains externally owned; no GnuPG admission follows.",
+    "Packages are unsigned; no reproducibility or full-release completion is claimed."
+  ],
+  "ownership": {
+    "duplicate_paths": 0,
+    "native_arm64_pes": 1,
+    "payload_files": 6,
+    "private_path_hits_including_metadata_ascii_utf16": 0,
+    "relocated_stage_matches_package_union": true
+  },
+  "packages": [
+    {
+      "architecture": "aarch64",
+      "depends": [
+        "gcc-libs"
+      ],
+      "licenses": [
+        "spdx:LGPL-2.1-or-later"
+      ],
+      "mtree_validated_by_assembler": true,
+      "name": "libnpth",
+      "native_arm64_pes": [
+        {
+          "imports": [
+            "KERNEL32.dll",
+            "msys-2.0.dll"
+          ],
+          "machine": "0xaa64",
+          "path": "usr/bin/msys-npth-0.dll",
+          "sha256": "e0ddef0c1ce06784140fb2372603edc49011e7e0d3a96061316a1665dea54bee"
+        }
+      ],
+      "path": "C:\\ap11-native-provider-intake\\native-msys-npth-runtime907-admitted-v1\\packages\\libnpth-1.8-1-aarch64.pkg.tar.zst",
+      "payload_files": 1,
+      "sha256": "a98dcd5f7f8b76f70355ab4dc1570c82f0450ac0d13279f051d3a96d9355b41b",
+      "version": "1.8-1"
+    },
+    {
+      "architecture": "aarch64",
+      "depends": [
+        "libnpth=1.8"
+      ],
+      "licenses": [
+        "spdx:LGPL-2.1-or-later"
+      ],
+      "mtree_validated_by_assembler": true,
+      "name": "libnpth-devel",
+      "native_arm64_pes": [],
+      "path": "C:\\ap11-native-provider-intake\\native-msys-npth-runtime907-admitted-v1\\packages\\libnpth-devel-1.8-1-aarch64.pkg.tar.zst",
+      "payload_files": 5,
+      "sha256": "387e77ec59f74a605329fc0599c4a7aa7e6cea7fd22abc337e6c6f1ec777d83b",
+      "version": "1.8-1"
+    }
+  ],
+  "relocated_control": {
+    "consumer_exit": 0,
+    "consumer_machine": "0xAA64",
+    "consumer_sha256": "148f9bf2f4623686334158aedee4ff07233c0596d5da3ecf9bf85b9ef5540182",
+    "exact_successor_dll_loaded": "C:\\ap13-dcb\\npth-provider-02\\relocated-root\\usr\\bin\\msys-npth-0.dll",
+    "mutex_init_lock_unlock": "passed"
+  },
+  "retained_upstream": {
+    "reason": "The exact pinned MSYS2 recipe comments out make check.",
+    "status": "not-run"
+  },
+  "runtime": {
+    "cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "d70_compatibility_claimed": false,
+    "gcc_libs_status": "unsupplied-unqualified-for-runtime-907-cohort",
+    "known_d70_gcc_consumption_allowed": false,
+    "known_d70_gcc_export_sha256": "2e7f2b7c8432344c8faa650e7a6a89903947719da75e938ed7d2802ec81a5bbc",
+    "npth_dll": "e0ddef0c1ce06784140fb2372603edc49011e7e0d3a96061316a1665dea54bee"
+  },
+  "schema": 1,
+  "source": {
+    "adapted_pkgbuild_sha256": "e83c6f06ab663f6a8e6cd03efc2c42315d0de657515627a21c813d3576dd4946",
+    "archive": {
+      "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\sources\\npth-1.8.tar.bz2",
+      "sha256": "8bd24b4f23a3065d6e5b26e98aba9ce783ea4fd781069c1b35d149694e90ca3e"
+    },
+    "build_references": [
+      {
+        "name": "adaptation",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\adaptation.json",
+        "sha256": "daf70b103908965a5940e4b6a1e50b18bb9100c8b15c57cefde051866c312c26"
+      },
+      {
+        "name": "build_log",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\build.log",
+        "sha256": "1c8dde8ae45bc99e7272f12aa282278b335580705c98ff0fb3e34b8649df10e5"
+      },
+      {
+        "name": "build_result",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\build-result.json",
+        "sha256": "6a237b1d150f51f5fcb42618314f679aeb23d73f257dd5cf51451d3b7b59436b"
+      },
+      {
+        "name": "native_job",
+        "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\native-job.json",
+        "sha256": "c03e5b789c6ea9b78744effdbc802f6c57d19c65ea98a626bb9cc3cfc53deb07"
+      }
+    ],
+    "provider_export": {
+      "path": "C:\\ap13-dcb\\npth-provider-02\\export.json",
+      "sha256": "678f334aaaca50131a76dd140ebf9d6433d6a595bd17a9ada5104a01374f1371"
+    },
+    "provider_handoff": {
+      "path": "C:\\ap13-dcb\\npth-provider-02\\handoff.json",
+      "sha256": "667cd23cb4fdaf2b42c20a3d6a767368e09eb1b526341af24d6f4c260d1115de"
+    },
+    "recipe_commit": "21bfc351a0c20d4f7dd2c564456d99ed69395a18",
+    "signature": {
+      "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\sources\\npth-1.8.tar.bz2.sig",
+      "recipe_validpgpkeys_unchanged": true,
+      "sha256": "eb9314cf3867a438cb0fdd371125d44c57ba66086f152199ad5f40a9c9679acb"
+    }
+  },
+  "status": "verified"
+}

@@ -1,0 +1,833 @@
+{
+  "schema": 1,
+  "status": "v12-cygwin-public-interlocked-header-successor-qualified",
+  "output": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90",
+  "cohortRoot": "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+  "stage": {
+    "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77\\stage.json",
+    "sha256": "424aed071b5b441a1a1b9b20d54dedb3ee815ccd22ec5be9eed4a9f3894004df",
+    "bytes": 3235
+  },
+  "publicFixture": {
+    "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+    "sha256": "a5c27a197a84dbfb2755614131a1c361eec9d70753c13f1e92b58c418e8206cd",
+    "bytes": 383
+  },
+  "publicFixtureSource": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-public-interlocked-codegen.c",
+    "sha256": "a5c27a197a84dbfb2755614131a1c361eec9d70753c13f1e92b58c418e8206cd",
+    "bytes": 383
+  },
+  "observer": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\native-job.py",
+    "sha256": "4fc0922c9be78d9355372335fec9cfb4fc4f92906bf2f628858f8ece4df6a6fa",
+    "bytes": 23552
+  },
+  "runtimeSource": {
+    "path": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "bytes": 30874017
+  },
+  "runtimeExecuted": {
+    "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "bytes": 30874017
+  },
+  "recipeInputs": {
+    "test": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\test-cygwin-w32api-arm64-interlocked.py",
+      "sha256": "d4c734b754f3e5270766ef1a44439fce3ae656fb25fabaa75c25cd53beac1775",
+      "bytes": 14272
+    },
+    "common": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-w32api-common.py",
+      "sha256": "953118e62fa08a26be69c430046e5cffdb4e8f725d2d3863796ce756b7698bda",
+      "bytes": 6963
+    },
+    "nativeFixture": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-public-interlocked-native.c",
+      "sha256": "33e2729caf048c5d31713143ddc3e80caffecd3c04445ae3f6adab0ad7af20ba",
+      "bytes": 1728
+    },
+    "publicFixture": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-public-interlocked-codegen.c",
+      "sha256": "a5c27a197a84dbfb2755614131a1c361eec9d70753c13f1e92b58c418e8206cd",
+      "bytes": 383
+    },
+    "sourceLock": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-legendary-waddle\\.github\\scripts\\cygwin-w32api-source-lock.json",
+      "sha256": "2eab26b4cf3deac716cf3ef5f725579656df79e0059997de9efc2397158fc23e",
+      "bytes": 2446
+    }
+  },
+  "runs": [
+    {
+      "name": "target",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-dumpmachine"
+      ],
+      "result": {
+        "parent_pid": 12360,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 12360,
+            "created": 134335958014315453,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\target\\process.log",
+        "sha256": "d3a427379a8588752be9a733fed22c52158e9264bcdd11df472f5a704cc8d0d2",
+        "bytes": 19
+      }
+    },
+    {
+      "name": "baseline-public-codegen",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-O2",
+        "-S",
+        "-I",
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\include\\w32api",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\baseline.s"
+      ],
+      "result": {
+        "parent_pid": 24604,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 20456,
+            "created": 134335958015397086,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 24604,
+            "parent_created": 134335958015183284
+          },
+          {
+            "pid": 24604,
+            "created": 134335958015183284,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\baseline-public-codegen\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "patched-public-codegen",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-O2",
+        "-S",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched.s"
+      ],
+      "result": {
+        "parent_pid": 12400,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 13384,
+            "created": 134335958019093387,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 12400,
+            "parent_created": 134335958018889030
+          },
+          {
+            "pid": 12400,
+            "created": 134335958018889030,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\patched-public-codegen\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "patched-outlined-ordering",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-O2",
+        "-S",
+        "-moutline-atomics",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched-outlined.s"
+      ],
+      "result": {
+        "parent_pid": 29024,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 12844,
+            "created": 134335958023017160,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 29024,
+            "parent_created": 134335958022822575
+          },
+          {
+            "pid": 29024,
+            "created": 134335958022822575,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\patched-outlined-ordering\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "patched-inline-ordering",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-O2",
+        "-S",
+        "-mno-outline-atomics",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched-inline.s"
+      ],
+      "result": {
+        "parent_pid": 16640,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 20532,
+            "created": 134335958026373636,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 16640,
+            "parent_created": 134335958026166806
+          },
+          {
+            "pid": 16640,
+            "created": 134335958026166806,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\patched-inline-ordering\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "baseline-header-trace",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-H",
+        "-E",
+        "-I",
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\include\\w32api",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\baseline-trace.i"
+      ],
+      "result": {
+        "parent_pid": 27188,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 14296,
+            "created": 134335958030395176,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 27188,
+            "parent_created": 134335958030167751
+          },
+          {
+            "pid": 27188,
+            "created": 134335958030167751,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\baseline-header-trace\\process.log",
+        "sha256": "1a4fa3c3b8704886488d9fdb6ab02f413d5d02727b5a526adc7d89ecff0a965e",
+        "bytes": 31326
+      }
+    },
+    {
+      "name": "patched-header-trace",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-H",
+        "-E",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched-trace.i"
+      ],
+      "result": {
+        "parent_pid": 18888,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 13556,
+            "created": 134335958034231237,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 18888,
+            "parent_created": 134335958033885538
+          },
+          {
+            "pid": 18888,
+            "created": 134335958033885538,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\patched-header-trace\\process.log",
+        "sha256": "fb993198094bd763f1eeed2a9596e9a764c77a8c7d00c6bf0e7784f8eb13341e",
+        "bytes": 24076
+      }
+    },
+    {
+      "name": "baseline-x64-branch",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-E",
+        "-P",
+        "-U__aarch64__",
+        "-U_ARM64_",
+        "-D__x86_64__",
+        "-D_AMD64_",
+        "-I",
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\include\\w32api",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\baseline-x64.i"
+      ],
+      "result": {
+        "parent_pid": 16012,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 19796,
+            "created": 134335958037805062,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 16012,
+            "parent_created": 134335958037541057
+          },
+          {
+            "pid": 16012,
+            "created": 134335958037541057,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\baseline-x64-branch\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "patched-x64-branch",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-E",
+        "-P",
+        "-U__aarch64__",
+        "-U_ARM64_",
+        "-D__x86_64__",
+        "-D_AMD64_",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-codegen.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched-x64.i"
+      ],
+      "result": {
+        "parent_pid": 18068,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 7964,
+            "created": 134335958040593731,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 18068,
+            "parent_created": 134335958040304676
+          },
+          {
+            "pid": 18068,
+            "created": 134335958040304676,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\patched-x64-branch\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "outlined-build",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-std=gnu11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-moutline-atomics",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-native.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\outlined.exe"
+      ],
+      "result": {
+        "parent_pid": 13260,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 5,
+        "observed_processes": 5,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 13208,
+            "created": 134335958044239495,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 13260,
+            "parent_created": 134335958043865075
+          },
+          {
+            "pid": 16376,
+            "created": 134335958045891966,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\bin\\as.exe",
+            "raw_exit": 0,
+            "parent_pid": 13260,
+            "parent_created": 134335958043865075
+          },
+          {
+            "pid": 23272,
+            "created": 134335958046390097,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\bin\\ld.exe",
+            "raw_exit": 0,
+            "parent_pid": 20200,
+            "parent_created": 134335958046173420
+          },
+          {
+            "pid": 20200,
+            "created": 134335958046173420,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\collect2.exe",
+            "raw_exit": 0,
+            "parent_pid": 13260,
+            "parent_created": 134335958043865075
+          },
+          {
+            "pid": 13260,
+            "created": 134335958043865075,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\outlined-build\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "outlined-native",
+      "command": [
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\outlined.exe"
+      ],
+      "result": {
+        "parent_pid": 25512,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 25512,
+            "created": 134335958051501757,
+            "executable": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\outlined.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ag-compiler-e138-01\\cygwin-w32api-controls-90",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\outlined-native\\process.log",
+        "sha256": "a40501f03edfb5b0bf298a21a81b000acecceea6189a1c5312a20055719d8e23",
+        "bytes": 76
+      }
+    },
+    {
+      "name": "inline-build",
+      "command": [
+        "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+        "-std=gnu11",
+        "-O2",
+        "-Wall",
+        "-Wextra",
+        "-Werror",
+        "-mno-outline-atomics",
+        "-isysroot",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\cygwin-public-interlocked-native.c",
+        "-o",
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\inline.exe"
+      ],
+      "result": {
+        "parent_pid": 196,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 5,
+        "observed_processes": 5,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 24564,
+            "created": 134335958054794863,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+            "raw_exit": 0,
+            "parent_pid": 196,
+            "parent_created": 134335958054607265
+          },
+          {
+            "pid": 24944,
+            "created": 134335958056262730,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\bin\\as.exe",
+            "raw_exit": 0,
+            "parent_pid": 196,
+            "parent_created": 134335958054607265
+          },
+          {
+            "pid": 964,
+            "created": 134335958056716647,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\aarch64-pc-cygwin\\bin\\ld.exe",
+            "raw_exit": 0,
+            "parent_pid": 6808,
+            "parent_created": 134335958056509042
+          },
+          {
+            "pid": 6808,
+            "created": 134335958056509042,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\collect2.exe",
+            "raw_exit": 0,
+            "parent_pid": 196,
+            "parent_created": 134335958054607265
+          },
+          {
+            "pid": 196,
+            "created": 134335958054607265,
+            "executable": "C:\\ap06-78\\perl-recovery-20260910-06\\toolchain\\bin\\gcc.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ap06-78\\perl-recovery-20260910-06\\toolchain",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\inline-build\\process.log",
+        "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "bytes": 0
+      }
+    },
+    {
+      "name": "inline-native",
+      "command": [
+        "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\inline.exe"
+      ],
+      "result": {
+        "parent_pid": 29428,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 1,
+        "observed_processes": 1,
+        "observation_count_matches": true,
+        "unobserved_processes": [],
+        "unresolved_processes": [],
+        "native_target_exits": [
+          {
+            "pid": 29428,
+            "created": 134335958061991994,
+            "executable": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\inline.exe",
+            "raw_exit": 0,
+            "parent_pid": null,
+            "parent_created": null
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "expected_probe_exits": [],
+        "runtime_exit_relays": [],
+        "image_query_recoveries": [],
+        "native_target_root": "\\device\\harddiskvolume3\\ag-compiler-e138-01\\cygwin-w32api-controls-90",
+        "native_target_root_error": null,
+        "passed": true
+      },
+      "log": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\runs\\inline-native\\process.log",
+        "sha256": "a40501f03edfb5b0bf298a21a81b000acecceea6189a1c5312a20055719d8e23",
+        "bytes": 76
+      }
+    }
+  ],
+  "childEnvironment": [
+    "COMSPEC",
+    "LANG",
+    "LC_ALL",
+    "PATH",
+    "PATHEXT",
+    "SYSTEMDRIVE",
+    "SYSTEMROOT",
+    "TEMP",
+    "TMP",
+    "WINDIR"
+  ],
+  "negativeControl": {
+    "status": "baseline-rejected",
+    "reason": "Missing release-capable public exchange in exchange_public_32"
+  },
+  "positiveControl": "all-three-public-fallbacks-select-acq-rel",
+  "codegen": {
+    "baseline": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\baseline.s",
+      "sha256": "960ed0895b99d5a88f9b9d51c2c6632f3760e5a42e5a616468d2a6d74392565a",
+      "bytes": 1746
+    },
+    "patched": {
+      "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched.s",
+      "sha256": "08f65aa7417ad5940198a956cfaa1e69d5777ad2029cc3e9e0da3099fd6fe585",
+      "bytes": 1761
+    },
+    "patchedModes": {
+      "outlined": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched-outlined.s",
+        "sha256": "08f65aa7417ad5940198a956cfaa1e69d5777ad2029cc3e9e0da3099fd6fe585",
+        "bytes": 1761
+      },
+      "inline": {
+        "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\patched-inline.s",
+        "sha256": "8660ad904c36ff3fee20ae72012c40f7f18bf134c376e7eb76048576ef0ab2cb",
+        "bytes": 845
+      }
+    }
+  },
+  "x64Control": "Identical public-probe preprocessing tokens for the x64 branch; not an x64 execution claim.",
+  "target": "aarch64-pc-cygwin",
+  "maxCompilerJobs": 1,
+  "headerSelection": {
+    "options": [
+      "-isysroot",
+      "C:\\ag-compiler-e138-01\\cygwin-w32api-cohort-77"
+    ],
+    "reason": "The configured compiler searches its existing Cygwin C headers before -isysroot/include and its built-in w32api after it."
+  },
+  "peIdentities": {
+    "path": "C:\\ag-compiler-e138-01\\cygwin-w32api-controls-90\\pe-identities.json",
+    "sha256": "416f7f9cde34e3091768cca27bb6ce0a9b19a931da78bdecd326ee59ebe26eea",
+    "bytes": 507
+  },
+  "scope": "Ordinary public Windows API codegen and LP64 32/64/pointer return/store behavior; no forced ARM intrinsic macros and no runtime/compiler rebuild."
+}
