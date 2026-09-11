@@ -1,0 +1,12 @@
+# Native engineering MVP: all supported executables come from this extraction.
+export MSYSTEM=MINGWARM64
+export PATH=/mingwarm64/bin:/usr/bin
+export LANG="${LANG:-C.UTF-8}"
+export TMPDIR=/tmp
+if [ -z "${HOME-}" ]; then
+    HOME=$(cd / && pwd -W)/home
+    export HOME
+fi
+if [ -n "${PS1-}" ]; then
+    PS1='\u@\h \w\n$ '
+fi
