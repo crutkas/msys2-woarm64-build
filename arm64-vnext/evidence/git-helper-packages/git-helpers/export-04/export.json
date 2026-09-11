@@ -1,0 +1,108 @@
+{
+  "schema": 1,
+  "status": "verified-native-arm64-git-helper-packages-exported",
+  "generated_utc": "2026-09-09T21:49:05.8002641Z",
+  "target": "MINGWARM64/aarch64-w64-mingw32",
+  "baseline": {
+    "git_for_windows": "v2.55.0.windows.5",
+    "build_extra_commit": "21d6ed86c38d28e89c950c9e1e349b6edefd1afb",
+    "distribution_contract_sha256": "8576a0499b93a7ddbc0f7c4ee3d9f44f5183b6c44f635561d8f31a622f350405",
+    "git_lfs_version": "3.7.1",
+    "git_lfs_source_commit": "a94294cc43168621a7d9609bebef62dbbd2804dd"
+  },
+  "upstream_admission": {
+    "repository": "git-for-windows/pacman-repo",
+    "branch": "aarch64",
+    "signing_fingerprint": "91883E11E83DC29D14104DB4EDD44359093056EE",
+    "detached_signatures_verified": true,
+    "git_lfs_package_commit": "af55e9b347f6d2356016b11bc447a8a4c09e41b1",
+    "git_extra_package_commit": "2864662d81d62b3284ce891f9a110381982f7271",
+    "git_lfs_signature": {
+      "path": "sources/mingw-w64-clang-aarch64-git-lfs-3.7.1-1-any.pkg.tar.xz.sig",
+      "sha256": "2e398ca01dceac8797ff6d4c0ac8ac2d112d3e8d6809e92c24c198e4674a7f4d"
+    },
+    "git_extra_signature": {
+      "path": "sources/mingw-w64-clang-aarch64-git-extra-1.1.713.cd940aab6-1-any.pkg.tar.xz.sig",
+      "sha256": "39047cf2016313d570ed41daa1757749218046ec8c731ee0ed9de30d71148107"
+    }
+  },
+  "git_extra_native_rebuild": {
+    "source_commit": "21d6ed86c38d28e89c950c9e1e349b6edefd1afb",
+    "source_inventory_sha256": "e599aee160244bcc5367be49e2bf4b60a67c5d8ebc69282f553d545712cd1f76",
+    "target": "aarch64-w64-mingw32",
+    "jobs": 2,
+    "compiler": {
+      "gcc_sha256": "cefca4ee864efbc185d29c78fac8c64135233a3bbdaef93ec6c92d4bb6418f7f",
+      "gxx_sha256": "5d9f0b601c45e6d72e92b98625c2aad1a55864a485bb8fcb04475403c3b5ee80",
+      "windres_sha256": "1001c87661a820f94c8ca99df86e95ecc66722e5db1504350c20286eab30cbcd"
+    },
+    "build_log_sha256": "70a44571ecf44c117b677ab6cb430c9895f4402af798c524adb82116056a46a6",
+    "outputs": {
+      "blocked-file-util.exe": {
+        "sha256": "3c2a637b79e4a5ebe8166df89ee9ced91c263240aa1986e4190b1849992a784e",
+        "bytes": 168279
+      },
+      "create-shortcut.exe": {
+        "sha256": "26b0e5b827d2fdaee0592439b6888afb15fe75de83153e465673c151d238a8a2",
+        "bytes": 837796
+      },
+      "git-askpass.exe": {
+        "sha256": "60237711dc9a6c3a76b596c0757e10d1418ee906af51588b1b93c3ac683e0a47",
+        "bytes": 161731
+      },
+      "git-askyesno.exe": {
+        "sha256": "91de9ba592e363a22a4a3be49a85ed5127dd5a4f36fc14e10a77465d8a2c9736",
+        "bytes": 159258
+      },
+      "proxy-lookup.exe": {
+        "sha256": "d0e1366f6bde802b24e420f041345fc089be62b29216147a47ac2a684635c39e",
+        "bytes": 160276
+      },
+      "WhoUses.exe": {
+        "sha256": "70941c7ebbf80a40d395ef7f7b94595cdee0933c45025f4f4ceceff51cf231e9",
+        "bytes": 18341146
+      }
+    }
+  },
+  "packages": [
+    {
+      "name": "mingw-w64-aarch64-git-lfs",
+      "path": "packages/mingw-w64-aarch64-git-lfs-3.7.1-1-any.pkg.tar.zst",
+      "sha256": "12e16872c065e78d83881eec443bb08d55c369e1e4e46ad5b1700825d86c8680",
+      "version": "3.7.1-1",
+      "source_package": {
+        "name": "mingw-w64-clang-aarch64-git-lfs",
+        "path": "sources/mingw-w64-clang-aarch64-git-lfs-3.7.1-1-any.pkg.tar.xz",
+        "sha256": "43f98ba2bb123e12c87cb0982df5d072237189110415ebf9e1148746ec93deb8"
+      }
+    },
+    {
+      "name": "mingw-w64-aarch64-git-extra",
+      "path": "packages/mingw-w64-aarch64-git-extra-1.1.713.cd940aab6-1-any.pkg.tar.zst",
+      "sha256": "6e861a0b1a7d5db7ceb5e23f3f816fec476252e80f319ce27f851c8967acb617",
+      "version": "1.1.713.cd940aab6-1",
+      "source_package": {
+        "name": "mingw-w64-clang-aarch64-git-extra",
+        "path": "sources/mingw-w64-clang-aarch64-git-extra-1.1.713.cd940aab6-1-any.pkg.tar.xz",
+        "sha256": "320b8456d299995d67e452a10c2f930993fc7169170564fb93c6ea022bdaab90"
+      }
+    }
+  ],
+  "ownership": {
+    "git_lfs": [
+      "mingwarm64/bin/git-lfs.exe"
+    ],
+    "git_extra": [
+      "mingwarm64/bin/git-askpass.exe",
+      "mingwarm64/bin/git-askyesno.exe"
+    ],
+    "excluded_managed_component": "mingwarm64/bin/git-credential-helper-selector.exe"
+  },
+  "adaptation": [
+    "The signed Git-for-Windows CLANGARM64 packages are the native ARM64 donor packages for this release baseline.",
+    "Payload paths were moved from clangarm64 to the admitted mingwarm64 prefix after all native PE files were verified as ARM64.",
+    "Git LFS executable bytes are unchanged from the signed ARM64 donor package.",
+    "git-extra native executables were rebuilt from the pinned build-extra sources with the qualified aarch64-w64-mingw32 GCC toolchain.",
+    "git-credential-helper-selector.exe was excluded because the full-release contract assigns that managed path to the GCM provider."
+  ]
+}

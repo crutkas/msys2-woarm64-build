@@ -1,0 +1,154 @@
+{
+  "schema": 1,
+  "status": "sealed-native-msys-openssl-dependency-cohort-pending-independent-intake",
+  "packages": [
+    {
+      "name": "libopenssl",
+      "path": "packages/libopenssl-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "4a5be29acfd9fdec78e6f6dae322dfaae7cb2c5f3e997a6c1aca2c416e93febd"
+    },
+    {
+      "name": "libxcrypt",
+      "path": "packages/libxcrypt-4.5.2-1-aarch64.pkg.tar.zst",
+      "sha256": "47bf08ac989f20e0574a1728f511327bf1cb8b17d9fb628953e7138b6c033f65"
+    },
+    {
+      "name": "libxcrypt-devel",
+      "path": "packages/libxcrypt-devel-4.5.2-1-aarch64.pkg.tar.zst",
+      "sha256": "eb8c494af45079cc6e06c54d254132170cb7ffdddef521aac177da33b7e1d37f"
+    },
+    {
+      "name": "openssl",
+      "path": "packages/openssl-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "cd487c08865ceb15bfe0f4b28de9b62d7b9090240a9c0c9abc843b2d3b16bfa5"
+    },
+    {
+      "name": "openssl-devel",
+      "path": "packages/openssl-devel-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "0070116ccbe695a8fb9d63d7cfd583051b2b1bd028e6526968060ade32b47c9f"
+    },
+    {
+      "name": "openssl-docs",
+      "path": "packages/openssl-docs-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "8923f6a4ea727356872b0e4d3438bb7e5c4151522bf68d71f4fef2bc819e8408"
+    },
+    {
+      "name": "zlib",
+      "path": "packages/zlib-1.3.2-1-aarch64.pkg.tar.zst",
+      "sha256": "1f655e79e7acb640f483bfc3feef36742dd84afb65899cfd89e954f0740e16ce"
+    },
+    {
+      "name": "zlib-devel",
+      "path": "packages/zlib-devel-1.3.2-1-aarch64.pkg.tar.zst",
+      "sha256": "d9edc5d4dbac5580050b8c062f2e57ddf5c1002319b5c5b6636431383265d202"
+    }
+  ],
+  "handoff": {
+    "path": "handoff.json",
+    "sha256": "36db5d494c309d99789dd11d71ddc308068fb995bece901ea2aabd89b7b1db00"
+  },
+  "external_proofs": [
+    {
+      "path": "evidence/openssl/source-prepare.json",
+      "sha256": "0c61787ce4af99d8bb404446d092835aabd31421c0c5f806b1c52918dde72ae0",
+      "name": "openssl/source-prepare.json"
+    },
+    {
+      "path": "evidence/openssl/suite-result.json",
+      "sha256": "3908446d3d7666968636ae4d8b195659dc882016233fcb26dd4214fb209aee4a",
+      "name": "openssl/suite-result.json"
+    },
+    {
+      "path": "evidence/openssl/native-job.json",
+      "sha256": "db28d91b318f7fa45778a5bd73aebb7e5c15697725dd887ef03aaf4abe93a283",
+      "name": "openssl/native-job.json"
+    },
+    {
+      "path": "evidence/openssl/dependency-qualification.json",
+      "sha256": "7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74",
+      "name": "openssl/dependency-qualification.json"
+    },
+    {
+      "path": "evidence/zlib/build-receipt.json",
+      "sha256": "e206df14f9a4aa12dca6c88e13427e03ca2d0233100f243426c7cd9b5bfe4960",
+      "name": "zlib/build-receipt.json"
+    },
+    {
+      "path": "evidence/zlib/consumer-receipt.json",
+      "sha256": "d1899371f8c00c18452b4bd96b99bb7677b5a2e63cf5645793264d5cd5855506",
+      "name": "zlib/consumer-receipt.json"
+    },
+    {
+      "path": "evidence/zlib/prior-package-handoff.json",
+      "sha256": "42a64acdb30a38f14e24cf58939ed070f07ccd1458647df8df4378ad58c70608",
+      "name": "zlib/prior-package-handoff.json"
+    },
+    {
+      "path": "evidence/zlib/source-manifest.json",
+      "sha256": "c53223c0fff652c40bb0f98c6fadd94440b4d3d6f2bd2b6fc491683ca0b5c8e0",
+      "name": "zlib/source-manifest.json"
+    },
+    {
+      "path": "evidence/libxcrypt/source-prepare.json",
+      "sha256": "52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d",
+      "name": "libxcrypt/source-prepare.json"
+    },
+    {
+      "path": "evidence/libxcrypt/build-receipt.json",
+      "sha256": "f6b76ac033a0e5e923bb6ace0bb1621d1c3a08f719667713a39fcd40c6cd3fcd",
+      "name": "libxcrypt/build-receipt.json"
+    },
+    {
+      "path": "evidence/libxcrypt/native-job.json",
+      "sha256": "425512f2502367a57efd69f3c2a088b12071b756708fcb14e177c8f05394f1b3",
+      "name": "libxcrypt/native-job.json"
+    },
+    {
+      "path": "evidence/libxcrypt/provider-handoff.json",
+      "sha256": "cac8882ce364e06fdd2dea36472a2ccbab4a0cbe52260a66d57e5b45e101b2f3",
+      "name": "libxcrypt/provider-handoff.json"
+    },
+    {
+      "path": "evidence/openssh/admitted-export.json",
+      "sha256": "9caf38721af1009c0c6b6fad59f1bca60e8fc05a137ece07b30b52f1deff83d2",
+      "name": "openssh/admitted-export.json"
+    },
+    {
+      "path": "evidence/openssh/admission-verdict.json",
+      "sha256": "0966cd47f7ef1ca86d3afc7845f220fcdaca878f38d3ad006e42fcceef61c8bb",
+      "name": "openssh/admission-verdict.json"
+    },
+    {
+      "path": "evidence/openssh/independent-verification.json",
+      "sha256": "fba26d68dc79cfd3b49d26c0bd91946772476768c4493aad6c6f65ca9464529b",
+      "name": "openssh/independent-verification.json"
+    },
+    {
+      "path": "evidence/packaging/package-container-sanitization.json",
+      "sha256": "2eb7d1cfcf1945f5ec29e44997987b41763c01865aff4b604689745931079d4c",
+      "name": "packaging/package-container-sanitization.json"
+    }
+  ],
+  "package_readback": {
+    "path": "package-readback.json",
+    "sha256": "b8bfd76515e4015f60bb2488e0fc2b25353d080f19d98829a16c995626268c7e"
+  },
+  "relocation": {
+    "path": "relocation-result.json",
+    "sha256": "bf1d374108ac8cc65178000dcc2e3fc54bc0431a9b3a5f2d81c4945eb3d0947d",
+    "openssl_default_config": true,
+    "legacy_provider_default_path": true,
+    "dasync_engine_default_path": true,
+    "client_positive_exit": 0,
+    "client_wrong_host_exit": 255
+  },
+  "runtime_external_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "exact_dependency_bindings": {
+    "msys-crypto-3.dll": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+    "msys-ssl-3.dll": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+    "msys-z.dll": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+    "msys-crypt-2.dll": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe",
+    "openssh-package": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+    "ssh.exe": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051"
+  }
+}

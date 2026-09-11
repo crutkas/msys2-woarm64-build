@@ -1,0 +1,199 @@
+{
+  "schema": 1,
+  "status": "native-msys-library-built-checked-bootstrap-driver",
+  "package": "libxcrypt",
+  "source_manifest_sha256": "52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d",
+  "compiler_receipt_sha256": "e5b870bebc90c953a992963850c3f087cd41adde8d4f2317fab09dec569e451e",
+  "bootstrap_receipt_sha256": "347a9b744efc7918d1ec69855d62c597d5e7d89e9787302ecd04625b84a6372e",
+  "observer_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa",
+  "observer_adapter": {
+    "path": "C:\\ap13-dcb\\libxcrypt-driver-01\\native\\native_job_runner.py",
+    "source_sha256_at_import": "ce76f288e329df76138fc0e54ba65b68cf29ed2bdaf332ef659261b9c39e0799",
+    "source_sha256_at_exit": "ce76f288e329df76138fc0e54ba65b68cf29ed2bdaf332ef659261b9c39e0799",
+    "file_changed_after_import": false
+  },
+  "guard_producer_handoff_sha256": "a10d72ca0959a24a41eca68f6833ce669b8ab1e5e462920f1d16c2a5ef58e474",
+  "approved_cc1_sha256": "b8046275497c4e8f4d056530ef2e956d1b7672a0e5eb15ad56fde5bf44e76b0a",
+  "working_source_test_customization": {
+    "patch": "C:\\ap13-dcb\\libxcrypt-driver-01\\native\\patches\\libxcrypt-coff-stack-guard-refptr-test.patch",
+    "patch_sha256": "c676f08ff02447cf98eaf478e1a80620556d9932782acecea63c87d39b0e3253",
+    "file": "test/symbols-static.pl",
+    "before": {
+      "sha256": "d1125224216094e9f74c13705877c9d01348b23753215a72caddc4e0f4e63f44",
+      "size": 2633
+    },
+    "after": {
+      "sha256": "42ab33d5587d70e7d46e19c535d423dcf33fa04bac9d0ddfbe327a6004fd0541",
+      "size": 2733
+    },
+    "scope": "Only the exact compiler-private .refptr.__stack_chk_guard is excluded from public API enumeration; no C source, protection, test or public-symbol checks removed"
+  },
+  "dispatcher_sha256": "8617991c49f77b106237e87c453cfa06b7eb64303cd3e8e20625e5df9fbdc63d",
+  "driver_sha256": "bbf7057a372547531cfb0f0f956e6d437ddf7bb2cc8b2e7ad143a678c6ef686a",
+  "minimum_free_gib_before_launch": 32.281707763671875,
+  "jobs": 1,
+  "nested_jobs": 1,
+  "native_argument_conversion": "none",
+  "libxcrypt_test_runtime_directories": [
+    "C:\\ap13-dcb\\libxcrypt-canonical-01\\build\\.libs",
+    "C:\\ag-e138920f\\tc-guard-01\\bin",
+    "C:\\ag-e138920f\\ssh-bootstrap-01\\msys64\\usr\\bin"
+  ],
+  "dependency_manifest_sha256": null,
+  "documentation_driver": null,
+  "command": [
+    "C:\\ag-e138920f\\ssh-bootstrap-01\\msys64\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "C:/ap13-dcb/libxcrypt-driver-01/native/build-msys-library.sh",
+    "libxcrypt",
+    "C:\\ag-e138920f\\ssh-source-adoption-01\\libxcrypt\\source",
+    "C:\\ag-e138920f\\tc-guard-01",
+    "C:\\ap13-dcb\\libxcrypt-canonical-01",
+    "1"
+  ],
+  "build_host": "windows-arm64-native-compiler",
+  "orchestration": "private-x64-emulated-bootstrap",
+  "limitations": [],
+  "support": {
+    "cc1": {
+      "path": "C:\\ag-e138920f\\tc-guard-01\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+      "sha256": "b8046275497c4e8f4d056530ef2e956d1b7672a0e5eb15ad56fde5bf44e76b0a"
+    },
+    "collect2": {
+      "path": "C:\\ag-e138920f\\tc-guard-01\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\collect2.exe",
+      "sha256": "a57e04a468cb3f9fa0355c75445fe1afee2f035e98a9f35ac076411bd430e1b7"
+    },
+    "as": {
+      "path": "C:\\ag-e138920f\\tc-guard-01\\aarch64-pc-cygwin\\bin\\as.exe",
+      "sha256": "b919c5702db0c855e948fc70f433a791598f61df77ab36d65ec3b546712d517c"
+    },
+    "ld": {
+      "path": "C:\\ag-e138920f\\tc-guard-01\\aarch64-pc-cygwin\\bin\\ld.exe",
+      "sha256": "296d810a4ecb64ef1e2afd49c6816fdef25f9e98af8a0452cf1551c723f8fc50"
+    }
+  },
+  "jmp_header_guard": {
+    "command": [
+      "C:\\ag-e138920f\\tc-guard-01\\bin\\gcc.exe",
+      "-std=gnu11",
+      "-Werror",
+      "-fsyntax-only",
+      "C:\\ap13-dcb\\libxcrypt-driver-01\\native\\fixtures\\msys-jmp-layout.c"
+    ],
+    "source_sha256": "1ce96955b036410c1dc9c11dac222d809297445aba14c8f5cbe784cfd2ba5439",
+    "compiler_sha256": "0eb57ff0d26c4d7a8da0a028beedc2df4349209bb14ac8a9553d519d06fe679c",
+    "scope": "Compile-time header layout only; no target execution or whole-SDK qualification"
+  },
+  "process": {
+    "passed": true,
+    "pid": 13548,
+    "exit": 0,
+    "timed_out": false,
+    "created_processes": 16327,
+    "observed_processes": 16327,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ap13-dcb\\libxcrypt-canonical-01.native-job.json",
+      "sha256": "9a4b8f1f70f2baa0119eba895d09fce7043c06fa351f14f27938d1c40c0112d9",
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa"
+    }
+  },
+  "upstream_tests": {
+    "counts": {
+      "TOTAL": 54,
+      "PASS": 53,
+      "SKIP": 1,
+      "XFAIL": 0,
+      "FAIL": 0,
+      "XPASS": 0,
+      "ERROR": 0
+    },
+    "sha256": "b5ae6e84f5d11bf5616a2b9593fe997ad4200c6a0437f2f4f252ca400a217489",
+    "scope": "All 54 upstream tests; upstream skips remain explicit"
+  },
+  "files": {
+    "usr/bin/msys-crypt-2.dll": {
+      "sha256": "24c34def01e21adca813e832b78f66a297e3293715e619aef2c28533648ffec1",
+      "size": 1004845
+    },
+    "usr/include/crypt.h": {
+      "sha256": "3e702325b96c13f029adb0412810a6d7efba026aaeab5ee5b7066d9d11bfa8c1",
+      "size": 11130
+    },
+    "usr/lib/libcrypt.a": {
+      "sha256": "76b3bba8df6644773541f8fb1eccf42df35375a7153f934d75a465d7fdd44c5e",
+      "size": 1096224
+    },
+    "usr/lib/libcrypt.dll.a": {
+      "sha256": "5da6fceed5e8d7c7b040387a39ef88dcdcfdc97e394e506fc2654ec10134f2df",
+      "size": 83258
+    },
+    "usr/lib/libcrypt.la": {
+      "sha256": "ec67c9a372fdae21dadaa52df884e2b60c8d311538a40f9d1fbcdf2215350cad",
+      "size": 898
+    },
+    "usr/lib/pkgconfig/libcrypt.pc": {
+      "sha256": "8569f1eacddaeb9a890f3edfb8e96a3f401b4281703ebdecdcdd2105ac71d7b0",
+      "size": 381
+    },
+    "usr/lib/pkgconfig/libxcrypt.pc": {
+      "sha256": "8569f1eacddaeb9a890f3edfb8e96a3f401b4281703ebdecdcdd2105ac71d7b0",
+      "size": 381
+    },
+    "usr/share/licenses/libxcrypt/COPYING.LIB": {
+      "sha256": "dc626520dcd53a22f727af3ee42c770e56c97a64fe3adb063799d8ab032fe551",
+      "size": 26530
+    },
+    "usr/share/licenses/libxcrypt/LICENSING": {
+      "sha256": "9144e66d8140feb84f0e4e344906ac425378896320032e0248567ef195cf0135",
+      "size": 5854
+    },
+    "usr/share/man/man3/crypt.3": {
+      "sha256": "379ef481190188850549f8af649e519535e8f8e3feea1edfc5636c3fd69229bb",
+      "size": 11379
+    },
+    "usr/share/man/man3/crypt_checksalt.3": {
+      "sha256": "5f39a8f48c5b5d2a57a56f6573a0db833d880231fe863c4fc6931c9c1f7e0716",
+      "size": 2891
+    },
+    "usr/share/man/man3/crypt_gensalt.3": {
+      "sha256": "8a2665691b0ee327ec880ca52203b41a98965d834248fc088d4cc65d21ce1feb",
+      "size": 6677
+    },
+    "usr/share/man/man3/crypt_gensalt_ra.3": {
+      "sha256": "088cd72a7bd163689ad11d0c33e4f70902a1bd483f91f48c00f1fadb79dfc3ae",
+      "size": 25
+    },
+    "usr/share/man/man3/crypt_gensalt_rn.3": {
+      "sha256": "088cd72a7bd163689ad11d0c33e4f70902a1bd483f91f48c00f1fadb79dfc3ae",
+      "size": 25
+    },
+    "usr/share/man/man3/crypt_preferred_method.3": {
+      "sha256": "683b58d42aeb65e46b2251314754b45ca06473f0f0ddae056bae2b401f181206",
+      "size": 1581
+    },
+    "usr/share/man/man3/crypt_r.3": {
+      "sha256": "e03f0b95062176ba33b640479942251523bc5ccc28e42a291204262a4614b7e0",
+      "size": 17
+    },
+    "usr/share/man/man3/crypt_ra.3": {
+      "sha256": "e03f0b95062176ba33b640479942251523bc5ccc28e42a291204262a4614b7e0",
+      "size": 17
+    },
+    "usr/share/man/man3/crypt_rn.3": {
+      "sha256": "e03f0b95062176ba33b640479942251523bc5ccc28e42a291204262a4614b7e0",
+      "size": 17
+    },
+    "usr/share/man/man5/crypt.5": {
+      "sha256": "affe5e8120c50ed1ec44ad739df5d38cb7cc38edb0d5031b06bff3fd9d8c2c2f",
+      "size": 13450
+    }
+  },
+  "pending": [
+    "Native process/loaded-library consumer",
+    "Package admission",
+    "Coherent runtime/library FP metadata closure"
+  ],
+  "input_integrity_errors": []
+}

@@ -1,0 +1,137 @@
+{
+  "schema": 1,
+  "passed": true,
+  "relocated_root": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root",
+  "runtime_test_only": {
+    "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "packaged": false
+  },
+  "required_images": [
+    {
+      "path": "usr/bin/msys-2.0.dll",
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-crypto-3.dll",
+      "sha256": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-ssl-3.dll",
+      "sha256": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-z.dll",
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-crypt-2.dll",
+      "sha256": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/ssh.exe",
+      "sha256": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051",
+      "machine": "0xAA64"
+    }
+  ],
+  "openssl": {
+    "version": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "version",
+        "-a"
+      ],
+      "exit": 0,
+      "stdout": "OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)\nbuilt on: Fri Sep 11 07:52:19 2026 UTC\nplatform: Cygwin-aarch64\noptions:  bn(64,64)\ncompiler: msys-openssl-release-gcc  -O2 -g0 -DTERMIOS -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DNDEBUG\nOPENSSLDIR: \"/usr/ssl\"\nENGINESDIR: \"/usr/lib/openssl/engines-3\"\nMODULESDIR: \"/usr/lib/ossl-modules\"\nSeeding source: os-specific\nCPUINFO: OPENSSL_armcap=0x3d",
+      "stderr": ""
+    },
+    "configdir": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "info",
+        "-configdir"
+      ],
+      "exit": 0,
+      "stdout": "/usr/ssl",
+      "stderr": ""
+    },
+    "enginesdir": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "info",
+        "-enginesdir"
+      ],
+      "exit": 0,
+      "stdout": "/usr/lib/openssl/engines-3",
+      "stderr": ""
+    },
+    "modulesdir": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "info",
+        "-modulesdir"
+      ],
+      "exit": 0,
+      "stdout": "/usr/lib/ossl-modules",
+      "stderr": ""
+    },
+    "legacy_provider": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "list",
+        "-providers",
+        "-provider",
+        "legacy",
+        "-verbose"
+      ],
+      "exit": 0,
+      "stdout": "Providers:\n  legacy\n    name: OpenSSL Legacy Provider\n    version: 3.6.4\n    status: active\n    build info: 3.6.4\n    gettable provider parameters:\n      name: pointer to a UTF8 encoded string (arbitrary size)\n      version: pointer to a UTF8 encoded string (arbitrary size)\n      buildinfo: pointer to a UTF8 encoded string (arbitrary size)\n      status: integer (arbitrary size)",
+      "stderr": ""
+    },
+    "dasync_engine": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "engine",
+        "-t",
+        "-c",
+        "dasync"
+      ],
+      "exit": 0,
+      "stdout": "(dasync) Dummy Async engine support\n [AES-128-CBC, AES-256-CTR, AES-128-CBC-HMAC-SHA1, SHA1, rsaEncryption]\n     [ available ]",
+      "stderr": ""
+    },
+    "default_config_request": {
+      "argv": [
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocated-root\\usr\\bin\\openssl.exe",
+        "req",
+        "-new",
+        "-newkey",
+        "ed25519",
+        "-nodes",
+        "-batch",
+        "-subj",
+        "/CN=native-msys-package-relocation",
+        "-keyout",
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocation.key",
+        "-out",
+        "C:\\ap13-dcb\\native-msys-crypto-packages-05\\relocation.csr"
+      ],
+      "exit": 0,
+      "csr_sha256": "7d7ce7b452419e1676ba2c38e9c89142b1db4f2a35bccefe387364df0771e8a7",
+      "key_sha256": "1d47d44a9b7bec998ee6045cf48cbe88a9d35887a2fb05711c2895e5c25a1fbd"
+    }
+  },
+  "controlled_ssh": {
+    "result": "controlled-ssh/result.json",
+    "sha256": "3db8c4401a20e545bab3d9454411cb89cdeb5b337a70768f258f7dd5beb4e63d",
+    "passed": true,
+    "positive_exit": 0,
+    "wrong_host_exit": 255
+  },
+  "real_credentials_or_global_settings_used": false
+}

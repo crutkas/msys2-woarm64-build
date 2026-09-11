@@ -1,0 +1,56 @@
+{
+  "schema": 1,
+  "status": "failed",
+  "package": "libxcrypt",
+  "source_manifest_sha256": "52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d",
+  "compiler_receipt_sha256": "e5b870bebc90c953a992963850c3f087cd41adde8d4f2317fab09dec569e451e",
+  "bootstrap_receipt_sha256": "347a9b744efc7918d1ec69855d62c597d5e7d89e9787302ecd04625b84a6372e",
+  "observer_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa",
+  "observer_adapter": {
+    "path": "C:\\ap13-dcb\\libxcrypt-driver-01\\native\\native_job_runner.py",
+    "source_sha256_at_import": "ce76f288e329df76138fc0e54ba65b68cf29ed2bdaf332ef659261b9c39e0799"
+  },
+  "guard_producer_handoff_sha256": "a10d72ca0959a24a41eca68f6833ce669b8ab1e5e462920f1d16c2a5ef58e474",
+  "approved_cc1_sha256": "b8046275497c4e8f4d056530ef2e956d1b7672a0e5eb15ad56fde5bf44e76b0a",
+  "working_source_test_customization": {
+    "patch": "C:\\ap13-dcb\\libxcrypt-driver-01\\native\\patches\\libxcrypt-coff-stack-guard-refptr-test.patch",
+    "patch_sha256": "c676f08ff02447cf98eaf478e1a80620556d9932782acecea63c87d39b0e3253",
+    "file": "test/symbols-static.pl",
+    "before": {
+      "sha256": "d1125224216094e9f74c13705877c9d01348b23753215a72caddc4e0f4e63f44",
+      "size": 2633
+    },
+    "after": {
+      "sha256": "42ab33d5587d70e7d46e19c535d423dcf33fa04bac9d0ddfbe327a6004fd0541",
+      "size": 2733
+    },
+    "scope": "Only the exact compiler-private .refptr.__stack_chk_guard is excluded from public API enumeration; no C source, protection, test or public-symbol checks removed"
+  },
+  "dispatcher_sha256": "8617991c49f77b106237e87c453cfa06b7eb64303cd3e8e20625e5df9fbdc63d",
+  "driver_sha256": "bbf7057a372547531cfb0f0f956e6d437ddf7bb2cc8b2e7ad143a678c6ef686a",
+  "minimum_free_gib_before_launch": 32.281707763671875,
+  "jobs": 1,
+  "nested_jobs": 1,
+  "native_argument_conversion": "none",
+  "libxcrypt_test_runtime_directories": [
+    "C:\\ap13-dcb\\libxcrypt-canonical-01\\build\\.libs",
+    "C:\\ag-e138920f\\tc-guard-01\\bin",
+    "C:\\ag-e138920f\\ssh-bootstrap-01\\msys64\\usr\\bin"
+  ],
+  "dependency_manifest_sha256": null,
+  "documentation_driver": null,
+  "command": [
+    "C:\\ag-e138920f\\ssh-bootstrap-01\\msys64\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "C:/ap13-dcb/libxcrypt-driver-01/native/build-msys-library.sh",
+    "libxcrypt",
+    "C:\\ag-e138920f\\ssh-source-adoption-01\\libxcrypt\\source",
+    "C:\\ag-e138920f\\tc-guard-01",
+    "C:\\ap13-dcb\\libxcrypt-canonical-01",
+    "1"
+  ],
+  "build_host": "windows-arm64-native-compiler",
+  "orchestration": "private-x64-emulated-bootstrap",
+  "limitations": []
+}

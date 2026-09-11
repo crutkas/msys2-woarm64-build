@@ -1,0 +1,101 @@
+{
+  "schema": 1,
+  "status": "native-msys-library-built-checked-bootstrap-driver",
+  "package": "zlib-msys",
+  "source_manifest_sha256": "c53223c0fff652c40bb0f98c6fadd94440b4d3d6f2bd2b6fc491683ca0b5c8e0",
+  "compiler_receipt_sha256": "bd5cbf12484d98243098def7e037c20a41710e88a0eff9d81a0b64501f7d939a",
+  "driver_sha256": "6893fecb2e1bbff7d5797135edc4d6271ec6ac52570ab6893321cf9c41c382ac",
+  "support": {
+    "cc1": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+      "sha256": "39ccc280c8af6ee6a6bd084fe71cf7b523e36daead7d33cecde02ce53438a61c"
+    },
+    "collect2": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\collect2.exe",
+      "sha256": "a57e04a468cb3f9fa0355c75445fe1afee2f035e98a9f35ac076411bd430e1b7"
+    },
+    "as": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\aarch64-pc-cygwin\\bin\\as.exe",
+      "sha256": "b919c5702db0c855e948fc70f433a791598f61df77ab36d65ec3b546712d517c"
+    },
+    "ld": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\aarch64-pc-cygwin\\bin\\ld.exe",
+      "sha256": "296d810a4ecb64ef1e2afd49c6816fdef25f9e98af8a0452cf1551c723f8fc50"
+    }
+  },
+  "jmp_header_guard": {
+    "command": [
+      "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\bin\\gcc.exe",
+      "-std=gnu11",
+      "-Werror",
+      "-fsyntax-only",
+      "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-shiny-meme\\arm64-git-recovery\\native\\fixtures\\msys-jmp-layout.c"
+    ],
+    "source_sha256": "1ce96955b036410c1dc9c11dac222d809297445aba14c8f5cbe784cfd2ba5439",
+    "compiler_sha256": "0eb57ff0d26c4d7a8da0a028beedc2df4349209bb14ac8a9553d519d06fe679c",
+    "scope": "Compile-time header layout only; no target execution or whole-SDK qualification"
+  },
+  "command": [
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\git-private-bootstrap-01\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "C:/Users/crutkasLocal/.copilot/repos/copilot-worktrees/msys2-woarm64-build/crutkas-shiny-meme/arm64-git-recovery/native/build-msys-library.sh",
+    "zlib-msys",
+    "\\\\wsl.localhost\\Ubuntu\\root\\arm64-vnext-20260905\\git\\prepared\\zlib-msys-01",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\zlib-msys-01",
+    "1"
+  ],
+  "build_host": "windows-arm64-native-compiler",
+  "orchestration": "private-x64-emulated-bootstrap",
+  "limitations": [],
+  "process": {
+    "pid": 19372,
+    "exit": 0,
+    "timed_out": false,
+    "active_at_parent_exit": 0,
+    "active_at_boundary": 0,
+    "remaining_process_ids": [],
+    "created_processes": 595,
+    "passed": true
+  },
+  "files": {
+    "usr/bin/msys-z.dll": {
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "size": 83968
+    },
+    "usr/include/zconf.h": {
+      "sha256": "0718a11beb3295b345fb29a63b44b654b282d82c4cd0513f6225587f2b29b8bb",
+      "size": 16921
+    },
+    "usr/include/zlib.h": {
+      "sha256": "818667d6ab6a37fe7469cb06a7f0cb2c2cb2f2c948a03e5accf1a4a74bf3020a",
+      "size": 103848
+    },
+    "usr/lib/libz.a": {
+      "sha256": "945b8eff54cb07dd233e3fb9865b729f6a824ec363e2bacfce4b25f65bf10744",
+      "size": 449540
+    },
+    "usr/lib/libz.dll.a": {
+      "sha256": "3c1f40242812828cddb729bda17007199e29fd2b52e22d6799e0acc87dd05b3f",
+      "size": 61222
+    },
+    "usr/lib/pkgconfig/zlib.pc": {
+      "sha256": "3f9a6ab40b0dac4281cce32371b2e4c23e5069c93ef54dea6f61a47908811685",
+      "size": 245
+    },
+    "usr/share/licenses/zlib/LICENSE": {
+      "sha256": "e32ff4e00d9d94930537635291da39e7e612703334bf6fde8c7f1686fe8a45a2",
+      "size": 1002
+    },
+    "usr/share/man/man3/zlib.3": {
+      "sha256": "5eebcb61a9c1ef91ff6c8e6d37b32554f5eefff825b190b1b5e5982f35d87534",
+      "size": 4482
+    }
+  },
+  "pending": [
+    "Native process/loaded-library consumer",
+    "Package admission",
+    "Coherent runtime/library FP metadata closure"
+  ]
+}

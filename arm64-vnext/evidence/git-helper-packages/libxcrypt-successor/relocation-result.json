@@ -1,0 +1,117 @@
+{
+  "schema": 1,
+  "passed": true,
+  "continued_from_completed_pre_consumer_controls": true,
+  "relocated_root": "C:\\ap13-dcb\\libxcrypt-successor-packages-01\\relocated-root",
+  "runtime_test_only": {
+    "path": "C:\\ap13-dcb\\libxcrypt-successor-packages-01\\relocated-root\\usr\\bin\\msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "packaged": false
+  },
+  "required_images": [
+    {
+      "path": "usr/bin/msys-2.0.dll",
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-crypto-3.dll",
+      "sha256": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-ssl-3.dll",
+      "sha256": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-z.dll",
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/msys-crypt-2.dll",
+      "sha256": "24c34def01e21adca813e832b78f66a297e3293715e619aef2c28533648ffec1",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "usr/bin/ssh.exe",
+      "sha256": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051",
+      "machine": "0xAA64"
+    }
+  ],
+  "openssl": {
+    "version": {
+      "log": "openssl-version.log",
+      "sha256": "a3b05ef7e6a254d9f46f063c5225c28e11c7eb89699fc18ecad11cae46928063",
+      "expected_observed": "OpenSSL 3.6.4"
+    },
+    "configdir": {
+      "log": "openssl-configdir.log",
+      "sha256": "90ad76e9a2f5e69a7e7c1daee4aa735546228fb2cfb7156a0a4207c8c7042fae",
+      "expected_observed": "/usr/ssl"
+    },
+    "enginesdir": {
+      "log": "openssl-enginesdir.log",
+      "sha256": "9803d737876b1c61128a8a5e2d7b1f7af06401bdf7e8a85c73c480c875ee35ac",
+      "expected_observed": "/usr/lib/openssl/engines-3"
+    },
+    "modulesdir": {
+      "log": "openssl-modulesdir.log",
+      "sha256": "5965e94cac87227b7fa8e1e8c62da20f09bbbb7c1f933ba390abd33c31f06b0c",
+      "expected_observed": "/usr/lib/ossl-modules"
+    },
+    "legacy_provider": {
+      "log": "openssl-legacy_provider.log",
+      "sha256": "72ca26f2e47ecfb7461a273ad659e2aa513023658836212962e04712a64a8cac",
+      "expected_observed": "legacy"
+    },
+    "dasync_engine": {
+      "log": "openssl-dasync_engine.log",
+      "sha256": "ecc7d8ddf632ac374a7530290a6ec8f408e57628880211f06ae3b313754843fb",
+      "expected_observed": "dasync"
+    },
+    "default_config_request": {
+      "log": "openssl-default-config-request.log",
+      "sha256": "00b26ea33609868d371d267117b79bc1d7ba27641fcc0fc806fab3f238f455be",
+      "expected_observed": "req"
+    }
+  },
+  "default_config_artifacts": {
+    "csr_sha256": "2106886b8e720fa650eeaa52c7d82abed1dae6f4a1c9994f66c839dba04ef682",
+    "key_sha256": "883b27a0be9fa2a289a5f7fa2549e35cbcf98884475ac673c8b034a63c2e4604"
+  },
+  "controlled_ssh": {
+    "result": "controlled-ssh/result.json",
+    "sha256": "b56c06f1da6d12093a6943ed031f631a6057f869479efdd9fb7642d68e1260b0",
+    "passed": true,
+    "positive_exit": 0,
+    "wrong_host_exit": 255
+  },
+  "real_credentials_or_global_settings_used": false,
+  "libxcrypt_direct_consumer": {
+    "schema": 1,
+    "passed": true,
+    "executable": {
+      "path": "libxcrypt-consumer.exe",
+      "sha256": "0442d7e6bb7c3254918b65f9b23893115e1839df842db90503e8edd01818fe1f",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypt-2.dll"
+      ]
+    },
+    "algorithms": [
+      "preferred-method",
+      "sha512crypt"
+    ],
+    "loaded_module": {
+      "path": "C:\\ap13-dcb\\libxcrypt-successor-packages-01\\relocated-root\\usr\\bin\\msys-crypt-2.dll",
+      "sha256": "24c34def01e21adca813e832b78f66a297e3293715e619aef2c28533648ffec1"
+    },
+    "exit": 0,
+    "stdout_sha256": "644c282ba35b45ef84f85fcb87386459dd8f8c214bc24379025cb17b14e7ad2a",
+    "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+  }
+}

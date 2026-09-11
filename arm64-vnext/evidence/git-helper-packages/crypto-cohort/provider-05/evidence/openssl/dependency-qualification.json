@@ -1,0 +1,51 @@
+{
+  "schema": 1,
+  "status": "qualified-native-msys-openssl-ssh-dependency-projection",
+  "version": "3.6.4",
+  "scope": "Exact OpenSSL shared libraries supplied to the native MSYS OpenSSH client; openssl.exe is a test utility and is not included in this SSH provider projection; runtime bytes remain external.",
+  "source_manifest_sha256": "0c61787ce4af99d8bb404446d092835aabd31421c0c5f806b1c52918dde72ae0",
+  "canonical_paths": {
+    "prefix": "/usr",
+    "openssldir": "/usr/ssl",
+    "enginesdir": "/usr/lib/openssl/engines-3",
+    "modulesdir": "/usr/lib/ossl-modules"
+  },
+  "runtime_dependency": {
+    "file": "msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "bytes_not_repackaged": true,
+    "producer_marker_disposition": "owned by runtime provider"
+  },
+  "version_probe": {
+    "executable_sha256": "b9486392d0ede8a8f2daa10c9f442fea5e956d4f0a5f28da3d1309771b5c99c8",
+    "shipping_projection": false,
+    "exit": 0,
+    "output": "OpenSSL 3.6.4 25 Aug 2026 (Library: OpenSSL 3.6.4 25 Aug 2026)\nbuilt on: Fri Sep 11 07:52:19 2026 UTC\nplatform: Cygwin-aarch64\noptions:  bn(64,64)\ncompiler: msys-openssl-release-gcc  -O2 -g0 -DTERMIOS -DL_ENDIAN -DOPENSSL_PIC -DOPENSSL_BUILDING_OPENSSL -DNDEBUG\nOPENSSLDIR: \"/usr/ssl\"\nENGINESDIR: \"/usr/lib/openssl/engines-3\"\nMODULESDIR: \"/usr/lib/ossl-modules\"\nSeeding source: os-specific\nCPUINFO: OPENSSL_armcap=0x3d"
+  },
+  "all_shipping_dependency_images_arm64": true,
+  "forbidden_marker_errors": [],
+  "shipping_dependency_images": [
+    {
+      "path": "bin/msys-crypto-3.dll",
+      "size": 6082860,
+      "sha256": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+      "machine": "0xAA64"
+    },
+    {
+      "path": "bin/msys-ssl-3.dll",
+      "size": 1194175,
+      "sha256": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+      "machine": "0xAA64"
+    }
+  ],
+  "suite": {
+    "result_sha256": "3908446d3d7666968636ae4d8b195659dc882016233fcb26dd4214fb209aee4a",
+    "native_job_sha256": "db28d91b318f7fa45778a5bd73aebb7e5c15697725dd887ef03aaf4abe93a283",
+    "tests": 4535,
+    "created_processes": 51951,
+    "observed_processes": 51951,
+    "unrelayed_high_exits": 0,
+    "passed": true
+  },
+  "passed": true
+}

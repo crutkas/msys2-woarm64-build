@@ -1,0 +1,196 @@
+# Native ARM64 Git helper and GnuPG provider evidence
+
+This directory preserves measured text evidence before the source machine is reformatted. Package archives, PE binaries, source archives, private keyrings, and build trees are intentionally excluded. `.gitattributes` disables text conversion for byte-stable rehydration.
+
+## Status boundary
+
+**PROVEN**
+
+- Genuine native ARM64 Git LFS and git-extra package exports were produced; the preserved LFS receipts cover local init/track/pointer/filter/object-storage round trips, and the helper receipts cover AA64 identity, dependency closure, relocation, and assembler selection.
+- Native MSYS OpenSSH provider-03 was independently admitted as runtime907/exact-dependency-scoped, client-only. Its full OpenSSL suite qualification, moved extraction, loopback positive, wrong-host negative, agent lifecycle, and Bash-parent boundary receipts are preserved.
+- The six-package native MSYS OpenSSL/zlib subset was independently admitted. The corrected libxcrypt successor was built from source with prefix mapping and delivered for independent intake; its admission was not received before preservation.
+- Native libgpg-error and npth manifests were accepted pending a GnuPG consumer. Clean native GMP 6.3.0-1 was independently admitted for runtime907 with 199 pass, 1 skip, 0 fail and C++ 22/22; its package bytes and test evidence are hash-bound in the preserved receipts.
+
+**PARTIAL / COHORT-GATED**
+
+- Runtime907 GMP is not consumable in the current d70 release input. Ledger v42 reported a hard package conflict with selected d70-scoped GMP 6.3.0-2; no audit-v30 was created. The clean runtime907 pair must not be rebuilt, split, or mixed with d70.
+- npth and the unfinished GnuPG dependency chain still require a genuinely runtime907-qualified gcc-libs provider, or an approved whole-release runtime907 cohort switch.
+- Pinned MSYS2 recipes and source-signature verification for the core GnuPG stack and network dependency graph are preserved, but most packages remain unbuilt.
+
+**FAILED OR INTERRUPTED**
+
+- Existing gcc-libs 15.0.1-1 is d70-scoped and was rejected for runtime907 consumption. Its four DLLs contain measured private producer-root strings (87 atomic, 80 gcc_s, 234 gomp, 1336 stdc++); no runtime907 export was produced.
+- libgcrypt run `1-01` failed at final link because makepkg sanitized `LIBRARY_PATH` and `-lgpg-error` lacked the private SDK search path.
+- libgcrypt run `1-02` compiled successfully but all 39 runnable upstream tests failed before algorithm execution because libtool wrappers could not locate the freshly built `msys-gcrypt-20.dll`; two large upstream tests were skipped.
+- libgcrypt run `1-04` added the check-time `.libs` PATH correction but was explicitly stopped for this preservation deadline. It has no completed build result and proves no test or package success.
+
+**NOT ATTEMPTED**
+
+- Native libassuan, libksba, remaining network dependency packages, pinentry, final GnuPG packaging, and disposable-key GnuPG sign/verify/encrypt/decrypt negative/positive controls were not completed.
+
+## Important cohort constraints
+
+- Runtime907 SHA-256: `907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c`; ownership remains external.
+- GMP runtime907 admission export SHA-256: `02c57b530fbbc41634cbaacb3c3dfe04bdea462b31c20f64af257e46020af858`.
+- GMP d70 conflict handoff SHA-256: `e3945ca165a274fa6c8d8080d32366a07e17ef21363c8440c18691fbd63cf0a0`; ledger v42 SHA-256: `c198b4018ea31c97c1e3b96249b41029754cf4a315c1bc0ebd266ad0e01ef3d4`.
+- Do not consume the d70 gcc-libs package for runtime907, relabel it, strip around its provenance, or mix runtime/development packages across cohorts.
+
+## Per-file SHA-256 and original location
+
+`README.md` is excluded from its own hash table. Every other preserved file is listed below; `ORIGINS.tsv` contains the same source mapping in machine-readable form.
+
+| Relative path | SHA-256 | Bytes | Original absolute path |
+|---|---|---:|---|
+| `.gitattributes` | `f01a7d3573bcb8be0255b188ea30002f6792b2eeb0470ae49f30f21b69cff1d7` | 19 | `repository preservation guard generated for this bundle` |
+| `crypto-cohort/provider-05/controlled-ssh-driver.log` | `b3252f778758a2e22d4e9a76548c237c8f740a4d249338e5018d806c594492d6` | 935 | `C:\ap13-dcb\native-msys-crypto-packages-05\controlled-ssh-driver.log` |
+| `crypto-cohort/provider-05/evidence/libxcrypt/build-receipt.json` | `f6b76ac033a0e5e923bb6ace0bb1621d1c3a08f719667713a39fcd40c6cd3fcd` | 7924 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\libxcrypt\build-receipt.json` |
+| `crypto-cohort/provider-05/evidence/libxcrypt/native-job.json` | `425512f2502367a57efd69f3c2a088b12071b756708fcb14e177c8f05394f1b3` | 42094 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\libxcrypt\native-job.json` |
+| `crypto-cohort/provider-05/evidence/libxcrypt/provider-handoff.json` | `cac8882ce364e06fdd2dea36472a2ccbab4a0cbe52260a66d57e5b45e101b2f3` | 14367 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\libxcrypt\provider-handoff.json` |
+| `crypto-cohort/provider-05/evidence/libxcrypt/source-prepare.json` | `52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d` | 28034 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\libxcrypt\source-prepare.json` |
+| `crypto-cohort/provider-05/evidence/openssh/admission-verdict.json` | `0966cd47f7ef1ca86d3afc7845f220fcdaca878f38d3ad006e42fcceef61c8bb` | 3047 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssh\admission-verdict.json` |
+| `crypto-cohort/provider-05/evidence/openssh/admitted-export.json` | `9caf38721af1009c0c6b6fad59f1bca60e8fc05a137ece07b30b52f1deff83d2` | 3698 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssh\admitted-export.json` |
+| `crypto-cohort/provider-05/evidence/openssh/independent-verification.json` | `fba26d68dc79cfd3b49d26c0bd91946772476768c4493aad6c6f65ca9464529b` | 11228 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssh\independent-verification.json` |
+| `crypto-cohort/provider-05/evidence/openssl/dependency-qualification.json` | `7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74` | 2325 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssl\dependency-qualification.json` |
+| `crypto-cohort/provider-05/evidence/openssl/native-job.json` | `db28d91b318f7fa45778a5bd73aebb7e5c15697725dd887ef03aaf4abe93a283` | 1806494 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssl\native-job.json` |
+| `crypto-cohort/provider-05/evidence/openssl/source-prepare.json` | `0c61787ce4af99d8bb404446d092835aabd31421c0c5f806b1c52918dde72ae0` | 892095 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssl\source-prepare.json` |
+| `crypto-cohort/provider-05/evidence/openssl/suite-result.json` | `3908446d3d7666968636ae4d8b195659dc882016233fcb26dd4214fb209aee4a` | 61452 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\openssl\suite-result.json` |
+| `crypto-cohort/provider-05/evidence/packaging/package-container-sanitization.json` | `2eb7d1cfcf1945f5ec29e44997987b41763c01865aff4b604689745931079d4c` | 3123 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\packaging\package-container-sanitization.json` |
+| `crypto-cohort/provider-05/evidence/reused-package-build/makepkg-libxcrypt.log` | `59ece1c0b288c93faf2dae418876c7279be08505b4ab91d6484d4b4369bf0e05` | 1068 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\reused-package-build\makepkg-libxcrypt.log` |
+| `crypto-cohort/provider-05/evidence/reused-package-build/makepkg-openssl.log` | `0bc58e7bad89c86f1624f12e7b03115be7bad08720b74c758f072101ceca7e1e` | 1598 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\reused-package-build\makepkg-openssl.log` |
+| `crypto-cohort/provider-05/evidence/reused-package-build/makepkg-zlib.log` | `3b71abd4e4dd8a99f9914fed291541a98ecda2c8ef5bcd35d4a898067dea5bb8` | 1038 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\reused-package-build\makepkg-zlib.log` |
+| `crypto-cohort/provider-05/evidence/reused-package-build/openssl-install-docs.log` | `95fd03a3f833ddd448d6fcab8ceede5ac712053e49b0b15d83856796214b8b98` | 581855 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\reused-package-build\openssl-install-docs.log` |
+| `crypto-cohort/provider-05/evidence/reused-package-build/strip-package-openssl.log` | `093caefe9bc0fff770804c9042d78d1818d90069df2096d769ca21319c34bbb8` | 199 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\reused-package-build\strip-package-openssl.log` |
+| `crypto-cohort/provider-05/evidence/zlib/build-receipt.json` | `e206df14f9a4aa12dca6c88e13427e03ca2d0233100f243426c7cd9b5bfe4960` | 4728 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\zlib\build-receipt.json` |
+| `crypto-cohort/provider-05/evidence/zlib/consumer-receipt.json` | `d1899371f8c00c18452b4bd96b99bb7677b5a2e63cf5645793264d5cd5855506` | 3348 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\zlib\consumer-receipt.json` |
+| `crypto-cohort/provider-05/evidence/zlib/prior-package-handoff.json` | `42a64acdb30a38f14e24cf58939ed070f07ccd1458647df8df4378ad58c70608` | 5441 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\zlib\prior-package-handoff.json` |
+| `crypto-cohort/provider-05/evidence/zlib/source-manifest.json` | `c53223c0fff652c40bb0f98c6fadd94440b4d3d6f2bd2b6fc491683ca0b5c8e0` | 39378 | `C:\ap13-dcb\native-msys-crypto-packages-05\evidence\zlib\source-manifest.json` |
+| `crypto-cohort/provider-05/export.json` | `894633864681f6c2a875ffc6f218e0c5b2038893e20eec56bd9400532da5c882` | 6285 | `C:\ap13-dcb\native-msys-crypto-packages-05\export.json` |
+| `crypto-cohort/provider-05/handoff.json` | `36db5d494c309d99789dd11d71ddc308068fb995bece901ea2aabd89b7b1db00` | 13330 | `C:\ap13-dcb\native-msys-crypto-packages-05\handoff.json` |
+| `crypto-cohort/provider-05/openssl-configdir.log` | `b0c62ea61767f1bd7a2fc19cbe4756277030565aa10fec7a857aac73aa1cd921` | 107 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-configdir.log` |
+| `crypto-cohort/provider-05/openssl-dasync_engine.log` | `0555c2e678e51a48108b608ef27bc60326712bba4f810e71090fa6c2269d7a4f` | 231 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-dasync_engine.log` |
+| `crypto-cohort/provider-05/openssl-default-config-request.log` | `860352141c5d5d780469babc109b8473f96cacf1bb0f02cbe465ac7715e7fe19` | 315 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-default-config-request.log` |
+| `crypto-cohort/provider-05/openssl-enginesdir.log` | `e91cf0a37502c4b66c2d657fdbc3146e8ea65bc60b5879ed78b08bfd6081b19f` | 126 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-enginesdir.log` |
+| `crypto-cohort/provider-05/openssl-legacy_provider.log` | `95a5e505e9c47ca96240570037888f85a4117febe6cb61711ce6341d77ed7e5a` | 515 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-legacy_provider.log` |
+| `crypto-cohort/provider-05/openssl-modulesdir.log` | `c5a9d7927c61df556b13488b445deeba190f16845086c166ff29c75111091c8f` | 121 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-modulesdir.log` |
+| `crypto-cohort/provider-05/openssl-version.log` | `21733998fb0e7a678a501d0cb00b2fd62404293439567576754bbe38967aa6f6` | 521 | `C:\ap13-dcb\native-msys-crypto-packages-05\openssl-version.log` |
+| `crypto-cohort/provider-05/package-readback.json` | `b8bfd76515e4015f60bb2488e0fc2b25353d080f19d98829a16c995626268c7e` | 1568137 | `C:\ap13-dcb\native-msys-crypto-packages-05\package-readback.json` |
+| `crypto-cohort/provider-05/relocation-result.json` | `bf1d374108ac8cc65178000dcc2e3fc54bc0431a9b3a5f2d81c4945eb3d0947d` | 5013 | `C:\ap13-dcb\native-msys-crypto-packages-05\relocation-result.json` |
+| `git-helpers/export-04/assembler-audit.json` | `ba0cb9b0a3b92d4dae7d8cdd584ae55df3514f697168b531e57895cad0b77dcc` | 22938 | `C:\ap11-dcb\git-helpers-01\export-04\assembler-audit.json` |
+| `git-helpers/export-04/assembler-input.json` | `5512a4fde4f17eb1dc9e7a126be24b97cd9283a1d99138c5376cf6c3f2e02d06` | 642 | `C:\ap11-dcb\git-helpers-01\export-04\assembler-input.json` |
+| `git-helpers/export-04/export.json` | `43500ca143948e0295ec2c7becf2e2e3bda39e9304f8ed79b03e1b487212829e` | 4920 | `C:\ap11-dcb\git-helpers-01\export-04\export.json` |
+| `git-helpers/export-04/lfs-roundtrip.json` | `255223e19d1c9a6e66e5f212c7caab8a9c561a197a036e12459c2af945de52ea` | 601 | `C:\ap11-dcb\git-helpers-01\export-04\lfs-roundtrip.json` |
+| `git-helpers/export-04/pe-closure.json` | `00ad6ee6e7e0a6a5782a350696a7af267b7f7aed23a91d911ac496c1fd42888f` | 4626 | `C:\ap11-dcb\git-helpers-01\export-04\pe-closure.json` |
+| `git-helpers/export-04/reverification.json` | `44a770b0bb5fb2a7dd21e356431695ae7dfdd4da0818eb64a50510b4cae1f367` | 3262 | `C:\ap11-dcb\git-helpers-01\export-04\reverification.json` |
+| `git-helpers/export-04/verification.json` | `96f3d79f941082444863934cd38a1cb065e9960ea8a089a5ed024fbbc5827482` | 2156 | `C:\ap11-dcb\git-helpers-01\export-04\verification.json` |
+| `git-helpers/export-05/export.json` | `db10c2e2a06aa728ef1b650daf68d0bfebac1410aa201ac11dcf102f8e81f821` | 4920 | `C:\ap11-dcb\git-helpers-01\export-05\export.json` |
+| `git-helpers/git-extra-build/build.log` | `70a44571ecf44c117b677ab6cb430c9895f4402af798c524adb82116056a46a6` | 3622 | `C:\ap11-dcb\git-helpers-01\git-extra-build-01\build.log` |
+| `git-helpers/git-extra-build/PKGBUILD` | `da99e96444746aa60eaf20dd766ce5a7f4b396c96a8ed59f1d5f0e9f530af3e5` | 9362 | `C:\ap11-dcb\git-helpers-01\git-extra-build-01\src\PKGBUILD` |
+| `git-helpers/lfs-roundtrip/lfs-fsck.txt` | `d356d338a6dce6c369f3487e1cb4151494d601115a4a48077ab411d564761af4` | 17 | `C:\ap11-dcb\git-helpers-01\lfs-roundtrip-01\lfs-fsck.txt` |
+| `git-helpers/lfs-roundtrip/lfs-version.txt` | `be6079b3bb75909f3657f51e45d4d1e9412d876d5af777c670715260357b20a3` | 64 | `C:\ap11-dcb\git-helpers-01\lfs-roundtrip-01\lfs-version.txt` |
+| `git-helpers/lfs-roundtrip/verification.json` | `f981628199bba1237dff403de4eab84058e11f238139aee42f8f96a9c10c24b7` | 642 | `C:\ap11-dcb\git-helpers-01\lfs-roundtrip-01\verification.json` |
+| `gnupg-dependencies/gcc-libs-runtime907-blocker.json` | `742a845bcb46ea238049a0c4cf535c6457e6dd76a07cfe467b266fa5ff5c5c2c` | 950 | `generated from measured C:\ap11-native-provider-intake\gcc-libs-v1 package and C:\agtc-package-01\export\handoff.json` |
+| `gnupg-dependencies/gmp-build/adaptation.json` | `eb4f319cb7a30fabcbd9168bb2f98d61103382ec87ede01e4c13240009e6739f` | 2266 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\adaptation.json` |
+| `gnupg-dependencies/gmp-build/build-result-qualified.json` | `af07bd83968ac67987a2c4865c9922edbf1be8d82d878b9d7c5c4f1ac468a42d` | 83014 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\build-result-qualified.json` |
+| `gnupg-dependencies/gmp-build/build-result.json` | `8b47f6cbc86065d94a6d7bbe4c11d549d894fa62f35efb80a3a938834b772c92` | 82298 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\build-result.json` |
+| `gnupg-dependencies/gmp-build/build.log` | `551644046dc1434fd98070be7740e8ddea9028f5afe511b2dba873fa106feff8` | 1761956 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\build.log` |
+| `gnupg-dependencies/gmp-build/makepkg.conf` | `4879ed261d8dcdf80c93e87882269a927f015fb95b92da8e00d0aa402ba2b997` | 2210 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\makepkg.conf` |
+| `gnupg-dependencies/gmp-build/native-job.json` | `8d3f3d4a09fd1b287748a5f3d3387815f53fa2d30af204ad33fd41a782f81bfa` | 251556 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\native-job.json` |
+| `gnupg-dependencies/gmp-build/PKGBUILD` | `7599bb3d2eb958c4889691e6eb41c1ff4d672467ba436f5115944cddcee687ce` | 1487 | `C:\ap13-dcb\gnupg-network-01\builds\gmp-6.3.0-1-gnu17-cppguard-06\recipe\PKGBUILD` |
+| `gnupg-dependencies/gmp-provider-03/export.json` | `bf6b6b3c75a981db3460d11f2c013beae4fa875be6e52d9beda13b2e25231512` | 800 | `C:\ap13-dcb\gmp-provider-03\export.json` |
+| `gnupg-dependencies/gmp-provider-03/handoff.json` | `36557c6d4232593af5ae6a2718e975c970c1682a4907e896ee51259467701ec4` | 8890 | `C:\ap13-dcb\gmp-provider-03\handoff.json` |
+| `gnupg-dependencies/libgpg-error-provider-06/export.json` | `d383c1716c9e6883f928bb99b18463b9b8edf93599dc38b593639531dba4321d` | 1036 | `C:\ap13-dcb\libgpg-error-provider-06\export.json` |
+| `gnupg-dependencies/libgpg-error-provider-06/handoff.json` | `31684919fd326090b64f1636d8329b4fcf7b0804ff08fc53f3518df780120324` | 15405 | `C:\ap13-dcb\libgpg-error-provider-06\handoff.json` |
+| `gnupg-dependencies/npth-provider-02/export.json` | `678f334aaaca50131a76dd140ebf9d6433d6a595bd17a9ada5104a01374f1371` | 1168 | `C:\ap13-dcb\npth-provider-02\export.json` |
+| `gnupg-dependencies/npth-provider-02/handoff.json` | `667cd23cb4fdaf2b42c20a3d6a767368e09eb1b526341af24d6f4c260d1115de` | 7418 | `C:\ap13-dcb\npth-provider-02\handoff.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-01/adaptation.json` | `14a7a268ca0b01f373f600f111e040fbe143c94ea931e6020641140013f457f3` | 1364 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-01\adaptation.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-01/build-result.json` | `ccadda0172f0f3f8f2b1b7e1731c2ac5e0fae781940c4b34839ef1ac600165c5` | 2331 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-01\build-result.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-01/build.log` | `fbe101cf380570bf193730135e07aad237d6879ba3b8193f292c818c07e1513b` | 417032 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-01\build.log` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-01/makepkg.conf` | `ec3ec721e47c6cb6c125c311ed5cc125871fb0a6fbdad4687e9b93f2994caee3` | 2114 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-01\makepkg.conf` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-01/native-job.json` | `aa7252111774d21c4582d81aa59bf60d2c1410a1f96edb3411fe577a0402fea2` | 3979 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-01\native-job.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-01/PKGBUILD` | `20e03ca2e609b09baf70715524da944d530948ebc4acf2dff29040c58b0f570f` | 2386 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-01\recipe\PKGBUILD` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-02/adaptation.json` | `1b977c71c6b3847c36e6104d4a31a1bf8040ec8ac03c8555c84b16bfcd6cb29a` | 1849 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-02\adaptation.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-02/build-result.json` | `f03aa5a09232c5c062dcb54f033033449acebf48e1b4a1dfb49d7ba0feb5f80b` | 21444 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-02\build-result.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-02/build.log` | `9960969d8199d8f2d2af089622c4e10e79156198d39e7b991440f3a6e869b1b6` | 606294 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-02\build.log` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-02/makepkg.conf` | `ac1f4fb6734cab662730bb9035497d705f2140fb9909926e09affe9c75d85499` | 2255 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-02\makepkg.conf` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-02/native-job.json` | `72e4e1f28b3a050eb7ff58e052b4f0ef99c53df254f7308890a74615f62ee1fa` | 55918 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-02\native-job.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-02/PKGBUILD` | `20e03ca2e609b09baf70715524da944d530948ebc4acf2dff29040c58b0f570f` | 2386 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-02\recipe\PKGBUILD` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-04/adaptation.json` | `cfa3ca8ee942de25a8c24623015719dac13bf27761a266b5a0e015a2c610a3c3` | 2005 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-04\adaptation.json` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-04/build.log` | `29000465eece09d192409b7e8d992f9c4ff7ee10dd02e4a6e7c16d96b44d4d20` | 8762 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-04\build.log` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-04/makepkg.conf` | `fee21ca311986b9fd7538d3219028932894dc7620fb66bf4f68ed3259ec79619` | 2255 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-04\makepkg.conf` |
+| `gnupg/libgcrypt/libgcrypt-1.12.2-1-04/PKGBUILD` | `020488d192a06f3698115dee93af4d1a92bb539979c7f8375b8d639b2292e35b` | 2414 | `C:\ap13-dcb\gnupg-core-01\builds\libgcrypt-1.12.2-1-04\recipe\PKGBUILD` |
+| `gnupg/network-recipe-pins/brotli/PKGBUILD` | `abe94b22e7df77907fdff0ca3f0acde5264cc52effa38d3a49b116290ac97b05` | 1946 | `C:\ap13-dcb\gnupg-network-recipes-01\brotli\PKGBUILD` |
+| `gnupg/network-recipe-pins/curl/PKGBUILD` | `449c224d90c5c74ab91cca2b31f021788b2003cc2119b5d34bf749151695b338` | 3281 | `C:\ap13-dcb\gnupg-network-recipes-01\curl\PKGBUILD` |
+| `gnupg/network-recipe-pins/gmp/PKGBUILD` | `b18849f3577121f0a3ece7aaaf43464898a2e29ffcb378f6182c56b616403f50` | 1469 | `C:\ap13-dcb\gnupg-network-recipes-01\gmp\PKGBUILD` |
+| `gnupg/network-recipe-pins/gnutls/PKGBUILD` | `c7249495ff1060a5994284bc0b3cce19dd20c5ee495451c58a17d35c6ceca3b4` | 3486 | `C:\ap13-dcb\gnupg-network-recipes-01\gnutls\PKGBUILD` |
+| `gnupg/network-recipe-pins/libffi/PKGBUILD` | `70eb2f0dcfdf898a55c1b16f9fa91c95178e18835576d67a01607978e3cfe3e6` | 1972 | `C:\ap13-dcb\gnupg-network-recipes-01\libffi\PKGBUILD` |
+| `gnupg/network-recipe-pins/libidn2/PKGBUILD` | `dd6babac38b1f366e446972245109cc1978e13fe4d4aac79feee23811d89cf1f` | 1913 | `C:\ap13-dcb\gnupg-network-recipes-01\libidn2\PKGBUILD` |
+| `gnupg/network-recipe-pins/libpsl/PKGBUILD` | `3e2695c0ddf6724b32f3236a0df6191d7f5dd668c4c2dc7e3b1d54843a9eecff` | 3015 | `C:\ap13-dcb\gnupg-network-recipes-01\libpsl\PKGBUILD` |
+| `gnupg/network-recipe-pins/libssh2/PKGBUILD` | `83b078d0c8690b5f51f0a0e00be8704ae0c0dc029a91e279279afc02f0f66765` | 2225 | `C:\ap13-dcb\gnupg-network-recipes-01\libssh2\PKGBUILD` |
+| `gnupg/network-recipe-pins/libtasn1/PKGBUILD` | `c253cb4091d2f9faf2866d98f5289695b5d4a3ed497137b10e1c1fd798256084` | 1629 | `C:\ap13-dcb\gnupg-network-recipes-01\libtasn1\PKGBUILD` |
+| `gnupg/network-recipe-pins/libunistring/PKGBUILD` | `69399b9b31f7de04c9eb3b012a06d25bf4aca8082e397713dd6dd16009ec876f` | 1813 | `C:\ap13-dcb\gnupg-network-recipes-01\libunistring\PKGBUILD` |
+| `gnupg/network-recipe-pins/manifest.json` | `feb18f570488ab66ab5db22c2b7a4ada4002e64502764e759e739175d4895568` | 7148 | `C:\ap13-dcb\gnupg-network-recipes-01\manifest.json` |
+| `gnupg/network-recipe-pins/nettle/PKGBUILD` | `fb10835254735b049e36f258a9c1040d88e2e45d64141bfa79ea89691a0d85a5` | 2163 | `C:\ap13-dcb\gnupg-network-recipes-01\nettle\PKGBUILD` |
+| `gnupg/network-recipe-pins/nghttp2/PKGBUILD` | `7db96232a679d0d20ab73617865d9df71c522faa5abfd5e1c0082b04d3f05f81` | 2074 | `C:\ap13-dcb\gnupg-network-recipes-01\nghttp2\PKGBUILD` |
+| `gnupg/network-recipe-pins/nghttp3/PKGBUILD` | `31899dc65c309ada6b681a8e4722571730c76b3ef43777da9be883e92c92c713` | 1798 | `C:\ap13-dcb\gnupg-network-recipes-01\nghttp3\PKGBUILD` |
+| `gnupg/network-recipe-pins/ngtcp2/PKGBUILD` | `769cdda09788423bbbe39d62bb524a7874aa18d618c68b02e65f96d201fd6e5c` | 1893 | `C:\ap13-dcb\gnupg-network-recipes-01\ngtcp2\PKGBUILD` |
+| `gnupg/network-recipe-pins/p11-kit/PKGBUILD` | `0f035e002dff1f50baeff513956b183d0bae6e2202423a5218139ba91ef4e7e5` | 3080 | `C:\ap13-dcb\gnupg-network-recipes-01\p11-kit\PKGBUILD` |
+| `gnupg/network-recipe-pins/zstd/PKGBUILD` | `5d2191a8e54e3f9cba2bc2c663735ca9d746add79459281677eaf38105b7c950` | 1960 | `C:\ap13-dcb\gnupg-network-recipes-01\zstd\PKGBUILD` |
+| `gnupg/recipe-pins/gnupg/PKGBUILD` | `a9a5f20c342821e31cffeb2eba5601e74c3bdc74b9a4d1e6e43d5bd7b47bef29` | 10570 | `C:\ap13-dcb\gnupg-recipe-pins-01\gnupg\PKGBUILD` |
+| `gnupg/recipe-pins/libassuan/PKGBUILD` | `e7a2b6f674a1b8f47def0d8fcf61901421aa35eddb804e875d08202b5362ccad` | 2576 | `C:\ap13-dcb\gnupg-recipe-pins-01\libassuan\PKGBUILD` |
+| `gnupg/recipe-pins/libgcrypt/PKGBUILD` | `62c4e1eeb23893b451c24f83922cfb7be8801715792a1bf91a9d438e1c51ee5f` | 2390 | `C:\ap13-dcb\gnupg-recipe-pins-01\libgcrypt\PKGBUILD` |
+| `gnupg/recipe-pins/libgpg-error/PKGBUILD` | `83b30c5f14a5089fbaef721a88993444224234b408bfb1e532cecd6b52effaa0` | 2523 | `C:\ap13-dcb\gnupg-recipe-pins-01\libgpg-error\PKGBUILD` |
+| `gnupg/recipe-pins/libksba/PKGBUILD` | `20025194e1ae58726d7af171a383b904c44619090a0e0456006bfc19d7c5ab71` | 1905 | `C:\ap13-dcb\gnupg-recipe-pins-01\libksba\PKGBUILD` |
+| `gnupg/recipe-pins/manifest.json` | `f60f5a98a76df0625eb724d2b1d4f59a8088f77f86858a50f3016269b978e4fd` | 3871 | `C:\ap13-dcb\gnupg-recipe-pins-01\manifest.json` |
+| `gnupg/recipe-pins/npth/PKGBUILD` | `952b93b335e5dd0aefef6289639c4f825964078423a05f5a09c56c99618f3267` | 1883 | `C:\ap13-dcb\gnupg-recipe-pins-01\npth\PKGBUILD` |
+| `gnupg/recipe-pins/pinentry/PKGBUILD` | `d20cdcf3a81a55a98fff6c4b26c30b80357bc9dc706a1e5825905d6e7c8b956e` | 1823 | `C:\ap13-dcb\gnupg-recipe-pins-01\pinentry\PKGBUILD` |
+| `gnupg/source-signatures/core-source-signatures.txt` | `33c3b5fbd1e93fd43149cf421c64f1c517447110aa76bfdb786e07bf8d1b90d8` | 9869 | `C:\ap13-dcb\gnupg-core-01\evidence\core-source-signatures.txt` |
+| `intake/gmp/admission-verification.json` | `6dfe42000c19fc94f75a9c3a17152fe807205ba59f986dfcb78e90b56520c015` | 9629 | `C:\ap11-native-provider-intake\native-msys-gmp-runtime907-admitted-v1\verification.json` |
+| `intake/gmp/cohort-conflict-verification.json` | `0ef83ca0987b2a6a4ad675f011a499343c0210e0523ecae31e5fd5811a810ac6` | 4990 | `C:\ap11-native-provider-intake\native-msys-gmp-runtime-cohort-conflict-v1\verification.json` |
+| `intake/gmp/export.json` | `02c57b530fbbc41634cbaacb3c3dfe04bdea462b31c20f64af257e46020af858` | 1724 | `C:\ap11-native-provider-intake\native-msys-gmp-runtime907-admitted-v1\export.json` |
+| `intake/gmp/handoff.json` | `e3945ca165a274fa6c8d8080d32366a07e17ef21363c8440c18691fbd63cf0a0` | 502 | `C:\ap11-native-provider-intake\native-msys-gmp-runtime-cohort-conflict-v1\handoff.json` |
+| `intake/gmp/verdict.json` | `26ad84f1eac38b1e826c4877918fbc510f835daa5b7182b237b5fc56eb3b449c` | 1575 | `C:\ap11-native-provider-intake\native-msys-gmp-runtime907-admitted-v1\verdict.json` |
+| `libxcrypt-successor/abi-comparison.json` | `1bf82387ec264dd79e0420136e6410821fd1adfc571649c9ba0ac663442c9283` | 2850 | `C:\ap13-dcb\libxcrypt-successor-packages-01\abi-comparison.json` |
+| `libxcrypt-successor/controlled-ssh-driver.log` | `51aa38ec2fccd182553c9875f9a6d986bbc5a96cf2778cb95ce6148cf0e199ab` | 935 | `C:\ap13-dcb\libxcrypt-successor-packages-01\controlled-ssh-driver.log` |
+| `libxcrypt-successor/evidence/intake/admitted-openssl-zlib-export.json` | `d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1` | 3239 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\intake\admitted-openssl-zlib-export.json` |
+| `libxcrypt-successor/evidence/intake/rejected-private-path-scan.json` | `ded247b910e80fbc1d220419a8a8f50f4914eb15f16752f25f810b590b5cae5f` | 81449 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\intake\rejected-private-path-scan.json` |
+| `libxcrypt-successor/evidence/intake/rejection-verdict.json` | `b8926e215949688f48c7b418636dfec715eda9733ea52309cde2fd514ae33b60` | 1539 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\intake\rejection-verdict.json` |
+| `libxcrypt-successor/evidence/libxcrypt/build-receipt.json` | `93d38d74567c058ad6110bb201c16f39e69438c31385c8d90fce44e755deeb1a` | 8218 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\libxcrypt\build-receipt.json` |
+| `libxcrypt-successor/evidence/libxcrypt/build.log` | `9f7aa967609f7fc6d5f069562250650fead92256153c16930f59b50e3fc56400` | 345939 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\libxcrypt\build.log` |
+| `libxcrypt-successor/evidence/libxcrypt/launch-inputs.json` | `c6d3dbdb84e4be69040c92dcbbee840400bfdaed8c045f357e240547f02bda13` | 2688 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\libxcrypt\launch-inputs.json` |
+| `libxcrypt-successor/evidence/libxcrypt/native-job.json` | `9a4b8f1f70f2baa0119eba895d09fce7043c06fa351f14f27938d1c40c0112d9` | 41786 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\libxcrypt\native-job.json` |
+| `libxcrypt-successor/evidence/libxcrypt/source-prepare.json` | `52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d` | 28034 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\libxcrypt\source-prepare.json` |
+| `libxcrypt-successor/evidence/packaging/package-container-sanitization.json` | `3d454f1b7e01a6be080dcb2ee25bf0f696ccdf8406e95b4df548e269fb4f70ea` | 817 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\packaging\package-container-sanitization.json` |
+| `libxcrypt-successor/evidence/prior-cohort/export.json` | `894633864681f6c2a875ffc6f218e0c5b2038893e20eec56bd9400532da5c882` | 6285 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\prior-cohort\export.json` |
+| `libxcrypt-successor/evidence/prior-cohort/handoff.json` | `36db5d494c309d99789dd11d71ddc308068fb995bece901ea2aabd89b7b1db00` | 13330 | `C:\ap13-dcb\libxcrypt-successor-packages-01\evidence\prior-cohort\handoff.json` |
+| `libxcrypt-successor/export.json` | `910376ea87a01df680e4ee6dd120c34fda924cb265b5ec28c67ca4de68cc9d78` | 5747 | `C:\ap13-dcb\libxcrypt-successor-packages-01\export.json` |
+| `libxcrypt-successor/handoff.json` | `27dcedadd19e2a594910b6668a32f0f2b78157c9dfcbf2edf54b65502cc7965d` | 11114 | `C:\ap13-dcb\libxcrypt-successor-packages-01\handoff.json` |
+| `libxcrypt-successor/libxcrypt-consumer-build.log` | `1627811137f741f6f1a89dea2e4c67f31137edc73fb73a7e28ffa997c3805abb` | 338 | `C:\ap13-dcb\libxcrypt-successor-packages-01\libxcrypt-consumer-build.log` |
+| `libxcrypt-successor/libxcrypt-private-path-scan.json` | `42511c75fce0bc853febbaf086b17f53e58036f491c851ab9fa46030a65bcbe9` | 49068 | `C:\ap13-dcb\libxcrypt-successor-packages-01\libxcrypt-private-path-scan.json` |
+| `libxcrypt-successor/makepkg.conf` | `7d2796c27a257c23ca100889abba2b157d67a193a98a6200730dfa794451cc11` | 594 | `C:\ap13-dcb\libxcrypt-successor-packages-01\package-build\makepkg.conf` |
+| `libxcrypt-successor/openssl-configdir.log` | `90ad76e9a2f5e69a7e7c1daee4aa735546228fb2cfb7156a0a4207c8c7042fae` | 108 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-configdir.log` |
+| `libxcrypt-successor/openssl-dasync_engine.log` | `ecc7d8ddf632ac374a7530290a6ec8f408e57628880211f06ae3b313754843fb` | 232 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-dasync_engine.log` |
+| `libxcrypt-successor/openssl-default-config-request.log` | `00b26ea33609868d371d267117b79bc1d7ba27641fcc0fc806fab3f238f455be` | 318 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-default-config-request.log` |
+| `libxcrypt-successor/openssl-enginesdir.log` | `9803d737876b1c61128a8a5e2d7b1f7af06401bdf7e8a85c73c480c875ee35ac` | 127 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-enginesdir.log` |
+| `libxcrypt-successor/openssl-legacy_provider.log` | `72ca26f2e47ecfb7461a273ad659e2aa513023658836212962e04712a64a8cac` | 516 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-legacy_provider.log` |
+| `libxcrypt-successor/openssl-modulesdir.log` | `5965e94cac87227b7fa8e1e8c62da20f09bbbb7c1f933ba390abd33c31f06b0c` | 122 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-modulesdir.log` |
+| `libxcrypt-successor/openssl-version.log` | `a3b05ef7e6a254d9f46f063c5225c28e11c7eb89699fc18ecad11cae46928063` | 522 | `C:\ap13-dcb\libxcrypt-successor-packages-01\openssl-version.log` |
+| `libxcrypt-successor/package-readback.json` | `5caecd05ff518e30ff7859b11239c76cf3702366fb6cc259aa6f03e37df9360b` | 4325 | `C:\ap13-dcb\libxcrypt-successor-packages-01\package-readback.json` |
+| `libxcrypt-successor/PKGBUILD` | `cfaa3148c8e6c5551eca5ba5c82f7f6788eaa0c8bad06affa13d670de31b4c1d` | 787 | `C:\ap13-dcb\libxcrypt-successor-packages-01\package-build\recipes\libxcrypt\PKGBUILD` |
+| `libxcrypt-successor/relocation-result.json` | `ac71e2b516eb8b522f7aa032f311ac02c27424563b387d9ef0e0f68f0d4d910b` | 4247 | `C:\ap13-dcb\libxcrypt-successor-packages-01\relocation-result.json` |
+| `libxcrypt-successor/static-archive-provenance.json` | `fb77c2ccb4af4d4ec4daf2e3bb274c1df3b51f28c818829383f255a69112d613` | 748 | `C:\ap13-dcb\libxcrypt-successor-packages-01\static-archive-provenance.json` |
+| `openssh/provider-03/handoff.json` | `982230202afc231f9724d665b908a0abde62754d9944bfc8fba24355c255b5f5` | 12387 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\handoff.json` |
+| `openssh/provider-03/provenance/bash-parent-control.json` | `6f09224f39d1f7c3c610dc3954a32572708ba2e12af09b31c0436d67f6351377` | 1758 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\bash-parent-control.json` |
+| `openssh/provider-03/provenance/bash-preflight.json` | `4b72cab14a458e61b11dbde4ae1ff5c7897ad9fa76aca3a0ec796b891d9e5602` | 381 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\bash-preflight.json` |
+| `openssh/provider-03/provenance/basic-controls.json` | `c2e9a1a6dc3f387c4c499e0fbf54c3aaf557df314ac385115ee12b95237a17cf` | 501 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\basic-controls.json` |
+| `openssh/provider-03/provenance/build.log` | `4e9cf2610f8274afb1e1449050cf8304f8f77b3f60f9b67f811eafc0121fa705` | 529850 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\build.log` |
+| `openssh/provider-03/provenance/configure.log` | `6a784675d9d69a20f506fef40e80f6ec7bb9c77185489a0beff7819ed55b9176` | 31770 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\configure.log` |
+| `openssh/provider-03/provenance/controlled-ssh-result.json` | `0a1dd8f6eedd15b3881ef88455b88dfc4c9f3922e793b354b0107957d0b729dc` | 1610 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\controlled-ssh-result.json` |
+| `openssh/provider-03/provenance/extraction-result.json` | `c88b21a89abdd44f8e33975e34e06b2c546bdc1e2a08b0cd407388f3f20d1baf` | 515 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\extraction-result.json` |
+| `openssh/provider-03/provenance/install.log` | `3620a125dffe0aeb8f64f313ac30354eaf50e4f4324bbb7400cf614d5014ad67` | 4229 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\install.log` |
+| `openssh/provider-03/provenance/openssl-native-job.json` | `db28d91b318f7fa45778a5bd73aebb7e5c15697725dd887ef03aaf4abe93a283` | 1806494 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\openssl-native-job.json` |
+| `openssh/provider-03/provenance/openssl-qualification.json` | `7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74` | 2325 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\openssl-qualification.json` |
+| `openssh/provider-03/provenance/openssl-suite-result.json` | `3908446d3d7666968636ae4d8b195659dc882016233fcb26dd4214fb209aee4a` | 61452 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\openssl-suite-result.json` |
+| `openssh/provider-03/provenance/source-manifest.json` | `aaf4155ea067599012b5d31c0c1d394575f6227a5f67e95f47b617aa21f91255` | 133858 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\source-manifest.json` |
+| `openssh/provider-03/provenance/ssh-agent-lifecycle.json` | `b9bb0d9af41acddf4bd1bdc0b7c4638043121cfc12cb299296422e8395d4c478` | 1199 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\provenance\ssh-agent-lifecycle.json` |
+| `openssh/provider-03/self-readback.json` | `359b54f38df4b9b4c5c4006e62a80e655b61b79993c65a8885dc8d090fc4eefa` | 407 | `C:\ap13-dcb\openssh-msys-canonical-provider-03\self-readback.json` |
+| `ORIGINS.tsv` | `bca3c2a721f48340a65ea7eb1534dde765d1500629a7dd89c945ab4962045e0d` | 29921 | `generated index of original absolute paths and source hashes` |

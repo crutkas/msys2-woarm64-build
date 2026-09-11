@@ -1,0 +1,261 @@
+{
+  "schema": 1,
+  "status": "sealed-native-msys-libxcrypt-successor-pending-independent-intake",
+  "scope": "Source-origin prefix-mapped native ARM64 MSYS libxcrypt 4.5.2 runtime/development successor packages only.",
+  "packages": [
+    {
+      "name": "libxcrypt",
+      "path": "packages/libxcrypt-4.5.2-3-aarch64.pkg.tar.zst",
+      "sha256": "c458e3434d82abf881a659392b289d7524f06ed19b75882acb0c30c025a94480"
+    },
+    {
+      "name": "libxcrypt-devel",
+      "path": "packages/libxcrypt-devel-4.5.2-3-aarch64.pkg.tar.zst",
+      "sha256": "c313513c9587309777a1d74a5f6f570754d92f2d0672f487fb864208d05475f2"
+    }
+  ],
+  "supersedes": [
+    {
+      "name": "libxcrypt",
+      "sha256": "47bf08ac989f20e0574a1728f511327bf1cb8b17d9fb628953e7138b6c033f65"
+    },
+    {
+      "name": "libxcrypt-devel",
+      "sha256": "eb8c494af45079cc6e06c54d254132170cb7ffdddef521aac177da33b7e1d37f"
+    }
+  ],
+  "pkgrel": {
+    "value": 3,
+    "reason": "New binary identity after source-origin path remediation; pkgrel 2 remains reserved by the separately revoked header package and is not reactivated."
+  },
+  "dependency_bindings": {
+    "msys-crypt-2.dll": "24c34def01e21adca813e832b78f66a297e3293715e619aef2c28533648ffec1",
+    "msys2-runtime": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "openssh-package": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+    "ssh.exe": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051",
+    "admitted-openssl-zlib-export": "d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1"
+  },
+  "runtime": {
+    "name": "msys2-runtime",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "packaged": false,
+    "ownership": "external runtime-907 provider"
+  },
+  "source_verification": {
+    "name": "libxcrypt",
+    "version": "4.5.2",
+    "archive": {
+      "path": "evidence/source-inputs/libxcrypt-4.5.2.tar.xz",
+      "sha256": "71513a31c01a428bccd5367a32fd95f115d6dac50fb5b60c779d5c7942aec071",
+      "url": "https://github.com/besser82/libxcrypt/releases/download/v4.5.2/libxcrypt-4.5.2.tar.xz"
+    },
+    "signature": {
+      "path": "evidence/source-inputs/libxcrypt-4.5.2.tar.xz.asc",
+      "sha256": "11df2b889929d4923eed6298ba44c6e746c9ca5b9de41bd9b1b1a694a2aea65e",
+      "valid_signer_fingerprint": "678CE3FEE430311596DB8C16F52E98007594C21D"
+    },
+    "public_key": {
+      "path": "evidence/source-inputs/libxcrypt-678CE3FEE430311596DB8C16F52E98007594C21D.asc",
+      "sha256": "d52010dc79210e9b00c114b25afdf57823343952c3a334266d8681cf18de3da2"
+    },
+    "msys2_recipe": {
+      "path": "evidence/source-inputs/libxcrypt-PKGBUILD",
+      "sha256": "bc4971d32ad680d097d3d3248def2f3454331de428829325d41afb342de28436",
+      "commit": "5b84e2f8c4ea1783e03d6a43b32b94c2692291a6",
+      "git_blob": "fbe0e4c6652b11cb33cc39517617df5cd17cbc23"
+    },
+    "gpg_verification_log": {
+      "path": "logs/gpg-verify-libxcrypt.log",
+      "sha256": "d626acdb3e0ec66e6baaf15121679ce2d1f11680acb35a181e9164bcb3a8accd"
+    }
+  },
+  "build": {
+    "source_manifest_sha256": "52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d",
+    "build_receipt_sha256": "93d38d74567c058ad6110bb201c16f39e69438c31385c8d90fce44e755deeb1a",
+    "native_job_sha256": "9a4b8f1f70f2baa0119eba895d09fce7043c06fa351f14f27938d1c40c0112d9",
+    "build_log_sha256": "9f7aa967609f7fc6d5f069562250650fead92256153c16930f59b50e3fc56400",
+    "original_driver_sha256": "3ce04eb751b4d909ba103d6d86ecdfd6da6d961f2c5e21b334bd99b644fdf929",
+    "prefix_map_patch_sha256": "88134c56a7620bf1effb15a08e7df675c853bc65ee2d1874485b7b860c605957",
+    "modified_driver_sha256": "bbf7057a372547531cfb0f0f956e6d437ddf7bb2cc8b2e7ad143a678c6ef686a",
+    "flags_preserved": [
+      "-O2",
+      "-g",
+      "-fstack-protector-strong"
+    ],
+    "prefix_maps": [
+      "-ffile-prefix-map",
+      "-fdebug-prefix-map",
+      "-fmacro-prefix-map"
+    ],
+    "tests": {
+      "TOTAL": 54,
+      "PASS": 53,
+      "SKIP": 1,
+      "XFAIL": 0,
+      "FAIL": 0,
+      "XPASS": 0,
+      "ERROR": 0
+    },
+    "created_processes": 16327,
+    "observed_processes": 16327
+  },
+  "abi": {
+    "path": "abi-comparison.json",
+    "sha256": "1bf82387ec264dd79e0420136e6410821fd1adfc571649c9ba0ac663442c9283",
+    "unchanged": true
+  },
+  "private_path_scan": {
+    "path": "libxcrypt-private-path-scan.json",
+    "sha256": "42511c75fce0bc853febbaf086b17f53e58036f491c851ab9fa46030a65bcbe9",
+    "private_marker_count": 0,
+    "runtime_visible_private_source_paths": 0,
+    "canonical_source_counts_by_section": {
+      ".debug_info": 72,
+      ".debug_line": 108,
+      ".rdata": 6
+    }
+  },
+  "static_archive_provenance": {
+    "path": "static-archive-provenance.json",
+    "sha256": "fb77c2ccb4af4d4ec4daf2e3bb274c1df3b51f28c818829383f255a69112d613",
+    "zero_strings_claim": false
+  },
+  "package_readback": {
+    "path": "package-readback.json",
+    "sha256": "5caecd05ff518e30ff7859b11239c76cf3702366fb6cc259aa6f03e37df9360b"
+  },
+  "relocation": {
+    "path": "relocation-result.json",
+    "sha256": "ac71e2b516eb8b522f7aa032f311ac02c27424563b387d9ef0e0f68f0d4d910b",
+    "libxcrypt_direct_consumer": true,
+    "loaded_libxcrypt_sha256": "24c34def01e21adca813e832b78f66a297e3293715e619aef2c28533648ffec1",
+    "openssl_default_paths": true,
+    "client_positive_exit": 0,
+    "client_wrong_host_exit": 255
+  },
+  "admitted_test_dependencies": [
+    {
+      "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\packages\\libopenssl-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "4a5be29acfd9fdec78e6f6dae322dfaae7cb2c5f3e997a6c1aca2c416e93febd",
+      "exported": false
+    },
+    {
+      "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\packages\\openssl-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "cd487c08865ceb15bfe0f4b28de9b62d7b9090240a9c0c9abc843b2d3b16bfa5",
+      "exported": false
+    },
+    {
+      "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\packages\\openssl-devel-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "0070116ccbe695a8fb9d63d7cfd583051b2b1bd028e6526968060ade32b47c9f",
+      "exported": false
+    },
+    {
+      "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\packages\\openssl-docs-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "8923f6a4ea727356872b0e4d3438bb7e5c4151522bf68d71f4fef2bc819e8408",
+      "exported": false
+    },
+    {
+      "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\packages\\zlib-1.3.2-1-aarch64.pkg.tar.zst",
+      "sha256": "1f655e79e7acb640f483bfc3feef36742dd84afb65899cfd89e954f0740e16ce",
+      "exported": false
+    },
+    {
+      "path": "C:\\ap13-dcb\\native-msys-crypto-packages-05\\packages\\zlib-devel-1.3.2-1-aarch64.pkg.tar.zst",
+      "sha256": "d9edc5d4dbac5580050b8c062f2e57ddf5c1002319b5c5b6636431383265d202",
+      "exported": false
+    }
+  ],
+  "proof_references": [
+    {
+      "path": "evidence/libxcrypt/source-prepare.json",
+      "sha256": "52c89e7429bbaf2425ae9d58ce95b3a67be6ec7b36cd54dcb45d26db9b68d51d",
+      "name": "libxcrypt/source-prepare.json"
+    },
+    {
+      "path": "evidence/libxcrypt/build-receipt.json",
+      "sha256": "93d38d74567c058ad6110bb201c16f39e69438c31385c8d90fce44e755deeb1a",
+      "name": "libxcrypt/build-receipt.json"
+    },
+    {
+      "path": "evidence/libxcrypt/native-job.json",
+      "sha256": "9a4b8f1f70f2baa0119eba895d09fce7043c06fa351f14f27938d1c40c0112d9",
+      "name": "libxcrypt/native-job.json"
+    },
+    {
+      "path": "evidence/libxcrypt/build.log",
+      "sha256": "9f7aa967609f7fc6d5f069562250650fead92256153c16930f59b50e3fc56400",
+      "name": "libxcrypt/build.log"
+    },
+    {
+      "path": "evidence/libxcrypt/launch-inputs.json",
+      "sha256": "c6d3dbdb84e4be69040c92dcbbee840400bfdaed8c045f357e240547f02bda13",
+      "name": "libxcrypt/launch-inputs.json"
+    },
+    {
+      "path": "evidence/libxcrypt/prefix-map.patch",
+      "sha256": "88134c56a7620bf1effb15a08e7df675c853bc65ee2d1874485b7b860c605957",
+      "name": "libxcrypt/prefix-map.patch"
+    },
+    {
+      "path": "evidence/libxcrypt/original-build-driver.sh",
+      "sha256": "3ce04eb751b4d909ba103d6d86ecdfd6da6d961f2c5e21b334bd99b644fdf929",
+      "name": "libxcrypt/original-build-driver.sh"
+    },
+    {
+      "path": "evidence/libxcrypt/prefix-mapped-build-driver.sh",
+      "sha256": "bbf7057a372547531cfb0f0f956e6d437ddf7bb2cc8b2e7ad143a678c6ef686a",
+      "name": "libxcrypt/prefix-mapped-build-driver.sh"
+    },
+    {
+      "path": "evidence/intake/rejected-private-path-scan.json",
+      "sha256": "ded247b910e80fbc1d220419a8a8f50f4914eb15f16752f25f810b590b5cae5f",
+      "name": "intake/rejected-private-path-scan.json"
+    },
+    {
+      "path": "evidence/intake/rejection-verdict.json",
+      "sha256": "b8926e215949688f48c7b418636dfec715eda9733ea52309cde2fd514ae33b60",
+      "name": "intake/rejection-verdict.json"
+    },
+    {
+      "path": "evidence/intake/admitted-openssl-zlib-export.json",
+      "sha256": "d7898516a5562d195097c65ac24e500e8fafd662fe898bc3e9873dc9795078d1",
+      "name": "intake/admitted-openssl-zlib-export.json"
+    },
+    {
+      "path": "evidence/prior-cohort/export.json",
+      "sha256": "894633864681f6c2a875ffc6f218e0c5b2038893e20eec56bd9400532da5c882",
+      "name": "prior-cohort/export.json"
+    },
+    {
+      "path": "evidence/prior-cohort/handoff.json",
+      "sha256": "36db5d494c309d99789dd11d71ddc308068fb995bece901ea2aabd89b7b1db00",
+      "name": "prior-cohort/handoff.json"
+    },
+    {
+      "path": "evidence/packaging/successor-packager.py",
+      "sha256": "228701a2abe63a31a4423033baaca343707015efd0c037fc2f0135fa5747ac86",
+      "name": "packaging/successor-packager.py"
+    },
+    {
+      "path": "evidence/packaging/package-container-sanitization.json",
+      "sha256": "3d454f1b7e01a6be080dcb2ee25bf0f696ccdf8406e95b4df548e269fb4f70ea",
+      "name": "packaging/package-container-sanitization.json"
+    }
+  ],
+  "shipping_policy": {
+    "binary_patched": false,
+    "stripped_to_remove_private_paths": false,
+    "machine_private_receipts_in_packages": false,
+    "woarm64_package_provenance_directory_in_packages": false,
+    "runtime_dll_repackaged": false,
+    "unchanged_openssl_zlib_packages_reexported": false,
+    "unchanged_openssh_package_reexported": false
+  },
+  "limitations": [
+    "Runtime-907 admission and Bash/runtime compatibility remain separate provider-owner work.",
+    "OpenSSH remains client-only with its admitted feature and hardening limitations.",
+    "The admitted OpenSSL/zlib packages and OpenSSH package were consumed only for focused relocation tests and are not re-exported.",
+    "Static development archives retain nonoperational debug/toolchain provenance and have no zero-strings claim.",
+    "The sealed toolchain contributes /root/arm64-vnext strings only in PE debug sections; none occur in runtime-visible sections."
+  ]
+}

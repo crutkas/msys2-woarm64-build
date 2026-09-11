@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "package": "libgcrypt",
+  "version": "1.12.2-1",
+  "recipe_commit": "recovered-pinned-msys2-recipe",
+  "original_pkgbuild_sha256": "62c4e1eeb23893b451c24f83922cfb7be8801715792a1bf91a9d438e1c51ee5f",
+  "adapted_pkgbuild_sha256": "020488d192a06f3698115dee93af4d1a92bb539979c7f8375b8d639b2292e35b",
+  "changes": [
+    "arch changed from i686/x86_64 to aarch64",
+    "all compiler -D arguments excluded from MSYS path conversion by build runner",
+    "build, bootstrap, and qualified toolchain roots mapped out of file/debug/macro provenance",
+    "C compilation uses -std=gnu17 for GCC 15 compatibility without feature reduction",
+    "explicit private-SDK -I/-L paths supplied because makepkg sanitizes CPATH/LIBRARY_PATH; paths are covered by prefix maps and are not shipping prefixes",
+    "check-time PATH prepends the freshly built src/.libs directory so native libtool test wrappers resolve msys-gcrypt-20.dll"
+  ],
+  "source_sha256": "7ce33c2492221a0436f96a8500215e9f3e3dcb5fd26a757cd415e7a843babd5e",
+  "source_signature_sha256": "5b65cd833ae43f8cb17b4a47e59a3f9aaf310bb3f1094a8cd1069cafe15d7072",
+  "source_signature_fingerprints": [
+    "6DAA6E64A76D2840571B4902528897B826403ADA",
+    "AC8E115BF73E2D8D47FA9908E98E9B2D19C6C8BD"
+  ],
+  "source_signature_status": "two good signatures verified in private GnuPG keyring",
+  "libgpg_error_export": "C:\\ap13-dcb\\libgpg-error-provider-06\\export.json",
+  "libgpg_error_export_sha256": "d383c1716c9e6883f928bb99b18463b9b8edf93599dc38b593639531dba4321d",
+  "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "jobs": 1,
+  "supersedes_failed_build": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgcrypt-1.12.2-1-02",
+  "failed_build_result_sha256": "f03aa5a09232c5c062dcb54f033033449acebf48e1b4a1dfb49d7ba0feb5f80b",
+  "failed_build_reason": "all 39 runnable upstream tests failed before algorithm execution because libtool wrappers could not resolve the freshly built DLL"
+}

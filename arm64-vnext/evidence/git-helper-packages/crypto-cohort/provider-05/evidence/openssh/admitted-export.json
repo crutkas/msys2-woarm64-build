@@ -1,0 +1,92 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T12:07:57.1106392Z",
+  "status": "admitted-scoped-native-msys-openssh-client-runtime907",
+  "providerClass": "native-msys-openssh-client-runtime907",
+  "providerIdentity": "openssh-10.5p1-2-native-arm64-client-intake1",
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "compatibility": "qualified only with runtime-907 and exact dependency identities; d70 compatibility not claimed"
+  },
+  "packages": [
+    {
+      "name": "openssh",
+      "path": "packages/openssh-10.5p1-2-aarch64.pkg.tar.zst",
+      "sha256": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+      "version": "10.5p1-2",
+      "arch": "aarch64",
+      "payloadFiles": 24,
+      "dependencies": [
+        "msys2-runtime",
+        "libxcrypt",
+        "openssl",
+        "zlib"
+      ]
+    }
+  ],
+  "source": {
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "982230202afc231f9724d665b908a0abde62754d9944bfc8fba24355c255b5f5"
+    },
+    "producerArchive": {
+      "path": "evidence/producer-archive.zip",
+      "sha256": "fbeb320c6bc839491fbbf230aed840c1e7b5d7f7cea1d2ebc3f54f247c55f747"
+    },
+    "preparedSourceManifestSha256": "aaf4155ea067599012b5d31c0c1d394575f6227a5f67e95f47b617aa21f91255"
+  },
+  "artifacts": {
+    "verification": {
+      "path": "independent-verification.json",
+      "sha256": "fba26d68dc79cfd3b49d26c0bd91946772476768c4493aad6c6f65ca9464529b"
+    },
+    "payloadManifest": {
+      "path": "manifests/package-payload-manifest.json",
+      "sha256": "e2aa672e332de7ba93af3dbfedb82cda9b4525fc037a36fe4863a6cef9fcf4ac"
+    },
+    "pkginfo": {
+      "path": "evidence/package-metadata/PKGINFO",
+      "sha256": "dcad79e71de278a7881fb66c19afcb839812221ce73793b049611163a0ad22fa"
+    },
+    "opensslQualification": {
+      "path": "evidence/producer-provenance/openssl-qualification.json",
+      "sha256": "7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74"
+    }
+  },
+  "admission": {
+    "allowed": "native ARM64 MSYS OpenSSH client-only payload on runtime-907 with the exact qualified OpenSSL 3.6.4, zlib, and libxcrypt dependency identities",
+    "requires": [
+      "separately packaged/admitted native MSYS OpenSSL provider with crypto SHA 1f849092... and SSL SHA 5db603a6...",
+      "admitted runtime-907 package; current d70 package is incompatible",
+      "clean zlib package preserving msys-z.dll SHA edb3e9e0... without private provenance payload",
+      "clean libxcrypt package preserving msys-crypt-2.dll SHA ce687271...; current selected DLL differs",
+      "all other full-release providers"
+    ],
+    "forbidden": [
+      "old provider-01 bytes",
+      "server-provider claim",
+      "d70 compatibility inference",
+      "MinGW OpenSSL substitution",
+      "silently enabling GSSAPI, Kerberos/Heimdal, libedit, FIDO, stack protector, hardening, or sandbox",
+      "treating candidate-only Bash substitution as Bash provider admission"
+    ]
+  },
+  "features": {
+    "clientOnly": true,
+    "serverPayload": false,
+    "pkcs11": true,
+    "gssapi": false,
+    "kerberosHeimdal": false,
+    "libedit": false,
+    "fidoSecurityKey": false,
+    "stackProtector": false,
+    "hardening": false,
+    "sandbox": "none"
+  },
+  "supersession": {
+    "replacesRejectedProvider01": true,
+    "rejectedHandoffSha256": "00882b9e7db0010e87e2fcb678501ba02fc01083abbe90945f5560c7d774a61b",
+    "rejectedArchiveSha256": "23a38c80b93726ece81024835811d20877b49783421265b6787810989de1bcb0",
+    "oldBytesAdmitted": false
+  }
+}

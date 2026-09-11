@@ -1,0 +1,279 @@
+{
+  "container_sanitization": [
+    {
+      "change": ".BUILDINFO builddir/startdir were canonicalized; .MTREE and the package container were regenerated.",
+      "name": "gmp-6.3.0-1-aarch64.pkg.tar.zst",
+      "original_sha256": "e9deb569986574ff7d2d57a3ecc61110f276adfd59e79e6f7db54dc6146de4fb",
+      "payload_changes": [],
+      "sealed_sha256": "0f53eb50e11440ab82ec00ea8e4dbeb659d4fda079b56ee10bac4164cb60f4ce"
+    },
+    {
+      "change": ".BUILDINFO builddir/startdir were canonicalized; .MTREE and the package container were regenerated.",
+      "name": "gmp-devel-6.3.0-1-aarch64.pkg.tar.zst",
+      "original_sha256": "a49c3ef22c551677644f9e282d93cbf9af299692b16186e3bbaedced1456f3ff",
+      "payload_changes": [
+        {
+          "change": "Canonicalized generated __GMP_CFLAGS provenance to the exact effective public flags while removing private prefix-map roots.",
+          "original_sha256": "511eac1cfb834f9e8c43ea7828c6af5f08590c5bf4743004eef1dbd28d007bbf",
+          "path": "usr/include/gmp.h",
+          "sealed_sha256": "cc78816fecd2ac2f038c543eb52e4766df7872ea97bcccec05d7b6faecdf523d"
+        }
+      ],
+      "sealed_sha256": "bccfa3ddf128598fda3ef290fa8074bc680f28c13d43f64a6561774382242e31"
+    }
+  ],
+  "ownership": {
+    "runtime_907": "external, not packaged"
+  },
+  "packages": [
+    {
+      "files": [
+        {
+          "path": ".BUILDINFO",
+          "sha256": "53cfdd15213b7f97e9a4ed4ea2e93810cc862bd301e90082398d25ea12954537",
+          "size": 11243
+        },
+        {
+          "path": ".MTREE",
+          "sha256": "3657207f50dff04f9c679924bf21949be22991c7e9bf355a2087e645322fe2c5",
+          "size": 538
+        },
+        {
+          "path": ".PKGINFO",
+          "sha256": "41fd8accf85f49c8358f3917f45a175de54ba3a5135322f12cd4436b141f0174",
+          "size": 385
+        },
+        {
+          "machine": "0xAA64",
+          "path": "usr/bin/msys-gmp-10.dll",
+          "sha256": "1b8ff6690dd5deb1a2ff21a1e5f1eb388be6a457e078cedc61ed8e3811a7481d",
+          "size": 430202
+        },
+        {
+          "machine": "0xAA64",
+          "path": "usr/bin/msys-gmpxx-4.dll",
+          "sha256": "3176862f26e0e3373f651d11f564b157076af504b55fba1e3184d2feced4c6d8",
+          "size": 910150
+        },
+        {
+          "path": "usr/share/info/gmp.info-1.gz",
+          "sha256": "88f42c0e68a5a7eef8608095f3c7e6380b331648900d7082d73faf008d51de99",
+          "size": 85132
+        },
+        {
+          "path": "usr/share/info/gmp.info-2.gz",
+          "sha256": "f2c6d741bfa7422ecc641f07b925275166836cbe87542278fd0939577f9a042a",
+          "size": 50248
+        },
+        {
+          "path": "usr/share/info/gmp.info.gz",
+          "sha256": "693922c6eb6d7721600b7f228b25a6489b8892ae63814707f70ccdf77bdc4dc5",
+          "size": 2384
+        }
+      ],
+      "mtree_file_checks": 7,
+      "name": "gmp",
+      "path": "packages/gmp-6.3.0-1-aarch64.pkg.tar.zst",
+      "pkginfo": {
+        "arch": [
+          "aarch64"
+        ],
+        "builddate": [
+          "1789162113"
+        ],
+        "group": [
+          "libraries"
+        ],
+        "license": [
+          "LGPL3"
+        ],
+        "makedepend": [
+          "autotools",
+          "gcc"
+        ],
+        "packager": [
+          "Git for Windows ARM64 Provider <native-provider@example.invalid>"
+        ],
+        "pkgbase": [
+          "gmp"
+        ],
+        "pkgdesc": [
+          "A free library for arbitrary precision arithmetic"
+        ],
+        "pkgname": [
+          "gmp"
+        ],
+        "pkgver": [
+          "6.3.0-1"
+        ],
+        "size": [
+          "1478116"
+        ],
+        "url": [
+          "https://gmplib.org/"
+        ],
+        "xdata": [
+          "pkgtype=split"
+        ]
+      },
+      "sha256": "0f53eb50e11440ab82ec00ea8e4dbeb659d4fda079b56ee10bac4164cb60f4ce"
+    },
+    {
+      "files": [
+        {
+          "path": ".BUILDINFO",
+          "sha256": "a7cfe36773616ad7fc09784c7649a83eb3645cd613c12c298a8e48d57bbf15c9",
+          "size": 11249
+        },
+        {
+          "path": ".MTREE",
+          "sha256": "fbced3029e2cc17b2b5afd19911730ee3a18d6bc83bcb0bbb12fc0f0aa051611",
+          "size": 585
+        },
+        {
+          "path": ".PKGINFO",
+          "sha256": "42bd1777a3367ab429ffe404f02a72bb9242a0b7cf4029114912b4083f2d0e36",
+          "size": 387
+        },
+        {
+          "path": "usr/include/gmp.h",
+          "sha256": "cc78816fecd2ac2f038c543eb52e4766df7872ea97bcccec05d7b6faecdf523d",
+          "size": 84294
+        },
+        {
+          "path": "usr/include/gmpxx.h",
+          "sha256": "b287e1197a745582acb9c4aa0d2f2ffa16fabaeeabd0dee836553771556a00ea",
+          "size": 129502
+        },
+        {
+          "path": "usr/lib/libgmp.dll.a",
+          "sha256": "d25e0282d904fd2522c4b00f8491e858f0b612c24822c4f63f2174c0c92c62f3",
+          "size": 410094
+        },
+        {
+          "path": "usr/lib/libgmpxx.dll.a",
+          "sha256": "67b2ebc614040940f4cf089c0fa6e6a5b653a41a47fb7c6716add1e79f7d0fce",
+          "size": 76078
+        },
+        {
+          "path": "usr/lib/pkgconfig/gmp.pc",
+          "sha256": "adb9cabef2f94e4f662a3c46529ad369855710776e327438d37bd1fa43e06cb1",
+          "size": 245
+        },
+        {
+          "path": "usr/lib/pkgconfig/gmpxx.pc",
+          "sha256": "14ce6a8eca778299d97aec2c417a078cdd8fb8e75f30700c0bfac02bc8904fdd",
+          "size": 280
+        }
+      ],
+      "mtree_file_checks": 8,
+      "name": "gmp-devel",
+      "path": "packages/gmp-devel-6.3.0-1-aarch64.pkg.tar.zst",
+      "pkginfo": {
+        "arch": [
+          "aarch64"
+        ],
+        "builddate": [
+          "1789162113"
+        ],
+        "depend": [
+          "gmp=6.3.0"
+        ],
+        "group": [
+          "development"
+        ],
+        "license": [
+          "LGPL3"
+        ],
+        "makedepend": [
+          "autotools",
+          "gcc"
+        ],
+        "packager": [
+          "Git for Windows ARM64 Provider <native-provider@example.invalid>"
+        ],
+        "pkgbase": [
+          "gmp"
+        ],
+        "pkgdesc": [
+          "GMP headers and libraries"
+        ],
+        "pkgname": [
+          "gmp-devel"
+        ],
+        "pkgver": [
+          "6.3.0-1"
+        ],
+        "size": [
+          "701204"
+        ],
+        "url": [
+          "https://gmplib.org/"
+        ],
+        "xdata": [
+          "pkgtype=split"
+        ]
+      },
+      "sha256": "bccfa3ddf128598fda3ef290fa8074bc680f28c13d43f64a6561774382242e31"
+    }
+  ],
+  "relocated_control": {
+    "c_compile_exit": 0,
+    "c_consumer_exit": 0,
+    "c_consumer_stdout": "product=111111110111111111010\ndll=C:\\ap13-dcb\\gmp-provider-03\\relocated-root\\usr\\bin\\msys-gmp-10.dll",
+    "cxx_compile_exit": 0,
+    "cxx_consumer_exit": 0,
+    "cxx_consumer_stdout": "product=111111110111111111010\ngmp=C:\\ap13-dcb\\gmp-provider-03\\relocated-root\\usr\\bin\\msys-gmp-10.dll\ngmpxx=C:\\ap13-dcb\\gmp-provider-03\\relocated-root\\usr\\bin\\msys-gmpxx-4.dll",
+    "imports": {
+      "c_consumer": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-gmp-10.dll"
+      ],
+      "cxx_consumer": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-gmp-10.dll",
+        "msys-gmpxx-4.dll"
+      ],
+      "msys-gmp-10.dll": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ],
+      "msys-gmpxx-4.dll": [
+        "msys-gmp-10.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "machines": {
+      "c_consumer": "0xAA64",
+      "cxx_consumer": "0xAA64"
+    },
+    "path_scope": "relocated package bin plus Windows System32 only",
+    "runtime_dependencies": {
+      "msys-2.0.dll": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+    },
+    "sha256": {
+      "c_consumer": "188d8fee76fdcbf5c0e47e183335b98e067b083359bfab99087978916de1a427",
+      "cxx_consumer": "75db80003c72dab0d82c18ef6839e3de9054da0dfb7f516c1b023405677bb8ca"
+    }
+  },
+  "schema": 1,
+  "source_build": {
+    "adaptation": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\adaptation.json",
+    "adaptation_sha256": "eb4f319cb7a30fabcbd9168bb2f98d61103382ec87ede01e4c13240009e6739f",
+    "build_log": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build.log",
+    "build_log_sha256": "551644046dc1434fd98070be7740e8ddea9028f5afe511b2dba873fa106feff8",
+    "build_result": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\build-result-qualified.json",
+    "build_result_sha256": "af07bd83968ac67987a2c4865c9922edbf1be8d82d878b9d7c5c4f1ac468a42d",
+    "native_job": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-06\\native-job.json",
+    "native_job_sha256": "8d3f3d4a09fd1b287748a5f3d3387815f53fa2d30af204ad33fd41a782f81bfa",
+    "upstream_tests": {
+      "failed": 0,
+      "passed": 199,
+      "skipped": 1
+    }
+  },
+  "status": "native-msys-gmp-package-qualified"
+}

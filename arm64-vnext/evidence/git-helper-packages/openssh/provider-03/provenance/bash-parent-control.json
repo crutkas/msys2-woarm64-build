@@ -1,0 +1,60 @@
+{
+  "cases": [
+    {
+      "name": "correct-host-key",
+      "passed": true,
+      "pid": 6224,
+      "raw_exit": 0,
+      "stderr_sha256": "9636fc3ca45b2403441a0913c260d97a70535be8e3910182fa4494521d3c4a48",
+      "stdout_sha256": "dda1831794140978a732363ae99585419ca7f4299b895fb3326800b351e625da"
+    },
+    {
+      "name": "wrong-host-key",
+      "passed": true,
+      "pid": 29604,
+      "raw_exit": 255,
+      "stderr_sha256": "f4518eeba913132236b64c3d4e7d83c9b164cbc7fa88a9c48676c9f75292c11a",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+    }
+  ],
+  "client_path": "C:\\ap13-dcb\\openssh-msys-canonical-validation-01\\usr\\bin\\ssh.exe",
+  "client_sha256": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051",
+  "events": [
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        50076
+      ]
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "event": "public_key_auth",
+      "valid": true
+    },
+    {
+      "command": "prove 2975f71fc568774da12a5f8725e55d47",
+      "event": "authenticated_command",
+      "recv_cipher": "chacha20-poly1305@openssh.com",
+      "send_cipher": "chacha20-poly1305@openssh.com"
+    },
+    {
+      "event": "connected",
+      "peer": [
+        "127.0.0.1",
+        50078
+      ]
+    }
+  ],
+  "parent": {
+    "path": "C:\\ap13-dcb\\openssh-msys-canonical-validation-01\\usr\\bin\\bash.exe",
+    "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+  },
+  "passed": true,
+  "port": 50075,
+  "schema": 1,
+  "scope": "Real encrypted loopback SSH handshake/public-key authentication and strict host-key rejection; portable fixture only, no installed service or real credentials"
+}

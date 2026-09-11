@@ -1,0 +1,41 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:17:28.1220208Z",
+  "decision": "REJECT_NATIVE_MSYS_LIBXCRYPT_PACKAGE_PAIR_PRIVATE_RUNTIME_PATHS",
+  "sourcePackages": [
+    {
+      "name": "libxcrypt",
+      "path": "packages/libxcrypt-4.5.2-1-aarch64.pkg.tar.zst",
+      "sha256": "47bf08ac989f20e0574a1728f511327bf1cb8b17d9fb628953e7138b6c033f65"
+    },
+    {
+      "name": "libxcrypt-devel",
+      "path": "packages/libxcrypt-devel-4.5.2-1-aarch64.pkg.tar.zst",
+      "sha256": "eb8c494af45079cc6e06c54d254132170cb7ffdddef521aac177da33b7e1d37f"
+    }
+  ],
+  "exactDll": {
+    "path": "usr/bin/msys-crypt-2.dll",
+    "sha256": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe"
+  },
+  "finding": {
+    "asciiPrivatePathStrings": 300,
+    "debugInfo": 72,
+    "debugLine": 222,
+    "rdata": 6,
+    "utf16": 0,
+    "runtimeVisible": true,
+    "sourceRoot": "C:/ag-e138920f/ssh-libxcrypt-msys-02/source/lib/"
+  },
+  "required": "Rebuild at source origin with deterministic file/debug/macro prefix mapping while preserving features/ABI, then rerun only libxcrypt package readback and affected OpenSSH closure.",
+  "forbidden": [
+    "binary patching",
+    "stripping around runtime-visible .rdata strings",
+    "private-path scan waiver",
+    "admitting libxcrypt-devel while its exact runtime dependency is rejected"
+  ],
+  "evidence": {
+    "path": "evidence/libxcrypt-private-path-scan.json",
+    "sha256": "ded247b910e80fbc1d220419a8a8f50f4914eb15f16752f25f810b590b5cae5f"
+  }
+}

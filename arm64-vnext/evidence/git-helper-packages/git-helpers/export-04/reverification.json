@@ -1,0 +1,93 @@
+{
+  "schema": 1,
+  "status": "verified-native-arm64-git-helper-provider",
+  "provider_export": {
+    "path": "C:\\ap11-dcb\\git-helpers-01\\export-04\\export.json",
+    "sha256": "43500ca143948e0295ec2c7becf2e2e3bda39e9304f8ed79b03e1b487212829e"
+  },
+  "packages": [
+    {
+      "name": "mingw-w64-aarch64-git-lfs",
+      "version": "3.7.1-1",
+      "path": "packages/mingw-w64-aarch64-git-lfs-3.7.1-1-any.pkg.tar.zst",
+      "sha256": "12e16872c065e78d83881eec443bb08d55c369e1e4e46ad5b1700825d86c8680",
+      "licenses": [
+        "MIT"
+      ],
+      "dependencies": [
+        "mingw-w64-aarch64-git=2.55.0.5"
+      ],
+      "native_pe": [
+        {
+          "path": "mingwarm64/bin/git-lfs.exe",
+          "sha256": "a5bb883d5b9d1a7b206488dc6b79471005d306460f9b54a80e3587a0f855bf5b",
+          "bytes": 11750360,
+          "machine": "0xaa64"
+        }
+      ]
+    },
+    {
+      "name": "mingw-w64-aarch64-git-extra",
+      "version": "1.1.713.cd940aab6-1",
+      "path": "packages/mingw-w64-aarch64-git-extra-1.1.713.cd940aab6-1-any.pkg.tar.zst",
+      "sha256": "6e861a0b1a7d5db7ceb5e23f3f816fec476252e80f319ce27f851c8967acb617",
+      "licenses": [
+        "GPL-2.0-only"
+      ],
+      "dependencies": [
+        "mingw-w64-aarch64-git=2.55.0.5",
+        "diffutils"
+      ],
+      "native_pe": [
+        {
+          "path": "mingwarm64/bin/blocked-file-util.exe",
+          "sha256": "3c2a637b79e4a5ebe8166df89ee9ced91c263240aa1986e4190b1849992a784e",
+          "bytes": 168279,
+          "machine": "0xaa64"
+        },
+        {
+          "path": "mingwarm64/bin/create-shortcut.exe",
+          "sha256": "26b0e5b827d2fdaee0592439b6888afb15fe75de83153e465673c151d238a8a2",
+          "bytes": 837796,
+          "machine": "0xaa64"
+        },
+        {
+          "path": "mingwarm64/bin/git-askpass.exe",
+          "sha256": "60237711dc9a6c3a76b596c0757e10d1418ee906af51588b1b93c3ac683e0a47",
+          "bytes": 161731,
+          "machine": "0xaa64"
+        },
+        {
+          "path": "mingwarm64/bin/git-askyesno.exe",
+          "sha256": "91de9ba592e363a22a4a3be49a85ed5127dd5a4f36fc14e10a77465d8a2c9736",
+          "bytes": 159258,
+          "machine": "0xaa64"
+        },
+        {
+          "path": "mingwarm64/bin/proxy-lookup.exe",
+          "sha256": "d0e1366f6bde802b24e420f041345fc089be62b29216147a47ac2a684635c39e",
+          "bytes": 160276,
+          "machine": "0xaa64"
+        },
+        {
+          "path": "mingwarm64/bin/WhoUses.exe",
+          "sha256": "70941c7ebbf80a40d395ef7f7b94595cdee0933c45025f4f4ceceff51cf231e9",
+          "bytes": 18341146,
+          "machine": "0xaa64"
+        }
+      ]
+    }
+  ],
+  "lfs_roundtrip": {
+    "git": "git version 2.55.0.windows.5",
+    "lfs": "git-lfs/3.7.1 (GitHub; windows arm64; go 1.25.1; git b84b3384)",
+    "content_sha256": "f232a503f3d1044eb3aabb40e1f1d184a265b8597dadc70e74fccf38e3db817f",
+    "object_sha256": "f232a503f3d1044eb3aabb40e1f1d184a265b8597dadc70e74fccf38e3db817f",
+    "network_used": false,
+    "global_config_isolated": true
+  },
+  "ownership_boundary": {
+    "git_credential_helper_selector_present": false,
+    "owner": "mingw-w64-aarch64-git-credential-manager"
+  }
+}

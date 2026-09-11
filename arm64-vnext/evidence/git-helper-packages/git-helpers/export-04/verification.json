@@ -1,0 +1,57 @@
+{
+  "schema": 1,
+  "status": "verified-native-arm64-git-helper-provider",
+  "provider_export": {
+    "path": "export.json",
+    "sha256": "43500ca143948e0295ec2c7becf2e2e3bda39e9304f8ed79b03e1b487212829e"
+  },
+  "packages": [
+    {
+      "name": "mingw-w64-aarch64-git-lfs",
+      "path": "packages/mingw-w64-aarch64-git-lfs-3.7.1-1-any.pkg.tar.zst",
+      "sha256": "12e16872c065e78d83881eec443bb08d55c369e1e4e46ad5b1700825d86c8680",
+      "reproduced_byte_for_byte": true
+    },
+    {
+      "name": "mingw-w64-aarch64-git-extra",
+      "path": "packages/mingw-w64-aarch64-git-extra-1.1.713.cd940aab6-1-any.pkg.tar.zst",
+      "sha256": "6e861a0b1a7d5db7ceb5e23f3f816fec476252e80f319ce27f851c8967acb617",
+      "reproduced_byte_for_byte": true
+    }
+  ],
+  "upstream_signatures": {
+    "verified": true,
+    "fingerprint": "91883E11E83DC29D14104DB4EDD44359093056EE"
+  },
+  "native_build": {
+    "target": "aarch64-w64-mingw32",
+    "jobs": 2,
+    "build_log_sha256": "70a44571ecf44c117b677ab6cb430c9895f4402af798c524adb82116056a46a6"
+  },
+  "assembler_audit": {
+    "path": "assembler-audit.json",
+    "sha256": "ba0cb9b0a3b92d4dae7d8cdd584ae55df3514f697168b531e57895cad0b77dcc",
+    "helper_specific_blockers": [],
+    "remaining_expected_external_blocker": "payload-file-not-supplied:mingwarm64/bin/git-credential-helper-selector.exe"
+  },
+  "lfs_roundtrip": {
+    "path": "lfs-roundtrip.json",
+    "sha256": "255223e19d1c9a6e66e5f212c7caab8a9c561a197a036e12459c2af945de52ea",
+    "status": "verified-local-lfs-roundtrip",
+    "git": "git version 2.55.0.windows.5",
+    "lfs": "git-lfs/3.7.1 (GitHub; windows arm64; go 1.25.1; git b84b3384)",
+    "network_used": false
+  },
+  "pe_closure": {
+    "path": "pe-closure.json",
+    "sha256": "00ad6ee6e7e0a6a5782a350696a7af267b7f7aed23a91d911ac496c1fd42888f",
+    "status": "verified-native-arm64-pe-closure",
+    "file_count": 7
+  },
+  "gui_smoke": {
+    "git_askpass": "dialog opened, fixture value accepted, OK closed",
+    "git_askyesno": "usage dialog opened and OK closed",
+    "credential_accessed": false,
+    "settings_modified": false
+  }
+}

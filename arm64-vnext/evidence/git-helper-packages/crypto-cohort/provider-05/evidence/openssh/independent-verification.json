@@ -1,0 +1,295 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T12:07:44.6855195Z",
+  "status": "VERIFIED_SCOPED_NATIVE_MSYS_OPENSSH_CLIENT_PROVIDER",
+  "decisionBasis": "Independent archive/package/readback/static verification plus hash-bound producer runtime controls",
+  "source": {
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "982230202afc231f9724d665b908a0abde62754d9944bfc8fba24355c255b5f5"
+    },
+    "producerArchive": {
+      "path": "evidence/producer-archive.zip",
+      "sha256": "fbeb320c6bc839491fbbf230aed840c1e7b5d7f7cea1d2ebc3f54f247c55f747",
+      "entries": 24
+    },
+    "preparedSourceManifest": {
+      "path": "evidence/producer-provenance/source-manifest.json",
+      "sha256": "aaf4155ea067599012b5d31c0c1d394575f6227a5f67e95f47b617aa21f91255",
+      "upstreamArchiveSha256": "d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11",
+      "recipeSha256": "e59ee1214c70522a633c5dbf2cc91fbc7d361dd55f12784eafa180f828842802",
+      "recipeManifestSha256": "135836892fa47790f3acea8ef188f88c4c436833bf4ef36fac9abca72062e54a"
+    }
+  },
+  "package": {
+    "name": "openssh",
+    "version": "10.5p1-2",
+    "archive": {
+      "path": "packages/openssh-10.5p1-2-aarch64.pkg.tar.zst",
+      "sha256": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+      "bytes": 1602564
+    },
+    "metadata": {
+      "pkginfoSha256": "dcad79e71de278a7881fb66c19afcb839812221ce73793b049611163a0ad22fa",
+      "buildinfoSha256": "0f8acd1121064a71ade9eef98827d7df63728616d039a6d969bf4599f9863e8e",
+      "mtreeSha256": "631bd1042d8d64b1677e15e42b7121172cb7bd110863211197163a48c344aec2",
+      "arch": "aarch64",
+      "license": [
+        "spdx:LicenseRef-OpenSSH"
+      ],
+      "depends": [
+        "msys2-runtime",
+        "libxcrypt",
+        "openssl",
+        "zlib"
+      ],
+      "backup": [
+        "etc/ssh/ssh_config"
+      ]
+    },
+    "payload": {
+      "files": 24,
+      "bytes": 7083864,
+      "duplicates": 0,
+      "unsafePaths": 0,
+      "links": 0,
+      "sourceToPackageHashMismatches": 0,
+      "manifest": {
+        "path": "manifests/package-payload-manifest.json",
+        "sha256": "e2aa672e332de7ba93af3dbfedb82cda9b4525fc037a36fe4863a6cef9fcf4ac"
+      },
+      "privateOrNonreleaseMarkerHits": 0
+    },
+    "transform": "Added only package metadata, archive compression, and intended file modes; all 24 payload paths and bytes are unchanged"
+  },
+  "pe": {
+    "images": 9,
+    "allMachine": "0xAA64",
+    "managed": 0,
+    "independentlyParsed": true,
+    "imagesDetail": [
+      {
+        "path": "usr/bin/scp.exe",
+        "sha256": "7cb25912a36a8004e0a9af51101fb9366057858c9da9fe1f1f174a286e4fedc8",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll"
+        ]
+      },
+      {
+        "path": "usr/bin/sftp.exe",
+        "sha256": "28bda4ed9a4706db4f62d10be91ae44d9ad1a3f92051659ccc1bf705de7081da",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll"
+        ]
+      },
+      {
+        "path": "usr/bin/ssh-add.exe",
+        "sha256": "35c8357d33fd8a45f3ee9748d4268e4cc703cc02d36c48c28a4ec31b01658285",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll"
+        ]
+      },
+      {
+        "path": "usr/bin/ssh-agent.exe",
+        "sha256": "b9d15b396f96a2198fa20dcd3af691aa15f54ff51a0289807c780f8a9e3dd8e0",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll"
+        ]
+      },
+      {
+        "path": "usr/bin/ssh-keygen.exe",
+        "sha256": "017930584535df411fc4744a10b5ed9a844564b6d53c04e27b39ea6c09f47d5e",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll"
+        ]
+      },
+      {
+        "path": "usr/bin/ssh-keyscan.exe",
+        "sha256": "7098b2ec2f2b65a5bb6de98d09e84eeb027c16e81b3358b3c283891bfa27393e",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll",
+          "msys-z.dll"
+        ]
+      },
+      {
+        "path": "usr/bin/ssh.exe",
+        "sha256": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll",
+          "msys-z.dll"
+        ]
+      },
+      {
+        "path": "usr/lib/ssh/ssh-keysign.exe",
+        "sha256": "9dfc341ecdc0193ac80c848340cd6acbc1763505543762975055e66aaecd9803",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll"
+        ]
+      },
+      {
+        "path": "usr/lib/ssh/ssh-pkcs11-helper.exe",
+        "sha256": "dca224e5098e272ddb85602a082a30e4298abe3d00f4ccbe058a07cd9408468c",
+        "machine": "0xAA64",
+        "imports": [
+          "KERNEL32.dll",
+          "msys-2.0.dll",
+          "msys-crypto-3.dll"
+        ]
+      }
+    ]
+  },
+  "dependencyClosure": {
+    "runtime": {
+      "package": "msys2-runtime",
+      "file": "msys-2.0.dll",
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+    },
+    "openssl": {
+      "package": "openssl",
+      "cryptoSha256": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+      "sslSha256": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+      "qualification": {
+        "path": "evidence/producer-provenance/openssl-qualification.json",
+        "sha256": "7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74",
+        "canonicalPaths": [
+          "/usr",
+          "/usr/ssl",
+          "/usr/lib/openssl/engines-3",
+          "/usr/lib/ossl-modules"
+        ],
+        "shippingImagesArm64": true,
+        "forbiddenMarkers": 0,
+        "suiteTests": 4535,
+        "createdProcesses": 51951,
+        "observedProcesses": 51951,
+        "unrelayedHighExits": 0,
+        "passed": true
+      }
+    },
+    "zlib": {
+      "package": "zlib",
+      "file": "msys-z.dll",
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+    },
+    "libxcrypt": {
+      "package": "libxcrypt",
+      "file": "msys-crypt-2.dll",
+      "sha256": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe"
+    },
+    "ownership": "All dependency DLLs remain external and are not duplicated in the OpenSSH archive",
+    "fullReleaseAvailability": "Exact qualified dependency bytes are proven, but native MSYS OpenSSL package/provider bytes are not included in this OpenSSH export and must be separately supplied to the assembler"
+  },
+  "functionalEvidence": {
+    "basic": {
+      "version": "OpenSSH_10.5p1, OpenSSL 3.6.4 25 Aug 2026",
+      "versionRaw": 0,
+      "keygenRaw": 0,
+      "fingerprintRaw": 0
+    },
+    "directEncryptedLoopback": {
+      "correctHostRaw": 0,
+      "wrongHostRaw": 255,
+      "allCasesPassed": true,
+      "cipher": "chacha20-poly1305@openssh.com"
+    },
+    "bashParent": {
+      "allCasesPassed": true,
+      "bashSha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+      "classification": "candidate-only runtime substitution evidence; not Bash provider compatibility"
+    },
+    "agentLifecycle": {
+      "start": 0,
+      "add": 0,
+      "list": 0,
+      "delete": 0,
+      "emptyList": 1,
+      "kill": 0,
+      "postKillList": 2,
+      "passed": true
+    },
+    "producerMovedExtraction": true,
+    "independentPackageReadback": {
+      "root": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\readback",
+      "payloadFiles": 24,
+      "hashMismatches": 0,
+      "pathDifferences": 0
+    }
+  },
+  "features": {
+    "clientOnly": true,
+    "serverPayload": false,
+    "openssl": true,
+    "zlib": true,
+    "pkcs11": true,
+    "gssapi": false,
+    "kerberosHeimdal": false,
+    "libedit": false,
+    "fidoSecurityKey": false,
+    "stackProtector": false,
+    "hardening": false,
+    "sandbox": "none"
+  },
+  "supersession": {
+    "replacesRejectedProvider01": true,
+    "rejectedHandoffSha256": "00882b9e7db0010e87e2fcb678501ba02fc01083abbe90945f5560c7d774a61b",
+    "rejectedArchiveSha256": "23a38c80b93726ece81024835811d20877b49783421265b6787810989de1bcb0",
+    "oldBytesAdmitted": false,
+    "oldVerdict": {
+      "path": "C:\\ap11-native-provider-intake\\openssh-native-msys-current-verdict-v1\\verdict.json",
+      "sha256": "b130c40d30dcbce551a19c456524a22c23c95026aeaf7bb82f286c5da544eae4"
+    }
+  },
+  "limitations": [
+    "Kerberos/GSSAPI/Heimdal are disabled because no complete sealed compatible provider is available.",
+    "libedit is disabled because no coherent sealed wide-character ncurses/libedit provider is available.",
+    "FIDO/security-key support is disabled because no current-runtime-sealed libfido2 provider is available.",
+    "Stack protection and OpenSSH hardening are disabled because GCC 15.0.1 emits unsupported ARM64 PE/SEH frame instructions for affected OpenSSH functions.",
+    "This is a client-only limited-MVP candidate and is not a full OpenSSH server provider.",
+    "The native Bash parent proof uses a candidate-only substitution of runtime 907afa09 into the sealed d70 Bash payload; it is functional evidence, not a Bash-provider compatibility claim."
+  ],
+  "fullReleaseCurrentInputs": {
+    "runtime": {
+      "requiredSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "currentlySuppliedPackageSha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+      "status": "mismatch; runtime-907 package remains unadmitted"
+    },
+    "openssl": {
+      "requiredCryptoSha256": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+      "requiredSslSha256": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+      "status": "qualified dependency projection exists; native MSYS package/provider not supplied"
+    },
+    "zlib": {
+      "requiredDllSha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "currentlySelectedDllSha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+      "status": "binary matches, but current package contains forbidden private provenance payload files"
+    },
+    "libxcrypt": {
+      "requiredDllSha256": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe",
+      "currentlySelectedDllSha256": "7c817660de257cd46dcb62c0dbb9961e3256c19d4975d36fd8ea224b9bad0bd6",
+      "status": "mismatch and current package contains forbidden private provenance payload files"
+    },
+    "conclusion": "OpenSSH package is admitted only as a runtime/dependency-scoped provider; full-release consumption remains blocked until separately packaged clean exact dependencies are supplied."
+  }
+}

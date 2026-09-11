@@ -1,0 +1,237 @@
+{
+  "container_sanitization": [
+    {
+      "change": "Only .BUILDINFO builddir/startdir were canonicalized; .MTREE and the package container were regenerated. Payload files are unchanged.",
+      "name": "libnpth-1.8-1-aarch64.pkg.tar.zst",
+      "original_sha256": "6190b3e675cb0fd6e8dc2e9752a1d31adef6a6ea0faef1fafa93bf5690bdb441",
+      "sealed_sha256": "a98dcd5f7f8b76f70355ab4dc1570c82f0450ac0d13279f051d3a96d9355b41b"
+    },
+    {
+      "change": "Only .BUILDINFO builddir/startdir were canonicalized; .MTREE and the package container were regenerated. Payload files are unchanged.",
+      "name": "libnpth-devel-1.8-1-aarch64.pkg.tar.zst",
+      "original_sha256": "1fed1c829d983dd497c6101fd97f2998aa2edeaf69e49aabbec230e5877d139a",
+      "sealed_sha256": "387e77ec59f74a605329fc0599c4a7aa7e6cea7fd22abc337e6c6f1ec777d83b"
+    }
+  ],
+  "ownership": {
+    "gcc-libs": {
+      "declaredByPkginfo": true,
+      "knownD70ScopedExport": {
+        "consumptionAllowedForThisRuntime907Provider": false,
+        "packageSha256": "a4aa671c13fe09cb4dabb2a1528dee458b4960bb3d956808d1bba9443c878b6d",
+        "path": "C:\\ap11-native-provider-intake\\gcc-libs-v1\\export.json",
+        "runtimeSha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+        "sha256": "2e7f2b7c8432344c8faa650e7a6a89903947719da75e938ed7d2802ec81a5bbc"
+      },
+      "packagedHere": false,
+      "status": "unsupplied-unqualified-for-runtime-907-cohort"
+    },
+    "runtime_907": "external, not packaged"
+  },
+  "packages": [
+    {
+      "files": [
+        {
+          "path": ".BUILDINFO",
+          "sha256": "cf4f3cb7ee936590fca0c2e5e95fd880015170610af10dc18264b619ffd4b840",
+          "size": 11246
+        },
+        {
+          "path": ".MTREE",
+          "sha256": "b82c6bdf5b83aa0ba8c2154bb7dee1fcfc851f5824a78cc157b2d9271e03c228",
+          "size": 305
+        },
+        {
+          "path": ".PKGINFO",
+          "sha256": "c476ef65ce7e362ad1d8d606bca76c4d30cdc7895f44861148834fe20a9ae986",
+          "size": 399
+        },
+        {
+          "machine": "0xAA64",
+          "path": "usr/bin/msys-npth-0.dll",
+          "sha256": "e0ddef0c1ce06784140fb2372603edc49011e7e0d3a96061316a1665dea54bee",
+          "size": 17305
+        }
+      ],
+      "mtree_file_checks": 3,
+      "name": "libnpth",
+      "path": "packages/libnpth-1.8-1-aarch64.pkg.tar.zst",
+      "pkginfo": {
+        "arch": [
+          "aarch64"
+        ],
+        "builddate": [
+          "1789153333"
+        ],
+        "depend": [
+          "gcc-libs"
+        ],
+        "group": [
+          "libraries"
+        ],
+        "license": [
+          "spdx:LGPL-2.1-or-later"
+        ],
+        "makedepend": [
+          "autotools",
+          "gcc"
+        ],
+        "packager": [
+          "Git for Windows ARM64 Provider <native-provider@example.invalid>"
+        ],
+        "pkgbase": [
+          "npth"
+        ],
+        "pkgdesc": [
+          "New portable threads library"
+        ],
+        "pkgname": [
+          "libnpth"
+        ],
+        "pkgver": [
+          "1.8-1"
+        ],
+        "size": [
+          "17305"
+        ],
+        "url": [
+          "https://gnupg.org/"
+        ],
+        "xdata": [
+          "pkgtype=split"
+        ]
+      },
+      "sha256": "a98dcd5f7f8b76f70355ab4dc1570c82f0450ac0d13279f051d3a96d9355b41b"
+    },
+    {
+      "files": [
+        {
+          "path": ".BUILDINFO",
+          "sha256": "7a869a2d32c909ff6a8c2a8ed8d0b574ed348513defd21d410ffad11f8607179",
+          "size": 11252
+        },
+        {
+          "path": ".MTREE",
+          "sha256": "f577a93de499edf98c9ae523821afec2e0e272e324ea86923afe5775646a6598",
+          "size": 560
+        },
+        {
+          "path": ".PKGINFO",
+          "sha256": "39c4dc0f98e4db08826d57deacbb03c3d454bbd7cbc530615a0eecc2323c79f7",
+          "size": 411
+        },
+        {
+          "path": "usr/include/npth.h",
+          "sha256": "06049def853134a2fabf2cc906141967ef7dccef73cb389e33c425b6aa078236",
+          "size": 15816
+        },
+        {
+          "path": "usr/lib/libnpth.a",
+          "sha256": "08562c24ef3137a90027b6698d89feeadc84ad2e9ad4756b809d8e75912c48d9",
+          "size": 18964
+        },
+        {
+          "path": "usr/lib/libnpth.dll.a",
+          "sha256": "b3655cfa1c38c6067bcd1fc7104c63c1b3c6227738115d31992b822f10d05cd7",
+          "size": 27492
+        },
+        {
+          "path": "usr/lib/pkgconfig/npth.pc",
+          "sha256": "5ff17133f37fa75529eb014cddbaca9ae83ac384f69481a1ce98f27192d1f8d2",
+          "size": 309
+        },
+        {
+          "path": "usr/share/aclocal/npth.m4",
+          "sha256": "56d714ba3220bc760d724f23f727f4b8628ff0c88053645a197cef60eaef840c",
+          "size": 4435
+        }
+      ],
+      "mtree_file_checks": 7,
+      "name": "libnpth-devel",
+      "path": "packages/libnpth-devel-1.8-1-aarch64.pkg.tar.zst",
+      "pkginfo": {
+        "arch": [
+          "aarch64"
+        ],
+        "builddate": [
+          "1789153333"
+        ],
+        "depend": [
+          "libnpth=1.8"
+        ],
+        "group": [
+          "development"
+        ],
+        "license": [
+          "spdx:LGPL-2.1-or-later"
+        ],
+        "makedepend": [
+          "autotools",
+          "gcc"
+        ],
+        "packager": [
+          "Git for Windows ARM64 Provider <native-provider@example.invalid>"
+        ],
+        "pkgbase": [
+          "npth"
+        ],
+        "pkgdesc": [
+          "Libnpth headers and libraries"
+        ],
+        "pkgname": [
+          "libnpth-devel"
+        ],
+        "pkgver": [
+          "1.8-1"
+        ],
+        "size": [
+          "67016"
+        ],
+        "url": [
+          "https://gnupg.org/"
+        ],
+        "xdata": [
+          "pkgtype=split"
+        ]
+      },
+      "sha256": "387e77ec59f74a605329fc0599c4a7aa7e6cea7fd22abc337e6c6f1ec777d83b"
+    }
+  ],
+  "relocated_control": {
+    "compile_exit": 0,
+    "consumer_exit": 0,
+    "consumer_machine": "0xAA64",
+    "consumer_sha256": "148f9bf2f4623686334158aedee4ff07233c0596d5da3ecf9bf85b9ef5540182",
+    "consumer_stdout": "mutex=passed\ndll=C:\\ap13-dcb\\npth-provider-02\\relocated-root\\usr\\bin\\msys-npth-0.dll",
+    "imports": {
+      "consumer": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-npth-0.dll"
+      ],
+      "msys-npth-0.dll": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "runtime_dependencies": {
+      "msys-2.0.dll": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+    }
+  },
+  "schema": 1,
+  "source_build": {
+    "adaptation": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\adaptation.json",
+    "adaptation_sha256": "daf70b103908965a5940e4b6a1e50b18bb9100c8b15c57cefde051866c312c26",
+    "build_log": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\build.log",
+    "build_log_sha256": "1c8dde8ae45bc99e7272f12aa282278b335580705c98ff0fb3e34b8649df10e5",
+    "build_result": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\build-result.json",
+    "build_result_sha256": "6a237b1d150f51f5fcb42618314f679aeb23d73f257dd5cf51451d3b7b59436b",
+    "native_job": "C:\\ap13-dcb\\gnupg-core-01\\builds\\npth-1.8-1\\native-job.json",
+    "native_job_sha256": "c03e5b789c6ea9b78744effdbc802f6c57d19c65ea98a626bb9cc3cfc53deb07",
+    "upstream_tests": {
+      "reason": "The exact pinned MSYS2 recipe comments out make check.",
+      "status": "not-run"
+    }
+  },
+  "status": "native-msys-npth-package-qualified"
+}

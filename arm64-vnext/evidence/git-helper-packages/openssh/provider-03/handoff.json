@@ -1,0 +1,348 @@
+{
+  "schema": 1,
+  "status": "candidate-exported-verified-pending-independent-intake",
+  "package": "openssh-native-msys-client",
+  "version": "10.5p1-2",
+  "scope": "Native ARM64 MSYS OpenSSH client-only payload; dependency-owned runtime and libraries are intentionally deduplicated.",
+  "source": {
+    "name": "OpenSSH Portable",
+    "version": "10.5p1",
+    "prepared_manifest_sha256": "aaf4155ea067599012b5d31c0c1d394575f6227a5f67e95f47b617aa21f91255"
+  },
+  "archive": {
+    "path": "openssh-native-msys-client-10.5p1-2-aarch64.zip",
+    "sha256": "fbeb320c6bc839491fbbf230aed840c1e7b5d7f7cea1d2ebc3f54f247c55f747",
+    "files": 24
+  },
+  "files": [
+    {
+      "path": "etc/ssh/ssh_config",
+      "size": 1495,
+      "sha256": "eb834b0f1eb5f7194e21f8411b23192dec37431e1c62e8b5533aef079f488882"
+    },
+    {
+      "path": "usr/bin/findssl.sh",
+      "size": 4797,
+      "sha256": "b10123b92ddac4ff3e5d003eed44e92c39693dd8c7d197c99b006aacf80fdaf3"
+    },
+    {
+      "path": "usr/bin/scp.exe",
+      "size": 318842,
+      "sha256": "7cb25912a36a8004e0a9af51101fb9366057858c9da9fe1f1f174a286e4fedc8",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    {
+      "path": "usr/bin/sftp.exe",
+      "size": 326449,
+      "sha256": "28bda4ed9a4706db4f62d10be91ae44d9ad1a3f92051659ccc1bf705de7081da",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    {
+      "path": "usr/bin/ssh-add.exe",
+      "size": 747741,
+      "sha256": "35c8357d33fd8a45f3ee9748d4268e4cc703cc02d36c48c28a4ec31b01658285",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll"
+      ]
+    },
+    {
+      "path": "usr/bin/ssh-agent.exe",
+      "size": 710990,
+      "sha256": "b9d15b396f96a2198fa20dcd3af691aa15f54ff51a0289807c780f8a9e3dd8e0",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll"
+      ]
+    },
+    {
+      "path": "usr/bin/ssh-copy-id",
+      "size": 14421,
+      "sha256": "a331afd275d386fd1a699e42fa1514699cf86c744ef62df3e5240d89e1443650"
+    },
+    {
+      "path": "usr/bin/ssh-keygen.exe",
+      "size": 901344,
+      "sha256": "017930584535df411fc4744a10b5ed9a844564b6d53c04e27b39ea6c09f47d5e",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll"
+      ]
+    },
+    {
+      "path": "usr/bin/ssh-keyscan.exe",
+      "size": 882272,
+      "sha256": "7098b2ec2f2b65a5bb6de98d09e84eeb027c16e81b3358b3c283891bfa27393e",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll",
+        "msys-z.dll"
+      ]
+    },
+    {
+      "path": "usr/bin/ssh.exe",
+      "size": 1433502,
+      "sha256": "9a6eb24cc5667ceadbe73877c97e075587ccec2c34b26fa862e5f7b1ca37d051",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll",
+        "msys-z.dll"
+      ]
+    },
+    {
+      "path": "usr/lib/ssh/ssh-keysign.exe",
+      "size": 820883,
+      "sha256": "9dfc341ecdc0193ac80c848340cd6acbc1763505543762975055e66aaecd9803",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll"
+      ]
+    },
+    {
+      "path": "usr/lib/ssh/ssh-pkcs11-helper.exe",
+      "size": 673286,
+      "sha256": "dca224e5098e272ddb85602a082a30e4298abe3d00f4ccbe058a07cd9408468c",
+      "machine": "0xAA64",
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-crypto-3.dll"
+      ]
+    },
+    {
+      "path": "usr/share/licenses/openssh/LICENCE",
+      "size": 21140,
+      "sha256": "5bb5b160726ef5756e4f32fe95b35249c294962419650f48d05134b486d27ccb"
+    },
+    {
+      "path": "usr/share/man/man1/scp.1",
+      "size": 8976,
+      "sha256": "32966f40938f813baedadfe7b88b410ace14b7f75e5a655d70aed9836fe647af"
+    },
+    {
+      "path": "usr/share/man/man1/sftp.1",
+      "size": 18055,
+      "sha256": "29301db4c4c016483fc4d3c42652f678cc99bcfaec16cbb2490151fc172a15f7"
+    },
+    {
+      "path": "usr/share/man/man1/ssh-add.1",
+      "size": 11208,
+      "sha256": "85311636f16ffbc1f99aba9352559d7968f28253be360b021185db38f7c50331"
+    },
+    {
+      "path": "usr/share/man/man1/ssh-agent.1",
+      "size": 9891,
+      "sha256": "1a99f2b0f85bd25a0e885381a749924e976b5f3fefcc7e062580112425ff86f9"
+    },
+    {
+      "path": "usr/share/man/man1/ssh-copy-id.1",
+      "size": 7288,
+      "sha256": "ab85a3d3a7267eba91744582ec53ec5bd778188469bf3bd5900013bdac5ee990"
+    },
+    {
+      "path": "usr/share/man/man1/ssh-keygen.1",
+      "size": 43035,
+      "sha256": "d40597a5a1d841a07c5b61e51ea229020d86256dd68b01b892c9a3ffde8e963d"
+    },
+    {
+      "path": "usr/share/man/man1/ssh-keyscan.1",
+      "size": 5172,
+      "sha256": "fdab4f7e0bab27ab1741cd60682b8c0d6382607f5eaacd8240541b310568ff71"
+    },
+    {
+      "path": "usr/share/man/man1/ssh.1",
+      "size": 46004,
+      "sha256": "c500e8177346aa127b15219e84a9cc566363c1fd20a95e0d6e60ad84a7c99bfb"
+    },
+    {
+      "path": "usr/share/man/man5/ssh_config.5",
+      "size": 72249,
+      "sha256": "6ef2f7058a6b7be91ffcc3292075cba6177542e535ae1749c3426a3fcc541f4d"
+    },
+    {
+      "path": "usr/share/man/man8/ssh-keysign.8",
+      "size": 3038,
+      "sha256": "6d48586e207016632607681c4cbb8cd794a38a528cca1544c1a8b993534570ed"
+    },
+    {
+      "path": "usr/share/man/man8/ssh-pkcs11-helper.8",
+      "size": 1786,
+      "sha256": "355551c6939d47851c14ab0be199115f1423e7ad8168f10937a7fc34847894d7"
+    }
+  ],
+  "dependencies": [
+    {
+      "name": "msys2-runtime",
+      "file": "msys-2.0.dll",
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+    },
+    {
+      "name": "openssl-msys",
+      "file": "msys-crypto-3.dll",
+      "sha256": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4"
+    },
+    {
+      "name": "openssl-msys",
+      "file": "msys-ssl-3.dll",
+      "sha256": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374"
+    },
+    {
+      "name": "zlib-msys",
+      "file": "msys-z.dll",
+      "sha256": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+    },
+    {
+      "name": "libxcrypt-msys",
+      "file": "msys-crypt-2.dll",
+      "sha256": "ce687271a36f2281ee65991b6cb18efbc3eb3bb45b4f9169a31d3d7d23d45dbe"
+    }
+  ],
+  "openssl_suite": {
+    "result_sha256": "3908446d3d7666968636ae4d8b195659dc882016233fcb26dd4214fb209aee4a",
+    "native_job_sha256": "db28d91b318f7fa45778a5bd73aebb7e5c15697725dd887ef03aaf4abe93a283",
+    "tests": 4535,
+    "created_processes": 51951,
+    "observed_processes": 51951,
+    "unrelayed_high_exits": [],
+    "shipping_dependency_qualification_sha256": "7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74"
+  },
+  "features": {
+    "client_only": true,
+    "openssl": true,
+    "zlib": true,
+    "pkcs11": true,
+    "gssapi": false,
+    "kerberos_heimdal": false,
+    "libedit": false,
+    "fido_security_key": false,
+    "stack_protector": false,
+    "hardening": false,
+    "sandbox": "none"
+  },
+  "limitations": [
+    "Kerberos/GSSAPI/Heimdal are disabled because no complete sealed compatible provider is available.",
+    "libedit is disabled because no coherent sealed wide-character ncurses/libedit provider is available.",
+    "FIDO/security-key support is disabled because no current-runtime-sealed libfido2 provider is available.",
+    "Stack protection and OpenSSH hardening are disabled because GCC 15.0.1 emits unsupported ARM64 PE/SEH frame instructions for affected OpenSSH functions.",
+    "This is a client-only limited-MVP candidate and is not a full OpenSSH server provider.",
+    "The native Bash parent proof uses a candidate-only substitution of runtime 907afa09 into the sealed d70 Bash payload; it is functional evidence, not a Bash-provider compatibility claim."
+  ],
+  "validation": {
+    "version": "OpenSSH_10.5p1, OpenSSL 3.6.4 25 Aug 2026",
+    "version_exit": 0,
+    "keygen_exit": 0,
+    "fingerprint_exit": 0,
+    "fingerprint": "256 SHA256:b/PdgtqEhB1Sb/2dLmaQJrhsnS34q8CgIGUD4m14+gI native-msys-release (ED25519)",
+    "direct_encrypted_loopback": true,
+    "direct_cases": [
+      {
+        "name": "correct-host-key",
+        "passed": true,
+        "pid": 18656,
+        "raw_exit": 0,
+        "stderr_sha256": "048e2ba89ae430962e02f5341cf60c694fb7e131cb417790075a56b32ca09992",
+        "stdout_sha256": "53c590383e059e2f41c6e7d3ede830f90aa0e22eb168a179cc18e73307c2b211"
+      },
+      {
+        "name": "wrong-host-key",
+        "passed": true,
+        "pid": 12352,
+        "raw_exit": 255,
+        "stderr_sha256": "2e1d088be657a9093b9c03799b502965b1944b90a035ecf3f1fe2abd2f46f87e",
+        "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855"
+      }
+    ],
+    "bash_parent_encrypted_loopback": true,
+    "bash_parent": {
+      "path": "C:\\ap13-dcb\\openssh-msys-canonical-validation-01\\usr\\bin\\bash.exe",
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+    },
+    "bash_parent_compatibility": "candidate-only runtime substitution; not a sealed Bash provider claim",
+    "agent_lifecycle": true,
+    "moved_extraction": true,
+    "archive_manifest_errors": [],
+    "real_credentials_or_global_settings_used": false
+  },
+  "evidence": {
+    "source-manifest.json": {
+      "path": "provenance/source-manifest.json",
+      "sha256": "aaf4155ea067599012b5d31c0c1d394575f6227a5f67e95f47b617aa21f91255"
+    },
+    "openssl-suite-result.json": {
+      "path": "provenance/openssl-suite-result.json",
+      "sha256": "3908446d3d7666968636ae4d8b195659dc882016233fcb26dd4214fb209aee4a"
+    },
+    "openssl-native-job.json": {
+      "path": "provenance/openssl-native-job.json",
+      "sha256": "db28d91b318f7fa45778a5bd73aebb7e5c15697725dd887ef03aaf4abe93a283"
+    },
+    "openssl-qualification.json": {
+      "path": "provenance/openssl-qualification.json",
+      "sha256": "7791f68993d7056b06077293d7fa73042a362b8ac4f461ed3df421dbc1c65d74"
+    },
+    "configure.log": {
+      "path": "provenance/configure.log",
+      "sha256": "6a784675d9d69a20f506fef40e80f6ec7bb9c77185489a0beff7819ed55b9176"
+    },
+    "build.log": {
+      "path": "provenance/build.log",
+      "sha256": "4e9cf2610f8274afb1e1449050cf8304f8f77b3f60f9b67f811eafc0121fa705"
+    },
+    "install.log": {
+      "path": "provenance/install.log",
+      "sha256": "3620a125dffe0aeb8f64f313ac30354eaf50e4f4324bbb7400cf614d5014ad67"
+    },
+    "basic-controls.json": {
+      "path": "provenance/basic-controls.json",
+      "sha256": "c2e9a1a6dc3f387c4c499e0fbf54c3aaf557df314ac385115ee12b95237a17cf"
+    },
+    "controlled-ssh-result.json": {
+      "path": "provenance/controlled-ssh-result.json",
+      "sha256": "0a1dd8f6eedd15b3881ef88455b88dfc4c9f3922e793b354b0107957d0b729dc"
+    },
+    "bash-parent-control.json": {
+      "path": "provenance/bash-parent-control.json",
+      "sha256": "6f09224f39d1f7c3c610dc3954a32572708ba2e12af09b31c0436d67f6351377"
+    },
+    "bash-preflight.json": {
+      "path": "provenance/bash-preflight.json",
+      "sha256": "4b72cab14a458e61b11dbde4ae1ff5c7897ad9fa76aca3a0ec796b891d9e5602"
+    },
+    "ssh-agent-lifecycle.json": {
+      "path": "provenance/ssh-agent-lifecycle.json",
+      "sha256": "b9bb0d9af41acddf4bd1bdc0b7c4638043121cfc12cb299296422e8395d4c478"
+    },
+    "extraction-result.json": {
+      "path": "provenance/extraction-result.json",
+      "sha256": "c88b21a89abdd44f8e33975e34e06b2c546bdc1e2a08b0cd407388f3f20d1baf"
+    },
+    "controlled_ssh.py": {
+      "path": "provenance/controlled_ssh.py",
+      "sha256": "32851acc45c115f0fd4ae980b218076e34e6d702239519a82e1d2822c524415b"
+    },
+    "controlled-ssh-msys-unquoted-paths.patch": {
+      "path": "provenance/controlled-ssh-msys-unquoted-paths.patch",
+      "sha256": "e98f6ed4e354fa748da42ac31e3cda34c2d93b25a68efe489f22a28779c4f8f3"
+    }
+  }
+}

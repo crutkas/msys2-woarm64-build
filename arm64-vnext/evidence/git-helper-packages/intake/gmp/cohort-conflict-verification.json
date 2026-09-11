@@ -1,0 +1,109 @@
+{
+  "clean_successor": {
+    "consumption_allowed_in_current_d70_release": false,
+    "export": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\export.json",
+      "sha256": "02c57b530fbbc41634cbaacb3c3dfe04bdea462b31c20f64af257e46020af858"
+    },
+    "handoff": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\handoff.json",
+      "sha256": "22ffa84ce2de842a3f7954538ffb8838f97d490ea0d00a153424ad101e525403"
+    },
+    "packages": [
+      {
+        "name": "gmp",
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\packages\\gmp-6.3.0-1-aarch64.pkg.tar.zst",
+        "sha256": "0f53eb50e11440ab82ec00ea8e4dbeb659d4fda079b56ee10bac4164cb60f4ce"
+      },
+      {
+        "name": "gmp-devel",
+        "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\packages\\gmp-devel-6.3.0-1-aarch64.pkg.tar.zst",
+        "sha256": "bccfa3ddf128598fda3ef290fa8074bc680f28c13d43f64a6561774382242e31"
+      }
+    ],
+    "reason": "The clean provider is runtime-907 scoped and version 6.3.0-1; no d70 compatibility or cross-runtime supersession was qualified.",
+    "runtime_cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "verdict": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\verdict.json",
+      "sha256": "26ad84f1eac38b1e826c4877918fbc510f835daa5b7182b237b5fc56eb3b449c"
+    },
+    "verification": {
+      "path": "C:\\ap11-native-provider-intake\\native-msys-gmp-runtime907-admitted-v1\\verification.json",
+      "sha256": "6dfe42000c19fc94f75a9c3a17152fe807205ba59f986dfcb78e90b56520c015"
+    }
+  },
+  "current_authority": {
+    "audit": {
+      "path": "C:\\ap11-native-provider-intake\\audit-v29-mtree-gate-with-npth.json",
+      "sha256": "ff8efd019ffa7ffcb49bfd75e7dd55fda62399c66b601f86ac336976f74de944"
+    },
+    "input": {
+      "path": "C:\\ap11-native-provider-intake\\input-v28-mtree-gate-with-npth.json",
+      "sha256": "259aab2f1c33ab32395eac4474a33f1dbfb7bf9dda287e77000b31447feacfe0"
+    },
+    "selected_gmp": {
+      "archive": "gmp-6.3.0-2-aarch64.pkg.tar.zst",
+      "conflicts": [],
+      "depends": [],
+      "file_count": 8,
+      "name": "gmp",
+      "provides": [],
+      "sha256": "9e6bf6c0fbb1d2d382c3fb80123f1dc2fbfe4283101fa48850881c2ce53d8e9f",
+      "version": "6.3.0-2"
+    }
+  },
+  "failed_additive_input": {
+    "assembler_exit": 1,
+    "audit_report_created": false,
+    "authoritative": false,
+    "error": "Conflicting archives declare package gmp",
+    "path": "C:\\ap11-native-provider-intake\\input-v29-mtree-gate-with-gmp.json",
+    "sha256": "aad3d6fc27173b3771f87f728451b8237386b18485b0856833bf0d335c7c6f44"
+  },
+  "incumbent": {
+    "package": {
+      "name": "gmp",
+      "path": "C:\\ap11-native-provider-intake\\qualified-utility-libraries-v1\\gmp\\packages\\gmp-6.3.0-2-aarch64.pkg.tar.zst",
+      "sha256": "9e6bf6c0fbb1d2d382c3fb80123f1dc2fbfe4283101fa48850881c2ce53d8e9f",
+      "version": "6.3.0-2"
+    },
+    "private_path_findings": {
+      "affected_members": [
+        {
+          "occurrences": {
+            "/root/arm64": 67,
+            "c:/ag-coreutils-e138-01": 1050
+          },
+          "path": "usr/bin/msys-gmp-10.dll",
+          "sha256": "ca28fb7fb940809c1db24a92ffb65c6974a0ed482a3c1d3e909c113e57464041"
+        },
+        {
+          "occurrences": {
+            "/root/arm64": 1070,
+            "c:/ag-coreutils-e138-01": 24
+          },
+          "path": "usr/bin/msys-gmpxx-4.dll",
+          "sha256": "818b3aad724f7c6577953753ad9591efee4571193eb619e5a200fa42abe5ec39"
+        }
+      ],
+      "disposition": "The selected d70 package is not clean shipping evidence under the current private-path policy and needs a same-cohort clean successor.",
+      "exact_occurrences": 2211
+    },
+    "provider_export": {
+      "path": "C:\\ap11-native-provider-intake\\qualified-utility-libraries-v1\\export.json",
+      "sha256": "358d5405fa1f5a07c5b2ee4e1e424b61385cbea017b71e32d82f5be71438e150"
+    },
+    "runtime_cohort": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d"
+  },
+  "prohibited": [
+    "Replacing selected d70 GMP with runtime-907 bytes based only on matching DLL names or imports.",
+    "Adding the runtime-907 gmp-devel split alone against the d70 runtime package.",
+    "Weakening duplicate-package or runtime-cohort gates."
+  ],
+  "required_handoff": [
+    "A clean d70-scoped GMP package successor preserving the incumbent 6.3.0-2 contract and affected d70 consumer evidence.",
+    "Alternatively, a separately approved runtime-907 release/runtime switch with all selected consumers rebound and qualified; the current clean runtime-907 package alone is insufficient."
+  ],
+  "schema": 1,
+  "status": "verified-runtime-cohort-and-package-name-conflict"
+}

@@ -1,0 +1,58 @@
+{
+  "compiler": {
+    "build_host_runtime_note": "The qualified compiler's own runtime is separate from the runtime-907 target execution root.",
+    "cc1_sha256": "b8046275497c4e8f4d056530ef2e956d1b7672a0e5eb15ad56fde5bf44e76b0a",
+    "cc1plus_sha256": "f003aec1b083e8d54ab93b6d1d0d901cd659708f5fc95279dad4f0f24feb3c6c",
+    "target": "aarch64-pc-cygwin"
+  },
+  "jobs": 1,
+  "packages": [],
+  "pe_images": [
+    {
+      "machine": "0xAA64",
+      "path": "build/libgcrypt/src/libgcrypt-1.12.2/cipher/gost-s-box.exe",
+      "sha256": "0308e5e3f0988b6d1e4f8e2bd0c4ac4e4e88898c4148f15a2a7f1a25f0d34555"
+    },
+    {
+      "machine": "0xAA64",
+      "path": "build/libgcrypt/src/libgcrypt-1.12.2/src/.libs/dumpsexp.exe",
+      "sha256": "fd3c21924ec60fda339157c0bd7ae1538bb35d13541c1033520185497b959205"
+    },
+    {
+      "machine": "0xAA64",
+      "path": "build/libgcrypt/src/libgcrypt-1.12.2/src/.libs/hmac256.exe",
+      "sha256": "cec6dc00a196991a1373e736241c1c0651bd9f8a04d898b7f9fc92710a90ce22"
+    },
+    {
+      "machine": "0xAA64",
+      "path": "build/libgcrypt/src/libgcrypt-1.12.2/src/dumpsexp.exe",
+      "sha256": "e8b2454785f06ba6b03ed7a245c2e1f518103edc939c176efb94d0d147271203"
+    },
+    {
+      "machine": "0xAA64",
+      "path": "build/libgcrypt/src/libgcrypt-1.12.2/src/hmac256.exe",
+      "sha256": "0cbf4a1d0c9dd45c7b002c06a7625b2ad400d536c30386ce6478d2b3f20db3ab"
+    }
+  ],
+  "process": {
+    "created_processes": 21619,
+    "exit": 4,
+    "native_observation": {
+      "driver_manifest_sha256": "1f5384459cc239e0b373b05f42e60ef06ec580d45046e1484a4ba4d46de5b3fa",
+      "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgcrypt-1.12.2-1-01\\native-job.json",
+      "sha256": "aa7252111774d21c4582d81aa59bf60d2c1410a1f96edb3411fe577a0402fea2"
+    },
+    "observed_processes": 21619,
+    "passed": false,
+    "pid": 19356,
+    "timed_out": false,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children"
+  },
+  "runtime": {
+    "ownership": "external build/test dependency; not packaged here",
+    "path": "C:\\ap13-dcb\\gnupg-core-01\\builds\\libgcrypt-1.12.2-1-01\\sdk\\usr\\bin\\msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+  },
+  "schema": 1,
+  "status": "failed"
+}

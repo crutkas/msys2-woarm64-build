@@ -1,0 +1,30 @@
+{
+  "schema": 1,
+  "package": "gmp",
+  "version": "6.3.0-1",
+  "recipe_commit": "49d2609852ffe8e18f6dd3ee7a7add0670a1d57c",
+  "original_pkgbuild_sha256": "b18849f3577121f0a3ece7aaaf43464898a2e29ffcb378f6182c56b616403f50",
+  "adapted_pkgbuild_sha256": "7599bb3d2eb958c4889691e6eb41c1ff4d672467ba436f5115944cddcee687ce",
+  "successor_of_cpp_pseudo_reloc_build": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-02",
+  "failed_cpp_build_result_sha256": "ae56c16469afef5626fff44840d3790b15b8fcb4dbc566fb2b6aa16aa609649f",
+  "cpp_frontend_receipt": "C:\\ag-e138920f\\tc-cpp-guard-01.copy.json",
+  "cpp_frontend_receipt_sha256": "ed4fa0a4844ee05deca009dc9346320d701ae93cd9f299dc0185a5358001d41c",
+  "cc1plus_sha256": "f003aec1b083e8d54ab93b6d1d0d901cd659708f5fc95279dad4f0f24feb3c6c",
+  "changes": [
+    "arch changed from i686/x86_64 to aarch64",
+    "all compiler -D arguments excluded from MSYS path conversion",
+    "build, bootstrap, and qualified toolchain roots mapped out of file/debug/macro provenance",
+    "C compilation uses -std=gnu17 because GCC 15 defaults to C23 and GMP 6.3.0 configure probes intentionally use pre-C23 unprototyped function semantics",
+    "qualified protected-C++ frontend delta emits supported 64-bit stack-guard pseudo-relocations instead of unsupported ARM64 PAGEBASE_REL21/PAGEOFFSET_12L entries",
+    "check-time PATH prepends the just-built .libs directory so uninstalled libtool test wrappers load the exact candidate DLLs"
+  ],
+  "source_sha256": "a3c2b80201b89e68616f4ad30bc66aee4927c3ce50e33929ca819d5c43538898",
+  "source_signature_sha256": "94def8c1a731854de684689126046ec93589147abd4cd0025f12d741d323aa82",
+  "source_signature_fingerprint": "343C2FF0FBEE5EC2EDBEF399F3599FF828C67298",
+  "source_signature_status": "good signature from Niels Moller using GNU keyring; signing key currently expired and preserved as an explicit warning",
+  "gnu_keyring_sha256": "b136fbe57ade4ee5270ca66c402cae7b50349fd07646b5b3de7962d58d4df608",
+  "recipe_validpgpkeys_unchanged": true,
+  "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "jobs": 1,
+  "successor_of_missing_check_dll_path": "C:\\ap13-dcb\\gnupg-network-01\\builds\\gmp-6.3.0-1-gnu17-cppguard-05"
+}

@@ -1,0 +1,26 @@
+pkgbase=libxcrypt
+pkgname=('libxcrypt' 'libxcrypt-devel')
+pkgver=4.5.2
+pkgrel=3
+pkgdesc='Modern library for one-way hashing of passwords'
+arch=('aarch64')
+url='https://github.com/besser82/libxcrypt/'
+license=('spdx:LGPL-2.1-or-later')
+options=('!strip' '!debug' '!lto' '!ccache' '!purge' '!zipman' 'staticlibs' 'libtool')
+source=()
+
+package_libxcrypt() {
+  depends=('msys2-runtime')
+  install -dm755 "$pkgdir/usr/bin"
+  cp -f "$startdir/payload/usr/bin/"*.dll "$pkgdir/usr/bin/"
+}
+
+package_libxcrypt-devel() {
+  depends=("libxcrypt=${pkgver}")
+  conflicts=('libcrypt-devel')
+  provides=('libcrypt-devel')
+  replaces=('libcrypt-devel')
+  install -dm755 "$pkgdir/usr"
+  cp -a "$startdir/payload/usr/include" "$startdir/payload/usr/lib" \
+    "$startdir/payload/usr/share" "$pkgdir/usr/"
+}

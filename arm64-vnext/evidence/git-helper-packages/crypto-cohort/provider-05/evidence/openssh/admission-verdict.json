@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T12:08:07.1057423Z",
+  "decision": "ADMIT_SCOPED_NATIVE_MSYS_OPENSSH_CLIENT_PROVIDER",
+  "export": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\export.json",
+    "sha256": "9caf38721af1009c0c6b6fad59f1bca60e8fc05a137ece07b30b52f1deff83d2"
+  },
+  "package": {
+    "name": "openssh",
+    "version": "10.5p1-2",
+    "path": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\packages\\openssh-10.5p1-2-aarch64.pkg.tar.zst",
+    "sha256": "8579eb15dd2048a6a728a6d2d41f1a267a7d4c972a1dd5b2b50660036900b432",
+    "payloadFiles": 24,
+    "peImages": 9
+  },
+  "verification": {
+    "path": "C:\\ap11-native-provider-intake\\native-msys-openssh-client-admitted-v1\\independent-verification.json",
+    "sha256": "fba26d68dc79cfd3b49d26c0bd91946772476768c4493aad6c6f65ca9464529b"
+  },
+  "controlsPassed": [
+    "producer handoff/archive identity",
+    "24/24 archive ownership and safe paths",
+    "fresh package construction with unchanged payload bytes",
+    "24/24 package readback identity",
+    "exact PKGINFO dependency/license/backup metadata",
+    "9/9 PE images independently parsed as AA64",
+    "declared import sets match packaged binaries",
+    "zero payload private/nonrelease markers",
+    "canonical native MSYS OpenSSL 3.6.4 paths and AA64 dependency images",
+    "OpenSSL upstream suite 4535 tests with 51951/51951 observed and zero unrelayed high exits",
+    "version/key generation/fingerprint controls",
+    "encrypted loopback and wrong-host negative",
+    "ssh-agent add/list/delete/kill lifecycle",
+    "moved extraction",
+    "native Bash parent proof retained only as candidate substitution evidence"
+  ],
+  "scope": "Client-only native ARM64 MSYS OpenSSH payload, runtime-907 scoped",
+  "limitations": [
+    "No server payload",
+    "No stack protector or OpenSSH hardening",
+    "Sandbox is none",
+    "GSSAPI/Kerberos/Heimdal disabled",
+    "libedit disabled",
+    "FIDO/security-key disabled",
+    "Bash parent proof is not Bash-provider compatibility",
+    "Native MSYS OpenSSL remains an exact qualified dependency projection but is not packaged by this OpenSSH export",
+    "Full release remains blocked until separate dependency package/provider and other missing providers are supplied",
+    "Current assembler input supplies d70 rather than runtime-907",
+    "Current libxcrypt package DLL SHA does not match the qualified OpenSSH dependency",
+    "Current zlib/libxcrypt packages carry forbidden private provenance payload files"
+  ],
+  "supersession": {
+    "oldProvider01RemainsRejected": true,
+    "oldHandoffSha256": "00882b9e7db0010e87e2fcb678501ba02fc01083abbe90945f5560c7d774a61b",
+    "oldArchiveSha256": "23a38c80b93726ece81024835811d20877b49783421265b6787810989de1bcb0",
+    "oldBytesAdmitted": false
+  },
+  "audit": {
+    "expected": "rerun unchanged assembler with this package; retain incomplete status and do not emit archive"
+  }
+}

@@ -1,0 +1,79 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:17:28.1220208Z",
+  "status": "ADMITTED_NATIVE_MSYS_OPENSSL_ZLIB_RUNTIME907_SCOPED",
+  "providerClass": "native-msys-openssl-zlib-runtime907",
+  "runtimeCohort": {
+    "msysRuntimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "runtimePackageAdmitted": false
+  },
+  "packages": [
+    {
+      "name": "libopenssl",
+      "path": "packages/libopenssl-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "4a5be29acfd9fdec78e6f6dae322dfaae7cb2c5f3e997a6c1aca2c416e93febd"
+    },
+    {
+      "name": "openssl",
+      "path": "packages/openssl-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "cd487c08865ceb15bfe0f4b28de9b62d7b9090240a9c0c9abc843b2d3b16bfa5"
+    },
+    {
+      "name": "openssl-devel",
+      "path": "packages/openssl-devel-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "0070116ccbe695a8fb9d63d7cfd583051b2b1bd028e6526968060ade32b47c9f"
+    },
+    {
+      "name": "openssl-docs",
+      "path": "packages/openssl-docs-3.6.4-1-aarch64.pkg.tar.zst",
+      "sha256": "8923f6a4ea727356872b0e4d3438bb7e5c4151522bf68d71f4fef2bc819e8408"
+    },
+    {
+      "name": "zlib",
+      "path": "packages/zlib-1.3.2-1-aarch64.pkg.tar.zst",
+      "sha256": "1f655e79e7acb640f483bfc3feef36742dd84afb65899cfd89e954f0740e16ce"
+    },
+    {
+      "name": "zlib-devel",
+      "path": "packages/zlib-devel-1.3.2-1-aarch64.pkg.tar.zst",
+      "sha256": "d9edc5d4dbac5580050b8c062f2e57ddf5c1002319b5c5b6636431383265d202"
+    }
+  ],
+  "exactRuntimePayloads": {
+    "msys-crypto-3.dll": "1f849092ae4f5aa3df1b0a7360c626a7e841c9060e8413220df4e862160c4cb4",
+    "msys-ssl-3.dll": "5db603a6df4757055b5e6947cd6051956da311644ae5e9010cdaaf786693b374",
+    "msys-z.dll": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4"
+  },
+  "evidence": {
+    "independentPackageReadback": {
+      "path": "evidence/independent-package-readback.json",
+      "sha256": "156ea0d7b921ad3886a3b321e11c96de469da3b97dc1c45d5504c44cf68d1cd0"
+    },
+    "consumerReadback": {
+      "path": "consumer-readback.json",
+      "sha256": "e35558078ebb806c9a13dece6db6351ac9e0282d7fff434ddd1a8ae650ca20f8"
+    },
+    "producerExport": {
+      "path": "evidence/producer-export.json",
+      "sha256": "894633864681f6c2a875ffc6f218e0c5b2038893e20eec56bd9400532da5c882"
+    },
+    "producerHandoff": {
+      "path": "evidence/producer-handoff.json",
+      "sha256": "36db5d494c309d99789dd11d71ddc308068fb995bece901ea2aabd89b7b1db00"
+    }
+  },
+  "admission": {
+    "openssl": true,
+    "zlib": true,
+    "libxcrypt": false,
+    "opensshFullDependencyGateCleared": false,
+    "assemblerPackageProvider": true
+  },
+  "limitations": [
+    "Runtime-907 remains externally owned and nonadmitted as the full-release runtime",
+    "OpenSSH remains client-only with its previously admitted feature and hardening limitations",
+    "libxcrypt and libxcrypt-devel are excluded from this export pending source-origin removal of six runtime-visible private source paths",
+    "Static development archives retain exact build-time debug provenance and were not rewritten",
+    "No d70 compatibility or full-release completion claim"
+  ]
+}

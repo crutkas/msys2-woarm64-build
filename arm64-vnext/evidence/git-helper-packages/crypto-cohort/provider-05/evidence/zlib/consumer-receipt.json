@@ -1,0 +1,62 @@
+{
+  "passed": true,
+  "package": "zlib-msys",
+  "stage_manifest_sha256": "e206df14f9a4aa12dca6c88e13427e03ca2d0233100f243426c7cd9b5bfe4960",
+  "compiler_receipt_sha256": "bd5cbf12484d98243098def7e037c20a41710e88a0eff9d81a0b64501f7d939a",
+  "fixture_sha256": "209b00e022292ec99215bd80142b8eae157e1a469e6f0a6885cd8d9230518eff",
+  "support": {
+    "cc1": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\cc1.exe",
+      "sha256": "39ccc280c8af6ee6a6bd084fe71cf7b523e36daead7d33cecde02ce53438a61c"
+    },
+    "collect2": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\libexec\\gcc\\aarch64-pc-cygwin\\15.0.1\\collect2.exe",
+      "sha256": "a57e04a468cb3f9fa0355c75445fe1afee2f035e98a9f35ac076411bd430e1b7"
+    },
+    "as": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\aarch64-pc-cygwin\\bin\\as.exe",
+      "sha256": "b919c5702db0c855e948fc70f433a791598f61df77ab36d65ec3b546712d517c"
+    },
+    "ld": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\aarch64-pc-cygwin\\bin\\ld.exe",
+      "sha256": "296d810a4ecb64ef1e2afd49c6816fdef25f9e98af8a0452cf1551c723f8fc50"
+    }
+  },
+  "scope": "Native MSYS LP64 zlib buffer compression/decompression, corrupt-data rejection and real gzip file roundtrip",
+  "build_limitations": [],
+  "compile_command": [
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\tc-msys-uc01\\bin\\gcc.exe",
+    "-O2",
+    "-g",
+    "-IC:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\zlib-msys-installed-api-01\\relocated\\usr\\include",
+    "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-shiny-meme\\arm64-git-recovery\\native\\fixtures\\native-msys-zlib-consumer.c",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\zlib-msys-installed-api-01\\relocated\\usr\\lib\\libz.dll.a",
+    "-o",
+    "C:\\Users\\crutkasLocal\\.copilot\\session-state\\f6ea7713-2cec-41d5-b3f9-b4373e60fa33\\files\\resume-20260907\\zlib-msys-installed-api-01\\relocated\\usr\\bin\\native-zlib-consumer.exe"
+  ],
+  "compile": {
+    "pid": 10304,
+    "exit": 0,
+    "timed_out": false,
+    "active_at_parent_exit": 0,
+    "active_at_boundary": 0,
+    "remaining_process_ids": [],
+    "created_processes": 5,
+    "passed": true
+  },
+  "process": {
+    "pid": 16960,
+    "exit": 0,
+    "timed_out": false,
+    "active_at_parent_exit": 0,
+    "active_at_boundary": 0,
+    "remaining_process_ids": [],
+    "created_processes": 1,
+    "passed": true
+  },
+  "dlls": {
+    "msys-z.dll": "edb3e9e04c03df58e2f45a416e73c966e4580fedc8b1a60b7630d3cf7815e9d4",
+    "msys-2.0.dll": "1bdf95fed1454f58531c704b7c2b65ac6051c9dace56220aab5d8399c6b8cd16"
+  },
+  "consumer_sha256": "2a7af44e155e0778abc580496b45a2dd1309b57ab55445f46a0d76fdb83a07c2"
+}
