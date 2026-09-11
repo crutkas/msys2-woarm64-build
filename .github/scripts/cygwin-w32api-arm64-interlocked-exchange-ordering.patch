@@ -1,0 +1,38 @@
+--- a/mingw-w64-headers/include/psdk_inc/intrin-impl.h
++++ b/mingw-w64-headers/include/psdk_inc/intrin-impl.h
+@@ -1346,7 +1346,11 @@
+ #if !__has_builtin(_InterlockedExchange64)
+ __MINGW_EXTENSION __INTRINSICS_USEINLINE 
+ __int64 _InterlockedExchange64(__int64 volatile *Target, __int64 Value) {
++#if defined(__aarch64__) || defined(_ARM64_)
++    return __atomic_exchange_n(Target, Value, __ATOMIC_SEQ_CST);
++#else
+     return __sync_lock_test_and_set(Target, Value);
++#endif
+ }
+ #endif
+ #define __INTRINSIC_DEFINED__InterlockedExchange64
+@@ -1712,7 +1716,11 @@
+ #if !__has_builtin(_InterlockedExchange)
+ __INTRINSICS_USEINLINE 
+ __LONG32 _InterlockedExchange(__LONG32 volatile *Target, __LONG32 Value) {
++#if defined(__aarch64__) || defined(_ARM64_)
++    return __atomic_exchange_n(Target, Value, __ATOMIC_SEQ_CST);
++#else
+     return __sync_lock_test_and_set(Target, Value);
++#endif
+ }
+ #endif
+ #define __INTRINSIC_DEFINED__InterlockedExchange
+@@ -1745,7 +1753,11 @@
+ #if !__has_builtin(_InterlockedExchangePointer)
+ __INTRINSICS_USEINLINE 
+ void *_InterlockedExchangePointer(void *volatile *Target,void *Value) {
++#if defined(__aarch64__) || defined(_ARM64_)
++    return __atomic_exchange_n(Target, Value, __ATOMIC_SEQ_CST);
++#else
+     return __sync_lock_test_and_set(Target, Value);
++#endif
+ }
+ #endif
+ #define __INTRINSIC_DEFINED__InterlockedExchangePointer

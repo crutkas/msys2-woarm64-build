@@ -1,0 +1,46 @@
+{
+  "schema": 1,
+  "repository": "https://github.com/mingw-w64/mingw-w64.git",
+  "revision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba",
+  "purpose": "Pinned v12 Cygwin w32api ARM64 header-only successor",
+  "public_probe": {
+    "file": "cygwin-public-interlocked-codegen.c",
+    "sha256": "a5c27a197a84dbfb2755614131a1c361eec9d70753c13f1e92b58c418e8206cd",
+    "provenance": {
+      "source_sha256": "cee155b9ff9e9a4823d7103c759658e811f240a803f1dbaa80cac81a343695c2",
+      "normalization": "CRLF-to-LF only"
+    }
+  },
+  "sdk_contract": {
+    "provenance_sha256": "d60bd6d7abe5889675cf6c32d14cdb7da7932a4b0b38c445fc58057708e747b1",
+    "inventory_sha256": "141a68595cd49221e39d3d07376c317db79b2cbcc99746b12a8486c6715f97a5",
+    "file_count": 3043,
+    "tool_receipt_sha256": "18828084062b06504e2d98ab6022bfc09c689ed4811a2e687440d0c37c67b5db",
+    "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "required_files": {
+      "bin/aarch64-pc-cygwin-gcc.exe": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+      "bin/aarch64-pc-cygwin-cpp.exe": "9936e6435097471cb5c2947294dbbe5898046897ec6db6c6e714df2a677752d6",
+      "bin/gcc.exe": "0eb57ff0d26c4d7a8da0a028beedc2df4349209bb14ac8a9553d519d06fe679c",
+      "libexec/gcc/aarch64-pc-cygwin/15.0.1/cc1.exe": "b8046275497c4e8f4d056530ef2e956d1b7672a0e5eb15ad56fde5bf44e76b0a",
+      "aarch64-pc-cygwin/bin/as.exe": "b919c5702db0c855e948fc70f433a791598f61df77ab36d65ec3b546712d517c",
+      "aarch64-pc-cygwin/bin/ld.exe": "296d810a4ecb64ef1e2afd49c6816fdef25f9e98af8a0452cf1551c723f8fc50",
+      "aarch64-pc-cygwin/lib/libmsys-2.0.a": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c",
+      "aarch64-pc-cygwin/lib/crt0.o": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737"
+    }
+  },
+  "patches": [
+    {
+      "file": "cygwin-w32api-arm64-abi.patch",
+      "sha256": "8567a8816086ed46436c9452edcb48a8b232385a423385b649fbebb51a917974"
+    },
+    {
+      "file": "cygwin-w32api-arm64-interlocked-exchange-ordering.patch",
+      "sha256": "3967efec4820d00d639c7b7907633351f445ca0c23da6e5f6e6a178a07e9de3f",
+      "source_identity": {
+        "file": "mingw-w64-headers/include/psdk_inc/intrin-impl.h",
+        "before_sha256": "961ca55782fa89516be1dcc71815cc20c9334e537d7a5f306fd752a0d7f40a04",
+        "after_sha256": "c1effd54a4cc7679fd9265648cac815d4e107738b8e8892bed78974da6273c47"
+      }
+    }
+  ]
+}
