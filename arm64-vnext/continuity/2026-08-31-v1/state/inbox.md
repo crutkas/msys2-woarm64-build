@@ -1,7 +1,35 @@
 # ARM64 vNext Inbox
 
 Epoch: `2026-08-31-v1`  
-Last updated: `2026-09-03T07:13:00Z`
+Last reconciled: `2026-09-11` (UTC)
+
+Previous update label: `2026-09-03T07:13:00Z`
+
+## Current reconciliation
+
+The [September 11 execution plan](plan.md) is the current scheduling view:
+the combined native ARM64 runtime links, executes and reproduces, while
+the full Git distribution and strict provider closure remain incomplete.
+The plan records the **false missing-trampoline claim and wrong generator
+selection**, the still-live **plain-Make TLS overwrite hazard**, current fork
+PRs, scoped package results, and prominent non-admissions.
+
+PR 12 now supplies source/image/parent/generation-bound interpretation of
+mechanical raw exits 32256/1792 without normalization; the identical
+uncontracted replay still fails. PR 11's Texinfo fix is published at `a0b773d`;
+the `!ccache` cause is proven, the symlink/cache theories refuted, and actual
+binutils CI remains pending. Receipt scope flags override prose summaries.
+
+**Evidence limitation:** the V10 `verdict.json` is unavailable on disk according
+to the coordinator's recovery check. The ABI GO narrative at **line 16 in the
+original checkpoint** is secondhand, not a recovered/re-hashed receipt or a new
+authority grant; see plan evidence [E10]. It is preserved below, not deleted.
+Current limited libintl/PCRE2 admission does not admit full gettext/Coreutils,
+Perl or native MSYS SSH. See the plan's hard limitations before using any older
+status, owner, test count or proposed action in this inbox.
+
+<details>
+<summary>Superseded September 3 inbox, retained verbatim below for audit</summary>
 
 This inbox tracks incoming audit reports, newly discovered work, blockers, and decisions. Items are triaged into `plan.md` and the durable `vnext-*` task graph.
 
@@ -420,3 +448,5 @@ superseded by the live tables above for scheduling.
 - ** CHECKPOINT LINKAGE, FALSIFIER AND THE CONSEQUENCE FOR THE ccache QUESTION - independently verified by the verifier thread (2026-09-04 09:14), corroborating the entry above.** (1) CHECKPOINT LINKAGE, MEASURED: run 33459163274 failed on head b0d9c3438794729bbbde5aa9d7bc2aa69d1ed91f, whose tree is 57e31d7556792e3a2e2d1ac6a81bab002c8a4099 - BYTE-IDENTICAL to the authoritative checkpoint head AND tree this entire session was instructed to resume from, and verified against those stated values rather than against memory. SO THE cross-binutils DEFECT WAS ALREADY PRESENT AND ALREADY FAILING AT THE AUTHORITATIVE CHECKPOINT ITSELF, before any runtime, tracker, export or continuity work existed. This forecloses the question "did the checkpoint or last night's commits introduce it" permanently: they did not. All three completed runs on this branch (b0d9c34, 0ab78b1, d27a45a, dated 2026-08-31/09-01) are conclusion=failure. (2) TRIAGE CONSEQUENCE, which is why this changes the handoff and not merely the record: "deterministic 5/5 today" invites the next reader to bisect last night's commits; "already failing on three-day-old commits" tells them not to bother. A pre-existing repo defect and a regression from the programme are triaged by different people with different urgency, and the handoff previously implied the wrong one. (3) THE (A)/(B) ccache QUESTION IS NOT MERELY UNRESOLVED, IT IS UNRESOLVABLE FROM HISTORY: there is no successful toolchain run in the last 30 on this branch to serve as a control - the only two runs reporting conclusion=success (33374455335, 33366334189) contain ONLY a "Diagnostic only - never admission" job and compiled nothing, so they are recorded AS EXCLUDED rather than silently dropped, precisely so a later reader does not rediscover them and "correct" this entry with them. A success conclusion on a run that compiled nothing is a LABEL, NOT A RESULT. Distinguishing (A) un-prepended PATH from (B) MSYS=winsymlinks .lnk-style symlinks therefore requires a NEW instrumented run printing PATH and ls -l /usr/lib/ccache/bin inside the build step; it cannot be settled from existing logs. That converts an open investigation into a closed one with a stated precondition. (4) FALSIFIER FOR THE PREDICTION ABOVE, stated so the prediction is a prediction and not a description: if any of the five open runs terminates at a conclusion other than failure, or at a lifetime materially different from 24.00 h, or with a native-job cancelled count other than 7, the 24-hour-expiry mechanism is WRONG and must be re-derived. WHY THIS MATTERS AFTER THE REFORMAT: whoever resumes will see five failed runs appear overnight and would reasonably read them as five NEW defects. An entry that predicted them in advance, by mechanism and with a falsifier, converts that alarm into a confirmation.
 - ** RECOVERY.md EXECUTED AND PROVEN IN BOTH DIRECTIONS - it had never been run (supervisor 290c9aaf, 2026-09-04 09:25).** The canonical-seal command at RECOVERY.md:46 was run VERBATIM from the checkpoint directory on the versions the document names (python 3.14 ARM64, PowerShell 7.6.5): 45 sealed JSON documents PASS, exit 0. COVERAGE MEASURED, NOT ASSUMED: 49 .json files exist under state/, 45 are sealed and verified, and 4 are unsealed (verifier-tracker-export.json, bundle-manifest-v2.json, pe-import-closure-v2.json, process-attestation-make-v2.json) - matching RECOVERY.md's own statement that manifest-style JSON without seal.payload_sha256 is covered by SHA256SUMS instead. All four are present in the manifest, which verifies 75 OK / 0 FAILED, so NO FILE FALLS THROUGH THE GAP between the two mechanisms; that mattered because the seal filter skips unsealed files SILENTLY. NEGATIVE CONTROL - the point that makes the rest meaningful: '45 PASS, exit 0' alone cannot distinguish a working detector from a no-op. On an isolated copy in TEMP (the repo was never modified), altering the 'epoch' field while leaving the seal block untouched produced exit 1 and reported expected 459a0086... versus actual 7cee3e7f... TAMPERING IS DETECTED. A later restorer can therefore rely on the procedure having been executed, not merely written. PROCESS NOTE: the first negative-control attempt BROKE rather than silently tampering with nothing, because sealed documents use two different shapes - {payload,seal} and seal-alongside-top-level-keys - and arm64-vnext-boundary.json is the latter; the one-liner handles both. A tamper that 'succeeded' against a nonexistent payload key would have produced a passing control that tested nothing.
 - ** CI RUN ACCUMULATION IS GROWING AS PREDICTED: 5 open runs -> 7, i.e. 49 permanently-unstartable native jobs (supervisor 290c9aaf, 2026-09-04 09:25).** Every push adds one run that can never complete, because its seven native jobs wait on ['Windows','ARM64','MSYS2'] labels that zero registered runners provide. Tracker commits - including this supervisor's own findings - are a contributor. The mitigation remains a concurrency group keyed on the ref with cancel-in-progress, which exists nowhere in .github (verified across the whole tree); it would collapse the stale runs to one. This does NOT fix either blocker and is purely hygiene.
+
+</details>

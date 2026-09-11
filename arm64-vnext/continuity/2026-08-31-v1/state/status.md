@@ -1,6 +1,47 @@
 # Git for Windows Native ARM64 vNext
 
-Updated: `2026-09-03T07:13:00Z`
+Reconciled: `2026-09-11` (UTC)
+
+Previous update label: `2026-09-03T07:13:00Z`
+
+**CURRENT: native ARM64 runtime linked, running and reproducible; full Git
+distribution NOT complete.** Use the [reconciled execution plan](plan.md), not
+the old verdict below, for current blockers and actions.
+
+Two independent 12-job combined-runtime builds produced eight identical
+artifacts; runtime SHA-256
+`907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c`.
+SQLite/Tcl/readline/Berkeley DB have scoped combined-runtime results; libintl and
+PCRE2 have limited-MVP-only admissions. This does **not** clear failed gettext
+CLI/default-domain relocation, PCRE2 provenance gaps, BDB's 900-second
+MutexAlignment timeout at 9/24, Coreutils' 48 PASS / 41 FAIL / 23 SKIP / 4 ERROR,
+the Perl compiler/symlink boundary, or the absent native MSYS SSH provider.
+The BDB stress and Coreutils counts are owner-reported, not independently
+re-derived here. Tcl's combined receipt has `full_suite:false`; its separately
+reported core-file replay counts are not a full-suite qualification.
+
+PR 12 now resolves the mechanical raw-32256/1792 classification through bound
+relay contracts and a two-sided negative control, **without normalization**.
+The distinct raw-256 hook case remains separate. PR 11's genuine Texinfo fix
+is pushed at `a0b773d`; `!ccache` hid the old no-op stub, and actual binutils CI
+is still pending. See the plan for the refuted symlink/cache theories.
+
+**Live hazard:** plain Make can replace the correct 1,822-byte / 59-entry TLS
+offsets with 56 bytes of zeros. The guard proposal in build PR 11 at `cc56765f`
+is not yet applied to the runtime repository. **Correction:** ARM64 `gendef`
+already existed (`180d3e`); wrongly selecting x86-only `74f502` produced an empty
+`sigfe.s` with exit 0. The old ~500-line missing-port diagnosis was false.
+Abbreviated IDs here are expanded only where actually known in the plan.
+
+The absent V10 `verdict.json` is only secondhand history through the original
+inbox line 16, not a current verified authority. Current source PR heads,
+successful runtime CI rerun, pre-existing cross-binutils `makeinfo` Error 127,
+and exact evidence identities are recorded in the plan. Old "nothing has ever
+executed", "no DLL" and monitor-only declarations below are superseded, not
+claims about September 11.
+
+<details>
+<summary>Superseded September 3 status and reasoning, preserved for audit</summary>
 
 Verdict: **ENGINEERING HANDOFF COMPLETE AND VERIFIED; PROGRAMME STOOD DOWN TO MONITOR-ONLY; NO PRODUCT PASS**
 
@@ -531,3 +572,5 @@ The reported `ERROR_INVALID_HANDLE` is **genuine**: `res == FALSE` was captured 
 **SETTLED 2026-09-03 23:25 — identity resolved, and the answer removes the target this section proposed.** `c63ab774` instrumented the mint site and the child's read rather than probing validity: `CTOR: type=1 parent=0x190 minted_in_pid=14816` / `CHILD: got parent=0x190 usable=0 err=6 parent_winpid=14816`. **The child receives exactly the value minted, minted in the very process that calls `CreateProcessW`, for this spawn.** So `child_info.parent` is populated **correctly** — chasing what populates it for `_CH_EXEC` was the **wrong target**, and that was the supervisor's proposal. The defect is that a handle for which `bInheritHandle=TRUE` was **requested** at `DuplicateHandle`, passed with `bInheritHandles=TRUE`, **arrives with the correct numeric value and is absent from the child's handle table.** **PRECISION CORRECTION 2026-09-03 23:36 — the earlier phrasing "a handle DUPLICATED bInheritHandle=TRUE" stated an API REQUEST as an OBSERVED STATE. DuplicateHandle was CALLED with that flag (verified in source), but nobody had called GetHandleInformation on the handle at the CreateProcessW instant. The overclaim was the supervisor's and is corrected here. SUBSEQUENTLY MEASURED — but in a PURE-WIN32 REPLICATION faithful to sigproc.cc:938, NOT in the live runtime: HANDLE_FLAG_INHERIT IS actually set (flags=0x1) under BOTH permission sets, the child receives the handle valid at the same value, and ReadProcessMemory SUCCEEDS (64 bytes, pattern intact) — child_copy's core operation works. So the pure-Win32 call shape does NOT reproduce the failure, and the flag's state on the LIVE runtime's handle at the CreateProcessW instant remains UNMEASURED.** Two more candidates died with it: **storage class is not construction lifetime** (`child_info_spawn () {};` is empty; the real constructor runs via placement-new in `set()`, so construction is per-spawn), and **fork-ancestry of the minting process** (the `direct` arm has no fork in its ancestry and fails identically). Reproduced in pure Win32: inheritance **is** transitive when every generation passes `TRUE`, and a second arm reproduced `INVALID(err6)` at the correct transmitted value. **A fix is confirmed working in `execfix.dll` `8ffe979b` — `direct` exit 42 (was 2816), `forked` PASS (was SIGSEGV), stderr clean.**
 
 **THEN, only if identity confirms the handle IS present:** inspect whatever populates `child_info.parent` for `_CH_EXEC` and why it diverges from the handle the child inherits, given the fork path is correct in the same run. **If identity shows it is NOT present, this is the wrong target** — the defect is that the handle was never inherited. Reproduce with `hscan.ps1`, `rpm2.ps1` and `p4exec.c` — **none of which require a rebuild**, so this is not blocked by the build-reproducibility defects.
+
+</details>

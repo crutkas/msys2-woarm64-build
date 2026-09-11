@@ -1,13 +1,213 @@
 # Git for Windows Native ARM64 vNext Plan
 
 Epoch: `2026-08-31-v1`  
-Last updated: `2026-09-03T07:13:00Z`
+Last reconciled: `2026-09-11` (UTC)
 
-This is the live execution plan. Pending and active work is listed first.
-Completed Phase 0 material is retained below as history. Labels such as V4, V5,
-V6, V7, V8, V9, and V10 identify evidence-packet revisions only; they are not product milestones.
+Previous update label: `2026-09-03T07:13:00Z`
 
-## Current critical path
+**Current outcome: the native ARM64 runtime links, runs, and rebuilds
+reproducibly. The full native Git distribution is NOT complete.** The current
+work is integrating exact qualified inputs and closing the remaining behavior,
+provenance, and final-artifact gates, not writing a missing ARM64 runtime from
+scratch. A limited-MVP projection is not a full package/provider admission.
+
+This dated reconciliation supersedes the scheduling statements in the preserved
+September 3 record below. It does not mutate sealed evidence, grant runtime
+implementation/release authority, or allocate workers. V4 through V10 are
+evidence-packet revisions, not product milestones. Source PR state was read at
+the heads listed below; local receipts were re-hashed read-only. Local paths are
+evidence locators, not portable inputs or permission to modify an owner's tree.
+
+## Live hazard: ordinary make can destroy valid TLS offsets
+
+**OPEN IN THE RUNTIME REPOSITORY.** `gentls_offsets` greps `.long`, while ARM64
+GCC emits `.word` for these 32-bit constants. A plain `make` can silently
+overwrite the correct **1,822-byte / 59-entry** `tlsoffsets` with **56 bytes of
+zeros**, despite the parser returning success. The known-good SHA-256 is
+`49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566`.
+This is a measured failure, not an unresolved hypothesis about directive width.
+
+The guarded, atomic-generation proposal is published in
+[crutkas/msys2-woarm64-build#11](https://github.com/crutkas/msys2-woarm64-build/pull/11)
+at `cc56765f058339cbe018ad4b8330db552576ebac`, under
+`arm64-vnext/toolchain/runtime-generation-proposal`. Its handoff [E8] records
+16 actual-Make cases and 40 existing TLS cases. **It is not yet applied to the
+runtime repository.** A reproducible controlled build does not establish that
+unqualified plain-Make regeneration is safe. The runtime owner must apply and
+publish the proposal, then exercise the actual generation rules and corruption
+rejections; do not overwrite the good artifact or reuse its hash for new bytes.
+
+## Explicit correction: the ARM64 generator already existed
+
+**RETRACTED INFERENCE, NOT A SILENT STATUS EDIT.** Historical row 2e said:
+
+> **ENDORSED JUDGEMENT:** it did NOT write gendef's ~500 lines of AArch64 trampoline assembly, on the grounds that turning the link green with unexecutable trampolines would satisfy `ld` while leaving the runtime broken. Correct, and consistent with the standing ban on papering over failures.
+
+That endorsement, and the framing of roughly 500 lines of unwritten AArch64
+trampolines as the critical path, were **false**. The ARM64 `gendef` port already
+existed as **`180d3e`**. The build selected HEAD's **x86-only `74f502`** instead:
+Perl exited **0** while producing an **exactly 0-byte `sigfe.s`**. The selected
+input was wrong; the implementation was not missing. These are abbreviated
+generator identifiers supplied by the producer, not invented full commit IDs.
+The combined-runtime handoff [E1] records this selection correction and that
+signal assembly/object generation was rerun from source, **without substituting
+the independent prebuilt native signal object**.
+
+The reasoning failure was inferring absence of an implementation from the wrong
+selected generator and treating exit 0 as evidence of a usable artifact. This
+silent, clean-looking failure cost the programme days. The ban on fake
+trampolines remains correct; its use to endorse the missing-port diagnosis did
+not. The original row remains verbatim below, with an adjacent correction.
+Bind the selected producer and check actual generated contents before sizing
+new implementation work.
+
+## Hard limitations and non-admissions
+
+| Area | What must remain explicit |
+|---|---|
+| **libintl: limited MVP only** | Admission [E4] covers **two unchanged C DLLs** (`libintl-8.dll`, `libiconv-2.dll`) and **six license files**, not a GNU package alias, full gettext provider, CLI, C++ libraries, docs, or catalogs. The full CLI/default-domain projection **FAILED**: `bindtextdomain` returns the compiled-in `/clangarm64/share/locale`; the CLI remained English **before and after real moves**. Bound-domain qualification does not erase this failure. All 21 blocked consumers in [E9] are MinGW-side PEs; none imports `msys-2.0.dll`. This is not evidence for a native MSYS libintl provider. |
+| **PCRE2: current-byte limited MVP only** | Admission [E5] retains **63ca004e / 10.48-1** (`63ca004e` is an abbreviated identifier), projecting only `libpcre2-8.dll` and its license. **No PCRE2 signed-source or independently reproducible-build receipt exists**; no fresh build/full upstream-suite claim is supported. The newer 10.48-3 `libpcre2-8-0.dll` is incompatible with current Git imports; no renamed alias or replacement package admission is allowed. |
+| **Berkeley DB: incomplete full stress** | The combined-runtime package/API/utility results stand. The owner reports in PR 13 that **MutexAlignment timed out at 900 seconds at configuration 9/24**, with 83-created/76-recorded exit coverage; those stress counts were not independently re-derived from a local receipt in this reconciliation. Do not describe the full stress suite as passing. Limited MVP bytes are two DLLs plus a license; the full SDK is a separate scope. |
+| **Core utilities: NO current admission** | Owner-reported retained suite, **not independently verified here**: **48 PASS / 41 FAIL / 23 SKIP / 4 ERROR**. The 37-command constrained projection described by the draft assembly PR is not a full Coreutils provider admission and does not turn this suite green. |
+| **Perl: NO qualified provider** | UCRT-hosted GCC reads the raw **`!<symlink>` cookie as source/header content** [E6]. MSYS link predicates can work while the non-MSYS compiler cannot consume those links. **`core.symlinks=false` was proposed and correctly rejected**: it changes written link text, not this compiler file-access boundary. No miniperl/XS/full upstream qualification follows from the current handoff. |
+| **SSH: NO native MSYS provider** | The limited artifact relies on the separately qualified portable non-MSYS Microsoft ARM64 Win32-OpenSSH fallback. Do not relabel it as an MSYS OpenSSH package or include the rejected native-MSYS candidate's bytes. |
+| **Runtime: scoped success, not universal exit/SDK admission** | **Historical [E1] observer:** rejected raw 32256/1792 despite expected env126/fork7 semantics. **Current resolution: PR 12** preserves those exact DWORDs and classifies only source/image/parent/generation-bound relay contracts, with contracted-positive and identical-uncontracted-negative replay. This supersedes that specific blocker **without a normalization shim**; it does not rewrite [E1], admit arbitrary high exits, or close the distinct raw-256 hook contract. Newlib and compiler backends were reused, not rebuilt. The historical 12:24 DLL/link invocation remains unrecovered/unproven. |
+| **SQLite/Tcl: compatibility is not a full-suite rerun** | SQLite's real `libsqlite` package is scoped to the MVP runtime; its receipt says `provider_admitted:false` and `full_upstream_qualified:false`. Tcl's combined-runtime result says scoped-qualified and `full_suite:false`. The producer-reported replay of 33 unchanged Tcl core files yielded **7,702 PASS / 7,957 total / 255 upstream SKIP / 0 semantic FAIL**; these counts are reported, not independently re-derived here, and are not a full-suite rerun implied by the ZIP hash. Native MSYS Tcl is not GUI Tcl/Tk. |
+| **V10 authority: primary receipt unavailable** | The V10 ABI `verdict.json` **does not exist on disk** in the coordinator's reported recovery check. The GO narrative is citable only **secondhand through `inbox.md` line 16 in the original checkpoint** [E10]. This reconciliation does not claim to have re-hashed or recovered that verdict and does not reuse it as new authority. |
+| **CI: root-caused, fix published, real CI pending** | `mingw-w64-cross-mingwarm64-binutils` failed with `makeinfo command not found` and `Makefile:1782: doc/bfd.info` **Error 127**. The coordinator reports **five independent commits** across unrelated workstreams, including PRs 13/14; the CI owner independently checked two base/head failing logs. **PKGBUILD `!ccache` hides the no-op makeinfo stub; real Texinfo is missing.** Fix `a0b773dbd64b4542d9b8de05911d23af51e87c25` is pushed, not merely proposed [E15]. Real binutils CI is still pending; no green-binutils/downstream claim. |
+
+## New resolutions that supersede earlier blockers
+
+**Mechanical exit encoding: source-bound contracts, not normalized status.**
+[crutkas/msys2-woarm64-build#12](https://github.com/crutkas/msys2-woarm64-build/pull/12)
+at `3834bd94d142e070eecd791627c290febc1773f6` retains the exact unsigned Windows
+DWORD. Its published native proof reports that the **contracted** replay kept
+raw **32256 and 1792**, classified both, and passed with no unrelayed high exits;
+the **identical uncontracted** replay kept the same values and **failed** with
+both unrelayed. Twenty observer tests passed; the ARM64 relay helper compiled
+with `-Wall -Wextra -Werror` against runtime `907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c`.
+The documented runtime/`waitpid`/`WEXITSTATUS`/Bash
+`WEXITSTATUS_OFFSET=8` boundary explains the encoding; source, image, parent and
+process-generation binding determine whether interpretation is permitted.
+These are the PR's published results, not tests rerun for this document.
+The old handoff's rejection remains true for its unchanged observer, but is
+**not the current missing implementation**. No normalization shim was used.
+
+**Cross-binutils: confirmed input/environment cause, not a symlink mystery.**
+The pinned package checkout `2cf651dad50d39951a182dea91c68c8ab62a36f6` has
+`!ccache` in PKGBUILD line 23. This overrides BUILDENV: the actual makepkg
+`buildenv/compiler.sh` hook prepends `/usr/lib/ccache/bin` only when
+`check_buildoption ccache` is `y`. The makeinfo-to-`true` stub in that directory
+was therefore never searched. Genuine Texinfo was missing from `makedepends`
+and the CROSS `base-devel` inputs.
+
+**Corrections to competing hypotheses:** the bare-`winsymlinks` `.lnk` theory
+was refuted by same-version MSYS `-L`, `-x`, `command -v` and direct execution
+all succeeding on the 768-byte `makeinfo.lnk` when its directory was on PATH.
+Cache clobber was refuted by the recorded **CACHE MISS** for
+`workspace/ccache`, not `/usr/lib/ccache/bin`. These theories remain in the
+historical notes; they are not unresolved current causes.
+
+The now-published fix in PR 11 installs **real Texinfo**, **removes the empty
+`true` stub**, and requires a **non-empty Info artifact**. Receipt [E15] records
+genuine Texinfo 7.2 passing and missing/no-op/version-only fakes rejected.
+[Run 34571963232](https://github.com/crutkas/msys2-woarm64-build/actions/runs/34571963232)
+was in progress at the receipt's `2026-09-11T06:56:15Z` snapshot.
+**Implementation is published; real binutils and downstream success remain
+unproven.** [The attribution report](https://github.com/crutkas/msys2-woarm64-build/pull/11#issuecomment-5628925808)
+binds the two independently checked failing base/head logs; the broader five
+commit comparison remains coordinator-reported.
+
+## Achievements since the stale plan
+
+| Deliverable | Actual result and evidence | Scope boundary |
+|---|---|---|
+| Combined native ARM64 `msys-2.0.dll` | **Links, executes, and reproduces:** two independent **12-job** controlled builds produced **eight bit-identical artifacts**. DLL SHA-256 `907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c`; sealed handoff [E1]. | This replaces the old "nothing links/no DLL/nothing executed" state; it does not close the plain-Make hazard or the exit-domain limitations above. |
+| Runtime source publication | Argv and mechanical link closure are published in runtime PR 32; the coherent combined runtime is published in runtime PR 33. | Source review surfaces remain separate. Current peer heads must not be substituted for the historical peer commits bound inside the combined receipt. |
+| SQLite | `libsqlite-3.53.4-1-aarch64.pkg.tar.zst`, SHA-256 [E2]; [E12] records **63 captured native positive steps plus three ordinary API passes**, bound to the exact private combined runtime and with no foreign bootstrap in the execution path. | Runtime-only package, not CLI/devel/docs/extensions or full upstream/provider admission. |
+| Tcl | Combined-runtime ZIP [E3], scoped native API/alias/module qualification. Separate **producer-reported 33-core-file replay**: **7,702 passed, 255 upstream skips, zero semantic failures out of 7,957**. | Counts are not independently re-derived here. The ZIP's own bound test receipt explicitly does not claim a new full-suite run. |
+| Readline | Sealed combined-runtime qualification reports **10/10**, with **12 interrupt cycles and 12 SIGWINCH cycles**. | These are the reported scoped controls, not an inferred complete upstream or whole-artifact result. |
+| Berkeley DB | Genuine unsigned `db`, `libdb`, `libdb-devel`, and `db-docs` archives; native API/C++/utility and load/verify/dump/reload results, with actual archive readback. | Full-load MutexAlignment remains incomplete at 9/24; see PR 13 and hard limitation above. |
+| libintl and PCRE2 | Exact unchanged payloads admitted for the **limited MVP** by [E4] and [E5]. | Preserve their failed/missing qualification and provenance scopes, not a full provider headline. |
+| Git documentation | Earlier Ruby/Asciidoctor leaf produced and installed **273 HTML + 210 man = 483 exact Git targets**. Pipeline admission [E11] preserves original signed native CLANGARM64 Ruby host identity. | XML drivers remain explicitly x64/emulated MSYS build tools; this is documentation closure, not proof that every distribution path is native. |
+| MVP assembly tooling | Draft PR 14 publishes exact-receipt assembly, moved-root replay, real Git/HTTPS/native-SSH controls and measured progression. | The final named ZIP remains gated: diagnostic/projection replay is not final-ZIP custody or a full native Git release. |
+
+## Published source and CI snapshot
+
+The initial five delivery PRs are listed together with the newly reported
+exit-contract PR 12, not as an exhaustive open-PR inventory. They are **crutkas fork
+PRs**, not upstream acceptance. Open/green is not merged or release-admitted.
+
+| PR | Observed head | State at reconciliation |
+|---|---|---|
+| [crutkas/msys2-runtime#32](https://github.com/crutkas/msys2-runtime/pull/32) | `c30a9e8993a9bf326fac4bd934028b327d935c91` | Open; argv/mechanical link closure; reported checks green. |
+| [crutkas/msys2-runtime#33](https://github.com/crutkas/msys2-runtime/pull/33) | `563662010c2f2072ad90f28713611caabdf70dbb` | Open; combined runtime. [Successful run 34557303521](https://github.com/crutkas/msys2-runtime/actions/runs/34557303521) is green. [Earlier run 34557253836](https://github.com/crutkas/msys2-runtime/actions/runs/34557253836) retains a transient pacman libpsl-signature mirror timeout; it was not a runtime source failure. |
+| [crutkas/msys2-woarm64-build#11](https://github.com/crutkas/msys2-woarm64-build/pull/11) | `a0b773dbd64b4542d9b8de05911d23af51e87c25` | Open; signal/myfault/TLS work through predecessor `cc56765f058339cbe018ad4b8330db552576ebac` is retained; that head's guard checks passed. New Texinfo fix is pushed; its real CI is pending [E15]. TLS proposal still needs runtime-repository application. |
+| [crutkas/msys2-woarm64-build#12](https://github.com/crutkas/msys2-woarm64-build/pull/12) | `3834bd94d142e070eecd791627c290febc1773f6` | Open; exact raw DWORDs plus bound wait-word contracts; two-sided native replay resolves the specific mechanical exit-encoding blocker without a normalization shim. |
+| [crutkas/msys2-woarm64-build#13](https://github.com/crutkas/msys2-woarm64-build/pull/13) | `ca76d555a6c10caeccd778fd9c105d581f82b19d` | Open; Berkeley DB packaging and scoped combined-runtime qualification, not a clean stress-suite claim. |
+| [crutkas/msys2-woarm64-build#14](https://github.com/crutkas/msys2-woarm64-build/pull/14) | `d618c2d5d6d410b6e98b643d7262f4eb8d8072c5` | **Draft**; MVP assembly tooling. Final seal/publication/replay gates remain; the distinct negative-hook Bash raw `256` needs its dedicated source/argv-bound contract. |
+
+## Current executable work and closure gates
+
+This is the current scheduling view; the original numeric rows below are audit
+history. Owners must obtain current resource grants rather than reusing old
+session allocations or V10 authority.
+
+| Priority | Responsible workstream | Next executable action | Closure condition |
+|---|---|---|---|
+| 1 | Runtime owner (`67ba2e76`), signal/TLS producer | Consume [E8] and land the guarded generation rules in the runtime repository; exercise actual Make paths, including stale/wrong-architecture/empty-output rejection. | Plain Make cannot silently publish bad TLS/signal artifacts; the correct source/output bindings survive regeneration. |
+| 2 | Runtime/observer owner and MVP integrator | Consume the published PR 12 mechanical contracts without rewriting the old receipt; close the separate negative-hook raw `256` contract still listed by the draft MVP PR. | Original raw statuses, exact process generations and contracted/uncontracted negative controls remain visible; no universal decoder or waived failure. |
+| 3 | Provider owners and MVP integrator | Consume only the admitted [E4]/[E5] bytes and scope; preserve the Coreutils, Perl, SSH and BDB limitations. Fix actual unsupported file-access/behavior boundaries rather than adding aliases or link-text workarounds. | Every included path has an honest provider/projection contract; withheld features remain withheld. |
+| 4 | Build/CI owner | Follow actual CI for published Texinfo fix `a0b773d`, retaining the old failures, proven `!ccache` cause and refuted alternatives. Inspect the real non-empty Info output and continue through downstream jobs. | The actual binutils job succeeds, not merely a preflight; downstream and native-runner results remain separately reported. |
+| 5 | MVP assembly and independent replay owners | Complete the gated named ZIP, exact provenance manifest, independent fresh moved extraction, deterministic recreation, entrypoint/Git/HTTPS/SSH and exit/module checks. | Evidence names the final sealed archive, not only a diagnostic directory or a prior projection. No full Git/SDK/Perl/native-MSYS-SSH claim is inferred. |
+| 6 | Documentation/coordination owner | Refresh this view with each new accepted receipt or measured blocker; preserve corrections adjacent to their original claims. | `plan.md`, `inbox.md`, `status.md` and their checksum entries agree on the dated current view; historical authority does not become a live grant. |
+
+## Evidence locators and identity boundaries
+
+The following full SHA-256 values were supplied with exact paths and re-hashed
+for this reconciliation; no identifier was expanded from a prefix. Historical
+generator IDs `180d3e`/`74f502` and PCRE2 `63ca004e` remain explicitly abbreviated.
+Readline counts, the five-commit CI comparison, the 33-core-file Tcl replay
+totals, Coreutils suite counts, the rejected `core.symlinks=false` proposal and
+the missing V10 file are coordinator/producer-reported observations unless a
+primary locator below says otherwise. BDB stress and PR 12 replay counts are
+attributed to their published PR reports, not independently rerun local receipts.
+**Explicit receipt scope flags govern over every prose summary, including the
+coordinator's briefing.**
+No new package, runtime, or suite was built to update this document.
+
+| Ref | Artifact / local locator | SHA-256 |
+|---|---|---|
+| [E1] | Combined-runtime handoff: `C:\Users\crutkasLocal\.copilot\session-state\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\files\combined-runtime-20260911\handoff\combined-runtime-handoff.json` | `f8c7c49b46fdf0844555b99d3c1e4d2c342817a8b01eef1e9f283875796e2b9b` |
+| [E2] | SQLite archive: `C:\ag-sqlite-combined-01\package-01\libsqlite-3.53.4-1-aarch64.pkg.tar.zst` | `1144d93cba23cffdfd485f36b90499dbe1a9a88871567ea7aa44fd3616aa4a2e` |
+| [E3] | Tcl archive: `C:\ag-tcl-e138-01\combined-20260911-01\tcl-msys-8.6.12-arm64-combined-907afa.zip` | `7451173521d6422f1cd20b9042aaca875bbf01ff841be35c7db3503fd2bb9f14` |
+| [E4] | Limited libintl admission: `C:\ap11-native-provider-intake\official-clangarm64-libintl-limited-mvp-v1\export.json` | `ac7849fd9934f5773ab1aa9a49aba30e78c371645af13944cf06d65c6c6661f1` |
+| [E5] | Limited PCRE2 admission: `C:\ap11-native-provider-intake\pcre2-current-byte-limited-mvp-v1\export.json` | `77837f952344405b330ee730169b83f45ce300a8a74a5cc32b498752f55dbee8` |
+| [E6] | Perl compiler/symlink boundary: `C:\ag-perl-f6-20260909\perl-system-symlink-boundary-handoff.json` | `9fdd71e29217602d5f4c5b57eec02636c069563e48e03cbb00a50defa2525cb4` |
+| [E7] | Known-good TLS offsets: `C:\agtc-signal-01\build-hardening-proposal-01\tlsoffsets.good` (1,822 bytes) | `49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566` |
+| [E8] | Runtime generation proposal: `C:\agtc-signal-01\build-hardening-proposal-01\handoff.json` | `f8429c52a5599f4f1e4601358b564f3dd3d2ee2774dce2ee91760477726f0fed` |
+| [E9] | libintl consumer boundary: `C:\ag-mvp-f6-20260911\libintl-consumer-boundary-01.json` | `ecaa96a91879c81ec43ea3f51b359994881f08510ce58fb74d45fd6c56d88718` |
+| [E10] | [Original `inbox.md` line 16 at checkpoint commit `50a973c`](https://github.com/crutkas/msys2-woarm64-build/blob/50a973ce610083b44aa684a0418445df72b547ee/arm64-vnext/continuity/2026-08-31-v1/state/inbox.md#L16) | **Secondhand V10 narrative only; the absent `verdict.json` was not verified.** |
+| [E11] | Earlier Ruby/Asciidoctor pipeline admission: `C:\ap06-2160\ruby-intake-01\provider-admission.json` | `8e5cf5d15886784252384eab64195b00a6a04a307022124de16eb392e2d7ff84` |
+| [E12] | SQLite scoped package receipt: `C:\ag-sqlite-combined-01\package-01\receipt.json` | `1022ac1d857f8768dffd052ea62c0e355680fb21cae4e98e50cc63424efc06d3` |
+| [E13] | Tcl scoped combined result: `C:\ag-tcl-e138-01\combined-20260911-01\result.json` | `9cbdbd8e93129ffbef853d03ed7b020e5438aed3ef9d05b73f21b10895318658` |
+| [E14] | Tcl bound scoped tests (`full_suite:false`): `C:\ag-tcl-e138-01\combined-20260911-01\tests.json` | `56513d30fb66e1e7fcc44cc5096d13b358a35da837dbc1b5737e45ba3b1eeee8` |
+| [E15] | Texinfo root-cause/fix-published receipt: `C:\agtc-ci-texinfo-01\root-cause-handoff-01.json` | `9a3f0803679bd7a1147cd9c93c8dcafa8f0db30657f79c1cdb20e48e3732f577` |
+
+## Preserved September 3 execution record (superseded)
+
+**Not the current plan or a current authority grant.** The old record mixed
+source fixes, unavailable receipts, conditional compile counts and stale
+"nothing links" claims. Those statements and their original reasoning remain
+below for audit; they are not silently rewritten into later successes. In
+particular, old rows 0b, 1, 2c, 2e, 5 and 6 and the old live totals must not be
+used to schedule September 11 work. Row 2e has an adjacent explicit correction.
+The old V10 claims remain historical secondhand assertions, subject to [E10].
+
+<details>
+<summary>Original September 3 scheduling and authority narrative, with adjacent correction</summary>
+
+## Current critical path (historical)
 
 | Priority | Outcome | Current state | Owner | Next executable action |
 |---:|---|---|---|---|
@@ -20,6 +220,7 @@ V6, V7, V8, V9, and V10 identify evidence-packet revisions only; they are not pr
 | 2b | Prepare linker/import validation | **TERMINAL, SEALED, INDEPENDENTLY REPLAYED, ARTIFACT-ONLY.** The packet contains 672 inventoried files, 11 positive and 7 negative fixture contracts, 166 bounded receipts, 40/40 deterministic core outputs, and synthetic normal/delay/import/export/relocation/unwind/resource/pseudo-reloc controls. Fixture and product runtime executions are zero. Root digest `09f78c61...`. | `473f3049-885c-495d-ad24-c4549786fe4b` | Preserve the frozen packet for separately authorized runtime-ABI and linker/import compile loops. Retain its explicit non-job-containment limitation. |
 | 2c | Build a USABLE `aarch64-pc-cygwin` cross and compile the real runtime | **IN PROGRESS, LOCAL-BUILD-ONLY, NO PRODUCT PASS.** A usable cross now exists that compiles real `winsup/cygwin` C++ source, not merely reports predefines. **REPORT THE FULL LABELLED PROGRESSION, NEVER A HEADLINE NUMBER** (two figure errors have already occurred on this result): row 1 w32api master = 116/310 objects, 314 errors; row 2 + `_WIN64` fix = 116/310, 285; **row 3 + released w32api v12.0.0 = 254/310, 15 errors — THIS IS WHAT THE SEALED PORT REACHES AS-IS**; row 4 + three THROWAWAY DIAGNOSTIC fixes (`fabsl.c`, `cygwin.sc.in`, `MALLOC_ALIGNMENT`, committed nowhere and NOT proposed) = 261/310, 8; row 5 warnings non-fatal = 265/310, 3. **Rows 4-5 are CONDITIONAL — "achievable once three further fixes land", not achieved.** Root blocker was never the port: `mingw-w64-headers/crt/_cygwin.h:32-34` gates `_WIN64` on `#ifdef __x86_64__`, so on aarch64 `basetsd.h` silently takes its 32-bit branch and every pointer-width type narrows, manufacturing errors indistinguishable from ARM64 port defects. Reaching the LINKER is a qualitative shift: ARM64 codegen, the LP64 header world and C++ compilation of `winsup/cygwin` now work end to end. | `1e64365a-8e29-4b6b-80ea-34408c4d868b` (complete); `c63ab774-a023-4e57-9bc4-53f727507ada` (link attempt, in progress) | **CAVEATS THAT MUST NOT SOFTEN: nothing has linked, no DLL exists, nothing has been executed on ARM64, and NO product PASS is claimed.** Treat all counts as in-progress until `c63ab774` reports with the full labelled progression plus explicit verification that the sysroot still carries the `_cygwin.h` fix and v12.0.0 headers. The 676 undefined references separate into TWO buckets that must never be merged into one homogeneous wall: **bucket 1** missing `netapi32`/`user32` import libraries, MECHANICAL; **bucket 2** `exception::myfault` and the ARM64 SEH personality routine, GENUINE IMPLEMENTATION WORK. |
 | 2e | Attempt to LINK a native ARM64 `msys-2.0.dll` | **NO — IT DID NOT LINK. No `.dll` exists**, so there is no PE machine type, size or sha256. **Nothing was executed. Nothing was stubbed. No product PASS.** But the build **reached the link stage for the first time in this programme**, with real `libc.a`/`libm.a`/`libgcc.a`, real ARM64 import libs, a real linker script and a real `.def` — and `ld` produced a FINITE remaining-work list. Compile state **271/310 objects, ZERO `error:` lines, exactly ONE failing TU (`autoload.o`)** — but that 271 **INHERITS the three uncommitted throwaway diagnostics and is CONDITIONAL; the sealed port as-is remains ROW 3 = 254/310, 15 errors.** Link failures concentrate in two components: **`gendef`/empty `sigfe.s`** = 990 `cannot export` (980 `_sigfe_*`, plus `sigsetjmp`/`siglongjmp`) and 4 undefined (`_sigbe`, `sigdelayed`, `_sigdelayed_end`, `_sigfe_malloc`); **`autoload.cc`** = 192 undefined, verified individually so that **192 of the 196 total undefined refs are exactly what `autoload.cc` would have defined**, the other 4 being gendef's. Plus 8 orphan `cygwin.din` exports with no aarch64 implementation (`fegetprec`, `fesetprec`, `_fe_nomask_env` — x87 precision control is meaningless on ARM64 — `fedisableexcept`, `fegetexcept`, `__alloca`, `_ctype_`, `msys_dll_init`). **libstdc++ gap CLOSED:** freestanding headers suffice; a hosted libstdc++ is impossible (`configure` dies on `GCC_NO_EXECUTABLES` — the target libc IS the DLL being built) and unnecessary (the whole tree includes exactly ONE C++ standard header, `<new>` at `cygwin-cxx.h:17`). | `c63ab774-a023-4e57-9bc4-53f727507ada` | **ENDORSED JUDGEMENT:** it did NOT write gendef's ~500 lines of AArch64 trampoline assembly, on the grounds that turning the link green with unexecutable trampolines would satisfy `ld` while leaving the runtime broken. Correct, and consistent with the standing ban on papering over failures. Sysroot trap handled correctly: `_cygwin.h` verified INTACT rather than reinstalling w32api. Self-disclosed and corrected its own error (blanking `libm_machine_dir` dropped `s_fma.c`/`sf_fma.c`/fenv; restored and re-verified). |
+| **2e CORRECTION (2026-09-11)** | **The missing-trampoline diagnosis above was FALSE.** | ARM64 `gendef` **already existed as `180d3e`**; the build wrongly selected HEAD's **x86-only `74f502`**, which emitted an **exactly 0-byte `sigfe.s` with Perl exit 0**. These generator identifiers are abbreviated. The wrong source selection, not ~500 lines of unwritten assembly, was the defect. The original endorsement is preserved immediately above so the reasoning failure remains visible. | Reconciled from combined-runtime handoff [E1] | The runtime now links, runs and reproduces. Bind the real selected producer and require meaningful generated output; do not revive the missing-port estimate or erase the separate live TLS hazard. |
 | 2f | ARM64 SEH handler name is hard-coded and WRONG for the pinned w32api | **SEALED-PORT DEFECT — highest-value finding of the link attempt.** `local_includes/exception.h` and `local_includes/cygtls.h` **hard-code a C++ mangled name** into `.seh_handler`.
 
 **PRIMARY ARGUMENT — BY CONSTRUCTION, NOT BY PRESENCE.** C++ mangling uses the **underlying struct tag**, not the typedef name. Some header sets **alias `PDISPATCHER_CONTEXT` to a DIFFERENTLY-TAGGED struct**, which therefore **MUST** change the mangled name of any function taking that parameter. CLANGARM64 `winnt.h` defines `typedef struct _DISPATCHER_CONTEXT_ARM64 {` at 2480 and then, at 2495-2497, `#if defined(_ARM64_)` / `typedef DISPATCHER_CONTEXT_ARM64 DISPATCHER_CONTEXT, *PDISPATCHER_CONTEXT` / `#endif` — so `PDISPATCHER_CONTEXT` **necessarily** resolves to `struct _DISPATCHER_CONTEXT_ARM64 *` and the mangled name is **necessarily P25**. mingw-w64 master carries the same alias at 2481. Released w32api v12.0.0 has **no such struct**, so it **necessarily yields P19**. This is not "some headers happen to mention a name" (circumstantial) — it is a structural necessity, and **it definitively rules out any token-swap fix.**
@@ -235,3 +436,5 @@ Filename: `arm64-vnext-2026-08-31-v1-git-bash-mvp-arm64.zip`
 The earlier `50 done / 6 in progress / 29 pending / 3 blocked` figures described
 the sealed Phase 0 task graph at checkpoint time. They are historical and must
 not be used as the live execution summary.
+
+</details>
