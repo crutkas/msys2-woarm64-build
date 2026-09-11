@@ -1,0 +1,128 @@
+{
+  "schema": 1,
+  "status": "frozen-bash-v5-rejection-superseded-by-relocatable-provider",
+  "supersedes": {
+    "producer_handoff": {
+      "path": "C:\\ag-bash-e138-01\\bash-provider-handoff-01\\handoff.json"
+    },
+    "provider_rejection": {
+      "path": "C:\\ap11-native-provider-intake\\bash-packaged-candidate-v5\\admission-rejection.json",
+      "sha256": "11bf138053d4fc0aca50c4de72332d987fe9cb683b9a9fb6e03aae9861e25dd0"
+    }
+  },
+  "provider_export": {
+    "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\export.json",
+    "sha256": "f485f6e2b0ee76fe44fc1b416354367c1325d46a9d30efa39a884d7f472c747c"
+  },
+  "producer_handoff": {
+    "path": "C:\\ag-bash-e138-01\\bash-provider-handoff-02\\handoff.json",
+    "sha256": "f1aaeac6acb81efe8163cad3ea08a8f6432f7a77a9b1e2d0dae48b10efd8d58f"
+  },
+  "packages": [
+    {
+      "name": "bash",
+      "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\package\\packages\\bash-5.3.015-2-aarch64.pkg.tar.zst",
+      "sha256": "c5e117fe9879bb68461db887da49e75415c2b27189272160a0da0b22e1179a90"
+    },
+    {
+      "name": "bash-devel",
+      "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\package\\packages\\bash-devel-5.3.015-2-aarch64.pkg.tar.zst",
+      "sha256": "d099a5a0a1cce462b4b5fb25dda479a3412bb1816cfd2408728e432db1f97189"
+    }
+  ],
+  "exact_stage_ownership": {
+    "bash_files": 170,
+    "bash_packaged_files": 169,
+    "bash_devel_files": 113,
+    "total_files": 283,
+    "bash_provides": [
+      "sh"
+    ],
+    "bash_dependencies": [
+      "libiconv",
+      "libintl"
+    ],
+    "bash_devel_dependencies": [
+      "bash=5.3.015-2"
+    ],
+    "normal_makepkg_exclusions": [
+      "usr/share/info/dir"
+    ]
+  },
+  "package_time_text_relocation": {
+    "path": "usr/lib/bash/Makefile.inc",
+    "source_sha256": "9c328267b219dcf0b51bf82b5e931fe559f1074370197cc8fe7d68879bf0ff14",
+    "package_sha256": "781afe65d5f243c333bc082f687a7e6a30fb3f5536aeef2e72d71b633a745e4b",
+    "replacements": {
+      "BUILD_DIR = /c/ag-bash-e138-01/bash-full-immutable-18/source": "BUILD_DIR = /usr/src/bash",
+      "CPPFLAGS = -DWORDEXP_OPTION -DLIBINTL_STATIC -DLIBICONV_STATIC -DNCURSES_STATIC -IC:/ag-bash-e138-01/bash-sdk-relocatable-02/stage/usr/include -IC:/ag-bash-e138-01/bash-sdk-relocatable-02/stage/usr/include/ncursesw -I/c/ag-bash-e138-01/bash-sdk-relocatable-02/stage/usr/include": "CPPFLAGS = -DWORDEXP_OPTION -DLIBINTL_STATIC -DLIBICONV_STATIC -DNCURSES_STATIC -I/usr/include -I/usr/include/ncursesw",
+      "SHOBJ_LDFLAGS = -shared -Wl,--enable-auto-import -Wl,--enable-auto-image-base -Wl,--export-all -Wl,--out-implib,$@.a -Wl,--no-insert-timestamp -LC:/ag-bash-e138-01/bash-sdk-relocatable-02/stage/usr/lib -static": "SHOBJ_LDFLAGS = -shared -Wl,--enable-auto-import -Wl,--enable-auto-image-base -Wl,--export-all -Wl,--out-implib,$@.a -Wl,--no-insert-timestamp -L/usr/lib -static",
+      "SHOBJ_LIBS = /c/ag-bash-e138-01/bash-full-immutable-18/source/libbash.dll.a -lintl -liconv": "SHOBJ_LIBS = /usr/lib/libbash.dll.a -lintl -liconv"
+    }
+  },
+  "unchanged_binaries": {
+    "bash": {
+      "path": "usr/bin/bash.exe",
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+    },
+    "sh": {
+      "path": "usr/bin/sh.exe",
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+    },
+    "loadable_count": 40
+  },
+  "readback": {
+    "bash": [
+      "bash:5.3.15(2)-release:42"
+    ],
+    "sh": [
+      "sh:42"
+    ],
+    "loadable": [
+      "ok"
+    ],
+    "dependencies": [
+      {
+        "name": "msys-2.0.dll",
+        "sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d"
+      },
+      {
+        "name": "msys-iconv-2.dll",
+        "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215"
+      },
+      {
+        "name": "msys-intl-8.dll",
+        "sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c"
+      }
+    ],
+    "dependency_bytes_admitted_as_packages": false
+  },
+  "canonical_locale_evidence": [
+    {
+      "path": "usr/bin/bash.exe",
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+      "locale": "/usr/share/locale"
+    },
+    {
+      "path": "usr/bin/sh.exe",
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+      "locale": "/usr/share/locale"
+    },
+    {
+      "path": "usr/lib/bash/fltexpr.exe",
+      "sha256": "9493348dc9527579985934cecb6b9c835043b78fe4c38a39ceca1508a21b8979",
+      "locale": "/usr/share/locale"
+    }
+  ],
+  "blocking_operational_paths": [],
+  "controls": {
+    "source_rebuilt_by_intake": false,
+    "producer_stage_modified": false,
+    "executable_bytes_modified": false,
+    "loadable_bytes_modified": false,
+    "frozen_v5_bytes_reused": false,
+    "frozen_v5_rejection_modified": false,
+    "release_eligible": true,
+    "release_archive_emitted": false
+  }
+}

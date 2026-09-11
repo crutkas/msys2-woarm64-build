@@ -1,0 +1,529 @@
+{
+  "schema": 1,
+  "status": "complete-raw-interactive-evidence",
+  "pid": 28600,
+  "creation_filetime": 134335841706970078,
+  "command": [
+    "C:\\Program Files\\Python314-arm64\\python.exe",
+    ".\\arm64-git-recovery\\native\\run-bash907-interactive.py",
+    "jobs-single-907-01",
+    "--focus-jobs",
+    "--pipeline",
+    "sleep 60"
+  ],
+  "compile_command": [
+    "C:\\ag-readline-e138-01\\combined-20260911-01\\compiler\\bin\\gcc.exe",
+    "-O2",
+    "-g",
+    "-Werror",
+    "-fstack-protector-strong",
+    "-Wl,--no-insert-timestamp",
+    "-Wl,-t",
+    "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\native-bash907-pty.c",
+    "-o",
+    "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash907-pty.exe",
+    "-lutil"
+  ],
+  "jobs": 1,
+  "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "bash_sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+  "input_receipt_sha256": "7401311e846a014d8dbc7c0ee834814a7c5a6b13ac600ac6b28f09e65f9adf66",
+  "source_sha256": "c3c7d58c51e2f2961077585303ac2109f7b9962034e5fe9a740a0546b4fef597",
+  "minimum_free_gib": 31.137638092041016,
+  "focus_jobs": true,
+  "direct_group_signal": false,
+  "pipeline": "sleep 60",
+  "baseline_d70": false,
+  "expected_cases": [
+    "native-shell-identity",
+    "job-suspend",
+    "job-background-resume",
+    "job-foreground-ctrl-c-pipeline",
+    "background-wait-status",
+    "normal-exit-terminal-restored"
+  ],
+  "cpu_budget": {
+    "original_mask": 1048575,
+    "inherited_mask": 1,
+    "maximum_cpus": 1,
+    "test_cases_or_required_threads_removed": false,
+    "original_affinity_restored": true
+  },
+  "fixture_pe": {
+    "machine": "0xAA64",
+    "format": "PE32+",
+    "dll": false,
+    "sha256": "1bb21423797d64b1322b0086af06e5638ab7c3f640e845fb1be59c14b05b0823"
+  },
+  "process": {
+    "passed": false,
+    "pid": 15508,
+    "exit": 0,
+    "timed_out": false,
+    "created_processes": 10,
+    "observed_processes": 10,
+    "windows_error_dialogs": "suppressed only in this launch and its inheriting children",
+    "native_observation": {
+      "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\run\\native-job.json",
+      "sha256": "4fd57fada1ab98ac73cea0a7cee0026c61a003db98ce8be85d626b3724505345",
+      "driver_manifest_sha256": "8cbbb4e35af9421fc7ebf23337b92ed35b2e9f923d29db854049c9f5164d1885"
+    }
+  },
+  "raw_observation": {
+    "parent_pid": 15508,
+    "parent_raw_exit": 0,
+    "timed_out": false,
+    "created_processes": 10,
+    "observed_processes": 10,
+    "observation_count_matches": true,
+    "unobserved_processes": [],
+    "unresolved_processes": [],
+    "native_target_exits": [
+      {
+        "pid": 16156,
+        "created": 134335841796372742,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash907-pty.exe",
+        "raw_exit": 0,
+        "parent_pid": 24044,
+        "parent_created": 134335841791467366
+      },
+      {
+        "pid": 7868,
+        "created": 134335841836811042,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+        "raw_exit": 0,
+        "parent_pid": 25644,
+        "parent_created": 134335841824280843
+      },
+      {
+        "pid": 17436,
+        "created": 134335841841247142,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+        "raw_exit": 0,
+        "parent_pid": 25644,
+        "parent_created": 134335841824280843
+      },
+      {
+        "pid": 26940,
+        "created": 134335841843767030,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+        "raw_exit": 0,
+        "parent_pid": 25644,
+        "parent_created": 134335841824280843
+      },
+      {
+        "pid": 22304,
+        "created": 134335841838846450,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\sleep.exe",
+        "raw_exit": 2,
+        "parent_pid": 7868,
+        "parent_created": 134335841836811042
+      },
+      {
+        "pid": 7252,
+        "created": 134335841848843600,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+        "raw_exit": 4352,
+        "parent_pid": 25644,
+        "parent_created": 134335841824280843
+      },
+      {
+        "pid": 25644,
+        "created": 134335841824280843,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+        "raw_exit": 0,
+        "parent_pid": 16156,
+        "parent_created": 134335841796372742
+      },
+      {
+        "pid": 24044,
+        "created": 134335841791467366,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash907-pty.exe",
+        "raw_exit": 0,
+        "parent_pid": 15508,
+        "parent_created": 134335841782110665
+      }
+    ],
+    "unrelayed_high_exits": [
+      {
+        "pid": 7252,
+        "created": 134335841848843600,
+        "executable": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+        "raw_exit": 4352,
+        "parent_pid": 25644,
+        "parent_created": 134335841824280843
+      }
+    ],
+    "expected_probe_exits": [],
+    "runtime_exit_relays": [],
+    "image_query_recoveries": [],
+    "native_target_root": "\\device\\harddiskvolume3\\ag-bash907-20260911-01",
+    "native_target_root_error": null,
+    "passed": false
+  },
+  "semantics": {
+    "status": "interactive-native-semantics-passed",
+    "expected_cases": [
+      "native-shell-identity",
+      "job-suspend",
+      "job-background-resume",
+      "job-foreground-ctrl-c-pipeline",
+      "background-wait-status",
+      "normal-exit-terminal-restored"
+    ],
+    "controller_identity": {
+      "pid": 24044,
+      "creation_filetime": 134335841791467366,
+      "image": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash907-pty.exe",
+      "machine": 43620,
+      "attributes": 3,
+      "modules": [
+        {
+          "name": "bash907-pty.exe",
+          "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash907-pty.exe",
+          "sha256": "1bb21423797d64b1322b0086af06e5638ab7c3f640e845fb1be59c14b05b0823",
+          "pe": {
+            "machine": "0xAA64",
+            "format": "PE32+",
+            "dll": false
+          }
+        },
+        {
+          "name": "ntdll.dll",
+          "path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+          "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+        },
+        {
+          "name": "KERNEL32.DLL",
+          "path": "C:\\Windows\\System32\\KERNEL32.DLL",
+          "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+        },
+        {
+          "name": "KERNELBASE.dll",
+          "path": "C:\\Windows\\System32\\KERNELBASE.dll",
+          "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+        },
+        {
+          "name": "msys-2.0.dll",
+          "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\msys-2.0.dll",
+          "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "pe": {
+            "machine": "0xAA64",
+            "format": "PE32+",
+            "dll": true
+          }
+        },
+        {
+          "name": "advapi32.dll",
+          "path": "C:\\Windows\\System32\\advapi32.dll",
+          "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+        },
+        {
+          "name": "msvcrt.dll",
+          "path": "C:\\Windows\\System32\\msvcrt.dll",
+          "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+        },
+        {
+          "name": "sechost.dll",
+          "path": "C:\\Windows\\System32\\sechost.dll",
+          "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+        },
+        {
+          "name": "RPCRT4.dll",
+          "path": "C:\\Windows\\System32\\RPCRT4.dll",
+          "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+        },
+        {
+          "name": "CRYPTBASE.DLL",
+          "path": "C:\\Windows\\SYSTEM32\\CRYPTBASE.DLL",
+          "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+        },
+        {
+          "name": "bcryptPrimitives.dll",
+          "path": "C:\\Windows\\System32\\bcryptPrimitives.dll",
+          "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+        },
+        {
+          "name": "netapi32.dll",
+          "path": "C:\\Windows\\system32\\netapi32.dll",
+          "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+        },
+        {
+          "name": "SAMCLI.DLL",
+          "path": "C:\\Windows\\SYSTEM32\\SAMCLI.DLL",
+          "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+        },
+        {
+          "name": "ucrtbase.dll",
+          "path": "C:\\Windows\\System32\\ucrtbase.dll",
+          "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+        },
+        {
+          "name": "SAMLIB.dll",
+          "path": "C:\\Windows\\SYSTEM32\\SAMLIB.dll",
+          "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+        },
+        {
+          "name": "NETUTILS.DLL",
+          "path": "C:\\Windows\\SYSTEM32\\NETUTILS.DLL",
+          "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+        }
+      ]
+    },
+    "bash_identity": {
+      "pid": 25644,
+      "creation_filetime": 134335841824280843,
+      "image": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+      "machine": 43620,
+      "attributes": 3,
+      "modules": [
+        {
+          "name": "bash.exe",
+          "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\bash.exe",
+          "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+          "pe": {
+            "machine": "0xAA64",
+            "format": "PE32+",
+            "dll": false
+          }
+        },
+        {
+          "name": "ntdll.dll",
+          "path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+          "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+        },
+        {
+          "name": "KERNEL32.DLL",
+          "path": "C:\\Windows\\System32\\KERNEL32.DLL",
+          "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+        },
+        {
+          "name": "KERNELBASE.dll",
+          "path": "C:\\Windows\\System32\\KERNELBASE.dll",
+          "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+        },
+        {
+          "name": "USER32.dll",
+          "path": "C:\\Windows\\System32\\USER32.dll",
+          "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383"
+        },
+        {
+          "name": "win32u.dll",
+          "path": "C:\\Windows\\System32\\win32u.dll",
+          "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335"
+        },
+        {
+          "name": "GDI32.dll",
+          "path": "C:\\Windows\\System32\\GDI32.dll",
+          "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc"
+        },
+        {
+          "name": "ucrtbase.dll",
+          "path": "C:\\Windows\\System32\\ucrtbase.dll",
+          "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+        },
+        {
+          "name": "gdi32full.dll",
+          "path": "C:\\Windows\\System32\\gdi32full.dll",
+          "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb"
+        },
+        {
+          "name": "msvcp_win.dll",
+          "path": "C:\\Windows\\System32\\msvcp_win.dll",
+          "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4"
+        },
+        {
+          "name": "sechost.dll",
+          "path": "C:\\Windows\\System32\\sechost.dll",
+          "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+        },
+        {
+          "name": "msys-2.0.dll",
+          "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\msys-2.0.dll",
+          "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "pe": {
+            "machine": "0xAA64",
+            "format": "PE32+",
+            "dll": true
+          }
+        },
+        {
+          "name": "msys-iconv-2.dll",
+          "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\msys-iconv-2.dll",
+          "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "pe": {
+            "machine": "0xAA64",
+            "format": "PE32+",
+            "dll": true
+          }
+        },
+        {
+          "name": "msys-intl-8.dll",
+          "path": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin\\msys-intl-8.dll",
+          "sha256": "eef1befd674c9febcfe769601d8e10a1022b00dabffa383b866847b935eb054d",
+          "pe": {
+            "machine": "0xAA64",
+            "format": "PE32+",
+            "dll": true
+          }
+        },
+        {
+          "name": "advapi32.dll",
+          "path": "C:\\Windows\\System32\\advapi32.dll",
+          "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+        },
+        {
+          "name": "msvcrt.dll",
+          "path": "C:\\Windows\\System32\\msvcrt.dll",
+          "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+        },
+        {
+          "name": "RPCRT4.dll",
+          "path": "C:\\Windows\\System32\\RPCRT4.dll",
+          "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+        },
+        {
+          "name": "CRYPTBASE.DLL",
+          "path": "C:\\Windows\\SYSTEM32\\CRYPTBASE.DLL",
+          "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+        },
+        {
+          "name": "bcryptPrimitives.dll",
+          "path": "C:\\Windows\\System32\\bcryptPrimitives.dll",
+          "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+        },
+        {
+          "name": "IMM32.DLL",
+          "path": "C:\\Windows\\System32\\IMM32.DLL",
+          "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33"
+        },
+        {
+          "name": "netapi32.dll",
+          "path": "C:\\Windows\\system32\\netapi32.dll",
+          "sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f"
+        },
+        {
+          "name": "SAMCLI.DLL",
+          "path": "C:\\Windows\\SYSTEM32\\SAMCLI.DLL",
+          "sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c"
+        },
+        {
+          "name": "SAMLIB.dll",
+          "path": "C:\\Windows\\SYSTEM32\\SAMLIB.dll",
+          "sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535"
+        },
+        {
+          "name": "NETUTILS.DLL",
+          "path": "C:\\Windows\\SYSTEM32\\NETUTILS.DLL",
+          "sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6"
+        },
+        {
+          "name": "iphlpapi.dll",
+          "path": "C:\\Windows\\system32\\iphlpapi.dll",
+          "sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b"
+        },
+        {
+          "name": "DNSAPI.dll",
+          "path": "C:\\Windows\\SYSTEM32\\DNSAPI.dll",
+          "sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319"
+        },
+        {
+          "name": "DSPARSE.dll",
+          "path": "C:\\Windows\\SYSTEM32\\DSPARSE.dll",
+          "sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d"
+        },
+        {
+          "name": "NSI.dll",
+          "path": "C:\\Windows\\System32\\NSI.dll",
+          "sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2"
+        }
+      ]
+    },
+    "environment": {
+      "SystemRoot": "C:\\Windows",
+      "WINDIR": "C:\\Windows",
+      "COMSPEC": "C:\\Windows\\system32\\cmd.exe",
+      "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+      "PATH": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\runtime\\usr\\bin;C:\\Windows\\System32",
+      "HOME": "/c/ag-bash907-20260911-01/jobs-single-907-01/home",
+      "USERPROFILE": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\home",
+      "TMP": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\temp",
+      "TEMP": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\temp",
+      "TMPDIR": "/c/ag-bash907-20260911-01/jobs-single-907-01/temp",
+      "LC_ALL": "C.UTF-8",
+      "LANG": "C.UTF-8",
+      "MSYSTEM": "CYGWIN",
+      "MSYS": "winsymlinks:sys",
+      "TERM": "xterm-256color",
+      "TERMINFO": "/c/ag-bash907-20260911-01/jobs-single-907-01/runtime/usr/share/terminfo",
+      "INPUTRC": "/c/ag-bash907-20260911-01/jobs-single-907-01/runtime/etc/inputrc",
+      "OMP_NUM_THREADS": "1",
+      "OPENBLAS_NUM_THREADS": "1",
+      "MAKEFLAGS": "-j1",
+      "WOARM64_NATIVE_ARG_CONVERSION": "none",
+      "WOARM64_NATIVE_TEST_ROOT": "C:\\ag-bash907-20260911-01",
+      "WOARM64_NATIVE_PYTHON": "C:\\Program Files\\Python314-arm64\\python.exe",
+      "WOARM64_NATIVE_PYTHON_SHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+      "WOARM64_NATIVE_EXIT_DIR": "C:\\ag-bash907-20260911-01\\jobs-single-907-01\\native-exits",
+      "PS1": "BASH907__> ",
+      "PS2": "BASH907_CONT> ",
+      "HISTFILE": "/c/ag-bash907-20260911-01/jobs-single-907-01/history",
+      "PROMPT_COMMAND": "",
+      "HISTCONTROL": "",
+      "BASH907_FOCUS_JOBS": "1",
+      "BASH907_PIPELINE": "sleep 60"
+    },
+    "controller_process": {
+      "pid": 24044,
+      "exit": 0,
+      "timed_out": false,
+      "active_at_parent_exit": 1,
+      "active_at_boundary": 0,
+      "remaining_process_ids": [],
+      "remaining_process_details": [],
+      "created_processes": 9,
+      "drain_grace_seconds": 3,
+      "passed": true
+    },
+    "controller_result": {
+      "passed": true,
+      "passes": 6,
+      "failures": 0,
+      "wait_status": 0
+    },
+    "cases": [
+      {
+        "name": "native-shell-identity",
+        "status": "PASS"
+      },
+      {
+        "name": "job-suspend",
+        "status": "PASS"
+      },
+      {
+        "name": "job-background-resume",
+        "status": "PASS"
+      },
+      {
+        "name": "job-foreground-ctrl-c-pipeline",
+        "status": "PASS"
+      },
+      {
+        "name": "background-wait-status",
+        "status": "PASS"
+      },
+      {
+        "name": "normal-exit-terminal-restored",
+        "status": "PASS"
+      }
+    ],
+    "counts": {
+      "total": 6,
+      "passed": 6,
+      "failed": 0,
+      "not_reached": 0
+    }
+  },
+  "bash_sha256_after": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+  "runtime_sha256_after": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+}

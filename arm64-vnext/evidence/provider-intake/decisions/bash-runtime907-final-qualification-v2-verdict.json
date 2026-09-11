@@ -1,0 +1,140 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T08:21:02.2749820Z",
+  "status": "FINAL-QUALIFICATION-ACCEPTED-RUNTIME907-BASH-NOT-ADMITTED",
+  "supersedes": {
+    "path": "C:\\ap11-native-provider-intake\\bash-runtime907-qualification-failure-v1.json",
+    "sha256": "ad40b7e220d3be4373ef0811523cd443a71da60058c9b9c1c90ab11794294ac5",
+    "scope": "Adds complete 86-case suite evidence; preserves the controlling interactive failure and non-admission."
+  },
+  "producerPacket": {
+    "path": "C:\\ag-bash907-20260911-02\\qualification-handoff-01\\handoff.json",
+    "sha256": "499f301a9103af687963a42b1987530f5eeffaf2d928dca170832196525127ce",
+    "bytes": 191619
+  },
+  "subject": {
+    "bashPackageSha256": "c5e117fe9879bb68461db887da49e75415c2b27189272160a0da0b22e1179a90",
+    "bashExeSha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+    "runtime907Sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "iconvSha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+    "intlSha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+    "shippedPeCount": 187,
+    "shippedNonAA64": 0,
+    "sourceTestPeCount": 55,
+    "sourceTestNonAA64": 0,
+    "sourceArchiveSha256": "0d5cd86965f869a26cf64f4b71be7b96f90a3ba8b3d74e27e8e9d9d5550f31ba",
+    "actualSourceTreeSha256": "c2c5a7553d2c8b6f22ed6f8a8374c0221b61f84f3eab2cab4a22e7ead43a0198",
+    "recipeHandoffSha256": "f1aaeac6acb81efe8163cad3ea08a8f6432f7a77a9b1e2d0dae48b10efd8d58f",
+    "runtimeHandoffSha256": "f8c7c49b46fdf0844555b99d3c1e4d2c342817a8b01eef1e9f283875796e2b9b"
+  },
+  "upstreamSuite": {
+    "result": {
+      "path": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\result.json",
+      "sha256": "259394c49de5fa265dbfc6e8ea01193214cb1c4075db71123260060ed2fda818"
+    },
+    "total": 86,
+    "parentRaw0": 82,
+    "parentRaw1": 2,
+    "parentRaw1460": 2,
+    "observerPasses": 32,
+    "observerNotPassed": 54,
+    "confirmedCauseBuckets": {
+      "bashOrCurrentRuntimeBehavior": 0,
+      "absentOrNonNativeHelper": 1,
+      "harnessOrMsysWindowsAssumption": 1
+    },
+    "unresolvedTimeouts": [
+      "run-ifs-posix",
+      "run-read"
+    ],
+    "classificationBoundary": "Two raw timeouts remain unresolved, not forced into behavior, helper, harness, pass, or waiver categories."
+  },
+  "observer": {
+    "created": 21464,
+    "observed": 21453,
+    "completeGenerationAccountingClaimed": false,
+    "rawDWORDsNormalized": false,
+    "gaps": [
+      {
+        "case": "run-ifs-posix",
+        "created": 7076,
+        "observed": 7072,
+        "rawExit": 1460
+      },
+      {
+        "case": "run-nquote1",
+        "created": 122,
+        "observed": 121,
+        "rawExit": 0
+      },
+      {
+        "case": "run-read",
+        "created": 3473,
+        "observed": 3468,
+        "rawExit": 1460
+      },
+      {
+        "case": "run-type",
+        "created": 70,
+        "observed": 69,
+        "rawExit": 0
+      }
+    ]
+  },
+  "supplements": {
+    "nativeCompilerGlob": {
+      "path": "C:\\ag-bash907-20260911-02\\run-glob-bracket-native-compiler-01\\result.json",
+      "sha256": "8c7280c26274f6f9a0767371e6582daf8fd02787671e081241f794012ae34e26",
+      "result": "PASS",
+      "boundary": "Does not replace the original missing-gcc raw1 result or cause bucket."
+    },
+    "longerIfs": {
+      "path": "C:\\ag-bash907-20260911-02\\run-ifs-posix-longer-bound-01\\result.json",
+      "sha256": "9cd0b8ae8ea339a05eb2a00633789a3524b4a12c8207a88fed300c6f0f21037a",
+      "rawExit": 1460,
+      "created": 8113,
+      "observed": 8109,
+      "boundary": "Unresolved timeout; not a semantic pass or failure classification."
+    }
+  },
+  "controllingInteractiveFailure": {
+    "handoff": {
+      "path": "C:\\ag-bash907-20260911-02\\signal-failure-handoff-01\\handoff.json",
+      "sha256": "3c753f5b569c2760fb58ad93e5099ef4aa74e6a0a39063dba00236ba6ec57b3e"
+    },
+    "priorDisposition": {
+      "path": "C:\\ap11-native-provider-intake\\bash-runtime907-qualification-failure-v1.json",
+      "sha256": "ad40b7e220d3be4373ef0811523cd443a71da60058c9b9c1c90ab11794294ac5"
+    },
+    "finding": "Original exact runtime-907 interactive controller failed the foreground sleep|cat Ctrl-C case where runtime d70 passed; timing-altering instrumented success is not a waiver."
+  },
+  "invalidSelection": {
+    "path": "C:\\ag-bash907-20260911-01\\invalid-selection.json",
+    "sha256": "3116c150a98b2f2098c984295489e1d66ab8beb4874e8ea5a690dbd77762e588",
+    "excluded": true
+  },
+  "drain": {
+    "path": "C:\\ag-bash907-20260911-02\\qualification-handoff-01\\drain.json",
+    "sha256": "b5de0fdfe22b24c91ad224264e8600bb3e223f2ed322e45fc8c7fea56be5572f",
+    "activeJobs": 0,
+    "returnedSlots": 2,
+    "furtherRetries": false
+  },
+  "boundaries": {
+    "bashRebuilt": false,
+    "librariesRebuilt": false,
+    "runtimeRebuilt": false,
+    "providerOrPackageMutations": false,
+    "x64PrivatePeInputs": 0,
+    "testUtilitiesAdmitted": false,
+    "completeObserverCoverageClaimed": false
+  },
+  "disposition": {
+    "runtime907BashCompatibility": "NOT-ADMITTED",
+    "existingD70BashAdmission": "UNCHANGED",
+    "newPackageOrProviderBytesAdmitted": 0,
+    "fullReleaseAuditChanged": false,
+    "fullReleaseAuditRerun": false,
+    "reason": "Complete raw suite does not cure the separately controlling interactive signal regression."
+  }
+}

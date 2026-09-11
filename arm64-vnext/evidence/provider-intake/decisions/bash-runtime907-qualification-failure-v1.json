@@ -1,0 +1,83 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T07:22:52.5736942Z",
+  "status": "runtime-907-compatibility-not-admitted-interactive-signal-regression",
+  "subject": {
+    "inputContract": {
+      "path": "C:\\ap11-native-provider-intake\\bash-runtime907-qualification-input-v1.json",
+      "sha256": "4dc1ff625c82d762d25f157538146288758b7ffa2a150e09c6c4e8b28e137162"
+    },
+    "bashProvider": {
+      "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\export.json",
+      "sha256": "f485f6e2b0ee76fe44fc1b416354367c1325d46a9d30efa39a884d7f472c747c",
+      "admission": "remains d70 only"
+    },
+    "bashSha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+    "runtime907Sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "baselineD70Sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+    "onlyBinaryDifference": "usr/bin/msys-2.0.dll"
+  },
+  "evidence": {
+    "handoff": {
+      "path": "C:\\ag-bash907-20260911-02\\signal-failure-handoff-01\\handoff.json",
+      "sha256": "3c753f5b569c2760fb58ad93e5099ef4aa74e6a0a39063dba00236ba6ec57b3e"
+    },
+    "runtime907Original": {
+      "path": "C:\\ag-bash907-20260911-02\\original-controller-907-01\\result.json",
+      "sha256": "741e3727b83bfcc09bc0ab37fe95c9503db9a7e41ab8c33a8458621b5e366d70",
+      "total": 19,
+      "passed": 16,
+      "failed": 1,
+      "notReached": 2,
+      "foregroundPipelineShellStatus": 0,
+      "sleepWindowsExitDword": 2,
+      "catWindowsExitDword": 0
+    },
+    "baselineD70": {
+      "path": "C:\\ag-bash907-20260911-02\\original-controller-d70-01\\result.json",
+      "sha256": "33ec2bc225eb7172b35b890fb2fc68592d5a8cc20fdab11acef95726193186c1",
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "notReached": 0,
+      "foregroundPipelineShellStatus": 130,
+      "sleepWindowsExitDword": 2,
+      "catWindowsExitDword": 2
+    },
+    "instrumentedRuntime907": {
+      "result": "19/19 passed after foreground/member startup synchronization",
+      "interpretation": "Control confirms timing sensitivity but does not invalidate the original controller failure"
+    },
+    "mixedSleepRead": {
+      "result": "3/4 passed",
+      "shellPipeStatus": "130 1",
+      "classification": "failure retained; EOF/signal ordering unresolved"
+    }
+  },
+  "verdict": {
+    "runtime907Compatibility": "NOT_ADMITTED",
+    "bashPackageMutation": false,
+    "providerMutation": false,
+    "runtimeRebuild": false,
+    "bashRebuild": false,
+    "d70AdmissionUnchanged": true
+  },
+  "classification": [
+    "The unchanged original controller fails on runtime 907 and passes on d70 in the controlled pair",
+    "Bash reports the last pipeline member status consistently with cat returning zero; no Bash arithmetic/status-decoding defect is demonstrated",
+    "Evidence supports a timing-sensitive interactive foreground pipeline signal/EOF ordering regression under runtime 907",
+    "Matching foreground process groups do not support missing exec group membership as the cause",
+    "Instrumented success is a control, not qualification"
+  ],
+  "pending": {
+    "full86CaseSuite": "running separately; no final count in this receipt",
+    "causalOwner": "runtime integration",
+    "requiredOutcome": "Preserve full raw suite result and resolve or explicitly retain the regression before any runtime-907 Bash admission"
+  },
+  "limits": [
+    "Do not rewrite or supersede the admitted d70 Bash export",
+    "Do not normalize Windows DWORD exits into POSIX wait words",
+    "Do not use the instrumented pass to waive the original failure",
+    "Do not promote test-only utilities or publish a runtime-907 provider compatibility claim"
+  ]
+}

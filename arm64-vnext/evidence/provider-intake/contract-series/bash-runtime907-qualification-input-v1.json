@@ -1,0 +1,208 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T07:10:39.8813344Z",
+  "status": "read-only-input-contract-for-runtime-907-qualification-of-existing-admitted-bash",
+  "subject": {
+    "providerExport": {
+      "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\export.json",
+      "sha256": "f485f6e2b0ee76fe44fc1b416354367c1325d46a9d30efa39a884d7f472c747c",
+      "status": "admitted-qualified-current-d70-native-bash-exported"
+    },
+    "producerHandoff": {
+      "path": "C:\\ag-bash-e138-01\\bash-provider-handoff-02\\handoff.json",
+      "sha256": "f1aaeac6acb81efe8163cad3ea08a8f6432f7a77a9b1e2d0dae48b10efd8d58f"
+    },
+    "package": {
+      "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\package\\packages\\bash-5.3.015-2-aarch64.pkg.tar.zst",
+      "sha256": "c5e117fe9879bb68461db887da49e75415c2b27189272160a0da0b22e1179a90",
+      "bytes": 9137102
+    },
+    "develPackage": {
+      "path": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\package\\packages\\bash-devel-5.3.015-2-aarch64.pkg.tar.zst",
+      "sha256": "d099a5a0a1cce462b4b5fb25dda479a3412bb1816cfd2408728e432db1f97189"
+    },
+    "bashExeSha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+    "architecture": "aarch64",
+    "directImports": [
+      "msys-iconv-2.dll",
+      "msys-intl-8.dll",
+      "KERNEL32.dll",
+      "msys-2.0.dll",
+      "USER32.dll"
+    ],
+    "existingQualification": "d70 only; runtime-907 compatibility not yet claimed"
+  },
+  "runtime907": {
+    "cohortRoot": "C:\\ag-readline-e138-01\\combined-20260911-01",
+    "inputs": {
+      "path": "C:\\ag-readline-e138-01\\combined-20260911-01\\inputs.json",
+      "sha256": "69bde4474dc5c93660a598fac1ca8d3f97907cdabdbd4a454f51adeace711d34"
+    },
+    "terminalHandoff": {
+      "path": "C:\\ag-readline-e138-01\\combined-20260911-01\\handoff\\handoff.json",
+      "sha256": "8361f844ef40b7aafa534f791785b78a09ca765feaf0183b8208c945e4262467"
+    },
+    "runtimePath": "C:\\ag-readline-e138-01\\combined-20260911-01\\runtime-payload\\usr\\bin\\msys-2.0.dll",
+    "runtimeSha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "architecture": "aarch64"
+  },
+  "subjectDependencies": {
+    "sourceRoot": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\readback-runtime\\usr",
+    "note": "Retain these exact admitted Bash dependency bytes while replacing only msys-2.0.dll with runtime 907 for the compatibility test. Their d70 origin must remain disclosed until the test qualifies them in this named scope.",
+    "files": [
+      {
+        "path": "bin/msys-iconv-2.dll",
+        "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "bytes": 2046237
+      },
+      {
+        "path": "bin/msys-intl-8.dll",
+        "sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "bytes": 754493
+      }
+    ]
+  },
+  "testFixture": {
+    "sourceRoot": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr",
+    "fileCount": 147,
+    "bytes": 196318440,
+    "canonicalPerFileInventorySha256": "7dceb1225220eca74bb7a486cb1230a714b04241103617b105c79e923a4eaff7",
+    "scope": "immutable test-only runtime used by the prior complete Bash suite; not a provider export",
+    "assemblyOrder": [
+      "Copy this immutable test fixture into a new private root",
+      "Overlay exact Bash package payload",
+      "Overlay exact subject msys-iconv-2.dll and msys-intl-8.dll from admitted Bash readback",
+      "Overlay exact runtime-907 msys-2.0.dll last",
+      "Do not modify or write back any source root"
+    ],
+    "selectedTools": [
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\chmod.exe",
+        "sha256": "ef2569ed950790d2d848c03fb00fec44ee8a22d2cb61e0a58a533cd4857863d7",
+        "bytes": 454212,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\stty.exe",
+        "sha256": "6615cd9f6a5cc48042bf090fe5cfe417412b2aece427a34242996297fd88a95c",
+        "bytes": 555652,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\false.exe",
+        "sha256": "1b9f4b88bb93d571134dc34804fb163274699ba38818a143590f3976a8c410f4",
+        "bytes": 249539,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\true.exe",
+        "sha256": "73a9751ec777db9645f5daddfa2a59310a2ff020ab20e454a5159dbb214806d7",
+        "bytes": 249539,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\sed.exe",
+        "sha256": "2b8e9e72b18742a60a04a6ba926d3e17aae977e51de3a15ef4947d0db1f4f12f",
+        "bytes": 1291003,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\find.exe",
+        "sha256": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+        "bytes": 2271736,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\xargs.exe",
+        "sha256": "307e01d1dede595d0e27d4102bfa934dab5226e3fb8adca7f5c9366560d861f9",
+        "bytes": 521419,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\cat.exe",
+        "sha256": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+        "bytes": 299734,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\cp.exe",
+        "sha256": "fc098f58a9c694c0bd7f27b332487004a226ef182afc8870ab4d0234f37e8633",
+        "bytes": 997562,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\rm.exe",
+        "sha256": "ce6b95b18aae78614e7e3c01b8979443a28a7dcd800f28af60971bb3ef5f5915",
+        "bytes": 512741,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      },
+      {
+        "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\runtime\\usr\\bin\\mkdir.exe",
+        "sha256": "2768035ab6b0c14454d576c0c734259e755b7128bd9ddfabdfe01e705a14b584",
+        "bytes": 538327,
+        "architecture": "aarch64",
+        "admission": "test-only-nonadmitted"
+      }
+    ],
+    "withheldUtilityPolicy": {
+      "chmod": "test-only-nonadmitted",
+      "stty": "test-only-nonadmitted",
+      "false": "test-only-nonadmitted",
+      "mayClaimCoreutils": false,
+      "mayAddProvides": false,
+      "mayShip": false
+    },
+    "warning": "The test fixture contains historical d70/runtime and differing gettext bytes. Overlay order is mandatory; verify final hashes before execution so fixture DLLs cannot overwrite the subject dependency/runtime selection."
+  },
+  "priorEvidence": {
+    "producerBuild": {
+      "root": "C:\\ag-bash-e138-01\\bash-full-immutable-18",
+      "observerSha256": "f57219b99f80ff8320e915a47def8bafc92c8f185f380b28e6dfcafb5ab8a0c1",
+      "inventorySha256": "570915d5b63441d70ad6fc65acd186cace5c19b8ad428a07ed650968916c92f1",
+      "parentRawExit": 0,
+      "created": 11312,
+      "observed": 11312
+    },
+    "targeted": {
+      "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-targeted-01\\qualification.json",
+      "sha256": "0835ca6e0568da28c80c8cf1e95c581bcce27a58c99d0905bd8c5d0eda955e42",
+      "cases": 3,
+      "status": "qualified"
+    },
+    "fullSuite": {
+      "path": "C:\\ag-bash-e138-01\\bash-full-immutable-18-suite-02\\qualification.json",
+      "sha256": "53c3267c22d75aa228b71b4b499960340f88af198af9ee0811a87365e636c268",
+      "nativeJobSha256": "3880dc23f660ae0c73c56a7aceb6543b4d656807fdf336c6b9467374155c5b89",
+      "cases": 86,
+      "status": "qualified",
+      "parentRawExit": 0,
+      "created": 27041,
+      "observed": 27041
+    }
+  },
+  "qualificationControls": [
+    "No rebuild or package/provider mutation",
+    "Fresh private root only",
+    "All final runtime/dependency/tool hashes recorded before launch",
+    "Full upstream 86-case suite attempted with raw failures preserved",
+    "Targeted run-read, run-jobs, and run-test repeated",
+    "All observed native processes reconciled",
+    "No x64 fallback",
+    "No promotion of test-only utility bytes",
+    "No runtime-907 admission claim until complete evidence passes"
+  ],
+  "resultPolicy": {
+    "success": "Publish a new compatibility/qualification supplement for the unchanged Bash package bytes. Do not rewrite the d70 export or claim a rebuild.",
+    "failure": "Publish raw failure receipt and keep Bash admitted only for d70. Do not alter package bytes, utilities, or runtime."
+  }
+}

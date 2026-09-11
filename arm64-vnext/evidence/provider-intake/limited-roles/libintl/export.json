@@ -1,0 +1,392 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T03:53:35.3442386Z",
+  "authority": "nativeMSYS provider intake",
+  "status": "admitted-limited-mvp-only-final",
+  "exportRole": "official-clangarm64-libintl-runtime-only-limited-mvp",
+  "exportRoot": "C:\\ap11-native-provider-intake\\official-clangarm64-libintl-limited-mvp-v1",
+  "currentVerdict": {
+    "limitedGitMvp": "ADMITTED",
+    "strictFullReleaseProvider": "NOT_ADMITTED",
+    "revokedArchive": "REMAINS_REVOKED"
+  },
+  "consumptionAuthorization": {
+    "allowed": "Copy only the exact payload/ files into the first native ARM64 Git artifact at their recorded relative paths.",
+    "unchangedBytesRequired": true,
+    "mayClaimPackageProvider": false,
+    "maySatisfyStrictFullReleaseGettextGate": false,
+    "mayAliasOrProvideMingwW64Aarch64Gettext": false,
+    "included": "libintl-8.dll, libiconv-2.dll, and six package-owned license files",
+    "explicitlyNotIncluded": [
+      "libcharset-1.dll",
+      "gettext.exe",
+      "envsubst.exe",
+      "ngettext.exe",
+      "asprintf or C++ libraries",
+      "gettext tools",
+      "gettext docs",
+      "gettext locale catalogs",
+      "package metadata alias",
+      "fake provides",
+      "revoked gettext bytes"
+    ],
+    "note": "This verdict does not replace or relabel any independently sourced libcharset-1.dll already present in a candidate."
+  },
+  "payload": {
+    "files": [
+      {
+        "path": "payload/mingwarm64/bin/libiconv-2.dll",
+        "sha256": "5eb3e024adbeb40e990530b64498fa5305b4ebeaa34db971196f92317f70a35d",
+        "bytes": 1108992
+      },
+      {
+        "path": "payload/mingwarm64/bin/libintl-8.dll",
+        "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+        "bytes": 268288
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/gettext-runtime/COPYING",
+        "sha256": "7ef2cdfe58e0c0460657b6598b49af29d4e03c1e41cbaf0e1da1eb8ad74b95d0",
+        "bytes": 495
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/gettext-runtime/intl/COPYING.LIB",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "bytes": 26419
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/libiconv/COPYING",
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+        "bytes": 35147
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/libiconv/COPYING.LIB",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "bytes": 26419
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/libiconv/libcharset/COPYING.LIB",
+        "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+        "bytes": 26419
+      },
+      {
+        "path": "payload/mingwarm64/share/licenses/libiconv/README",
+        "sha256": "4ae66e61d1c6593c84c47105b368d579bcee1af566dbb959ec63a0c48425dcf4",
+        "bytes": 5741
+      }
+    ],
+    "expectedCount": 8,
+    "peMachines": [
+      {
+        "path": "payload/mingwarm64/bin/libintl-8.dll",
+        "machine": "0xAA64"
+      },
+      {
+        "path": "payload/mingwarm64/bin/libiconv-2.dll",
+        "machine": "0xAA64"
+      }
+    ],
+    "dependencyClosure": {
+      "libintlImports": "libiconv-2.dll plus Windows UCRT/System32",
+      "libiconvImports": "Windows UCRT/System32 only",
+      "msysRuntimeImported": false,
+      "missingImports": 0
+    },
+    "privateStagingMarkerHits": [],
+    "compiledPrefixHits": [
+      {
+        "file": "payload/mingwarm64/bin/libintl-8.dll",
+        "value": "/clangarm64/share/locale",
+        "encoding": "iso-8859-1"
+      }
+    ]
+  },
+  "provenance": {
+    "gettextRuntime": {
+      "package": "mingw-w64-clang-aarch64-gettext-runtime 1.0-1",
+      "archiveSha256": "b5364a7c78cc4b73273a4a28e07e3c6d9cc8ec0ce269527409d944ab1c8f5a70",
+      "signatureSha256": "d7f3f5e2dfbc16a00b01bd19d603e627036e88586e59763ee2ce22097f553b06",
+      "validSigFingerprint": "5F944B027F7FE2091985AA2EFA11531AA0AA7F57"
+    },
+    "libiconv": {
+      "package": "mingw-w64-clang-aarch64-libiconv 1.19-1",
+      "archiveSha256": "955499bc5cb73d86ea2850ece9bbdbbfd66b213e272e032f28147ecd42897e21",
+      "signatureSha256": "2f9822760acb13efe7ca76e9ca5e17d76d1b93590e98f4292c42f6a3c8453f0c",
+      "validSigFingerprint": "5F944B027F7FE2091985AA2EFA11531AA0AA7F57"
+    },
+    "packageProviderClaim": false,
+    "gnuMingwarm64LineageClaim": false,
+    "newPackageOrProvides": false
+  },
+  "recursiveClosure": {
+    "consumers": 21,
+    "architecture": "all 0xAA64 Windows/UCRT consumers; none import msys-2.0.dll",
+    "missingImportedSymbols": 0,
+    "roleAssertions": {
+      "passed": 21,
+      "positive": 18,
+      "expectedNegative": {
+        "gitHttpFetch": 129,
+        "gitImapSend": 1,
+        "gitHttpPush": 129
+      }
+    },
+    "liveLibintlCaptures": "all 19 executable roles plus libidn2/libtre API behavior",
+    "movedRoots": "A to B to C; A and B absent; projected bytes unchanged",
+    "behavior": [
+      "actual Git French status: Sur la branche main without LOCALEDIR override",
+      "public bindtextdomain moved-root result passed",
+      "libidn2 Unicode IDNA passed",
+      "libtre typed regex capture and nonmatch passed"
+    ]
+  },
+  "limitations": [
+    "libintl-8.dll contains compiled default /clangarm64/share/locale; unbound/default-domain localization is not admitted.",
+    "Official gettext CLI default French lookup failed before and after moving; no CLI/tools/docs/catalogs are shipped.",
+    "libidn2 and libtre translated diagnostics are not admitted; only their functional semantics are admitted.",
+    "The qualification subset fixture bare-clone access violation is not attributable to this projection (official/revoked/restored-official all failed there). Full-artifact clone behavior is outside this verdict and must be tracked by the artifact owner.",
+    "This limited verdict does not clear the strict full-release package identity or canonical /mingwarm64 provider gate."
+  ],
+  "strictProvider": {
+    "requiredIdentity": "mingw-w64-aarch64-gettext 1.0-1, MINGWARM64/aarch64-w64-mingw32, canonical /mingwarm64",
+    "sourceReceipt": "C:\\ap12-ca5f\\gettext-source-01\\source-receipt.json",
+    "sourceReceiptSha256": "9e534ee1ebcabc9df87066f131227bf342f311ce727243c8eea215c45091e173",
+    "candidateRoot": "C:\\ap12-ca5f\\gettext-native-06",
+    "controllerPid": 21212,
+    "controllerPresent": true,
+    "stageFileCount": 0,
+    "buildReceiptPresent": false,
+    "verdict": "NOT_ADMITTED: build/check/install/package/qualification/export are incomplete.",
+    "requiredChange": "Complete the fresh signed-source build and full upstream checks, install/package as truthful MINGWARM64 1.0-1, prove zero private staging paths and moved-root behavior, then supersede the revoked hash consistently in every recursive closure and rerun the strict full-release audit."
+  },
+  "oldArchive": {
+    "archiveSha256": "7abded5bc03698083363a22b1103afc5bacb710561002c21e7c585ed803a7e46",
+    "verdict": "REVOKED",
+    "reason": "Metadata says 0.26-1 while binaries report gettext 1.0; actual executable/DLL/static-library/docs bytes contain producer-private stage paths.",
+    "revocationReceipt": "C:\\ap11-native-provider-intake\\current-admission-revocation-v1.json",
+    "revocationSha256": "206cffaff0a16fc2b0453d74c923b7830fa62c0d7715327cb5a61d8e35421894"
+  },
+  "msiSystemDll": {
+    "verdict": "RESOLVED_SYSTEM_DLL_ALLOWLIST",
+    "extension": "C:\\ap12-ca5f\\git-python-readback-01\\mingwarm64\\lib\\python3.12\\lib-dynload\\_msi.cp312-mingw_aarch64_ucrt_gnu.pyd",
+    "extensionSha256": "5fd7aa5893ea1f1cee6d657abb778eccf8453c2504f8e8b40a032569e385fbd7",
+    "extensionMachine": "0xAA64",
+    "import": "msi.dll",
+    "systemPath": "C:\\Windows\\System32\\msi.dll",
+    "systemSha256": "fc2a8998125d7e416222947c7a576e09838dfd3295fa70ca157eecca0061285f",
+    "systemMachine": "0xAA64",
+    "providerArchiveRequired": false,
+    "contract": "full-release-v1.json narrowly allowlists msi.dll and focused regression coverage exists."
+  },
+  "controllingAuthorities": {
+    "strictAudit": "C:\\ap11-native-provider-intake\\audit-v17-revoked-free.json",
+    "strictAuditSha256": "d71f2c02617dbc24e338065f5d5ef5e44f08669240fc40b21a9ad82a8823fc47",
+    "enforcement": "C:\\ap11-native-provider-intake\\provider-rejection-enforcement-v12.json",
+    "enforcementSha256": "69818c620590f23bd38ba7921c515cdf6629d7d20a55c15fbe8427bf6f2779be",
+    "sealedCandidate": "C:\\ap11-accd-gettext01\\delivery-02\\qualification.json",
+    "sealedCandidateSha256": "a8234d5f98d75b8a33ae004afe71c817c65cf839aed8e896b2b9e81f669b2d5e",
+    "consumerRoles": "C:\\ap11-accd-gettext01\\consumer-behaviors-03\\result.json",
+    "consumerRolesSha256": "6616dd829a741a6be61228e758270273153846a04a28806f735c51cc160b4c23",
+    "cloneControl": "C:\\ap11-accd-gettext01\\clone-baseline-comparison\\result.json",
+    "cloneControlSha256": "de0f264747318afb27c49c28fedcf2a659ef44a0c1d88b7220c0e8b4e54722b5",
+    "consumerBoundary": "C:\\ag-mvp-f6-20260911\\libintl-consumer-boundary-01.json",
+    "consumerBoundarySha256": "ecaa96a91879c81ec43ea3f51b359994881f08510ce58fb74d45fd6c56d88718",
+    "localEvidence": {
+      "qualification": "evidence/qualification.json",
+      "consumerRoles": "evidence/consumer-behaviors-03.json",
+      "cloneControl": "evidence/clone-baseline-comparison.json",
+      "consumerBoundary": "evidence/libintl-consumer-boundary-01.json",
+      "revocation": "evidence/current-admission-revocation-v1.json",
+      "sourceReceipt": "evidence/source-receipt.json"
+    },
+    "independentVerification": "evidence/independent-verification.json",
+    "independentVerificationSha256": "c509766c1488a198b4f387bbc9b18d133c3df531daa8c0ecf19d826e5e965092"
+  },
+  "exportInventory": [
+    {
+      "path": "evidence/clone-baseline-comparison.json",
+      "sha256": "de0f264747318afb27c49c28fedcf2a659ef44a0c1d88b7220c0e8b4e54722b5",
+      "bytes": 38414
+    },
+    {
+      "path": "evidence/consumer-behaviors-03.json",
+      "sha256": "6616dd829a741a6be61228e758270273153846a04a28806f735c51cc160b4c23",
+      "bytes": 204194
+    },
+    {
+      "path": "evidence/current-admission-revocation-v1.json",
+      "sha256": "206cffaff0a16fc2b0453d74c923b7830fa62c0d7715327cb5a61d8e35421894",
+      "bytes": 1854
+    },
+    {
+      "path": "evidence/export-inventory.json",
+      "sha256": "693d2d1c2b0a364cd4a780490e371469b28d62965522f2ba1dd15ae4d04b3ca4",
+      "bytes": 125711
+    },
+    {
+      "path": "evidence/independent-verification.json",
+      "sha256": "c509766c1488a198b4f387bbc9b18d133c3df531daa8c0ecf19d826e5e965092",
+      "bytes": 9602
+    },
+    {
+      "path": "evidence/libintl-consumer-boundary-01.json",
+      "sha256": "ecaa96a91879c81ec43ea3f51b359994881f08510ce58fb74d45fd6c56d88718",
+      "bytes": 26674
+    },
+    {
+      "path": "evidence/qualification.json",
+      "sha256": "a8234d5f98d75b8a33ae004afe71c817c65cf839aed8e896b2b9e81f669b2d5e",
+      "bytes": 233426
+    },
+    {
+      "path": "evidence/signature-02-mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst.json",
+      "sha256": "3c2418a200b05c71b836d18296f63ca0bec04b508acbddbb07312d2bba6b1fe2",
+      "bytes": 1626
+    },
+    {
+      "path": "evidence/signature-02-mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst.stdout.log",
+      "sha256": "d03f238ed5e0a5b8950630a725b345b7cd09cd6f651e587497d97fd7ab6e6e4e",
+      "bytes": 389
+    },
+    {
+      "path": "evidence/signature-02-mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst.json",
+      "sha256": "f9b5b1f736b91e5f6c1321f29a45a55936c632f291f3e60d9c6708f40f29aa4a",
+      "bytes": 1597
+    },
+    {
+      "path": "evidence/signature-02-mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst.stdout.log",
+      "sha256": "a78a0b471caa0293cb580faf605421806b1ce5b03e039e38cb091607dcb86abc",
+      "bytes": 389
+    },
+    {
+      "path": "evidence/source-receipt.json",
+      "sha256": "9e534ee1ebcabc9df87066f131227bf342f311ce727243c8eea215c45091e173",
+      "bytes": 4370
+    },
+    {
+      "path": "independent-replay/empty.gitconfig",
+      "sha256": "7eb70257593da06f682a3ddda54a9d260d4fc514f645237f5ca74b08f8da61a6",
+      "bytes": 2
+    },
+    {
+      "path": "independent-replay/init.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "independent-replay/init.stdout",
+      "sha256": "aaee7ca6ff80fd30428c665277722c6675d70dba2aa7280e9602651d49e1feac",
+      "bytes": 138
+    },
+    {
+      "path": "independent-replay/status.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "bytes": 0
+    },
+    {
+      "path": "independent-replay/status.stdout",
+      "sha256": "7806049fb67a6783083fbd3e945cda65b59266c592a71edb1b6f5f5b0e10e978",
+      "bytes": 118
+    },
+    {
+      "path": "payload/mingwarm64/bin/libiconv-2.dll",
+      "sha256": "5eb3e024adbeb40e990530b64498fa5305b4ebeaa34db971196f92317f70a35d",
+      "bytes": 1108992
+    },
+    {
+      "path": "payload/mingwarm64/bin/libintl-8.dll",
+      "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320",
+      "bytes": 268288
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/gettext-runtime/COPYING",
+      "sha256": "7ef2cdfe58e0c0460657b6598b49af29d4e03c1e41cbaf0e1da1eb8ad74b95d0",
+      "bytes": 495
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/gettext-runtime/intl/COPYING.LIB",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "bytes": 26419
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/libiconv/COPYING",
+      "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903",
+      "bytes": 35147
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/libiconv/COPYING.LIB",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "bytes": 26419
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/libiconv/libcharset/COPYING.LIB",
+      "sha256": "20e50fe7aae3e56378ebf0417d9de904f55a0e61e4df315333e632a4d3555d95",
+      "bytes": 26419
+    },
+    {
+      "path": "payload/mingwarm64/share/licenses/libiconv/README",
+      "sha256": "4ae66e61d1c6593c84c47105b368d579bcee1af566dbb959ec63a0c48425dcf4",
+      "bytes": 5741
+    },
+    {
+      "path": "provenance/original-archives/mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst",
+      "sha256": "b5364a7c78cc4b73273a4a28e07e3c6d9cc8ec0ce269527409d944ab1c8f5a70",
+      "bytes": 395859
+    },
+    {
+      "path": "provenance/original-archives/mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst.sig",
+      "sha256": "d7f3f5e2dfbc16a00b01bd19d603e627036e88586e59763ee2ce22097f553b06",
+      "bytes": 566
+    },
+    {
+      "path": "provenance/original-archives/mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst",
+      "sha256": "955499bc5cb73d86ea2850ece9bbdbbfd66b213e272e032f28147ecd42897e21",
+      "bytes": 734170
+    },
+    {
+      "path": "provenance/original-archives/mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst.sig",
+      "sha256": "2f9822760acb13efe7ca76e9ca5e17d76d1b93590e98f4292c42f6a3c8453f0c",
+      "bytes": 566
+    },
+    {
+      "path": "provenance/package-metadata/mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst/.BUILDINFO",
+      "sha256": "370ac747d95ed793885e7088a09f288852c12426e240e0e76525bcced71bd4e7",
+      "bytes": 6439
+    },
+    {
+      "path": "provenance/package-metadata/mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst/.MTREE",
+      "sha256": "257be5e8ad11fed1a32fd8de2c88805ce603fd25c4b6139d004e9a7771765711",
+      "bytes": 6168
+    },
+    {
+      "path": "provenance/package-metadata/mingw-w64-clang-aarch64-gettext-runtime-1.0-1-any.pkg.tar.zst/.PKGINFO",
+      "sha256": "97ae78ea69454691c4ebecb34b38545011a9e7fc4abb587e3301df68547491c4",
+      "bytes": 746
+    },
+    {
+      "path": "provenance/package-metadata/mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst/.BUILDINFO",
+      "sha256": "458b45886d5524b7a2ecba115d81b281fdbed9bcd6e8b809a5cf25264bd77354",
+      "bytes": 6280
+    },
+    {
+      "path": "provenance/package-metadata/mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst/.MTREE",
+      "sha256": "393e07e576ae88a07e0ba3d6fc394157aa5c8a62ce93783ded53e2f630d39bd6",
+      "bytes": 1575
+    },
+    {
+      "path": "provenance/package-metadata/mingw-w64-clang-aarch64-libiconv-1.19-1-any.pkg.tar.zst/.PKGINFO",
+      "sha256": "e6c7f3ccf528f0468dac73199dc92ea8f2a72f8d8b5b414555eb2f28562bc821",
+      "bytes": 612
+    },
+    {
+      "path": "provenance/signature-keys/msys2-public-binary.gpg",
+      "sha256": "d5efcc13a6d394ec3726078a6bcae331f4fa61d74bb787521bab0789e533d102",
+      "bytes": 39167
+    },
+    {
+      "path": "provenance/signature-keys/msys2-public.gpg",
+      "sha256": "1257d4ccc536c53333445a618039af4c3ea3f56b96601de9af89151ea529c19a",
+      "bytes": 54878
+    }
+  ]
+}
