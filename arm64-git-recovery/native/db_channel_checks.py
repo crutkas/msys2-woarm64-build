@@ -100,7 +100,14 @@ def sample_native_workers(root):
                     ("parent", W.DWORD), ("priority", W.LONG), ("flags", W.DWORD),
                     ("name", W.WCHAR * 260)]
 
+    class UnicodeString(ctypes.Structure):
+        _fields_ = [("length", W.WORD), ("maximum_length", W.WORD), ("buffer", ctypes.c_void_p)]
+
     kernel = ctypes.WinDLL("kernel32", use_last_error=True)
+    ntdll = ctypes.WinDLL("ntdll")
+    ntdll.NtQueryInformationProcess.argtypes = [W.HANDLE, ctypes.c_int, ctypes.c_void_p,
+                                               W.ULONG, ctypes.POINTER(W.ULONG)]
+    ntdll.NtQueryInformationProcess.restype = W.LONG
     kernel.CreateToolhelp32Snapshot.argtypes = [W.DWORD, W.DWORD]
     kernel.CreateToolhelp32Snapshot.restype = W.HANDLE
     kernel.Process32FirstW.argtypes = kernel.Process32NextW.argtypes = [W.HANDLE, ctypes.POINTER(ProcessEntry)]
@@ -128,9 +135,20 @@ def sample_native_workers(root):
                         if (kernel.QueryFullProcessImageNameW(handle, 0, image, ctypes.byref(length))
                                 and Path(image.value).is_relative_to(root)
                                 and kernel.GetProcessTimes(handle, *[ctypes.byref(t) for t in times])):
+                            command_buffer = ctypes.create_string_buffer(32768)
+                            returned = W.ULONG()
+                            status = ntdll.NtQueryInformationProcess(
+                                handle, 60, command_buffer, len(command_buffer), ctypes.byref(returned))
+                            command = None
+                            if status == 0:
+                                value = ctypes.cast(command_buffer, ctypes.POINTER(UnicodeString)).contents
+                                command = ctypes.wstring_at(value.buffer, value.length // 2)
                             result.append({"pid": entry.pid, "parent_pid": entry.parent,
                                            "created": (times[0].dwHighDateTime << 32) | times[0].dwLowDateTime,
-                                           "image": image.value, "actual_os_threads": entry.threads})
+                                           "image": image.value, "actual_os_threads": entry.threads,
+                                           "kernel_time_100ns": (times[2].dwHighDateTime << 32) | times[2].dwLowDateTime,
+                                           "user_time_100ns": (times[3].dwHighDateTime << 32) | times[3].dwLowDateTime,
+                                           "command": command, "command_query_status": status})
                     finally:
                         kernel.CloseHandle(handle)
             more = kernel.Process32NextW(snapshot, ctypes.byref(entry))
@@ -141,23 +159,27 @@ def sample_native_workers(root):
     return result
 
 
-def observe_mutex(command, cwd, env, output, label, driver, report):
+def observe_mutex(command, cwd, env, output, label, driver, report, timeout=900):
     stop = threading.Event()
     samples, errors = [], []
 
     def monitor():
         try:
-            while not stop.is_set():
-                samples.append({"monotonic": time.monotonic(), "free_gib": require_memory(),
-                                "workers": sample_native_workers(output)})
-                stop.wait(0.25)
+            with (output / "mutex-progress.jsonl").open("x", encoding="utf-8") as stream:
+                while not stop.is_set():
+                    sample = {"monotonic": time.monotonic(), "utc": datetime.now(timezone.utc).isoformat(),
+                              "free_gib": require_memory(), "workers": sample_native_workers(output)}
+                    samples.append(sample)
+                    stream.write(json.dumps(sample) + "\n")
+                    stream.flush()
+                    stop.wait(0.5)
         except (OSError, ContractError) as error:
             errors.append(str(error))
 
     thread = threading.Thread(target=monitor, name="db-mutex-resource-observer")
     thread.start()
     try:
-        row = observe(command, cwd, env, output, label, driver, 900)
+        row = observe(command, cwd, env, output, label, driver, timeout)
     finally:
         stop.set()
         thread.join(timeout=5)
@@ -181,6 +203,8 @@ def main():
     parser.add_argument("--mode", choices=("channel-baseline", "channel", "mutex", "suite"), required=True)
     parser.add_argument("--runs", type=int, choices=range(1, 11), default=1)
     parser.add_argument("--approved-mutex-matrix", action="store_true")
+    parser.add_argument("--matrix-timeout", type=int, choices=(900, 7200), default=900,
+                        help="900 seconds by default; 7200 only for an explicitly authorized full-load timing investigation")
     parser.add_argument("--native-driver", type=Path)
     parser.add_argument("--native-driver-manifest", type=Path)
     parser.add_argument("--native-driver-sha256")
@@ -195,6 +219,8 @@ def main():
         raise ContractError("A fresh, disjoint owned continuation output is required")
     if args.mode in ("mutex", "suite") and (not args.approved_mutex_matrix or args.runs != 1):
         raise ContractError("The unchanged mutex matrix needs an explicit new grant and a single full run")
+    if args.mode not in ("mutex", "suite") and args.matrix_timeout != 900:
+        raise ContractError("The extended timeout applies only to the unchanged mutex matrix")
     compiler_receipt = Path(handoff["compiler_receipt"]["path"])
     producer = sealed_json(compiler_receipt, handoff["compiler_receipt"]["sha256"])
     prefix = Path(producer["prefix"])
@@ -244,6 +270,7 @@ def main():
               "scope": "Historical sealed native DB cohort continuation; no current provider or blanket SDK admission",
               "full_cpp_qualified": False, "package_admitted": False, "commands": {}, "tests": [],
               "minimum_free_gib": require_memory(), "parallel_test_runs": 1,
+              "matrix_timeout_seconds": args.matrix_timeout,
               "mutex_grant": {"lockers": 4, "wakeup": 1, "threads_per_locker": 4}
               if args.approved_mutex_matrix else None}
     if driver_record is not None:
@@ -367,7 +394,7 @@ def main():
                     run_env["PATH"] = os.pathsep.join(map(str, (
                         native_bindir, Path(os.environ["SystemRoot"]) / "System32")))
                 if name == "TestMutexAlignment":
-                    row = observe_mutex(command, cwd, run_env, output, label, driver, report)
+                    row = observe_mutex(command, cwd, run_env, output, label, driver, report, args.matrix_timeout)
                 else:
                     row = observe(command, cwd, run_env, output, label, driver, 300)
                 report["commands"][label] = row

@@ -44,8 +44,13 @@ runtime DLLs are not smuggled into DB packages.
   synchronization patch passed deterministic controls and three ordinary runs.
 - **The full-load MutexAlignment run timed out after 900 seconds during
   configuration 9 of 24.** Its 83-created/76-recorded exit accounting is partial;
-  this is not a full matrix or complete upstream-suite pass. No cases, worker
-  counts, load, or deadlines were reduced to manufacture a pass.
+  this original receipt is not a pass and remains preserved. The subsequent
+  unchanged full matrix on the same D70 cohort completed all 24 configurations
+  in approximately 3,734 seconds, with raw exit 0 and 314/314 exit coverage.
+  Independent wait measurements explain why the original budget was too short;
+  see [the timing investigation](DB-MUTEX-TIMING.md). No worker counts, load or
+  cases were reduced. This does not imply a combined907 full-matrix or complete
+  upstream-suite pass.
 - Optional native Tcl coverage remains separate. A debugger-only exception
   limitation does not supersede the ordinary held-process C++ proof.
 - Package creation and archive readback are not signature, repository/provider,
