@@ -5,7 +5,7 @@ pkgrel=1
 pkgdesc='GNU internationalization runtime libraries'
 arch=('aarch64')
 url='https://www.gnu.org/software/gettext/'
-license=('spdx:GPL-3.0-or-later AND LGPL-2.1-or-later')
+license=('spdx:LGPL-2.1-or-later')
 options=('!strip' '!debug' '!lto' '!ccache' '!purge')
 source=('payload.tar' 'payload-files.sha256')
 sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@')
@@ -22,6 +22,8 @@ package_libintl() {
 
     install -Dm755 "$srcdir/payload/usr/bin/msys-intl-8.dll" \
         "$pkgdir/usr/bin/msys-intl-8.dll"
+    install -Dm644 "$srcdir/payload/licenses/libintl/COPYING.LIB" \
+        "$pkgdir/usr/share/licenses/libintl/COPYING.LIB"
 }
 
 package_libasprintf() {
@@ -31,4 +33,6 @@ package_libasprintf() {
 
     install -Dm755 "$srcdir/payload/usr/bin/msys-asprintf-0.dll" \
         "$pkgdir/usr/bin/msys-asprintf-0.dll"
+    install -Dm644 "$srcdir/payload/licenses/libasprintf/COPYING.LIB" \
+        "$pkgdir/usr/share/licenses/libasprintf/COPYING.LIB"
 }

@@ -7,7 +7,8 @@ does not install into, or copy from, an x64 bootstrap root.
 The contract preserves all 15 Git 2.55 split packages and selects exactly one
 curl TLS alternative (`openssl`, `gnutls`, or `winssl`). Package hashes,
 identities, dependencies, conflicts, file ownership, case-insensitive path
-collisions, native PE architecture, managed PE declarations, DLL imports,
+collisions, native PE architecture, managed PE declarations, DLL and
+executable export-module imports,
 documentation, licenses, launch paths, and relocatable CA configuration are
 checked before a bundle can be marked complete.
 
@@ -75,11 +76,96 @@ is rejected. Relative package paths are resolved beside the export. Package
 identity and dependencies are read back from `.PKGINFO`; the export cannot
 override them.
 
+Exact package/archive identities listed in `rejected_package_archives` are hard
+failures, not optional blockers. This keeps a revoked or mislabeled archive
+from becoming admissible merely because it is referenced by another otherwise
+valid provider export. Each rejection also records the immutable producer
+evidence SHA-256 that established it. Historical reports remain immutable, but
+their inputs cannot be reused after the rejection is recorded. The declared
+name/hash pair is checked before archive extraction and the actual `.PKGINFO`
+identity is checked again afterward.
+
+Payload relocation checks cover literal and escaped Windows spellings plus
+MSYS and WSL spellings of the private `C:\ap*` and `C:\ag*` producer roots.
+Matching text in data files remains an explicit audit blocker. Native PE files
+are checked more narrowly for compiled operational prefixes containing private
+`msys64/usr` roots or MinGW runtime locations such as `mingwarm64/bin`,
+`mingwarm64/etc`, `mingwarm64/share`, and Tcl library roots. Source-file,
+compiler, toolchain include, and staged include provenance such as
+`stage/usr/include` is not treated as a relocation failure because it does not
+redirect runtime lookup behavior.
+
+`package-qualified-native-make.ps1` recovers the signed GNU Make 4.4.1 source,
+MSYS2 `4.4.1-3` recipe and dependencies, applies normal package stripping, and
+executes the result against the current d70 runtime without rebuilding it.
+
+`package-qualified-native-gcc-libs.ps1` packages the producer-qualified GCC
+15.0.1 shared runtime split without the separate development SDK. It preserves
+the four proof-qualified DLL hashes, applies normal info-page compression, and
+replays the producer's native C and cross-DLL C++ consumers against the
+extracted package and exact d70 runtime. `gcc-libs` is a required release
+package because native MSYS binaries import these shared runtimes.
+
+`package-qualified-native-grep-v2.ps1` performs a package-only relocation for
+the generated `egrep` and `fgrep` compatibility wrappers. It hash-gates the
+original private bootstrap shebangs, replaces only those shebangs with
+`#!/usr/bin/sh`, and preserves `grep.exe` and every other payload byte. The
+private makepkg library copy enforces single-thread XZ/Zstd compression without
+changing installed makepkg configuration. Archive readback must execute both
+wrappers through their packaged shebangs against the extracted native grep.
+
+Failed producer builds are never provider exports. In particular, a gettext
+attempt that configured successfully but failed during `make` before checks or
+installation cannot replace a rejected gettext archive. The rejection remains
+controlling until a source-bound package completes its declared build, checks,
+installation, package transaction, file and PE hash inventory, import closure,
+and consumer qualification.
+
+Fresh producer qualification does not override relocation admission.
+`package-native-bash-provider.ps1` reproduces the pinned Bash/Bash-devel split,
+preserves executable and loadable bytes, applies normal makepkg documentation
+compression, and read-backs Bash, `sh`, and a dynamic loadable. The admitted
+provider requires canonical `/usr/share/locale` in Bash, `sh`, and `fltexpr`
+and rejects the former host-bootstrap and SDK locale prefixes. The only
+package-time relocation is a hash-gated edit of package-owned
+`usr/lib/bash/Makefile.inc`; no executable or loadable bytes are rewritten.
+Windows PE dependency closure indexes executable export modules as well as
+DLLs because Bash loadables legitimately import `bash.exe`.
+
+`package-qualified-gettext-runtime.ps1` packages only the recipe-owned
+`libintl` and `libasprintf` runtime DLL splits from the qualified native MSYS
+gettext 0.22.5 stage. It obtains each LGPL license from the pinned upstream
+source archive, preserves the DLL hashes, and executes fresh shared consumers
+against the extracted packages and current d70 runtime. Gettext tools, headers,
+static/import libraries, catalogs, and documentation remain unclaimed by these
+runtime splits. This provider is unrelated to, and does not replace, the
+revoked MinGW GNU gettext archive.
+
+`package-qualified-libiconv-runtime.ps1` packages the pinned MSYS2 `libiconv`
+runtime ownership: the two shared DLLs plus the recipe-owned data,
+translations, documentation, and licenses. A fresh shared consumer runs
+against the exact packaged DLLs and current d70 runtime. The existing
+`iconv.exe` remains excluded because it embeds the host-bootstrap locale path;
+the `iconv` provider therefore remains a truthful producer handoff need.
+
+`package-qualified-iconv-tool.ps1` accepts only the subsequent fresh canonical
+`iconv.exe` handoff. It creates the separate recipe-owned `iconv` package,
+retains the already admitted `libiconv` runtime archive, and verifies the new
+executable against those existing DLLs plus the admitted `libintl`. Archive
+readback requires GNU libiconv 1.19 identity, ARM64 PE classification, no
+blocked operational prefix, canonical `/usr/share/locale`, and a byte-exact
+UTF-8 to UTF-16LE round trip.
+
 Provider roles listed in `provider_role_payload_globs` are filtered to their
 declared runtime surface after dependency resolution. This permits a
 dependency-complete Python export to retain compiler and development packages
 for readback without shipping compiler executables, headers, static libraries,
 or build-only documentation.
+
+The terminal-library role is similarly limited to `usr/**`. Git for Windows'
+`git-extra` package owns the release-specific `etc/inputrc`; the generic
+readline default remains in its immutable package archive but is not allowed to
+overwrite that intentional Git configuration during payload assembly.
 
 A corrected current Git handoff may use top-level `packages` rows with
 `packageName`/`archive`. If it omits the recipe digest, it must hash-bind the

@@ -7,7 +7,7 @@ param(
     [string]$LibeditHandoff = 'C:\ag-readline-e138-01\libedit-handoff-01\handoff.json',
     [string]$LibeditInventory = 'C:\ag-readline-e138-01\libedit-static-01\stage.inventory.json',
     [string]$LibeditStage = 'C:\ag-readline-e138-01\libedit-static-01\stage',
-    [string]$OutputDirectory = 'C:\ap11-native-provider-intake\terminal-libraries-v1',
+    [string]$OutputDirectory = 'C:\ap11-native-provider-intake\terminal-libraries-v2',
     [string]$Bash = 'C:\ag-readline-e138-01\bootstrap\msys64\usr\bin\bash.exe',
     [string]$MakepkgConfig = 'C:\ap06-2160\native-msys-zlib-package-01\invocation\makepkg-msys.conf'
 )
@@ -94,6 +94,23 @@ function Invoke-PackageBuild {
     New-Item -ItemType Directory -Force -Path $buildRoot | Out-Null
     $privateStage = Join-Path $buildRoot 'qualified-stage'
     Copy-Item -LiteralPath $Stage -Destination $privateStage -Recurse
+    $metadataDisposition = $null
+    if ($Name -eq 'libedit') {
+        $libtoolPath = Join-Path $privateStage 'usr\lib\libedit.la'
+        $original = [IO.File]::ReadAllText($libtoolPath)
+        $originalDependency = "dependency_libs=' -L=C:/ag-readline-e138-01/ncurses-static-cxx-01/stage/usr/lib -lncurses'"
+        if (($original.Split($originalDependency).Count - 1) -ne 1) {
+            throw 'Qualified libedit.la does not contain the single expected producer-private dependency path'
+        }
+        $metadataDisposition = [ordered]@{
+            path = 'usr/lib/libedit.la'
+            original_sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath (Join-Path $Stage 'usr\lib\libedit.la')).Hash.ToLowerInvariant()
+            producer_private_dependency_search_path = '-L=C:/ag-readline-e138-01/ncurses-static-cxx-01/stage/usr/lib'
+            disposition = 'excluded-from-package'
+            dependency_preserved_by_package = 'ncurses-devel'
+        }
+        Remove-Item -LiteralPath $libtoolPath
+    }
 
     $stagePath = Convert-ToMsysPath -Path $privateStage
     $packageBuild = (Get-Content -Raw -LiteralPath $Template).
@@ -131,7 +148,7 @@ export SRCPKGDEST='$msysSourcePackageOutput'
 export LOGDEST='$msysLogOutput'
 export BUILDDIR='$msysMakepkgBuildOutput'
 cd '$msysBuildRoot'
-/usr/bin/makepkg --config '$msysMakepkgConfig' --force --nodeps --cleanbuild --noconfirm
+/usr/bin/makepkg --config '$msysMakepkgConfig' --force --cleanbuild --noconfirm
 "@
         & $Bash --noprofile --norc -c ($command.Replace("`r`n", "`n")) |
             Out-Host
@@ -143,7 +160,58 @@ cd '$msysBuildRoot'
         $env:PATH = $oldPath
     }
 
-    return @(Get-ChildItem -LiteralPath $packageOutput -File -Filter '*.pkg.tar.zst' | Sort-Object Name)
+    return [ordered]@{
+        archives = @(Get-ChildItem -LiteralPath $packageOutput -File -Filter '*.pkg.tar.zst' | Sort-Object Name)
+        metadata_disposition = $metadataDisposition
+    }
+}
+
+function Test-LibeditRelocation {
+    param(
+        [Parameter(Mandatory)]
+        [string]$Archive
+    )
+
+    $proofRoot = Join-Path $OutputDirectory 'libedit-relocation-proof'
+    New-Item -ItemType Directory -Path $proofRoot | Out-Null
+    & tar -xf $Archive -C $proofRoot
+    if ($LASTEXITCODE -ne 0) {
+        throw "Unable to extract $Archive for relocation proof"
+    }
+
+    $libtoolPath = Join-Path $proofRoot 'usr\lib\libedit.la'
+    if (Test-Path -LiteralPath $libtoolPath) {
+        throw 'Relocated libedit-devel package unexpectedly contains libedit.la'
+    }
+    $pkgconfigPath = Join-Path $proofRoot 'usr\lib\pkgconfig\libedit.pc'
+    $pkgconfig = [IO.File]::ReadAllText($pkgconfigPath)
+    if ($pkgconfig -match '(?i)ag-readline-e138-01|[A-Z]:[/\\].*ncurses-static') {
+        throw 'Relocated libedit.pc retained a producer-private path'
+    }
+    if ($pkgconfig -notmatch '(?m)^prefix=/usr$') {
+        throw 'Relocated libedit.pc does not use the canonical /usr prefix'
+    }
+    $pkginfo = [IO.File]::ReadAllText((Join-Path $proofRoot '.PKGINFO'))
+    if ($pkginfo -notmatch '(?m)^depend = ncurses-devel$') {
+        throw 'Relocated libedit-devel package omitted its ncurses-devel dependency'
+    }
+
+    $receipt = [ordered]@{
+        schema = 1
+        status = 'verified'
+        archive = $Archive
+        archive_sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $Archive).Hash.ToLowerInvariant()
+        libtool_metadata = 'excluded'
+        producer_private_path_absent = $true
+        pkgconfig_prefix = '/usr'
+        ncurses_dependency_preserved_by_package = $true
+    }
+    $receiptPath = Join-Path $proofRoot 'receipt.json'
+    $receipt | ConvertTo-Json -Depth 6 | Set-Content -LiteralPath $receiptPath -Encoding utf8NoBOM
+    return [ordered]@{
+        path = $receiptPath
+        sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $receiptPath).Hash.ToLowerInvariant()
+    }
 }
 
 Test-StageInventory -Stage $ReadlineStage -Inventory $ReadlineInventory
@@ -158,9 +226,9 @@ $repoRoot = Split-Path -Parent (Split-Path -Parent $PSScriptRoot)
 $readlineTemplate = Join-Path $repoRoot 'arm64-git-recovery\native-packaging\readline\PKGBUILD.in'
 $libeditTemplate = Join-Path $repoRoot 'arm64-git-recovery\native-packaging\libedit\PKGBUILD.in'
 
-$archives = @()
-$archives += Invoke-PackageBuild -Name 'readline' -Stage $ReadlineStage -Template $readlineTemplate
-$archives += Invoke-PackageBuild -Name 'libedit' -Stage $LibeditStage -Template $libeditTemplate
+$readlineBuild = Invoke-PackageBuild -Name 'readline' -Stage $ReadlineStage -Template $readlineTemplate
+$libeditBuild = Invoke-PackageBuild -Name 'libedit' -Stage $LibeditStage -Template $libeditTemplate
+$archives = @($readlineBuild.archives) + @($libeditBuild.archives)
 $expectedArchives = @(
     'libedit-20240808_3.1-1-aarch64.pkg.tar.zst',
     'libedit-devel-20240808_3.1-1-aarch64.pkg.tar.zst',
@@ -184,13 +252,17 @@ $packageRecords = foreach ($archive in $archives) {
         sha256 = (Get-FileHash -Algorithm SHA256 -LiteralPath $destination).Hash.ToLowerInvariant()
     }
 }
+$libeditDevelArchive = $archives |
+    Where-Object Name -eq 'libedit-devel-20240808_3.1-1-aarch64.pkg.tar.zst' |
+    Select-Object -First 1
+$relocationProof = Test-LibeditRelocation -Archive $libeditDevelArchive.FullName
 
 $chainData = Get-Content -Raw -LiteralPath $ChainHandoff | ConvertFrom-Json
 $export = [ordered]@{
     schema = 1
     status = 'admitted-qualified-native-msys-terminal-libraries-exported'
     provider = 'native-msys-qualified-terminal-libraries'
-    version = 'v1'
+    version = 'v2'
     runtime_cohort = [ordered]@{
         sha256 = $chainData.runtime_sha256
         compatibility_with_current_d70_runtime_claimed = $false
@@ -231,6 +303,8 @@ $handoff = [ordered]@{
         runtime_cohort = $chainData.runtime_sha256
         compatibility_with_current_d70_runtime_claimed = $false
         producer_prefix_modified = $false
+        metadata_disposition = $libeditBuild.metadata_disposition
+        relocation_proof = $relocationProof
     }
 }
 $handoffPath = Join-Path $OutputDirectory 'handoff.json'

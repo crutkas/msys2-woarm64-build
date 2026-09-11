@@ -58,6 +58,7 @@
     "mingw-w64-aarch64-git-credential-manager",
     "mingw-w64-aarch64-git-lfs",
     "msys2-runtime",
+    "gcc-libs",
     "bash",
     "coreutils",
     "make",
@@ -203,6 +204,9 @@
       "mingwarm64/share/tcl*/**",
       "mingwarm64/share/tk*/**",
       "mingwarm64/share/zoneinfo/**"
+    ],
+    "native-msys-terminal-libraries": [
+      "usr/**"
     ]
   },
   "excluded_payload_globs": [
@@ -219,6 +223,14 @@
     "path": "etc/gitconfig",
     "content": "[http]\n\tsslCAInfo = %(prefix)/mingwarm64/etc/ssl/certs/ca-bundle.crt\n"
   },
+  "rejected_package_archives": [
+    {
+      "name": "mingw-w64-aarch64-gettext",
+      "sha256": "7abded5bc03698083363a22b1103afc5bacb710561002c21e7c585ed803a7e46",
+      "evidence_sha256": "9cfced0a3234bd363d7543476079604e6853aeeb476692ffd0d55484bbeb3f36",
+      "reason": "Producer evidence identifies GNU gettext 1.0 binaries mislabeled as 0.26-1 and private staging paths remain in the payload."
+    }
+  ],
   "system_dlls": [
     "advapi32.dll",
     "bcrypt.dll",
@@ -258,11 +270,25 @@
     "ws2_32.dll"
   ],
   "forbidden_payload_markers": [
+    "C:\\ap",
     "C:\\\\ap",
     "C:/ap",
     "/c/ap",
+    "/mnt/c/ap",
+    "C:\\ag",
+    "C:\\\\ag",
+    "C:/ag",
+    "/c/ag",
+    "/mnt/c/ag",
     ".copilot",
     "session-state"
+  ],
+  "forbidden_pe_runtime_path_segments": [
+    "/msys64/usr/",
+    "/mingwarm64/bin",
+    "/mingwarm64/etc",
+    "/mingwarm64/share",
+    "/mingwarm64/lib/tcl"
   ],
   "forbidden_nonrelease_markers": [
     "PIPELINE-TEST-DO-NOT-SHIP",

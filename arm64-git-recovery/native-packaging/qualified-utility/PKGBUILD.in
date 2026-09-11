@@ -1,0 +1,16 @@
+pkgname=@@PACKAGE_NAME@@
+pkgver=@@PACKAGE_VERSION@@
+pkgrel=@@PACKAGE_RELEASE@@
+@@PACKAGE_EPOCH@@
+pkgdesc='@@PACKAGE_DESCRIPTION@@'
+arch=('arm64')
+url='@@PACKAGE_URL@@'
+license=('spdx:@@PACKAGE_LICENSE@@')
+depends=(@@PACKAGE_DEPENDS@@)
+@@PACKAGE_PROVIDES@@
+options=('!strip' '!debug' 'staticlibs')
+source=()
+
+package() {
+  cp -a '@@PAYLOAD_ROOT@@/.' "${pkgdir}/"
+}

@@ -351,6 +351,23 @@ def pe_info(data: bytes) -> dict | None:
     }
 
 
+def private_pe_runtime_paths(data: bytes, segments: list[str]) -> list[str]:
+    normalized = data.replace(b"\\", b"/")
+    wanted = [segment.casefold().encode("utf-8") for segment in segments]
+    matches = []
+    for match in re.finditer(rb"(?i)[a-z]:/[ -~]{1,512}", normalized):
+        value = match.group(0)
+        folded = value.lower()
+        if any(segment in folded for segment in wanted):
+            matches.append(value.decode("ascii", errors="replace"))
+    return sorted(set(matches))
+
+
+def is_import_provider(path: str) -> bool:
+    """Return whether a shipped PE can satisfy another PE import."""
+    return Path(path).suffix.lower() in {".dll", ".exe"}
+
+
 def inspect_archive(path: Path, expected_sha256: str, declared_name: str | None = None) -> dict:
     if not path.is_file():
         raise ContractError(f"Package archive is missing: {path}")
@@ -627,6 +644,32 @@ def load_packages(declarations: list[dict]) -> dict[str, dict]:
     return packages
 
 
+def validate_rejected_archives(
+        contract: dict, packages: list[dict] | dict[str, dict]) -> None:
+    records = packages.values() if isinstance(packages, dict) else packages
+    records = list(records)
+    for rejection in contract.get("rejected_package_archives", []):
+        name = rejection["name"]
+        reason = rejection["reason"]
+        evidence_sha256 = rejection["evidence_sha256"].lower()
+        if not re.fullmatch(r"[0-9a-f]{64}", evidence_sha256):
+            raise ContractError(
+                f"Rejected package archive evidence for {name} must declare a full SHA-256"
+            )
+        rejected_hash = rejection["sha256"].lower()
+        if not re.fullmatch(r"[0-9a-f]{64}", rejected_hash):
+            raise ContractError(
+                f"Rejected package archive for {name} must declare a full SHA-256"
+            )
+        for package in records:
+            package_hash = package.get("archive_sha256") or package.get("sha256")
+            if package.get("name") == name and package_hash == rejected_hash:
+                raise ContractError(
+                    f"Rejected package archive supplied: {name} {rejected_hash} "
+                    f"({reason}; evidence {evidence_sha256})"
+                )
+
+
 def provider_index(packages: dict[str, dict]) -> dict[str, list[str]]:
     providers: dict[str, list[str]] = {}
     for name, package in packages.items():
@@ -816,10 +859,13 @@ def validate_payload(contract: dict, files: dict, selected: set[str],
             blockers.append(f"missing-license:{pattern}")
     managed_allow = set(contract.get("managed_files", []))
     classifications = {"native_pe_arm64": [], "managed_pe": [], "script": [], "data": []}
-    dlls: dict[str, list[str]] = {}
+    import_providers: dict[str, list[str]] = {}
     imports: dict[str, list[str]] = {}
     forbidden = [value.casefold().encode("utf-8")
                  for value in contract["forbidden_payload_markers"]]
+    forbidden_pe_runtime_segments = contract.get(
+        "forbidden_pe_runtime_path_segments", []
+    )
     nonrelease = [value.casefold().encode("utf-8")
                   for value in contract["forbidden_nonrelease_markers"]]
     for rel, record in files.items():
@@ -827,6 +873,11 @@ def validate_payload(contract: dict, files: dict, selected: set[str],
         info = pe_info(data)
         if info:
             lower_data = data.lower()
+            for private_path in private_pe_runtime_paths(
+                    data, forbidden_pe_runtime_segments):
+                blockers.append(
+                    f"private-runtime-path:{rel}:{private_path}"
+                )
             for marker in nonrelease:
                 if marker in lower_data:
                     blockers.append(
@@ -845,8 +896,8 @@ def validate_payload(contract: dict, files: dict, selected: set[str],
                     )
                 classifications["native_pe_arm64"].append(rel)
                 imports[rel] = info["imports"]
-            if Path(rel).suffix.lower() == ".dll":
-                dlls.setdefault(Path(rel).name.casefold(), []).append(rel)
+            if is_import_provider(rel):
+                import_providers.setdefault(Path(rel).name.casefold(), []).append(rel)
         elif Path(rel).suffix.lower() in PE_SUFFIXES:
             raise ContractError(f"Executable extension without PE image: {rel}")
         else:
@@ -876,10 +927,14 @@ def validate_payload(contract: dict, files: dict, selected: set[str],
             folded = name.casefold()
             if folded.startswith(API_SET_PREFIXES) or folded in system:
                 continue
-            if folded not in dlls:
+            if folded not in import_providers:
                 missing.append(name)
-            elif len({files[path]["sha256"] for path in dlls[folded]}) != 1:
-                raise ContractError(f"Ambiguous DLL basename with different bytes: {name}")
+            elif len({
+                files[path]["sha256"] for path in import_providers[folded]
+            }) != 1:
+                raise ContractError(
+                    f"Ambiguous PE import provider basename with different bytes: {name}"
+                )
         if missing:
             unresolved[rel] = sorted(missing, key=str.casefold)
     if unresolved:
@@ -1011,7 +1066,9 @@ def audit(input_path: Path, contract_path: Path) -> tuple[dict, dict, dict, set[
         raise ContractError("Distribution contract must use schema 1")
     input_data = read_json(input_path)
     declarations, references = collect_declared_packages(input_path, input_data, contract)
+    validate_rejected_archives(contract, declarations)
     packages = load_packages(declarations)
+    validate_rejected_archives(contract, packages)
     blockers = validate_git_splits(contract, packages)
     managed_blockers, managed_admissions = validate_managed_admissions(
         contract, input_data, packages

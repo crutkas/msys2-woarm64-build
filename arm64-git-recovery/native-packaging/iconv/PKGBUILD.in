@@ -1,0 +1,21 @@
+pkgname=iconv
+pkgver=1.19
+pkgrel=1
+pkgdesc='Libiconv character-set conversion utility'
+arch=('aarch64')
+url='https://www.gnu.org/software/libiconv/'
+license=('spdx:GPL-3.0-only AND LGPL-2.1-only')
+options=('!strip' '!debug' '!lto' '!ccache')
+depends=('gcc-libs' 'libiconv=1.19' 'libintl')
+conflicts=('libiconv<1.18-2')
+source=('payload.tar' 'payload-files.sha256')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@')
+
+prepare() {
+  cd "$srcdir"
+  sha256sum --check --strict payload-files.sha256
+}
+
+package() {
+  cp -a "$srcdir/payload/." "$pkgdir/"
+}

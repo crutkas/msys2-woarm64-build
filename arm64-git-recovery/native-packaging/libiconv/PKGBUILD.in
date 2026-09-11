@@ -1,0 +1,22 @@
+pkgbase=libiconv
+pkgname=('libiconv')
+pkgver=1.19
+pkgrel=1
+pkgdesc='Libiconv conversion runtime libraries and data'
+groups=('libraries')
+arch=('aarch64')
+url='https://www.gnu.org/software/libiconv/'
+license=('spdx:GPL-3.0-only AND LGPL-2.1-only')
+options=('!strip' '!debug' '!lto' '!ccache' '!libtool')
+source=('payload.tar' 'payload-files.sha256')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@')
+
+prepare() {
+  cd "$srcdir"
+  sha256sum --check --strict payload-files.sha256
+}
+
+package() {
+  depends=('gcc-libs')
+  cp -a "$srcdir/payload/." "$pkgdir/"
+}
