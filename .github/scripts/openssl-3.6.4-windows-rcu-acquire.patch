@@ -1,0 +1,21 @@
+--- a/crypto/threads_win.c
++++ b/crypto/threads_win.c
+@@ -429,10 +429,17 @@ void ossl_rcu_call(CRYPTO_RCU_LOCK *lock, CRYPTO_RCU_CB_ITEM *item,
+ 
+ void *ossl_rcu_uptr_deref(void **p)
+ {
+-    return (void *)*p;
++    return InterlockedCompareExchangePointer((void *volatile *)p, NULL, NULL);
+ }
+ 
+ void ossl_rcu_assign_uptr(void **p, void **v)
+ {
++#if defined(__MINGW32__) && defined(__aarch64__)
++    /*
++     * GCC's ARM64 MinGW swap helper is acquire-only, so publish the
++     * initialized pointee explicitly before exchanging the pointer.
++     */
++    MemoryBarrier();
++#endif
+     InterlockedExchangePointer((void *volatile *)p, (void *)*v);
+ }
