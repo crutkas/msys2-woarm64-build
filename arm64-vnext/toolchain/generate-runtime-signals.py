@@ -18,6 +18,65 @@ def identity(path):
     return {"path": str(path), "sha256": digest(path), "bytes": path.stat().st_size}
 
 
+def validate_offsets(text):
+    constants = {}
+    for number, line in enumerate(text.splitlines(), 1):
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        match = re.fullmatch(r"\.equ\s+(_cygtls\.[A-Za-z_]\w*)\s*,\s*(-?\d+)", line)
+        if not match:
+            raise ValueError(f"Malformed TLS offset at line {number}")
+        name, value = match.groups()
+        if name in constants:
+            raise ValueError(f"Duplicate TLS offset: {name}")
+        constants[name] = int(value)
+    required = ("start_offset", "initialized", "stacklock", "stackptr", "stack",
+                "incyg", "current_sig", "saved_errno", "errno_addr")
+    if not all("_cygtls." + name in constants for name in required):
+        raise ValueError("TLS offsets do not contain the signal ABI fields")
+    start = constants["_cygtls.start_offset"]
+    if start >= 0 or start % 16:
+        raise ValueError("TLS start offset must be negative and 16-byte aligned")
+    for name, value in constants.items():
+        if name == "_cygtls.start_offset":
+            continue
+        if name.endswith("_p"):
+            if name[:-2] not in constants:
+                raise ValueError(f"TLS positive offset has no field: {name}")
+            continue
+        if not start <= value < 0 or constants.get(name + "_p") != value - start:
+            raise ValueError(f"Inconsistent TLS relative/positive offset pair: {name}")
+    for field, alignment in (("initialized", 4), ("stacklock", 4), ("incyg", 4),
+                             ("current_sig", 4), ("saved_errno", 4), ("stackptr", 8),
+                             ("stack", 8), ("errno_addr", 8), ("context", 16)):
+        name = "_cygtls." + field
+        if name in constants and constants[name] % alignment:
+            raise ValueError(f"Misaligned TLS field: {name}")
+    stack_size = constants["_cygtls.initialized"] - constants["_cygtls.stack"]
+    if constants["_cygtls.stackptr"] + 8 != constants["_cygtls.stack"] or stack_size < 16 or stack_size % 8:
+        raise ValueError("Invalid TLS signal-stack layout")
+    return constants
+
+
+def validate_assembly(text, exports):
+    labels = re.findall(r"^([A-Za-z_.$][\w.$]*):", text, re.M)
+    if len(labels) != len(set(labels)):
+        raise ValueError("Duplicate generated assembly label")
+    needed = set(re.findall(r"=\s*(_sigfe\w+)\s*$", exports, re.M))
+    core = {"_sigfe", "_sigfe_maybe", "_sigbe", "sigdelayed", "_sigdelayed_end",
+            "sigsetjmp", "siglongjmp", "setjmp", "longjmp", "stabilize_sig_stack"}
+    missing = sorted((needed | core) - set(labels))
+    if not needed or missing:
+        raise ValueError(f"Generated export/trampoline symbols missing: {missing}")
+    public = set(re.findall(r"^\s*\.(?:global|globl)\s+([A-Za-z_.$][\w.$]*)\s*$", text, re.M))
+    missing_public = sorted((needed | {"_sigbe", "sigdelayed", "_sigdelayed_end",
+                                      "sigsetjmp", "siglongjmp", "setjmp", "longjmp"}) - public)
+    if missing_public:
+        raise ValueError(f"Generated symbols are not externally visible: {missing_public}")
+    return needed, set(labels)
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True)
@@ -33,14 +92,7 @@ def main():
     offsets = args.offsets.resolve(strict=True)
     if digest(offsets) != args.offsets_sha256:
         raise ValueError("TLS offsets differ from the explicitly selected source/build cohort")
-    text = offsets.read_text()
-    constants = dict(re.findall(r"^\s*\.equ\s+([^,\s]+)\s*,\s*(-?\d+)\s*$", text, re.M))
-    required = ("start_offset", "initialized", "stacklock", "stackptr", "stack",
-                "incyg", "current_sig", "saved_errno", "errno_addr")
-    if not all("_cygtls." + name in constants for name in required):
-        raise ValueError("TLS offsets do not contain the signal ABI fields")
-    if int(constants["_cygtls.start_offset"]) >= 0 or len(set(constants.values())) < 8:
-        raise ValueError("TLS offsets are empty or degenerate")
+    constants = validate_offsets(offsets.read_text())
     before = {str(p): identity(p) for p in (generator, exports, offsets, args.perl)}
     args.output.mkdir(parents=True, exist_ok=False)
     out = args.output.resolve()
@@ -63,13 +115,7 @@ def main():
         assembly = out / "sigfe.s"
         if not assembly.is_file() or not assembly.stat().st_size:
             raise ValueError("Signal generator produced no assembly")
-        labels = set(re.findall(r"^([A-Za-z_.$][\w.$]*):", assembly.read_text(), re.M))
-        needed = set(re.findall(r"=\s*(_sigfe\w+)\s*$", (out / "runtime.def").read_text(), re.M))
-        core = {"_sigfe", "_sigfe_maybe", "_sigbe", "sigdelayed", "_sigdelayed_end",
-                "sigsetjmp", "siglongjmp", "setjmp", "longjmp", "stabilize_sig_stack"}
-        missing = sorted((needed | core) - labels)
-        if not needed or missing:
-            raise ValueError(f"Generated export/trampoline symbols missing: {missing}")
+        needed, labels = validate_assembly(assembly.read_text(), (out / "runtime.def").read_text())
         for path, expected in before.items():
             if identity(Path(path)) != expected:
                 raise ValueError(f"Source input changed during generation: {path}")
