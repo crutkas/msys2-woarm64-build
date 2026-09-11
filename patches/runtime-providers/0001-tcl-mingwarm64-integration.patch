@@ -1,0 +1,97 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index f43b780..e8645b8 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -8,10 +8,10 @@ pkgver=8.6.13
+ pkgrel=1
+ pkgdesc="The Tcl scripting language (mingw-w64)"
+ arch=('any')
+-mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clangarm64')
+-depends=("${MINGW_PACKAGE_PREFIX}-gcc-libs" "${MINGW_PACKAGE_PREFIX}-zlib")
++mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clangarm64' 'mingwarm64')
++depends=("${MINGW_PACKAGE_PREFIX}-gcc" "${MINGW_PACKAGE_PREFIX}-zlib")
+ #conflicts=(${MINGW_PACKAGE_PREFIX}-sqlite-analyzer)
+-makedepends=("${MINGW_PACKAGE_PREFIX}-cc" "${MINGW_PACKAGE_PREFIX}-autotools")
++makedepends=("${MINGW_PACKAGE_PREFIX}-cc" 'autoconf' 'automake' 'libtool')
+ options=('!makeflags') # '!strip' 'debug')
+ license=("custom")
+ url="https://tcl.sourceforge.io/"
+@@ -59,6 +59,7 @@ prepare() {
+   # libgcc*.dll everywhere:
+   echo "Removing -static-libgcc from configure files"
+   find "${srcdir}/tcl${pkgver}" -type f \( -name "tcl.m4" -o -name "configure*" \) -print0 | xargs -0 sed -i 's/-static-libgcc//g'
++  find "${srcdir}/tcl${pkgver}" -type f \( -name "*.m4" -o -name "configure*" \) -print0 | xargs -0 sed -i 's/-fomit-frame-pointer/-fno-omit-frame-pointer/g'
+ 
+   cd win && autoreconf -fi
+ }
+@@ -82,7 +83,7 @@ build() {
+     ${extra_config} \
+     ${enable64bit}
+ 
+-  make
++  make CFLAGS_OPTIMIZE="-O2 -fno-omit-frame-pointer"
+ }
+ 
+ package() {
+@@ -93,7 +94,7 @@ package() {
+   cd "${srcdir}/build-${MSYSTEM}"
+   cp tclsh86${debug_suffix}.exe tclsh.exe
+   #PATH=.:$PATH
+-  make install INSTALL_ROOT="$pkgdir"
++  make CFLAGS_OPTIMIZE="-O2 -fno-omit-frame-pointer" install INSTALL_ROOT="$pkgdir"
+ 
+   cp "${pkgdir}${MINGW_PREFIX}/bin/tclsh86${debug_suffix}.exe" "${pkgdir}${MINGW_PREFIX}/bin/tclsh.exe"
+   find "${pkgdir}${MINGW_PREFIX}" -name '*.def' -o -name '*.exp' | xargs -rtl1 rm
+@@ -131,6 +132,52 @@ package() {
+     -e "s|^\(ITCL_BUILD_STUB_LIB_PATH\)='.*|\1='${MINGW_PREFIX}/lib/itcl${_itcl_ver}/libitclstub${_itcl_ver//./}.a'|" \
+     -i "${pkgdir}${MINGW_PREFIX}/lib/itcl${_itcl_ver}/itclConfig.sh"
+ 
++  for variable in itcl_BUILD_LIB_SPEC ITCL_BUILD_LIB_SPEC itcl_LIB_SPEC ITCL_LIB_SPEC; do
++    sed -i "s|^${variable}=.*|${variable}='-L${MINGW_PREFIX}/lib/itcl${_itcl_ver} -litcl${_itcl_ver//./}'|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/itcl${_itcl_ver}/itclConfig.sh"
++  done
++  for variable in itcl_BUILD_STUB_LIB_SPEC ITCL_BUILD_STUB_LIB_SPEC itcl_STUB_LIB_SPEC ITCL_STUB_LIB_SPEC; do
++    sed -i "s|^${variable}=.*|${variable}='-L${MINGW_PREFIX}/lib/itcl${_itcl_ver} -litclstub${_itcl_ver//./}'|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/itcl${_itcl_ver}/itclConfig.sh"
++  done
++  for variable in itcl_BUILD_STUB_LIB_PATH ITCL_BUILD_STUB_LIB_PATH itcl_STUB_LIB_PATH ITCL_STUB_LIB_PATH; do
++    sed -i "s|^${variable}=.*|${variable}='${MINGW_PREFIX}/lib/itcl${_itcl_ver}/libitclstub${_itcl_ver//./}.a'|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/itcl${_itcl_ver}/itclConfig.sh"
++  done
++  for variable in itcl_SRC_DIR ITCL_SRC_DIR; do
++    sed -i "s|^${variable}=.*|${variable}='${MINGW_PREFIX}/include'|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/itcl${_itcl_ver}/itclConfig.sh"
++  done
++  for variable in itcl_INCLUDE_SPEC ITCL_INCLUDE_SPEC; do
++    sed -i "s|^${variable}=.*|${variable}='-I${MINGW_PREFIX}/include'|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/itcl${_itcl_ver}/itclConfig.sh"
++  done
++
++  for variable in tdbc_BUILD_LIB_SPEC TDBC_BUILD_LIB_SPEC tdbc_LIB_SPEC TDBC_LIB_SPEC; do
++    sed -i "s|^${variable}=.*|${variable}=\"-L${MINGW_PREFIX}/lib/tdbc${_odbc_ver} -ltdbc${_odbc_ver//./}\"|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/tdbcConfig.sh"
++  done
++  for variable in tdbc_BUILD_STUB_LIB_SPEC TDBC_BUILD_STUB_LIB_SPEC tdbc_STUB_LIB_SPEC TDBC_STUB_LIB_SPEC; do
++    sed -i "s|^${variable}=.*|${variable}=\"-L${MINGW_PREFIX}/lib/tdbc${_odbc_ver} -ltdbcstub${_odbc_ver//./}\"|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/tdbcConfig.sh"
++  done
++  for variable in tdbc_BUILD_STUB_LIB_PATH TDBC_BUILD_STUB_LIB_PATH tdbc_STUB_LIB_PATH TDBC_STUB_LIB_PATH; do
++    sed -i "s|^${variable}=.*|${variable}=\"${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/libtdbcstub${_odbc_ver//./}.a\"|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/tdbcConfig.sh"
++  done
++  for variable in tdbc_SRC_DIR TDBC_SRC_DIR; do
++    sed -i "s|^${variable}=.*|${variable}=\"${MINGW_PREFIX}/include\"|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/tdbcConfig.sh"
++  done
++  for variable in tdbc_BUILD_INCLUDE_SPEC TDBC_BUILD_INCLUDE_SPEC; do
++    sed -i "s|^${variable}=.*|${variable}=\"-I${MINGW_PREFIX}/include\"|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/tdbcConfig.sh"
++  done
++  for variable in tdbc_BUILD_LIBRARY_PATH TDBC_BUILD_LIBRARY_PATH; do
++    sed -i "s|^${variable}=.*|${variable}=\"${MINGW_PREFIX}/lib/tdbc${_odbc_ver}\"|" \
++      "${pkgdir}${MINGW_PREFIX}/lib/tdbc${_odbc_ver}/tdbcConfig.sh"
++  done
++
+   ln -s "${pkgdir}${MINGW_PREFIX}/lib/libtcl86${debug_suffix}.dll.a" "${pkgdir}${MINGW_PREFIX}/lib/libtcl.dll.a"
+   ln -s "${pkgdir}${MINGW_PREFIX}/lib/tclConfig.sh" "${pkgdir}${MINGW_PREFIX}/lib/tcl${pkgver%.*.*}/tclConfig.sh"
+ 

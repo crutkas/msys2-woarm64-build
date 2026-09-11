@@ -1,0 +1,66 @@
+diff --git a/Makefile.pre.in b/Makefile.pre.in
+index 47da409..4880751 100644
+--- a/Makefile.pre.in
++++ b/Makefile.pre.in
+@@ -176,7 +176,7 @@ SHLIB_SUFFIX=	@SHLIB_SUFFIX@
+ EXT_SUFFIX=	@EXT_SUFFIX@
+ PYD_PLATFORM_TAG = @PYD_PLATFORM_TAG@
+ LDSHARED=	@LDSHARED@ $(PY_LDFLAGS)
+-BLDSHARED=	@BLDSHARED@ $(PY_CORE_LDFLAGS)
++BLDSHARED=	@BLDSHARED@ $(PY_LDFLAGS)
+ LDCXXSHARED=	@LDCXXSHARED@ $(PY_LDFLAGS)
+ DESTSHARED=	$(BINLIBDEST)/lib-dynload
+ 
+@@ -820,11 +820,11 @@ venvwlauncher.o: $(srcdir)/PC/pylauncher.rc
+ 	$(WINDRES) $(RCFLAGS) -DPYW_ICON -I$(srcdir)/Include -I$(srcdir)/PC -I. $(srcdir)/PC/pylauncher.rc $@
+ 
+ $(BUILDPYTHONW): Programs/python.o $(LIBRARY) $(LDLIBRARY) $(PY3LIBRARY) pythonw_exe.o
+-	$(LINKCC) $(PY_CORE_LDFLAGS) $(LINKFORSHARED) -municode -mwindows -o $@ Programs/python.o $(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) pythonw_exe.o
++	$(LINKCC) $(PY_LDFLAGS) $(LINKFORSHARED) -municode -mwindows -o $@ Programs/python.o $(BLDLIBRARY) $(LIBS) $(MODLIBS) $(SYSLIBS) pythonw_exe.o
+ 
+ # Build the interpreter
+ $(BUILDPYTHON):	Programs/python.o $(LINK_PYTHON_DEPS) python_exe.o
+-	$(LINKCC) $(PY_CORE_LDFLAGS) $(LINKFORSHARED) -municode -o $@ Programs/python.o $(LINK_PYTHON_OBJS) $(LIBS) $(MODLIBS) $(SYSLIBS) python_exe.o
++	$(LINKCC) $(PY_LDFLAGS) $(LINKFORSHARED) -municode -o $@ Programs/python.o $(LINK_PYTHON_OBJS) $(LIBS) $(MODLIBS) $(SYSLIBS) python_exe.o
+ 
+ $(BUILDVENVLAUNCHER): $(BUILDPYTHON) venvlauncher.o  $(srcdir)/PC/launcher.c
+ 	$(LINKCC) -D_CONSOLE -DVENV_REDIRECT -DPYTHON_EXECUTABLE_WITH_VERSION="L\"python$(LDVERSION)$(EXE)\"" $(PY_STDMODULE_CFLAGS) -municode -static -static-libgcc -static-libstdc++ venvlauncher.o $(srcdir)/PC/launcher.c -o $@ -lversion
+@@ -1110,7 +1110,7 @@ regen-re:
+ 		> $(srcdir)/Python/stdlib_module_names.h.new
+ 	$(UPDATE_FILE) $(srcdir)/Python/stdlib_module_names.h $(srcdir)/Python/stdlib_module_names.h.new
+ 
+ Programs/_testembed: Programs/_testembed.o $(LINK_PYTHON_DEPS)
+-	$(LINKCC) $(PY_CORE_LDFLAGS) $(LINKFORSHARED) -o $@ Programs/_testembed.o $(LINK_PYTHON_OBJS) $(LIBS) $(MODLIBS) $(SYSLIBS)
++	$(LINKCC) $(PY_LDFLAGS) $(LINKFORSHARED) -o $@ Programs/_testembed.o $(LINK_PYTHON_OBJS) $(LIBS) $(MODLIBS) $(SYSLIBS)
+ 
+ ############################################################################
+ # Importlib
+diff --git a/Lib/sysconfig.py b/Lib/sysconfig.py
+index 0b59aec..a514466 100644
+--- a/Lib/sysconfig.py
++++ b/Lib/sysconfig.py
+@@ -531,21 +531,11 @@ def _generate_posix_vars():
+     os.makedirs(pybuilddir, exist_ok=True)
+     destfile = os.path.join(pybuilddir, name + '.py')
+ 
+     replacement = """
+-        keys_to_replace = [
+-            'BINDIR', 'BINLIBDEST', 'CONFINCLUDEDIR',
+-            'CONFINCLUDEPY', 'DESTDIRS', 'DESTLIB', 'DESTSHARED',
+-            'INCLDIRSTOMAKE', 'INCLUDEDIR', 'INCLUDEPY',
+-            'LIBDEST', 'LIBDIR', 'LIBPC', 'LIBPL', 'MACHDESTLIB',
+-            'MANDIR', 'SCRIPTDIR', 'datarootdir', 'exec_prefix',
+-            'TZPATH',
+-        ]
+-
+         prefix = build_time_vars['BINDIR'][:-4]
+-
+-        for key in keys_to_replace:
+-            value = build_time_vars[key]
+-            build_time_vars[key] = value.replace(prefix, sys.base_prefix)
++        for key, value in build_time_vars.items():
++            if isinstance(value, str):
++                build_time_vars[key] = value.replace(prefix, sys.base_prefix)
+     """
+ 
+     with open(destfile, 'w', encoding='utf8') as f:

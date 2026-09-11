@@ -1,0 +1,55 @@
+diff --git a/src/shell.c.in b/src/shell.c.in
+index c75c7a9..29187ee 100644
+--- a/src/shell.c.in
++++ b/src/shell.c.in
+@@ -145,7 +145,11 @@
+ # define shell_add_history(X) add_history(X)
+ # define shell_read_history(X) read_history(X)
+ # define shell_write_history(X) write_history(X)
+-# define shell_stifle_history(X) stifle_history(X)
++# if HAVE_EDITLINE
++#  define shell_stifle_history(X) ((void)(X))
++# else
++#  define shell_stifle_history(X) stifle_history(X)
++# endif
+ # define shell_readline(X) readline(X)
+ 
+ #elif HAVE_LINENOISE
+diff --git a/src/test_windirent.c b/src/test_windirent.c
+index dd087dc..86f55fe 100644
+--- a/src/test_windirent.c
++++ b/src/test_windirent.c
+@@ -13,7 +13,7 @@
+ ** POSIX functions on Win32 using the MSVCRT.
+ */
+ 
+-#if defined(_WIN32) && defined(_MSC_VER)
++#if defined(_WIN32)
+ #include "test_windirent.h"
+ 
+ /*
+diff --git a/src/test_windirent.h b/src/test_windirent.h
+index fc9626b..db7b158 100644
+--- a/src/test_windirent.h
++++ b/src/test_windirent.h
+@@ -13,7 +13,7 @@
+ ** POSIX functions on Win32 using the MSVCRT.
+ */
+ 
+-#if defined(_WIN32) && defined(_MSC_VER) && !defined(SQLITE_WINDIRENT_H)
++#if defined(_WIN32) && !defined(SQLITE_WINDIRENT_H)
+ #define SQLITE_WINDIRENT_H
+ 
+ /*
+diff --git a/test/zipfile.test b/test/zipfile.test
+index b37f814..d364b6f 100644
+--- a/test/zipfile.test
++++ b/test/zipfile.test
+@@ -884,6 +884,7 @@ do_test 19.1 {
+     INSERT INTO v0 DEFAULT VALUES;
+   }
+ } {}
++db close
+ forcedelete zipfile19.zip
+ 
+ finish_test

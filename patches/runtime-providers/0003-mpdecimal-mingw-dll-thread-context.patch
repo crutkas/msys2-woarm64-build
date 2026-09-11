@@ -1,0 +1,25 @@
+diff --git a/libmpdec++/decimal.cc b/libmpdec++/decimal.cc
+index 05c7fd2..377e476 100644
+--- a/libmpdec++/decimal.cc
++++ b/libmpdec++/decimal.cc
+@@ -172,7 +172,7 @@ Context context_template {
+   1                                                              /* allcr */
+ };
+ 
+-#if defined(__OpenBSD__) || defined(__sun) || defined(_MSC_VER) && defined(_DLL)
++#if defined(__OpenBSD__) || defined(__sun) || defined(__MINGW32__) || defined(_MSC_VER) && defined(_DLL)
+ Context& getcontext() {
+   static thread_local Context _context{context_template};
+   return _context;
+diff --git a/libmpdec++/decimal.hh b/libmpdec++/decimal.hh
+index e850b21..08922cc 100644
+--- a/libmpdec++/decimal.hh
++++ b/libmpdec++/decimal.hh
+@@ -218,6 +218,6 @@ class Context;
+ 
+ IMPORTEXPORT extern Context context_template;
+-#if defined(__OpenBSD__) || defined(__sun) || defined(_MSC_VER) && defined(_DLL)
++#if defined(__OpenBSD__) || defined(__sun) || defined(__MINGW32__) || defined(_MSC_VER) && defined(_DLL)
+ IMPORTEXPORT Context& getcontext();
+ static thread_local Context& context{getcontext()};
+ #else

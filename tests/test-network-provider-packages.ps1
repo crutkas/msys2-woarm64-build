@@ -15,6 +15,10 @@ foreach ($required in @(
     if ($required -cnotin $names) { throw "Missing package definition: $required" }
 }
 if ($names.Count -ne ($names | Sort-Object -Unique).Count) { throw 'Package names must be unique.' }
+$gettext = $definitions | Where-Object Name -CEQ 'mingw-w64-aarch64-gettext'
+if ('^include/(autosprintf|libintl)\.h$' -cnotin $gettext.Match) {
+    throw 'Gettext package must own the public libintl header needed by consumers.'
+}
 $default = $definitions | Where-Object Name -CEQ 'mingw-w64-aarch64-curl'
 $gnutls = $definitions | Where-Object Name -CEQ 'mingw-w64-aarch64-curl-gnutls'
 $winssl = $definitions | Where-Object Name -CEQ 'mingw-w64-aarch64-curl-winssl'

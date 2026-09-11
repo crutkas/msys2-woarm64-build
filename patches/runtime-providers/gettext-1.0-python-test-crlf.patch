@@ -1,0 +1,36 @@
+diff --git a/gettext-tools/tests/lang-python-1 b/gettext-tools/tests/lang-python-1
+--- a/gettext-tools/tests/lang-python-1
++++ b/gettext-tools/tests/lang-python-1
+@@ -104,12 +104,14 @@ EOF
+ : ${LOCALE_FR_UTF8=fr_FR.UTF-8}
+ if test $LOCALE_FR_UTF8 != none; then
+-  LANGUAGE= LC_ALL=$LOCALE_FR_UTF8 PYTHONIOENCODING=UTF-8 $PYTHON prog1.py 2 > prog.out || Exit 1
++  LANGUAGE= LC_ALL=$LOCALE_FR_UTF8 PYTHONIOENCODING=UTF-8 $PYTHON prog1.py 2 > prog.tmp || Exit 1
++  LC_ALL=C tr -d '\r' < prog.tmp > prog.out || Exit 1
+   ${DIFF} prog.oku prog.out || Exit 1
+ fi
+ if test -z "$ISO8859_LOCALE_UNSUPPORTED"; then
+   if test $LOCALE_FR != none; then
+-    LANGUAGE= LC_ALL=$LOCALE_FR PYTHONIOENCODING=ISO-8859-1 $PYTHON prog1.py 2 > prog.out || Exit 1
++    LANGUAGE= LC_ALL=$LOCALE_FR PYTHONIOENCODING=ISO-8859-1 $PYTHON prog1.py 2 > prog.tmp || Exit 1
++    LC_ALL=C tr -d '\r' < prog.tmp > prog.out || Exit 1
+     ${DIFF} prog.ok prog.out || Exit 1
+   fi
+diff --git a/gettext-tools/tests/lang-python-2 b/gettext-tools/tests/lang-python-2
+--- a/gettext-tools/tests/lang-python-2
++++ b/gettext-tools/tests/lang-python-2
+@@ -100,12 +100,14 @@ EOF
+ : ${LOCALE_FR_UTF8=fr_FR.UTF-8}
+ if test $LOCALE_FR_UTF8 != none; then
+-  LANGUAGE= LC_ALL=$LOCALE_FR_UTF8 PYTHONIOENCODING=UTF-8 $PYTHON prog2.py 2 > prog.out || Exit 1
++  LANGUAGE= LC_ALL=$LOCALE_FR_UTF8 PYTHONIOENCODING=UTF-8 $PYTHON prog2.py 2 > prog.tmp || Exit 1
++  LC_ALL=C tr -d '\r' < prog.tmp > prog.out || Exit 1
+   ${DIFF} prog.oku prog.out || Exit 1
+ fi
+ if test -z "$ISO8859_LOCALE_UNSUPPORTED"; then
+   if test $LOCALE_FR != none; then
+-    LANGUAGE= LC_ALL=$LOCALE_FR PYTHONIOENCODING=ISO-8859-1 $PYTHON prog2.py 2 > prog.out || Exit 1
++    LANGUAGE= LC_ALL=$LOCALE_FR PYTHONIOENCODING=ISO-8859-1 $PYTHON prog2.py 2 > prog.tmp || Exit 1
++    LC_ALL=C tr -d '\r' < prog.tmp > prog.out || Exit 1
+     ${DIFF} prog.ok prog.out || Exit 1
+   fi

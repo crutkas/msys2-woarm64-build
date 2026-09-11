@@ -40,7 +40,7 @@ function Get-NetworkPackageDefinitions {
             Match = @(
                 '^bin/(envsubst|gettext|ngettext|printf_gettext|printf_ngettext)(\.exe|\.sh)?$',
                 '^bin/lib(asprintf-0|intl-8)\.dll$',
-                '^include/autosprintf\.h$',
+                '^include/(autosprintf|libintl)\.h$',
                 '^lib/lib(asprintf|intl)\..*$',
                 '^share/(doc/(gettext|libasprintf)/.*|info/gettext.*|licenses/gettext-runtime/.*|locale/.*/LC_MESSAGES/(gettext-runtime|gettext-tools|libasprintf)\.mo|man/man1/(envsubst|gettext|ngettext)\.1.*)$'
             )

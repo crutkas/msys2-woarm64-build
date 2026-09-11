@@ -40,3 +40,14 @@ try {
 if (-not $rejected) { throw 'Existing output accepted.' }
 'PASS: existing prepared output preserved'
 $result | ConvertTo-Json -Depth 5 | Set-Content -LiteralPath "$OutputDirectory\mapping-result.json" -Encoding utf8
+
+$ready = & $prepare -SourceDirectory $PinnedRecipe -OutputDirectory "$OutputDirectory\makepkg-ready" -MakepkgReady
+if ($ready.LineEndings -cne 'LF for makepkg sourceability' -or
+    [IO.File]::ReadAllText("$OutputDirectory\makepkg-ready\PKGBUILD").Contains("`r")) {
+    throw 'Makepkg-ready recipe retained unsupported CRLF line endings.'
+}
+$readyText = [IO.File]::ReadAllText("$OutputDirectory\makepkg-ready\PKGBUILD")
+if (-not $readyText.Contains("sed -i '1s|^#!/usr/bin/python$|#!/usr/bin/env python.exe|'")) {
+    throw 'git-p4 does not invoke its declared MinGW Python dependency.'
+}
+'PASS: optional makepkg-ready output normalizes only PKGBUILD line endings'

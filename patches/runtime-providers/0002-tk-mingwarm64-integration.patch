@@ -1,0 +1,44 @@
+diff --git a/PKGBUILD b/PKGBUILD
+index 748173e..d46247d 100644
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -10,10 +10,10 @@ pkgver=${_basever}${_patch}
+ pkgrel=1
+ pkgdesc="A windowing toolkit for use with tcl (mingw-w64)"
+ arch=('any')
+-mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clangarm64')
++mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clangarm64' 'mingwarm64')
+ url="https://tcl.sourceforge.io/"
+ license=("custom")
+-makedepends=("${MINGW_PACKAGE_PREFIX}-cc" "${MINGW_PACKAGE_PREFIX}-autotools")
++makedepends=("${MINGW_PACKAGE_PREFIX}-cc" "${MINGW_PACKAGE_PREFIX}-pkgconf" 'autoconf' 'automake' 'libtool')
+ depends=("${MINGW_PACKAGE_PREFIX}-tcl>=${_basever}")
+ options=() # '!strip' 'debug')
+ source=("https://downloads.sourceforge.net/sourceforge/tcl/${_realname}${pkgver}-src.tar.gz"
+@@ -46,6 +46,8 @@ prepare() {
+     006-prevent-tclStubsPtr-segfault.patch \
+     008-dont-link-shared-with--static-libgcc.patch
+ 
++  find "${srcdir}/tk${_basever}" -type f \( -name "*.m4" -o -name "configure*" \) -print0 | xargs -0 sed -i 's/-fomit-frame-pointer/-fno-omit-frame-pointer/g'
++
+   cd win && autoreconf -fi
+ }
+ 
+@@ -69,7 +71,7 @@ build() {
+     ${extra_config} \
+     ${enable64bit}
+ 
+-  make
++  make CFLAGS_OPTIMIZE="-O2 -fno-omit-frame-pointer"
+ }
+ 
+ package() {
+@@ -78,7 +80,7 @@ package() {
+     debug_suffix="g"
+   fi
+   cd "${srcdir}/build-${MSYSTEM}"
+-  make install INSTALL_ROOT="${pkgdir}"
++  make CFLAGS_OPTIMIZE="-O2 -fno-omit-frame-pointer" install INSTALL_ROOT="${pkgdir}"
+   cp "${pkgdir}${MINGW_PREFIX}/bin/wish86${debug_suffix}.exe" "${pkgdir}${MINGW_PREFIX}/bin/wish.exe"
+   find "${pkgdir}${MINGW_PREFIX}" -name '*.def' -o -name '*.exp' | xargs -rtl1 rm
+   find "${pkgdir}${MINGW_PREFIX}" -name '*.sh' -o -name '*.dll' -o -name '*.exe' | xargs -rtl1 chmod 755
