@@ -1,0 +1,83 @@
+{
+  "SchemaVersion": 1,
+  "Status": "released-immutable-leaf-execution-contract",
+  "RecordedAt": "2026-09-08T02:45:47.2767349Z",
+  "Owners": {
+    "RubyAsciidoctor": "ab17e048-82a5-4e0d-b480-2ad21a418f8b",
+    "GitMsys": "0724b323-3a13-4c17-95ed-57b16cbad570",
+    "PCRE2": "accd408a-aaf0-40b4-bc67-83995f29feec"
+  },
+  "References": {
+    "engine.json": {
+      "Path": "C:\\ap06-2160\\parallel-v1\\engine.json",
+      "SHA256": "9e87d9c2b7235363ef14f407945078a1488bdca3bc8b3ef15fa26bbc0559f985"
+    },
+    "bootstrap-source.json": {
+      "Path": "C:\\ap06-2160\\parallel-v1\\bootstrap-source.json",
+      "SHA256": "13d5d15a7fb504badd621524d086db4413398b9cb2ba633c9a354b8ef9c733c8"
+    },
+    "native-exit-handoff.json": {
+      "Path": "C:\\ap06-2160\\parallel-v1\\native-exit-handoff.json",
+      "SHA256": "096ec4b08cb96559d5571d693017d081e2f0b234fa4dea94369fe40cd964acbf"
+    }
+  },
+  "EngineImport": "Verify all124 inventory files; import into own isolated Git worktree, preserve leaf changes/newfiles; call that worktree adapter. No Git metadata inside frozen export.",
+  "Mingw": {
+    "Files": 4030,
+    "Scope": "Header-only successor; baseline compiler/binutils/CRT/staticlibs unchanged; no later FP/cexp/MSYSruntime changes inferred",
+    "Prefix": "C:\\ap06-2160\\h1",
+    "Target": "aarch64-w64-mingw32 LLP64",
+    "Manifest": "C:\\ap06-2160\\h1-manifest.json",
+    "Host": "Windows ARM64 UCRT",
+    "ManifestSHA256": "80e5dd2079f540bb1c0ee448ce27d211c8e3608b1f9e690edbd0c628b88f7739",
+    "Qualifier": ".github\\scripts\\test-qualified-header-delta.ps1",
+    "Invocation": ".github\\scripts\\invoke-native-package.ps1 -MsysRoot PRIVATE -Prefix C:\\ap06-2160\\h1 -HeaderDeltaManifest C:\\ap06-2160\\h1-manifest.json -NativePython PYTHON -PackageDirectory RECIPE -OutputDirectory FRESH_SHORT_ROOT -CacheDirectory PRIVATE_CACHE -Jobs LEAF_CAP",
+    "Epoch": "5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7"
+  },
+  "Bootstrap": {
+    "Mechanism": "Verify exact full source inventory beforecopy, Copy-Item -Recurse to ownedfreshPRIVATE, verify destination and sourceafter againstsameinventory. No sourceexecution or sourcewrites. Pipeline proof p8\\bootstrap-copy.json. Do not copy active restart01\\b.",
+    "Files": 19265,
+    "ReadOnly": true,
+    "SourceQuiescentVerified": true,
+    "Inventory": "C:\\ap06-2160\\restart01\\evidence\\bootstrap-before-inventory.json",
+    "PrivateDependencyInstall": "Allowed in leaf-owned private clone only for exact signature-verified public host/tool runtime packages or pipeline-admitted targetarchives; no fakeprovides. New targetpackageadmission/sharedintegration installs remainpipeline.",
+    "CopyAuthorized": true,
+    "Source": "C:\\ap06-2160\\b",
+    "InventorySHA256": "cbb450ac691e4be1fc1ec2aa9d8ae77b891f4f8b8bd924a8bdf31de9a19b94fd"
+  },
+  "RecipeCohort": {
+    "Inventory": "C:\\ap06-2160\\parallel-v1\\recipes.inventory.json",
+    "Versions": {
+      "Asciidoctor": "2.0.26",
+      "Ruby": "4.0.6",
+      "PCRE2": "10.48-3"
+    },
+    "InventorySHA256": "f99983a3c4db4687811dd73dbadbafc55616dbc80789844234a23f1560292ebd",
+    "Repository": "msys2/MINGW-packages",
+    "GitProductPin": "Separate Git-for-Windows d65b87de173ac2209a63cef8c4528669b5571fd3; do not use its older dependency snapshots",
+    "Root": "C:\\ap06-2160\\parallel-v1\\recipes",
+    "Commit": "fbb9173f78adaea078046ea53e35cee47e7a5527"
+  },
+  "AvailableProviderReceipts": [
+    "C:\\ap06-2160\\gcc-header-readback-03\\package-handoff.json",
+    "C:\\ap06-2160\\restart01\\evidence\\wineditline-package-handoff-02.json",
+    "C:\\ap06-2160\\restart01\\evidence\\pkgconf-package-handoff-01.json",
+    "C:\\ap06-2160\\restart01\\evidence\\expat-package-handoff-01.json"
+  ],
+  "MissingSharedProviders": [
+    "native MinGW zlib",
+    "native MinGW bzip2",
+    "native MinGW libtool/libltdl full admission"
+  ],
+  "RubyBootstrap": "Exact signed CLANGARM64 Ruby/library packages allowed as honest native HOST bootstrap; names/prefix/compiler lineage unchanged, privateDLL/PATHclosure, no fakeGNU-Rubyprovides, pureRuby Asciidoctor boundary",
+  "Environment": "Spawn with cleared environment and explicit private HOME/USERPROFILE/TEMP/TMP/PATH, system Windows vars, sourceverification GNUPGHOME; disable Git prompts/global/systemconfig and neverinherit auth/store variables. MSYSdriver may be emulatedx64; final target must ordinaryAA64, not EC/x64.",
+  "Intake": "Return actual archives+SHA256, PKGINFO/BUILDINFO, complete payloadinventory, original recipe/source/signature/patch bindings, engine/invocation before-after qualifications+epoch, full upstream checklogs+raw job/relay receipts, nativePE/liveDLLclosure, exact feature/options/exceptions. Failed/partial/quarantined outputs neveradmitted. Keep all source/provider versions explicit.",
+  "Forbidden": [
+    "Shared/live prefix mutation",
+    "nodeps/assume-installed/fake provides",
+    "feature/JIT/test weakening",
+    "old proof rebinding",
+    "remote/auth/GCM/settings changes",
+    "commits/push/CI/runner actions"
+  ]
+}

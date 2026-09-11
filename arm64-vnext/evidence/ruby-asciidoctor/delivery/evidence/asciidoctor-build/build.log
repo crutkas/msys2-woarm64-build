@@ -1,0 +1,476 @@
+++ set -o pipefail
+++ FLAVOR=NATIVE_WITH_NATIVE
+++ CLEAN_BUILD=1
+++ INSTALL_PACKAGE=0
+++ NO_EXTRACT=0
++++ dirname -- /c/ar07-9047/a03/pipeline/.github/scripts/build-package.sh
+++ cd -- /c/ar07-9047/a03/pipeline/.github/scripts
+++ pwd
++ SCRIPTS_DIR=/c/ar07-9047/a03/pipeline/.github/scripts
++ export CCACHE_DIR=/c/ar07-9047/cache/5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7
++ CCACHE_DIR=/c/ar07-9047/cache/5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7
++ PACKAGE_REPOSITORY=MINGW
++ ARGUMENTS=(--noconfirm --noprogressbar --force --log)
++ case ${VERIFY_SOURCE_SIGNATURES:-0} in
++ [[ 0 == 1 ]]
++ [[ 1 == 1 ]]
++ ARGUMENTS+=(--check)
++ [[ 0 == 1 ]]
++ [[ 1 == 1 ]]
++ ARGUMENTS+=(--cleanbuild)
++ [[ 0 == 1 ]]
++ bash /c/ar07-9047/a03/pipeline/.github/scripts/record-build-provenance.sh
+UTC=2026-09-08T02:57:28+00:00
+FLAVOR=NATIVE_WITH_NATIVE
+Qualified compiler prefix=/c/ap06-2160/h1
+Qualified toolchain epoch=5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7
+MINGW64_NT-10.0-28000-ARM64 DESKTOP-L5S0ICK 3.6.10-8fbd9808.x86_64 2026-08-13 11:15 UTC x86_64 Msys
+Pipeline source revision: 77f0d56cdf4c063c1b3af37f551e01c3a012c8bb (invocation snapshot; exact local bytes follow)
+Pipeline inputs (including local/uncommitted files):
+6dd97a0840bd669bf7b94548eb058a67a9f2e5baac3629120e0ac684a3ffa494 */c/ar07-9047/a03/pipeline/.github/scripts/assert-libtool-path-budget.sh
+15b9b0e83e00f9d6fb11c61447ad33ded4085c08cc2fc1139487828e82e554ab */c/ar07-9047/a03/pipeline/.github/scripts/assert-native-toolchain.sh
+36942d7b747b39ed102e32b5eea1628daae93644cfe29847ba3fd4b791433b6e */c/ar07-9047/a03/pipeline/.github/scripts/build-hello-world.sh
+60e31464600d486f118ee5ca860edd9bfef5aa09a5994c9a529d7207d6852423 */c/ar07-9047/a03/pipeline/.github/scripts/build-package.sh
+db634d4283fd9a2fe4dac8edf00ea8017b43746809f18a68c970c36d2481948a */c/ar07-9047/a03/pipeline/.github/scripts/clean-cross.sh
+76d194abf8698db6021583f9a7cf23682d14a519afcc5a802dd4233e333a507f */c/ar07-9047/a03/pipeline/.github/scripts/clean-native.sh
+2e2480306a624842e5e691237ecffe5daa8b3d1e70a5261100b542c82940ca68 */c/ar07-9047/a03/pipeline/.github/scripts/create-repository.sh
+319b39e83dcf3b97b7b46776eb5eabd0ac802bf2222ede33f3513218964f0ab0 */c/ar07-9047/a03/pipeline/.github/scripts/download-artifacts.sh
+e113d6bec147d22de4a81558559a11d94d9db3437e7a3935e6043c6f50ac1139 */c/ar07-9047/a03/pipeline/.github/scripts/enable-ccache.sh
+70275ce5e745fc40e37ddf2427877bc953844cf6459f28af0409e3a391233443 */c/ar07-9047/a03/pipeline/.github/scripts/install-artifacts.sh
+6a58f60fadba4af3391a4bea6b3caf00b9eb413b5b063d05617ada67c30de92b */c/ar07-9047/a03/pipeline/.github/scripts/install-dependencies.sh
+02b441a24a134e0e82d906c88623e22bd0c8fc4c7c3a77d48bffc5fb75ad2746 */c/ar07-9047/a03/pipeline/.github/scripts/makepkg-buildenv.sh
+336237e7348341263e4965321de73b6b6256f12f9df1d3fc922b988d92609b87 */c/ar07-9047/a03/pipeline/.github/scripts/native-rust-environment.sh
+6c52480af548957dbba36c1d643ae510912f2df87232dc3291f0f2ab154b8476 */c/ar07-9047/a03/pipeline/.github/scripts/native-target-exec.sh
+5158f858ce30f881cb1ebb10c2045bba8d71d5c42d420f3e99633c70ce598aaf */c/ar07-9047/a03/pipeline/.github/scripts/probe-ccache.sh
+f7c5fd868a907d2ec823bd70f049b0d5d7e5af0b5dd6ddb49cb604cb31db9e7f */c/ar07-9047/a03/pipeline/.github/scripts/pthread-headers-hack-after.sh
+01842d6eacfc7c2cbf9cdaac664180f7e4e39b1656d14e05f49d3ecb0c36feaa */c/ar07-9047/a03/pipeline/.github/scripts/pthread-headers-hack-before.sh
+cc2d7a6a0181cfdf83bae0db295d1c7068b258452352c2659538a9e1631e6ef0 */c/ar07-9047/a03/pipeline/.github/scripts/record-build-provenance.sh
+a90feee801172da9a12ff16b43d7259771775a88ed4663d532670e60b11b6b04 */c/ar07-9047/a03/pipeline/.github/scripts/run-native-package.sh
+602b13b50ce7aef913cea5cee943ba9e07b0db6ec62e303bd61b9ac433b02598 */c/ar07-9047/a03/pipeline/.github/scripts/set-package-directories.sh
+4cdac7c3ca49f7491e1512847a72e54d2fb0707593e2ee64376e47bacd21b7f4 */c/ar07-9047/a03/pipeline/.github/scripts/setup-mingwarm64.sh
+40b857fefc028619aaffdebdd68df6958dedb2fdc6b02180b59f97462586acfd */c/ar07-9047/a03/pipeline/.github/scripts/setup-repository.sh
+d5b40c450c550c7009950f37d5e7130d3f8b6d5f1e5702933d74e1871c57bd03 */c/ar07-9047/a03/pipeline/.github/scripts/with-makepkg-evidence.sh
+439b336c54636004d9f6bb84d7775bd24cb22e99939f0b1154f0e6c51e08cf89 */c/ar07-9047/a03/pipeline/.github/scripts/assert-arm64-pe.ps1
+46f1d76ddcd50f177a3ac2618ba143bb0dae92e54a6ebb4b7759bc2a5b58aa27 */c/ar07-9047/a03/pipeline/.github/scripts/cohort-inventory.ps1
+9440a5c362c4e5c5eabd5126eddc965111c11c9f067d0066985553edaa32d7b8 */c/ar07-9047/a03/pipeline/.github/scripts/get-native-target-driver.ps1
+c30377e46a59bcaafad4f1022eca3db878e702b6d6f38ca96c50ed841b27e91a */c/ar07-9047/a03/pipeline/.github/scripts/get-toolchain-epoch.ps1
+45898ecf9192cd82fffb982401e09296f8c220a177c783cdbfc3543a4d2563c2 */c/ar07-9047/a03/pipeline/.github/scripts/invoke-native-package.ps1
+950846e2e8d3be22d8c56b90ca44ed1eb32b10c8d24771b83ca0237bc0194730 */c/ar07-9047/a03/pipeline/.github/scripts/package-runtime.ps1
+a991e221a2ae9879c1dc7250fc7b220a8900568d384ff388a407b99794eaec72 */c/ar07-9047/a03/pipeline/.github/scripts/prepare-expat-mingwarm64-recipe.ps1
+47c8e891f927e0e43a94bb323588c26121ce333746ae8b40bd47caf791193aca */c/ar07-9047/a03/pipeline/.github/scripts/prepare-git-mingwarm64-recipe.ps1
+eaaf174b1289dff1a3d90741c9443f47ca5a7b41d809a796f275645261b2f328 */c/ar07-9047/a03/pipeline/.github/scripts/prepare-git-rust-recipe.ps1
+b58d4986c747593288eb9abf5821451ac291c636614e7f7906755eee8898e27a */c/ar07-9047/a03/pipeline/.github/scripts/prepare-libtool-mingwarm64-recipe.ps1
+d3a30cc69ff0b0621db7053dfd2c68a44107fa5868733d614763cfcb1a35de2a */c/ar07-9047/a03/pipeline/.github/scripts/prepare-native-tool-package.ps1
+854ff3a3ad47905cc7c275e2d426a89b8b23d2b1e44b762e76597a3a0b8f2a20 */c/ar07-9047/a03/pipeline/.github/scripts/prepare-openssl-mingwarm64-recipe.ps1
+f63dcaba812dfc1bd8263623356267a8d3f179962b341ac920073a23b34d9d7c */c/ar07-9047/a03/pipeline/.github/scripts/prepare-pinned-mingwarm64-recipe.ps1
+493fc911c59f1b8c5975241a5ddf6de58cf8b0db897cd1658186bbe49a8fc86f */c/ar07-9047/a03/pipeline/.github/scripts/prepare-wineditline-mingwarm64-recipe.ps1
+b30bf04e407a03010737e8fb6a04bc7698f7712a8e3b7139105167aed252248a */c/ar07-9047/a03/pipeline/.github/scripts/prepare-xmlto-msys-recipe.ps1
+13af1264f00478d0011d9669742658fba31763c8f6b4f0eea1a4ffedb6c155e3 */c/ar07-9047/a03/pipeline/.github/scripts/test-qualified-header-delta.ps1
+93cc5e78c9a8042d4a364859f9795d58f5316bf4f9f6ea01c3bd420200d8f6f4 */c/ar07-9047/a03/pipeline/.github/scripts/test-qualified-native-cohort.ps1
+a85cb211cbb1fae7791e70f1a2733278ce2208c3367979679f159a3bcfcc15bd */c/ar07-9047/a03/pipeline/.github/scripts/test-qualified-rust-bootstrap.ps1
+27fcd2d1f03790d7a9ece95755b4c51a2790942285abea649a0c6670ed67cf66 */c/ar07-9047/a03/pipeline/.github/scripts/test-qualified-toolchain.ps1
+7a26c374dbc5220f69d3e2e28174ce5b232b22eba3a28b2bcef798124aa38f55 */c/ar07-9047/a03/pipeline/patches/makepkg/0001-mingwarm64.patch
+2b6e205f0d4ac5590d3130b395974836108e7d6ba2d1996888fb0d7dc7cec983 */c/ar07-9047/a03/pipeline/patches/makepkg/0002-mingwarm64-cross-build.patch
+a59f37a37e35319d632d29f790ef8a67379ca78a0f379d86f53291544c2bed48 */c/ar07-9047/a03/pipeline/patches/makepkg/0003-enable-debug.patch
+ff38a44f7dc78e293511f0ae24d10bbbd73efa6fd51be2a320266f930555cbad */c/ar07-9047/a03/pipeline/patches/makepkg/MINGWARM64
+527d968aa0e9c98ba84719d3e7f36a848fcd7ef426c22e4f394439e1834a4283 */c/ar07-9047/a03/pipeline/patches/makepkg/mingwarm64.conf
+Recipe checkout: UNVERSIONED (PKGBUILD hash follows; not a pinned source checkout)
+e53d9dde0ae45061943404169ca01391287520172df5055687cb7bbd38e29517 *PKGBUILD
+Installed bootstrap/dependency packages (not a native closure assertion):
+base 2022.06-1
+base-devel 2026.08-3
+bash 5.3.015-1
+bash-completion 2.18.0-1
+binutils 2.47-1
+bison 3.8.2-5
+brotli 1.2.0-1
+bsdtar 3.8.9-1
+bzip2 1.0.8-4
+ca-certificates 20260816-1
+ccache 4.14-1
+coreutils 8.32-5
+curl 8.21.0-1
+dash 0.5.13.4-1
+db 6.2.32-6
+diffutils 3.12-1
+doctest 2.4.12-1
+dos2unix 7.5.7-1
+file 5.48-1
+filesystem 2026.03.06-1
+findutils 4.11.0-2
+flex 2.6.4-4
+fmt 12.2.0-1
+gawk 5.4.1-1
+gcc-libs 15.3.0-1
+gdbm 1.26-1
+getent 2.18.90-6
+gettext 0.22.5-1
+git 2.55.0-1
+gmp 6.3.0-2
+gnupg 2.4.9-3
+grep 1~3.0-7
+gzip 1.14-2
+heimdal 7.8.0-5
+heimdal-libs 7.8.0-5
+inetutils 2.7-1
+info 7.2-3
+less 704-1
+libargp 20260115-1
+libasprintf 0.22.5-1
+libassuan 3.0.2-1
+libblake3 1.8.7-1
+libbz2 1.0.8-4
+libcbor 0.14.0-2
+libcurl 8.21.0-1
+libdb 6.2.32-6
+libedit 20240808_3.1-1
+libexpat 2.8.4-1
+libffi 3.8.0-1
+libfido2 1.17.0-1
+libgcrypt 1.12.2-1
+libgdbm 1.26-1
+libgettextpo 0.22.5-1
+libgnutls 3.8.13-2
+libgpg-error 1.61-1
+libhogweed 4.0-1
+libiconv 1.19-1
+libidn2 2.3.8-1
+libintl 0.22.5-1
+libksba 1.8.0-1
+liblz4 1.10.0-1
+liblzma 5.8.3-1
+libnettle 4.0-1
+libnghttp2 1.70.0-1
+libnghttp3 1.18.0-1
+libngtcp2 1.25.0-1
+libnpth 1.8-1
+libopenssl 3.6.4-1
+libp11-kit 0.26.5-1
+libpcre 8.45-5
+libpcre2_8 10.48-1
+libpsl 0.23.2-1
+libreadline 8.3.003-1
+libsqlite 3.53.4-1
+libssh2 1.11.1-1
+libtasn1 4.21.0-1
+libunistring 1.4.2-1
+libutil-linux 2.40.2-2
+libxcrypt 4.5.2-1
+libxxhash 0.8.3-1
+libzstd 1.5.7-1
+m4 1.4.21-1
+make 4.4.1-3
+mingw-w64-clang-aarch64-gmp 6.3.0-2
+mingw-w64-clang-aarch64-libffi 3.7.1-1
+mingw-w64-clang-aarch64-libyaml 0.2.5-2
+mingw-w64-clang-aarch64-openssl 3.6.3-1
+mingw-w64-clang-aarch64-ruby 4.0.6-1
+mingw-w64-clang-aarch64-zlib 1.3.2-2
+mintty 1~3.8.3-1
+mpfr 4.2.2-1
+msys2-keyring 1~20260814-1
+msys2-launcher 1.5-3
+msys2-runtime 3.6.10-3
+nano 9.2-1
+ncurses 6.6-2
+nettle 4.0-1
+openssh 10.5p1-2
+openssl 3.6.4-1
+p11-kit 0.26.5-1
+pacman 6.1.0-25
+pacman-contrib 1.10.6-2
+pacman-mirrors 20260129-1
+patch 2.7.6-3
+perl 5.42.3-1
+perl-Authen-SASL 2.2000-1
+perl-Clone 0.50-2
+perl-Convert-BinHex 1.125-2
+perl-Encode-Locale 1.05-2
+perl-Error 0.17030-1
+perl-File-Listing 6.16-1
+perl-HTML-Parser 3.85-1
+perl-HTML-Tagset 3.24-1
+perl-HTTP-Cookies 6.12-1
+perl-HTTP-Daemon 6.17-1
+perl-HTTP-Date 6.08-1
+perl-HTTP-Message 7.04-1
+perl-HTTP-Negotiate 6.01-3
+perl-IO-HTML 1.004-2
+perl-IO-Socket-SSL 2.099-1
+perl-IO-Stringy 2.113-3
+perl-LWP-MediaTypes 6.04-2
+perl-MIME-tools 5.517-1
+perl-MailTools 2.22-1
+perl-Net-HTTP 6.24-1
+perl-Net-SMTP-SSL 1.04-2
+perl-Net-SSLeay 1.96-1
+perl-TermReadKey 2.38-8
+perl-TimeDate 2.35-1
+perl-Try-Tiny 0.32-1
+perl-URI 5.36-1
+perl-WWW-RobotRules 6.03-1
+perl-http-cookiejar 0.014-1
+perl-libwww 6.83-2
+pinentry 1.3.3-1
+rebase 4.5.0-5
+sed 4.9-1
+tar 1.35-3
+texinfo 7.2-3
+time 1.10-1
+tzcode 2026c-1
+util-linux 2.40.2-2
+wget 1.25.0-2
+which 2.25-1
+xz 5.8.3-1
+zlib 1.3.2-1
+zstd 1.5.7-1
+2c99f4c7dfd2ad1dbd7efa458060841ab3d77b444cc5e6b34ff735519ebdf954 */etc/makepkg.conf
+1226ad5dbd07ff87f53cb801e9ee95da2b15c43479826f6ad886808614060b05 */etc/makepkg_mingw.conf
+527d968aa0e9c98ba84719d3e7f36a848fcd7ef426c22e4f394439e1834a4283 */etc/makepkg_mingw.d/mingwarm64.conf
+/usr/bin/bash.exe: PE32+ executable for MS Windows 5.02 (console), x86-64 (stripped to external PDB), 11 sections
+41b09f0a9c1c68fd65253a7e8087b3775f0af245b729ade74ca4425d14392c2d */usr/bin/bash.exe
+/usr/bin/make.exe: PE32+ executable for MS Windows 5.02 (console), x86-64 (stripped to external PDB), 10 sections
+91b7e155590d59db22e5eb0a3ffeec6350149f70f9ed2c242d133e584eb72fee */usr/bin/make.exe
+/usr/bin/makepkg: Bourne-Again shell script, ASCII text executable
+968eef4d0936638a007af138b02d8ffdd7f91cb41cdcf8c0b4c0da566c3d5843 */usr/bin/makepkg
+/usr/bin/ccache.exe: PE32+ executable for MS Windows 5.02 (console), x86-64 (stripped to external PDB), 10 sections
+f0fb3220bd9b6bbe07ba9bb1548eb36653644398e84d62403720fd3cc1781316 */usr/bin/ccache.exe
+Not installed/on PATH at this phase: gcc
+Not installed/on PATH at this phase: g++
+Not installed/on PATH at this phase: /mingw64/bin/gh
+Not installed/on PATH at this phase: /mingw64/bin/jq
++ command -v ccache
++ echo '::group::Ccache statistics before build'
+::group::Ccache statistics before build
++ ccache -svv
+Cache directory:                          /c/ar07-9047/cache/5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7
+Config file:                              /c/ar07-9047/cache/5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7/ccache.conf
+Directory config file:
+System config file:                       /etc/ccache.conf
+Stats updated:                            never
+Stats zeroed:                             never
+Cacheable calls:                            0
+  Hits:                                     0
+    Direct:                                 0
+    Preprocessed:                           0
+  Misses:                                   0
+Uncacheable calls:                          0
+  Autoconf compile/link:                    0
+  Bad compiler arguments:                   0
+  Called for linking:                       0
+  Called for preprocessing:                 0
+  Ccache disabled:                          0
+  Compilation failed:                       0
+  Compiler output file missing:             0
+  Compiler produced empty output:           0
+  Compiler produced stdout:                 0
+  Could not use modules:                    0
+  Could not use precompiled header:         0
+  Forced recache:                           0
+  Multiple source files:                    0
+  No input file:                            0
+  Output to stdout:                         0
+  Preprocessing failed:                     0
+  Unsupported code directive:               0
+  Unsupported compiler option:              0
+  Unsupported environment variable:         0
+  Unsupported source encoding:              0
+  Unsupported source language:              0
+Errors:                                     0
+  Compiler check failed:                    0
+  Could not find compiler:                  0
+  Could not read or parse input file:       0
+  Could not write to output file:           0
+  Error hashing extra file:                 0
+  Input file modified during compilation:   0
+  Internal error:                           0
+  Missing cache file:                       0
+Local storage:
+  Cache size (GB):                        0.0 / 0.5 ( 0.00%)
+  Files:                                    0
+  Cleanups:                                 0
+  Hits:                                     0
+  Misses:                                   0
+  Reads:                                    0
+  Writes:                                   0
+Remote storage:
+  Hits:                                     0
+  Misses:                                   0
+  Reads:                                    0
+  Writes:                                   0
+  Errors:                                   0
+  Timeouts:                                 0
++ echo ::endgroup::
+::endgroup::
++ echo '::group::Build package'
+::group::Build package
++ [[ MINGW == *MINGW* ]]
++ bash /c/ar07-9047/a03/pipeline/.github/scripts/with-makepkg-evidence.sh makepkg-mingw --noconfirm --noprogressbar --force --log --check --cleanbuild
+[1m[32m==> (B[m[1m MINGW_ARCH: mingwarm64(B[m
+[1m[34m  ->(B[m[1m Building mingwarm64...(B[m
+==> Making package: mingw-w64-asciidoctor 2.0.26-3 (Mon Sep  7 19:57:47 2026)
+==> Checking runtime dependencies...
+==> Checking buildtime dependencies...
+==> Retrieving sources...
+  -> Downloading asciidoctor-2.0.26.gem...
+  % Total    % Received % Xferd  Average Speed  Time    Time    Time   Current
+                                 Dload  Upload  Total   Spent   Left   Speed
+  0      0   0      0   0      0      0      0                              0100 278.0k 100 278.0k   0      0  1.04M      0                              0100 278.0k 100 278.0k   0      0  1.03M      0                              0100 278.0k 100 278.0k   0      0  1.03M      0                              0
+  -> Found asciidoctor
+  -> Found asciidoctor.bat
+  -> Found launcher.rb
+==> Validating source files with sha256sums...
+    asciidoctor-2.0.26.gem ... Passed
+    asciidoctor ... Passed
+    asciidoctor.bat ... Passed
+    launcher.rb ... Passed
+==> Removing existing $srcdir/ directory...
+==> Extracting sources...
+  -> Extracting asciidoctor-2.0.26.gem with bsdtar
+::group::Actual makepkg build environment
+FLAVOR=NATIVE_WITH_NATIVE CARCH=aarch64 CHOST=aarch64-w64-mingw32 CC=gcc CXX=g++ STRIP=strip
+declare -a BUILDENV=([0]="!distcc" [1]="color" [2]="ccache" [3]="check" [4]="!sign")
+declare -a options=([0]="!strip" [1]="!emptydirs")
+Effective ccache option: enabled
+Context: makepkg buildenv hook, after compiler.sh
+MSYS=
+MSYSTEM=MINGWARM64
+PATH=/usr/lib/ccache/bin:/c/ap06-2160/h1/bin:/usr/lib/ccache/bin:/mingwarm64/bin:/usr/local/bin:/usr/bin:/bin:/c/Windows/System32:/c/Windows:/c/Windows/System32/Wbem:/c/Windows/System32/WindowsPowerShell/v1.0/:/usr/bin/site_perl:/usr/bin/vendor_perl:/usr/bin/core_perl
+total 88
+drwxr-xr-x 1 crutkasLocal None  0 Sep  7 19:44 .
+drwxr-xr-x 1 crutkasLocal None  0 Sep  7 19:44 ..
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:36 aarch64-w64-mingw32-c++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:36 aarch64-w64-mingw32-g++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:36 aarch64-w64-mingw32-gcc -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 c++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 cc -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 cpp -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 g++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 gcc -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 i686-pc-cygwin-c++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 i686-pc-cygwin-g++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 i686-pc-cygwin-gcc -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 i686-w64-mingw32-c++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 i686-w64-mingw32-g++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 i686-w64-mingw32-gcc -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 x86_64-pc-cygwin-c++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 x86_64-pc-cygwin-g++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 x86_64-pc-cygwin-gcc -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 x86_64-w64-mingw32-c++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 x86_64-w64-mingw32-g++ -> /usr/bin/ccache
+lrwxrwxrwx 1 crutkasLocal None 15 Sep  5 11:34 x86_64-w64-mingw32-gcc -> /usr/bin/ccache
+makeinfo original PATH lookup: /usr/bin/makeinfo
+makeinfo: ABSENT
+aarch64-w64-mingw32-gcc original PATH lookup: /usr/lib/ccache/bin/aarch64-w64-mingw32-gcc
+aarch64-w64-mingw32-gcc.exe (GCC) 15.0.1 20250131 (experimental)
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+aarch64-w64-mingw32-gcc: RESOLVABLE+RUNNABLE
+A ccache compiler wrapper can fail because its real compiler is not installed yet.
+Checking compiler executables, not claiming the MSYS shell/ccache/gh/jq are native.
+{"path":"C:\\ap06-2160\\h1\\bin\\gcc.exe","machine":"0xAA64","sha256":"3428a1fc184ab39dd5f84f74395063e22fb5ff45eac0743e85996c2b2ea7f011","evidence":"Static PE machine only; not a runtime or dependency-closure assertion"}
+gcc.exe (GCC) 15.0.1 20250131 (experimental)
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+{"path":"C:\\ap06-2160\\h1\\libexec\\gcc\\aarch64-w64-mingw32\\15.0.1\\cc1.exe","machine":"0xAA64","sha256":"c5327a40ff8f1156f5b71c99469f2501b799b23f0251c3fa38f0ec8a9906ce5f","evidence":"Static PE machine only; not a runtime or dependency-closure assertion"}
+{"path":"C:\\ap06-2160\\h1\\aarch64-w64-mingw32\\bin\\as.exe","machine":"0xAA64","sha256":"0164b826930f4ac56f1cef09cf68e0c7487b971dfb8735a059dc2820c3f53c9e","evidence":"Static PE machine only; not a runtime or dependency-closure assertion"}
+{"path":"C:\\ap06-2160\\h1\\aarch64-w64-mingw32\\bin\\ld.exe","machine":"0xAA64","sha256":"8582e8b67aa94574dee26d8a70e106cb1444ddd64bc066c1618dee000ae15f9f","evidence":"Static PE machine only; not a runtime or dependency-closure assertion"}
+{"path":"C:\\ap06-2160\\h1\\bin\\g++.exe","machine":"0xAA64","sha256":"4f2133338d8b74124a66dd4899590d854684d3f50b3e0f7c30ba2482e42ea2ae","evidence":"Static PE machine only; not a runtime or dependency-closure assertion"}
+g++.exe (GCC) 15.0.1 20250131 (experimental)
+Copyright (C) 2025 Free Software Foundation, Inc.
+This is free software; see the source for copying conditions.  There is NO
+warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
+
+{"path":"C:\\ap06-2160\\h1\\libexec\\gcc\\aarch64-w64-mingw32\\15.0.1\\cc1plus.exe","machine":"0xAA64","sha256":"e479398d1a269829c22965d895a0cac933ce7e6583722ab9d2cfd6164e0db6bb","evidence":"Static PE machine only; not a runtime or dependency-closure assertion"}
+CCACHE_NAMESPACE=5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7-1c65e4874c51c3154d94732cdeaa27178342c5c0acb1b662aa05a6dbe98410db
+::endgroup::
+==> Starting build()...
+Unpacked gem: 'C:/ar07-9047/a03/build/mingw-w64-asciidoctor/src/asciidoctor-2.0.26'
+==> Starting check()...
+==> Starting package()...
+Successfully installed asciidoctor-2.0.26
+1 gem installed
+==> Tidying install...
+  -> Removing empty directories...
+  -> Removing libtool files...
+  -> Purging unwanted files...
+  -> Compressing man and info pages...
+==> Checking for packaging issues...
+==> Creating package "mingw-w64-aarch64-asciidoctor"...
+  -> Generating .PKGINFO file...
+  -> Generating .BUILDINFO file...
+  -> Generating .MTREE file...
+  -> Compressing package...
+==> Finished making: mingw-w64-asciidoctor 2.0.26-3 (Mon Sep  7 19:59:03 2026)
++ echo ::endgroup::
+::endgroup::
++ command -v ccache
++ echo '::group::Ccache statistics after build'
+::group::Ccache statistics after build
++ ccache -svv
+Cache directory:                          /c/ar07-9047/cache/5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7
+Config file:                              /c/ar07-9047/cache/5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7/ccache.conf
+Directory config file:
+System config file:                       /etc/ccache.conf
+Stats updated:                            Mon Sep  7 19:58:13 2026
+Stats zeroed:                             never
+Cacheable calls:                            0 /   1 ( 0.00%)
+  Hits:                                     0
+    Direct:                                 0
+    Preprocessed:                           0
+  Misses:                                   0
+Uncacheable calls:                          1 /   1 (100.0%)
+  Autoconf compile/link:                    0 /   1 ( 0.00%)
+  Bad compiler arguments:                   0 /   1 ( 0.00%)
+  Called for linking:                       0 /   1 ( 0.00%)
+  Called for preprocessing:                 0 /   1 ( 0.00%)
+  Ccache disabled:                          0 /   1 ( 0.00%)
+  Compilation failed:                       0 /   1 ( 0.00%)
+  Compiler output file missing:             0 /   1 ( 0.00%)
+  Compiler produced empty output:           0 /   1 ( 0.00%)
+  Compiler produced stdout:                 0 /   1 ( 0.00%)
+  Could not use modules:                    0 /   1 ( 0.00%)
+  Could not use precompiled header:         0 /   1 ( 0.00%)
+  Forced recache:                           0 /   1 ( 0.00%)
+  Multiple source files:                    0 /   1 ( 0.00%)
+  No input file:                            1 /   1 (100.0%)
+  Output to stdout:                         0 /   1 ( 0.00%)
+  Preprocessing failed:                     0 /   1 ( 0.00%)
+  Unsupported code directive:               0 /   1 ( 0.00%)
+  Unsupported compiler option:              0 /   1 ( 0.00%)
+  Unsupported environment variable:         0 /   1 ( 0.00%)
+  Unsupported source encoding:              0 /   1 ( 0.00%)
+  Unsupported source language:              0 /   1 ( 0.00%)
+Errors:                                     0 /   1 ( 0.00%)
+  Compiler check failed:                    0
+  Could not find compiler:                  0
+  Could not read or parse input file:       0
+  Could not write to output file:           0
+  Error hashing extra file:                 0
+  Input file modified during compilation:   0
+  Internal error:                           0
+  Missing cache file:                       0
+Successful lookups:
+  Direct:                                   0
+  Preprocessed:                             0
+Local storage:
+  Cache size (GB):                        0.0 / 0.5 ( 0.00%)
+  Files:                                    0
+  Cleanups:                                 0
+  Hits:                                     0
+  Misses:                                   0
+  Reads:                                    0
+  Writes:                                   0
+Remote storage:
+  Hits:                                     0
+  Misses:                                   0
+  Reads:                                    0
+  Writes:                                   0
+  Errors:                                   0
+  Timeouts:                                 0
++ echo ::endgroup::
+::endgroup::

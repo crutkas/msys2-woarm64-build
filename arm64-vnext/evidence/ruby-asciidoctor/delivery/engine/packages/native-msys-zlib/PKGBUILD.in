@@ -1,0 +1,40 @@
+pkgbase=zlib
+pkgname=('zlib' 'zlib-devel')
+pkgver=1.3.2
+pkgrel=1
+pkgdesc='Source-built native ARM64 MSYS zlib with LP64 consumer qualification'
+arch=('aarch64')
+url='https://www.zlib.net/'
+license=('Zlib')
+options=('!strip' '!debug' '!lto' '!ccache' 'staticlibs' '!purge' '!zipman')
+source=('payload.tar' 'payload-files.sha256' 'provenance.tar' 'control.tar')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@' '@PROVENANCE_SHA256@' '@CONTROL_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+check() {
+    cp "$srcdir/payload/usr/bin/msys-z.dll" "$srcdir/control/"
+    mkdir "$srcdir/control/status"
+    touch "$srcdir/control/status/continue"
+    bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/control/native-zlib-consumer.exe" "$(cygpath -am "$srcdir/control/status")"
+    test -s "$srcdir/control/status/ready"
+}
+
+package_zlib() {
+    depends=('gcc-libs' 'msys2-runtime')
+    install -dm755 "$pkgdir/usr"
+    cp -a "$srcdir/payload/usr/bin" "$srcdir/payload/usr/share" "$pkgdir/usr/"
+    install -dm755 "$pkgdir/usr/share/woarm64-package-provenance/zlib"
+    cp -a "$srcdir/provenance/." "$pkgdir/usr/share/woarm64-package-provenance/zlib/"
+}
+
+package_zlib-devel() {
+    pkgdesc='Native ARM64 MSYS zlib headers, static library and import library'
+    depends=("zlib=${pkgver}")
+    install -dm755 "$pkgdir/usr"
+    cp -a "$srcdir/payload/usr/include" "$srcdir/payload/usr/lib" "$pkgdir/usr/"
+    sed -i 's/ -L${sharedlibdir}//g' "$pkgdir/usr/lib/pkgconfig/zlib.pc"
+}

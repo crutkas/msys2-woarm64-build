@@ -1,0 +1,3844 @@
+{
+  "status": "native-new-runtime-api-and-scoped-core-semantics-passed",
+  "rows": [
+    {
+      "name": "api",
+      "mode": "api",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-api\\result.json",
+        "sha256": "10b5428ea9d19df1278af05b2772b6dacc371c018b7ae07a8e02ceefb09c8c95"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 21544,
+        "creation_filetime": 134335705546036087,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\combined-20260911-01\\runtime\\usr\\bin\\tclsh8.6.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "api",
+          "/c/ag-tcl-e138-01/tools/fixtures/native-msys-tcl-core.tcl",
+          "/c/ag-tcl-e138-01/combined-20260911-01-api/work"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-api\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-api\\validated-modules.json",
+        "sha256": "6aef972db7ecb87bcfa3c82f5cb69f25300fe6e914fb91decf39629b78c935bf"
+      },
+      "summaries": [],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-api\\native-job.json",
+        "sha256": "e42b4f99abd48beff00596f72259b41213cc8d3916b8ba2be5b58facec493e18"
+      },
+      "observation": {
+        "parent_pid": 11324,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 21544,
+            "created": 134335705546036087,
+            "executable": "C:\\ag-tcl-e138-01\\combined-20260911-01\\runtime\\usr\\bin\\tclsh8.6.exe",
+            "raw_exit": 0,
+            "parent_pid": 11324,
+            "parent_created": 134335705544266562
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 21544,
+        "creation_filetime": 134335705546036087,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "alias-api",
+      "mode": "api",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-alias-api\\result.json",
+        "sha256": "0f21540d6c41576774cbf3d306a39e08e8f1e587b6a4ed658ec40c950ec363e4"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 21164,
+        "creation_filetime": 134335705713937818,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\combined-20260911-01\\runtime\\usr\\bin\\tclsh.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "api",
+          "/c/ag-tcl-e138-01/tools/fixtures/native-msys-tcl-core.tcl",
+          "/c/ag-tcl-e138-01/combined-20260911-01-alias-api/work"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-alias-api\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-alias-api\\validated-modules.json",
+        "sha256": "442867fdc3bb547e2c2b87371e46c38d26b2f4979be79ec4d5b248ad0c9ec646"
+      },
+      "summaries": [],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-alias-api\\native-job.json",
+        "sha256": "330ec9fc8c2bd2dcc331271021d83d47232e51fde04b72714e29fb4117faa9e9"
+      },
+      "observation": {
+        "parent_pid": 4188,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 21164,
+            "created": 134335705713937818,
+            "executable": "C:\\ag-tcl-e138-01\\combined-20260911-01\\runtime\\usr\\bin\\tclsh.exe",
+            "raw_exit": 0,
+            "parent_pid": 4188,
+            "parent_created": 134335705710525175
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 21164,
+        "creation_filetime": 134335705713937818,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "basic",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-basic\\result.json",
+        "sha256": "2534c38dbec5066dc3886d5839ac04f29e11a7e21bce55314d88e716051062c5"
+      },
+      "semantic_passed": true,
+      "observer_passed": false,
+      "launch": {
+        "pid": 21680,
+        "creation_filetime": 134335705867004856,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "basic.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-basic",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-basic\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-basic\\validated-modules.json",
+        "sha256": "bb72f6f5e771225c82897e764fecbb8a885006591bfec3ec2074ca40b5027beb"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 146,
+          "passed": 117,
+          "skipped": 29,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "basic-2.1",
+          "emptyTest"
+        ],
+        [
+          "basic-3.1",
+          "emptyTest"
+        ],
+        [
+          "basic-4.1",
+          "emptyTest"
+        ],
+        [
+          "basic-5.1",
+          "emptyTest"
+        ],
+        [
+          "basic-6.1",
+          "emptyTest"
+        ],
+        [
+          "basic-7.1",
+          "emptyTest"
+        ],
+        [
+          "basic-8.1",
+          "emptyTest"
+        ],
+        [
+          "basic-9.1",
+          "emptyTest"
+        ],
+        [
+          "basic-16.1",
+          "emptyTest"
+        ],
+        [
+          "basic-17.1",
+          "emptyTest"
+        ],
+        [
+          "basic-19.1",
+          "emptyTest"
+        ],
+        [
+          "basic-21.1",
+          "emptyTest"
+        ],
+        [
+          "basic-23.1",
+          "emptyTest"
+        ],
+        [
+          "basic-25.1",
+          "emptyTest"
+        ],
+        [
+          "basic-27.1",
+          "emptyTest"
+        ],
+        [
+          "basic-28.1",
+          "emptyTest"
+        ],
+        [
+          "basic-29.1",
+          "emptyTest"
+        ],
+        [
+          "basic-30.1",
+          "emptyTest"
+        ],
+        [
+          "basic-31.1",
+          "emptyTest"
+        ],
+        [
+          "basic-32.1",
+          "emptyTest"
+        ],
+        [
+          "basic-37.1",
+          "emptyTest"
+        ],
+        [
+          "basic-38.1",
+          "emptyTest"
+        ],
+        [
+          "basic-41.1",
+          "emptyTest"
+        ],
+        [
+          "basic-42.1",
+          "emptyTest"
+        ],
+        [
+          "basic-43.1",
+          "emptyTest"
+        ],
+        [
+          "basic-44.1",
+          "emptyTest"
+        ],
+        [
+          "basic-45.1",
+          "emptyTest"
+        ],
+        [
+          "basic-48.16.0",
+          "memory"
+        ],
+        [
+          "basic-48.16.1",
+          "memory"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-basic\\native-job.json",
+        "sha256": "dbcb897327a7d84d5c05d43f9c28a939153292bd1b6d02cc0561c45947bd48c6"
+      },
+      "observation": {
+        "parent_pid": 10504,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 14,
+        "observed_processes": 14,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 9184,
+            "created": 134335705876906720,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21680,
+            "parent_created": 134335705867004856
+          },
+          {
+            "pid": 5364,
+            "created": 134335705880576451,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 9184,
+            "parent_created": 134335705876906720
+          },
+          {
+            "pid": 26272,
+            "created": 134335705888248550,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21680,
+            "parent_created": 134335705867004856
+          },
+          {
+            "pid": 23492,
+            "created": 134335705891294309,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 26272,
+            "parent_created": 134335705888248550
+          },
+          {
+            "pid": 23960,
+            "created": 134335705901005788,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21680,
+            "parent_created": 134335705867004856
+          },
+          {
+            "pid": 11404,
+            "created": 134335705904383890,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 23960,
+            "parent_created": 134335705901005788
+          },
+          {
+            "pid": 3600,
+            "created": 134335705910122459,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21680,
+            "parent_created": 134335705867004856
+          },
+          {
+            "pid": 25232,
+            "created": 134335705913032967,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 3600,
+            "parent_created": 134335705910122459
+          },
+          {
+            "pid": 15424,
+            "created": 134335705919537962,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21680,
+            "parent_created": 134335705867004856
+          },
+          {
+            "pid": 3992,
+            "created": 134335705920936282,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 15424,
+            "parent_created": 134335705919537962
+          },
+          {
+            "pid": 17356,
+            "created": 134335705929893995,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21680,
+            "parent_created": 134335705867004856
+          },
+          {
+            "pid": 3264,
+            "created": 134335705930903859,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 17356,
+            "parent_created": 134335705929893995
+          },
+          {
+            "pid": 21680,
+            "created": 134335705867004856,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 10504,
+            "parent_created": 134335705865532667
+          }
+        ],
+        "unrelayed_high_exits": [
+          {
+            "pid": 11404,
+            "created": 134335705904383890,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 23960,
+            "parent_created": 134335705901005788
+          },
+          {
+            "pid": 25232,
+            "created": 134335705913032967,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 3600,
+            "parent_created": 134335705910122459
+          },
+          {
+            "pid": 3992,
+            "created": 134335705920936282,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 15424,
+            "parent_created": 134335705919537962
+          },
+          {
+            "pid": 3264,
+            "created": 134335705930903859,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 256,
+            "parent_pid": 17356,
+            "parent_created": 134335705929893995
+          }
+        ],
+        "passed": false
+      },
+      "drain": {
+        "pid": 21680,
+        "creation_filetime": 134335705867004856,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "expr",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-expr\\result.json",
+        "sha256": "f4c945e5b35d56c5a704ac9065aa4b73dca47a58918b0f31cdd59841c9371a32"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 19152,
+        "creation_filetime": 134335706101075106,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "expr.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-expr",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-expr\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-expr\\validated-modules.json",
+        "sha256": "4b3e8aa83faafb52818cd3cfc0ec7578091966637d2d12addd19dce9d3a3b560"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 1896,
+          "passed": 1873,
+          "skipped": 23,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "expr-9.5b",
+          "longIs32bit"
+        ],
+        [
+          "expr-11.13a",
+          "!ieeeFloatingPoint"
+        ],
+        [
+          "expr-22.2",
+          "!ieeeFloatingPoint"
+        ],
+        [
+          "expr-22.4",
+          "!ieeeFloatingPoint"
+        ],
+        [
+          "expr-22.6",
+          "!ieeeFloatingPoint"
+        ],
+        [
+          "expr-22.8",
+          "!ieeeFloatingPoint"
+        ],
+        [
+          "expr-24.5",
+          "longIs32bit"
+        ],
+        [
+          "expr-24.6",
+          "longIs32bit"
+        ],
+        [
+          "expr-33.1",
+          "longIs32bit"
+        ],
+        [
+          "expr-33.2",
+          "longIs32bit"
+        ],
+        [
+          "expr-34.13",
+          "longIs32bit"
+        ],
+        [
+          "expr-34.15",
+          "longIs32bit"
+        ],
+        [
+          "expr-34.16",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.5",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.6",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.7",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.9",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.10",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.11",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.12",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.13",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.15",
+          "longIs32bit"
+        ],
+        [
+          "expr-39.16",
+          "longIs32bit"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-expr\\native-job.json",
+        "sha256": "82fb34c858a4531bbf89b5dd4cf7dc6270bbe4916c0362a25a800ec750678b63"
+      },
+      "observation": {
+        "parent_pid": 14200,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 19152,
+            "created": 134335706101075106,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 14200,
+            "parent_created": 134335706098414010
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 19152,
+        "creation_filetime": 134335706101075106,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "dict",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-dict\\result.json",
+        "sha256": "545ab60b3afc0c59b3b286fd64f7dac8e0bd43a381bfbdd602dc025756051cb0"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 26956,
+        "creation_filetime": 134335706256034396,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "dict.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-dict",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-dict\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-dict\\validated-modules.json",
+        "sha256": "2bf542a3844a693641da130aa577d80b6426b5df970ae148e8b77b8906316519"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 342,
+          "passed": 340,
+          "skipped": 2,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "dict-19.2",
+          "memory"
+        ],
+        [
+          "dict-19.3",
+          "memory"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-dict\\native-job.json",
+        "sha256": "908a09bd9b61e54dcf7c96f3298da17b8c60c719c8db19a41cc58f145ca7563f"
+      },
+      "observation": {
+        "parent_pid": 6596,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 26956,
+            "created": 134335706256034396,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 6596,
+            "parent_created": 134335706253138603
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 26956,
+        "creation_filetime": 134335706256034396,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "list",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-list\\result.json",
+        "sha256": "965fbdbb07437bdecbe79a472cc7df437b54523aa8860a1cc8e4962331bbcd31"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 15120,
+        "creation_filetime": 134335706403370506,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "list.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-list",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-list\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-list\\validated-modules.json",
+        "sha256": "af3d564adf07ba44f499e76825054b4cc952dc843378c1ac048c5c2ebab4f439"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 76,
+          "passed": 76,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-list\\native-job.json",
+        "sha256": "1c5b5850112f95cacb259f836030b589fda956e29e759f728f2613cb901ce0fa"
+      },
+      "observation": {
+        "parent_pid": 7864,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 15120,
+            "created": 134335706403370506,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 7864,
+            "parent_created": 134335706401305256
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 15120,
+        "creation_filetime": 134335706403370506,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "regexp",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-regexp\\result.json",
+        "sha256": "ee648c1ac7c5bc465a8db69f2f60f11780c18f6a21c7ccc16bcf5542f546a741"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 20288,
+        "creation_filetime": 134335706540204092,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "regexp.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-regexp",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-regexp\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-regexp\\validated-modules.json",
+        "sha256": "c541a9d477f3e795b6e34b3792304d24523c11c8c28e90f617905ebefd28dade"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 244,
+          "passed": 241,
+          "skipped": 3,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "regexp-23.5",
+          "knownBug"
+        ],
+        [
+          "regexp-23.7",
+          "knownBug"
+        ],
+        [
+          "regexp-23.9",
+          "knownBug"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-regexp\\native-job.json",
+        "sha256": "34d0305ba88022d0ca36947a0e382b9a81a055e3acd3201c58402471fa9ef15d"
+      },
+      "observation": {
+        "parent_pid": 23180,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 4,
+        "observed_processes": 4,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 16260,
+            "created": 134335706545538151,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 20288,
+            "parent_created": 134335706540204092
+          },
+          {
+            "pid": 27940,
+            "created": 134335706546810597,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 16260,
+            "parent_created": 134335706545538151
+          },
+          {
+            "pid": 20288,
+            "created": 134335706540204092,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 23180,
+            "parent_created": 134335706535108302
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 20288,
+        "creation_filetime": 134335706540204092,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "encoding",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-encoding\\result.json",
+        "sha256": "28b2fcf083e794343dbf65cdf1d542f8c377307bd856b718777959e0c4451925"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 12728,
+        "creation_filetime": 134335706708037785,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "encoding.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-encoding",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-encoding\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-encoding\\validated-modules.json",
+        "sha256": "fc7455c0861551a3a4bc65ed0b7dcc27dbabf7070aa533885f8ee9cfc4b89af6"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 94,
+          "passed": 92,
+          "skipped": 2,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "encoding-16.2",
+          "fullutf"
+        ],
+        [
+          "encoding-17.1",
+          "fullutf"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-encoding\\native-job.json",
+        "sha256": "8eb91c83700de4326537d6c4a83f44e50951a58683e67806214cd99324650ca0"
+      },
+      "observation": {
+        "parent_pid": 3912,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 10,
+        "observed_processes": 10,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 2108,
+            "created": 134335706712468102,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 12728,
+            "parent_created": 134335706708037785
+          },
+          {
+            "pid": 22648,
+            "created": 134335706714204442,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 2108,
+            "parent_created": 134335706712468102
+          },
+          {
+            "pid": 17464,
+            "created": 134335706722227342,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 12728,
+            "parent_created": 134335706708037785
+          },
+          {
+            "pid": 392,
+            "created": 134335706723926982,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 17464,
+            "parent_created": 134335706722227342
+          },
+          {
+            "pid": 18564,
+            "created": 134335706731165146,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 12728,
+            "parent_created": 134335706708037785
+          },
+          {
+            "pid": 12860,
+            "created": 134335706732247027,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 18564,
+            "parent_created": 134335706731165146
+          },
+          {
+            "pid": 19696,
+            "created": 134335706737998875,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 12728,
+            "parent_created": 134335706708037785
+          },
+          {
+            "pid": 20304,
+            "created": 134335706738293576,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 19696,
+            "parent_created": 134335706737998875
+          },
+          {
+            "pid": 12728,
+            "created": 134335706708037785,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 3912,
+            "parent_created": 134335706705536903
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 12728,
+        "creation_filetime": 134335706708037785,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "zlib",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-zlib\\result.json",
+        "sha256": "8a5569531a55a1c780b058cf89701366b26f3c6936baa65d2666cb34eee33890"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 26420,
+        "creation_filetime": 134335706879743155,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "zlib.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-zlib",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-zlib\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-zlib\\validated-modules.json",
+        "sha256": "e45e68cfe277e625b16184b9f76a52e80ea2f49386f3bea7d8254823e83fd15b"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 67,
+          "passed": 67,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-zlib\\native-job.json",
+        "sha256": "0850722dfa18b83fb8455565c5b224634e249730fb20f363136ed98cf4b386f6"
+      },
+      "observation": {
+        "parent_pid": 27244,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 26420,
+            "created": 134335706879743155,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 27244,
+            "parent_created": 134335706876179447
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 26420,
+        "creation_filetime": 134335706879743155,
+        "state": "owned-generation-exited"
+      }
+    },
+    {
+      "name": "load",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-load\\result.json",
+        "sha256": "dd72a860c2909ee1ac4340f335e02a0e2029733738ee2596fd46bb07ae8114c8"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 19644,
+        "creation_filetime": 134335707054614397,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "load.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-load",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-load\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-load\\validated-modules.json",
+        "sha256": "46d6f10766ba4f837f3a50da7210545d846bda3cf4cfac70fa73d110dcf84213"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 30,
+          "passed": 30,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-load\\native-job.json",
+        "sha256": "19b37aa6db17d65e5d937384bbd4b97fac2e482a391ebc2784cd2ba9573ea492"
+      },
+      "observation": {
+        "parent_pid": 7664,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 19644,
+            "created": 134335707054614397,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 7664,
+            "parent_created": 134335707048466491
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 19644,
+        "creation_filetime": 134335707054614397,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "unload",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-unload\\result.json",
+        "sha256": "f28db4f1cae3eed09997cab6adbe162a3eddbe427051b36ba273b859759c5ab0"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 14932,
+        "creation_filetime": 134335707199539674,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "unload.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-unload",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-unload\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-unload\\validated-modules.json",
+        "sha256": "71f342e0d767331fa5b3becf9f3a2b46f8970bbf6ba01c10c9cd2c12acbecfd9"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 27,
+          "passed": 27,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-unload\\native-job.json",
+        "sha256": "f95ee72c21990322ee2a821baeffa17e78786bfbf5ed4625a8eaa2966b80b4e3"
+      },
+      "observation": {
+        "parent_pid": 1276,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 14932,
+            "created": 134335707199539674,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 1276,
+            "parent_created": 134335707196615411
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 14932,
+        "creation_filetime": 134335707199539674,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "append",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-append\\result.json",
+        "sha256": "412cee557a1bd3cfe3bc3aaeb176e67eab08c3442c42aa76aadef1457a3183e8"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 15572,
+        "creation_filetime": 134335707337750054,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "append.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-append",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-append\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-append\\validated-modules.json",
+        "sha256": "9ea06d56e430cb0db0e9bb749275e42dfc29379fe0efc8cdb488f7f76efd65ab"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 45,
+          "passed": 45,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-append\\native-job.json",
+        "sha256": "cd0256e3090a3d15463ada7e5e6f33d090f37c71b3083161aad5dbec499539fc"
+      },
+      "observation": {
+        "parent_pid": 11972,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 15572,
+            "created": 134335707337750054,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 11972,
+            "parent_created": 134335707335201513
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 15572,
+        "creation_filetime": 134335707337750054,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "appendComp",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-appendComp\\result.json",
+        "sha256": "10fc9d97014dd17f3be4ac5fb31140789896751fcca8855f79133f7e604c6825"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 5692,
+        "creation_filetime": 134335707477599937,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "appendComp.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-appendComp",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-appendComp\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-appendComp\\validated-modules.json",
+        "sha256": "b881e73059901962d7e794a3e981f04639065098830dbd1c79beeb6d9f516dc1"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 48,
+          "passed": 43,
+          "skipped": 5,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "appendComp-7.2",
+          "bug-3057639"
+        ],
+        [
+          "appendComp-7.3",
+          "bug-3057639"
+        ],
+        [
+          "appendComp-7.4",
+          "bug-3057639"
+        ],
+        [
+          "appendComp-7.6",
+          "bug-3057639"
+        ],
+        [
+          "appendComp-7.7",
+          "bug-3057639"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-appendComp\\native-job.json",
+        "sha256": "37b62d147fa7ad260670cb9abf8aad58ee1b8bc2e6b5854c561882b6c02a0675"
+      },
+      "observation": {
+        "parent_pid": 13724,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 5692,
+            "created": 134335707477599937,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 13724,
+            "parent_created": 134335707474618438
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 5692,
+        "creation_filetime": 134335707477599937,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "binary",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-binary\\result.json",
+        "sha256": "058bcb35674adeb9859a3f5a81505194f92871e0089071993d1654e0443d2b68"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 316,
+        "creation_filetime": 134335707614162309,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "binary.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-binary",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-binary\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-binary\\validated-modules.json",
+        "sha256": "dd1fbd6fc7341dac4a45e42e86e26975a65fdfb83bbd9949621292a88115a3f9"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 717,
+          "passed": 640,
+          "skipped": 77,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "binary-13.4",
+          "bigEndian"
+        ],
+        [
+          "binary-13.6",
+          "bigEndian"
+        ],
+        [
+          "binary-13.8",
+          "bigEndian"
+        ],
+        [
+          "binary-13.10",
+          "bigEndian"
+        ],
+        [
+          "binary-13.12",
+          "bigEndian"
+        ],
+        [
+          "binary-13.14",
+          "bigEndian"
+        ],
+        [
+          "binary-13.18",
+          "bigEndian"
+        ],
+        [
+          "binary-14.4",
+          "bigEndian"
+        ],
+        [
+          "binary-14.6",
+          "bigEndian"
+        ],
+        [
+          "binary-14.8",
+          "bigEndian"
+        ],
+        [
+          "binary-14.10",
+          "bigEndian"
+        ],
+        [
+          "binary-14.16",
+          "bigEndian"
+        ],
+        [
+          "binary-31.2",
+          "bigEndian"
+        ],
+        [
+          "binary-31.4",
+          "bigEndian"
+        ],
+        [
+          "binary-31.6",
+          "bigEndian"
+        ],
+        [
+          "binary-31.8",
+          "bigEndian"
+        ],
+        [
+          "binary-31.10",
+          "bigEndian"
+        ],
+        [
+          "binary-31.14",
+          "bigEndian"
+        ],
+        [
+          "binary-32.2",
+          "bigEndian"
+        ],
+        [
+          "binary-32.4",
+          "bigEndian"
+        ],
+        [
+          "binary-32.6",
+          "bigEndian"
+        ],
+        [
+          "binary-32.8",
+          "bigEndian"
+        ],
+        [
+          "binary-32.10",
+          "bigEndian"
+        ],
+        [
+          "binary-32.14",
+          "bigEndian"
+        ],
+        [
+          "binary-38.5",
+          "bigEndian"
+        ],
+        [
+          "binary-38.7",
+          "bigEndian"
+        ],
+        [
+          "binary-41.5",
+          "bigEndian"
+        ],
+        [
+          "binary-41.7",
+          "bigEndian"
+        ],
+        [
+          "binary-48.4",
+          "bigEndian"
+        ],
+        [
+          "binary-48.6",
+          "bigEndian"
+        ],
+        [
+          "binary-48.8",
+          "bigEndian"
+        ],
+        [
+          "binary-48.10",
+          "bigEndian"
+        ],
+        [
+          "binary-48.12",
+          "bigEndian"
+        ],
+        [
+          "binary-48.14",
+          "bigEndian"
+        ],
+        [
+          "binary-48.18",
+          "bigEndian"
+        ],
+        [
+          "binary-49.14",
+          "bigEndian"
+        ],
+        [
+          "binary-49.15",
+          "bigEndian"
+        ],
+        [
+          "binary-49.16",
+          "bigEndian"
+        ],
+        [
+          "binary-49.17",
+          "bigEndian"
+        ],
+        [
+          "binary-49.18",
+          "bigEndian"
+        ],
+        [
+          "binary-49.19",
+          "bigEndian"
+        ],
+        [
+          "binary-49.20",
+          "bigEndian"
+        ],
+        [
+          "binary-50.2",
+          "bigEndian"
+        ],
+        [
+          "binary-50.4",
+          "bigEndian"
+        ],
+        [
+          "binary-55.2",
+          "bigEndian"
+        ],
+        [
+          "binary-55.3",
+          "bigEndian"
+        ],
+        [
+          "binary-55.4",
+          "bigEndian"
+        ],
+        [
+          "binary-55.5",
+          "bigEndian"
+        ],
+        [
+          "binary-55.6",
+          "bigEndian"
+        ],
+        [
+          "binary-55.7",
+          "bigEndian"
+        ],
+        [
+          "binary-55.9",
+          "bigEndian"
+        ],
+        [
+          "binary-55.10",
+          "bigEndian"
+        ],
+        [
+          "binary-55.11",
+          "bigEndian"
+        ],
+        [
+          "binary-57.2",
+          "bigEndian"
+        ],
+        [
+          "binary-57.3",
+          "bigEndian"
+        ],
+        [
+          "binary-57.4",
+          "bigEndian"
+        ],
+        [
+          "binary-57.5",
+          "bigEndian"
+        ],
+        [
+          "binary-57.6",
+          "bigEndian"
+        ],
+        [
+          "binary-57.7",
+          "bigEndian"
+        ],
+        [
+          "binary-57.9",
+          "bigEndian"
+        ],
+        [
+          "binary-57.10",
+          "bigEndian"
+        ],
+        [
+          "binary-57.11",
+          "bigEndian"
+        ],
+        [
+          "binary-58.2",
+          "bigEndian"
+        ],
+        [
+          "binary-58.4",
+          "bigEndian"
+        ],
+        [
+          "binary-58.6",
+          "bigEndian"
+        ],
+        [
+          "binary-58.8",
+          "bigEndian"
+        ],
+        [
+          "binary-58.10",
+          "bigEndian"
+        ],
+        [
+          "binary-58.14",
+          "bigEndian"
+        ],
+        [
+          "binary-59.2",
+          "bigEndian"
+        ],
+        [
+          "binary-59.4",
+          "bigEndian"
+        ],
+        [
+          "binary-59.6",
+          "bigEndian"
+        ],
+        [
+          "binary-59.8",
+          "bigEndian"
+        ],
+        [
+          "binary-59.10",
+          "bigEndian"
+        ],
+        [
+          "binary-59.14",
+          "bigEndian"
+        ],
+        [
+          "binary-61.1",
+          "bigEndian"
+        ],
+        [
+          "binary-61.4",
+          "bigEndian"
+        ],
+        [
+          "binary-76.2",
+          "win"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-binary\\native-job.json",
+        "sha256": "d20475d4a39b64930a799d6708a894afa3786d345791b160fda2b922a3675614"
+      },
+      "observation": {
+        "parent_pid": 9792,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 316,
+            "created": 134335707614162309,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 9792,
+            "parent_created": 134335707610261966
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 316,
+        "creation_filetime": 134335707614162309,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "concat",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-concat\\result.json",
+        "sha256": "9166523d5a12119c566dbf60b133a37ca42f3c47620bbc59d639a9f4aa82b107"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 22124,
+        "creation_filetime": 134335707762050981,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "concat.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-concat",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-concat\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-concat\\validated-modules.json",
+        "sha256": "8c2b0abb7c61babc19a16145f5559a14680c6010eb3ca0fccfb41f4347aabd1f"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 9,
+          "passed": 9,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-concat\\native-job.json",
+        "sha256": "e00efe26daa81090bfcc31f7c3127854d14d6023105bd57bdb7abacceeed1b5d"
+      },
+      "observation": {
+        "parent_pid": 20648,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 22124,
+            "created": 134335707762050981,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 20648,
+            "parent_created": 134335707756990388
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 22124,
+        "creation_filetime": 134335707762050981,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "dstring",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-dstring\\result.json",
+        "sha256": "d0aa3b57421ce683446cfe291c4bb1a5838b131f0ec9f15df0af906454e1d965"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 8368,
+        "creation_filetime": 134335707912550318,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "dstring.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-dstring",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-dstring\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-dstring\\validated-modules.json",
+        "sha256": "675ab3d45029ecb180e7b329d98d000668c37214baac2c85657d1091825cec89"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 39,
+          "passed": 39,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-dstring\\native-job.json",
+        "sha256": "ad2ee138030ecbdedf18e9e5cfb9c6b74f6cba4dffda993d4fa2e2855483ea91"
+      },
+      "observation": {
+        "parent_pid": 27972,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 8368,
+            "created": 134335707912550318,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 27972,
+            "parent_created": 134335707907943645
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 8368,
+        "creation_filetime": 134335707912550318,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "format",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-format\\result.json",
+        "sha256": "dcb76d6ec091d72994dfe62d08861ccc4ea556dbc8273e1bcb9ac14c035a373b"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 10288,
+        "creation_filetime": 134335708058571267,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "format.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-format",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-format\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-format\\validated-modules.json",
+        "sha256": "9af8612e0185ec2d2d4adbe7fb4612de1d90cb680a1970286aecc247c4bbeb24"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 269,
+          "passed": 257,
+          "skipped": 12,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "format-1.3",
+          "longIs32bit"
+        ],
+        [
+          "format-1.7",
+          "longIs32bit"
+        ],
+        [
+          "format-1.8",
+          "longIs32bit"
+        ],
+        [
+          "format-1.9",
+          "longIs32bit"
+        ],
+        [
+          "format-1.10",
+          "longIs32bit"
+        ],
+        [
+          "format-1.11",
+          "longIs32bit"
+        ],
+        [
+          "format-1.13",
+          "longIs32bit"
+        ],
+        [
+          "format-1.14",
+          "longIs32bit"
+        ],
+        [
+          "format-1.15",
+          "longIs32bit"
+        ],
+        [
+          "format-17.1",
+          "wideBiggerThanInt"
+        ],
+        [
+          "format-18.2",
+          "wideBiggerThanInt"
+        ],
+        [
+          "format-19.4.1",
+          "longIs32bit"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-format\\native-job.json",
+        "sha256": "b5752b8550593821ca8ce7a6446467fd6fca451a1ad7803a2a291488c6da0b50"
+      },
+      "observation": {
+        "parent_pid": 13260,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 10288,
+            "created": 134335708058571267,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 13260,
+            "parent_created": 134335708055772508
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 10288,
+        "creation_filetime": 134335708058571267,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "scan",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-scan\\result.json",
+        "sha256": "d8e3d4b7e0e02b1a0357b2cf3717c739844a794d93854f52d9358ff243696e4a"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 14916,
+        "creation_filetime": 134335708205428896,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "scan.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-scan",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-scan\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-scan\\validated-modules.json",
+        "sha256": "16a0a3294e112c8715cd842cda66143ce9dd8b1ab074b147a5129154a947ed8f"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 180,
+          "passed": 179,
+          "skipped": 1,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "scan-5.11",
+          "nonPortable"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-scan\\native-job.json",
+        "sha256": "6f10b7a42d3a9387e7e6aaf63e9b8a277846691a3ba21d8fa1c27bc2293461af"
+      },
+      "observation": {
+        "parent_pid": 2116,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 14916,
+            "created": 134335708205428896,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 2116,
+            "parent_created": 134335708203180911
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 14916,
+        "creation_filetime": 134335708205428896,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "split",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-split\\result.json",
+        "sha256": "c7dd3e0264c27d9eb5734e8534c1e8b9303274d9cf4a9346e8a45cdc265e74f7"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 2148,
+        "creation_filetime": 134335708347665565,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "split.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-split",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-split\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-split\\validated-modules.json",
+        "sha256": "5510a7bfc0b8e86a5d23cee6ba7c42f50b428a25b8dca97029c06e47c3d03359"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 17,
+          "passed": 17,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-split\\native-job.json",
+        "sha256": "0eca25b60b350d12018c6ca5a6bcd719252d0e8a196d0ca3a2e19412d6fc1d93"
+      },
+      "observation": {
+        "parent_pid": 15968,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 2148,
+            "created": 134335708347665565,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 15968,
+            "parent_created": 134335708343723621
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 2148,
+        "creation_filetime": 134335708347665565,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "string",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-string\\result.json",
+        "sha256": "45246ac3687ff75439b7827b64541f20fd2d0515b8eeece6d430ffb5596a94f0"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 12716,
+        "creation_filetime": 134335708498872596,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "string.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-string",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-string\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-string\\validated-modules.json",
+        "sha256": "3912848604bf4aa4a00df0fcb07f5f690dd47b9efe97e155c8bc81787a62701d"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 581,
+          "passed": 577,
+          "skipped": 4,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "string-12.23",
+          "utf16"
+        ],
+        [
+          "string-26.11",
+          "memory"
+        ],
+        [
+          "string-26.12",
+          "memory"
+        ],
+        [
+          "string-26.13",
+          "memory"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-string\\native-job.json",
+        "sha256": "d05e3efb07b34a13e21977fd638073a211e136e2644414bc448c8b50258b9303"
+      },
+      "observation": {
+        "parent_pid": 19352,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 12716,
+            "created": 134335708498872596,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 19352,
+            "parent_created": 134335708494669038
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 12716,
+        "creation_filetime": 134335708498872596,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "stringComp",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringComp\\result.json",
+        "sha256": "e6530aa023e6275fa66ab41bcb55e0a2aa9842f5bd9085305da851e27b97327e"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 3920,
+        "creation_filetime": 134335708651011949,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "stringComp.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-stringComp",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringComp\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringComp\\validated-modules.json",
+        "sha256": "c686badd3b4cc81eb273c42b5b5aa6bf735ca5806ceeea90a2b33f9230108ed6"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 279,
+          "passed": 278,
+          "skipped": 1,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "stringComp-14.2",
+          "memory"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringComp\\native-job.json",
+        "sha256": "82a709f07ad821ea36f82c98c7d1d82011b868bddf9748b5c40fa5874a2c41ca"
+      },
+      "observation": {
+        "parent_pid": 26300,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 3920,
+            "created": 134335708651011949,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 26300,
+            "parent_created": 134335708647671953
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 3920,
+        "creation_filetime": 134335708651011949,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "stringObj",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringObj\\result.json",
+        "sha256": "475b47f06c3f2f2c5d6c097f63f5f1cf01db84853f6baafff84ef403a07a6b87"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 22644,
+        "creation_filetime": 134335708792441168,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "stringObj.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-stringObj",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringObj\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringObj\\validated-modules.json",
+        "sha256": "8e8417c07fa1d3ff36580ac1fbdde47ece4f0e567ed528ee1343f62619f650dc"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 68,
+          "passed": 68,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-stringObj\\native-job.json",
+        "sha256": "f5ef09e6bd64cdc64f6e8eb57fd8107293ed70ec3eae9134267039225c08571f"
+      },
+      "observation": {
+        "parent_pid": 16364,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 22644,
+            "created": 134335708792441168,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 16364,
+            "parent_created": 134335708788754200
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 22644,
+        "creation_filetime": 134335708792441168,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "utf",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-utf\\result.json",
+        "sha256": "1393b4000a980cee765c1c1254a615b190888b1cce98670e3b47c9408c19af7f"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 28100,
+        "creation_filetime": 134335708934719853,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "utf.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-utf",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-utf\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-utf\\validated-modules.json",
+        "sha256": "f698b54c0c29215c3092cd0ca642f470ea25d63b6aae954947157158ef2bbcef"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 486,
+          "passed": 391,
+          "skipped": 95,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "utf-1.7.0",
+          "fullutf"
+        ],
+        [
+          "utf-1.12",
+          "pairsTo4bytes"
+        ],
+        [
+          "utf-1.13.1",
+          "fullutf"
+        ],
+        [
+          "utf-2.8.1",
+          "utf16"
+        ],
+        [
+          "utf-2.8.2",
+          "ucs4"
+        ],
+        [
+          "utf-2.9.1",
+          "utf16"
+        ],
+        [
+          "utf-2.9.2",
+          "ucs4"
+        ],
+        [
+          "utf-4.12.1",
+          "ucs4"
+        ],
+        [
+          "utf-6.11.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.30.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.32.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.69.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.74.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.75.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.76.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.77.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.78.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.79.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.87.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.88.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.89.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.90.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.92.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.93.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.94.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.95.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.112.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.113.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.116.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.117.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.123.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.124.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.125.1",
+          "fullutf"
+        ],
+        [
+          "utf-6.126.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.10.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.10.3",
+          "fullutf"
+        ],
+        [
+          "utf-7.10.5",
+          "fullutf"
+        ],
+        [
+          "utf-7.15.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.15.3",
+          "fullutf"
+        ],
+        [
+          "utf-7.15.5",
+          "fullutf"
+        ],
+        [
+          "utf-7.20.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.39.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.40.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.41.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.48.1",
+          "fullutf"
+        ],
+        [
+          "utf-7.48.3",
+          "fullutf"
+        ],
+        [
+          "utf-7.48.5",
+          "fullutf"
+        ],
+        [
+          "utf-8.5.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.5.2",
+          "utf16"
+        ],
+        [
+          "utf-8.7.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.7.2",
+          "utf16"
+        ],
+        [
+          "utf-8.8.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.8.2",
+          "utf16"
+        ],
+        [
+          "utf-8.9.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.9.2",
+          "utf16"
+        ],
+        [
+          "utf-8.10.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.10.2",
+          "utf16"
+        ],
+        [
+          "utf-8.11.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.11.2",
+          "utf16"
+        ],
+        [
+          "utf-8.12.1",
+          "ucs4"
+        ],
+        [
+          "utf-8.12.2",
+          "utf16"
+        ],
+        [
+          "utf-9.3.1",
+          "ucs4"
+        ],
+        [
+          "utf-9.3.2",
+          "utf16"
+        ],
+        [
+          "utf-9.4.1",
+          "ucs4"
+        ],
+        [
+          "utf-9.4.2",
+          "utf16"
+        ],
+        [
+          "utf-9.5.1",
+          "ucs4"
+        ],
+        [
+          "utf-9.5.2",
+          "utf16"
+        ],
+        [
+          "utf-9.6.1",
+          "ucs4"
+        ],
+        [
+          "utf-9.6.2",
+          "utf16"
+        ],
+        [
+          "utf-9.7.1",
+          "ucs4"
+        ],
+        [
+          "utf-9.7.2",
+          "utf16"
+        ],
+        [
+          "utf-9.8.1",
+          "ucs4"
+        ],
+        [
+          "utf-9.8.2",
+          "utf16"
+        ],
+        [
+          "utf-10.6",
+          "fullutf"
+        ],
+        [
+          "utf-10.7",
+          "fullutf"
+        ],
+        [
+          "utf-10.34",
+          "pre388"
+        ],
+        [
+          "utf-10.44",
+          "pre388"
+        ],
+        [
+          "utf-10.56",
+          "fullutf"
+        ],
+        [
+          "utf-10.57",
+          "fullutf"
+        ],
+        [
+          "utf-10.58",
+          "fullutf"
+        ],
+        [
+          "utf-10.59",
+          "fullutf"
+        ],
+        [
+          "utf-10.60",
+          "fullutf"
+        ],
+        [
+          "utf-10.61",
+          "fullutf"
+        ],
+        [
+          "utf-10.62",
+          "fullutf"
+        ],
+        [
+          "utf-11.6",
+          "fullutf"
+        ],
+        [
+          "utf-11.7",
+          "fullutf"
+        ],
+        [
+          "utf-12.7",
+          "fullutf"
+        ],
+        [
+          "utf-12.8",
+          "fullutf"
+        ],
+        [
+          "utf-13.8",
+          "fullutf"
+        ],
+        [
+          "utf-13.9",
+          "fullutf"
+        ],
+        [
+          "utf-20.1",
+          "ucs4"
+        ],
+        [
+          "utf-25.5",
+          "ucs4"
+        ],
+        [
+          "utf-25.6",
+          "ucs4"
+        ],
+        [
+          "utf-25.7",
+          "ucs4"
+        ],
+        [
+          "utf-25.8",
+          "ucs4"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-utf\\native-job.json",
+        "sha256": "1998c5cef0ddc63146598fa59ec45a88b1f825fb9e412b63ad53258c8fd458e7"
+      },
+      "observation": {
+        "parent_pid": 21372,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 28100,
+            "created": 134335708934719853,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21372,
+            "parent_created": 134335708929309724
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 28100,
+        "creation_filetime": 134335708934719853,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "join",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-join\\result.json",
+        "sha256": "751554fed63465f01e593d99c5c308dbad517788b35d8d2f4dab97ad2478f4fe"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 1744,
+        "creation_filetime": 134335709084044524,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "join.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-join",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-join\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-join\\validated-modules.json",
+        "sha256": "76b777cdf83119fa6e8ed0535c6b052b12bda743a4744bf2a80cb66ea14ba720"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 10,
+          "passed": 10,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-join\\native-job.json",
+        "sha256": "0662bb67e11e61a1363b2f89b84ce81bcd85aa2231eb2d2d9a8f90ff90a0557b"
+      },
+      "observation": {
+        "parent_pid": 21208,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 1744,
+            "created": 134335709084044524,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21208,
+            "parent_created": 134335709079808950
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 1744,
+        "creation_filetime": 134335709084044524,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lindex",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lindex\\result.json",
+        "sha256": "1c751d87698f71a5ff14eeaa6b5b512af6ceaa22d6988b5a40f1f84aee3f0874"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 28624,
+        "creation_filetime": 134335709226641096,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lindex.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lindex",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lindex\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lindex\\validated-modules.json",
+        "sha256": "6c31528ff260fc71b9c3e051ecbcdfc69ef0f584eff5155798108b331b774f29"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 83,
+          "passed": 83,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lindex\\native-job.json",
+        "sha256": "5f79b88b55d4fdb09a93a037527353817fc474f7bb3deef8fffbc37f49bbe235"
+      },
+      "observation": {
+        "parent_pid": 21328,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 28624,
+            "created": 134335709226641096,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 21328,
+            "parent_created": 134335709221971865
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 28624,
+        "creation_filetime": 134335709226641096,
+        "state": "pid-reused-not-owned-generation"
+      }
+    },
+    {
+      "name": "linsert",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-linsert\\result.json",
+        "sha256": "77b5ffe89ab3c163fd4c7dba47404338cd3a32431bbddfde5860df283b996323"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 19852,
+        "creation_filetime": 134335709390496718,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "linsert.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-linsert",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-linsert\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-linsert\\validated-modules.json",
+        "sha256": "e6feed38193af4df3e06cb620d05f1898d236739a2078c1eaa4a6ae8d9183dd2"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 28,
+          "passed": 28,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-linsert\\native-job.json",
+        "sha256": "0584a0f63366f70a301fbc72f639fe61d81c32069500161f4dc46462a9cd5e11"
+      },
+      "observation": {
+        "parent_pid": 15960,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 19852,
+            "created": 134335709390496718,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 15960,
+            "parent_created": 134335709387978263
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 19852,
+        "creation_filetime": 134335709390496718,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "llength",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-llength\\result.json",
+        "sha256": "e7be4b69a298f98c4177e0ed1a14a43bdac4ac483d198105127c1060bd36a917"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 27844,
+        "creation_filetime": 134335709541104386,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "llength.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-llength",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-llength\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-llength\\validated-modules.json",
+        "sha256": "dfa61e5ac01c71c59d5a86f89c24988fb4b780b502f44c6dc251c5d7bfa34ca3"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 6,
+          "passed": 6,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-llength\\native-job.json",
+        "sha256": "5b9b6b73c0ee6c60a403dd58f1a1571acdc00146c5eaedaa573c93884bae7b38"
+      },
+      "observation": {
+        "parent_pid": 19876,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 27844,
+            "created": 134335709541104386,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 19876,
+            "parent_created": 134335709538312372
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 27844,
+        "creation_filetime": 134335709541104386,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lrange",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrange\\result.json",
+        "sha256": "e1110740a917c8bc84fd645effab7655dbac9e26007c2ae257b8422adca3e247"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 20648,
+        "creation_filetime": 134335709719351065,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lrange.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lrange",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrange\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrange\\validated-modules.json",
+        "sha256": "167da5e5bc4cacd852c4f49b42f07b256df9e39b41b3820f3f54f140dc76cb56"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 34,
+          "passed": 34,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrange\\native-job.json",
+        "sha256": "1bf50e8c01b9875e331408cef37eb659a7c2bec5166271e97e3ccd791de50c71"
+      },
+      "observation": {
+        "parent_pid": 27776,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 20648,
+            "created": 134335709719351065,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 27776,
+            "parent_created": 134335709716870039
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 20648,
+        "creation_filetime": 134335709719351065,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lrepeat",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrepeat\\result.json",
+        "sha256": "946bd08430665d1191b26ec9fc0e4c23121e88ce6ac7d8ef95663bade9c21802"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 16464,
+        "creation_filetime": 134335709849857799,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lrepeat.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lrepeat",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrepeat\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrepeat\\validated-modules.json",
+        "sha256": "38ceedbe7708138be2b98de7434c882817656acc986d6e1c12a9cc42c7e2f0e9"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 12,
+          "passed": 12,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lrepeat\\native-job.json",
+        "sha256": "b07522590e1f9322a444e34a56056114f57d5691a6c644292b0abf2e6bda0cb5"
+      },
+      "observation": {
+        "parent_pid": 28368,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 16464,
+            "created": 134335709849857799,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 28368,
+            "parent_created": 134335709848157729
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 16464,
+        "creation_filetime": 134335709849857799,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lreplace",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lreplace\\result.json",
+        "sha256": "6f4b9546992b4c65be92b0abef3b5a36f7c42e24a26f64fff89c5863e6c1756b"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 24232,
+        "creation_filetime": 134335709986833061,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lreplace.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lreplace",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lreplace\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lreplace\\validated-modules.json",
+        "sha256": "6191f7b44f267bd1e14a44328d2cce4efa6c5adf485b1fe6d8bb25f356070292"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 1787,
+          "passed": 1787,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lreplace\\native-job.json",
+        "sha256": "37f1247a47e878efd76b86d14c857e9d78b52c511167ed09ac9e93a0f730be85"
+      },
+      "observation": {
+        "parent_pid": 25300,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 24232,
+            "created": 134335709986833061,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 25300,
+            "parent_created": 134335709984577885
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 24232,
+        "creation_filetime": 134335709986833061,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lsearch",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsearch\\result.json",
+        "sha256": "394979235104b318d44dc50c7888a2b9c8f132aa7fba93fdde5b42f34f93b5ad"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 16560,
+        "creation_filetime": 134335710126754559,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lsearch.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lsearch",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsearch\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsearch\\validated-modules.json",
+        "sha256": "4f959bc3561e012beb07996c61e0f74fe2a908da1a2b07812b5c41e5edf7928b"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 118,
+          "passed": 118,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsearch\\native-job.json",
+        "sha256": "4160ee4ece54d2ac88dc07024c4926e1227be7a9ebbdc68154753573eea86453"
+      },
+      "observation": {
+        "parent_pid": 27168,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 16560,
+            "created": 134335710126754559,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 27168,
+            "parent_created": 134335710123294954
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 16560,
+        "creation_filetime": 134335710126754559,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lset",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lset\\result.json",
+        "sha256": "918bd669a9ff75defce1627d9846a963e9c2f3609e4432a8fb6affa711560a79"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 12936,
+        "creation_filetime": 134335710270388831,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lset.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lset",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lset\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lset\\validated-modules.json",
+        "sha256": "791ff9ef97ab2e7138bf66b91f534b1776e538537d5e2fda46c9c6a28c30ee87"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 89,
+          "passed": 89,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lset\\native-job.json",
+        "sha256": "b47e61bb4d0ec6b491177c66ac25abc40966dbcd5f5dd7c5ce81a8493e54c2b6"
+      },
+      "observation": {
+        "parent_pid": 23088,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 12936,
+            "created": 134335710270388831,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 23088,
+            "parent_created": 134335710268550781
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 12936,
+        "creation_filetime": 134335710270388831,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lsetComp",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsetComp\\result.json",
+        "sha256": "48358b6eae2350693d1015419e0215c87649335f7e7bd551915468dc8cedf7af"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 8780,
+        "creation_filetime": 134335710415748516,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lsetComp.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lsetComp",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsetComp\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsetComp\\validated-modules.json",
+        "sha256": "53badccb194a5f9ac02e32c672c5345d07995e847158e6ac2b12018a319b86c3"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 19,
+          "passed": 19,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lsetComp\\native-job.json",
+        "sha256": "a9dc226f35745a20d1e0ba003c5087e53c86b3d980a78c470ea475a6ea8a281c"
+      },
+      "observation": {
+        "parent_pid": 4856,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 8780,
+            "created": 134335710415748516,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 4856,
+            "parent_created": 134335710412620630
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 8780,
+        "creation_filetime": 134335710415748516,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "lmap",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lmap\\result.json",
+        "sha256": "b44a97bc3d381a33e6561e294265f2610ef5f592d8c42b2a110152174e123d19"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 22152,
+        "creation_filetime": 134335710578611137,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "lmap.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-lmap",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-lmap\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lmap\\validated-modules.json",
+        "sha256": "abd2778825b8cc694f279a565bb7df81e6af983c6eda3e1796978f0df0583e64"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 66,
+          "passed": 66,
+          "skipped": 0,
+          "failed": 0
+        }
+      ],
+      "skips": [],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-lmap\\native-job.json",
+        "sha256": "fa4e906721248456411878f6859631dd530f9db78ff90553eebca6a6e50f4855"
+      },
+      "observation": {
+        "parent_pid": 17224,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 22152,
+            "created": 134335710578611137,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 17224,
+            "parent_created": 134335710575783670
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 22152,
+        "creation_filetime": 134335710578611137,
+        "state": "process-no-longer-exists"
+      }
+    },
+    {
+      "name": "listObj",
+      "mode": "suite",
+      "result": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-listObj\\result.json",
+        "sha256": "4069e71e8094ce906bb725da6c71af94d20afae0ab557d8a6e85279c59a188a4"
+      },
+      "semantic_passed": true,
+      "observer_passed": true,
+      "launch": {
+        "pid": 27672,
+        "creation_filetime": 134335710729322032,
+        "argv": [
+          "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+          "/c/ag-tcl-e138-01/scripts/entry.tcl",
+          "suite",
+          "/c/ag-tcl-e138-01/source/tests/all.tcl",
+          "-singleproc",
+          "1",
+          "-file",
+          "listObj.test",
+          "-tmpdir",
+          "/c/ag-tcl-e138-01/combined-20260911-01-listObj",
+          "-verbose",
+          "beps"
+        ],
+        "log": "C:\\ag-tcl-e138-01\\combined-20260911-01-listObj\\run.log"
+      },
+      "modules": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-listObj\\validated-modules.json",
+        "sha256": "1ab8f6195ba531f7c60b695da5dfd8c7e4b4f5c5937f89fe0dc9d21b6d567207"
+      },
+      "summaries": [
+        {
+          "name": "all.tcl",
+          "total": 45,
+          "passed": 44,
+          "skipped": 1,
+          "failed": 0
+        }
+      ],
+      "skips": [
+        [
+          "listobj-1.1",
+          "emptyTest"
+        ]
+      ],
+      "failed_tests": [],
+      "file_errors": [],
+      "observer": {
+        "path": "C:\\ag-tcl-e138-01\\combined-20260911-01-listObj\\native-job.json",
+        "sha256": "ba7b1da740fb17967504a688bdd9cd7c93328561a5958a61de25257dab7bed49"
+      },
+      "observation": {
+        "parent_pid": 7876,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "created_processes": 2,
+        "observed_processes": 2,
+        "observation_count_matches": true,
+        "unobserved_process_ids": [],
+        "native_target_exits": [
+          {
+            "pid": 27672,
+            "created": 134335710729322032,
+            "executable": "C:\\ag-tcl-e138-01\\test-bin\\tcltest.exe",
+            "raw_exit": 0,
+            "parent_pid": 7876,
+            "parent_created": 134335710725932511
+          }
+        ],
+        "unrelayed_high_exits": [],
+        "passed": true
+      },
+      "drain": {
+        "pid": 27672,
+        "creation_filetime": 134335710729322032,
+        "state": "process-no-longer-exists"
+      }
+    }
+  ],
+  "full_suite": false,
+  "expected_negative_observer_unchanged": true
+}

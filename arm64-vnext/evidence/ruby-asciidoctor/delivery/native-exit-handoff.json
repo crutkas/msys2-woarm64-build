@@ -1,0 +1,48 @@
+{
+  "Status": "native-target-relay-and-job-level-fail-closed-package-controls-passed",
+  "SchemaVersion": 2,
+  "Sources": [
+    {
+      "SHA256": "caa2a31e13a465abb0557482c289f1228ae34a1bd020eb8bb5c3ee6d3d675818",
+      "Path": "C:\\ap06-2160\\parallel-v1\\engine\\.github\\scripts\\native-target-exec.py"
+    },
+    {
+      "SHA256": "6c52480af548957dbba36c1d643ae510912f2df87232dc3291f0f2ab154b8476",
+      "Path": "C:\\ap06-2160\\parallel-v1\\engine\\.github\\scripts\\native-target-exec.sh"
+    },
+    {
+      "SHA256": "e806e70c7aedd226f2cb1c454221e6d5738525e34a2d3266b577f486114fd89e",
+      "Path": "C:\\ap06-2160\\parallel-v1\\engine\\.github\\scripts\\native-job.py"
+    }
+  ],
+  "Evidence": [
+    {
+      "SHA256": "2428f4e5d3bded62f204acd7d121122548a67e20da87e8438682b9cbd8091baf",
+      "Path": "C:\\ap06-2160\\native-job-msys-package-controls-06\\result.json"
+    },
+    {
+      "SHA256": "bf35f3dac7a7467aad108d358843e4b3e123aac21375e4c13535836c247cccb1",
+      "Path": "C:\\ap06-2160\\native-job-mingw-package-controls-06\\result.json"
+    },
+    {
+      "SHA256": "ecbb4532ce28136ad9f425ccae73a83c861771d88376639ac7abc175005ce84a",
+      "Path": "C:\\ap06-2160\\nt8\\native-job.json"
+    },
+    {
+      "SHA256": "69b0d808bec08a9f4cfdc1b38b7490d95fd9bf078b487393d35c880508877013",
+      "Path": "C:\\ap06-2160\\native-target-path-controls-02\\runs.json"
+    }
+  ],
+  "Mapping": "Raw exits0..255 unchanged, every other rawWindows exit→255; exactraw/PID/creationtime retained, no POSIXsignal invention",
+  "JobScope": "Kill-on-close job; PID+creationFILETIME identity; exactjob-generationcount; native high exits need realgenerationboundrelay or exactstatus propagation torelayedancestor; nogaps/nofalseparent0 admission",
+  "Python": {
+    "SHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+    "Path": "C:\\Program Files\\Python314-arm64\\python.exe"
+  },
+  "MsysArgumentMode": "WOARM64_NATIVE_ARG_CONVERSION=none",
+  "MingwArgumentMode": "WOARM64_NATIVE_ARG_CONVERSION=mingw",
+  "Invocation": "python -I native-job.py --cwd ROOT --target-root ROOT --relay-records ROOT\\native-exits --log LOG --result RESULT --timeout SECONDS -- COMMAND ARGS",
+  "AdditionalIdentityModules": [],
+  "OldReceiptsRebound": false,
+  "Scope": "Current separately bound observer/relay qualification; not targetlibrary/package admission"
+}

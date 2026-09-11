@@ -1,0 +1,180 @@
+{
+  "schema": 1,
+  "status": "retained-mutex-timeout-root-caused-full-unchanged-matrix-completed",
+  "recorded_utc": "2026-09-11T08:13:20.138131+00:00",
+  "conclusion": "The original900-second timeout was insufficient for this unchanged workload on a wait path whose nonzero microsecond sleeps cost approximately15ms. The full24configuration matrix completed naturally within7200s. No mutex alignment/contention correctness failure was observed; this is not a proof excluding everypossibleorderingbug.",
+  "observed_execution_seconds": 3733.691687899991,
+  "observed_execution_window": {
+    "first": "2026-09-11T07:02:59.492564+00:00",
+    "last": "2026-09-11T08:05:13.184252+00:00"
+  },
+  "approved_time_bound_seconds": 7200,
+  "full_matrix": {
+    "cases": 24,
+    "passed": 24,
+    "failed": 0,
+    "CuTest_raw_exit": 0,
+    "created_processes": 314,
+    "observed_processes": 314,
+    "timed_out": false,
+    "result": {
+      "path": "C:\\ag-db-e138-01\\resume-20260909\\mutex-long-20260911\\result.json",
+      "size": 204513,
+      "sha256": "805143b08af0912ac6ff5701141763f26df8ec48364df0a4960e58ee7750bc2b"
+    },
+    "observer": {
+      "path": "C:\\ag-db-e138-01\\resume-20260909\\mutex-long-20260911\\01-TestMutexAlignment.native-job.json",
+      "size": 87656,
+      "sha256": "8b81ddbbadc3dd1bb87f5b082eaba502b63574c10a02237c9e9951aee539719b"
+    },
+    "stdout": {
+      "path": "C:\\ag-db-e138-01\\resume-20260909\\mutex-long-20260911\\01-TestMutexAlignment.log",
+      "size": 1296,
+      "sha256": "249795cb3916f2622b054ec6f9545ba4c45e2258e934c530a33de2b4cdbcdce5"
+    },
+    "per_case_outcomes": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\per-case-results-exact.json",
+      "size": 37951,
+      "sha256": "5814938099e82dae747199d26fc65629016817a00813422e9c7152cf5eaa39d7"
+    },
+    "grouped_timings": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\case-group-timings.json",
+      "size": 2661,
+      "sha256": "30b97330ea5572d4bea539723dff9305fd27a59db27e35169c0504f254849b70"
+    },
+    "samples": {
+      "path": "C:\\ag-db-e138-01\\resume-20260909\\mutex-long-20260911\\mutex-progress.jsonl",
+      "size": 17531430,
+      "sha256": "47c6901e66c7e9d8ece1a4ce00a1bc02b85c09d7c45b2c4853c8a36acdc0242a"
+    }
+  },
+  "cohort": {
+    "runtime": "D70",
+    "runtime_sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+    "native_driver_manifest_sha256": "8a190bb53c72490d4daa163120f4d6f42537279ece27e5103b2a334e6b1803a1",
+    "DB_DLL_sha256": "059c11c7e09f26bc963743a0f75ff9b9ba47b43a815e0a8df3f1ce60acab2dd0",
+    "DB_source_and_input_hashes_unchanged": true,
+    "no_full_907_matrix_claim": true
+  },
+  "unchanged_workload": {
+    "processes": [
+      1,
+      2,
+      4
+    ],
+    "threads_per_process": [
+      1,
+      2,
+      4
+    ],
+    "excluded": [
+      1,
+      1
+    ],
+    "alignments": [
+      32,
+      64,
+      128
+    ],
+    "lock_iterations": 2000,
+    "test_or_library_source_changes": false,
+    "binary_runtime_sections": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\exact-worker-sections.json",
+      "size": 5514,
+      "sha256": "93fbbdbed9d4467953b668c2507459482f069ccbcf102d833a6db9d53a5a6100"
+    },
+    "expanded_observation": "Streamingcommand/CPU/thread/generation samples; no byte normalization or reduced workload"
+  },
+  "timing_mechanism": {
+    "DB_path": "Three random0/1/2us __os_yield calls perlockeriteration; nonzero calls select with1us added. Waker additionallyyields perrelease; TAScontentionbacks off1\u201325ms.",
+    "runtime_path": "Ordinary NtCreateTimer(NotificationTimer),relative NtSetTimer,WaitForMultipleObjects",
+    "source_select_sha256": "d3b9f3046e3aa9f0103fb9d91191fbcb331165b3acd96d3ca4b1fdc22d2a87de",
+    "measured_D70_and_907": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\timing-analysis.json",
+      "size": 8029,
+      "sha256": "06f14718f8274d352d43d6bb5cf22ce570e55792926a1db71a6d54b351d392bf"
+    },
+    "D70_estimated_deliberate_yield_seconds_per_locker": 60.563934,
+    "estimated_16locker_serial_waker_seconds": 323.007648,
+    "policy": "No timer-resolution, scheduling, mutexbarrier or runtimeimplementation changes."
+  },
+  "platform_implication": "Otherconsumers usingthisnativeMSYSshortselect/waitpath onthishost may incursimilarpollingcost andapparentstalls. Measured on bothD70and907 withthesameprobeexe; not a universaltimingguarantee orwholeplatformcorrectnessclaim.",
+  "barrier_inspection": {
+    "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\barrier-evidence.json",
+    "size": 2054,
+    "sha256": "42b865359ebb904de37a54ec0c87738542232fb24543481f7144184862b65a68"
+  },
+  "live_thread_states": {
+    "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\live-thread-states-01.json",
+    "size": 2378,
+    "sha256": "c27debc0bcc5a5d121040972b91b0b278eda0f0324e5035c1bb4fb2b1977fe8b"
+  },
+  "live_stack_capture_required": false,
+  "stack_capture_reason": "Everycase madeforwardprogress andcompleted; no genuinelyhung ownedthread was observed.",
+  "original_failure_preserved": {
+    "path": "C:\\ag-db-e138-01\\resume-20260909\\mutex01\\matrix-handoff.json",
+    "size": 18033,
+    "sha256": "6174afb9f694f20a3b9bd096184e2ecb8087cf7af7d88d4da85a55cc519170f2"
+  },
+  "prior_package_receipts_not_rewritten": true,
+  "supplemental_qualification_only": true,
+  "not_full_upstream_or_provider_admission": true,
+  "minimum_free_gib": 27.694313049316406,
+  "maximum_sampled_native_processes": 8,
+  "maximum_sampled_native_os_threads": 56,
+  "thread_count_scope": "Actual OS counts include MSYS infrastructure and shortforkcopies, distinctfrom4locker x4workloadthreads pluswakeup.",
+  "CI": {
+    "before_publication": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\ci-final-before-publication.json",
+      "size": 13891,
+      "sha256": "cec3ec703981982b449a7a36e02bae239f3a470a824fdae6331c355856060594"
+    },
+    "new_head_readback": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\ci-after-publication.json",
+      "size": 10186,
+      "sha256": "2aef450896d76fb3f234aa1f3a64856450d9674b4ee0eaa651023a75ee1d0014"
+    },
+    "separate_producer_fix_commit": "a0b773dbd64b4542d9b8de05911d23af51e87c25",
+    "producer_binutils_job": 103176510972,
+    "producer_binutils_status": "SUCCESS",
+    "producer_success_handoff": {
+      "path": "C:\\agtc-ci-texinfo-01\\success-handoff.json",
+      "size": 1628,
+      "sha256": "1cce75264489dcec3e7afb48ca95e9f9f6da9095ca3bab8a889f090dc0ebdaeb"
+    },
+    "note": "PR13hasnotinheritedTexinfofix. Oldheadhad1SUCCESS/1FAILURE/6SKIPPED/7QUEUED; freshmutex-onlyheadhas2IN_PROGRESS/14QUEUED atreadback. No PR13CIpassclaim or unrelatedfix/cherrypick/merge."
+  },
+  "publication": {
+    "repository": "crutkas/msys2-woarm64-build",
+    "commit": "4ff861de52ae8ec5fb36fd1d853f916bb1b21640",
+    "tree": "2430b142110ada411f7eead1f89e235429e4fd8f",
+    "pull_request": "https://github.com/crutkas/msys2-woarm64-build/pull/13",
+    "pushed_fork_only": true,
+    "merged": false,
+    "source_archive": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\handoff\\mutex-investigation-source.zip",
+      "size": 18571,
+      "sha256": "f40247d9914779529891719ec590e0c335d1604eb3bdfc021eabc0028723c612"
+    },
+    "source_manifest": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\handoff\\maintained-manifest.json",
+      "size": 1046,
+      "sha256": "6b3b0a4158c47c56b632a422c37d5f1d62833f8d5b226b701cce0a7ab3920458"
+    }
+  },
+  "controls": {
+    "count": 58,
+    "log": {
+      "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\host-controls.log",
+      "size": 102,
+      "sha256": "6cdd06217e1dda4fefbd49af7b4cff39a5afa9008bed3a32cf630fb9bb04bf35"
+    }
+  },
+  "drain": {
+    "path": "C:\\ag-db-e138-01\\mutex-timing-20260911\\drain.json",
+    "size": 293,
+    "sha256": "a00ec68294a388b42f22b80235a427dd8b122fc09ddae6a602b542b35242085e"
+  },
+  "active_native_jobs": 0,
+  "new_runtime_or_DB_build": false
+}

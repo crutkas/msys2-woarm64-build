@@ -1,5 +1,9 @@
 # ARM64 vNext Inbox
 
+**Before using any old local path after reformat, read [REHYDRATE.md](REHYDRATE.md).**
+The DB timeout has a later D70-only 24/24 resolution; preserve the old failure
+and do not transfer that success to a full 907afa/provider claim.
+
 Epoch: `2026-08-31-v1`  
 Last reconciled: `2026-09-11` (UTC)
 
@@ -14,11 +18,29 @@ The plan records the **false missing-trampoline claim and wrong generator
 selection**, the still-live **plain-Make TLS overwrite hazard**, current fork
 PRs, scoped package results, and prominent non-admissions.
 
+The generation fix has since been published in runtime PR 34 as a distinct
+three-file successor on PR 33, not merged into the combined-runtime base.
+Its new changed-input/corrupt-output rejection is not covered by the old
+16-case proposal proof; see the plan's explicit status correction and [E16].
+
 PR 12 now supplies source/image/parent/generation-bound interpretation of
 mechanical raw exits 32256/1792 without normalization; the identical
 uncontracted replay still fails. PR 11's Texinfo fix is published at `a0b773d`;
-the `!ccache` cause is proven, the symlink/cache theories refuted, and actual
-binutils CI remains pending. Receipt scope flags override prose summaries.
+the `!ccache` cause is proven and the symlink/cache theories refuted.
+**Follow-up 07:21:17Z:** actual binutils job 103176510972 succeeded on that fix
+head; [E17] and the GitHub API agree. Only that branch/run passed; isolated
+propagation and fresh checks on other PRs remain, along with the separate
+native-runner blocker. Receipt scope flags override prose summaries.
+
+**Infrastructure correction (2026-09-11):** six skipped downstream cross jobs
+and seven indefinitely queued native jobs are different failures. Texinfo
+addresses the former; the repository runner API reports zero runners for the
+native jobs' `Windows`/`ARM64`/`MSYS2` labels. Native CI is not verified. Only
+the user/authorized infrastructure owner can decide runner registration.
+The coordinator's earlier blanket "roughly seven skipped jobs" expectation is
+retracted in the plan. Isolated CI-fix propagation to the separate bases was
+gated on actual binutils success; [E17] now satisfies that prerequisite, not
+the propagation itself. It is not achieved by merging PR 11 alone.
 
 **Evidence limitation:** the V10 `verdict.json` is unavailable on disk according
 to the coordinator's recovery check. The ABI GO narrative at **line 16 in the

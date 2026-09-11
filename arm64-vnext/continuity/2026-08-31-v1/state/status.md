@@ -1,5 +1,10 @@
 # Git for Windows Native ARM64 vNext
 
+**Reformat recovery starts at [REHYDRATE.md](REHYDRATE.md).** Evidence belongs
+to exact commits on the owning branches, not the old local paths. The later
+D70 DB matrix completed 24/24 in 3,733.7 seconds; the retained 900-second
+timeout is historical and its resolution is not full provider qualification.
+
 Reconciled: `2026-09-11` (UTC)
 
 Previous update label: `2026-09-03T07:13:00Z`
@@ -23,12 +28,26 @@ reported core-file replay counts are not a full-suite qualification.
 PR 12 now resolves the mechanical raw-32256/1792 classification through bound
 relay contracts and a two-sided negative control, **without normalization**.
 The distinct raw-256 hook case remains separate. PR 11's genuine Texinfo fix
-is pushed at `a0b773d`; `!ccache` hid the old no-op stub, and actual binutils CI
-is still pending. See the plan for the refuted symlink/cache theories.
+is pushed at `a0b773d`; `!ccache` hid the old no-op stub. **Actual binutils CI
+passed at 07:21:17Z** on job 103176510972, run 34571963232; the API confirms
+the fix head. This satisfies the isolated-propagation prerequisite, not
+success on other PRs: GCC stage 1 is in progress and seven native jobs remain
+queued. See [E17] and the plan's preserved failures/refuted hypotheses.
+
+**Independent infrastructure blocker:** the runner API reports zero registered
+runners, while seven native jobs request `Windows`/`ARM64`/`MSYS2`. They cannot
+start under the current configuration and do not substantiate native CI.
+Texinfo can unblock downstream **skipped cross** jobs, not these **queued
+native** jobs. Runner registration is a user-owned infrastructure/credentials
+decision, not an action authorized for a session. The plan records this
+correction and the separate-base CI-fix propagation decision explicitly.
 
 **Live hazard:** plain Make can replace the correct 1,822-byte / 59-entry TLS
 offsets with 56 bytes of zeros. The guard proposal in build PR 11 at `cc56765f`
-is not yet applied to the runtime repository. **Correction:** ARM64 `gendef`
+has an independent successor published in runtime PR 34 at `df7d66f9`, still
+unmerged into PR 33's base. This corrects the earlier not-applied status; the
+new changed-input/corrupt-output case requires the successor's distinct proof.
+**Correction:** ARM64 `gendef`
 already existed (`180d3e`); wrongly selecting x86-only `74f502` produced an empty
 `sigfe.s` with exit 0. The old ~500-line missing-port diagnosis was false.
 Abbreviated IDs here are expanded only where actually known in the plan.

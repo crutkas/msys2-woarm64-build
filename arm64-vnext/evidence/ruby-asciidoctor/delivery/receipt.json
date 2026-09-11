@@ -1,0 +1,276 @@
+{
+  "SchemaVersion": 1,
+  "Status": "ready-for-pipeline-provider-admission",
+  "SealedAt": "2026-09-08T03:54:31.8587242Z",
+  "LeafSession": "9047acfa-ea57-4a5a-8679-8a1454660e2f",
+  "CliSession": "ab17e048-82a5-4e0d-b480-2ad21a418f8b",
+  "ProviderOwner": "2160ef10-d0c2-4ea7-97a0-d837f02d92b7",
+  "Coordinator": "0724b323-3a13-4c17-95ed-57b16cbad570",
+  "Root": "C:\\ar07-9047\\delivery",
+  "FileManifest": {
+    "Path": "C:\\ar07-9047\\delivery\\files.json",
+    "Files": 758,
+    "SHA256": "dc13e52944e1d602a6898c9c1a07048455667df35d1b432ab35162bbffb13e7f"
+  },
+  "Asciidoctor": {
+    "LocalPackageSignature": null,
+    "InstallOptions": "Offline/local gem install, no user install; RI/RDoc self-documentation not generated. Real Git XHTML/DocBook/man functionality retained.",
+    "ExactDependency": "mingw-w64-clang-aarch64-ruby=4.0.6-1",
+    "PayloadFiles": 106,
+    "NativeExtensions": 0,
+    "Source": "Asciidoctor 2.0.26 gem pinned by accepted upstream SHA256 and checked by RubyGems; upstream recipe has no detached gem PGP signature",
+    "Archive": {
+      "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-aarch64-asciidoctor-2.0.26-3-aarch64.pkg.tar.zst",
+      "SHA256": "f591b387efd636792e351918de84d48ee1a805dad4b67a1b575b05cf34a7c805"
+    },
+    "Version": "2.0.26-3",
+    "Name": "mingw-w64-aarch64-asciidoctor"
+  },
+  "NativeRuby": {
+    "Readback": "Every runtime payload file matches original archive extraction, private pacman install, and clean extracted execution root",
+    "Namespace": "Original CLANGARM64 names, versions, payloads, and prefix preserved; no synthetic MINGWARM64 Ruby provides",
+    "PayloadFiles": 10578,
+    "Compiler": "Original upstream Clang 22.1.8-2, not GCC",
+    "OrdinaryArm64PEImages": 112,
+    "LiveModules": 49,
+    "NativeAPIs": [
+      "OpenSSL",
+      "zlib",
+      "Psych/libyaml",
+      "Fiddle/libffi",
+      "strscan",
+      "JSON",
+      "digest",
+      "large integer arithmetic"
+    ],
+    "Description": "Official signed native aarch64-mingw-ucrt Ruby +PRISM bootstrap",
+    "Packages": [
+      {
+        "Name": "mingw-w64-clang-aarch64-gmp",
+        "Version": "6.3.0-2",
+        "Archive": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-gmp-6.3.0-2-any.pkg.tar.zst",
+          "SHA256": "edfaa0517787819ec3ad5da2cc4d691563962a576d0102e91eea507abdc3bdfb"
+        },
+        "Signature": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-gmp-6.3.0-2-any.pkg.tar.zst.sig",
+          "SHA256": "7f078690db32dc29d1f2618145106be2e6be59ffaa9bdbcacdb6f87a40637e90"
+        },
+        "Recipe": {
+          "Path": "C:\\ar07-9047\\delivery\\upstream-recipes\\gmp\\PKGBUILD",
+          "SHA256": "b9d3bb2b5b12cb0fc47c4dc17a9a2aa82513236eaefa34c8dfc57dd0d92bc42a"
+        },
+        "RecipeCommit": "19a497b647dea2939e4fe9cc2ad5818f83b1632f",
+        "Licenses": [
+          "LGPL3",
+          "GPL"
+        ],
+        "PayloadFiles": 13,
+        "DeclaredDependencies": [],
+        "SignatureEvidence": {
+          "Path": "C:\\ar07-9047\\evidence\\signature-mingw-w64-clang-aarch64-gmp-02.stdout.log",
+          "SHA256": "35a8adecfe6991fc71aaf11b838174784733e29c0849ed37accb40a44db8070d"
+        }
+      },
+      {
+        "Name": "mingw-w64-clang-aarch64-libffi",
+        "Version": "3.7.1-1",
+        "Archive": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-libffi-3.7.1-1-any.pkg.tar.zst",
+          "SHA256": "b96d60f3892e0803e8e073299c8873ebc9623682f78a2ec6f01e2bee5b5feba7"
+        },
+        "Signature": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-libffi-3.7.1-1-any.pkg.tar.zst.sig",
+          "SHA256": "f8c99142c9e09e87fdce4c5d67950075f6f9a5da2bae827a8caa76b2f0ae38a6"
+        },
+        "Recipe": {
+          "Path": "C:\\ar07-9047\\delivery\\upstream-recipes\\libffi\\PKGBUILD",
+          "SHA256": "3217a9bc33162f0ea6d4043c57a81276facebe2c66c0e6bd42ca979524f72eb1"
+        },
+        "RecipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+        "Licenses": [
+          "spdx:MIT"
+        ],
+        "PayloadFiles": 12,
+        "DeclaredDependencies": [],
+        "SignatureEvidence": {
+          "Path": "C:\\ar07-9047\\evidence\\signature-mingw-w64-clang-aarch64-libffi-02.stdout.log",
+          "SHA256": "4fd5cf45a2c12b0abb4d6f981ee8283da6e2a4b21d12a8b34cfd9d70e834f04d"
+        }
+      },
+      {
+        "Name": "mingw-w64-clang-aarch64-libyaml",
+        "Version": "0.2.5-2",
+        "Archive": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-libyaml-0.2.5-2-any.pkg.tar.zst",
+          "SHA256": "925eccdaa904b57822c7cce5c42ffcb7687a7871160c9092afdaa7d5b6c6b7e2"
+        },
+        "Signature": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-libyaml-0.2.5-2-any.pkg.tar.zst.sig",
+          "SHA256": "ceb5932496862698b05d17b49768e8542aedda7c70e5ee5aa00186e540a10fd1"
+        },
+        "Recipe": {
+          "Path": "C:\\ar07-9047\\delivery\\upstream-recipes\\libyaml\\PKGBUILD",
+          "SHA256": "ec246521f68f377eb2774a241045003e73b65fcecc8fadbca22e3209c9b93728"
+        },
+        "RecipeCommit": "fa1e7f9acd57236b7addc8b834950bdcb61aa9ff",
+        "Licenses": [
+          "MIT"
+        ],
+        "PayloadFiles": 5,
+        "DeclaredDependencies": [],
+        "SignatureEvidence": {
+          "Path": "C:\\ar07-9047\\evidence\\signature-mingw-w64-clang-aarch64-libyaml-02.stdout.log",
+          "SHA256": "715ed418d20651d8c12c4b99386867ae476e836cad787f3cc33b1f962b16b705"
+        }
+      },
+      {
+        "Name": "mingw-w64-clang-aarch64-openssl",
+        "Version": "3.6.3-1",
+        "Archive": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-openssl-3.6.3-1-any.pkg.tar.zst",
+          "SHA256": "e46e21bd5f1a3c36e391dbb0c7e5cf4fb6a35b2acd52e1992bfdd90fa415a310"
+        },
+        "Signature": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-openssl-3.6.3-1-any.pkg.tar.zst.sig",
+          "SHA256": "3c64f80a3a1b59544462cd72211039fdbcd339659762a132984f66fb3d392292"
+        },
+        "Recipe": {
+          "Path": "C:\\ar07-9047\\delivery\\upstream-recipes\\openssl\\PKGBUILD",
+          "SHA256": "aa58dfbee69365129a0e0c50a23193bf6f878c3cef34918fe37754411c9029d6"
+        },
+        "RecipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+        "Licenses": [
+          "spdx:Apache-2.0"
+        ],
+        "PayloadFiles": 7625,
+        "DeclaredDependencies": [],
+        "SignatureEvidence": {
+          "Path": "C:\\ar07-9047\\evidence\\signature-mingw-w64-clang-aarch64-openssl-02.stdout.log",
+          "SHA256": "b88b3d14f24db083156986a83010dd9e727d0960d43b1565d9a19f6f5590ed5b"
+        }
+      },
+      {
+        "Name": "mingw-w64-clang-aarch64-zlib",
+        "Version": "1.3.2-2",
+        "Archive": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-zlib-1.3.2-2-any.pkg.tar.zst",
+          "SHA256": "28c111cc05d923ac56faa33aa5d7618c9dc16ac2d7c9e43a87f875403517894a"
+        },
+        "Signature": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-zlib-1.3.2-2-any.pkg.tar.zst.sig",
+          "SHA256": "385de9429126cc6063966b3cd5a9dfc783cac008771adf8f1e5b241a88c215cb"
+        },
+        "Recipe": {
+          "Path": "C:\\ar07-9047\\delivery\\upstream-recipes\\zlib\\PKGBUILD",
+          "SHA256": "8a4a54a964eab7efa313e2faa8267052bc237ef61f8adf82a55cc93f4028db8a"
+        },
+        "RecipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+        "Licenses": [
+          "spdx:Zlib"
+        ],
+        "PayloadFiles": 8,
+        "DeclaredDependencies": [],
+        "SignatureEvidence": {
+          "Path": "C:\\ar07-9047\\evidence\\signature-mingw-w64-clang-aarch64-zlib-02.stdout.log",
+          "SHA256": "e91461d8ff8fb2ed9d3367af7d6c7ae1faa78f1b38a8c724918952855d6b663f"
+        }
+      },
+      {
+        "Name": "mingw-w64-clang-aarch64-ruby",
+        "Version": "4.0.6-1",
+        "Archive": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-ruby-4.0.6-1-any.pkg.tar.zst",
+          "SHA256": "eecf056bc94c0782042ac9bbe913053ae519644d6dffb35af54f2e277f78201a"
+        },
+        "Signature": {
+          "Path": "C:\\ar07-9047\\delivery\\packages\\mingw-w64-clang-aarch64-ruby-4.0.6-1-any.pkg.tar.zst.sig",
+          "SHA256": "91aa029bc821740c716092492a044d18fa0cc9e63423fb48d300f0243f370ecf"
+        },
+        "Recipe": {
+          "Path": "C:\\ar07-9047\\delivery\\upstream-recipes\\ruby\\PKGBUILD",
+          "SHA256": "3fb75942f58b147f4f4c34cd8bbb3aa8b356ea770ddd18129f0288a270bd096e"
+        },
+        "RecipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+        "Licenses": [
+          "spdx:Ruby AND BSD-2-Clause"
+        ],
+        "PayloadFiles": 2915,
+        "DeclaredDependencies": [
+          "mingw-w64-clang-aarch64-gmp",
+          "mingw-w64-clang-aarch64-libffi",
+          "mingw-w64-clang-aarch64-libyaml",
+          "mingw-w64-clang-aarch64-openssl",
+          "mingw-w64-clang-aarch64-zlib"
+        ],
+        "SignatureEvidence": {
+          "Path": "C:\\ar07-9047\\evidence\\signature-mingw-w64-clang-aarch64-ruby-02.stdout.log",
+          "SHA256": "e40057fbf46f1bef12cca992b44acaa101e030c30cb435a209b206cbca2e5530"
+        }
+      }
+    ],
+    "Version": "4.0.6-1"
+  },
+  "GitDocumentation": {
+    "InstalledFiles": 1348,
+    "Version": "2.55.0.windows.5",
+    "InstalledReadback": "All 483 required generated targets match their real Git install-html/install-man output byte-for-byte; complete installed asset inventory retained",
+    "XmlDrivers": "Pipeline-admitted xmlto/DocBook plus signature-verified dependencies; explicitly x64/emulated MSYS host tools",
+    "Date": "2026-08-20",
+    "Html": 273,
+    "Targets": "Unmodified Documentation html/man and contrib/subtree html/man; Git recipe git-bash.adoc included",
+    "InstalledRoot": "C:\\ar07-9047\\doc-install-02",
+    "Features": [
+      "XHTML5",
+      "DocBook5",
+      "man sections 1/5/7",
+      "book/user manual",
+      "Git synopsis converters",
+      "linkgit macro",
+      "shared docinfo",
+      "Git version/date",
+      "subtree manuals"
+    ],
+    "RecipeCommit": "d65b87de173ac2209a63cef8c4528669b5571fd3",
+    "SourceCommit": "32c4f7689275d233577576630e1ac5b7eb354eb0",
+    "Man": 210,
+    "TargetManifest": "git-generated-targets.json",
+    "Total": 483,
+    "FullJobGenerations": {
+      "Created": 14950,
+      "Observed": 14950
+    },
+    "AllNativeRubyRawExits": 0,
+    "NativeRubyConversions": 483
+  },
+  "Engine": {
+    "Epoch": "5382e3f64bfd1314f168e2df67ce1abd79f3574acf32538708e7a2c8432fb3b7",
+    "WorkerLimit": 2,
+    "ContractSHA256": "d170effd2f79217135cec79f550310f7068acf80998736eab77a3cff32f5a50e",
+    "PackageChecks": "makepkg --check, source verification, complete job-generation observation; independent native interpreter/module/docs controls",
+    "EngineSHA256": "9e87d9c2b7235363ef14f407945078a1488bdca3bc8b3ef15fa26bbc0559f985",
+    "Compression": "Private makepkg configs: zstd single-thread, xz -T1",
+    "Scope": "Header-only h1 MinGW/LLP64 profile unchanged before/after package build; no later FP/MSYS changes inferred"
+  },
+  "Licensing": "Original package licenses and upstream recipes retained. Original GMP and libyaml source licenses supplied separately where upstream binary archives omit standalone license files; original signed packages unchanged.",
+  "RejectedAttempts": [
+    {
+      "Reason": "Missing empty bootstrap /tmp; no package admitted",
+      "Path": "C:\\ar07-9047\\a01"
+    },
+    {
+      "Reason": "CRLF PKGBUILD; no package admitted",
+      "Path": "C:\\ar07-9047\\a02"
+    },
+    {
+      "Reason": "First install exceeded 300s bound; partial output excluded, fresh 1800s install passed",
+      "Path": "C:\\ar07-9047\\doc-install"
+    }
+  ],
+  "SharedPrefixesModified": false,
+  "FullGitDistributionComplete": false,
+  "AllMsysToolsNative": false,
+  "CommitsPushesOrCiActions": false,
+  "Admission": "Only pipeline may install into its integration prefix, after its live readers drain. Recheck the file manifest and original package signatures; no nodeps or fake provides.",
+  "Resources": "No allocation transfer is performed by this receipt. Return of two slots is requested separately after observed leaf process drain."
+}

@@ -1,0 +1,62 @@
+{
+  "schema": 1,
+  "status": "texinfo-root-cause-confirmed-fix-published-ci-pending",
+  "recordedUtc": "2026-09-11T06:56:15.5560356Z",
+  "repository": "crutkas/msys2-woarm64-build",
+  "pr": 11,
+  "fixCommit": "a0b773dbd64b4542d9b8de05911d23af51e87c25",
+  "packageRepository": "Windows-on-ARM-Experiments/MSYS2-packages",
+  "packageCommit": "2cf651dad50d39951a182dea91c68c8ab62a36f6",
+  "packageFile": "mingw-w64-cross-mingwarm64-binutils/PKGBUILD",
+  "rootCause": "PKGBUILD !ccache overrides BUILDENV, so the real makepkg hook does not prepend /usr/lib/ccache/bin. The obsolete makeinfo no-op stub is not searched; genuine Texinfo is missing.",
+  "linkHypothesis": "Refuted by same-version MSYS runtime3.6.10-3/Bash5.3.015-1/pacman6.1.0-25: bare winsymlinks creates 768-byte .lnk but -L/-x/command-v/execute pass with correct PATH.",
+  "cacheHypothesis": "Refuted for run34556454753: explicit cache miss; restoration path workspace/ccache is distinct from /usr/lib/ccache/bin.",
+  "repair": [
+    "Install real texinfo in CROSS dependencies",
+    "Remove makeinfo->true stub",
+    "Require actual nonempty GNU Info generation before cross builds"
+  ],
+  "controls": "Genuine Texinfo7.2 passes; silent no-op, version-only fake, and missing providers rejected",
+  "evidence": [
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\binutils-PKGBUILD",
+      "sha256": "a25a03029fa8628ef7ffd51335f2240616e783fb01a3094c2c5f7ab4ca8565de"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\probe-links.sh",
+      "sha256": "205cbfb4ab13009a4afd96a30bd7a3a0d5b2d5c35319d839234955955dcab655"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\probe-02\\result.json",
+      "sha256": "cbe376f9769144305ddca308ba227857d265b0235cdff98777baf820e9b33cbc"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\probe-02\\link-and-hook.log",
+      "sha256": "c6a3c791f942edd18171c162a7433aab66be8d26cb77bfad354125a455c9da14"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\test-texinfo.sh",
+      "sha256": "172b95549b36e83ceaabcd7197f66de427e724ad0111f3c03510de3ec418f4ee"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\texinfo-controls\\genuine.log",
+      "sha256": "213ee054ec8178e8ee1ef9836a190278935b8117394f16eaaf297406dbabebb6"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\texinfo-controls\\noop.log",
+      "sha256": "b5c1d461f065206349d9c38741d827c6eef968a5ce3002d79049fc29c39ade43"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\texinfo-controls\\fake-version.log",
+      "sha256": "ab3b8c3407812e777630d0079a0e9c1a85fe78dddcc9cdf6315f7e102042360a"
+    },
+    {
+      "path": "C:\\agtc-ci-texinfo-01\\texinfo-controls\\missing.log",
+      "sha256": "bc00b7f036dc92de27aaf90c01a9b084a1843a745d7d50f0dd869eb0d853ccde"
+    }
+  ],
+  "ciRun": 34571963232,
+  "ciURL": "https://github.com/crutkas/msys2-woarm64-build/actions/runs/34571963232",
+  "publicComment": "https://github.com/crutkas/msys2-woarm64-build/pull/11#issuecomment-5630676279",
+  "limitations": "Real binutils job not yet complete; no green CI or downstream package claim. Base-attribution remains independently established; native runner availability separate."
+}

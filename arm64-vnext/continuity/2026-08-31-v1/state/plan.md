@@ -1,5 +1,9 @@
 # Git for Windows Native ARM64 vNext Plan
 
+**Reformat recovery entry point: [REHYDRATE.md](REHYDRATE.md).** Evidence is now
+being preserved on owning PR branches. Embedded old `C:`/WSL paths are history,
+not surviving custody; use repository-relative preservation indexes.
+
 Epoch: `2026-08-31-v1`  
 Last reconciled: `2026-09-11` (UTC)
 
@@ -20,7 +24,7 @@ evidence locators, not portable inputs or permission to modify an owner's tree.
 
 ## Live hazard: ordinary make can destroy valid TLS offsets
 
-**OPEN IN THE RUNTIME REPOSITORY.** `gentls_offsets` greps `.long`, while ARM64
+**OPEN ON THE COMBINED-RUNTIME BASE; FIX PUBLISHED IN PR 34.** `gentls_offsets` greps `.long`, while ARM64
 GCC emits `.word` for these 32-bit constants. A plain `make` can silently
 overwrite the correct **1,822-byte / 59-entry** `tlsoffsets` with **56 bytes of
 zeros**, despite the parser returning success. The known-good SHA-256 is
@@ -31,11 +35,21 @@ The guarded, atomic-generation proposal is published in
 [crutkas/msys2-woarm64-build#11](https://github.com/crutkas/msys2-woarm64-build/pull/11)
 at `cc56765f058339cbe018ad4b8330db552576ebac`, under
 `arm64-vnext/toolchain/runtime-generation-proposal`. Its handoff [E8] records
-16 actual-Make cases and 40 existing TLS cases. **It is not yet applied to the
-runtime repository.** A reproducible controlled build does not establish that
-unqualified plain-Make regeneration is safe. The runtime owner must apply and
-publish the proposal, then exercise the actual generation rules and corruption
-rejections; do not overwrite the good artifact or reuse its hash for new bytes.
+16 actual-Make cases and 40 existing TLS cases. **Correction to the earlier
+"not yet applied to the runtime repository" status:** an independent successor
+is now published as
+[crutkas/msys2-runtime#34](https://github.com/crutkas/msys2-runtime/pull/34),
+head `df7d66f9b1433c50dd7cd234b0d8bd1213418b22`, based on combined-runtime
+`563662010c2f2072ad90f28713611caabdf70dbb`. It has not been merged into that base.
+
+The old 16-case proposal incorrectly returned 0 for a newly exercised case with
+**both changed generator inputs and corrupt `sigfe.s`**. The successor validates
+the prior output set/hashes **before comparing inputs**, and its producer
+reports **26 actual-Make + 40 TLS cases**, including rejection of the known
+56-byte zero output. Application handoff [E16] identifies this distinct
+successor; the old 16-case proof is not relabeled as covering the new case.
+This is generation/ARM64 object proof, not another full runtime rebuild.
+Landing must preserve the parent source/evidence and active-reader boundaries.
 
 ## Explicit correction: the ARM64 generator already existed
 
@@ -67,14 +81,43 @@ new implementation work.
 |---|---|
 | **libintl: limited MVP only** | Admission [E4] covers **two unchanged C DLLs** (`libintl-8.dll`, `libiconv-2.dll`) and **six license files**, not a GNU package alias, full gettext provider, CLI, C++ libraries, docs, or catalogs. The full CLI/default-domain projection **FAILED**: `bindtextdomain` returns the compiled-in `/clangarm64/share/locale`; the CLI remained English **before and after real moves**. Bound-domain qualification does not erase this failure. All 21 blocked consumers in [E9] are MinGW-side PEs; none imports `msys-2.0.dll`. This is not evidence for a native MSYS libintl provider. |
 | **PCRE2: current-byte limited MVP only** | Admission [E5] retains **63ca004e / 10.48-1** (`63ca004e` is an abbreviated identifier), projecting only `libpcre2-8.dll` and its license. **No PCRE2 signed-source or independently reproducible-build receipt exists**; no fresh build/full upstream-suite claim is supported. The newer 10.48-3 `libpcre2-8-0.dll` is incompatible with current Git imports; no renamed alias or replacement package admission is allowed. |
-| **Berkeley DB: incomplete full stress** | The combined-runtime package/API/utility results stand. The owner reports in PR 13 that **MutexAlignment timed out at 900 seconds at configuration 9/24**, with 83-created/76-recorded exit coverage; those stress counts were not independently re-derived from a local receipt in this reconciliation. Do not describe the full stress suite as passing. Limited MVP bytes are two DLLs plus a license; the full SDK is a separate scope. |
+| **Berkeley DB: timeout cause RESOLVED on D70, not full provider admission** | Preserve the original **900-second timeout at 9/24, 83-created/76-recorded partial**. Later unchanged full matrix **24/24 passed in 3,733.7 seconds, 314/314 observed, CuTest 0**, within 7,200 seconds. Approximately **15 ms timer quantization** on microsecond yields explains the inadequate old bound; no alignment/contention correctness failure was observed. Exact timing handoff `406c1c7d6ee5242fe888140b132d452771677380d6b0b76323bc625922a1c34f` is preserved under `arm64-vnext/evidence/programme-reconciliation/source-receipts/db-d70-timing-handoff.json`. Functional matrix is **D70 composition only**, not combined 907afa/full SDK/provider qualification. |
 | **Core utilities: NO current admission** | Owner-reported retained suite, **not independently verified here**: **48 PASS / 41 FAIL / 23 SKIP / 4 ERROR**. The 37-command constrained projection described by the draft assembly PR is not a full Coreutils provider admission and does not turn this suite green. |
 | **Perl: NO qualified provider** | UCRT-hosted GCC reads the raw **`!<symlink>` cookie as source/header content** [E6]. MSYS link predicates can work while the non-MSYS compiler cannot consume those links. **`core.symlinks=false` was proposed and correctly rejected**: it changes written link text, not this compiler file-access boundary. No miniperl/XS/full upstream qualification follows from the current handoff. |
 | **SSH: NO native MSYS provider** | The limited artifact relies on the separately qualified portable non-MSYS Microsoft ARM64 Win32-OpenSSH fallback. Do not relabel it as an MSYS OpenSSH package or include the rejected native-MSYS candidate's bytes. |
 | **Runtime: scoped success, not universal exit/SDK admission** | **Historical [E1] observer:** rejected raw 32256/1792 despite expected env126/fork7 semantics. **Current resolution: PR 12** preserves those exact DWORDs and classifies only source/image/parent/generation-bound relay contracts, with contracted-positive and identical-uncontracted-negative replay. This supersedes that specific blocker **without a normalization shim**; it does not rewrite [E1], admit arbitrary high exits, or close the distinct raw-256 hook contract. Newlib and compiler backends were reused, not rebuilt. The historical 12:24 DLL/link invocation remains unrecovered/unproven. |
 | **SQLite/Tcl: compatibility is not a full-suite rerun** | SQLite's real `libsqlite` package is scoped to the MVP runtime; its receipt says `provider_admitted:false` and `full_upstream_qualified:false`. Tcl's combined-runtime result says scoped-qualified and `full_suite:false`. The producer-reported replay of 33 unchanged Tcl core files yielded **7,702 PASS / 7,957 total / 255 upstream SKIP / 0 semantic FAIL**; these counts are reported, not independently re-derived here, and are not a full-suite rerun implied by the ZIP hash. Native MSYS Tcl is not GUI Tcl/Tk. |
 | **V10 authority: primary receipt unavailable** | The V10 ABI `verdict.json` **does not exist on disk** in the coordinator's reported recovery check. The GO narrative is citable only **secondhand through `inbox.md` line 16 in the original checkpoint** [E10]. This reconciliation does not claim to have re-hashed or recovered that verdict and does not reuse it as new authority. |
-| **CI: root-caused, fix published, real CI pending** | `mingw-w64-cross-mingwarm64-binutils` failed with `makeinfo command not found` and `Makefile:1782: doc/bfd.info` **Error 127**. The coordinator reports **five independent commits** across unrelated workstreams, including PRs 13/14; the CI owner independently checked two base/head failing logs. **PKGBUILD `!ccache` hides the no-op makeinfo stub; real Texinfo is missing.** Fix `a0b773dbd64b4542d9b8de05911d23af51e87c25` is pushed, not merely proposed [E15]. Real binutils CI is still pending; no green-binutils/downstream claim. |
+| **Cross-binutils: real CI PASS on the fix branch only** | The old `makeinfo command not found` / `Makefile:1782: doc/bfd.info` **Error 127** failures remain preserved: five commits are coordinator-reported, two base/head logs independently checked by the CI owner. **PKGBUILD `!ccache` hid the stub; genuine Texinfo was missing.** Fix head `a0b773dbd64b4542d9b8de05911d23af51e87c25` now has actual binutils job **SUCCESS at 07:21:17Z** [E17]. PR 13/14 still need explicit fix integration and reruns. Downstream/native/whole-workflow success is not claimed. |
+| **Native CI: HARD INFRASTRUCTURE BLOCKER** | The repository runner API reports **`total_count:0`**, and all seven queued native-toolchain jobs require **`Windows`, `ARM64`, `MSYS2`**. They cannot start under the current runner configuration. This is **not** the cross-binutils/Texinfo dependency failure. These native jobs have not executed, so native-toolchain CI qualification is unsupported. Registration of an appropriately labeled self-hosted runner requires an explicit infrastructure/credentials decision; no session is authorized to do it unilaterally. |
+
+## Infrastructure correction: skipped cross jobs are not queued native jobs
+
+**CORRECTION RECORDED 2026-09-11.** The coordinator's earlier briefing said the
+Texinfo fix would unblock roughly seven skipped jobs across PRs 11, 13 and 14.
+That blanket statement was **wrong**: it combined two different mechanisms.
+
+| Job class | Observed state and cause | What resolves it |
+|---|---|---|
+| GitHub-hosted cross-compilation chain | Failed binutils causes **six downstream cross jobs to be SKIPPED** on the observed PR 12/13/14 runs. Binutils on fix run `34571963232` **succeeded at 07:21:17Z**; its GCC stage 1 is now in progress. | The actual-binutils validation gate is satisfied for this fix head. The coordinator-authorized isolated CI-only fix must still reach each affected base/head and its checks run again. |
+| Self-hosted native-toolchain chain | **Seven jobs are QUEUED**, requesting `["Windows","ARM64","MSYS2"]`, with **zero registered repository runners**. They are neither slow nor waiting for binutils; they cannot start while this configuration is unchanged. | An explicitly authorized infrastructure owner must register and operate a self-hosted Windows ARM64 MSYS2 runner with all three labels, then execute the native lane. No credential or runner registration action is taken by this plan. |
+
+The seven native jobs are `mingw-w64-zstd`, `mingw-w64-gmp`,
+`mingw-w64-libiconv`, `mingw-w64-windows-default-manifest`, `mingw-w64-libtre`,
+`mingw-w64-bzip2`, and `mingw-w64-headers-git`. The repository
+`actions/runners` API was read as zero by this assessment and independently by
+the coordinator; the coordinator also checked the exact job labels. An
+organization-level lookup returned 404, not an alternative confirmed runner
+pool. **Do not describe the native lane as CI-verified, or count queued/skipped
+jobs as passes.** The user retains the infrastructure decision.
+
+**Separate propagation constraint:** PR 11 targets the continuity `reformat`
+branch; PR 13 targets `main`, while PRs 12/14 target `roadmap`. Merging PR 11
+alone cannot carry Texinfo to those other bases. The coordinator has chosen
+isolated CI-only propagation by the CI owner **after actual binutils success**.
+That validation prerequisite is now satisfied by [E17]; propagation itself is
+not inferred or performed here. Do not ferry all of PR 11 or reparent active
+branches. No merges or pushes are authorized by this assessment.
 
 ## New resolutions that supersede earlier blockers
 
@@ -113,8 +156,15 @@ The now-published fix in PR 11 installs **real Texinfo**, **removes the empty
 genuine Texinfo 7.2 passing and missing/no-op/version-only fakes rejected.
 [Run 34571963232](https://github.com/crutkas/msys2-woarm64-build/actions/runs/34571963232)
 was in progress at the receipt's `2026-09-11T06:56:15Z` snapshot.
-**Implementation is published; real binutils and downstream success remain
-unproven.** [The attribution report](https://github.com/crutkas/msys2-woarm64-build/pull/11#issuecomment-5628925808)
+**Subsequent measured result:** [actual job 103176510972](https://github.com/crutkas/msys2-woarm64-build/actions/runs/34571963232/job/103176510972)
+completed **SUCCESS at 2026-09-11T07:21:17Z** on the same fix head. Receipt [E17]
+records Texinfo `7.2-3` installed, non-empty Info preflight at `06:59:30Z`,
+`MAKEINFO doc/bfd.info` at `07:06:35Z`, binutils `2.44dev-1` finished at
+`07:21:04Z`, and uploaded artifact `10188860473`. The API independently reports
+that exact head/job success. **Only this branch/run is qualified.** The PR
+remains API `UNSTABLE` with GCC stage 1 in progress and seven native jobs queued;
+no full-workflow success or success on another PR is inherited.
+[The attribution report](https://github.com/crutkas/msys2-woarm64-build/pull/11#issuecomment-5628925808)
 binds the two independently checked failing base/head logs; the broader five
 commit comparison remains coordinator-reported.
 
@@ -142,7 +192,8 @@ PRs**, not upstream acceptance. Open/green is not merged or release-admitted.
 |---|---|---|
 | [crutkas/msys2-runtime#32](https://github.com/crutkas/msys2-runtime/pull/32) | `c30a9e8993a9bf326fac4bd934028b327d935c91` | Open; argv/mechanical link closure; reported checks green. |
 | [crutkas/msys2-runtime#33](https://github.com/crutkas/msys2-runtime/pull/33) | `563662010c2f2072ad90f28713611caabdf70dbb` | Open; combined runtime. [Successful run 34557303521](https://github.com/crutkas/msys2-runtime/actions/runs/34557303521) is green. [Earlier run 34557253836](https://github.com/crutkas/msys2-runtime/actions/runs/34557253836) retains a transient pacman libpsl-signature mirror timeout; it was not a runtime source failure. |
-| [crutkas/msys2-woarm64-build#11](https://github.com/crutkas/msys2-woarm64-build/pull/11) | `a0b773dbd64b4542d9b8de05911d23af51e87c25` | Open; signal/myfault/TLS work through predecessor `cc56765f058339cbe018ad4b8330db552576ebac` is retained; that head's guard checks passed. New Texinfo fix is pushed; its real CI is pending [E15]. TLS proposal still needs runtime-repository application. |
+| [crutkas/msys2-woarm64-build#11](https://github.com/crutkas/msys2-woarm64-build/pull/11) | `a0b773dbd64b4542d9b8de05911d23af51e87c25` | Open; actual binutils **SUCCESS at 07:21:17Z** [E17]. API still `UNSTABLE`: four successful checks, GCC stage 1 in progress, seven native jobs queued. Old guard/myfault/TLS work and failed-CI evidence are retained. Independent runtime guard successor PR 34 remains separate and unmerged. |
+| [crutkas/msys2-runtime#34](https://github.com/crutkas/msys2-runtime/pull/34) | `df7d66f9b1433c50dd7cd234b0d8bd1213418b22` | Open, stacked on PR 33's branch; three-file atomic-generation successor. Its own CI is in progress at the merge-readiness snapshot. Land after reconciled PR 33, not by widening its diff onto the old generator base. |
 | [crutkas/msys2-woarm64-build#12](https://github.com/crutkas/msys2-woarm64-build/pull/12) | `3834bd94d142e070eecd791627c290febc1773f6` | Open; exact raw DWORDs plus bound wait-word contracts; two-sided native replay resolves the specific mechanical exit-encoding blocker without a normalization shim. |
 | [crutkas/msys2-woarm64-build#13](https://github.com/crutkas/msys2-woarm64-build/pull/13) | `ca76d555a6c10caeccd778fd9c105d581f82b19d` | Open; Berkeley DB packaging and scoped combined-runtime qualification, not a clean stress-suite claim. |
 | [crutkas/msys2-woarm64-build#14](https://github.com/crutkas/msys2-woarm64-build/pull/14) | `d618c2d5d6d410b6e98b643d7262f4eb8d8072c5` | **Draft**; MVP assembly tooling. Final seal/publication/replay gates remain; the distinct negative-hook Bash raw `256` needs its dedicated source/argv-bound contract. |
@@ -155,10 +206,11 @@ session allocations or V10 authority.
 
 | Priority | Responsible workstream | Next executable action | Closure condition |
 |---|---|---|---|
-| 1 | Runtime owner (`67ba2e76`), signal/TLS producer | Consume [E8] and land the guarded generation rules in the runtime repository; exercise actual Make paths, including stale/wrong-architecture/empty-output rejection. | Plain Make cannot silently publish bad TLS/signal artifacts; the correct source/output bindings survive regeneration. |
+| 1 | Runtime owner (`67ba2e76`), independent generation owner (`e6a17275`) | Reconcile runtime PR 33 after PR 32, then land only PR 34's incremental generation successor [E16]. Preserve prior-output validation before changed-input handling; coordinate any update to active parent branches. | Plain Make cannot silently publish bad TLS/signal artifacts; the correct source/output bindings and distinct successor proof survive integration. |
 | 2 | Runtime/observer owner and MVP integrator | Consume the published PR 12 mechanical contracts without rewriting the old receipt; close the separate negative-hook raw `256` contract still listed by the draft MVP PR. | Original raw statuses, exact process generations and contracted/uncontracted negative controls remain visible; no universal decoder or waived failure. |
 | 3 | Provider owners and MVP integrator | Consume only the admitted [E4]/[E5] bytes and scope; preserve the Coreutils, Perl, SSH and BDB limitations. Fix actual unsupported file-access/behavior boundaries rather than adding aliases or link-text workarounds. | Every included path has an honest provider/projection contract; withheld features remain withheld. |
-| 4 | Build/CI owner | Follow actual CI for published Texinfo fix `a0b773d`, retaining the old failures, proven `!ccache` cause and refuted alternatives. Inspect the real non-empty Info output and continue through downstream jobs. | The actual binutils job succeeds, not merely a preflight; downstream and native-runner results remain separately reported. |
+| 4 | Build/CI owner | Actual binutils success [E17] now satisfies the validation prerequisite. Propagate only the CI fix to each required base as directed, respecting owner/readers and without moving active parents; observe downstream cross jobs separately. | Each affected PR has the genuine fix and fresh applicable checks. This does not resolve the seven native jobs' missing runner or assert propagation has already happened. |
+| 4b | User / authorized infrastructure owner | Decide whether to register and operate the missing self-hosted runner labeled `Windows`, `ARM64`, `MSYS2`. No session acts on credentials or registration without separate authority. | The native jobs actually execute and produce results. Until then native CI remains unavailable, regardless of the Texinfo result. |
 | 5 | MVP assembly and independent replay owners | Complete the gated named ZIP, exact provenance manifest, independent fresh moved extraction, deterministic recreation, entrypoint/Git/HTTPS/SSH and exit/module checks. | Evidence names the final sealed archive, not only a diagnostic directory or a prior projection. No full Git/SDK/Perl/native-MSYS-SSH claim is inferred. |
 | 6 | Documentation/coordination owner | Refresh this view with each new accepted receipt or measured blocker; preserve corrections adjacent to their original claims. | `plan.md`, `inbox.md`, `status.md` and their checksum entries agree on the dated current view; historical authority does not become a live grant. |
 
@@ -193,6 +245,8 @@ No new package, runtime, or suite was built to update this document.
 | [E13] | Tcl scoped combined result: `C:\ag-tcl-e138-01\combined-20260911-01\result.json` | `9cbdbd8e93129ffbef853d03ed7b020e5438aed3ef9d05b73f21b10895318658` |
 | [E14] | Tcl bound scoped tests (`full_suite:false`): `C:\ag-tcl-e138-01\combined-20260911-01\tests.json` | `56513d30fb66e1e7fcc44cc5096d13b358a35da837dbc1b5737e45ba3b1eeee8` |
 | [E15] | Texinfo root-cause/fix-published receipt: `C:\agtc-ci-texinfo-01\root-cause-handoff-01.json` | `9a3f0803679bd7a1147cd9c93c8dcafa8f0db30657f79c1cdb20e48e3732f577` |
+| [E16] | Independent runtime-generation application handoff: `C:\agtc-signal-01\runtime-generation-application-3fc49c8a\handoff.json` | `5fd646b577eec81083f31fe1e532b0387f0e02d509ec457c3f8b1fce306c078b` |
+| [E17] | Actual cross-binutils success handoff: `C:\agtc-ci-texinfo-01\success-handoff.json` | `1cce75264489dcec3e7afb48ca95e9f9f6da9095ca3bab8a889f090dc0ebdaeb` |
 
 ## Preserved September 3 execution record (superseded)
 

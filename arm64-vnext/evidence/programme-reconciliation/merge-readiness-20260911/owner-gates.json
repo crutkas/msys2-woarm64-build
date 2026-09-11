@@ -1,0 +1,75 @@
+{
+  "RuntimeGenerationOwner": {
+    "Base": "563662010c2f2072ad90f28713611caabdf70dbb",
+    "IndependentFrozenCopy": true,
+    "ActiveReaders": 0,
+    "Session": "e6a17275-cdee-49f7-9497-e1e30b631f4e",
+    "ChangedBaseRequiresSuccessorProvenance": true
+  },
+  "BerkeleyDBOwner": {
+    "Case": "24/24 passed",
+    "CaseProfile": "max p4/t4/a64",
+    "ProgressSource": "Owner drain report received 2026-09-11T08:06:26.940Z; result SHA256 and acceptance fields independently read",
+    "DrainConfirmed": true,
+    "DrainScope": "Owner confirms completed controller generation and all owned test images gone; this reader independently confirms PID12052 absent",
+    "ReaderHoldReleased": true,
+    "IntegrationAssigned": false,
+    "Result": "C:\\ag-db-e138-01\\resume-20260909\\mutex-long-20260911\\result.json",
+    "ResultSHA256": "805143b08af0912ac6ff5701141763f26df8ec48364df0a4960e58ee7750bc2b",
+    "CreatedProcesses": 314,
+    "ObservedProcesses": 314,
+    "CuTestRawExit": 0,
+    "TimedOut": false,
+    "InputsUnchanged": true,
+    "TestedRuntimeSHA256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+    "QualificationScope": "Sealed historical DB payload with separately qualified native-driver runtime composition; not a 907afa combined-runtime rerun",
+    "FullCppQualified": false,
+    "PackageAdmitted": false,
+    "PublishedPRHead": "4ff861de52ae8ec5fb36fd1d853f916bb1b21640",
+    "PublishedTree": "2430b142110ada411f7eead1f89e235429e4fd8f",
+    "PreviousPRHead": "ca76d555a6c10caeccd778fd9c105d581f82b19d",
+    "PublishedDelta": "Six mutex instrumentation/documentation/test files only; no shared bounded_process or Texinfo integration",
+    "TimingHandoff": "C:\\ag-db-e138-01\\mutex-timing-20260911\\handoff\\handoff.json",
+    "TimingHandoffSHA256": "406c1c7d6ee5242fe888140b132d452771677380d6b0b76323bc625922a1c34f",
+    "ObservedMatrixSeconds": 3733.691687899991,
+    "TimingConclusion": "Original 900-second bound was insufficient for unchanged workload with approximately 15ms nonzero microsecond sleeps; supplemental D70 result, not full 907afa or provider qualification",
+    "ApiReadbackAtUpdate": {
+      "HeadConfirmed": true,
+      "Base": "main",
+      "Mergeable": true,
+      "MergeState": "UNSTABLE",
+      "SuccessfulChecks": 2,
+      "InProgressChecks": 2,
+      "QueuedChecks": 14,
+      "Scope": "Two workflow runs at new head; not inherited prior-head failure/skip state"
+    },
+    "TexinfoValidationPrerequisite": "Satisfied by exact a0b773dbd64b4542d9b8de05911d23af51e87c25 binutils job 103176510972 success; no automatic propagation to PR13",
+    "TexinfoIntegrationGate": "Only isolated four-file CI fix after explicit assignment and owner-confirmed drain; no general parent realignment",
+    "Conditions": [
+      "Both consumers focused tests",
+      "New source hash lineage",
+      "Preserve old CRLF receipts",
+      "Reader drain confirmed; separate base/helper/CI integration authorization still required"
+    ],
+    "Session": "2f98bedd-7450-4ad9-bfc8-228f403e8a52",
+    "LiveWorktreeReaders": [
+      "db_channel_checks.py",
+      "db_native_checks.py",
+      "native_job_runner.py"
+    ],
+    "WorktreeUpdatesAllowed": false,
+    "CanonicalPR14CleanupSemanticsAccepted": true,
+    "CreationFileTime": "134335835358180513",
+    "BoundFileHashesCheckedAtFinish": true,
+    "CompletedControllerPid": 12052,
+    "TimeoutSeconds": 7200
+  },
+  "Runtime33Owner": {
+    "Acknowledged": false,
+    "Gate": "Do not infer drain from active/idle app state; owner response pending"
+  },
+  "MvpOwner": {
+    "Acknowledged": false,
+    "Gate": "Active provenance correction and cleanup agreement response pending"
+  }
+}
