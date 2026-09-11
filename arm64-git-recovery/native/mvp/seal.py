@@ -38,9 +38,21 @@ def main():
     files = inventory(root)
     if {name: row["sha256"] for name, row in files.items()} != {name: row["sha256"] for name, row in assembly["files"].items()}:
         raise ArtifactError("Final payload differs from its exact assembly manifest")
-    source = assembly["top_source"]
+    source = spec.get("top_source", assembly["top_source"])
     if not source.get("commit") or not source.get("tree"):
         raise ArtifactError("The artifact must name one exact top-of-stack source identity")
+    repository = Path(__file__).resolve().parents[3]
+    current_commit = subprocess.check_output(["git", "rev-parse", "HEAD"], cwd=repository, text=True).strip()
+    current_tree = subprocess.check_output(["git", "rev-parse", "HEAD^{tree}"], cwd=repository, text=True).strip()
+    dirty = subprocess.check_output(["git", "status", "--porcelain", "--", "arm64-git-recovery/native/mvp",
+                                     "arm64-git-recovery/native/bounded_process.py"], cwd=repository, text=True)
+    if dirty or source["commit"] != current_commit or source["tree"] != current_tree:
+        raise ArtifactError("Artifact sealing requires the exact committed, clean recipe top")
+    for file in (Path(__file__).parent / "payload").rglob("*"):
+        if file.is_file():
+            name = file.relative_to(Path(__file__).parent / "payload").as_posix()
+            if name not in files or sha256(file) != files[name]["sha256"]:
+                raise ArtifactError("Committed entrypoint bytes differ from the independently replayed payload")
     output.mkdir(parents=True)
     payload = output / "payload"
     shutil.copytree(root, payload)
@@ -52,12 +64,16 @@ def main():
         shutil.copyfile(item["path"], evidence_dir / f"{name}.json")
     provenance = {"schema": 1, "artifact": ARTIFACT_NAME, "milestone": "limited native engineering MVP, not RTM",
                   "top_source": source, "assembly_manifest_sha256": sha256(args.manifest),
+                  "original_assembly_source": assembly["top_source"],
                   "evidence": {name: {"file": f"evidence/{name}.json", "sha256": item["sha256"]}
                                for name, item in spec["evidence"].items()},
                   "limitations": assembly["limitations"], "publication_authority": spec["publication_authority"]}
     write_json(payload / "provenance.json", provenance)
     write_json(payload / "replay-results.json", {name: {"passed": result.get("passed"), "source_sha256": spec["evidence"][name]["sha256"]}
                                               for name, result in results.items()})
+    with (payload / "process-attestation.jsonl").open("x", encoding="utf-8", newline="\n") as stream:
+        for case in results["entrypoints"].get("cases", []):
+            stream.write(json.dumps(case, sort_keys=True) + "\n")
     readme = (
         "# Native ARM64 Git Bash engineering MVP\n\n"
         "**Limited engineering handoff, not RTM or full Git for Windows release admission.**\n\n"
@@ -85,10 +101,15 @@ def main():
         "exit $LASTEXITCODE\n", encoding="utf-8", newline="\n")
     final_files = inventory(payload)
     for name, row in final_files.items():
+        row["entry_type"] = "regular-file"
+        row["archive_mode"] = "0100644"
+        row["reparse_point"] = False
         if name in assembly["files"]:
             row["provenance"] = assembly["files"][name]["provenance"]
+            row["original_alias"] = assembly["files"][name].get("alias")
         else:
             row["provenance"] = {"source": source, "role": "artifact manifest, evidence or recreation tooling"}
+            row["original_alias"] = None
     write_json(payload / "manifest.json", {"schema": 1, "scope": "Every archive file except this self-describing manifest",
                                           "top_source": source, "files": final_files,
                                           "manifest_self_hash": "Provided in the detached artifact receipt"})
