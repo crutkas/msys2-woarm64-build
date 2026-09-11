@@ -1,0 +1,57 @@
+{
+  "cases": [
+    {
+      "name": "local-bare-clone-after-observer-race",
+      "observation": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\observation.json",
+      "parent_raw_exit": 0,
+      "timed_out": false,
+      "created": 3,
+      "observed": 3
+    },
+    {
+      "name": "git-https-clone",
+      "observation": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\observation.json",
+      "parent_raw_exit": 0,
+      "timed_out": false,
+      "created": 5,
+      "observed": 5
+    },
+    {
+      "name": "https-log",
+      "observation": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\observation.json",
+      "parent_raw_exit": 0,
+      "timed_out": false,
+      "created": 1,
+      "observed": 1
+    },
+    {
+      "name": "https-status",
+      "observation": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\observation.json",
+      "parent_raw_exit": 0,
+      "timed_out": false,
+      "created": 1,
+      "observed": 1
+    },
+    {
+      "name": "https-fsck",
+      "observation": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\observation.json",
+      "parent_raw_exit": 0,
+      "timed_out": false,
+      "created": 4,
+      "observed": 4
+    },
+    {
+      "name": "https-origin",
+      "observation": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\observation.json",
+      "parent_raw_exit": 0,
+      "timed_out": false,
+      "created": 1,
+      "observed": 1
+    }
+  ],
+  "verifier_corrections": [
+    "Preserved initial CMD transport raw1; corrected only harness raw Windows command line",
+    "Preserved failed observer image-query WinError31 and interrupted bare clone; later collector records/retries unavailable image metadata without normalizing exits"
+  ],
+  "artifact_repairs": []
+}

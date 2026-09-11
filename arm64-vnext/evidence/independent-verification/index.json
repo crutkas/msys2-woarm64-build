@@ -1,0 +1,1578 @@
+{
+  "schema": 1,
+  "preserved_utc": "2026-09-11T23:43:15.417492+00:00",
+  "source_root": "C:\\ag-tcl-e138-01\\independent replay 20260911-01",
+  "copied_files": [
+    {
+      "file": "records/candidate-01 baseline/documented-launcher-correct-CMD-transport/launch.json",
+      "bytes": 515,
+      "sha256": "5d8931db1f4c5d668ed9b030f64b2027af7d6e90e0fe09ede2f1e8878d5b4a38",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher-correct-CMD-transport/observation.json",
+      "bytes": 18582,
+      "sha256": "a8db052e91c0dfea577bfc2f126e7f15964d987eb35c971dfc276ad78b3613ec",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher-correct-CMD-transport/output.log",
+      "bytes": 164,
+      "sha256": "b9fccabd1100e1da5e2da64d4d62210dd6aed99dceaf8414e89ac384b2a2aaa4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher-correct-CMD-transport/request.json",
+      "bytes": 1889,
+      "sha256": "4c0ad9d3a3c2cc008d58b5f6981d82d6d4734f3c4b6160c13abecf336e71ffe0",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher-correct-CMD-transport/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher-correct-CMD-transport\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher/launch.json",
+      "bytes": 494,
+      "sha256": "9d9ff9ff811bbe6086b811b95be78b76ed40e0d069109dff23de19781248054b",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher/observation.json",
+      "bytes": 2989,
+      "sha256": "b38ab3cd0d4c87436ce1dcb32f681d9c4e02927f242b77b6f42bca05924ca460",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher/output.log",
+      "bytes": 33,
+      "sha256": "870d78b914a463250f72f8dbf8a55644de8d305636981d183ce49619a2ca5db4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/documented-launcher/request.json",
+      "bytes": 1506,
+      "sha256": "44a30b2d04e59deaa58c8aa3bf2c1ae6e94e31d67ffc4b6eddea900549a02360",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\documented-launcher\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/environment-policy.json",
+      "bytes": 1687,
+      "sha256": "50a1e3f59bb0a51b303115005125a600f7752a52d929bf3f3077187d727bae74",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\environment-policy.json",
+      "proves": "Explicit environment isolation and assistance disclosure; no CA or exec-path repairs."
+    },
+    {
+      "file": "records/candidate-01 baseline/fixture.json",
+      "bytes": 377,
+      "sha256": "b9082a3041b16ec8280d6514bb424ed3483b95dd70d343c9274185d4bb2c274c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\fixture.json",
+      "proves": "Verifier-owned test fixture intent and identities; not shipped application content."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-add/launch.json",
+      "bytes": 395,
+      "sha256": "d491d2e9a5a0c38b70dc07714d08d10fc2926e7ed69f740194ed367f7b19b448",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-add\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-add/observation.json",
+      "bytes": 7731,
+      "sha256": "b1c895d1e90e60cea6e308a72db8b7f60746b8a419f76d36b73676bbea4291f3",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-add\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-add/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-add\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-add/request.json",
+      "bytes": 1443,
+      "sha256": "6bcec51444c90b7201ff6d64d2f22cca623da7bfc7d89e1619a6095c0f2cb1bf",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-add\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-commit/launch.json",
+      "bytes": 576,
+      "sha256": "4ddbbf2d181286c8ddfb973060a424507fd4baf3b64f0056866592d681408d17",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-commit\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-commit/observation.json",
+      "bytes": 14978,
+      "sha256": "e7c648bf4e2108dd214e743c673327cc65611efeaa30980f962adaaabd2bb343",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-commit\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-commit/output.log",
+      "bytes": 119,
+      "sha256": "50da135f1f0cf22f8555361f57345289e88987dc25209ab460b96ad1d6d097d6",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-commit\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-commit/request.json",
+      "bytes": 1622,
+      "sha256": "7abea47a0da16ff44b2c3b7155aba3fad57492f0b95964991f501765e5634b28",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-commit\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-exec-path/launch.json",
+      "bytes": 380,
+      "sha256": "78538565d5dba88afa4f20ffdbe1d3b9129713709a2aead240470bdf32c8117c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-exec-path\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-exec-path/observation.json",
+      "bytes": 7482,
+      "sha256": "a0e7cef4644bd8368caec19b7a74f13a6603576e702bbf9e43d35175155ace9d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-exec-path\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-exec-path/output.log",
+      "bytes": 151,
+      "sha256": "4e68eb0648f9b1941ee3244d4f462a1b9239709339cfcca13e2ee574eaf1962e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-exec-path\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-exec-path/request.json",
+      "bytes": 1422,
+      "sha256": "0b04cdb913b5bae3cb526a2e47c8229fde88f85ffb0b7b9c310d28e1255da444",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-exec-path\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-fsck/launch.json",
+      "bytes": 383,
+      "sha256": "dc9ce34d72c7ab3b9c5876d6f337a47baf535f9dcc00cee650e05ecbcd67e003",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-fsck\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-fsck/observation.json",
+      "bytes": 28771,
+      "sha256": "b94e7dc2d988369250d96761983ce755c14c4ae2ce297681e505c9ed9511420a",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-fsck\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-fsck/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-fsck\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-fsck/request.json",
+      "bytes": 1430,
+      "sha256": "34836103c66dd8633ec780a5c34d5a96f1e6288795cd6079c60a0e1010e2f344",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-fsck\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-grep/launch.json",
+      "bytes": 441,
+      "sha256": "4b9abc374cde0e52c19c0c0e144ee7b3e6398c24f29585d736196fa9ceec88ee",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-grep\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-grep/observation.json",
+      "bytes": 6831,
+      "sha256": "99dd388afe2bc3e051bc436df00bd579d5589793822fba66af612891dd2ee8d3",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-grep\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-grep/output.log",
+      "bytes": 38,
+      "sha256": "a4ae74dbdf8715f47059f1c0e79dad06d460579582162d10b73d04bb886b2d99",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-grep\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-grep/request.json",
+      "bytes": 1490,
+      "sha256": "738591518a60f64330482ce76961e6f22d36945a10551390f0e757f38b2b618e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-grep\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-https-clone/launch.json",
+      "bytes": 597,
+      "sha256": "16ee93d6f8c6635b4f14925cf20a13e67caceace7c681108d99e6a055ae9044f",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-https-clone/observation.json",
+      "bytes": 30921,
+      "sha256": "4ea0787c89f7f8c5b3d8c9f1b7d19665d31c93688af67bc9f0fc1a25b25fbea7",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-https-clone/output.log",
+      "bytes": 264,
+      "sha256": "573081d73623df0bf3aa6e76b1a37a1e51241ccbe1fc7d67214204935bf902e4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-https-clone/request.json",
+      "bytes": 1614,
+      "sha256": "9f5bcb7283c5b5b64628673b922ecdca3cf3e778ead3c23217e220a25d583658",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-https-clone\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-init/launch.json",
+      "bytes": 368,
+      "sha256": "45b1204ec8d584f78afbe8581f404a3ecb47684af18c4660b646bcbc042055f1",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-init\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-init/observation.json",
+      "bytes": 7482,
+      "sha256": "b3283233338be9f65770f74ff2295105d8be1bd4ee1ff21d9af9fcf4a23626d0",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-init\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-init/output.log",
+      "bytes": 721,
+      "sha256": "21575efe110d40fa4a317d57ac8ff230c40801e32b0ac6208c38cb3eb34a02f5",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-init\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-init/request.json",
+      "bytes": 1415,
+      "sha256": "63cb96be81057235b3b0b7e7872d6a4472e6a7ec2791420a2f4f3ef77c367e23",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-init\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-log/launch.json",
+      "bytes": 420,
+      "sha256": "87b5912dd4f50578d2065964375afe631be3314a290ac6d06ade7fff620331c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-log\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-log/observation.json",
+      "bytes": 7731,
+      "sha256": "8f593693cc9d604f4a84d3133218a8a24bc3ad3c6310dd2aafeb9a70093d7920",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-log\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-log/output.log",
+      "bytes": 66,
+      "sha256": "ef3220e6ba1cbe5a5a6c75d613fbad9983d72a7f938b0b74d8dd2dfd0cc91148",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-log\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-log/request.json",
+      "bytes": 1468,
+      "sha256": "e92ddff20eb1a6e0fa3fb67570f3e3ad1385078401d6f6505efa84e525d264af",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-log\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-status/launch.json",
+      "bytes": 394,
+      "sha256": "b8886f8ef1dd3a5377f032248c9ef740b69a142c43f20a7fc83120083474321e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-status\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-status/observation.json",
+      "bytes": 7615,
+      "sha256": "976fee9a61d446623043923d502a7b4f38b9fc2cad822c4c21b68ec0afe2fb77",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-status\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-status/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-status\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-status/request.json",
+      "bytes": 1440,
+      "sha256": "f5f4bfd3709aad8f17f839fee89db90f3d232ff4af19bdb35ba9be2824611969",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-status\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-system-config/launch.json",
+      "bytes": 455,
+      "sha256": "c191ea78dac91eb12f321d18eac64b8837cbff1fec3e41cbf0a078738403bd25",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-system-config\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-system-config/observation.json",
+      "bytes": 7731,
+      "sha256": "adf942638a6cc8c13163f828390a2a34d67ebeafc1b4ba302c3902ceae483aa6",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-system-config\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-system-config/output.log",
+      "bytes": 327,
+      "sha256": "1fb7cfb29455778fb991bad40a3b477706b52b091f8b659b43cc70a6d3426bf3",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-system-config\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/git-system-config/request.json",
+      "bytes": 1493,
+      "sha256": "4382a40f3f1b8b61f84472b4590553c58b96ab1f291090fcd176f7409ab204e4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\git-system-config\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-add/launch.json",
+      "bytes": 396,
+      "sha256": "58aea9cf2439662bfe006505cc7ec11ad6f906145975fe69b6f7199679748993",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-add\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-add/observation.json",
+      "bytes": 7642,
+      "sha256": "c65887b52bc796157cd252b595db24128e23c0a53f01d3f078d13e72fac64161",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-add\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-add/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-add\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-add/request.json",
+      "bytes": 1443,
+      "sha256": "6bcec51444c90b7201ff6d64d2f22cca623da7bfc7d89e1619a6095c0f2cb1bf",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-add\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-commit/launch.json",
+      "bytes": 577,
+      "sha256": "7ed3bffb0f2512baad9dfe1704dfc9bfac044db63590b5b0344539474f977146",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-commit\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-commit/observation.json",
+      "bytes": 22675,
+      "sha256": "2c157fd1c51a03292ef3d24d5daead7bfe1a80cbd3fc503957ae40ef0a3c2085",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-commit\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-commit/output.log",
+      "bytes": 93,
+      "sha256": "790bd77383222e6614a2fcb2dd276ff14a8988844c00568dbaba7cb92a453f02",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-commit\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-commit/request.json",
+      "bytes": 1621,
+      "sha256": "a6ec21ee25c48c08bde7989690f7d8b8d9e4b81644f33452629430b70f76aed8",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-commit\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/hook-fixture.json",
+      "bytes": 312,
+      "sha256": "5d4605c587b15a4482b587689cd70d26e3a7958e06d19ed42961b8cccee4a4ab",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\hook-fixture.json",
+      "proves": "Verifier-owned test fixture intent and identities; not shipped application content."
+    },
+    {
+      "file": "records/candidate-01 baseline/local-bare-clone/launch.json",
+      "bytes": 614,
+      "sha256": "655e6aecca5bdae58642595d7898878ace465c1710f076b1309e167b287a2e16",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\local-bare-clone\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/local-bare-clone/observation.json",
+      "bytes": 23168,
+      "sha256": "1d4078fb21a28a02949a3cb2cf43999c1ef23d5d3f32396cc96086f93d6d92d5",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\local-bare-clone\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/local-bare-clone/output.log",
+      "bytes": 134,
+      "sha256": "9a473c118370bd211048125aea88bc37cc0b14a0ec87058bb86a3e6e168f4ee9",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\local-bare-clone\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/local-bare-clone/request.json",
+      "bytes": 1630,
+      "sha256": "1c755e2f7e01ab63360b430e39ce045222a442df30c55b7466bdaf6300523a05",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\local-bare-clone\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/named-sh/launch.json",
+      "bytes": 397,
+      "sha256": "c9f13d5ae7e994d7caecb6c5397969e0fba926f09fcbc6a1859b938e7adf7680",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\named-sh\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/named-sh/observation.json",
+      "bytes": 7320,
+      "sha256": "dfc7dbeb16d94eda174d9239d882d457299322c64570761434efceaeffde6c55",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\named-sh\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/named-sh/output.log",
+      "bytes": 23,
+      "sha256": "cdc981151577e33098ed88285322fba6f871e04a89f1f2d0ebf0f562887b2314",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\named-sh\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/named-sh/request.json",
+      "bytes": 1420,
+      "sha256": "f81072245bcddf3f54c17b3c6cc274c31dd7c872945ee91b44de6965efcfa90d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\named-sh\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/native-version/launch.json",
+      "bytes": 379,
+      "sha256": "7b092c6a8516b7ea24b33c1d1ecc0b8bdef62e5d9388088de3a32b0d7478b853",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\native-version\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/candidate-01 baseline/native-version/observation.json",
+      "bytes": 7393,
+      "sha256": "d6a03826b47d066286bdf901cf39719f6a74f216bbefa9255f5d28aa9eefdbda",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\native-version\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/candidate-01 baseline/native-version/output.log",
+      "bytes": 29,
+      "sha256": "72dc60e11b0dfa68bc7b055fc909e74ec8634b2caebfe31538631cefc442c46c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\native-version\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/candidate-01 baseline/native-version/request.json",
+      "bytes": 1397,
+      "sha256": "a6fd1f5d917ee7aedf96b822dc00117291c19f2e5adab553902056ff91e2b9f7",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\native-version\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/candidate-01 baseline/result.json",
+      "bytes": 4930,
+      "sha256": "4741b49e37ef14c2376b05fa8505ebb9731057dd570e8a7bd2cd1303324e7ff5",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 baseline\\result.json",
+      "proves": "Original evidence metadata preserved with its absolute source path and exact bytes."
+    },
+    {
+      "file": "records/candidate-01 custody/intake.json",
+      "bytes": 2189264,
+      "sha256": "b843b4b4796132749fa9385aa31c643e408fa346ffb9a59ced062788a7818f35",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\intake.json",
+      "proves": "Full measured custody inventory and source/extraction identities."
+    },
+    {
+      "file": "records/candidate-01 custody/static-audit.json",
+      "bytes": 15547378,
+      "sha256": "eee8a56ffcc282c9554b4f3772695ff3ca0d75d0e2d954c60757730ce7722f3b",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\static-audit.json",
+      "proves": "Independent actual PE architecture/import audit and embedded-path candidates; not live resolution proof."
+    },
+    {
+      "file": "records/independent-tls-evidence-01.json",
+      "bytes": 13094,
+      "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\independent-tls-evidence-01.json",
+      "proves": "Sealed independent live TLS findings, both artifact generations, CA lookup and authoritative provider identities."
+    },
+    {
+      "file": "records/named ZIP baseline/continuation.json",
+      "bytes": 2025,
+      "sha256": "245ca810daaddd99fcce0161b6e3c2c7ed048111e369b8ef276c179cb43e3a67",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\continuation.json",
+      "proves": "Transparent harness corrections and subsequent separately recorded cases."
+    },
+    {
+      "file": "records/named ZIP baseline/documented-launcher/launch.json",
+      "bytes": 488,
+      "sha256": "5543e3e25e3bfd0756f366712f69e760eefc6b5bc2bde5f84fdf3a540e000420",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\documented-launcher\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/documented-launcher/observation.json",
+      "bytes": 22679,
+      "sha256": "818e5ac9ec461e9bf0a25213155833d3ae379f607378405484bf0a6b21565e88",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\documented-launcher\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/documented-launcher/output.log",
+      "bytes": 164,
+      "sha256": "b9fccabd1100e1da5e2da64d4d62210dd6aed99dceaf8414e89ac384b2a2aaa4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\documented-launcher\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/documented-launcher/request.json",
+      "bytes": 1769,
+      "sha256": "f1fc5dc0679e27cca2b159c5bef6f84b3732b86784601c841efc294a571ff694",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\documented-launcher\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/environment-policy.json",
+      "bytes": 1675,
+      "sha256": "b908f0bc808e09339adeaf2c959b7667f7a54f27bc3d393f7942d2ea8c4afdcf",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\environment-policy.json",
+      "proves": "Explicit environment isolation and assistance disclosure; no CA or exec-path repairs."
+    },
+    {
+      "file": "records/named ZIP baseline/fixture.json",
+      "bytes": 374,
+      "sha256": "9a9ae3135483b2f73aa0f32fe62fd6d3ad969480f5deafb5d41396371a97ef48",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\fixture.json",
+      "proves": "Verifier-owned test fixture intent and identities; not shipped application content."
+    },
+    {
+      "file": "records/named ZIP baseline/git-add/launch.json",
+      "bytes": 388,
+      "sha256": "448c84fce3b56f8590a2bd482eb09fcb2f65deb532adbdc95905328b0d076c23",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-add\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-add/observation.json",
+      "bytes": 7597,
+      "sha256": "146d2bf1c15200cdb7346a13ca75a07b7bf17fba0f6af470973930ee13719383",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-add\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-add/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-add\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-add/request.json",
+      "bytes": 1627,
+      "sha256": "41ad9bad645a4092e47106420679e285810272ac310f6bb690234cfecf2ae027",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-add\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-commit/launch.json",
+      "bytes": 571,
+      "sha256": "7658c774ac806998d75b262c2d3b08bc15543eeced6c341b97f4a73b8d35a196",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-commit\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-commit/observation.json",
+      "bytes": 15059,
+      "sha256": "0a1adbb5baa025d2171166f13c2e7c9509a567a1ed0df7b4cfaa65bcca60c8e2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-commit\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-commit/output.log",
+      "bytes": 119,
+      "sha256": "288476a289aada2e32876e9fd104c60a33973d3f203cf08730ff51df13bf8cf6",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-commit\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-commit/request.json",
+      "bytes": 1945,
+      "sha256": "86341e7947bb7d28266f67af8397c633a190b976bc08d8302a485555edb6a637",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-commit\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-exec-path/launch.json",
+      "bytes": 373,
+      "sha256": "90e649dfd52dcc61a26565c40fdaee19b6584bd54a45f80371c52db3ed815d30",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-exec-path\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-exec-path/observation.json",
+      "bytes": 7349,
+      "sha256": "d277efff2ee6fe2e645c9a05f48a26ae79ac685020609506f2125329d3689316",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-exec-path\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-exec-path/output.log",
+      "bytes": 148,
+      "sha256": "09facdb4fa3158bb15a5b2936582223a4c68ef76dae17a261250631f4387c0b5",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-exec-path\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-exec-path/request.json",
+      "bytes": 1601,
+      "sha256": "b6419ca786c273a232dfe6b00e92a90ad088d6ab75ee637eb425a4596cee89c1",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-exec-path\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-fsck/launch.json",
+      "bytes": 377,
+      "sha256": "a1616690cab7bf8585a159640e7d95628759a22d5150f29fcbf97b7949040c25",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-fsck\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-fsck/observation.json",
+      "bytes": 28447,
+      "sha256": "1da7719af9f562a5ab670c26cac41b25cd63f8488ff2ace9d2ae89b13f7b4ada",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-fsck\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-fsck/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-fsck\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-fsck/request.json",
+      "bytes": 1609,
+      "sha256": "17222fb9eb497065128f20a70dda989b8fd0ecfc987c3b2a7e112561f5429399",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-fsck\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-grep/launch.json",
+      "bytes": 437,
+      "sha256": "1cf938a5263a16a092d7cd9295f9c306e9bf4355e096fbe734a3823902da31da",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-grep\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-grep/observation.json",
+      "bytes": 7624,
+      "sha256": "579ceeb5ae5256c833408452efe7a0bac688a074d3ab711dcdced1e3b57288db",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-grep\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-grep/output.log",
+      "bytes": 38,
+      "sha256": "a4ae74dbdf8715f47059f1c0e79dad06d460579582162d10b73d04bb886b2d99",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-grep\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-grep/request.json",
+      "bytes": 1705,
+      "sha256": "67f98e05bbc6ba9900432a3f19e02a4da5871dfa24b2f105898dc73ac7e20424",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-grep\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-https-clone/launch.json",
+      "bytes": 588,
+      "sha256": "51204cd9f8bb79cfe7f324f4c30a73dd78d52351bd79945afe7448601292273e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-https-clone/observation.json",
+      "bytes": 48028,
+      "sha256": "b7de629ef8de80297a8e4c9c083fddac2e41dbe87f441cf6952ffbf392c23fd8",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-https-clone/output.log",
+      "bytes": 110,
+      "sha256": "e0a08859bd1397fd6fb95ed6e99881ef5e9a0191b174b84e916234b91685f515",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-https-clone/request.json",
+      "bytes": 2057,
+      "sha256": "9b9d57c32579ef48943dc365cc43ce7a77e3d4cd5453befd817488e5fc664b64",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-https-clone/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-https-clone\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/named ZIP baseline/git-init/launch.json",
+      "bytes": 362,
+      "sha256": "ca60939865280aa0bf36a6832a2637d68f1049d6b3d640a034793de150a77111",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-init\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-init/observation.json",
+      "bytes": 7375,
+      "sha256": "f60f3a990d135665d991c45b5c234a0073e3091d13bf96865f90514dec69ffc8",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-init\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-init/output.log",
+      "bytes": 718,
+      "sha256": "24b0f7071b13e9fe7a6cd48376f4cbe93e2fd835a1a8d088c6af4dc9d07b843c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-init\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-init/request.json",
+      "bytes": 1587,
+      "sha256": "89dc7f866725b885ac770f61c7ee9c45e52a8e7d6d151c37716365a8321f1424",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-init\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-log/launch.json",
+      "bytes": 413,
+      "sha256": "f6dbda2660a47c7a54131dc24135d0bf6bbc3f880e5b44abe7ed94aa9d68b3ee",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-log\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-log/observation.json",
+      "bytes": 7597,
+      "sha256": "f5caa12b224e1aef347a87188be5ee6813fed7599b7eb5a31d34a796b6087570",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-log\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-log/output.log",
+      "bytes": 66,
+      "sha256": "9d1231ceb9334fd42e862f5769d947a8dd2da365d4dfce6a15aed6bad9caf975",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-log\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-log/request.json",
+      "bytes": 1669,
+      "sha256": "26234873c5453e875cd3de38d63496ee90f7e5db0ac0463e6ffc376dd8ca0d82",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-log\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-status/launch.json",
+      "bytes": 388,
+      "sha256": "ac20a09c9635df1efae0de705011987a3be1373985657edb7a3cc3003ed1c527",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-status\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-status/observation.json",
+      "bytes": 7597,
+      "sha256": "11328f7eef5f5bde9656da3294d22802d81d38dccfe3cda37af03e796cffd528",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-status\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-status/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-status\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-status/request.json",
+      "bytes": 1629,
+      "sha256": "f61694b7bfdb71f5adedba5ffe4667de571d8300fd0de05fa06a66d43018f33c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-status\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/git-system-config/launch.json",
+      "bytes": 449,
+      "sha256": "06a9e15501c0d11db75b4e81c8bc0156a5ae2440252df448b26d18e44e532d88",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-system-config\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/git-system-config/observation.json",
+      "bytes": 7624,
+      "sha256": "64a2b7b4d7359f441555c45b7da1fb8bdc9c851e3e816af0a9588c6807b0cb1f",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-system-config\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/git-system-config/output.log",
+      "bytes": 513,
+      "sha256": "bc8d77b193ebdf2700ef2211bc37bc43a75890c04853dc7e32255d523ebd6f33",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-system-config\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/git-system-config/request.json",
+      "bytes": 1719,
+      "sha256": "b63908ec5d1ec58ad498ebeacdf3b8490818fe983bed373d827161d9c16976cd",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\git-system-config\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-add/launch.json",
+      "bytes": 390,
+      "sha256": "4e53c2fcf79dfd8c5cd4ac8d0ff87fcd746400286e2ea3316e5a0dbd84ebb3dc",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-add\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-add/observation.json",
+      "bytes": 7713,
+      "sha256": "770ca81bfbd87b1a60af633bcfd43c3cb86753ca6700b0dc7b4e2cf2a42604e4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-add\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-add/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-add\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-add/request.json",
+      "bytes": 1627,
+      "sha256": "41ad9bad645a4092e47106420679e285810272ac310f6bb690234cfecf2ae027",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-add\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-commit/launch.json",
+      "bytes": 571,
+      "sha256": "d5eb16e4da3eed79f065d3d04bc97c9a5cbb786346011438fd8969f6672919ec",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-commit\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-commit/observation.json",
+      "bytes": 19136,
+      "sha256": "6b27a5822c6282323ddce4ec9979f4cec28a9a07a7a0b3acfba0dddf7a404d1a",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-commit\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-commit/output.log",
+      "bytes": 93,
+      "sha256": "e774215f3777bfb02c46d5d471c8a26d8ae7a199988f6e081f73bb1d6504c213",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-commit\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-commit/request.json",
+      "bytes": 1943,
+      "sha256": "fcd38155b112f8d71295a964634f6c8786ca2c6dc82d77a70b81df17ad7813d7",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-commit\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/hook-fixture.json",
+      "bytes": 309,
+      "sha256": "2b62cfc480072000aac86bc755d36468ec4e074fa6df5d97d69d9ee04e982ab1",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\hook-fixture.json",
+      "proves": "Verifier-owned test fixture intent and identities; not shipped application content."
+    },
+    {
+      "file": "records/named ZIP baseline/https-fsck/launch.json",
+      "bytes": 378,
+      "sha256": "f2fd2ed28d645a1a2a554c010e0505a51d1b8ad94e612e95aecf4d83b2408d94",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/https-fsck/observation.json",
+      "bytes": 29027,
+      "sha256": "561cf22451352fd357289c29beed554d9579f954b0edf866a1448f7e9462c6d2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/https-fsck/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/https-fsck/request.json",
+      "bytes": 1710,
+      "sha256": "c16f98a9488c7e4e00a63db340e31af4322740818abb47ffb3d76e2615ccb09b",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/https-fsck/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-fsck\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/named ZIP baseline/https-log/launch.json",
+      "bytes": 416,
+      "sha256": "a61e3ad830d8e87090fcb59e67e9dfdca06cc6f5e0b29721244744a82bde3908",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/https-log/observation.json",
+      "bytes": 7690,
+      "sha256": "63753233549f9e654f142dd4c809f525d732f932db5a5a965cc878dcb2443f3d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/https-log/output.log",
+      "bytes": 87,
+      "sha256": "c66614b4de3c3f549f90b8b14dda716de0674479f587f76b4b6c5b3a64c37f72",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/https-log/request.json",
+      "bytes": 1770,
+      "sha256": "ec49550b5037c89cac89814b0371cb5393d1dc0fe3c138ba1589898ca577be5e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/https-log/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-log\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/named ZIP baseline/https-origin/launch.json",
+      "bytes": 399,
+      "sha256": "7362212094dac15260275f791c39baba43d32fe9771ff07aa76b3a5daab3a31e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/https-origin/observation.json",
+      "bytes": 2959,
+      "sha256": "355532747cf2bb29c5c671b246bdbdf3b6a6874e7c3343fbddc6c001e4949ebf",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/https-origin/output.log",
+      "bytes": 43,
+      "sha256": "69d2d3bf96145365cd6159f63044ce25ed3989be9203dcc59afcd9c02b869aa4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/https-origin/request.json",
+      "bytes": 1738,
+      "sha256": "e9e2cfd128754b37a191b67d3344e4e328c3da80ad0b2a7ba8cf63c5a23a8cb2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/https-origin/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-origin\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/named ZIP baseline/https-status/launch.json",
+      "bytes": 390,
+      "sha256": "d2abadb989c951c5ed7a3599619bd8a6f34028b5ae76b920c1d2987c9bfef260",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/https-status/observation.json",
+      "bytes": 7751,
+      "sha256": "2e6ae865d3f66a55039cfadda65a2f3a845ea71b19f831fbf4e0717abbd40153",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/https-status/output.log",
+      "bytes": 0,
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/https-status/request.json",
+      "bytes": 1730,
+      "sha256": "4d2d40fea39976a61013c8e930a27fb4bb80d5ae0f77a8c7e8d9701622683782",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/https-status/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\https-status\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone-after-observer-race/launch.json",
+      "bytes": 628,
+      "sha256": "6cb886384a6e69be5e83bdbe8b26c4e554fc62c1cf9b88b7afdf57e5d51addf8",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone-after-observer-race/observation.json",
+      "bytes": 18578,
+      "sha256": "7d7f18ce90471dbdb1272afaafa50662d99117921c3547f1edf4c4b79132a6d3",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone-after-observer-race/output.log",
+      "bytes": 138,
+      "sha256": "212960c3cf32bb6937df5a51187680708196e0f92ddae9c007ff33c551052319",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone-after-observer-race/request.json",
+      "bytes": 2117,
+      "sha256": "8370525aa0a3b06aba8cb459d10166a015be595f46dcb4021341c21575246c7d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone-after-observer-race/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone-after-observer-race\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone/launch.json",
+      "bytes": 600,
+      "sha256": "25b06c10d7e6cac286ec9d65090ec82b1359f108beee670cbee0768b0e7c7416",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone/observation.json",
+      "bytes": 74,
+      "sha256": "dd7fdbd2671d2e79dbb97598d25a36701b0acf73f8f8b88364ac85358dc52051",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone/output.log",
+      "bytes": 131,
+      "sha256": "91371c037d5df3debee1777e7ff6d859363178813209851acd4cf441f471de5e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/local-bare-clone/request.json",
+      "bytes": 2004,
+      "sha256": "0daff20e40152d2dca488c57c87723ed58edf25475948b5d76261dd5a96c8e35",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\local-bare-clone\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/named-sh/launch.json",
+      "bytes": 391,
+      "sha256": "53d5e472fb0326046df5fa9cc8ef8fe7ef52379a67bf5ab066995302541d73a1",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\named-sh\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/named-sh/observation.json",
+      "bytes": 8458,
+      "sha256": "c3186f3c918bf5051b58ee11206f3bd74d9e98cb014f9f8589aacbf255d84f44",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\named-sh\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/named-sh/output.log",
+      "bytes": 23,
+      "sha256": "cdc981151577e33098ed88285322fba6f871e04a89f1f2d0ebf0f562887b2314",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\named-sh\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/named-sh/request.json",
+      "bytes": 1617,
+      "sha256": "4fe5a52b8eb2119e8759c44f77ff5d05eebc1e4dfa8e91b8b6ab245f32c26f9a",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\named-sh\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP baseline/native-version/launch.json",
+      "bytes": 373,
+      "sha256": "fe83c35786e113aedc130afb84783cec9f63a6cb04012ba851b88c40a40d7329",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\native-version\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP baseline/native-version/observation.json",
+      "bytes": 7464,
+      "sha256": "a6e6b5dedb3287b1ed0398c8e1d0b6bfe39da0f7d9aa0d9d9ff9b182ba9c9bbc",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\native-version\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP baseline/native-version/output.log",
+      "bytes": 29,
+      "sha256": "72dc60e11b0dfa68bc7b055fc909e74ec8634b2caebfe31538631cefc442c46c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\native-version\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP baseline/native-version/request.json",
+      "bytes": 1574,
+      "sha256": "a9f1c2157a2e8e65962ae8ce4dd0bf9997ebf27009a6776a991d8fa8e2be0050",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP baseline\\native-version\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP custody/intake.json",
+      "bytes": 6229477,
+      "sha256": "9bf376600cd047912cdddb5c88f6b89301727c2b9e7bbb55ecc6e4416aba2602",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\intake.json",
+      "proves": "Full measured custody inventory and source/extraction identities."
+    },
+    {
+      "file": "records/named ZIP custody/manifest-readback.json",
+      "bytes": 714,
+      "sha256": "0d1749da363067e534a636e7b4780bf56c1db23bc4806b88628d145ea022f416",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\manifest-readback.json",
+      "proves": "Independent named-ZIP manifest reconciliation with no differing files."
+    },
+    {
+      "file": "records/named ZIP custody/static-audit.json",
+      "bytes": 15356486,
+      "sha256": "b147be24c9949a33616691b2d6d0fec1bb442a5c02dda3d567bfec0e270f733e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\static-audit.json",
+      "proves": "Independent actual PE architecture/import audit and embedded-path candidates; not live resolution proof."
+    },
+    {
+      "file": "records/named ZIP standalone curl baseline/launch.json",
+      "bytes": 485,
+      "sha256": "032c632751e6697a09625227549a85cc3947bfaf5621c68ac8844e21d8fa48e7",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/named ZIP standalone curl baseline/observation.json",
+      "bytes": 16569,
+      "sha256": "ec6c6145d29855437f2f242daed0175277b92c2384d5c6931dbeedafe5132e1b",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/named ZIP standalone curl baseline/output.log",
+      "bytes": 92,
+      "sha256": "6629743422516870f9cdacb999280888ece4af9a77467dfe217795b662c2ed4d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/named ZIP standalone curl baseline/request.json",
+      "bytes": 1838,
+      "sha256": "b223ee40180e726fa4160dbd1ea862f600b3c778188b92da5738fabf58aa778c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/named ZIP standalone curl baseline/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/observer-control/launch.json",
+      "bytes": 251,
+      "sha256": "84cbfd6eb6a558e27232d8074339ef72d9c0b28d06c9c4326a901121e6ec5950",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\observer-control\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/observer-control/observation.json",
+      "bytes": 2989,
+      "sha256": "f8cb9c7f854c5b8fed3b834c69dee0f5e9dabfa135f227a7c59aa2e4211da2ec",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\observer-control\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/observer-control/output.log",
+      "bytes": 47,
+      "sha256": "f5bab060d86b2e9d5a5e73e809620a0ad741103dea4f3783f27df34916cf618d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\observer-control\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/observer-control/request.json",
+      "bytes": 707,
+      "sha256": "7894df87e3ccff52e08ec5220cff93f25977f425edbe71f32a84575f5a836f07",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\observer-control\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/recreation.json",
+      "bytes": 781,
+      "sha256": "460b857f7cfd59df3f313d4043bed24de724d423b0835525d6dc32d5d443b3cc",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\recreation.json",
+      "proves": "Fresh shipped-recipe ZIP repackaging identity; not package build reproducibility."
+    },
+    {
+      "file": "records/report-01/audit.py",
+      "bytes": 13802,
+      "sha256": "6fcd35c47a7e9ac9c1f6b89b9aec1107dcc009903b3c5c7d0045d3741cbfc38c",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\audit.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/report-01/candidate-01-path-triage.json",
+      "bytes": 16324624,
+      "sha256": "0467abdab196d902546f1e60454ee0b24bafb381056d994ff18980ac462bb196",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\candidate-01-path-triage.json",
+      "proves": "Debug/source/test strings distinguished from demonstrated operational CA-path failures."
+    },
+    {
+      "file": "records/report-01/drain.json",
+      "bytes": 21019,
+      "sha256": "eae42556e90e07b4c3af8c32a4dcb07c54d8fdc96c478bd2f9ce5667e06ef657",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\drain.json",
+      "proves": "Verifier-owned jobs and recorded process generations drained; three-job allocation return."
+    },
+    {
+      "file": "records/report-01/finalize.py",
+      "bytes": 20415,
+      "sha256": "8d55f563565fd4e717f77a077c40a9ef6db2547b15881b05a65dfb8e01a08da4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\finalize.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/report-01/named ZIP-path-triage.json",
+      "bytes": 16100151,
+      "sha256": "1f1c2c05081fd2dacb9e74ea65ebf222fa72fddc184dffa693a75babad2ab63a",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\named ZIP-path-triage.json",
+      "proves": "Debug/source/test strings distinguished from demonstrated operational CA-path failures."
+    },
+    {
+      "file": "records/report-01/observe.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\observe.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/report-01/replay.py",
+      "bytes": 7320,
+      "sha256": "c458aae08826ba601a68a6046109ccdd7e6121b9138b2dab730c034af85c5b00",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\replay.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/report-01/report.json",
+      "bytes": 45071,
+      "sha256": "c44fb3f8238980bea3545938362e7e84ea5cb806780ea58b354261e3d3447c9b",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\report.json",
+      "proves": "Sealed mixed independent verdict, findings, limitations, custody and reproducibility references."
+    },
+    {
+      "file": "records/report-01/tls_evidence.py",
+      "bytes": 5257,
+      "sha256": "1b092a43bbc2fc8840f84ffaf01afd1607d336fbbe784c8c220837dd3e12aaec",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\report-01\\tls_evidence.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "records/shipped recreation baseline/launch.json",
+      "bytes": 579,
+      "sha256": "545d8658955de439b8774486959871f2fc82a27fb3975289fd5a6a360bfd569e",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\shipped recreation baseline\\launch.json",
+      "proves": "Actual process PID, creation FILETIME, argv and transcript path."
+    },
+    {
+      "file": "records/shipped recreation baseline/observation.json",
+      "bytes": 45722,
+      "sha256": "4bcb85a4f58693699c14ead905fa1c8169df58cd95b32c8c6bfb0ea1fab838fb",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\shipped recreation baseline\\observation.json",
+      "proves": "Raw Windows exits, process generations, actual sampled modules and observer coverage/drain; no status decoder."
+    },
+    {
+      "file": "records/shipped recreation baseline/output.log",
+      "bytes": 135,
+      "sha256": "0b353e5fbc57fa245367d4a61b3e02b753308f8647007a7b80b42b799dc0dc58",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\shipped recreation baseline\\output.log",
+      "proves": "Unmodified execution transcript, including errors and failure text."
+    },
+    {
+      "file": "records/shipped recreation baseline/request.json",
+      "bytes": 2055,
+      "sha256": "9838d38b8feee5c8f5b51b050aa8ab7fc0ff6ad8341636bd824dca041cd9bf45",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\shipped recreation baseline\\request.json",
+      "proves": "Exact execution argv, working directory, all supplied environment values and observer identity."
+    },
+    {
+      "file": "records/shipped recreation baseline/verifier-observer.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\shipped recreation baseline\\verifier-observer.py",
+      "proves": "Exact verifier or producer script snapshot retained as evidence/replay context, not an artifact binary."
+    },
+    {
+      "file": "references/candidate-01/disposition.json",
+      "bytes": 485,
+      "sha256": "1afa7e12b4fa796b8600c4dcc435beeed073e213d3710c6e5917314f3e98efbe",
+      "original_path": "C:\\ag-mvp-f6-20260911\\candidate-01.disposition.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/candidate-01/producer-manifest.json",
+      "bytes": 13111290,
+      "sha256": "a2052594e723bbc0f419cc546c19252b804af51d2440e64a29c847056bb316c3",
+      "original_path": "C:\\ag-mvp-f6-20260911\\candidate-01.manifest.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/candidate-01/shipped-metadata/Git-Bash-Native.cmd",
+      "bytes": 175,
+      "sha256": "4d767df98539ab4d007fcb1566f5b0c81e39dd2d4c095edab125ab8903f63d7a",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\Git-Bash-Native.cmd",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/candidate-01/shipped-metadata/etc/gitconfig",
+      "bytes": 62,
+      "sha256": "06bed432ec081719f640328b8e4e6403f2b31120f29dc2f72eb1ba7bc3ba5ee1",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\etc\\gitconfig",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/candidate-01/shipped-metadata/etc/profile",
+      "bytes": 334,
+      "sha256": "b093243e7b76dc08b071a4f8d682753b9f36fe5d8171424ccf748f8184353b67",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\candidate-01 custody\\relocated at a different depth\\candidate with spaces\\etc\\profile",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/diagnostic-reproduction/result.json",
+      "bytes": 973,
+      "sha256": "795776610e76fcda443f6646ffd0db551083ecffe0eef49fe44fe27234ebe729",
+      "original_path": "C:\\ag-mvp-f6-20260911\\deterministic-diagnostic-01\\result.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/artifact-receipt.json",
+      "bytes": 5881,
+      "sha256": "dfdce4e6ef60896aca0d810c165d6ed9bfbc5a6e9b9f7adc6a270a66c4bd33b0",
+      "original_path": "C:\\ag-mvp-f6-20260911\\first-artifact-901256b\\artifact-receipt.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/Git-Bash-Native.cmd",
+      "bytes": 203,
+      "sha256": "412cc3e077b7021df553573bef2db9e707eb63b2f4f41a6d08379b1137f8115a",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\Git-Bash-Native.cmd",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/README-HANDOFF.md",
+      "bytes": 6488,
+      "sha256": "530c52bf60326d076a85e46695f69ccf0e1705dff0b9fd6717ad8f1311b4e965",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\README-HANDOFF.md",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/etc/fstab",
+      "bytes": 136,
+      "sha256": "441b24672b1696a19bbf21aa0b599e1a52b86f13a78390c9e8e3891d14a57257",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\etc\\fstab",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/etc/gitconfig",
+      "bytes": 112,
+      "sha256": "fdd36dd2363c0f85bc01156db367b18a50506e08e7dee580e0d676db7f5ca527",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\etc\\gitconfig",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/etc/profile",
+      "bytes": 366,
+      "sha256": "4ca8abe08f953bc3aa10e335972e112e2576210a21408fb6dae7a57ef540d65d",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\etc\\profile",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/manifest.json",
+      "bytes": 18034112,
+      "sha256": "eac68a5cb25fe5840de062892a044753df73293a034c8187b78c961089a41f65",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\manifest.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/provenance.json",
+      "bytes": 310536,
+      "sha256": "136ae673e60656fece00b37b67b2f23a29c1fdb648b4a0a86fbc3d688f8b3d88",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\provenance.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/recreate.ps1",
+      "bytes": 222,
+      "sha256": "61d3837749ff5d54e109b16830edf477815c87929d67bea0d69556d6990154a4",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\recreate.ps1",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/named-zip/shipped-metadata/recreation/artifact.py",
+      "bytes": 16261,
+      "sha256": "d87e6f56dfd4e3570c986002731a409f4fd2d51cb0c14a6006bbb415eca0fdb3",
+      "original_path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\recreation\\artifact.py",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/observer/native-job-structure-source.py",
+      "bytes": 15053,
+      "sha256": "e806e70c7aedd226f2cb1c454221e6d5738525e34a2d3266b577f486114fd89e",
+      "original_path": "C:\\ag-tcl-e138-01\\observer\\native-job.py",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/provider/current-input-v18.json",
+      "bytes": 7572,
+      "sha256": "3d129458c38268f2e6c845172f838e2cfeb803720528bc7278315ce3310e5c2e",
+      "original_path": "C:\\ap11-native-provider-intake\\input-v18-revoked-free.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/provider/openssl-current-admission.json",
+      "bytes": 1967,
+      "sha256": "4c3a57be0859f70a355a6d133604cf278cd06fc8406f734344bf15331ebf1a62",
+      "original_path": "C:\\ap11-native-provider-intake\\openssl-mingwarm64-admitted-v1\\export.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/provider/openssl-current-producer-export.json",
+      "bytes": 2106,
+      "sha256": "cc62db912148d55d70c2a869f1aff3b8a5aec6385bcbfb0ce26b8af78aeab8d0",
+      "original_path": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\export.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "references/provider/openssl-superseded-export.json",
+      "bytes": 18726,
+      "sha256": "546d8ca66282b89803d6423f36db1f562fadf759e8d4a7e11870cb485ea84dd8",
+      "original_path": "C:\\ap09-ca5f\\curl-packages-v2\\export-12\\export.json",
+      "proves": "Exact referenced producer/observer/shipped metadata; historical claims are not verifier approval."
+    },
+    {
+      "file": "verifier-source/audit.py",
+      "bytes": 13802,
+      "sha256": "6fcd35c47a7e9ac9c1f6b89b9aec1107dcc009903b3c5c7d0045d3741cbfc38c",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-congenial-pancake\\qualification\\mvp-verifier\\audit.py",
+      "proves": "Verifier source at preservation time; sealed report-01 scripts remain separately preserved."
+    },
+    {
+      "file": "verifier-source/finalize.py",
+      "bytes": 20415,
+      "sha256": "8d55f563565fd4e717f77a077c40a9ef6db2547b15881b05a65dfb8e01a08da4",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-congenial-pancake\\qualification\\mvp-verifier\\finalize.py",
+      "proves": "Verifier source at preservation time; sealed report-01 scripts remain separately preserved."
+    },
+    {
+      "file": "verifier-source/observe.py",
+      "bytes": 12973,
+      "sha256": "711a13214ba5f0fab7e81dac830c79f7668b00545759b297d2d81db9421693c2",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-congenial-pancake\\qualification\\mvp-verifier\\observe.py",
+      "proves": "Verifier source at preservation time; sealed report-01 scripts remain separately preserved."
+    },
+    {
+      "file": "verifier-source/preserve.py",
+      "bytes": 15075,
+      "sha256": "78edc4b0dfc2f5a802bcc176e13774037243ce5eacfefdd35649cfe94775af50",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-congenial-pancake\\qualification\\mvp-verifier\\preserve.py",
+      "proves": "Verifier source at preservation time; sealed report-01 scripts remain separately preserved."
+    },
+    {
+      "file": "verifier-source/replay.py",
+      "bytes": 7320,
+      "sha256": "c458aae08826ba601a68a6046109ccdd7e6121b9138b2dab730c034af85c5b00",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-congenial-pancake\\qualification\\mvp-verifier\\replay.py",
+      "proves": "Verifier source at preservation time; sealed report-01 scripts remain separately preserved."
+    },
+    {
+      "file": "verifier-source/tls_evidence.py",
+      "bytes": 5257,
+      "sha256": "1b092a43bbc2fc8840f84ffaf01afd1607d336fbbe784c8c220837dd3e12aaec",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-congenial-pancake\\qualification\\mvp-verifier\\tls_evidence.py",
+      "proves": "Verifier source at preservation time; sealed report-01 scripts remain separately preserved."
+    }
+  ],
+  "omitted_large_evidence": [],
+  "copy_method": "shutil.copyfile, no decoding/formatting/line-ending changes; before/copy/after SHA-256 equal",
+  "new_execution": false
+}
