@@ -96,6 +96,29 @@ class ValidationTests(unittest.TestCase):
         with self.assertRaisesRegex(ValueError, "externally visible"):
             GEN.validate_assembly(ASSEMBLY.replace(".global _sigfe_test\n", ""), EXPORTS)
 
+    def test_conditional_source_export_selection(self):
+        source = ("LIBRARY test\nEXPORTS\ncommon SIGFE\n#ifndef __aarch64__\nx86 DATA\n#endif\n"
+                  "#ifdef __aarch64__\narm NOSIGFE\n#endif\n")
+        self.assertEqual(GEN.export_names(source, "aarch64", True), {"common", "arm"})
+        self.assertEqual(GEN.export_names(source, "x86_64", True), {"common", "x86"})
+
+    def test_unsupported_source_condition_rejected(self):
+        for directive in ("#if OTHER", "#ifdef OTHER", "#ifndef OTHER"):
+            with self.subTest(directive=directive), self.assertRaisesRegex(ValueError, "Unsupported"):
+                GEN.export_names(f"EXPORTS\n{directive}\ntest\n#endif\n", "aarch64", True)
+
+    def test_duplicate_export_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Duplicate"):
+            GEN.export_names(EXPORTS + "test = other\n", "aarch64")
+
+    def test_decorated_windows_export_names(self):
+        self.assertEqual(GEN.export_names("EXPORTS\nGetCommandLineA@0 = impl NOSIGFE\n",
+                                          "aarch64", True), {"GetCommandLineA@0"})
+
+    def test_unterminated_source_condition_rejected(self):
+        with self.assertRaisesRegex(ValueError, "Unterminated"):
+            GEN.export_names("EXPORTS\n#ifdef __aarch64__\ntest\n", "aarch64", True)
+
 
 class CommandTests(unittest.TestCase):
     def setUp(self):
@@ -106,7 +129,7 @@ class CommandTests(unittest.TestCase):
         (self.source / "winsup/cygwin/scripts").mkdir(parents=True)
         self.generator = self.source / "winsup/cygwin/scripts/gendef"
         self.exports = self.source / "winsup/cygwin/cygwin.din"
-        self.exports.write_text("test\n")
+        self.exports.write_text("EXPORTS\ntest SIGFE\n")
         self.offsets = self.root / "tlsoffsets"
         self.offsets.write_text(offsets())
         self.output = self.root / "generated"
@@ -178,6 +201,12 @@ class CommandTests(unittest.TestCase):
         result = self.run_generator(assembly=ASSEMBLY.replace("_sigfe_test:", "_wrong:"))
         self.assertNotEqual(result.returncode, 0)
         self.assertEqual(json.loads((self.output / "result.json").read_text())["status"], "failed")
+
+    def test_generator_cannot_drop_source_exports(self):
+        self.exports.write_text("EXPORTS\ntest SIGFE\nsecond NOSIGFE\n")
+        result = self.run_generator()
+        self.assertNotEqual(result.returncode, 0)
+        self.assertIn("export list differs", result.stderr)
 
 
 if __name__ == "__main__":

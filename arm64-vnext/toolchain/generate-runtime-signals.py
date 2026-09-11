@@ -77,6 +77,47 @@ def validate_assembly(text, exports):
     return needed, set(labels)
 
 
+def export_names(text, cpu, conditional=False):
+    names = set()
+    enabled = [True]
+    in_exports = False
+    for line in text.splitlines():
+        stripped = line.strip()
+        if conditional:
+            directive = re.fullmatch(r"#(ifdef|ifndef)\s+(__aarch64__|__x86_64__)", stripped)
+            if directive:
+                positive = directive[2] == ("__aarch64__" if cpu == "aarch64" else "__x86_64__")
+                enabled.append(enabled[-1] and (positive if directive[1] == "ifdef" else not positive))
+                continue
+            if stripped == "#endif":
+                if len(enabled) == 1:
+                    raise ValueError("Unmatched source-export #endif")
+                enabled.pop()
+                continue
+            if re.match(r"#\s*(?:if|ifdef|ifndef|else|elif|endif)\b", stripped):
+                raise ValueError("Unsupported source-export conditional")
+        if not enabled[-1]:
+            continue
+        line = line.split("#", 1)[0].strip()
+        if not line:
+            continue
+        if not in_exports:
+            if line.lower() == "exports":
+                in_exports = True
+            continue
+        name = re.split(r"\s|=", line, maxsplit=1)[0]
+        if not re.fullmatch(r"[A-Za-z_.$?@][\w.$?@]*", name):
+            raise ValueError(f"Malformed exported name: {name}")
+        if name in names:
+            raise ValueError(f"Duplicate exported name: {name}")
+        names.add(name)
+    if len(enabled) != 1:
+        raise ValueError("Unterminated source-export conditional")
+    if not in_exports or not names:
+        raise ValueError("Missing source or generated export list")
+    return names
+
+
 def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--source", type=Path, required=True)
@@ -89,6 +130,7 @@ def main():
     source = args.source.resolve(strict=True)
     generator = source / "winsup/cygwin/scripts/gendef"
     exports = source / "winsup/cygwin/cygwin.din"
+    expected_exports = export_names(exports.read_text(), args.cpu, conditional=True)
     offsets = args.offsets.resolve(strict=True)
     if digest(offsets) != args.offsets_sha256:
         raise ValueError("TLS offsets differ from the explicitly selected source/build cohort")
@@ -115,7 +157,10 @@ def main():
         assembly = out / "sigfe.s"
         if not assembly.is_file() or not assembly.stat().st_size:
             raise ValueError("Signal generator produced no assembly")
-        needed, labels = validate_assembly(assembly.read_text(), (out / "runtime.def").read_text())
+        definition = (out / "runtime.def").read_text()
+        if export_names(definition, args.cpu) != expected_exports:
+            raise ValueError("Generated export list differs from the selected source")
+        needed, labels = validate_assembly(assembly.read_text(), definition)
         for path, expected in before.items():
             if identity(Path(path)) != expected:
                 raise ValueError(f"Source input changed during generation: {path}")
@@ -123,6 +168,7 @@ def main():
             raise ValueError("Working TLS offsets changed during generation")
         report.update(status="signal-source-generation-complete-not-runtime-qualified",
                       export_trampolines=len(needed), generated_labels=len(labels),
+                      source_exports=len(expected_exports),
                       outputs={p.name: identity(p) for p in (assembly, out / "runtime.def", out / "tlsoffsets")},
                       limits="Generation and export coverage only. Assembly, linked runtime and native signal semantics require separate evidence.")
     finally:
