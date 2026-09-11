@@ -74,11 +74,15 @@ An assembly or static import audit is not an admission verdict.
     producer/admission receipt JSONs and their restrictions travel in
     `provenance.json`; a receipt hash alone is not substituted for its contents.
 11. `verify_handoff.py --archive ZIP --receipt RECEIPT.json --receipt-sha256 SHA
-    --output NEW-OUTPUT --pwsh NATIVE-PWSH` checks the final archive and every
+    --output NEW-OUTPUT --pwsh NATIVE-PWSH --ssh-driver FIXTURE
+    --ssh-driver-manifest FIXTURE.json --ssh-driver-manifest-sha256 FIXTURE-SHA`
+    checks the final archive and every
     extracted file, requires archive-supplied runtime directories, runs the
     extracted `recreate.ps1` with the shipped Python, and compares ZIP bytes.
-    It then executes all twelve real cases and the console launcher from the
-    newly extracted spaced path. Its detached result binds final-ZIP custody;
+    It then executes all twelve real cases, the console launcher and encrypted
+    Git SSH clone/fetch from the newly extracted spaced path. The separate
+    fixture must match its complete manifest before and after execution.
+    Its detached result binds final-ZIP custody;
     it does not rewrite the earlier independent payload/SSH/module receipts.
 
 The first-artifact filename is

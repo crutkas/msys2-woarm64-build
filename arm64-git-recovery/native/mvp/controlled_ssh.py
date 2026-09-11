@@ -79,7 +79,9 @@ async def exercise(client, driver, output, bash=None, git=None):
         await require_git("source-user", ["-C", source_repo, "config", "user.name", "Native SSH fixture"])
         await require_git("source-email", ["-C", source_repo, "config", "user.email", "native-ssh@example.invalid"])
         (source_repo / "payload.txt").write_text("native Git over encrypted SSH\n", encoding="utf-8")
-        await require_git("source-add", ["-C", source_repo, "add", "payload.txt"])
+        (source_repo / "binary.bin").write_bytes(secrets.token_bytes(131072))
+        binary_sha256 = sha256(source_repo / "binary.bin")
+        await require_git("source-add", ["-C", source_repo, "add", "payload.txt", "binary.bin"])
         await require_git("source-commit", ["-C", source_repo, "commit", "-m", "isolated native SSH fixture"])
         first_head = await require_git("source-head", ["-C", source_repo, "rev-parse", "HEAD"])
         await require_git("source-bare", ["clone", "--bare", source_repo, served_repo])
@@ -130,7 +132,6 @@ async def exercise(client, driver, output, bash=None, git=None):
             try:
                 code = await asyncio.wait_for(child.wait(), 60)
                 await asyncio.gather(*outbound)
-                process.exit(code)
             finally:
                 if child.returncode is None:
                     child.kill()
@@ -143,6 +144,7 @@ async def exercise(client, driver, output, bash=None, git=None):
                         task.cancel()
                     with contextlib.suppress(asyncio.CancelledError):
                         await task
+            process.exit(code)
             return
         if process.command != "prove " + nonce:
             events.append({"event": "rejected_command", "command": process.command})
@@ -205,8 +207,12 @@ async def exercise(client, driver, output, bash=None, git=None):
                 raise ArtifactError("Real Git clone over the native SSH client failed")
             clone_head = await require_git("clone-head", ["-C", clone, "rev-parse", "HEAD"])
             await require_git("clone-fsck", ["-C", clone, "fsck", "--full"])
-            cases.append({"name": "git-encrypted-clone", "raw_exit": code, "passed": clone_head == first_head,
-                          "expected_head": first_head.decode("ascii"), "observed_head": clone_head.decode("ascii")})
+            clone_binary_sha256 = sha256(clone / "binary.bin")
+            cases.append({"name": "git-encrypted-clone", "raw_exit": code,
+                          "passed": clone_head == first_head and clone_binary_sha256 == binary_sha256,
+                          "expected_head": first_head.decode("ascii"), "observed_head": clone_head.decode("ascii"),
+                          "binary_bytes": 131072, "expected_binary_sha256": binary_sha256,
+                          "observed_binary_sha256": clone_binary_sha256})
             (source_repo / "payload.txt").write_text("second native SSH commit\n", encoding="utf-8")
             await require_git("source-second-commit", ["-C", source_repo, "commit", "-am", "isolated fetch update"])
             second_head = await require_git("source-second-head", ["-C", source_repo, "rev-parse", "HEAD"])

@@ -64,18 +64,27 @@ def main():
     parser.add_argument("--receipt-sha256", required=True)
     parser.add_argument("--output", type=Path, required=True)
     parser.add_argument("--pwsh", type=Path, required=True)
+    parser.add_argument("--ssh-driver", type=Path, required=True)
+    parser.add_argument("--ssh-driver-manifest", type=Path, required=True)
+    parser.add_argument("--ssh-driver-manifest-sha256", required=True)
     args = parser.parse_args()
     archive, output = args.archive.resolve(), args.output.resolve()
     if output.exists():
         raise ArtifactError("Final archive readback requires a fresh output directory")
     receipt = bound_json({"path": str(args.receipt), "sha256": args.receipt_sha256})
     expected = read_archive(archive, receipt)
+    fixture_manifest = bound_json({"path": str(args.ssh_driver_manifest),
+                                  "sha256": args.ssh_driver_manifest_sha256})["files"]
+    fixture_before = inventory(args.ssh_driver)
+    if {name: {key: row[key] for key in ("size", "sha256")} for name, row in fixture_before.items()} != fixture_manifest:
+        raise ArtifactError("The private SSH fixture differs from its exact manifest")
     output.mkdir(parents=True)
     moved = output / "fresh moved Git Bash extraction"
     report = {"schema": 1, "passed": False, "archive_sha256": receipt["sha256"],
               "receipt_sha256": args.receipt_sha256, "manifest_sha256": receipt["manifest_sha256"],
+              "ssh_fixture_manifest_sha256": args.ssh_driver_manifest_sha256,
               "source": receipt["source"], "steps": [],
-              "scope": "Fresh final-ZIP readback, byte-identical shipped-archiver recreation and actual moved native behavior/launcher; separate SSH and module proofs remain byte-bound prior evidence"}
+              "scope": "Fresh final-ZIP readback, byte-identical shipped-archiver recreation and actual moved native behavior/launcher/encrypted Git SSH; prior module checkpoints remain separately byte-bound"}
     try:
         extract(archive, moved, expected)
         for name in ("usr/bin/bash.exe", "usr/bin/msys-2.0.dll", "usr/bin/ssh.exe",
@@ -96,7 +105,11 @@ def main():
             ("behavior", [sys.executable, "-B", tools / "run_behavior.py",
                           "--root", moved, "--output", output / "behavior"], 660),
             ("launcher", [sys.executable, "-B", tools / "check_launcher.py",
-                          "--root", moved, "--output", output / "launcher"], 60)]
+                          "--root", moved, "--output", output / "launcher"], 60),
+            ("ssh", [sys.executable, "-B", tools / "controlled_ssh.py",
+                     "--client", moved / "usr/bin/ssh.exe", "--bash", moved / "usr/bin/bash.exe",
+                     "--git", moved / "mingwarm64/bin/git.exe", "--test-driver", args.ssh_driver,
+                     "--output", output / "ssh", "--pwsh", args.pwsh], 300)]
         for name, command, timeout in commands:
             with (output / f"{name}.log").open("xb") as log:
                 result = run(command, cwd=output, env=environment, log=log, timeout=timeout)
@@ -115,11 +128,14 @@ def main():
         report["extraction_unchanged"] = inventory(moved) == expected
         report["archive_unchanged"] = sha256(archive) == receipt["sha256"]
         report["receipt_unchanged"] = sha256(args.receipt) == args.receipt_sha256
+        report["ssh_fixture_unchanged"] = inventory(args.ssh_driver) == fixture_before
+        report["ssh_fixture_manifest_unchanged"] = sha256(args.ssh_driver_manifest) == args.ssh_driver_manifest_sha256
         report["file_count"] = len(expected)
         report["arm64_pe_count"] = sum(row["machine"] == "0xAA64" for row in expected.values())
         report["deterministic_recreation"] = True
         report["passed"] = all(report[key] for key in
-                               ("extraction_unchanged", "archive_unchanged", "receipt_unchanged"))
+                               ("extraction_unchanged", "archive_unchanged", "receipt_unchanged",
+                                "ssh_fixture_unchanged", "ssh_fixture_manifest_unchanged"))
     finally:
         write_json(output / "result.json", report)
     print(json.dumps(report))
