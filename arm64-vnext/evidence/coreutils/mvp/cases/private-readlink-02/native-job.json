@@ -1,0 +1,51 @@
+{
+  "parent_pid": 2200,
+  "parent_raw_exit": 0,
+  "timed_out": false,
+  "created_processes": 5,
+  "observed_processes": 5,
+  "observation_count_matches": true,
+  "unobserved_processes": [],
+  "unresolved_processes": [],
+  "native_target_exits": [
+    {
+      "pid": 11752,
+      "created": 134335712665497821,
+      "executable": "C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe",
+      "raw_exit": 0,
+      "parent_pid": 5204,
+      "parent_created": 134335712661935232
+    },
+    {
+      "pid": 24016,
+      "created": 134335712667915570,
+      "executable": "C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\ln.exe",
+      "raw_exit": 0,
+      "parent_pid": 11752,
+      "parent_created": 134335712665497821
+    },
+    {
+      "pid": 15724,
+      "created": 134335712674628128,
+      "executable": "C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\readlink.exe",
+      "raw_exit": 0,
+      "parent_pid": 5204,
+      "parent_created": 134335712661935232
+    },
+    {
+      "pid": 5204,
+      "created": 134335712661935232,
+      "executable": "C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe",
+      "raw_exit": 0,
+      "parent_pid": 2200,
+      "parent_created": 134335712659237118
+    }
+  ],
+  "unrelayed_high_exits": [],
+  "expected_probe_exits": [],
+  "runtime_exit_relays": [],
+  "image_query_recoveries": [],
+  "native_target_root": "\\device\\harddiskvolume3\\ag-exit-e138-01\\coreutils-20260910-01",
+  "native_target_root_error": null,
+  "passed": true
+}

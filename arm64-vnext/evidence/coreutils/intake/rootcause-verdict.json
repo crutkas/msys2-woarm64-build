@@ -1,0 +1,75 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T07:43:15.7698017Z",
+  "status": "ROOT-CAUSE-EVIDENCE-ACCEPTED-NO-ADMISSION-CHANGE",
+  "provider": "nativeMSYS Coreutils limited MVP",
+  "evidence": {
+    "result": {
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\result.json",
+      "sha256": "4131eddd53bcc4ad53ffc4a6b0ec73cdf578d4579cee7519368547cbb9eb3e9d"
+    },
+    "causes": {
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\causes.json",
+      "sha256": "46d85ebbb726b65dfca1bd2f6fa61814c4a2db066e0f72598f7d148769273635"
+    },
+    "analysisCommit": "5b28927d5b974d5bb63ce0cf061aaa2b42505dea"
+  },
+  "originalTotals": {
+    "PASS": 48,
+    "FAIL": 41,
+    "SKIP": 23,
+    "ERROR": 4
+  },
+  "primaryClassification": {
+    "argv0-diagnostics": "17 FAIL",
+    "permission-model": "14 FAIL",
+    "runtime-views-and-pids": "6 FAIL + 2 ERROR",
+    "invalid-byte-argument": "1 FAIL",
+    "compound-help-dependencies": "1 FAIL",
+    "residual-launch-proof-missing": "2 FAIL",
+    "environment-size": "1 ERROR",
+    "unsupported-preload-test-api": "1 ERROR"
+  },
+  "acceptedControls": {
+    "unchangedShellReplays": {
+      "tests": 32,
+      "raw0": 19,
+      "raw1": 12,
+      "helpBoundedIncomplete": 1
+    },
+    "aclPrivateControl": {
+      "tests": 13,
+      "raw0": 6,
+      "raw1": 7,
+      "globalMountChanged": false
+    },
+    "genuinePermissionGap": "Reproduced below Coreutils at the MSYS/Windows POSIX API boundary",
+    "validation": {
+      "checks": 9,
+      "errors": 0,
+      "failures": 0,
+      "logSha256": "7eb67be89b2a93e417af1facdf1c9d28ce7c5734e219696dcc9239da4849f516"
+    },
+    "drain": {
+      "runTrees": 82,
+      "allDrained": true,
+      "maximumJobsUsed": 2,
+      "coverageGapsRetained": 20
+    }
+  },
+  "boundaries": [
+    "No full Coreutils qualification or provider admission",
+    "Limited utilities export remains unchanged",
+    "No binary/runtime/source semantic change admitted",
+    "No NLS translation cause evidenced; C locale was forced and CLANGARM64 gettext is a different ABI",
+    "No line-ending-only root cause evidenced",
+    "help-version.sh remains bounded-incomplete because genuine AA64 nativeMSYS gzip is missing",
+    "seven POSIX delete/search cases remain genuine failures under ACL control",
+    "two secondary launch cases remain unconfirmed",
+    "xargs environment-budget and RTLD_NEXT test-facility errors remain unresolved"
+  ],
+  "audit": {
+    "changed": false,
+    "rerun": false
+  }
+}

@@ -1,0 +1,963 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T04:02:27.0203698Z",
+  "authority": "nativeMSYS provider intake",
+  "status": "admitted-limited-native-utilities-only-final",
+  "exportRole": "nativeMSYS-limited-Git-Bash-utility-projections",
+  "exportRoot": "C:\\ap11-native-provider-intake\\native-utilities-limited-mvp-v1",
+  "verdict": {
+    "limitedArtifactProjection": "ADMITTED",
+    "fullCoreutilsProvider": "NOT_ADMITTED",
+    "fullFindutilsProvider": "NOT_ADMITTED",
+    "fullSedProvider": "NOT_ADMITTED"
+  },
+  "consumptionAuthorization": {
+    "allowed": "Consume exact package archives or exact package-owned payload paths only, under the documented limited scopes.",
+    "mayClaimFullCoreutils": false,
+    "mayAddProvides": false,
+    "mayNormalizeExitCodes": false,
+    "packageManagerTransactionClaimed": false,
+    "requiredEnvironment": {
+      "LC_ALL": "C",
+      "MSYS": "winsymlinks:sys",
+      "privateFstab": "noacl"
+    },
+    "withheld": [
+      "chmod",
+      "stty",
+      "false"
+    ],
+    "commands": {
+      "coreutils": [
+        "cat",
+        "cp",
+        "mkdir",
+        "mv",
+        "rm",
+        "rmdir",
+        "ln",
+        "readlink",
+        "pwd",
+        "env",
+        "uname",
+        "dd",
+        "wc",
+        "sort",
+        "uniq",
+        "head",
+        "tail",
+        "cut",
+        "tr",
+        "sleep",
+        "true",
+        "test",
+        "stat",
+        "touch",
+        "basename",
+        "dirname",
+        "tee",
+        "printf",
+        "expr",
+        "install",
+        "ls",
+        "timeout",
+        "realpath",
+        "od"
+      ],
+      "findutils": [
+        "find",
+        "xargs"
+      ],
+      "sed": [
+        "sed"
+      ]
+    }
+  },
+  "packages": [
+    {
+      "path": "packages/coreutils-mvp-projection-8.32-1-aarch64.pkg.tar.zst",
+      "sha256": "f6078350a4b3bf39e7d59c902a2e43090157ed953ca69e98c007ea7538197f64",
+      "bytes": 4094847
+    },
+    {
+      "path": "packages/findutils-mvp-projection-4.11.0-1-aarch64.pkg.tar.zst",
+      "sha256": "176e45cad1d1c6ed628439831da6020d792709e0e002140d7e9fa509d619002e",
+      "bytes": 937141
+    },
+    {
+      "path": "packages/sed-mvp-projection-4.9-1-aarch64.pkg.tar.zst",
+      "sha256": "282448cfdf8ab5e4d74d753091ac0ccb7e03a014939787d525e371701ba30c4a",
+      "bytes": 524765
+    }
+  ],
+  "payload": {
+    "fileCount": 43,
+    "executableCount": 37,
+    "files": [
+      {
+        "path": "payload/usr/bin/basename.exe",
+        "sha256": "555dd2d7ff68c6978c91259eb50c25bd5fd921c89c0225b25f934015def204d8",
+        "bytes": 272138,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/cat.exe",
+        "sha256": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+        "bytes": 299734,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/cp.exe",
+        "sha256": "fc098f58a9c694c0bd7f27b332487004a226ef182afc8870ab4d0234f37e8633",
+        "bytes": 997562,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/cut.exe",
+        "sha256": "ddc366364e404470c4253cbb87b06dc5480ffebeab62062d369bde117e97bdbe",
+        "bytes": 350977,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/dd.exe",
+        "sha256": "10febd20ff3bdc540ee76281db0400123364fd5dd09f48fbfa6d574a94f144f1",
+        "bytes": 629465,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/dirname.exe",
+        "sha256": "682b664af253fea80a19545633dfd879820d5205e8a556d3cc0dc0606b309d86",
+        "bytes": 264125,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/env.exe",
+        "sha256": "e33972b30a98d7385e685e47edf9d1beb6c25d4157366b8fff0b335313452540",
+        "bytes": 312821,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/expr.exe",
+        "sha256": "efb3dd9ce46326db13449565067bdd283215f831f8c1ece1ea7cbae25b1a9b28",
+        "bytes": 824398,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/find.exe",
+        "sha256": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+        "bytes": 2271736,
+        "projection": "findutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/head.exe",
+        "sha256": "35d33aa9730b18288ee4bdddd12228ea35cc0a119ad9c15971f5f0e04ee713e9",
+        "bytes": 344112,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/install.exe",
+        "sha256": "43d40eb1816457a5240f28e3e9f6a52b045c16ce923c1baee49dec2052209c75",
+        "bytes": 1270634,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/ln.exe",
+        "sha256": "1f909dc2707b04128073250f8b00487299027d854f5e54f9b051e24caf26db0d",
+        "bytes": 686601,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/ls.exe",
+        "sha256": "9641fdeeb6d88a10c5eee9c4fc4e6efaa1e297bea0e96559816b66722fbfdfd3",
+        "bytes": 1155680,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/mkdir.exe",
+        "sha256": "2768035ab6b0c14454d576c0c734259e755b7128bd9ddfabdfe01e705a14b584",
+        "bytes": 538327,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/mv.exe",
+        "sha256": "04122237be637f72787cc88e7ef766086685dcb28ad3c17dad7e7e725775e835",
+        "bytes": 1104224,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/od.exe",
+        "sha256": "9a7dbcf7f2c3edb195adc0a874f1fdd9dcc92379439ed379401b0d3865eccdad",
+        "bytes": 619476,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/printf.exe",
+        "sha256": "25eeaf83b800c53963ae9f54be0542bb9e07026d6b4ad564df9b75b0c499186d",
+        "bytes": 530635,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/pwd.exe",
+        "sha256": "ab4663b896ed2fb93713c30e1dd6f178b9ebac35bb3d6786c918fecf9221c8f9",
+        "bytes": 301337,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/readlink.exe",
+        "sha256": "a14f6ba1e918f793840c35cdda37de457c4e133269ae4540db5d3d088af779e3",
+        "bytes": 402292,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/realpath.exe",
+        "sha256": "2549d40ebaee40d48abc42f7df3866f19ca6d2978b1f4e4c2eebe69f2d697702",
+        "bytes": 420796,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/rm.exe",
+        "sha256": "ce6b95b18aae78614e7e3c01b8979443a28a7dcd800f28af60971bb3ef5f5915",
+        "bytes": 512741,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/rmdir.exe",
+        "sha256": "a8fbcc39798568ce21a1469ca85dda5e137548d0e11088bfa7d60d5b82c369a3",
+        "bytes": 465639,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/sed.exe",
+        "sha256": "2b8e9e72b18742a60a04a6ba926d3e17aae977e51de3a15ef4947d0db1f4f12f",
+        "bytes": 1291003,
+        "projection": "sed-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/sleep.exe",
+        "sha256": "51af3baa162235b06874dddc2d159827a0ff83c440634f704933a6626043d1a5",
+        "bytes": 284311,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/sort.exe",
+        "sha256": "797339fb9ce94fc110731eca94d5302f24fabb9e64bbb88035f4bad16854072b",
+        "bytes": 855795,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/stat.exe",
+        "sha256": "da11e84a237d114452506987f98cb52b1877206e6c3387c1772da5181b915e6c",
+        "bytes": 738488,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/tail.exe",
+        "sha256": "e876a076786e5c2f9e7dfd6f28f5a5b8c3d33ffd7ad29430337be7dbc5d976a2",
+        "bytes": 428741,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/tee.exe",
+        "sha256": "76ed308633bff00c978e9bdb036a1127d19cbbdf9793cc25ecdb36b989896a9b",
+        "bytes": 299048,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/test.exe",
+        "sha256": "7a62231de7877a31bffb9824db645b546d3936e178e15b4cca1602267798ccb2",
+        "bytes": 483191,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/timeout.exe",
+        "sha256": "9eb864cfebca0d44a35a2394d62cd132c1105e02d3da6ee58594a4b0a19ee9e8",
+        "bytes": 298084,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/touch.exe",
+        "sha256": "51a7e85431c0da7a50a3300923d4b498b5ca87b3334dadea4c2ed6d093cd898e",
+        "bytes": 689751,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/tr.exe",
+        "sha256": "eb0736daa69c5cff53e79e2b166b112dbd19bec093e5122a03d7c9726b977d3a",
+        "bytes": 356226,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/true.exe",
+        "sha256": "73a9751ec777db9645f5daddfa2a59310a2ff020ab20e454a5159dbb214806d7",
+        "bytes": 249539,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/uname.exe",
+        "sha256": "fc858cec8aeadf51bb75b22a8ed60a88cc180bd29ce814ebe0df34c88a5f825c",
+        "bytes": 262308,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/uniq.exe",
+        "sha256": "0e3da1b1e6117a686aa4b3c14d163b152d543e5cdb34e515e3fd04ae2a1c8f0a",
+        "bytes": 345864,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/wc.exe",
+        "sha256": "981f7e0e8586ac2308b464208e705ab025c1c3fff57c03fc4d0a41dceec9e6f0",
+        "bytes": 371937,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/bin/xargs.exe",
+        "sha256": "307e01d1dede595d0e27d4102bfa934dab5226e3fb8adca7f5c9366560d861f9",
+        "bytes": 521419,
+        "projection": "findutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/share/coreutils-mvp-projection/scope.json",
+        "sha256": "0b26e5dee515c79ecdc828a380c509607f3747fce769fac210232d376c6f3813",
+        "bytes": 1868,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/share/findutils-mvp-projection/scope.json",
+        "sha256": "237839dddf0b16de6a2c232b1f4a15872cf9583eff8389d5a5012fb3c796d8fc",
+        "bytes": 966,
+        "projection": "findutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/share/licenses/coreutils-mvp-projection/COPYING",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "bytes": 35149,
+        "projection": "coreutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/share/licenses/findutils-mvp-projection/COPYING",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "bytes": 35149,
+        "projection": "findutils-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/share/licenses/sed-mvp-projection/COPYING",
+        "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+        "bytes": 35149,
+        "projection": "sed-mvp-projection",
+        "ownershipMatches": true
+      },
+      {
+        "path": "payload/usr/share/sed-mvp-projection/scope.json",
+        "sha256": "2f95db13e6ca41379e242e6b4a9036be236a2e50cad61cd5d6bc0deac0d8a1ca",
+        "bytes": 943,
+        "projection": "sed-mvp-projection",
+        "ownershipMatches": true
+      }
+    ],
+    "machine": "0xAA64",
+    "imports": [
+      "kernel32.dll",
+      "msys-2.0.dll",
+      "msys-gmp-10.dll",
+      "msys-iconv-2.dll",
+      "msys-intl-8.dll"
+    ],
+    "x64OrBootstrapPEs": 0,
+    "privatePathClassifications": [
+      {
+        "path": "payload/usr/bin/basename.exe",
+        "hitCount": 20,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/cat.exe",
+        "hitCount": 22,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/cp.exe",
+        "hitCount": 90,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/cut.exe",
+        "hitCount": 24,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/dd.exe",
+        "hitCount": 33,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/dirname.exe",
+        "hitCount": 18,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/env.exe",
+        "hitCount": 18,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/expr.exe",
+        "hitCount": 26,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/find.exe",
+        "hitCount": 5,
+        "classification": "C-locale-only-operational-NLS-default-plus-source-debug-provenance",
+        "operationalPrivateLocale": [
+          "C:/ag-bash-e138-01/host-bootstrap-02/msys64/usr/share/locale"
+        ]
+      },
+      {
+        "path": "payload/usr/bin/head.exe",
+        "hitCount": 25,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/install.exe",
+        "hitCount": 106,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/ln.exe",
+        "hitCount": 65,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/ls.exe",
+        "hitCount": 64,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/mkdir.exe",
+        "hitCount": 37,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/mv.exe",
+        "hitCount": 98,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/od.exe",
+        "hitCount": 34,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/printf.exe",
+        "hitCount": 30,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/pwd.exe",
+        "hitCount": 21,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/readlink.exe",
+        "hitCount": 32,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/realpath.exe",
+        "hitCount": 33,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/rm.exe",
+        "hitCount": 40,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/rmdir.exe",
+        "hitCount": 27,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/sed.exe",
+        "hitCount": 3,
+        "classification": "C-locale-only-operational-NLS-default-plus-source-debug-provenance",
+        "operationalPrivateLocale": [
+          "C:/ag-bash-e138-01/host-bootstrap-02/msys64/usr/share/locale"
+        ]
+      },
+      {
+        "path": "payload/usr/bin/sleep.exe",
+        "hitCount": 23,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/sort.exe",
+        "hitCount": 57,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/stat.exe",
+        "hitCount": 47,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/tail.exe",
+        "hitCount": 34,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/tee.exe",
+        "hitCount": 22,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/test.exe",
+        "hitCount": 25,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/timeout.exe",
+        "hitCount": 22,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/touch.exe",
+        "hitCount": 33,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/tr.exe",
+        "hitCount": 22,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/true.exe",
+        "hitCount": 16,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/uname.exe",
+        "hitCount": 17,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/uniq.exe",
+        "hitCount": 25,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/wc.exe",
+        "hitCount": 26,
+        "classification": "source-debug-include-provenance; moved behavior passed; operational locale is /usr/share/locale",
+        "operationalPrivateLocale": []
+      },
+      {
+        "path": "payload/usr/bin/xargs.exe",
+        "hitCount": 5,
+        "classification": "C-locale-only-operational-NLS-default-plus-source-debug-provenance",
+        "operationalPrivateLocale": [
+          "C:/ag-bash-e138-01/host-bootstrap-02/msys64/usr/share/locale"
+        ]
+      }
+    ]
+  },
+  "runtimeClosure": {
+    "msys2Runtime": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "msysGmp10": "ca28fb7fb940809c1db24a92ffb65c6974a0ed482a3c1d3e909c113e57464041",
+    "msysIconv2": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+    "msysIntl8": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+    "artifactMustSourceDependenciesFromExistingAdmittedProviders": true
+  },
+  "qualification": {
+    "producerResult": "evidence/qualification-result.json",
+    "producerResultSha256": "7716bc2e291ac0f45ecc21a4a7bdc804c292766b00d14565dc70a240938bacf5",
+    "fileOwnershipSha256": "f8ce9739710d25dffc3b3378c94552ae055bb500afebfb19ac3c51e3b409c4d9",
+    "independentReplay": "evidence/independent-replay.json",
+    "independentReplaySha256": "e1237d61ebaedc402a1330d756e504cbb22602bf4594361510025ea43bb3e4ae",
+    "producerCoverage": "37 commands plus pipeline passed in private and moved roots; 448/448 native observer generations and 7 evidence invariant groups passed",
+    "independentCoverage": "cat, cp, env, mkdir, rm, sort, uniq, find, sed, xargs passed from a fresh extracted root against exact runtime closure"
+  },
+  "limitations": [
+    "All 37 executables retain absolute producer source/build/include paths. For the 34 Coreutils commands these are classified as source/debug provenance and moved-root controls pass; they still prevent any reproducible-build claim.",
+    "find, xargs and sed embed the private bootstrap locale directory and are admitted only with LC_ALL=C; translated diagnostics/NLS relocation are not admitted.",
+    "Historical Coreutils suite is incomplete: 48 PASS, 41 FAIL, 23 SKIP, 4 ERROR.",
+    "No original native13 PKGBUILD or complete compiler-input manifest exists.",
+    "chmod mode semantics, stty PTY/conhost closure and false negative exit are withheld rather than normalized.",
+    "No full provider, full suite, arbitrary locale, package provides, or strict package-manager transaction is claimed."
+  ],
+  "sourceProvenance": {
+    "coreutilsSourceArchiveSha256": "4458d8de7849df44ccab15e16b1548b285224dbba5f08fac070c1c0e0bcc4cfa",
+    "findutilsSourceArchiveSha256": "bfd19cb06cc71f3352d567e90284d8cdac02ac89774bbeadf0b533b0c11432fd",
+    "sedSourceArchiveSha256": "6e226b732e1cd739464ad6862bd1a1aba42d7982922da7a53519631d24975181",
+    "recipesSha256": "c7b82acb299e9d52f43d1f425073c3e07adbbfcf5f54be7fecc8b675ab363016",
+    "qualificationToolingCommit": "36339064525fa27372bdff5dcd4e31bbcb2d4a32",
+    "producerProvenance": "PARTIAL"
+  },
+  "exportInventory": [
+    {
+      "path": "evidence/file-ownership.json",
+      "sha256": "f8ce9739710d25dffc3b3378c94552ae055bb500afebfb19ac3c51e3b409c4d9",
+      "bytes": 22236
+    },
+    {
+      "path": "evidence/independent-replay.json",
+      "sha256": "e1237d61ebaedc402a1330d756e504cbb22602bf4594361510025ea43bb3e4ae",
+      "bytes": 2248
+    },
+    {
+      "path": "evidence/publication.json",
+      "sha256": "335fff1e5a51e5dea14fd8b846fc3d329491198f4b8fd91ce5d634052304afe8",
+      "bytes": 704
+    },
+    {
+      "path": "evidence/qualification-result.json",
+      "sha256": "7716bc2e291ac0f45ecc21a4a7bdc804c292766b00d14565dc70a240938bacf5",
+      "bytes": 310416
+    },
+    {
+      "path": "evidence/qualification-sources.json",
+      "sha256": "98db23261aaa7525ba6e97eb140d672ed9243f370cdee8484e29bb033951b812",
+      "bytes": 5893
+    },
+    {
+      "path": "packages/coreutils-mvp-projection-8.32-1-aarch64.pkg.tar.zst",
+      "sha256": "f6078350a4b3bf39e7d59c902a2e43090157ed953ca69e98c007ea7538197f64",
+      "bytes": 4094847
+    },
+    {
+      "path": "packages/findutils-mvp-projection-4.11.0-1-aarch64.pkg.tar.zst",
+      "sha256": "176e45cad1d1c6ed628439831da6020d792709e0e002140d7e9fa509d619002e",
+      "bytes": 937141
+    },
+    {
+      "path": "packages/sed-mvp-projection-4.9-1-aarch64.pkg.tar.zst",
+      "sha256": "282448cfdf8ab5e4d74d753091ac0ccb7e03a014939787d525e371701ba30c4a",
+      "bytes": 524765
+    },
+    {
+      "path": "payload/usr/bin/basename.exe",
+      "sha256": "555dd2d7ff68c6978c91259eb50c25bd5fd921c89c0225b25f934015def204d8",
+      "bytes": 272138
+    },
+    {
+      "path": "payload/usr/bin/cat.exe",
+      "sha256": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+      "bytes": 299734
+    },
+    {
+      "path": "payload/usr/bin/cp.exe",
+      "sha256": "fc098f58a9c694c0bd7f27b332487004a226ef182afc8870ab4d0234f37e8633",
+      "bytes": 997562
+    },
+    {
+      "path": "payload/usr/bin/cut.exe",
+      "sha256": "ddc366364e404470c4253cbb87b06dc5480ffebeab62062d369bde117e97bdbe",
+      "bytes": 350977
+    },
+    {
+      "path": "payload/usr/bin/dd.exe",
+      "sha256": "10febd20ff3bdc540ee76281db0400123364fd5dd09f48fbfa6d574a94f144f1",
+      "bytes": 629465
+    },
+    {
+      "path": "payload/usr/bin/dirname.exe",
+      "sha256": "682b664af253fea80a19545633dfd879820d5205e8a556d3cc0dc0606b309d86",
+      "bytes": 264125
+    },
+    {
+      "path": "payload/usr/bin/env.exe",
+      "sha256": "e33972b30a98d7385e685e47edf9d1beb6c25d4157366b8fff0b335313452540",
+      "bytes": 312821
+    },
+    {
+      "path": "payload/usr/bin/expr.exe",
+      "sha256": "efb3dd9ce46326db13449565067bdd283215f831f8c1ece1ea7cbae25b1a9b28",
+      "bytes": 824398
+    },
+    {
+      "path": "payload/usr/bin/find.exe",
+      "sha256": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+      "bytes": 2271736
+    },
+    {
+      "path": "payload/usr/bin/head.exe",
+      "sha256": "35d33aa9730b18288ee4bdddd12228ea35cc0a119ad9c15971f5f0e04ee713e9",
+      "bytes": 344112
+    },
+    {
+      "path": "payload/usr/bin/install.exe",
+      "sha256": "43d40eb1816457a5240f28e3e9f6a52b045c16ce923c1baee49dec2052209c75",
+      "bytes": 1270634
+    },
+    {
+      "path": "payload/usr/bin/ln.exe",
+      "sha256": "1f909dc2707b04128073250f8b00487299027d854f5e54f9b051e24caf26db0d",
+      "bytes": 686601
+    },
+    {
+      "path": "payload/usr/bin/ls.exe",
+      "sha256": "9641fdeeb6d88a10c5eee9c4fc4e6efaa1e297bea0e96559816b66722fbfdfd3",
+      "bytes": 1155680
+    },
+    {
+      "path": "payload/usr/bin/mkdir.exe",
+      "sha256": "2768035ab6b0c14454d576c0c734259e755b7128bd9ddfabdfe01e705a14b584",
+      "bytes": 538327
+    },
+    {
+      "path": "payload/usr/bin/mv.exe",
+      "sha256": "04122237be637f72787cc88e7ef766086685dcb28ad3c17dad7e7e725775e835",
+      "bytes": 1104224
+    },
+    {
+      "path": "payload/usr/bin/od.exe",
+      "sha256": "9a7dbcf7f2c3edb195adc0a874f1fdd9dcc92379439ed379401b0d3865eccdad",
+      "bytes": 619476
+    },
+    {
+      "path": "payload/usr/bin/printf.exe",
+      "sha256": "25eeaf83b800c53963ae9f54be0542bb9e07026d6b4ad564df9b75b0c499186d",
+      "bytes": 530635
+    },
+    {
+      "path": "payload/usr/bin/pwd.exe",
+      "sha256": "ab4663b896ed2fb93713c30e1dd6f178b9ebac35bb3d6786c918fecf9221c8f9",
+      "bytes": 301337
+    },
+    {
+      "path": "payload/usr/bin/readlink.exe",
+      "sha256": "a14f6ba1e918f793840c35cdda37de457c4e133269ae4540db5d3d088af779e3",
+      "bytes": 402292
+    },
+    {
+      "path": "payload/usr/bin/realpath.exe",
+      "sha256": "2549d40ebaee40d48abc42f7df3866f19ca6d2978b1f4e4c2eebe69f2d697702",
+      "bytes": 420796
+    },
+    {
+      "path": "payload/usr/bin/rm.exe",
+      "sha256": "ce6b95b18aae78614e7e3c01b8979443a28a7dcd800f28af60971bb3ef5f5915",
+      "bytes": 512741
+    },
+    {
+      "path": "payload/usr/bin/rmdir.exe",
+      "sha256": "a8fbcc39798568ce21a1469ca85dda5e137548d0e11088bfa7d60d5b82c369a3",
+      "bytes": 465639
+    },
+    {
+      "path": "payload/usr/bin/sed.exe",
+      "sha256": "2b8e9e72b18742a60a04a6ba926d3e17aae977e51de3a15ef4947d0db1f4f12f",
+      "bytes": 1291003
+    },
+    {
+      "path": "payload/usr/bin/sleep.exe",
+      "sha256": "51af3baa162235b06874dddc2d159827a0ff83c440634f704933a6626043d1a5",
+      "bytes": 284311
+    },
+    {
+      "path": "payload/usr/bin/sort.exe",
+      "sha256": "797339fb9ce94fc110731eca94d5302f24fabb9e64bbb88035f4bad16854072b",
+      "bytes": 855795
+    },
+    {
+      "path": "payload/usr/bin/stat.exe",
+      "sha256": "da11e84a237d114452506987f98cb52b1877206e6c3387c1772da5181b915e6c",
+      "bytes": 738488
+    },
+    {
+      "path": "payload/usr/bin/tail.exe",
+      "sha256": "e876a076786e5c2f9e7dfd6f28f5a5b8c3d33ffd7ad29430337be7dbc5d976a2",
+      "bytes": 428741
+    },
+    {
+      "path": "payload/usr/bin/tee.exe",
+      "sha256": "76ed308633bff00c978e9bdb036a1127d19cbbdf9793cc25ecdb36b989896a9b",
+      "bytes": 299048
+    },
+    {
+      "path": "payload/usr/bin/test.exe",
+      "sha256": "7a62231de7877a31bffb9824db645b546d3936e178e15b4cca1602267798ccb2",
+      "bytes": 483191
+    },
+    {
+      "path": "payload/usr/bin/timeout.exe",
+      "sha256": "9eb864cfebca0d44a35a2394d62cd132c1105e02d3da6ee58594a4b0a19ee9e8",
+      "bytes": 298084
+    },
+    {
+      "path": "payload/usr/bin/touch.exe",
+      "sha256": "51a7e85431c0da7a50a3300923d4b498b5ca87b3334dadea4c2ed6d093cd898e",
+      "bytes": 689751
+    },
+    {
+      "path": "payload/usr/bin/tr.exe",
+      "sha256": "eb0736daa69c5cff53e79e2b166b112dbd19bec093e5122a03d7c9726b977d3a",
+      "bytes": 356226
+    },
+    {
+      "path": "payload/usr/bin/true.exe",
+      "sha256": "73a9751ec777db9645f5daddfa2a59310a2ff020ab20e454a5159dbb214806d7",
+      "bytes": 249539
+    },
+    {
+      "path": "payload/usr/bin/uname.exe",
+      "sha256": "fc858cec8aeadf51bb75b22a8ed60a88cc180bd29ce814ebe0df34c88a5f825c",
+      "bytes": 262308
+    },
+    {
+      "path": "payload/usr/bin/uniq.exe",
+      "sha256": "0e3da1b1e6117a686aa4b3c14d163b152d543e5cdb34e515e3fd04ae2a1c8f0a",
+      "bytes": 345864
+    },
+    {
+      "path": "payload/usr/bin/wc.exe",
+      "sha256": "981f7e0e8586ac2308b464208e705ab025c1c3fff57c03fc4d0a41dceec9e6f0",
+      "bytes": 371937
+    },
+    {
+      "path": "payload/usr/bin/xargs.exe",
+      "sha256": "307e01d1dede595d0e27d4102bfa934dab5226e3fb8adca7f5c9366560d861f9",
+      "bytes": 521419
+    },
+    {
+      "path": "payload/usr/share/coreutils-mvp-projection/scope.json",
+      "sha256": "0b26e5dee515c79ecdc828a380c509607f3747fce769fac210232d376c6f3813",
+      "bytes": 1868
+    },
+    {
+      "path": "payload/usr/share/findutils-mvp-projection/scope.json",
+      "sha256": "237839dddf0b16de6a2c232b1f4a15872cf9583eff8389d5a5012fb3c796d8fc",
+      "bytes": 966
+    },
+    {
+      "path": "payload/usr/share/licenses/coreutils-mvp-projection/COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "bytes": 35149
+    },
+    {
+      "path": "payload/usr/share/licenses/findutils-mvp-projection/COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "bytes": 35149
+    },
+    {
+      "path": "payload/usr/share/licenses/sed-mvp-projection/COPYING",
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "bytes": 35149
+    },
+    {
+      "path": "payload/usr/share/sed-mvp-projection/scope.json",
+      "sha256": "2f95db13e6ca41379e242e6b4a9036be236a2e50cad61cd5d6bc0deac0d8a1ca",
+      "bytes": 943
+    },
+    {
+      "path": "provenance/coreutils-scope.json",
+      "sha256": "0b26e5dee515c79ecdc828a380c509607f3747fce769fac210232d376c6f3813",
+      "bytes": 1868
+    },
+    {
+      "path": "provenance/coreutils-source-inventory.json",
+      "sha256": "f227f4535d4d111e6d799ea787b8b0949af4d3f98a1175f2ad32dd4bd326759c",
+      "bytes": 396763
+    },
+    {
+      "path": "provenance/findutils-scope.json",
+      "sha256": "237839dddf0b16de6a2c232b1f4a15872cf9583eff8389d5a5012fb3c796d8fc",
+      "bytes": 966
+    },
+    {
+      "path": "provenance/findutils-source-inventory.json",
+      "sha256": "f26389f09151b889380b872134e5a4a7a73097768d9af34a088336bb0122c66f",
+      "bytes": 499582
+    },
+    {
+      "path": "provenance/recipes.json",
+      "sha256": "c7b82acb299e9d52f43d1f425073c3e07adbbfcf5f54be7fecc8b675ab363016",
+      "bytes": 4170
+    },
+    {
+      "path": "provenance/sed-scope.json",
+      "sha256": "2f95db13e6ca41379e242e6b4a9036be236a2e50cad61cd5d6bc0deac0d8a1ca",
+      "bytes": 943
+    },
+    {
+      "path": "provenance/sed-source-inventory.json",
+      "sha256": "17fbb8eba2570a1089f0c412bee7ec9ded18b760ccb1de14ac1d055c95949ccb",
+      "bytes": 204265
+    }
+  ]
+}

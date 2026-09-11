@@ -1,0 +1,76 @@
+{
+  "candidate_only": true,
+  "commands": [
+    "cat",
+    "cp",
+    "mkdir",
+    "mv",
+    "rm",
+    "rmdir",
+    "ln",
+    "readlink",
+    "pwd",
+    "env",
+    "uname",
+    "dd",
+    "wc",
+    "sort",
+    "uniq",
+    "head",
+    "tail",
+    "cut",
+    "tr",
+    "sleep",
+    "true",
+    "test",
+    "stat",
+    "touch",
+    "basename",
+    "dirname",
+    "tee",
+    "printf",
+    "expr",
+    "install",
+    "ls",
+    "timeout",
+    "realpath",
+    "od"
+  ],
+  "excluded_claims": [
+    "full upstream Coreutils suite",
+    "arbitrary POSIX chmod modes",
+    "strict PTY default closure",
+    "negative native exit-domain classification",
+    "translated locale behavior"
+  ],
+  "full_coreutils_provider": false,
+  "held_out": [
+    "chmod",
+    "stty",
+    "false"
+  ],
+  "package": "coreutils-mvp-projection",
+  "prior_suite": {
+    "ERROR": 4,
+    "FAIL": 41,
+    "PASS": 48,
+    "SKIP": 23,
+    "completed": false,
+    "log": "C:\\ag-coreutils-e138-01\\coreutils-native-13\\build.log",
+    "sha256": "3c8434c393ee9716816c938a98a127951dee307441f334c38e44e3816d8adc4a"
+  },
+  "producer_provenance": "PARTIAL: no original PKGBUILD, no complete compiler-input manifest; prior full suite incomplete",
+  "producer_scope": "Unchanged historical native13 executable bytes; current907 consumer validation, not a reproducible producer rebuild",
+  "provides": [],
+  "runtime_configuration": "LC_ALL=C; approved private fstab noacl; MSYS=winsymlinks:sys",
+  "schema": 1,
+  "source_archive": {
+    "path": "C:\\ag-coreutils-e138-01\\inputs\\coreutils-8.32.tar.xz",
+    "sha256": "4458d8de7849df44ccab15e16b1548b285224dbba5f08fac070c1c0e0bcc4cfa"
+  },
+  "source_inventory": {
+    "path": "C:\\ag-exit-e138-01\\coreutils-20260910-01\\coreutils-source-inventory.json",
+    "sha256": "f227f4535d4d111e6d799ea787b8b0949af4d3f98a1175f2ad32dd4bd326759c"
+  },
+  "version": "8.32-1"
+}

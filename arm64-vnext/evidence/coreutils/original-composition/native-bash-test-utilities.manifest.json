@@ -1,0 +1,3357 @@
+{
+  "schema": 1,
+  "package": "native-bash-test-utilities",
+  "status": "native-provider-stage-smoke-tested-full-package-checks-pending",
+  "runtime_sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+  "smoke_result": "C:\\ag-utils-e138-01\\native-utilities-smoke-observer-03\\native-job.json",
+  "smoke_result_sha256": "d9194b45888fdfa8e40f03c50b30898df0514ce6d84a00902ac6b4064c9f1e07",
+  "required_executables": {
+    "awk": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+    "basename": "555dd2d7ff68c6978c91259eb50c25bd5fd921c89c0225b25f934015def204d8",
+    "cat": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+    "chmod": "ef2569ed950790d2d848c03fb00fec44ee8a22d2cb61e0a58a533cd4857863d7",
+    "cmp": "ef8d01a45dcc1ff575dd6e19606f6f7c6035978d382472ecf34b77256b15fbb6",
+    "cp": "fc098f58a9c694c0bd7f27b332487004a226ef182afc8870ab4d0234f37e8633",
+    "cut": "ddc366364e404470c4253cbb87b06dc5480ffebeab62062d369bde117e97bdbe",
+    "date": "9f0789d915e00ef9c26588da56728900bcc1d8fc64e1eb0086b24de055f1857e",
+    "diff": "12075d637ec2918d40be5ed3032c42714bfe6a982b7ca5758e375dff1aae2399",
+    "dirname": "682b664af253fea80a19545633dfd879820d5205e8a556d3cc0dc0606b309d86",
+    "echo": "bc7bf74e4a6045dbaca3eab8edb3277c74db128269aa7d9631fa0f2a3917e99e",
+    "env": "e33972b30a98d7385e685e47edf9d1beb6c25d4157366b8fff0b335313452540",
+    "expr": "efb3dd9ce46326db13449565067bdd283215f831f8c1ece1ea7cbae25b1a9b28",
+    "false": "1b9f4b88bb93d571134dc34804fb163274699ba38818a143590f3976a8c410f4",
+    "find": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+    "grep": "b3782095e266bc620dde3dddecab39ac5882bc43e3eaa6d9b48791ccec06b64a",
+    "head": "35d33aa9730b18288ee4bdddd12228ea35cc0a119ad9c15971f5f0e04ee713e9",
+    "hexdump": "5a9dd1850cc0fe37e59f80f94ea9d5f44950954514d902aa71db33ee3275f554",
+    "id": "023a55d18ed50f8409685dd30e79f4cd8520a645fb1b4c3bc4b27707a8634b41",
+    "ln": "1f909dc2707b04128073250f8b00487299027d854f5e54f9b051e24caf26db0d",
+    "locale": "27a57074b3286bb0b16e5447750ac3263329cf4b4209402ff460ac8bf987bfca",
+    "ls": "9641fdeeb6d88a10c5eee9c4fc4e6efaa1e297bea0e96559816b66722fbfdfd3",
+    "mkdir": "2768035ab6b0c14454d576c0c734259e755b7128bd9ddfabdfe01e705a14b584",
+    "mkfifo": "5992a2eccb2f638e94fde3bf6087a87921d4ac88a4a99e3b00b9a2cd39a6ecec",
+    "mktemp": "15c44406d6e7fa3199699af4e86e5672ef321b1c566a2e3eb580a828920f9e8d",
+    "mv": "04122237be637f72787cc88e7ef766086685dcb28ad3c17dad7e7e725775e835",
+    "od": "9a7dbcf7f2c3edb195adc0a874f1fdd9dcc92379439ed379401b0d3865eccdad",
+    "pcregrep": "4cf00d2f7fe62bbbc1024cfca543678657791fff48c6c931b98104c13b85deb6",
+    "printenv": "e0f43e7a767fc2b84ee6ff4e1f41e60dc9364fac14514984664a03b5497c94d7",
+    "printf": "25eeaf83b800c53963ae9f54be0542bb9e07026d6b4ad564df9b75b0c499186d",
+    "pwd": "ab4663b896ed2fb93713c30e1dd6f178b9ebac35bb3d6786c918fecf9221c8f9",
+    "readlink": "a14f6ba1e918f793840c35cdda37de457c4e133269ae4540db5d3d088af779e3",
+    "rm": "ce6b95b18aae78614e7e3c01b8979443a28a7dcd800f28af60971bb3ef5f5915",
+    "rmdir": "a8fbcc39798568ce21a1469ca85dda5e137548d0e11088bfa7d60d5b82c369a3",
+    "sed": "2b8e9e72b18742a60a04a6ba926d3e17aae977e51de3a15ef4947d0db1f4f12f",
+    "sleep": "51af3baa162235b06874dddc2d159827a0ff83c440634f704933a6626043d1a5",
+    "sort": "797339fb9ce94fc110731eca94d5302f24fabb9e64bbb88035f4bad16854072b",
+    "tail": "e876a076786e5c2f9e7dfd6f28f5a5b8c3d33ffd7ad29430337be7dbc5d976a2",
+    "tee": "76ed308633bff00c978e9bdb036a1127d19cbbdf9793cc25ecdb36b989896a9b",
+    "test": "7a62231de7877a31bffb9824db645b546d3936e178e15b4cca1602267798ccb2",
+    "touch": "51a7e85431c0da7a50a3300923d4b498b5ca87b3334dadea4c2ed6d093cd898e",
+    "tr": "eb0736daa69c5cff53e79e2b166b112dbd19bec093e5122a03d7c9726b977d3a",
+    "true": "73a9751ec777db9645f5daddfa2a59310a2ff020ab20e454a5159dbb214806d7",
+    "wc": "981f7e0e8586ac2308b464208e705ab025c1c3fff57c03fc4d0a41dceec9e6f0",
+    "xargs": "307e01d1dede595d0e27d4102bfa934dab5226e3fb8adca7f5c9366560d861f9"
+  },
+  "files": {
+    "etc/DIR_COLORS": {
+      "sha256": "ddb85672d6261a1acbd6652d742bc9e2e50797c1585be58b94d49627693828ef",
+      "size": 4351
+    },
+    "usr/bin/[.exe": {
+      "sha256": "c6bdc9051d71dd7eaec8d019cc7b2c66f778d581d0c4fe715557077ccaf6460e",
+      "size": 500388
+    },
+    "usr/bin/arch.exe": {
+      "sha256": "20603d7d2ecb3a7c6b7f6ac7f90eb644d66170c3928d93681af76771ad5d87bc",
+      "size": 262308
+    },
+    "usr/bin/awk.exe": {
+      "sha256": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+      "size": 5362934
+    },
+    "usr/bin/b2sum.exe": {
+      "sha256": "34c8049caf9d59f6d498285bac16714dd141a23af82011eba24c62109a589563",
+      "size": 499159
+    },
+    "usr/bin/base32.exe": {
+      "sha256": "12b6ad6241aef6366069218e39e4f3b697bb1ae77343e1fee58558ef6defd8a6",
+      "size": 314470
+    },
+    "usr/bin/base64.exe": {
+      "sha256": "d954e596314c370020ca36de358f6cfdaa153628e2b4a8e22a7bcccd714633e4",
+      "size": 312960
+    },
+    "usr/bin/basename.exe": {
+      "sha256": "555dd2d7ff68c6978c91259eb50c25bd5fd921c89c0225b25f934015def204d8",
+      "size": 272138
+    },
+    "usr/bin/basenc.exe": {
+      "sha256": "4690283fee4ab199c88ed01785d08db37b086096eab4222d282baf8f43daeb59",
+      "size": 373695
+    },
+    "usr/bin/bash.exe": {
+      "sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+      "size": 7707965
+    },
+    "usr/bin/cat.exe": {
+      "sha256": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+      "size": 299734
+    },
+    "usr/bin/chcon.exe": {
+      "sha256": "63c0a19e84a2aa6788490a85ae4ae00f313bca5ba1ca50d0a69759309f46700d",
+      "size": 478802
+    },
+    "usr/bin/chgrp.exe": {
+      "sha256": "8eb4d30cd5898beb422a39996f3a50fe8b0b0fdc0c6380ca161ded09ff139cd2",
+      "size": 526361
+    },
+    "usr/bin/chmod.exe": {
+      "sha256": "ef2569ed950790d2d848c03fb00fec44ee8a22d2cb61e0a58a533cd4857863d7",
+      "size": 454212
+    },
+    "usr/bin/chown.exe": {
+      "sha256": "73fdd42a56d606dc78826fec88bc24e0544f84f63d5081533168f65b6675635c",
+      "size": 537279
+    },
+    "usr/bin/chroot.exe": {
+      "sha256": "3d2ffea07b5531d3c5aefa7d1b5c5a3949fe92a5c53c71b60b336841318affd1",
+      "size": 323293
+    },
+    "usr/bin/cksum.exe": {
+      "sha256": "7db222b46a04cbff3790dea6ddb484ce9f1a176cb4f30a33e560aba7284563df",
+      "size": 285207
+    },
+    "usr/bin/cmp.exe": {
+      "sha256": "ef8d01a45dcc1ff575dd6e19606f6f7c6035978d382472ecf34b77256b15fbb6",
+      "size": 394779
+    },
+    "usr/bin/comm.exe": {
+      "sha256": "1d27d24d6dfcabd017a5300d42c1c55723ec6d57947486b8c63bd199271fe64a",
+      "size": 329100
+    },
+    "usr/bin/cp.exe": {
+      "sha256": "fc098f58a9c694c0bd7f27b332487004a226ef182afc8870ab4d0234f37e8633",
+      "size": 997562
+    },
+    "usr/bin/csplit.exe": {
+      "sha256": "debe07a3fb9ab16f763c4d3fb809f1e62d691ac708ccda48dac4c16a3f2e3e87",
+      "size": 819782
+    },
+    "usr/bin/cut.exe": {
+      "sha256": "ddc366364e404470c4253cbb87b06dc5480ffebeab62062d369bde117e97bdbe",
+      "size": 350977
+    },
+    "usr/bin/date.exe": {
+      "sha256": "9f0789d915e00ef9c26588da56728900bcc1d8fc64e1eb0086b24de055f1857e",
+      "size": 755882
+    },
+    "usr/bin/dd.exe": {
+      "sha256": "10febd20ff3bdc540ee76281db0400123364fd5dd09f48fbfa6d574a94f144f1",
+      "size": 629465
+    },
+    "usr/bin/df.exe": {
+      "sha256": "0f9f598775ad9413eef3ec3086406745e168190b19494b12c4d46fc14999f6c9",
+      "size": 790000
+    },
+    "usr/bin/diff.exe": {
+      "sha256": "12075d637ec2918d40be5ed3032c42714bfe6a982b7ca5758e375dff1aae2399",
+      "size": 1754755
+    },
+    "usr/bin/diff3.exe": {
+      "sha256": "e1b222040eaa9bc380ba1b1da49ccfd17aa8790bbcc3ba0e6a56c269a4ce83b7",
+      "size": 413743
+    },
+    "usr/bin/dir.exe": {
+      "sha256": "72c8a449270bbce074a614774c10d49076b59cc8a9c79baa611cbe63b7a7fe7d",
+      "size": 1155680
+    },
+    "usr/bin/dircolors.exe": {
+      "sha256": "c55b738a99ea2df2ace0758913e250dad52bf9a3a1b369e89971414769e0311e",
+      "size": 385903
+    },
+    "usr/bin/dirname.exe": {
+      "sha256": "682b664af253fea80a19545633dfd879820d5205e8a556d3cc0dc0606b309d86",
+      "size": 264125
+    },
+    "usr/bin/du.exe": {
+      "sha256": "3017e20ea6c129f7ea17b8289cb7313e4462d0c0123e0280add725242d15b60f",
+      "size": 1239067
+    },
+    "usr/bin/echo.exe": {
+      "sha256": "bc7bf74e4a6045dbaca3eab8edb3277c74db128269aa7d9631fa0f2a3917e99e",
+      "size": 266295
+    },
+    "usr/bin/egrep": {
+      "sha256": "5fb6fffc64cea74659e50118403c6c190dac6c9cafd4bf0168a5fb2b7b027b0a",
+      "size": 95
+    },
+    "usr/bin/env.exe": {
+      "sha256": "e33972b30a98d7385e685e47edf9d1beb6c25d4157366b8fff0b335313452540",
+      "size": 312821
+    },
+    "usr/bin/expand.exe": {
+      "sha256": "480d2d7c35d08d6ffae4ed853664416b27a6dca74ea97e0254c9af96a81fb529",
+      "size": 297804
+    },
+    "usr/bin/expr.exe": {
+      "sha256": "efb3dd9ce46326db13449565067bdd283215f831f8c1ece1ea7cbae25b1a9b28",
+      "size": 824398
+    },
+    "usr/bin/factor.exe": {
+      "sha256": "0bf974a8bc9da299d2845c2c82de04bd448c34156249213ff8629f8642598f52",
+      "size": 545881
+    },
+    "usr/bin/false.exe": {
+      "sha256": "1b9f4b88bb93d571134dc34804fb163274699ba38818a143590f3976a8c410f4",
+      "size": 249539
+    },
+    "usr/bin/fgrep": {
+      "sha256": "3e2eb9ac0bf277c07919f69d70d9c6d481b78a74b0ad6139b00107e49cf65563",
+      "size": 95
+    },
+    "usr/bin/find.exe": {
+      "sha256": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+      "size": 2271736
+    },
+    "usr/bin/fmt.exe": {
+      "sha256": "6590cfc4c113b08938a24d476bf52453e9e221c24748cf9c55a54f7ba4956fb0",
+      "size": 324946
+    },
+    "usr/bin/fold.exe": {
+      "sha256": "b278b623f50fcb4e0e6ab13135eaaa437df260bb1e24d1696503e96ab52d5c2a",
+      "size": 294520
+    },
+    "usr/bin/gawk-5.4.1.exe": {
+      "sha256": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+      "size": 5362934
+    },
+    "usr/bin/gawk.exe": {
+      "sha256": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+      "size": 5362934
+    },
+    "usr/bin/gawkbug": {
+      "sha256": "39f4eb44554d2f70599e62f74d2a52720040119cb1af7a62768ff7155deeebab",
+      "size": 6618
+    },
+    "usr/bin/gkill.exe": {
+      "sha256": "3affb1666bb0e5f84846af524bd03cc14c8653bb45547b816fd89642da0cae7c",
+      "size": 270003
+    },
+    "usr/bin/grep.exe": {
+      "sha256": "b3782095e266bc620dde3dddecab39ac5882bc43e3eaa6d9b48791ccec06b64a",
+      "size": 1628644
+    },
+    "usr/bin/groups.exe": {
+      "sha256": "f7aa933b270633b22a34de1c148cab1933a24692d49428513edcd7b9731c0026",
+      "size": 290965
+    },
+    "usr/bin/head.exe": {
+      "sha256": "35d33aa9730b18288ee4bdddd12228ea35cc0a119ad9c15971f5f0e04ee713e9",
+      "size": 344112
+    },
+    "usr/bin/hexdump.exe": {
+      "sha256": "5a9dd1850cc0fe37e59f80f94ea9d5f44950954514d902aa71db33ee3275f554",
+      "size": 325201
+    },
+    "usr/bin/hostid.exe": {
+      "sha256": "bbf4fed8cafd5e60c657860fd2007b6f6c2f018d26d598a6f81e0973dadf6033",
+      "size": 260825
+    },
+    "usr/bin/hostname.exe": {
+      "sha256": "ed7c6373aa7f2f71145196cc5730518f3c865ce0a170d0c959069c41adf838c4",
+      "size": 266869
+    },
+    "usr/bin/id.exe": {
+      "sha256": "023a55d18ed50f8409685dd30e79f4cd8520a645fb1b4c3bc4b27707a8634b41",
+      "size": 330421
+    },
+    "usr/bin/install.exe": {
+      "sha256": "43d40eb1816457a5240f28e3e9f6a52b045c16ce923c1baee49dec2052209c75",
+      "size": 1270634
+    },
+    "usr/bin/join.exe": {
+      "sha256": "3812c8f933e11ccef406b2e653b2c1bd0af0da40ec7dd9d28f4b530c39171e6c",
+      "size": 405456
+    },
+    "usr/bin/link.exe": {
+      "sha256": "09abc3e7d36447146d53d650bdb1dab179e0d0c0ef9eda61b6846bb1d438192e",
+      "size": 262508
+    },
+    "usr/bin/ln.exe": {
+      "sha256": "1f909dc2707b04128073250f8b00487299027d854f5e54f9b051e24caf26db0d",
+      "size": 686601
+    },
+    "usr/bin/locale.exe": {
+      "sha256": "27a57074b3286bb0b16e5447750ac3263329cf4b4209402ff460ac8bf987bfca",
+      "size": 137339
+    },
+    "usr/bin/locate.exe": {
+      "sha256": "567fd93a9ed02dd9a79624ac411b0e3282670a57d6182343b2f89e908a5d8b6d",
+      "size": 1289451
+    },
+    "usr/bin/logname.exe": {
+      "sha256": "716c77b77513917d5b61c8f8023731ad487d2676dcae70a4d3361a9f9affbb06",
+      "size": 261095
+    },
+    "usr/bin/ls.exe": {
+      "sha256": "9641fdeeb6d88a10c5eee9c4fc4e6efaa1e297bea0e96559816b66722fbfdfd3",
+      "size": 1155680
+    },
+    "usr/bin/md5sum.exe": {
+      "sha256": "accfadc7ee6dad22d3107ba1757d0c7b45a30b6ff8a5d958da010d0b2a00b181",
+      "size": 344688
+    },
+    "usr/bin/mkdir.exe": {
+      "sha256": "2768035ab6b0c14454d576c0c734259e755b7128bd9ddfabdfe01e705a14b584",
+      "size": 538327
+    },
+    "usr/bin/mkfifo.exe": {
+      "sha256": "5992a2eccb2f638e94fde3bf6087a87921d4ac88a4a99e3b00b9a2cd39a6ecec",
+      "size": 277572
+    },
+    "usr/bin/mknod.exe": {
+      "sha256": "470ed4f9a9011253aef1499b5014aac55103fce82892926780e108ff3c649e7f",
+      "size": 295352
+    },
+    "usr/bin/mktemp.exe": {
+      "sha256": "15c44406d6e7fa3199699af4e86e5672ef321b1c566a2e3eb580a828920f9e8d",
+      "size": 355798
+    },
+    "usr/bin/msys-2.0.dll": {
+      "sha256": "d70cfb46ed6bfa643a6ab557a71008e86043d8a04e5ce2d33549e4e95a49117d",
+      "size": 30968861
+    },
+    "usr/bin/msys-asprintf-0.dll": {
+      "sha256": "72aff4c1c4da6d7f5d85bc9cd852b57b209332d58ad77023e25a294e9646f6d3",
+      "size": 17508933
+    },
+    "usr/bin/msys-charset-1.dll": {
+      "sha256": "0d6c999892ae10d3e173792596ef4653514777eebddb75015868a9056e6f7d73",
+      "size": 65228
+    },
+    "usr/bin/msys-edit-0.dll": {
+      "sha256": "b832b970d169c409ec334d3446ae7477103c59cc8c712886ddf0c68b1f806b13",
+      "size": 1180885
+    },
+    "usr/bin/msys-formw6.dll": {
+      "sha256": "a94d5d798645ab8922a20f667b676ab31dbbe7713a69e2795f617ce338aded04",
+      "size": 621023
+    },
+    "usr/bin/msys-gmp-10.dll": {
+      "sha256": "ca28fb7fb940809c1db24a92ffb65c6974a0ed482a3c1d3e909c113e57464041",
+      "size": 3668195
+    },
+    "usr/bin/msys-gmpxx-4.dll": {
+      "sha256": "818b3aad724f7c6577953753ad9591efee4571193eb619e5a200fa42abe5ec39",
+      "size": 18000586
+    },
+    "usr/bin/msys-history8.dll": {
+      "sha256": "f48e5347c7610fd53ca8066f19f8b7d964a9c6d251718d3997a4dc8d46e34840",
+      "size": 272130
+    },
+    "usr/bin/msys-iconv-2.dll": {
+      "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+      "size": 2046237
+    },
+    "usr/bin/msys-intl-8.dll": {
+      "sha256": "eef1befd674c9febcfe769601d8e10a1022b00dabffa383b866847b935eb054d",
+      "size": 750909
+    },
+    "usr/bin/msys-menuw6.dll": {
+      "sha256": "30f46658ac5dbc10f22844217dd13fb7da5c1d3b0ee4dbcaf7327dd9a96bfc5f",
+      "size": 329502
+    },
+    "usr/bin/msys-mpfr-6.dll": {
+      "sha256": "36c2c1aa095c51ac4189d6a84f0fb4e75b5a7b912727b3e8a903b6b03861042b",
+      "size": 4286366
+    },
+    "usr/bin/msys-ncurses++w6.dll": {
+      "sha256": "bd599db06149f6479ae113a57a1016f472746d0b3086ebca6e77058416e986f4",
+      "size": 18124284
+    },
+    "usr/bin/msys-ncursesw6.dll": {
+      "sha256": "e2d03ae2ac264d8788f3cd7ea4917c51c9b26ac59ee574e4cade633a96de3585",
+      "size": 3060460
+    },
+    "usr/bin/msys-panelw6.dll": {
+      "sha256": "7f3e872c929062c8f54b5e7aeaed0adf4861f77f3255a95bb3fd66f00d1ed514",
+      "size": 234850
+    },
+    "usr/bin/msys-pcre-1.dll": {
+      "sha256": "22b5fe8fa5ecc49c697f341fc34192ec46300890dacad5455ff5154af228c632",
+      "size": 1023231
+    },
+    "usr/bin/msys-pcreposix-0.dll": {
+      "sha256": "6791c738080b6168633a7682e8ce495528ad4d900d535d850598be89175bc0b4",
+      "size": 70716
+    },
+    "usr/bin/msys-readline8.dll": {
+      "sha256": "bf2a0cd06cb4951b8ad37c3e74970d6550f2d5fc101c3eb8056f7127b42253a7",
+      "size": 1604777
+    },
+    "usr/bin/msys-ticw6.dll": {
+      "sha256": "bc74db372eff6a82a8e3e77ba3cc6f4c1c6f197ae03eec5a42138602ded92730",
+      "size": 350292
+    },
+    "usr/bin/mv.exe": {
+      "sha256": "04122237be637f72787cc88e7ef766086685dcb28ad3c17dad7e7e725775e835",
+      "size": 1104224
+    },
+    "usr/bin/nice.exe": {
+      "sha256": "b1afcd466a03ac2fab34e7fc03c7976c8e433cff3d9c60efafa471e053b9ebde",
+      "size": 272172
+    },
+    "usr/bin/nl.exe": {
+      "sha256": "833790233ea523b22bb2a6978d7c8d4d85947fbaae42f5dbede0c4c40a96d964",
+      "size": 762175
+    },
+    "usr/bin/nohup.exe": {
+      "sha256": "446ae29f6d7f012be5a28d7c9a8c08e7e9917192ce6f9e3d87c2e5be9fdcf14a",
+      "size": 286534
+    },
+    "usr/bin/nproc.exe": {
+      "sha256": "c8dac1c5ce5e8152530cf672f7e6ab9b13cf297fbadf20ac2c56ddc6594b0f0c",
+      "size": 280166
+    },
+    "usr/bin/numfmt.exe": {
+      "sha256": "14896ca3fd8c6c0dc37afedf842f92e4e3a360c2fa7b0495cb0c4bedd707e953",
+      "size": 422651
+    },
+    "usr/bin/od.exe": {
+      "sha256": "9a7dbcf7f2c3edb195adc0a874f1fdd9dcc92379439ed379401b0d3865eccdad",
+      "size": 619476
+    },
+    "usr/bin/paste.exe": {
+      "sha256": "c27220882e0510920f0e739590dc786b5d8207c557fbfa97403c32724bbe768b",
+      "size": 295286
+    },
+    "usr/bin/pathchk.exe": {
+      "sha256": "2826ade67835485407a23ddca46b10b4e63a1484b3b40c05d0aa2bcff105cf71",
+      "size": 266569
+    },
+    "usr/bin/pcre-config": {
+      "sha256": "a80877317a14250b874588bb25203f09bdf7003dae033be1cbd1d3bfe8615874",
+      "size": 2355
+    },
+    "usr/bin/pcregrep.exe": {
+      "sha256": "4cf00d2f7fe62bbbc1024cfca543678657791fff48c6c931b98104c13b85deb6",
+      "size": 193122
+    },
+    "usr/bin/pcretest.exe": {
+      "sha256": "9b20f5e44f9fcb9d1063adba8274f14bc6fae89c2b68a2dff51af2d247a97f8d",
+      "size": 315810
+    },
+    "usr/bin/pinky.exe": {
+      "sha256": "07495a7291365e6ef9ffa0ec3e67c3d8bec1ca79c1cda276f74a11c8f7073b49",
+      "size": 324579
+    },
+    "usr/bin/pr.exe": {
+      "sha256": "246c27c342b3745ea382d59b387f9b1fda9412b67a31d72f9bf97cc9fd76e526",
+      "size": 528439
+    },
+    "usr/bin/printenv.exe": {
+      "sha256": "e0f43e7a767fc2b84ee6ff4e1f41e60dc9364fac14514984664a03b5497c94d7",
+      "size": 254905
+    },
+    "usr/bin/printf.exe": {
+      "sha256": "25eeaf83b800c53963ae9f54be0542bb9e07026d6b4ad564df9b75b0c499186d",
+      "size": 530635
+    },
+    "usr/bin/ptx.exe": {
+      "sha256": "519e05d0c83464387fac8c3929d07fbf4214e272e0cff16b11feb3fa097197d2",
+      "size": 973489
+    },
+    "usr/bin/pwd.exe": {
+      "sha256": "ab4663b896ed2fb93713c30e1dd6f178b9ebac35bb3d6786c918fecf9221c8f9",
+      "size": 301337
+    },
+    "usr/bin/readlink.exe": {
+      "sha256": "a14f6ba1e918f793840c35cdda37de457c4e133269ae4540db5d3d088af779e3",
+      "size": 402292
+    },
+    "usr/bin/realpath.exe": {
+      "sha256": "2549d40ebaee40d48abc42f7df3866f19ca6d2978b1f4e4c2eebe69f2d697702",
+      "size": 420796
+    },
+    "usr/bin/rm.exe": {
+      "sha256": "ce6b95b18aae78614e7e3c01b8979443a28a7dcd800f28af60971bb3ef5f5915",
+      "size": 512741
+    },
+    "usr/bin/rmdir.exe": {
+      "sha256": "a8fbcc39798568ce21a1469ca85dda5e137548d0e11088bfa7d60d5b82c369a3",
+      "size": 465639
+    },
+    "usr/bin/runcon.exe": {
+      "sha256": "488931ad71fa337bf18fa4d19c3cc2684367e87e9276e87fa51726a8caf90e6f",
+      "size": 256740
+    },
+    "usr/bin/sdiff.exe": {
+      "sha256": "327da38568a24cb159c35421c574980214c7a8009a25805f2fb6ccff8ac1892e",
+      "size": 441204
+    },
+    "usr/bin/sed.exe": {
+      "sha256": "2b8e9e72b18742a60a04a6ba926d3e17aae977e51de3a15ef4947d0db1f4f12f",
+      "size": 1291003
+    },
+    "usr/bin/seq.exe": {
+      "sha256": "0cb30f88bb8295b12a73ae47925b65f4d23587cc30573f6713e73010c685bf47",
+      "size": 482244
+    },
+    "usr/bin/sh.exe": {
+      "sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+      "size": 7707965
+    },
+    "usr/bin/sha1sum.exe": {
+      "sha256": "4d4a29cecdd5fdfc6e812c2063c891de6498cea9a19627c5fb4a468b58a807bb",
+      "size": 348387
+    },
+    "usr/bin/sha224sum.exe": {
+      "sha256": "4f957188b875954d6411bb28308e467d4755857bd54168d27be02cc0739bf00c",
+      "size": 370880
+    },
+    "usr/bin/sha256sum.exe": {
+      "sha256": "1e7e1a5fd26f0b0e81a184a6d267f7e8b5ce6ccc607d5f4b9ac6d97fe3d6c33e",
+      "size": 370880
+    },
+    "usr/bin/sha384sum.exe": {
+      "sha256": "1795a7ffa83367846506227c427e4b8b2dd83673efcad435add44b7cf93aa861",
+      "size": 384664
+    },
+    "usr/bin/sha512sum.exe": {
+      "sha256": "20ebec5eb006bc51f2dea7893e1b506ca0938886d10cc8461f8931dc87914313",
+      "size": 384664
+    },
+    "usr/bin/shred.exe": {
+      "sha256": "44467d97a2ea262e3271142f778ac1e9dd423aadeea3f631d9ed17b88d6400c9",
+      "size": 457496
+    },
+    "usr/bin/shuf.exe": {
+      "sha256": "9fa56931ee6fb19d9e4d0a7dfbaf391c2164bf7e91982e57e3eb1dd29963aee5",
+      "size": 462889
+    },
+    "usr/bin/sleep.exe": {
+      "sha256": "51af3baa162235b06874dddc2d159827a0ff83c440634f704933a6626043d1a5",
+      "size": 284311
+    },
+    "usr/bin/sort.exe": {
+      "sha256": "797339fb9ce94fc110731eca94d5302f24fabb9e64bbb88035f4bad16854072b",
+      "size": 855795
+    },
+    "usr/bin/split.exe": {
+      "sha256": "03fcea844c07ee88db4583240da6f13840bab5e52661e8e259d7d2db811c2d12",
+      "size": 388833
+    },
+    "usr/bin/stat.exe": {
+      "sha256": "da11e84a237d114452506987f98cb52b1877206e6c3387c1772da5181b915e6c",
+      "size": 738488
+    },
+    "usr/bin/stdbuf.exe": {
+      "sha256": "7b821ba7106961b9007185cee73f5a053eda2402d88111f2a8e48db72e923e55",
+      "size": 494657
+    },
+    "usr/bin/stty.exe": {
+      "sha256": "6615cd9f6a5cc48042bf090fe5cfe417412b2aece427a34242996297fd88a95c",
+      "size": 555652
+    },
+    "usr/bin/sum.exe": {
+      "sha256": "6975a3b7997bba7547cce3a3595ae4439adbcd26909e63e1ae9f1e0197b45cc4",
+      "size": 336413
+    },
+    "usr/bin/sync.exe": {
+      "sha256": "de429985c39a7524cf53c6c3db1793189938f237a8a57f3e975c285493249d5a",
+      "size": 257915
+    },
+    "usr/bin/tac.exe": {
+      "sha256": "05ed17b4cada854985ed509888ddfde2a2bb728519acf8662d9b5ecc671949c0",
+      "size": 839454
+    },
+    "usr/bin/tail.exe": {
+      "sha256": "e876a076786e5c2f9e7dfd6f28f5a5b8c3d33ffd7ad29430337be7dbc5d976a2",
+      "size": 428741
+    },
+    "usr/bin/tee.exe": {
+      "sha256": "76ed308633bff00c978e9bdb036a1127d19cbbdf9793cc25ecdb36b989896a9b",
+      "size": 299048
+    },
+    "usr/bin/test.exe": {
+      "sha256": "7a62231de7877a31bffb9824db645b546d3936e178e15b4cca1602267798ccb2",
+      "size": 483191
+    },
+    "usr/bin/timeout.exe": {
+      "sha256": "9eb864cfebca0d44a35a2394d62cd132c1105e02d3da6ee58594a4b0a19ee9e8",
+      "size": 298084
+    },
+    "usr/bin/touch.exe": {
+      "sha256": "51a7e85431c0da7a50a3300923d4b498b5ca87b3334dadea4c2ed6d093cd898e",
+      "size": 689751
+    },
+    "usr/bin/tr.exe": {
+      "sha256": "eb0736daa69c5cff53e79e2b166b112dbd19bec093e5122a03d7c9726b977d3a",
+      "size": 356226
+    },
+    "usr/bin/true.exe": {
+      "sha256": "73a9751ec777db9645f5daddfa2a59310a2ff020ab20e454a5159dbb214806d7",
+      "size": 249539
+    },
+    "usr/bin/truncate.exe": {
+      "sha256": "87f7b21f05dca0441c433a3e15ac3c5958cfcf76bcab9a505d929dec5efdb177",
+      "size": 288300
+    },
+    "usr/bin/tsort.exe": {
+      "sha256": "8bb4d9c52b2185f5efc294c7da67943af3f26758defafc5b9bb7160d05f6b632",
+      "size": 408901
+    },
+    "usr/bin/tty.exe": {
+      "sha256": "d6c3b3760109e2e663335820e81047e6874bea587560ae4736c9c87643f5b9f8",
+      "size": 254530
+    },
+    "usr/bin/uname.exe": {
+      "sha256": "fc858cec8aeadf51bb75b22a8ed60a88cc180bd29ce814ebe0df34c88a5f825c",
+      "size": 262308
+    },
+    "usr/bin/unexpand.exe": {
+      "sha256": "d17f94491d360154e3744235f3cb6edee62dd170637dace64042412882f0281c",
+      "size": 301375
+    },
+    "usr/bin/uniq.exe": {
+      "sha256": "0e3da1b1e6117a686aa4b3c14d163b152d543e5cdb34e515e3fd04ae2a1c8f0a",
+      "size": 345864
+    },
+    "usr/bin/unlink.exe": {
+      "sha256": "456e1f8552045191a460797aa317d5c422a315a67275eccbc4927bd815af9acd",
+      "size": 262492
+    },
+    "usr/bin/updatedb": {
+      "sha256": "3e652a16add0f5a247ae976875f619c57a9760a225f491efc21b089ea7a19c03",
+      "size": 9210
+    },
+    "usr/bin/users.exe": {
+      "sha256": "e0fb666213ff7e0c479b1885f15c503c6571fbf0d0a1929603514cc4a9a9d97e",
+      "size": 277872
+    },
+    "usr/bin/vdir.exe": {
+      "sha256": "31d7db002d9a36fd6c8aeb5b99827b72a301adcad8cd5617e9ccdfbe1fcb3e07",
+      "size": 1155680
+    },
+    "usr/bin/wc.exe": {
+      "sha256": "981f7e0e8586ac2308b464208e705ab025c1c3fff57c03fc4d0a41dceec9e6f0",
+      "size": 371937
+    },
+    "usr/bin/who.exe": {
+      "sha256": "30ffe7165e488c375f71fd545ffd5f6d71a3806fc3ee62838c6a2f284cc7d1f4",
+      "size": 502773
+    },
+    "usr/bin/whoami.exe": {
+      "sha256": "8cd1972c1d76c04e4f261ee3626bfd4e3b9014b6a5fb75465bdb5168355d8df8",
+      "size": 262933
+    },
+    "usr/bin/xargs.exe": {
+      "sha256": "307e01d1dede595d0e27d4102bfa934dab5226e3fb8adca7f5c9366560d861f9",
+      "size": 521419
+    },
+    "usr/bin/yes.exe": {
+      "sha256": "01f3c2d2b74d8e6c92572d488bc7cd11c755cdf554b7c8787f8b1d3896be0a83",
+      "size": 270737
+    },
+    "usr/etc/profile.d/gawk.csh": {
+      "sha256": "9ba2af9853121df6dd5edff9254a2946e39eab8dc6513348fea28f739ee96648",
+      "size": 1107
+    },
+    "usr/etc/profile.d/gawk.sh": {
+      "sha256": "70621a3b586d3d523b020e76977633b444a70013ba50e1ea901a3a07a676f15f",
+      "size": 757
+    },
+    "usr/include/gawkapi.h": {
+      "sha256": "3480eb870c9b88cca3f4df58e069ba91c944954d7f1610944ef557350c8b0713",
+      "size": 42425
+    },
+    "usr/include/gmp.h": {
+      "sha256": "3d8cb6fe8387a80dbc9ffbc7340919efbfdd905943ba95e95996b0622ca4b668",
+      "size": 84283
+    },
+    "usr/include/gmpxx.h": {
+      "sha256": "b287e1197a745582acb9c4aa0d2f2ffa16fabaeeabd0dee836553771556a00ea",
+      "size": 129502
+    },
+    "usr/include/mpf2mpfr.h": {
+      "sha256": "3ab0b914a208a584c5309060eadf1bb0ac79bd6a0581e04142f813dbb0c752a3",
+      "size": 6547
+    },
+    "usr/include/mpfr.h": {
+      "sha256": "588c2bd606cba060afb49cd024f9119e996089a341a99d1dc7e0367622335a13",
+      "size": 57588
+    },
+    "usr/include/pcre.h": {
+      "sha256": "1a960e5f4752eec93bb81da47901e1a00f546820777fb0fbbfcfa1dac6c8eafd",
+      "size": 31718
+    },
+    "usr/include/pcreposix.h": {
+      "sha256": "1770f2b30c0af2f24543428173cf6e6479e921045efdbd009fd07817b84e04ad",
+      "size": 5452
+    },
+    "usr/lib/awk/grcat.exe": {
+      "sha256": "bc374eb855c347257cd7621e5b149bab3b88bba460b1288d0aa36863c9d397e1",
+      "size": 68560
+    },
+    "usr/lib/awk/pwcat.exe": {
+      "sha256": "2edb30426791a19019ffbf98c18a956f38b3ac2d6bb22204252ca1b5fd658315",
+      "size": 67764
+    },
+    "usr/lib/coreutils/libstdbuf.dll": {
+      "sha256": "3b005f08cf3fd2cde62041c1a65de65de595d5346abb4b733993f46976f9373f",
+      "size": 67708
+    },
+    "usr/lib/gawk/filefuncs.a": {
+      "sha256": "c880110381523bd0242716d9c13a4e9b07f55014e4b42a5a44f489fb95540916",
+      "size": 169650
+    },
+    "usr/lib/gawk/fnmatch.a": {
+      "sha256": "4e51f9c92a852b4ba8b37aa55b03e60b3bba563740ed06899982cf143d883964",
+      "size": 26942
+    },
+    "usr/lib/gawk/fork.a": {
+      "sha256": "de6596a1a3d44aaaa9d18a69984dcd9e9fd926888b7a6c075040c2ce82990761",
+      "size": 28220
+    },
+    "usr/lib/gawk/inplace.a": {
+      "sha256": "7e749436f54caead127fb6994aff930bbdd54f5afcff5907b2915c19c45a0fb0",
+      "size": 34340
+    },
+    "usr/lib/gawk/intdiv.a": {
+      "sha256": "ed84b1c72621cc3dc02e8b62339ddd621f678e2306bb24d388ca34d942a06ac5",
+      "size": 36106
+    },
+    "usr/lib/gawk/ordchr.a": {
+      "sha256": "1255dc473eca9834286b47469b7b5814fb8619567d81843efae7859998bbd205",
+      "size": 28730
+    },
+    "usr/lib/gawk/readdir.a": {
+      "sha256": "a20e5a664a865eff67e77feeb46993b10ebeb4092a26e8bf95ab5daa6d1dea22",
+      "size": 30156
+    },
+    "usr/lib/gawk/readfile.a": {
+      "sha256": "faf45f52fb0fa54599074bdacfbcd40d5a00ed393c914ca5168193a500748de4",
+      "size": 29604
+    },
+    "usr/lib/gawk/revoutput.a": {
+      "sha256": "7551789fbe8c539fc36fe172a037705e55ab1c61d7892ade9febd6752025f3bc",
+      "size": 20714
+    },
+    "usr/lib/gawk/revtwoway.a": {
+      "sha256": "c93b5ce30629e6b8227c1d9ab59df6baf43e225a7b0b4608176535907cbc1c43",
+      "size": 27282
+    },
+    "usr/lib/gawk/rwarray.a": {
+      "sha256": "93a1f110754de6a3ccd4a6075cac3cc06dd999036d109410e792265cad8a9222",
+      "size": 69370
+    },
+    "usr/lib/gawk/time.a": {
+      "sha256": "425da18111787dba37499eb3cf7a9425290a636faebc8ad0278e027ef4922539",
+      "size": 28822
+    },
+    "usr/lib/libgmp.dll.a": {
+      "sha256": "ec302fc95fb039f21a3bbc9f0ddf46cf4748a08bda3e5e4468da174fc8b3939e",
+      "size": 410094
+    },
+    "usr/lib/libgmp.la": {
+      "sha256": "a0b81de5ec1d65c34be2e4d556e115575d4e4ebe53eea53bbd85171d5c369ca8",
+      "size": 882
+    },
+    "usr/lib/libgmpxx.dll.a": {
+      "sha256": "c82cab1342ad308f7452783c8cde98ebe69acf4128740357e73078f263577145",
+      "size": 76078
+    },
+    "usr/lib/libgmpxx.la": {
+      "sha256": "622f733d3ea26f8b74047197d4fe5f36d131232ed8f2f672216ef411a9bd90ed",
+      "size": 967
+    },
+    "usr/lib/libmpfr.dll.a": {
+      "sha256": "ca9aa6598ec9ca42e353cc2fad9de167153af6f34ef6be5b4e477c331ffb655c",
+      "size": 377764
+    },
+    "usr/lib/libmpfr.la": {
+      "sha256": "bc7f579372810f8208abad3185bc741ef4a914d51db256429bff2acaaa257b0c",
+      "size": 1123
+    },
+    "usr/lib/libpcre.a": {
+      "sha256": "29ea01cadeee09f59db30a60e52914835572cf9d2f08ecfd00c3413cd2bad269",
+      "size": 1072192
+    },
+    "usr/lib/libpcre.dll.a": {
+      "sha256": "57351f97757e379f29d5e2290cd601d07ca5b5824272f5d1b54101978a4ca112",
+      "size": 38908
+    },
+    "usr/lib/libpcre.la": {
+      "sha256": "10a480302e63f95d0478cb6d07ff30b665346c4af22aee273fafaf4766197cf5",
+      "size": 1055
+    },
+    "usr/lib/libpcreposix.a": {
+      "sha256": "e9863ce656a33afc27e80b87109c2494eda0b6714127f319f9a86f29e2e6b000",
+      "size": 17652
+    },
+    "usr/lib/libpcreposix.dll.a": {
+      "sha256": "85592385d6d99c345f4c1a52ff482cc9d6b969609a5fdc52c8980624e9b1cdf7",
+      "size": 4938
+    },
+    "usr/lib/libpcreposix.la": {
+      "sha256": "0a52f167bf723ddbc81d089e9bab9e0b93c75c412f15dedfccc19f244cfae33d",
+      "size": 1099
+    },
+    "usr/lib/pkgconfig/gmp.pc": {
+      "sha256": "adb9cabef2f94e4f662a3c46529ad369855710776e327438d37bd1fa43e06cb1",
+      "size": 245
+    },
+    "usr/lib/pkgconfig/gmpxx.pc": {
+      "sha256": "14ce6a8eca778299d97aec2c417a078cdd8fb8e75f30700c0bfac02bc8904fdd",
+      "size": 280
+    },
+    "usr/lib/pkgconfig/libpcre.pc": {
+      "sha256": "484a4471d68e3c5a2fdf856ee97b899abd185c047b9d461d6f6826113c3ff5de",
+      "size": 317
+    },
+    "usr/lib/pkgconfig/libpcreposix.pc": {
+      "sha256": "1b8cb4f830c585f1a475607edf5d95b0b736711339a5458f2f23f7042a27df37",
+      "size": 305
+    },
+    "usr/lib/pkgconfig/mpfr.pc": {
+      "sha256": "2732a961bfa366d7a57096f84c373fb58a430361ac0676aae98cab0fb5a4cfa7",
+      "size": 272
+    },
+    "usr/libexec/frcode.exe": {
+      "sha256": "415f9f4d5374a1e7fd303458c0fe20fd0a8f25ea9663db02c516deca5b7b49b5",
+      "size": 288187
+    },
+    "usr/share/awk/assert.awk": {
+      "sha256": "6c4b3f24dd0c225f3ece786eee7fa75f4ef2fb7ffedddaacbc2edb03c68c90b9",
+      "size": 531
+    },
+    "usr/share/awk/bits2str.awk": {
+      "sha256": "77c2504aa2d6385d4d3c0d350515b8791070060ace1414bccc6dc99153743237",
+      "size": 482
+    },
+    "usr/share/awk/cliff_rand.awk": {
+      "sha256": "c405417ad13fe4ca0ba783b6fdcf90c1e2a8ae80ffebc0f2107ddd6ac22ecd82",
+      "size": 456
+    },
+    "usr/share/awk/ctime.awk": {
+      "sha256": "2e20e707381b7cd48abdd70e8f7aed8d86db28a35193bf296964e82de3b754f8",
+      "size": 383
+    },
+    "usr/share/awk/ftrans.awk": {
+      "sha256": "11b367afeda7cc11b3f829d931965ea56b10fcfe87b3833ac4a9ccfce5830ee1",
+      "size": 464
+    },
+    "usr/share/awk/getopt.awk": {
+      "sha256": "7394647d52ed67c12097db732a96f25c808e5d432d74a8c3f0724602f7d41bb6",
+      "size": 3419
+    },
+    "usr/share/awk/gettime.awk": {
+      "sha256": "bc0fe06e7fb41531748177f255a20c0db6732472851154b0370532fc302c1864",
+      "size": 2638
+    },
+    "usr/share/awk/group.awk": {
+      "sha256": "5ac6963d2e520c9f76b783b527a2bb69919bc742bc73ee6aab55866e70bd129c",
+      "size": 1910
+    },
+    "usr/share/awk/have_mpfr.awk": {
+      "sha256": "a017c0ef4b5311bd94228c366a896a4a5af417c41930f7ea2b46d9d67f2a663b",
+      "size": 370
+    },
+    "usr/share/awk/inplace.awk": {
+      "sha256": "c74afe20269e7747b55211dd48bef10fb1b9177dbd2997905ba261f2f4fe1243",
+      "size": 2413
+    },
+    "usr/share/awk/intdiv0.awk": {
+      "sha256": "26b599f90636b540d77e36724f7339c1330307cf2fafe32d00e7977764bc87ad",
+      "size": 610
+    },
+    "usr/share/awk/isnumeric.awk": {
+      "sha256": "8749b7f590a8997387fbb1cb7317352f05089778d8223b03b8a7891f4c55dfed",
+      "size": 432
+    },
+    "usr/share/awk/join.awk": {
+      "sha256": "49de451cda05448408cb6e5210eb7d886dea05f182e57edd1ecd65afabee8a66",
+      "size": 527
+    },
+    "usr/share/awk/libintl.awk": {
+      "sha256": "293d54512ccf8b6eb41c3f0c9e7ae6d1a20b1c9e7eb559d4975de45ba478f6e1",
+      "size": 386
+    },
+    "usr/share/awk/noassign.awk": {
+      "sha256": "63a84996567a8be236bb4955ee55d525387d0513b12e2121e92267ad72a9c20d",
+      "size": 571
+    },
+    "usr/share/awk/ns_passwd.awk": {
+      "sha256": "6d4b76c1cb895dd7cdae0f1e9e34f474003486e653693684784d0bbcbb18389b",
+      "size": 1431
+    },
+    "usr/share/awk/ord.awk": {
+      "sha256": "23bf677aa27bed203790002eeade4996910505445d560ac330236a11b63884e8",
+      "size": 1086
+    },
+    "usr/share/awk/passwd.awk": {
+      "sha256": "4eb7cac4bc00262710085f95882cc26f23db634dd23a9a5811ba2dfcf17b1bf0",
+      "size": 1344
+    },
+    "usr/share/awk/processarray.awk": {
+      "sha256": "8aba77f62a7d63ee84717fa019175bb3f389406f8266188aaaaa0544d08ba302",
+      "size": 503
+    },
+    "usr/share/awk/quicksort.awk": {
+      "sha256": "c04bc6a885680793fc06a9fb3c0d57903c36383ecf3a5b1c5b05d137b141d7e7",
+      "size": 1180
+    },
+    "usr/share/awk/readable.awk": {
+      "sha256": "dfb704d2168f9a1742c4f662c8ae3d17cee8844829fd92249bff79c5f5152942",
+      "size": 638
+    },
+    "usr/share/awk/readfile.awk": {
+      "sha256": "d7c4f63b17c19b2a769ed0c0cd80c94d594e7c413d774ddf629e7464b06f961d",
+      "size": 414
+    },
+    "usr/share/awk/rewind.awk": {
+      "sha256": "6b16e49c6a1e99da1d3c05f5ea9b9128a130002f5c67e1f94e81e6e697b15a61",
+      "size": 553
+    },
+    "usr/share/awk/round.awk": {
+      "sha256": "024ed109f713670ddfa752de0379019f95d6b10cd774a181943f2cf0ea024f80",
+      "size": 810
+    },
+    "usr/share/awk/shellquote.awk": {
+      "sha256": "2efde58fd4fca1f0b27eeec6c04fb7869f9abb1ddaf2f776ec9553ca18b2728e",
+      "size": 621
+    },
+    "usr/share/awk/strtonum.awk": {
+      "sha256": "4af52a0653670b997a3365713bbed43737a07cd6b5064434e863484a0a074122",
+      "size": 1602
+    },
+    "usr/share/awk/tocsv.awk": {
+      "sha256": "022016e528bae702238cfc65a6a466cb3ac4883ea7f542a9dbcf8530776761d8",
+      "size": 1003
+    },
+    "usr/share/awk/walkarray.awk": {
+      "sha256": "90a9543fa6e49afb453a41e00dce7353d44e2c189ec7cc1c640585bcf1398c54",
+      "size": 362
+    },
+    "usr/share/awk/zerofile.awk": {
+      "sha256": "2aaae54a27113af872b61cd969196be9d21a309cac9d5307a1db3b33530eda86",
+      "size": 611
+    },
+    "usr/share/doc/mpfr/AUTHORS": {
+      "sha256": "dc8a7d86b688287ea3f6f20b3d7aa1f6f757253c1b9dc100d7e5dc5eb7b0058d",
+      "size": 1375
+    },
+    "usr/share/doc/mpfr/BUGS": {
+      "sha256": "e33323d9a8a5dafb250c9e4d5c62004ce5f011e9d97b4398b0ea2bffd80b965f",
+      "size": 3460
+    },
+    "usr/share/doc/mpfr/COPYING": {
+      "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+      "size": 35149
+    },
+    "usr/share/doc/mpfr/COPYING.LESSER": {
+      "sha256": "e3a994d82e644b03a792a930f574002658412f62407f5fee083f2555c5f23118",
+      "size": 7652
+    },
+    "usr/share/doc/mpfr/examples/can_round.c": {
+      "sha256": "9eea6b9a50f29b31a58b6b7e1e4418220b5a34ff47be3e19ddd1374d4b7d8625",
+      "size": 2003
+    },
+    "usr/share/doc/mpfr/examples/divworst.c": {
+      "sha256": "84f295354ad793fe58f0eb223ec44d192f472380d4f1593a834ed7b46653c15d",
+      "size": 2946
+    },
+    "usr/share/doc/mpfr/examples/ReadMe": {
+      "sha256": "4b503f2cd881013af415ae498ab1ac88a2c4cb5ed766fa6f5e227113145c53d0",
+      "size": 41
+    },
+    "usr/share/doc/mpfr/examples/rndo-add.c": {
+      "sha256": "b8011235a2eeaa42f98c67a4178c02306b8f5593d9aa5e6150a37ad8b11baf21",
+      "size": 2567
+    },
+    "usr/share/doc/mpfr/examples/sample.c": {
+      "sha256": "1cd40b64881f6e5fe4cb813250bbc0611b2b5a0d821def2ed036fcc07b72d564",
+      "size": 1583
+    },
+    "usr/share/doc/mpfr/examples/threads.c": {
+      "sha256": "70004003b0c7b928f16208608fba95858b214a79c493ed0593961dace6180d1e",
+      "size": 2332
+    },
+    "usr/share/doc/mpfr/examples/version.c": {
+      "sha256": "f8c2cb8c08e9ec9752ed6522ea65bcaa45aaf4a36e28c783677e0ecc8a45e463",
+      "size": 7367
+    },
+    "usr/share/doc/mpfr/FAQ.html": {
+      "sha256": "f0f4dff63cd0cf0db2389ad7da84e174dc3f6989ca07e5244f73d47bc93e1871",
+      "size": 18313
+    },
+    "usr/share/doc/mpfr/NEWS": {
+      "sha256": "12b445033c3fb2206afa0a494f6d7b5229272d74065cbbaa8d49488d1dd24c2e",
+      "size": 27527
+    },
+    "usr/share/doc/mpfr/TODO": {
+      "sha256": "7059383bfbf13a6592df464860c7cb581942de87116138204c85601d93b6a59e",
+      "size": 39267
+    },
+    "usr/share/doc/pcre/AUTHORS": {
+      "sha256": "27c960c4c02e24b2f1aa40d47dddf3a35cf1b6e5eceefaa536ed90177f6ca2a3",
+      "size": 859
+    },
+    "usr/share/doc/pcre/ChangeLog": {
+      "sha256": "c7b1cb5e9d3122d552b5bd34439e441fb797bd294d6a95de7aec79dbac38dc9e",
+      "size": 299676
+    },
+    "usr/share/doc/pcre/COPYING": {
+      "sha256": "17abe1dbb92b21ab173cf9757dd57b0b15cd8d863b2ccdef635fdbef03077fb0",
+      "size": 95
+    },
+    "usr/share/doc/pcre/html/index.html": {
+      "sha256": "a9941170673b9d59f007f7f1e7a313fa12e2001054b653e697043718e27f8b5e",
+      "size": 7677
+    },
+    "usr/share/doc/pcre/html/NON-AUTOTOOLS-BUILD.txt": {
+      "sha256": "e92da65165205bc253c5495eb4539b6da4655ad2390c099198115d15ce8fc84d",
+      "size": 31319
+    },
+    "usr/share/doc/pcre/html/pcre-config.html": {
+      "sha256": "94a9a5f654d94c66c6ee29e57ebadba2b2ccfd8801d9a4f76d9953732c4c3fa3",
+      "size": 3659
+    },
+    "usr/share/doc/pcre/html/pcre.html": {
+      "sha256": "9720883c8ca6a98713e01a1fa7fa36f13c31627deb91a2d3db732473c157c4e2",
+      "size": 10352
+    },
+    "usr/share/doc/pcre/html/pcre16.html": {
+      "sha256": "4424a27195c4be03780375d03888f8665de37aa5abbdc0a40a1ceee722a13bb5",
+      "size": 16214
+    },
+    "usr/share/doc/pcre/html/pcre32.html": {
+      "sha256": "5def7511cdd3968a01cf6270433f34889bc197c6e1d35febb0f9b6e62b9197c9",
+      "size": 16098
+    },
+    "usr/share/doc/pcre/html/pcre_assign_jit_stack.html": {
+      "sha256": "978388a268d26dbbd49e458b39e33c0b948055461e3163b5fe42383351f74fc9",
+      "size": 2541
+    },
+    "usr/share/doc/pcre/html/pcre_compile.html": {
+      "sha256": "d3e538afcc263a962581f1fa7cb35882a85bf681dda1856ec3af55a0066d1a95",
+      "size": 4735
+    },
+    "usr/share/doc/pcre/html/pcre_compile2.html": {
+      "sha256": "58ad9115a332db73807c1014efd0a89819fbfb64dedafac10922573df6b3ad06",
+      "size": 4907
+    },
+    "usr/share/doc/pcre/html/pcre_config.html": {
+      "sha256": "71647b6d007dea79cc40205f9cf485dabed5e2eb43c509ca39390faf797f006a",
+      "size": 3938
+    },
+    "usr/share/doc/pcre/html/pcre_copy_named_substring.html": {
+      "sha256": "22eaa88e6472522c88f9eee619a0a0d4e8bd4e1535a1026041cfa5ed0a7fcea2",
+      "size": 2359
+    },
+    "usr/share/doc/pcre/html/pcre_copy_substring.html": {
+      "sha256": "148a4bcbc4c5c7fd3d164b483273f270767118481a01d088206a98d7c836c8f3",
+      "size": 2115
+    },
+    "usr/share/doc/pcre/html/pcre_dfa_exec.html": {
+      "sha256": "f6d8f490d440b4ddf411a0e8273b9cfa179ad93bfcb3be5efe7ff8bb4f24a1d3",
+      "size": 5969
+    },
+    "usr/share/doc/pcre/html/pcre_exec.html": {
+      "sha256": "4d1a7b7faed38d5a16dc706085f4ae83bb4a849ea2f4d7a15e7a07b83723bec7",
+      "size": 5059
+    },
+    "usr/share/doc/pcre/html/pcre_free_study.html": {
+      "sha256": "6b56becdd9224aa6210e0eb6f965cec36f33f224b07a8707cefad0872c9e0ddb",
+      "size": 1231
+    },
+    "usr/share/doc/pcre/html/pcre_free_substring.html": {
+      "sha256": "893b6cb61d3586c8be88a09b82f4437255dc0cd0ef68823cd163076aaf132245",
+      "size": 1283
+    },
+    "usr/share/doc/pcre/html/pcre_free_substring_list.html": {
+      "sha256": "da8b3d404a180035b3901b802aaa1a84d1ffc00635a3960b108ddeb7f6975de8",
+      "size": 1289
+    },
+    "usr/share/doc/pcre/html/pcre_fullinfo.html": {
+      "sha256": "b1acdc0b83f9e30b83a2dab6da97fe14a83369b306f2935b4bfe07e9a875585e",
+      "size": 5150
+    },
+    "usr/share/doc/pcre/html/pcre_get_named_substring.html": {
+      "sha256": "02c6688c100e2901a3c1762708e162a0bbbca6760c6bf3a37460f1d7cc18579e",
+      "size": 2460
+    },
+    "usr/share/doc/pcre/html/pcre_get_stringnumber.html": {
+      "sha256": "058cef975e594a2c1379bb316b18916d3be14b5a590e268b3b8503ebf4d5a7ae",
+      "size": 1773
+    },
+    "usr/share/doc/pcre/html/pcre_get_stringtable_entries.html": {
+      "sha256": "e7670e707d5097657c54bb28caf158f0fa5b8c8ec1fa134c4f378689f7c62510",
+      "size": 2062
+    },
+    "usr/share/doc/pcre/html/pcre_get_substring.html": {
+      "sha256": "5929e160e6c24610614da399b5a48b5b54eb9fd6c2b0727827fcae42bdf6fa1c",
+      "size": 2243
+    },
+    "usr/share/doc/pcre/html/pcre_get_substring_list.html": {
+      "sha256": "53f52712e894b0e7612df4ada5140d5730f3fdcca1b2c9c6049eed21714e6c4e",
+      "size": 2198
+    },
+    "usr/share/doc/pcre/html/pcre_jit_exec.html": {
+      "sha256": "13aef7fb3df09e4365792d78c170757ccbc18efff21ae0edfcc48d0445a40093",
+      "size": 4814
+    },
+    "usr/share/doc/pcre/html/pcre_jit_stack_alloc.html": {
+      "sha256": "0a4cb6fd44431a608a9f767fe537e5a2899dff0187f18f9e0ba9873cf5bb09ad",
+      "size": 1720
+    },
+    "usr/share/doc/pcre/html/pcre_jit_stack_free.html": {
+      "sha256": "87ffc0f24a1532c003f0d903a0004151836796826474bc5e9890b317d31b9d9e",
+      "size": 1279
+    },
+    "usr/share/doc/pcre/html/pcre_maketables.html": {
+      "sha256": "e406c945fc3b76a7d259e06483f58df1a401c00f516aa737b7cd19152c8f552e",
+      "size": 1397
+    },
+    "usr/share/doc/pcre/html/pcre_pattern_to_host_byte_order.html": {
+      "sha256": "be9188eb308c8491a5ee7b1c7f53632b5b9459682171b6d903c57ba6822ef684",
+      "size": 1960
+    },
+    "usr/share/doc/pcre/html/pcre_refcount.html": {
+      "sha256": "bcdc552b5ef7dbd9f31bf24459d160b9e84da972715479f8295a1dd6e6cf5a64",
+      "size": 1442
+    },
+    "usr/share/doc/pcre/html/pcre_study.html": {
+      "sha256": "073cd842e9eee11f5c3155b66f823a205af6df0e9365ab275c8ea4fb6a8a599d",
+      "size": 2146
+    },
+    "usr/share/doc/pcre/html/pcre_utf16_to_host_byte_order.html": {
+      "sha256": "d4a19bba244b82fe518ac61ffbcd7c15875c851a6a78edbc1fccaf1aad02e328",
+      "size": 2033
+    },
+    "usr/share/doc/pcre/html/pcre_utf32_to_host_byte_order.html": {
+      "sha256": "3fb6d536232e8ce0c0c738357a9a1af867d73b8fab1f752ed6d7b0edf056d6b7",
+      "size": 2033
+    },
+    "usr/share/doc/pcre/html/pcre_version.html": {
+      "sha256": "bcc32e6f56972b256eca12a3927c6ea7ab27312d862ab4c8b87d54a3b9651efc",
+      "size": 1172
+    },
+    "usr/share/doc/pcre/html/pcreapi.html": {
+      "sha256": "6941cc1f09b9f6934e497301ca8e6c7a359fc94577f2cf835c79ab67bb56ed24",
+      "size": 135355
+    },
+    "usr/share/doc/pcre/html/pcrebuild.html": {
+      "sha256": "27ca87062537a0e9259973d048d2582f3e3dd68ec7552440f68bfa41b6d0738a",
+      "size": 22838
+    },
+    "usr/share/doc/pcre/html/pcrecallout.html": {
+      "sha256": "1557ed06851c266b57220b97c8dd1cdb2334bd728e8eaee994486ba77badca17",
+      "size": 11675
+    },
+    "usr/share/doc/pcre/html/pcrecompat.html": {
+      "sha256": "2d897fd66f336165d407b9dcbbe9c35f19d732b39267f637ded5585fac95c9c4",
+      "size": 9791
+    },
+    "usr/share/doc/pcre/html/pcredemo.html": {
+      "sha256": "d49570d467396d10c554cfc5020d33e794864ab49f8596d1416252bad7b0a08e",
+      "size": 16194
+    },
+    "usr/share/doc/pcre/html/pcregrep.html": {
+      "sha256": "d93c93ebab667437d23ea6678124f73297dc6eea22a256642a4c1315891995f1",
+      "size": 37847
+    },
+    "usr/share/doc/pcre/html/pcrejit.html": {
+      "sha256": "3416072061a1ccf8e2331ad11cbfb1c67030fe6f9af31e3290460a0395326064",
+      "size": 22104
+    },
+    "usr/share/doc/pcre/html/pcrelimits.html": {
+      "sha256": "a72349ea60630c45ea0ef848eff8959f4a27808f101ce94c7ec3ef42572903d8",
+      "size": 3195
+    },
+    "usr/share/doc/pcre/html/pcrematching.html": {
+      "sha256": "c5afdfbf6ef736026d0af74368f5da1e3041ce4b241ef62cc8407e53e3631953",
+      "size": 10898
+    },
+    "usr/share/doc/pcre/html/pcrepartial.html": {
+      "sha256": "ffef90c566c5f4ec2238ca69529f4a7dd9e68d9219a3c653e83d5da32380ab34",
+      "size": 23592
+    },
+    "usr/share/doc/pcre/html/pcrepattern.html": {
+      "sha256": "c7686043de054f985e0723969b456e08c86b1b15a43db1c67c366963d8b5a807",
+      "size": 140693
+    },
+    "usr/share/doc/pcre/html/pcreperform.html": {
+      "sha256": "d3eea74fc04a20f31c0b8447ca4d4b0e751bba990a8711212a466cfb4363dad6",
+      "size": 7827
+    },
+    "usr/share/doc/pcre/html/pcreposix.html": {
+      "sha256": "62cb7a13a033dfb7b90ac88dd4c3f26f994c6ce707c15c4a102728d410930a07",
+      "size": 12139
+    },
+    "usr/share/doc/pcre/html/pcreprecompile.html": {
+      "sha256": "5beb7314ba12fd534f67eb38d363c1740426559bda24d143b9b4283b53d85da3",
+      "size": 7399
+    },
+    "usr/share/doc/pcre/html/pcresample.html": {
+      "sha256": "9d21477a6f04a1cff3f37582a455ce4ce0f68977c644921cc91976f18e78d86e",
+      "size": 3784
+    },
+    "usr/share/doc/pcre/html/pcrestack.html": {
+      "sha256": "48d8a5afb5ee4a587768b0033b5ff69aafb16d37ffc564a6456bd10f7e43015c",
+      "size": 9594
+    },
+    "usr/share/doc/pcre/html/pcresyntax.html": {
+      "sha256": "17b829a7d19bd7b9519f63e2df7ce3ba676375922f05ddbda5149ee988d11aaf",
+      "size": 16695
+    },
+    "usr/share/doc/pcre/html/pcretest.html": {
+      "sha256": "a449956ead49a25aefece6c5cede2fa665f18768181213e0d0dc1ca62902e022",
+      "size": 51994
+    },
+    "usr/share/doc/pcre/html/pcreunicode.html": {
+      "sha256": "5490e93a21c250099cb45820e3c617573efd70689332664f02f1cc9de839ccea",
+      "size": 11444
+    },
+    "usr/share/doc/pcre/html/README.txt": {
+      "sha256": "1f7cf9ce8917a5a3d504f9713ca49c36e0c605744abbab82cd31979915b5585d",
+      "size": 45463
+    },
+    "usr/share/doc/pcre/LICENCE": {
+      "sha256": "51b3dea44f63338b84b9c97b3d793826a8397309068cf9379a423216ab8ea5b2",
+      "size": 3190
+    },
+    "usr/share/doc/pcre/NEWS": {
+      "sha256": "59e2c58880dbf6681e96c99c19452d69cb29b8bc6884fa768494622eb56c9a52",
+      "size": 29580
+    },
+    "usr/share/doc/pcre/pcre-config.txt": {
+      "sha256": "d96fb6ac7f10a811e212a30298bc07e66f8b2bcea14c7303350105b035c77c4c",
+      "size": 3126
+    },
+    "usr/share/doc/pcre/pcre.txt": {
+      "sha256": "dd7e19446e7b6f9823e8adf24f3b53c201407cca41d122e579162c2f7066deb0",
+      "size": 507710
+    },
+    "usr/share/doc/pcre/pcregrep.txt": {
+      "sha256": "318c680edf31d43d7dd0fe9928a6a37ffd11c3a397fd45f4807d890e7d723c60",
+      "size": 42181
+    },
+    "usr/share/doc/pcre/pcretest.txt": {
+      "sha256": "1172026919ed731a58d8c3033b8ac086929e310fd2f0f83bde959c0258c3be04",
+      "size": 54126
+    },
+    "usr/share/doc/pcre/README": {
+      "sha256": "1f7cf9ce8917a5a3d504f9713ca49c36e0c605744abbab82cd31979915b5585d",
+      "size": 45463
+    },
+    "usr/share/info/coreutils.info": {
+      "sha256": "70051045cba95cb93d6af4b99d262f33e57b1b068f9c21158cd9e0fb3c3baa7a",
+      "size": 954054
+    },
+    "usr/share/info/diffutils.info": {
+      "sha256": "d1ac1df641e3f19d72c9371e154aa233ced030cc16ac01adf66f7d929a794462",
+      "size": 229906
+    },
+    "usr/share/info/dir": {
+      "sha256": "6ea887c12fd594d4f6e2060370f00afd84475600c392041c3f3898253b29f0f8",
+      "size": 1129
+    },
+    "usr/share/info/find-maint.info": {
+      "sha256": "b738e2f990d0eb09f471be60608565071533818b6c077ce738f9195fbe2b78b9",
+      "size": 72891
+    },
+    "usr/share/info/find.info": {
+      "sha256": "d62ab31e650d3034e1be1249ab9bf1a1686697cc40eb4f6fa114f442688788f2",
+      "size": 346767
+    },
+    "usr/share/info/gawk.info": {
+      "sha256": "f1d0e6e94809016338209f905cde6efbad12fa040994feb6abc691d131ed41b9",
+      "size": 1859696
+    },
+    "usr/share/info/gawk_api-figure1.png": {
+      "sha256": "41e42a3d6934d030133f6cd2c3efdcf41c6bb01ce9c3efbec095dc001fdccbb2",
+      "size": 16357
+    },
+    "usr/share/info/gawk_api-figure2.png": {
+      "sha256": "041787ff295495430fcb207791ed9be2a790609b7b403b0b97ff4908d457b67a",
+      "size": 21581
+    },
+    "usr/share/info/gawk_api-figure3.png": {
+      "sha256": "98e28671fe6b83eb18af7942d29b730638c556b548b78a8a38d2c639919d9afa",
+      "size": 20460
+    },
+    "usr/share/info/gawk_array-elements.png": {
+      "sha256": "452e2a51e60558f5bbe744c14bf085328c89b1b66e112835b3b6c98c9b9a4f58",
+      "size": 6091
+    },
+    "usr/share/info/gawk_general-program.png": {
+      "sha256": "98a9ea38ab5764a614273faf5aa5b359f95a2b9d8782d77986cbbfc3515e0f90",
+      "size": 6078
+    },
+    "usr/share/info/gawk_process-flow.png": {
+      "sha256": "33dd3a96fb977c56aeab7d63893ac72a0ce1f157667e88cd5cb2b7cf93c596fb",
+      "size": 7856
+    },
+    "usr/share/info/gawk_statist.jpg": {
+      "sha256": "99c2883a5fb95fa4e69f929cc12f4dca039af30da85c30970af5f18d81f1c4ce",
+      "size": 66874
+    },
+    "usr/share/info/gawkinet.info": {
+      "sha256": "441dff55ce3c51278c0f20ddd6f52ad795cb5d9d464b9b10dbd60baecfabb131",
+      "size": 216253
+    },
+    "usr/share/info/gawknotes.info": {
+      "sha256": "cc3121516b0c5a402723dab3a14df21d6b2fe356caefb8faf17f020772f4d03d",
+      "size": 30122
+    },
+    "usr/share/info/gawkworkflow.info": {
+      "sha256": "ea14f7170d410f563dd3249e0772cc05d052c53afd0e1886dc5ee8d256e57edf",
+      "size": 91770
+    },
+    "usr/share/info/gmp.info": {
+      "sha256": "fa17f953f39ccd59a529dc343ab450825ea858d63116039c60223042072721b8",
+      "size": 5932
+    },
+    "usr/share/info/gmp.info-1": {
+      "sha256": "ed759b294f9da8a59146b308774484c59203fc6f20f14a4235644b370e434d63",
+      "size": 300383
+    },
+    "usr/share/info/gmp.info-2": {
+      "sha256": "f4839a2f350914b08877a2cea3d9a9486a2832ed1ad98bfea08e8d8d2d25944f",
+      "size": 223745
+    },
+    "usr/share/info/grep.info": {
+      "sha256": "3bd0bc36155e59e9cd95175c6550881b08e4f2393e682a61655b73e32d294a3a",
+      "size": 116404
+    },
+    "usr/share/info/mpfr.info": {
+      "sha256": "d47105f9f218cba8f643d2ba8bc5f6039c3a0a3a57b6e09d44195aa581218cf0",
+      "size": 289618
+    },
+    "usr/share/info/pm-gawk.info": {
+      "sha256": "77e2fc87fdf547f82210796fbf6396b90fe854df7602f4abd8d49a6c76557e28",
+      "size": 66512
+    },
+    "usr/share/info/sed.info": {
+      "sha256": "7177a844137cc4a77624abbdd57006cfa9f69248a255e086d5d309266265fbb4",
+      "size": 212886
+    },
+    "usr/share/locale/af/LC_MESSAGES/coreutils.mo": {
+      "sha256": "e017fb17a78d8f07bdd0534231dda36a7c042d2ccce5767bc7dce764ee79fcfe",
+      "size": 27896
+    },
+    "usr/share/locale/af/LC_MESSAGES/grep.mo": {
+      "sha256": "b27f94b8038cbe92ecd82997293157006c69b5c5dab574f13b95292017250575",
+      "size": 1474
+    },
+    "usr/share/locale/af/LC_MESSAGES/sed.mo": {
+      "sha256": "925395790a901ae1905cbfaed52b8c4e70a4092547fcca1c02ec1b3850338795",
+      "size": 2731
+    },
+    "usr/share/locale/af/LC_TIME/coreutils.mo": {
+      "sha256": "e017fb17a78d8f07bdd0534231dda36a7c042d2ccce5767bc7dce764ee79fcfe",
+      "size": 27896
+    },
+    "usr/share/locale/ar/LC_MESSAGES/findutils.mo": {
+      "sha256": "5cd0f9e6eefd50197b3778934b8579bfbc182498455ed29d9744f93e0c29dafc",
+      "size": 49566
+    },
+    "usr/share/locale/ar/LC_MESSAGES/gawk.mo": {
+      "sha256": "48774da3bf925455bebef55f1ebbc19ac081c8c6008c548ae940c13377fbe27b",
+      "size": 107223
+    },
+    "usr/share/locale/ast/LC_MESSAGES/sed.mo": {
+      "sha256": "1a37611d2a30807510fc2a53feb22622cf1e6b4762acc979461532711a43e043",
+      "size": 8246
+    },
+    "usr/share/locale/be/LC_MESSAGES/coreutils.mo": {
+      "sha256": "c77ea05a261c57cf3f03b70803c490f1c572ce125f2a1d9142c5853d247b0806",
+      "size": 59517
+    },
+    "usr/share/locale/be/LC_MESSAGES/findutils.mo": {
+      "sha256": "4f8a8002bfcd1df64f1fdfda191a05b99f18b4e5019de0d4701ed3731db79421",
+      "size": 48566
+    },
+    "usr/share/locale/be/LC_MESSAGES/grep.mo": {
+      "sha256": "081cabfa0c73ef807a02382a19b6ad3d57f8a16031e91dfd21a736487d75985c",
+      "size": 1802
+    },
+    "usr/share/locale/be/LC_TIME/coreutils.mo": {
+      "sha256": "c77ea05a261c57cf3f03b70803c490f1c572ce125f2a1d9142c5853d247b0806",
+      "size": 59517
+    },
+    "usr/share/locale/bg/LC_MESSAGES/coreutils.mo": {
+      "sha256": "a69983155eb39ad63b58591e603acbae02d07e87acae292ac603fb4f6ff5a65f",
+      "size": 487228
+    },
+    "usr/share/locale/bg/LC_MESSAGES/diffutils.mo": {
+      "sha256": "48150a94eb582ccafa29d1ea4a1e67f1fb1ca8d01332ff31c646f51d7421f154",
+      "size": 49014
+    },
+    "usr/share/locale/bg/LC_MESSAGES/findutils.mo": {
+      "sha256": "aa02159b1d399bcd627d237a7f50328a4f79ecafee6d035926a81fcbf6875eeb",
+      "size": 59251
+    },
+    "usr/share/locale/bg/LC_MESSAGES/gawk.mo": {
+      "sha256": "21a707a9a95f70d2e1aa6ada17b914c5e273d5f2737d15031067d7b95145e225",
+      "size": 128056
+    },
+    "usr/share/locale/bg/LC_MESSAGES/grep.mo": {
+      "sha256": "57132adf7ecf3fd00fcef06e9958cc54d33ee8d3520963aff8b1ff4e21818eda",
+      "size": 23976
+    },
+    "usr/share/locale/bg/LC_MESSAGES/sed.mo": {
+      "sha256": "6b0f964d31c684ce1b8b4c5d46c502202b38c628a861dc69b6ef3cf13ce23105",
+      "size": 20276
+    },
+    "usr/share/locale/bg/LC_TIME/coreutils.mo": {
+      "sha256": "a69983155eb39ad63b58591e603acbae02d07e87acae292ac603fb4f6ff5a65f",
+      "size": 487228
+    },
+    "usr/share/locale/ca/LC_MESSAGES/coreutils.mo": {
+      "sha256": "a15e789105cfd00c4be755f3cbe1012c95d5378d2bb0d51774768f55509cb3e3",
+      "size": 367145
+    },
+    "usr/share/locale/ca/LC_MESSAGES/diffutils.mo": {
+      "sha256": "20053c91a30218c152e54f922403baa4d14afbc22835bb31aef495a26c9fc7ec",
+      "size": 7792
+    },
+    "usr/share/locale/ca/LC_MESSAGES/findutils.mo": {
+      "sha256": "59ee80127b0f63008fda56d332e3279e6601168816f5a997021df5031054c13d",
+      "size": 5201
+    },
+    "usr/share/locale/ca/LC_MESSAGES/grep.mo": {
+      "sha256": "aedd2d55da68a536183e5c7470da34d56a1dc9a856b177f17f12b2ca0deb1cf6",
+      "size": 18471
+    },
+    "usr/share/locale/ca/LC_MESSAGES/sed.mo": {
+      "sha256": "b7981e2eeb46939dcacecdde7a19763322ecc7b9c2271cc2b0786dbc8b75b8b2",
+      "size": 8506
+    },
+    "usr/share/locale/ca/LC_TIME/coreutils.mo": {
+      "sha256": "a15e789105cfd00c4be755f3cbe1012c95d5378d2bb0d51774768f55509cb3e3",
+      "size": 367145
+    },
+    "usr/share/locale/cs/LC_MESSAGES/coreutils.mo": {
+      "sha256": "84d369bf1296077a6e9ba3fcb38942b6dc3549a8822ad4023f4dada7a79eb4f1",
+      "size": 376169
+    },
+    "usr/share/locale/cs/LC_MESSAGES/diffutils.mo": {
+      "sha256": "444501b30bdf9a7614e1404190b783f3a0eeb540d1de15d96b474f75c3adae3b",
+      "size": 37477
+    },
+    "usr/share/locale/cs/LC_MESSAGES/findutils.mo": {
+      "sha256": "fabf42ddd13fba383e7a9ba8a90eebb456de9f3c3cdc55e3003d39b3df47001c",
+      "size": 45238
+    },
+    "usr/share/locale/cs/LC_MESSAGES/grep.mo": {
+      "sha256": "843cc6a5de2908f3416040d368700c52e2560285b33be7e7b796d27af880f4c0",
+      "size": 18984
+    },
+    "usr/share/locale/cs/LC_MESSAGES/sed.mo": {
+      "sha256": "50f6e6ba5ab7414d5a3af4cc3b0e979adbfab54e5e711931854236d285ecda3f",
+      "size": 15966
+    },
+    "usr/share/locale/cs/LC_TIME/coreutils.mo": {
+      "sha256": "84d369bf1296077a6e9ba3fcb38942b6dc3549a8822ad4023f4dada7a79eb4f1",
+      "size": 376169
+    },
+    "usr/share/locale/da/LC_MESSAGES/coreutils.mo": {
+      "sha256": "39cfc4983ace5f7d146b8ed18b4813bcf10a27644449bc88d69bc3918d8cfa24",
+      "size": 344441
+    },
+    "usr/share/locale/da/LC_MESSAGES/diffutils.mo": {
+      "sha256": "1046b57f3eb41adf92849b8710a0c4aeba1e9c4db9cc5194bacbc0251404e592",
+      "size": 32644
+    },
+    "usr/share/locale/da/LC_MESSAGES/findutils.mo": {
+      "sha256": "53262b19e564dd9c8931b89eb3bbea7902d97b0d98e4023236020f581d15446e",
+      "size": 28597
+    },
+    "usr/share/locale/da/LC_MESSAGES/grep.mo": {
+      "sha256": "b6cf461310990f5cb33d9205bc8466a9cc9839aca6ee803db7798377c87853cd",
+      "size": 17324
+    },
+    "usr/share/locale/da/LC_MESSAGES/sed.mo": {
+      "sha256": "900b4893c6a467767328276f571c3535091ee905f7ae1bba8d9b398dea285baa",
+      "size": 12214
+    },
+    "usr/share/locale/da/LC_TIME/coreutils.mo": {
+      "sha256": "39cfc4983ace5f7d146b8ed18b4813bcf10a27644449bc88d69bc3918d8cfa24",
+      "size": 344441
+    },
+    "usr/share/locale/de/LC_MESSAGES/coreutils.mo": {
+      "sha256": "98c4b6b504782b6217349002d4b7638b74de78cf6e0f90fdf0b2ca619afa286c",
+      "size": 377487
+    },
+    "usr/share/locale/de/LC_MESSAGES/diffutils.mo": {
+      "sha256": "f8111eeb32262e80b3f2fb89561e91f5f33dc7e30de98c9267ddfa4704191c61",
+      "size": 38766
+    },
+    "usr/share/locale/de/LC_MESSAGES/findutils.mo": {
+      "sha256": "d58a82517f7ad3f5184b36916b3c3e0ffb60513b7bfa7a846cedccd1feb9ac61",
+      "size": 46528
+    },
+    "usr/share/locale/de/LC_MESSAGES/gawk.mo": {
+      "sha256": "09b71d7cd3b3fce323e223525648a321c055076ad21a637e1aa9b56b7256f329",
+      "size": 98839
+    },
+    "usr/share/locale/de/LC_MESSAGES/grep.mo": {
+      "sha256": "2edeccb82fafac409845adebda6ddcfba59f3e7c905b3ce37eb0b2c33770c384",
+      "size": 18816
+    },
+    "usr/share/locale/de/LC_MESSAGES/sed.mo": {
+      "sha256": "860c8eecb97133405bf365f39b3c44eb8aaf37df74d594d05e2050da5abd0627",
+      "size": 15493
+    },
+    "usr/share/locale/de/LC_TIME/coreutils.mo": {
+      "sha256": "98c4b6b504782b6217349002d4b7638b74de78cf6e0f90fdf0b2ca619afa286c",
+      "size": 377487
+    },
+    "usr/share/locale/el/LC_MESSAGES/coreutils.mo": {
+      "sha256": "414c236f7d4a781cfad240f702c5ce8de06ded9e9f9827e3a42d9eebb73d7a6d",
+      "size": 23924
+    },
+    "usr/share/locale/el/LC_MESSAGES/diffutils.mo": {
+      "sha256": "1685a40c29f9fddd0f40fac8778aa156d2c219aa6c8358a22e753d14a85fdbf6",
+      "size": 40836
+    },
+    "usr/share/locale/el/LC_MESSAGES/findutils.mo": {
+      "sha256": "4d923ce31c64bb77272e89211ac58cd24e5e2f57d5ff098f6e1998f6ba019a6d",
+      "size": 37108
+    },
+    "usr/share/locale/el/LC_MESSAGES/grep.mo": {
+      "sha256": "25ed3e574043e8368417ab8989bef8f9eee2ed786a7d2471abef348efc77c550",
+      "size": 8173
+    },
+    "usr/share/locale/el/LC_MESSAGES/sed.mo": {
+      "sha256": "574161487f98afb3637c6c7dcfcfc6ac2d3fb5c9e0d12e95d663b5c0aef71785",
+      "size": 11102
+    },
+    "usr/share/locale/el/LC_TIME/coreutils.mo": {
+      "sha256": "414c236f7d4a781cfad240f702c5ce8de06ded9e9f9827e3a42d9eebb73d7a6d",
+      "size": 23924
+    },
+    "usr/share/locale/eo/LC_MESSAGES/coreutils.mo": {
+      "sha256": "3c033fa302b26c8d3f9bb7551780cb7b9644254e97de854ccc0da73b30baa06e",
+      "size": 168365
+    },
+    "usr/share/locale/eo/LC_MESSAGES/diffutils.mo": {
+      "sha256": "582d72cbe842771da3756b80441a2567a338af2ea02f91813c31352450f02a65",
+      "size": 32425
+    },
+    "usr/share/locale/eo/LC_MESSAGES/findutils.mo": {
+      "sha256": "781a0e49c8bc1af5c8541b6df8a086b247447357ef678b80c75081db0289d681",
+      "size": 28402
+    },
+    "usr/share/locale/eo/LC_MESSAGES/grep.mo": {
+      "sha256": "9a39ecb3051895cd1b38cb93bddbf54815de116f3967c4ecf6be11f118230354",
+      "size": 17705
+    },
+    "usr/share/locale/eo/LC_MESSAGES/sed.mo": {
+      "sha256": "29dcdeabedb827c5c35b1c07a56b158106133a5c5e54cfeabee5b46f086fcc97",
+      "size": 14589
+    },
+    "usr/share/locale/eo/LC_TIME/coreutils.mo": {
+      "sha256": "3c033fa302b26c8d3f9bb7551780cb7b9644254e97de854ccc0da73b30baa06e",
+      "size": 168365
+    },
+    "usr/share/locale/es/LC_MESSAGES/coreutils.mo": {
+      "sha256": "605961bc4a2158aaa2d76a3c6b1fba79509c1c8eae75eb6ebd74679ea4b725b2",
+      "size": 258014
+    },
+    "usr/share/locale/es/LC_MESSAGES/diffutils.mo": {
+      "sha256": "521b8c99d7ca8e04f0c2634d85056d7531e277b9925d81136d283da80f655515",
+      "size": 34985
+    },
+    "usr/share/locale/es/LC_MESSAGES/findutils.mo": {
+      "sha256": "953410b3112d501019435258028e7da629cd9374860894177e411eb0bd53dd8e",
+      "size": 46363
+    },
+    "usr/share/locale/es/LC_MESSAGES/gawk.mo": {
+      "sha256": "5a5fa47c0bdb475a4b70ae5172ee71c2cd27e215d375da8b88bf18a82e0520a4",
+      "size": 97735
+    },
+    "usr/share/locale/es/LC_MESSAGES/grep.mo": {
+      "sha256": "874da2a5339f83cede89ad4fd1df5053c9d057658c834d42897314d09a3fd048",
+      "size": 17491
+    },
+    "usr/share/locale/es/LC_MESSAGES/sed.mo": {
+      "sha256": "7453b2766d897ce5ad0fd92880b438164a1f1a86c2f78a7f56275e82275dd99d",
+      "size": 15983
+    },
+    "usr/share/locale/es/LC_TIME/coreutils.mo": {
+      "sha256": "605961bc4a2158aaa2d76a3c6b1fba79509c1c8eae75eb6ebd74679ea4b725b2",
+      "size": 258014
+    },
+    "usr/share/locale/et/LC_MESSAGES/coreutils.mo": {
+      "sha256": "08c6b4bb62fed727eeb5f5eefa0af04dae7df937650e937cf54d852886894efd",
+      "size": 328956
+    },
+    "usr/share/locale/et/LC_MESSAGES/findutils.mo": {
+      "sha256": "9ac42af3a31f729a46d6d07483b98f633c4d165d6652373f53dda57c22ad8578",
+      "size": 42773
+    },
+    "usr/share/locale/et/LC_MESSAGES/grep.mo": {
+      "sha256": "cf5df5b7ed5023048df5c191332abaa479af273acb173c6e992f9fe29f618771",
+      "size": 16994
+    },
+    "usr/share/locale/et/LC_MESSAGES/sed.mo": {
+      "sha256": "42a860476cf5ee56b5e1a9a8357a4e429a67ff799755143faa9391b81fabd579",
+      "size": 14787
+    },
+    "usr/share/locale/et/LC_TIME/coreutils.mo": {
+      "sha256": "08c6b4bb62fed727eeb5f5eefa0af04dae7df937650e937cf54d852886894efd",
+      "size": 328956
+    },
+    "usr/share/locale/eu/LC_MESSAGES/coreutils.mo": {
+      "sha256": "af2bf35f2ebdca0c2387a8371ec126606f487576cf46bad491410e124758f73b",
+      "size": 27527
+    },
+    "usr/share/locale/eu/LC_MESSAGES/grep.mo": {
+      "sha256": "d8661f36904bd8f04345d93ccfa9a74b9b46618025be812399b70e674e07353e",
+      "size": 1595
+    },
+    "usr/share/locale/eu/LC_MESSAGES/sed.mo": {
+      "sha256": "85a754b79ef67416e4932481e4c7b7aa0bcccdef763a0d25d44db9edb68c45f0",
+      "size": 1627
+    },
+    "usr/share/locale/eu/LC_TIME/coreutils.mo": {
+      "sha256": "af2bf35f2ebdca0c2387a8371ec126606f487576cf46bad491410e124758f73b",
+      "size": 27527
+    },
+    "usr/share/locale/fi/LC_MESSAGES/coreutils.mo": {
+      "sha256": "83eb1ff10e558ba5a963a8e190d95f2af8287cfb627414074e6931f6f3813153",
+      "size": 110746
+    },
+    "usr/share/locale/fi/LC_MESSAGES/diffutils.mo": {
+      "sha256": "3248bac4ef9bf52cde96d3abfce59e84d6985406710fe9fcd8154382086aa611",
+      "size": 33724
+    },
+    "usr/share/locale/fi/LC_MESSAGES/findutils.mo": {
+      "sha256": "c616f58ee90d217238accbc2ddf7c3668f5828437eb774879d5748b937719f8e",
+      "size": 29689
+    },
+    "usr/share/locale/fi/LC_MESSAGES/grep.mo": {
+      "sha256": "8868b4361f56544d5850c517143184778d5a4a81d4a641c4e96000034f2a4e1b",
+      "size": 18752
+    },
+    "usr/share/locale/fi/LC_MESSAGES/sed.mo": {
+      "sha256": "97fcd98183c5dcd26ec5abd46c9b49b935431c4644af62d7ffc3951f0105c91f",
+      "size": 15342
+    },
+    "usr/share/locale/fi/LC_TIME/coreutils.mo": {
+      "sha256": "83eb1ff10e558ba5a963a8e190d95f2af8287cfb627414074e6931f6f3813153",
+      "size": 110746
+    },
+    "usr/share/locale/fr/LC_MESSAGES/coreutils.mo": {
+      "sha256": "be3368497f35abff387c3b15c83806154385277706171601d3cc70579728d860",
+      "size": 387694
+    },
+    "usr/share/locale/fr/LC_MESSAGES/diffutils.mo": {
+      "sha256": "e6c33248e449b885cb3ae3f71f1c0b54c776349ff424f8c683ae80c8a2476f0d",
+      "size": 38647
+    },
+    "usr/share/locale/fr/LC_MESSAGES/findutils.mo": {
+      "sha256": "2d6b836d2cc01695f3c8485622a777732241e729f23d699a3e6149e0de128b48",
+      "size": 46734
+    },
+    "usr/share/locale/fr/LC_MESSAGES/gawk.mo": {
+      "sha256": "a83a91fcbd637f2076670d995931e408cb80201f1dab9e6f1b86a6139868d6e7",
+      "size": 99076
+    },
+    "usr/share/locale/fr/LC_MESSAGES/grep.mo": {
+      "sha256": "f82fee3fd59a8fd3eb1abc38d22af61cbbe73d835a212127e5a145a82244d1de",
+      "size": 18534
+    },
+    "usr/share/locale/fr/LC_MESSAGES/sed.mo": {
+      "sha256": "0a29ecf044967ee242834ed9b32057d90a4e2add5ed875a8618d49bc8e3e5630",
+      "size": 16409
+    },
+    "usr/share/locale/fr/LC_TIME/coreutils.mo": {
+      "sha256": "be3368497f35abff387c3b15c83806154385277706171601d3cc70579728d860",
+      "size": 387694
+    },
+    "usr/share/locale/ga/LC_MESSAGES/coreutils.mo": {
+      "sha256": "4131e4a571b55763954de7466b2a3a78ce78bdc34830e5b9c72db0e8cebc5f79",
+      "size": 113047
+    },
+    "usr/share/locale/ga/LC_MESSAGES/diffutils.mo": {
+      "sha256": "ab0f3a129b6b59105229a8d1e4d3b918e0a5a1b624946a2112996109f1c72234",
+      "size": 7627
+    },
+    "usr/share/locale/ga/LC_MESSAGES/findutils.mo": {
+      "sha256": "5ffe8ddb0f96f2313fc25813b058d81ed20b26a93f7d583b06ff96599f9d1c2e",
+      "size": 14819
+    },
+    "usr/share/locale/ga/LC_MESSAGES/grep.mo": {
+      "sha256": "19a9741ee1eef7c0d50f66dcdf59ab77bf14af113beed924b36159dbd7e6a8f3",
+      "size": 18316
+    },
+    "usr/share/locale/ga/LC_MESSAGES/sed.mo": {
+      "sha256": "d9a18fd4c5e0edaa1e11756ad596682650278cf9dac1c2092cd6bc35d31a0530",
+      "size": 13599
+    },
+    "usr/share/locale/ga/LC_TIME/coreutils.mo": {
+      "sha256": "4131e4a571b55763954de7466b2a3a78ce78bdc34830e5b9c72db0e8cebc5f79",
+      "size": 113047
+    },
+    "usr/share/locale/gl/LC_MESSAGES/coreutils.mo": {
+      "sha256": "122fbe841f6baa2541c07f1b8edd9262cf4f04d3e9a633bcb32194f3781a4cf1",
+      "size": 28556
+    },
+    "usr/share/locale/gl/LC_MESSAGES/diffutils.mo": {
+      "sha256": "2abac14bffa92963e0fb7b8f0702cf5e31d266bac177c44d29100c6cd97cca5a",
+      "size": 9889
+    },
+    "usr/share/locale/gl/LC_MESSAGES/findutils.mo": {
+      "sha256": "b70e934ab79a97e3a725ebe817f10476bebd5af0b9a82287e7804a6bca2d7747",
+      "size": 18252
+    },
+    "usr/share/locale/gl/LC_MESSAGES/grep.mo": {
+      "sha256": "3445ade7805a99dcbc3058b5340f95b302d025d465f0bd68cf09346973b8d9bb",
+      "size": 12203
+    },
+    "usr/share/locale/gl/LC_MESSAGES/sed.mo": {
+      "sha256": "f86f190365fd73c40cc1baf5435ce301c87dc0c8ddbd7179e8c476776dc2a22c",
+      "size": 15193
+    },
+    "usr/share/locale/gl/LC_TIME/coreutils.mo": {
+      "sha256": "122fbe841f6baa2541c07f1b8edd9262cf4f04d3e9a633bcb32194f3781a4cf1",
+      "size": 28556
+    },
+    "usr/share/locale/he/LC_MESSAGES/diffutils.mo": {
+      "sha256": "e19f0371e1818c752b9b5a9cf7c4a12d05f6e2c132e9e61bb206626168f1e7c5",
+      "size": 7111
+    },
+    "usr/share/locale/he/LC_MESSAGES/gawk.mo": {
+      "sha256": "cc7ddfe25cabfb02a0c2f195ef6a300c60be9a267c8fcd3e56826779b6ef0d45",
+      "size": 86827
+    },
+    "usr/share/locale/he/LC_MESSAGES/grep.mo": {
+      "sha256": "be6a97d843d7c1038604143213b6e7c1c37d91415aefa5560cee1083facd6e32",
+      "size": 1444
+    },
+    "usr/share/locale/he/LC_MESSAGES/sed.mo": {
+      "sha256": "919e7f315161d7d6a8d63057c04db7e9f89bd143046dde68ef4f5a73a1bb4699",
+      "size": 1292
+    },
+    "usr/share/locale/hr/LC_MESSAGES/coreutils.mo": {
+      "sha256": "3c3322426e1243e015e9c2d52016977ce10175526afb4f2f09f2af74c3de64c2",
+      "size": 365038
+    },
+    "usr/share/locale/hr/LC_MESSAGES/diffutils.mo": {
+      "sha256": "f39440d5432772c9f977c3bcd9cfb52f48853e59c601cbbe3806c5d9ba376e42",
+      "size": 37272
+    },
+    "usr/share/locale/hr/LC_MESSAGES/findutils.mo": {
+      "sha256": "65d7e9603ee87421ad8940c43e182eac7cec2f1416b9eb2db20a9b6c443e4c94",
+      "size": 44831
+    },
+    "usr/share/locale/hr/LC_MESSAGES/grep.mo": {
+      "sha256": "87a5a697273a8097941b39e675f4d42782d7eb49c418735e024a4de3a466a0b0",
+      "size": 18279
+    },
+    "usr/share/locale/hr/LC_MESSAGES/sed.mo": {
+      "sha256": "091fb34437b526249a703732b58a8d7d955ba63020fbbffe5b7a00d48931e5fc",
+      "size": 16218
+    },
+    "usr/share/locale/hr/LC_TIME/coreutils.mo": {
+      "sha256": "3c3322426e1243e015e9c2d52016977ce10175526afb4f2f09f2af74c3de64c2",
+      "size": 365038
+    },
+    "usr/share/locale/hu/LC_MESSAGES/coreutils.mo": {
+      "sha256": "514d658cb2c6879d28e477f91bfa503ae70c9e7675f31a560887d4117369a751",
+      "size": 359817
+    },
+    "usr/share/locale/hu/LC_MESSAGES/diffutils.mo": {
+      "sha256": "7cfe2fd9fd6039f337bc2beafcdb7a9f0b492eab8486d5268357aa0356f0b133",
+      "size": 35287
+    },
+    "usr/share/locale/hu/LC_MESSAGES/findutils.mo": {
+      "sha256": "1d5d9c42799ec83f11b0938e54ed39ee1fb0dcd9840f7222b6a052aa6926d959",
+      "size": 30812
+    },
+    "usr/share/locale/hu/LC_MESSAGES/grep.mo": {
+      "sha256": "5a038b297614fb4e6bba86149956a6967aca100a45a7e2b920b29001a6aea03e",
+      "size": 18570
+    },
+    "usr/share/locale/hu/LC_MESSAGES/sed.mo": {
+      "sha256": "62bdb8c4c3d858f7cb4141561a7df7200ed55d679b65d49c8c03c3d9a1716e09",
+      "size": 12957
+    },
+    "usr/share/locale/hu/LC_TIME/coreutils.mo": {
+      "sha256": "514d658cb2c6879d28e477f91bfa503ae70c9e7675f31a560887d4117369a751",
+      "size": 359817
+    },
+    "usr/share/locale/ia/LC_MESSAGES/coreutils.mo": {
+      "sha256": "d563924557d0bbb755ee987b6b098189f1f75060b873404d6a749f1af355f45c",
+      "size": 6837
+    },
+    "usr/share/locale/ia/LC_TIME/coreutils.mo": {
+      "sha256": "d563924557d0bbb755ee987b6b098189f1f75060b873404d6a749f1af355f45c",
+      "size": 6837
+    },
+    "usr/share/locale/id/LC_MESSAGES/coreutils.mo": {
+      "sha256": "37f47c0129f080b9a54680d04d492c175f925a906682cc092e9302d8bbd010c8",
+      "size": 143073
+    },
+    "usr/share/locale/id/LC_MESSAGES/diffutils.mo": {
+      "sha256": "2ead1da02be32a33495b4a3975187f1ca8e07653bcd36442d1768a19f6d99df0",
+      "size": 35663
+    },
+    "usr/share/locale/id/LC_MESSAGES/findutils.mo": {
+      "sha256": "f31687c0e0bd0f9ea2c058ebb90af4aaf4bb3b60cb21fe79f633c38e79edd88d",
+      "size": 44285
+    },
+    "usr/share/locale/id/LC_MESSAGES/gawk.mo": {
+      "sha256": "c98cd37fedf7a085b7bfbbaec5756ae9504efe4ff7da729ba7b54aa51313a8a4",
+      "size": 93278
+    },
+    "usr/share/locale/id/LC_MESSAGES/grep.mo": {
+      "sha256": "e0312cfe227b374b1229e0167ee352172014065cf70d6fb70e0428c09d2345a3",
+      "size": 16510
+    },
+    "usr/share/locale/id/LC_MESSAGES/sed.mo": {
+      "sha256": "de9d54de298fc0d17e148aad312a58c0360ea4635c820dbd4ce672e634788fe7",
+      "size": 15499
+    },
+    "usr/share/locale/id/LC_TIME/coreutils.mo": {
+      "sha256": "37f47c0129f080b9a54680d04d492c175f925a906682cc092e9302d8bbd010c8",
+      "size": 143073
+    },
+    "usr/share/locale/it/LC_MESSAGES/coreutils.mo": {
+      "sha256": "20c68911884a156b6aa39c4a38516e1a3c9e12e6606221068bd4cc89423eec7c",
+      "size": 165468
+    },
+    "usr/share/locale/it/LC_MESSAGES/diffutils.mo": {
+      "sha256": "d5ef9d8ca8ee5128c221acf5f3e45d3328572d8e1504b5927115ba4c0a86ea1b",
+      "size": 31597
+    },
+    "usr/share/locale/it/LC_MESSAGES/findutils.mo": {
+      "sha256": "f8975ab96e9a2200abbcadae1afbf67b2d3a8d6ba96ce2787e53337284c2d228",
+      "size": 27404
+    },
+    "usr/share/locale/it/LC_MESSAGES/gawk.mo": {
+      "sha256": "3e8be808adadb94e4cee366fc624a837d941595e440076d85edee1158eb3c6cb",
+      "size": 95333
+    },
+    "usr/share/locale/it/LC_MESSAGES/grep.mo": {
+      "sha256": "0faf3a7b88c80c85c9e099804b6f41d89890e66d78abde29f2ce2bc59c48ae55",
+      "size": 18157
+    },
+    "usr/share/locale/it/LC_MESSAGES/sed.mo": {
+      "sha256": "a7311de9e749ade9d262143edf2aab793c49e871b47df0ffbae1c6d5acad0936",
+      "size": 15140
+    },
+    "usr/share/locale/it/LC_TIME/coreutils.mo": {
+      "sha256": "20c68911884a156b6aa39c4a38516e1a3c9e12e6606221068bd4cc89423eec7c",
+      "size": 165468
+    },
+    "usr/share/locale/ja/LC_MESSAGES/coreutils.mo": {
+      "sha256": "e9d02979db0985f87fcdf70addd48f8d01325af0a974830eda5a3a751a6028cf",
+      "size": 187343
+    },
+    "usr/share/locale/ja/LC_MESSAGES/diffutils.mo": {
+      "sha256": "65cdf8bb8f3f5a8d47900f1fe18d382fb8135cdb5b3f1f3647ccb911220010c4",
+      "size": 29997
+    },
+    "usr/share/locale/ja/LC_MESSAGES/findutils.mo": {
+      "sha256": "25f54ca3a87c37688e58ec42aa8ed2388ff583f74eb4a5c115481a5d48f0552d",
+      "size": 21814
+    },
+    "usr/share/locale/ja/LC_MESSAGES/grep.mo": {
+      "sha256": "17b0db8090819e2f0d1309c728c690af63b177817a6a64957059e261c10d142a",
+      "size": 18744
+    },
+    "usr/share/locale/ja/LC_MESSAGES/sed.mo": {
+      "sha256": "6202bc4142e82c3c136c8d3adee620881b07c6ca03fde42c7e2ad142c1dba8f4",
+      "size": 11207
+    },
+    "usr/share/locale/ja/LC_TIME/coreutils.mo": {
+      "sha256": "e9d02979db0985f87fcdf70addd48f8d01325af0a974830eda5a3a751a6028cf",
+      "size": 187343
+    },
+    "usr/share/locale/ka/LC_MESSAGES/diffutils.mo": {
+      "sha256": "895a7b575b2c85637d78f039402a401e1eb32af58f8b725a53f7a807cd31c484",
+      "size": 42289
+    },
+    "usr/share/locale/ka/LC_MESSAGES/findutils.mo": {
+      "sha256": "3581ac0f537e1333c624615370a941f64a588027d677bdc3f1113653e344d466",
+      "size": 36515
+    },
+    "usr/share/locale/ka/LC_MESSAGES/gawk.mo": {
+      "sha256": "59df374f5479e9b930ec2df12603a6eb97c552049c2cfe18ee562dd3d626521f",
+      "size": 34588
+    },
+    "usr/share/locale/ka/LC_MESSAGES/sed.mo": {
+      "sha256": "21fd276823e98465400d9ab1edb5b842709c8da4970df4ef400d6f535dedeae1",
+      "size": 22339
+    },
+    "usr/share/locale/kk/LC_MESSAGES/coreutils.mo": {
+      "sha256": "11a506f86e24a171254f32a6d73d520e7e57c2663d9f54113f7e2f0ba491b273",
+      "size": 1624
+    },
+    "usr/share/locale/kk/LC_TIME/coreutils.mo": {
+      "sha256": "11a506f86e24a171254f32a6d73d520e7e57c2663d9f54113f7e2f0ba491b273",
+      "size": 1624
+    },
+    "usr/share/locale/ko/LC_MESSAGES/coreutils.mo": {
+      "sha256": "4c389e03b87cf217da8b56dd76ff987f857078028cfb97a2da0fa5b7f3dea291",
+      "size": 24931
+    },
+    "usr/share/locale/ko/LC_MESSAGES/diffutils.mo": {
+      "sha256": "7e6de9b09be0e0240d984f6922c000e85e91ba6ceb55c0365b358eb15ad28219",
+      "size": 34063
+    },
+    "usr/share/locale/ko/LC_MESSAGES/findutils.mo": {
+      "sha256": "f8b805cb2e674a5f016b4d6f5442ed4f8afa168bbdae39683608cd23ea37d156",
+      "size": 46620
+    },
+    "usr/share/locale/ko/LC_MESSAGES/gawk.mo": {
+      "sha256": "b77447a805997385ab9f5b3ca9fcba0da801dce5c90395774ba31b797b70d194",
+      "size": 102621
+    },
+    "usr/share/locale/ko/LC_MESSAGES/grep.mo": {
+      "sha256": "db7dad67bc37f7a0100d027ea9df8711cc17b336297031ffc471c342442f31aa",
+      "size": 723
+    },
+    "usr/share/locale/ko/LC_MESSAGES/sed.mo": {
+      "sha256": "e8d075cfdb532dcb7d47fbea3728532a15962b5aea5e7a61b301567f9edc3b24",
+      "size": 16716
+    },
+    "usr/share/locale/ko/LC_TIME/coreutils.mo": {
+      "sha256": "4c389e03b87cf217da8b56dd76ff987f857078028cfb97a2da0fa5b7f3dea291",
+      "size": 24931
+    },
+    "usr/share/locale/ky/LC_MESSAGES/grep.mo": {
+      "sha256": "696a3ba29857497cf4c5ebb173a3db94994bf9a1e757c3fd5f6d7bdb37d88fcc",
+      "size": 3549
+    },
+    "usr/share/locale/lg/LC_MESSAGES/coreutils.mo": {
+      "sha256": "07071e69a981b187d3e94ec7b93bfc6c053c3ed5e774638b42b06b47231ed4e0",
+      "size": 209059
+    },
+    "usr/share/locale/lg/LC_MESSAGES/findutils.mo": {
+      "sha256": "a09a0c8231d3184b051a47f5aba27ac0fb5eb3ce481c1f1b1ab92d9a65c0f435",
+      "size": 2359
+    },
+    "usr/share/locale/lg/LC_TIME/coreutils.mo": {
+      "sha256": "07071e69a981b187d3e94ec7b93bfc6c053c3ed5e774638b42b06b47231ed4e0",
+      "size": 209059
+    },
+    "usr/share/locale/lt/LC_MESSAGES/coreutils.mo": {
+      "sha256": "fdca8fa53b59e46317268add13cf0ec92f3a126dcd880e6cacc78f7de334403e",
+      "size": 30702
+    },
+    "usr/share/locale/lt/LC_MESSAGES/findutils.mo": {
+      "sha256": "529ba910f2124826477bc065b9f99b425ac3700d8be62f9e231d44ad02e6a6fd",
+      "size": 4008
+    },
+    "usr/share/locale/lt/LC_MESSAGES/grep.mo": {
+      "sha256": "05f43c61508df160870c1b38557d4a8d66ce31f3179d6bc5009aed42688d3feb",
+      "size": 2984
+    },
+    "usr/share/locale/lt/LC_TIME/coreutils.mo": {
+      "sha256": "fdca8fa53b59e46317268add13cf0ec92f3a126dcd880e6cacc78f7de334403e",
+      "size": 30702
+    },
+    "usr/share/locale/lv/LC_MESSAGES/diffutils.mo": {
+      "sha256": "0dc55a17b6be00badfbca10edd1574193e6b0686909dcf15ad69b106545a1b04",
+      "size": 35698
+    },
+    "usr/share/locale/ms/LC_MESSAGES/coreutils.mo": {
+      "sha256": "e6e22eafc3ffdf150f5010c030467860fb8cf936a2bc57ad6c7e727b15aa1f44",
+      "size": 22634
+    },
+    "usr/share/locale/ms/LC_MESSAGES/diffutils.mo": {
+      "sha256": "19efff968b74d7939514e7151a694f6c6759c9154b301f96d5fc7e8ee46aef54",
+      "size": 34221
+    },
+    "usr/share/locale/ms/LC_MESSAGES/findutils.mo": {
+      "sha256": "2094d63e3236b2ac21f02b9a1fe5607086bd3ffa7a8358098001aec66b7d95c1",
+      "size": 1453
+    },
+    "usr/share/locale/ms/LC_TIME/coreutils.mo": {
+      "sha256": "e6e22eafc3ffdf150f5010c030467860fb8cf936a2bc57ad6c7e727b15aa1f44",
+      "size": 22634
+    },
+    "usr/share/locale/nb/LC_MESSAGES/coreutils.mo": {
+      "sha256": "1bc1686c9c971ac801b2734ebb480b1f57579581e7d552ef67488b68817a7190",
+      "size": 349251
+    },
+    "usr/share/locale/nb/LC_MESSAGES/diffutils.mo": {
+      "sha256": "49bdbc923635a2dd1b62b48f0397afefe486acbeaa8a025664580686202dfc30",
+      "size": 32689
+    },
+    "usr/share/locale/nb/LC_MESSAGES/findutils.mo": {
+      "sha256": "6d7d890820d5b198365a47dbb25e09dc7040a307748187e06ee56d614901d7a8",
+      "size": 36763
+    },
+    "usr/share/locale/nb/LC_MESSAGES/grep.mo": {
+      "sha256": "ef26bf2c4d40bbe05f375f6ada73b135e2c1c937d23aeaefada7cf67bb30096e",
+      "size": 17851
+    },
+    "usr/share/locale/nb/LC_MESSAGES/sed.mo": {
+      "sha256": "7468908f75e3ff4f05dde45f973475eb465c36205e47e3fdb24efc34826ec0e6",
+      "size": 14532
+    },
+    "usr/share/locale/nb/LC_TIME/coreutils.mo": {
+      "sha256": "1bc1686c9c971ac801b2734ebb480b1f57579581e7d552ef67488b68817a7190",
+      "size": 349251
+    },
+    "usr/share/locale/nl/LC_MESSAGES/coreutils.mo": {
+      "sha256": "3016ea772d475a642c75dd408acc8ca77fa34fb78b884eabefd5370fd0bc792c",
+      "size": 336347
+    },
+    "usr/share/locale/nl/LC_MESSAGES/diffutils.mo": {
+      "sha256": "ccb551f71e078b85c575d72076909d538252fea6cfa47526fc5d39ce3e6cb44d",
+      "size": 38046
+    },
+    "usr/share/locale/nl/LC_MESSAGES/findutils.mo": {
+      "sha256": "ed17e50d80188fe4290e3cc6f1b1ea4d33f2d3cc7b15ea15b46bbba69c48d5e6",
+      "size": 44254
+    },
+    "usr/share/locale/nl/LC_MESSAGES/gawk.mo": {
+      "sha256": "2fdea38e0f249490f67c21743d277e9ff7d87520a54181403f19ffbbde8b2546",
+      "size": 77277
+    },
+    "usr/share/locale/nl/LC_MESSAGES/grep.mo": {
+      "sha256": "87b8261c19b45f043cdf9d5d8bf1c68fa4b8cedc9320df4692244c042393d48f",
+      "size": 18643
+    },
+    "usr/share/locale/nl/LC_MESSAGES/sed.mo": {
+      "sha256": "9ba9c73333727e831c2f8d36d9d2c47853902a82d91682d8cfcc0a097f8cf56b",
+      "size": 15769
+    },
+    "usr/share/locale/nl/LC_TIME/coreutils.mo": {
+      "sha256": "3016ea772d475a642c75dd408acc8ca77fa34fb78b884eabefd5370fd0bc792c",
+      "size": 336347
+    },
+    "usr/share/locale/pa/LC_MESSAGES/grep.mo": {
+      "sha256": "669dedcc17c4f005c685ac644f4c9a83fceffebef1bf27df242584dbc0c72893",
+      "size": 8202
+    },
+    "usr/share/locale/pl/LC_MESSAGES/coreutils.mo": {
+      "sha256": "04310b3a0db4ac3e51ec9a2705f8ed28788464ebdaa278e732abc22af363ba7c",
+      "size": 376057
+    },
+    "usr/share/locale/pl/LC_MESSAGES/diffutils.mo": {
+      "sha256": "a77b0a342f51be66f17e3c8fd34ffa30e33971932edba7ca0880abb5cff0c279",
+      "size": 37267
+    },
+    "usr/share/locale/pl/LC_MESSAGES/findutils.mo": {
+      "sha256": "3e29cdc680374126ac9df8a6df5c2f9b3d332c059b80f418950ca59e9e16be87",
+      "size": 45187
+    },
+    "usr/share/locale/pl/LC_MESSAGES/gawk.mo": {
+      "sha256": "ee0548d4f8c9abd2336c25747956ab53e0addeb2daee58e3799fb6af4e4ab45b",
+      "size": 96733
+    },
+    "usr/share/locale/pl/LC_MESSAGES/grep.mo": {
+      "sha256": "c8c5266188a96b1cf5d5d2ddd7a9d57701197c65261c8380fc4b28e390c72ec5",
+      "size": 18355
+    },
+    "usr/share/locale/pl/LC_MESSAGES/sed.mo": {
+      "sha256": "fb4b3e24bf414263b153564cba324723997335102028424f087a7a8b5c26a829",
+      "size": 16280
+    },
+    "usr/share/locale/pl/LC_TIME/coreutils.mo": {
+      "sha256": "04310b3a0db4ac3e51ec9a2705f8ed28788464ebdaa278e732abc22af363ba7c",
+      "size": 376057
+    },
+    "usr/share/locale/pt/LC_MESSAGES/coreutils.mo": {
+      "sha256": "322aa10c3a56275c591315989d32e4493821c0cf59e4f0efbd05f9bd17c707d6",
+      "size": 357806
+    },
+    "usr/share/locale/pt/LC_MESSAGES/diffutils.mo": {
+      "sha256": "15e85f4ba65be9ae8019dafb379be668f6643528e465c49dfecab2ea90d33d8c",
+      "size": 36267
+    },
+    "usr/share/locale/pt/LC_MESSAGES/findutils.mo": {
+      "sha256": "ff6370a9a9d000f0236c95e9015301544d16290691c2368fa91b5f25a3171c42",
+      "size": 44492
+    },
+    "usr/share/locale/pt/LC_MESSAGES/gawk.mo": {
+      "sha256": "27605ef60422d0fd9b471151ef4bd6071a5ccc528f7a05e83f03bfc04b86ec0c",
+      "size": 93683
+    },
+    "usr/share/locale/pt/LC_MESSAGES/grep.mo": {
+      "sha256": "cb1ff0938890bd47883a245155537311da7975e31164ccaf633d76d6033f5e34",
+      "size": 1634
+    },
+    "usr/share/locale/pt/LC_MESSAGES/sed.mo": {
+      "sha256": "ecc9ee41e5c86190ddecd3c0f91a9b601270f91c41326670ccbf1831b6cfd541",
+      "size": 14760
+    },
+    "usr/share/locale/pt/LC_TIME/coreutils.mo": {
+      "sha256": "322aa10c3a56275c591315989d32e4493821c0cf59e4f0efbd05f9bd17c707d6",
+      "size": 357806
+    },
+    "usr/share/locale/pt_BR/LC_MESSAGES/coreutils.mo": {
+      "sha256": "d2ba1f6b2e379a8bd7a5abad94d0fefdf54fa669218971b915a744d837714df2",
+      "size": 374010
+    },
+    "usr/share/locale/pt_BR/LC_MESSAGES/diffutils.mo": {
+      "sha256": "2d70af67390d8cb1791b017964638b66fa941371264b5a7b442e38a1c1b5b98b",
+      "size": 38638
+    },
+    "usr/share/locale/pt_BR/LC_MESSAGES/findutils.mo": {
+      "sha256": "298a6b19f40e792f41fdae6660e8239388cf13bb0248e975e35e75796e31f559",
+      "size": 45341
+    },
+    "usr/share/locale/pt_BR/LC_MESSAGES/gawk.mo": {
+      "sha256": "1eb3db2211cbdfe6d1b095ce014907494183aee8de017c22d8dd73a80774c3c9",
+      "size": 84649
+    },
+    "usr/share/locale/pt_BR/LC_MESSAGES/grep.mo": {
+      "sha256": "28e032bbf8122a4950169bec5fc2af0035ce8edeb782c54889e5d16e2b07b77e",
+      "size": 18694
+    },
+    "usr/share/locale/pt_BR/LC_MESSAGES/sed.mo": {
+      "sha256": "0889415ac4320b8b29d857dc312fdd461a70d86cef0718033e928b9e2235f9dd",
+      "size": 15397
+    },
+    "usr/share/locale/pt_BR/LC_TIME/coreutils.mo": {
+      "sha256": "d2ba1f6b2e379a8bd7a5abad94d0fefdf54fa669218971b915a744d837714df2",
+      "size": 374010
+    },
+    "usr/share/locale/ro/LC_MESSAGES/coreutils.mo": {
+      "sha256": "88531d6e4151b4cff73aaa973cdb28470aea416964fc0ead2dc64cdd40eb6bb2",
+      "size": 47391
+    },
+    "usr/share/locale/ro/LC_MESSAGES/diffutils.mo": {
+      "sha256": "971a0cabc6265e1c61625daec9670898f24ca5e2c1a142b40609f67fcb7cbe3e",
+      "size": 39701
+    },
+    "usr/share/locale/ro/LC_MESSAGES/findutils.mo": {
+      "sha256": "b5ed337ee9e90c6b639db9aa6b57ddbf236da0e5d72da64cc1f88a8ea75231b9",
+      "size": 47805
+    },
+    "usr/share/locale/ro/LC_MESSAGES/gawk.mo": {
+      "sha256": "6f38622d4fb10de8e1ebb12e3f7d6b1dfa0d8190168a1ed57adee00f365b6b63",
+      "size": 99851
+    },
+    "usr/share/locale/ro/LC_MESSAGES/grep.mo": {
+      "sha256": "238ab01cb73e28664cf7c81d3935bde08eb71434bb63274d6a3d8ed0f30edc68",
+      "size": 1584
+    },
+    "usr/share/locale/ro/LC_MESSAGES/sed.mo": {
+      "sha256": "cac641318f56d80218057a729d3d0b7cae4a4956dff7706694e4cbd15b9b7f0d",
+      "size": 16752
+    },
+    "usr/share/locale/ro/LC_TIME/coreutils.mo": {
+      "sha256": "88531d6e4151b4cff73aaa973cdb28470aea416964fc0ead2dc64cdd40eb6bb2",
+      "size": 47391
+    },
+    "usr/share/locale/ru/LC_MESSAGES/coreutils.mo": {
+      "sha256": "abea091c3d7fbafb7e5a451390e473d6947c6b169a15b822d4666ddba204e417",
+      "size": 481053
+    },
+    "usr/share/locale/ru/LC_MESSAGES/diffutils.mo": {
+      "sha256": "747d8dd426e89892e98b0a808f1a4d2b7cccc99b4cacc44451b4a9fa13292dfd",
+      "size": 41754
+    },
+    "usr/share/locale/ru/LC_MESSAGES/findutils.mo": {
+      "sha256": "1faf807a778ee641589a13e1294a164ad91521578dec7d4dd454f6f3f0a23e16",
+      "size": 48584
+    },
+    "usr/share/locale/ru/LC_MESSAGES/grep.mo": {
+      "sha256": "0b5162612af1c98877fd44be0e3de0ccf0a7a16d557750bd003a4e8fda5dbe48",
+      "size": 23450
+    },
+    "usr/share/locale/ru/LC_MESSAGES/sed.mo": {
+      "sha256": "96c2be68124049c09dc34d103e49334336aa274b47217773e7877506b8be2653",
+      "size": 19474
+    },
+    "usr/share/locale/ru/LC_TIME/coreutils.mo": {
+      "sha256": "abea091c3d7fbafb7e5a451390e473d6947c6b169a15b822d4666ddba204e417",
+      "size": 481053
+    },
+    "usr/share/locale/sk/LC_MESSAGES/coreutils.mo": {
+      "sha256": "cae3b9a82a9e79f6cf17cc9067dc41946ac4da23e246ea506510db2ffd692217",
+      "size": 69954
+    },
+    "usr/share/locale/sk/LC_MESSAGES/findutils.mo": {
+      "sha256": "857de8e47a98ece9825f68c7bed41782877304bdbcd959fe4b3866e3052fe8d1",
+      "size": 19176
+    },
+    "usr/share/locale/sk/LC_MESSAGES/grep.mo": {
+      "sha256": "1723e595c7e6fe41d23d932a3221838f24600d6b0db3fa9ac82a42e8402df109",
+      "size": 16056
+    },
+    "usr/share/locale/sk/LC_MESSAGES/sed.mo": {
+      "sha256": "79f00e70da3c7c302f4033a21947a5a47b268f29a6225fa49e2c884f265b2248",
+      "size": 16064
+    },
+    "usr/share/locale/sk/LC_TIME/coreutils.mo": {
+      "sha256": "cae3b9a82a9e79f6cf17cc9067dc41946ac4da23e246ea506510db2ffd692217",
+      "size": 69954
+    },
+    "usr/share/locale/sl/LC_MESSAGES/coreutils.mo": {
+      "sha256": "4ccf47e8f8e1b85e7e9334a3db4dc2a7ba8a45982efaf87f417f157a3a4578b0",
+      "size": 309767
+    },
+    "usr/share/locale/sl/LC_MESSAGES/findutils.mo": {
+      "sha256": "3121148cda379c2fa0fc0b29c75770fbca35d4f81cfc2a2bd41cb9bfdc23974d",
+      "size": 29041
+    },
+    "usr/share/locale/sl/LC_MESSAGES/grep.mo": {
+      "sha256": "368e9bbcc61a687847732265029bf1dee45aba33b64d43bb50255402df034154",
+      "size": 17859
+    },
+    "usr/share/locale/sl/LC_MESSAGES/sed.mo": {
+      "sha256": "fe5400ede4e0e80902581f1e052fe680c53ca47ca12f2d030f8db33628b7757e",
+      "size": 8282
+    },
+    "usr/share/locale/sl/LC_TIME/coreutils.mo": {
+      "sha256": "4ccf47e8f8e1b85e7e9334a3db4dc2a7ba8a45982efaf87f417f157a3a4578b0",
+      "size": 309767
+    },
+    "usr/share/locale/sr/LC_MESSAGES/coreutils.mo": {
+      "sha256": "dd593c120bf4d591e01f0b219dd7662ebc59d2c2a436d56f4425c522a9d66274",
+      "size": 403267
+    },
+    "usr/share/locale/sr/LC_MESSAGES/diffutils.mo": {
+      "sha256": "d008c0631dca8459375faed7a91ae8c2d68be023bf1ac9d1ad635b68a5aa29c4",
+      "size": 44274
+    },
+    "usr/share/locale/sr/LC_MESSAGES/findutils.mo": {
+      "sha256": "d0fe964856f7818ff83082753bda2ac68c9184127b39c93ce9c8317f1c8e0582",
+      "size": 48526
+    },
+    "usr/share/locale/sr/LC_MESSAGES/gawk.mo": {
+      "sha256": "0e480e50e37de7ca77ad7d802ccbc15994ba092d297c679e9f12466e89ac893f",
+      "size": 119300
+    },
+    "usr/share/locale/sr/LC_MESSAGES/grep.mo": {
+      "sha256": "751f0ae6a4b3873a217f39b2ea67ce572b38f206ac2f618c6f404b21fc18546a",
+      "size": 22446
+    },
+    "usr/share/locale/sr/LC_MESSAGES/sed.mo": {
+      "sha256": "b12ca79d36a6390445afd447882600e5c437a107fb9657358aa91f651bad1811",
+      "size": 18467
+    },
+    "usr/share/locale/sr/LC_TIME/coreutils.mo": {
+      "sha256": "dd593c120bf4d591e01f0b219dd7662ebc59d2c2a436d56f4425c522a9d66274",
+      "size": 403267
+    },
+    "usr/share/locale/sv/LC_MESSAGES/coreutils.mo": {
+      "sha256": "941b1f41c9faccedcf67286b099c5eec667222f9af14385e69c9e6bfd0ee33b2",
+      "size": 355769
+    },
+    "usr/share/locale/sv/LC_MESSAGES/diffutils.mo": {
+      "sha256": "dbfcb548e614585e3e3072af43f079fd585a5d22a5012e1cde713a756527648e",
+      "size": 35641
+    },
+    "usr/share/locale/sv/LC_MESSAGES/findutils.mo": {
+      "sha256": "595445302ac0c3f5239663e781e67c92cf62c2ab8b1f3df1da3693cbe31348f2",
+      "size": 44241
+    },
+    "usr/share/locale/sv/LC_MESSAGES/gawk.mo": {
+      "sha256": "97b8dfacb77e11e2b207188952c54408a6cae29812c0ef5ee006d68666cddd1b",
+      "size": 94647
+    },
+    "usr/share/locale/sv/LC_MESSAGES/grep.mo": {
+      "sha256": "bd79c27365f4844d504056f7ac3964af8e705f78fe833c0dfa7a5a9da9fbd3cb",
+      "size": 17838
+    },
+    "usr/share/locale/sv/LC_MESSAGES/sed.mo": {
+      "sha256": "ad0f0a0cc87b642826236b6e3cb1cdf51f4b886be67b7f22e9227ebd4b3a09a2",
+      "size": 15526
+    },
+    "usr/share/locale/sv/LC_TIME/coreutils.mo": {
+      "sha256": "941b1f41c9faccedcf67286b099c5eec667222f9af14385e69c9e6bfd0ee33b2",
+      "size": 355769
+    },
+    "usr/share/locale/th/LC_MESSAGES/grep.mo": {
+      "sha256": "fa963b1de3eb060f4ee1cc1db72d4d32d675b16d0f1cf1c1fab8915801d46610",
+      "size": 25404
+    },
+    "usr/share/locale/tr/LC_MESSAGES/coreutils.mo": {
+      "sha256": "60a376ba4388eab04f0056b11a996c7b75c3d118938002c5c4bc904e2742ed2e",
+      "size": 142563
+    },
+    "usr/share/locale/tr/LC_MESSAGES/diffutils.mo": {
+      "sha256": "bb70a4cb289026a9685a9a4d324ee45fbcde79e0900b347738b595b66d88a30a",
+      "size": 33866
+    },
+    "usr/share/locale/tr/LC_MESSAGES/findutils.mo": {
+      "sha256": "f697ca86fe30a984b2009d4cb6fd11ae52130c3bc10a2d40fd30a6497cb948fb",
+      "size": 36977
+    },
+    "usr/share/locale/tr/LC_MESSAGES/gawk.mo": {
+      "sha256": "2f2761eebdc66c30ea337480508cd0f1ffc5489b76f8f5042d7090fca7c7b734",
+      "size": 88725
+    },
+    "usr/share/locale/tr/LC_MESSAGES/grep.mo": {
+      "sha256": "5141caac0032ab5d1a89244c0ca617dc6c3f4b5ca29389ef83925b6c3b9de507",
+      "size": 1554
+    },
+    "usr/share/locale/tr/LC_MESSAGES/sed.mo": {
+      "sha256": "d7d39f5546f48ccb068ef0342f147647fecf08dc9b86043c92609d3565e90d3e",
+      "size": 15586
+    },
+    "usr/share/locale/tr/LC_TIME/coreutils.mo": {
+      "sha256": "60a376ba4388eab04f0056b11a996c7b75c3d118938002c5c4bc904e2742ed2e",
+      "size": 142563
+    },
+    "usr/share/locale/uk/LC_MESSAGES/coreutils.mo": {
+      "sha256": "f4b3b114d7406bdae915a94e0927f9449aaaa766b8036a38130c72581b11b227",
+      "size": 472912
+    },
+    "usr/share/locale/uk/LC_MESSAGES/diffutils.mo": {
+      "sha256": "6866586ae7e2bae5f63db0e023e7a0903514a1b938070113f01e1d4e306e2502",
+      "size": 47093
+    },
+    "usr/share/locale/uk/LC_MESSAGES/findutils.mo": {
+      "sha256": "7cfedd098953a6806ed5a9e72da2631617480e9e38b6a652b46f0f4592f8fdac",
+      "size": 58440
+    },
+    "usr/share/locale/uk/LC_MESSAGES/gawk.mo": {
+      "sha256": "6b122a7d814f2eae300ce6fcaad4a650cb1970fda19c23945a5f3a90e6ed231f",
+      "size": 122991
+    },
+    "usr/share/locale/uk/LC_MESSAGES/grep.mo": {
+      "sha256": "f81323ddf31b7ae4fa491ee46119880063b708e7bc33951290541573dbae8df2",
+      "size": 24099
+    },
+    "usr/share/locale/uk/LC_MESSAGES/sed.mo": {
+      "sha256": "f84cbc14a9dff989c2b2ee0cc6d0b0f85f1bff71ee53f33667d3f8b61186e8b6",
+      "size": 19956
+    },
+    "usr/share/locale/uk/LC_TIME/coreutils.mo": {
+      "sha256": "f4b3b114d7406bdae915a94e0927f9449aaaa766b8036a38130c72581b11b227",
+      "size": 472912
+    },
+    "usr/share/locale/vi/LC_MESSAGES/coreutils.mo": {
+      "sha256": "22afe0a691dfa8b1090cb0f9404e1da73eb54909674b740c8efe1f34fdcd272b",
+      "size": 376619
+    },
+    "usr/share/locale/vi/LC_MESSAGES/diffutils.mo": {
+      "sha256": "c4b78e6aeea889d04837a6e86309b7652464aa0c979144f502551cfe251de9d7",
+      "size": 35548
+    },
+    "usr/share/locale/vi/LC_MESSAGES/findutils.mo": {
+      "sha256": "188705bf96ce67d9744f0f998edc89f58d1a9861d3d610c3d16ff4488b544aef",
+      "size": 31530
+    },
+    "usr/share/locale/vi/LC_MESSAGES/grep.mo": {
+      "sha256": "d70259b3e5ff315a80caa9164f6ddd7dd85dc9689b79b8f91a2c9773ab47ea3c",
+      "size": 20304
+    },
+    "usr/share/locale/vi/LC_MESSAGES/sed.mo": {
+      "sha256": "492fe1cada0908cd184fed8bbd1bfc0cc4e15cf731d3edb171e120cbfc49d852",
+      "size": 16613
+    },
+    "usr/share/locale/vi/LC_TIME/coreutils.mo": {
+      "sha256": "22afe0a691dfa8b1090cb0f9404e1da73eb54909674b740c8efe1f34fdcd272b",
+      "size": 376619
+    },
+    "usr/share/locale/zh_CN/LC_MESSAGES/coreutils.mo": {
+      "sha256": "a1cb96547d5a1e6c62182600b45712439d4788195e8a2ca5f4073dd9715ffafd",
+      "size": 295077
+    },
+    "usr/share/locale/zh_CN/LC_MESSAGES/diffutils.mo": {
+      "sha256": "a38643078c7e4da4586a4df7fce089e5042815c3afe03a48732aa32e95e83077",
+      "size": 35965
+    },
+    "usr/share/locale/zh_CN/LC_MESSAGES/findutils.mo": {
+      "sha256": "46d3347c03c3650bcbd2539d38d5030c234815cb39a157fccc23d93252102eb1",
+      "size": 42035
+    },
+    "usr/share/locale/zh_CN/LC_MESSAGES/gawk.mo": {
+      "sha256": "9ac1b985c7cedb91be451e7bf7d7470ed84cdbe085cfb29262a5a9bcef542512",
+      "size": 85361
+    },
+    "usr/share/locale/zh_CN/LC_MESSAGES/grep.mo": {
+      "sha256": "cc0f5a167c7d23942884f3cbece9fac7bab3a1fb9134babacf4e578dca7dc34c",
+      "size": 16895
+    },
+    "usr/share/locale/zh_CN/LC_MESSAGES/sed.mo": {
+      "sha256": "84735b847c8cb71634d717845c78e0194b13dc6de6fcbf940c3e273e604c532e",
+      "size": 14265
+    },
+    "usr/share/locale/zh_CN/LC_TIME/coreutils.mo": {
+      "sha256": "a1cb96547d5a1e6c62182600b45712439d4788195e8a2ca5f4073dd9715ffafd",
+      "size": 295077
+    },
+    "usr/share/locale/zh_TW/LC_MESSAGES/coreutils.mo": {
+      "sha256": "2dfdbf2b71a4385242cca6a9a4d13a0a8f132b041a4a3f00e9a67eb636e8c8c4",
+      "size": 329504
+    },
+    "usr/share/locale/zh_TW/LC_MESSAGES/diffutils.mo": {
+      "sha256": "bf155547d1e1aa151be9cb36c77527d434bd29a88e72a748d0cc78079e1ccf6d",
+      "size": 35426
+    },
+    "usr/share/locale/zh_TW/LC_MESSAGES/findutils.mo": {
+      "sha256": "4a541c9a73bce182e69a0add4c004aff5801e43be920dd93401f5fcbcd73e0b1",
+      "size": 34686
+    },
+    "usr/share/locale/zh_TW/LC_MESSAGES/grep.mo": {
+      "sha256": "26d7e9a36d58953108908bd136c758c5966f07ab956f677bbd2da49ded0bb0b0",
+      "size": 17039
+    },
+    "usr/share/locale/zh_TW/LC_MESSAGES/sed.mo": {
+      "sha256": "93bd57a0c64e3bec4c59c1c66521dabce26adaedfb7280a4842991c066b25f4d",
+      "size": 14836
+    },
+    "usr/share/locale/zh_TW/LC_TIME/coreutils.mo": {
+      "sha256": "2dfdbf2b71a4385242cca6a9a4d13a0a8f132b041a4a3f00e9a67eb636e8c8c4",
+      "size": 329504
+    },
+    "usr/share/man/man1/arch.1": {
+      "sha256": "3e7f01234ddf538d54e00e10f8b4161d4939ee8c944f6c90c00fb78851fa6509",
+      "size": 1094
+    },
+    "usr/share/man/man1/b2sum.1": {
+      "sha256": "a1461c63427885c6e9450fcbb1e50f835888955544d5e1b89cc680dfe8b6dbe7",
+      "size": 2528
+    },
+    "usr/share/man/man1/base32.1": {
+      "sha256": "2902454978e18b322c3149887c2e2045ef6447034bb597f18bc6e69e5151d42c",
+      "size": 1815
+    },
+    "usr/share/man/man1/base64.1": {
+      "sha256": "f9fe6663568b92d19dae40b8c2a712cc7425028b60a6376fef3d4bf23f513d0e",
+      "size": 1815
+    },
+    "usr/share/man/man1/basename.1": {
+      "sha256": "ad4d917ff648840870e61d51f23194ccaf9c3053de87f360f5e95bd13d91704c",
+      "size": 2074
+    },
+    "usr/share/man/man1/basenc.1": {
+      "sha256": "edcbd22d42e81c4bee8a6c83a15b406ec6f7335a63a4c4f27553455a9123badc",
+      "size": 2926
+    },
+    "usr/share/man/man1/cat.1": {
+      "sha256": "42030056bd8c6fee447fcb3d30291e10325f98ab546b0e43f50b28d785cbe7db",
+      "size": 2084
+    },
+    "usr/share/man/man1/chcon.1": {
+      "sha256": "36cb35820f79a7c6465ed9b95411dc6de1e3b89ec94e3d349145a3b761cb1963",
+      "size": 2860
+    },
+    "usr/share/man/man1/chgrp.1": {
+      "sha256": "77afa48b6d7c41230e10ee34d94b5cdca4b6059c2cabcac6d4d6c303be764802",
+      "size": 2778
+    },
+    "usr/share/man/man1/chmod.1": {
+      "sha256": "c10c10aa7184d4eec3fdc36702b4780d2d1751f2f1a0f1b2aeb8f783a7d0eb45",
+      "size": 6265
+    },
+    "usr/share/man/man1/chown.1": {
+      "sha256": "c98c139a24da9b401b617fcf13b9b31661ed6a4b4312b14726d914d896f4bb38",
+      "size": 4293
+    },
+    "usr/share/man/man1/chroot.1": {
+      "sha256": "fa8cb8c051850738e688182f89c735b0a32963260e91decbb8be8d7533698d40",
+      "size": 1518
+    },
+    "usr/share/man/man1/cksum.1": {
+      "sha256": "f42793dbb202dbd30a54aed157beab4e7a2110ddef0c1e187048f23d45ca2956",
+      "size": 1098
+    },
+    "usr/share/man/man1/cmp.1": {
+      "sha256": "f64f05638150d8d4284b7e0a183302f459fd8ee0f2e4e15e7cc0a82fbc5de119",
+      "size": 2272
+    },
+    "usr/share/man/man1/comm.1": {
+      "sha256": "9595f015595250b5e8874418a98b98be39db94b71cbcf62c375703d3a08636db",
+      "size": 2318
+    },
+    "usr/share/man/man1/cp.1": {
+      "sha256": "4407e28f2043c3c1d7a961cd7001ce7a03fac5fa546dc1b646bee9b72cd2b3d0",
+      "size": 5536
+    },
+    "usr/share/man/man1/csplit.1": {
+      "sha256": "cba9ec9256b6c21b1df25b2941136ff19f4f93ba4fd368a1398501ab1aa847f2",
+      "size": 2323
+    },
+    "usr/share/man/man1/cut.1": {
+      "sha256": "cf020425426f2232b1e7697a3efa921399adc1c62802376246ca6535da55221d",
+      "size": 2574
+    },
+    "usr/share/man/man1/date.1": {
+      "sha256": "9f5bdc22532efbc71d3c113ca39744bb8e6d02db5bf4b7fbda14808b658b9005",
+      "size": 5979
+    },
+    "usr/share/man/man1/dd.1": {
+      "sha256": "14c939fe6c110d862a2e7acca1e358c03231e127f81af51905b7d80d0ae1a142",
+      "size": 4028
+    },
+    "usr/share/man/man1/df.1": {
+      "sha256": "15985a86a9bccdf00ac04de54bc84cad06ce9347d1f70163fef679b7b9499494",
+      "size": 4002
+    },
+    "usr/share/man/man1/diff.1": {
+      "sha256": "abd1e4feebc9db8e78054f103649afb285b4e8cd79bc46ac4a2ed8c04868b17d",
+      "size": 6544
+    },
+    "usr/share/man/man1/diff3.1": {
+      "sha256": "7994cd27b5aa9f59444477ed172b6e6b803fa67e95db4a35db4d42eecb301a4a",
+      "size": 2869
+    },
+    "usr/share/man/man1/dir.1": {
+      "sha256": "92880da064ada5277a4b89c6ad2ca658f12c6716b4379eb30065b6c6bbbc2530",
+      "size": 8116
+    },
+    "usr/share/man/man1/dircolors.1": {
+      "sha256": "e735c2f371337ea10d04645e94fdaa46a2525b8a7e0560fdae23bbffbfc8ab71",
+      "size": 1602
+    },
+    "usr/share/man/man1/dirname.1": {
+      "sha256": "801dff4fda0bdc57b330b1701fb4f8d688d5372ed4ba3c3722c219731e5cf2cf",
+      "size": 1674
+    },
+    "usr/share/man/man1/du.1": {
+      "sha256": "ef80a8c02d35ef24262e436439e224581ed18edfa0df0dfe3c1c513c8ae0ce58",
+      "size": 4951
+    },
+    "usr/share/man/man1/echo.1": {
+      "sha256": "5818a11ab1789a258a60358b40dce9360d018366bfd49d467ea7877f9231fc99",
+      "size": 1870
+    },
+    "usr/share/man/man1/egrep.1": {
+      "sha256": "63c67a6e12e52a18c217adca1e7a88ebf1590df82e1234ad9061b4d6db34eefc",
+      "size": 16
+    },
+    "usr/share/man/man1/env.1": {
+      "sha256": "87e408a75da269efdab0fb3d34363e03d1fcb9b339ec3b38718a8a39e30fb036",
+      "size": 3704
+    },
+    "usr/share/man/man1/expand.1": {
+      "sha256": "8b37ac728d1b967113eb89fd755ece048786bf29a0d5b3dc9cfcf1fad261853d",
+      "size": 1746
+    },
+    "usr/share/man/man1/expr.1": {
+      "sha256": "402e5bc40d83cbaa4ae8c8e810c4513233715e2b55f2f865f1633f3e9d3ef0c7",
+      "size": 2748
+    },
+    "usr/share/man/man1/factor.1": {
+      "sha256": "7dc56e3d430d509dc7fdb3e3c035cd5c0b53b9c98775625b6dba8f39e2c6e2c8",
+      "size": 1201
+    },
+    "usr/share/man/man1/false.1": {
+      "sha256": "5d9bc4424b4e4691624b50cf762a5e7e90d124cb787fefbea003a6db8c1f64ee",
+      "size": 1298
+    },
+    "usr/share/man/man1/fgrep.1": {
+      "sha256": "63c67a6e12e52a18c217adca1e7a88ebf1590df82e1234ad9061b4d6db34eefc",
+      "size": 16
+    },
+    "usr/share/man/man1/find.1": {
+      "sha256": "7b136f9c7e0156f4029495e7549846f9653dcee1d711a36db7d85e903c6e2ed5",
+      "size": 84787
+    },
+    "usr/share/man/man1/fmt.1": {
+      "sha256": "cb6f8ddb38949fd9f238c0aca40c4dd53b016391bbb39234336dbf27e8040a6d",
+      "size": 1968
+    },
+    "usr/share/man/man1/fold.1": {
+      "sha256": "58816800d4a5a355dc8e2b263fa5593925d2db61034122ba6b62f3caca5a0a9f",
+      "size": 1430
+    },
+    "usr/share/man/man1/gawk.1": {
+      "sha256": "db0f483e496c8cf3bceb5848f52726f5020210518cbd3f9c56b3223f39c23df6",
+      "size": 61077
+    },
+    "usr/share/man/man1/gawkbug.1": {
+      "sha256": "a38b98a8f092a13b0e8af51a64cf1cd81cab2cbbb86b0bf8e09ee7d294b292a6",
+      "size": 1952
+    },
+    "usr/share/man/man1/gkill.1": {
+      "sha256": "736cc4735d33d5ae5dac319f3296d4c694444203d04d788c5aafe1e3d7ca48d2",
+      "size": 1938
+    },
+    "usr/share/man/man1/grep.1": {
+      "sha256": "91156774e4fec04318ac1fa5f736b2d00e045ae7c3345d0c2f2ad51b4945b8fc",
+      "size": 29949
+    },
+    "usr/share/man/man1/groups.1": {
+      "sha256": "05be4c346ffcb7acfe93b01005ffd8a5da6d7c6a229d48ff5a77d7f285ea64f6",
+      "size": 1233
+    },
+    "usr/share/man/man1/head.1": {
+      "sha256": "f8493f7052579f2fa0a9c31f7f4391b893e2cb0a5841e3448993f97cab42d734",
+      "size": 2107
+    },
+    "usr/share/man/man1/hostid.1": {
+      "sha256": "b78b28ff1c8525254878c74bf5cf84ce44788ee2cde41c04d194b75f76beb31d",
+      "size": 1121
+    },
+    "usr/share/man/man1/hostname.1": {
+      "sha256": "0a6c683115c2b5c7f50efbbd6778712cc3b058e943c1fb0db88ba2df9a946e6e",
+      "size": 1121
+    },
+    "usr/share/man/man1/id.1": {
+      "sha256": "7e5961aed57b4fa6dfcea75059511225dc921a2e4ec913dc4e1576fa4cacd6af",
+      "size": 1840
+    },
+    "usr/share/man/man1/install.1": {
+      "sha256": "80e4958f10c93625cf5ace34b35e622335ae9818a8a8b44bfa27a10367c97bea",
+      "size": 4058
+    },
+    "usr/share/man/man1/join.1": {
+      "sha256": "d18dd7972d5ae4c55ad4ddd0035dbea09a1ef5cda96da9825aba4122697f8d5d",
+      "size": 3132
+    },
+    "usr/share/man/man1/link.1": {
+      "sha256": "5a9f284f47a6286a9f26f4034d60ac65c245bdf142f3101927e2a90dd3cbe6c4",
+      "size": 1145
+    },
+    "usr/share/man/man1/ln.1": {
+      "sha256": "dee3fc49c14e9dfd13baa0186c0d83f3fd6e84bf1348e4faf0be9e6ae7327080",
+      "size": 3744
+    },
+    "usr/share/man/man1/locate.1": {
+      "sha256": "5685eba92fcc1cc3eee105021679d49d8a9d4245b2272293609cbe3d98290219",
+      "size": 10806
+    },
+    "usr/share/man/man1/logname.1": {
+      "sha256": "169a25126fdecd012a55fba3094f73fd0bb489d15a9c15e897f5c4fc4f635604",
+      "size": 1050
+    },
+    "usr/share/man/man1/ls.1": {
+      "sha256": "d4689a4755a780107a69ec75bc2dc8dda224d1b52f0989103359cf6f57e6e037",
+      "size": 8111
+    },
+    "usr/share/man/man1/md5sum.1": {
+      "sha256": "f7e1676e15aad1bfdff781e063fb0d73dc99e2f5b986786cd93bdb10de8a644c",
+      "size": 2640
+    },
+    "usr/share/man/man1/mkdir.1": {
+      "sha256": "16cfa8564e473ad2f9266c63dc0d88638291fb1ad90c2d85d43886369c6fada1",
+      "size": 1652
+    },
+    "usr/share/man/man1/mkfifo.1": {
+      "sha256": "f4870e8a351d94df940052e6d6a6a6bf4396c5f315c1e6244ed3336c028da7bc",
+      "size": 1466
+    },
+    "usr/share/man/man1/mknod.1": {
+      "sha256": "aa98ddeea15c54437de820978dc7e0efea34603bc1ea9d783f386cb9a814f6e1",
+      "size": 2076
+    },
+    "usr/share/man/man1/mktemp.1": {
+      "sha256": "3531c6624494a9597eb86a1effaa59bd04b9f15daf291f2e3e354cabba8bffdc",
+      "size": 2268
+    },
+    "usr/share/man/man1/mv.1": {
+      "sha256": "f33dd202d731f3b27abaeaefc17a413a41e4c7606ab60da8df1278a28c86db9c",
+      "size": 2909
+    },
+    "usr/share/man/man1/nice.1": {
+      "sha256": "22174b7d1fff95e4aef5e898541b694570c46b7cd675358675fd075d2a745f6c",
+      "size": 1681
+    },
+    "usr/share/man/man1/nl.1": {
+      "sha256": "42a9ba890964a157a0706ec2f8964fdb5f34d59c3ba792b8852bcabae728ebd4",
+      "size": 2859
+    },
+    "usr/share/man/man1/nohup.1": {
+      "sha256": "9f1eb048ac26a769733fa98a1eb3cd672b20bbe8082720dbbe237af40b430720",
+      "size": 1689
+    },
+    "usr/share/man/man1/nproc.1": {
+      "sha256": "2a6f12b97f37047ed4599803cf76d0e6a21d8895cb595d809753124bd49d85ff",
+      "size": 1290
+    },
+    "usr/share/man/man1/numfmt.1": {
+      "sha256": "6e879f9e429cb7da262e8f59bce3eb96ac57c99bbafe39d2a7bd459cb8d1ac54",
+      "size": 5682
+    },
+    "usr/share/man/man1/od.1": {
+      "sha256": "91aa7da96b4c5497816f7c37a71081960f44723bb6c2e5ad5b07b7bd44d88db3",
+      "size": 4780
+    },
+    "usr/share/man/man1/paste.1": {
+      "sha256": "e485790ae0b24c7798401a68b360daba6a721b57a5041108104b0653aad576f0",
+      "size": 1548
+    },
+    "usr/share/man/man1/pathchk.1": {
+      "sha256": "2626e2c42180c1588af629f3c3c7ca051595e9b189b8e6f14f1a3b1612ad8e0c",
+      "size": 1318
+    },
+    "usr/share/man/man1/pcre-config.1": {
+      "sha256": "87ff5019948e7b4a18a0308511d9f49139110ab4bb34acc5196390af57428bed",
+      "size": 2731
+    },
+    "usr/share/man/man1/pcregrep.1": {
+      "sha256": "73b871cf752aef725721b911c239d1e3adfdffdd800359abdd59f62eac52f9c9",
+      "size": 35450
+    },
+    "usr/share/man/man1/pcretest.1": {
+      "sha256": "26069cf6e0405bbdb8d7e837d1c4dd58c4053e7e5bf8c554c60a8cda8235ca2a",
+      "size": 49267
+    },
+    "usr/share/man/man1/pinky.1": {
+      "sha256": "5cf2fccfbc9f366305af25e29236e6f62f6e0c709ce7be0f18663cedbf2fe5ef",
+      "size": 1741
+    },
+    "usr/share/man/man1/pm-gawk.1": {
+      "sha256": "bfabb30f69222ed9f9f9bd960158fd95b938ed3535275bf5c32f3282aa20730e",
+      "size": 5308
+    },
+    "usr/share/man/man1/pr.1": {
+      "sha256": "ef253e9f2f55dafdbe9f1d81730af9bbc1a06f8cbe8846218d878ffdf03759c2",
+      "size": 4770
+    },
+    "usr/share/man/man1/printenv.1": {
+      "sha256": "65528ceb452ce908092cc83c7a309f1d971fac6a261b7c9fa37a54b388bb26c4",
+      "size": 1477
+    },
+    "usr/share/man/man1/printf.1": {
+      "sha256": "59e3c14b15fb15c24b99be9b368059b79300c50301deb311dde9818124900f10",
+      "size": 2331
+    },
+    "usr/share/man/man1/ptx.1": {
+      "sha256": "1b2c88d606035f415d8f0c82787c0e23ec230745107ab7450525a8f2998f5575",
+      "size": 2831
+    },
+    "usr/share/man/man1/pwd.1": {
+      "sha256": "ec305f04952674ee4080bdc2554d0f87c994f8576bc5d649cf3ae870e7cfd807",
+      "size": 1474
+    },
+    "usr/share/man/man1/readlink.1": {
+      "sha256": "761e2cce1a42a9d14087e6050b59559dad09d10aad6741b31d9c0dd539cfefb3",
+      "size": 2077
+    },
+    "usr/share/man/man1/realpath.1": {
+      "sha256": "b100d928484ca477f4291a03e0a2fa4e23cd5d47064069f957cb105b8641a7c0",
+      "size": 1869
+    },
+    "usr/share/man/man1/rm.1": {
+      "sha256": "bfb0b2f84df59f6dd819779406b41e0691672628e3b642f8183c888608f99780",
+      "size": 3644
+    },
+    "usr/share/man/man1/rmdir.1": {
+      "sha256": "6615a0412dc3e603697ec8068524c4e2f26959fe372e04aa966907cc744dc772",
+      "size": 1430
+    },
+    "usr/share/man/man1/runcon.1": {
+      "sha256": "553a998add4f5b87321fe94c2db875dc32abc225f0bd7c18893c43d79e81c95b",
+      "size": 2180
+    },
+    "usr/share/man/man1/sdiff.1": {
+      "sha256": "a7d1ead3e419482bbe0d0a0571670df6f992c0617ddfd86f564ddfded5a8beb7",
+      "size": 2892
+    },
+    "usr/share/man/man1/sed.1": {
+      "sha256": "f751e6071888acfcd323ec6483fad7069cd2ade0af9b0f10399dc50a71f87e58",
+      "size": 10581
+    },
+    "usr/share/man/man1/seq.1": {
+      "sha256": "4a934f8153db62b02f73a665eb720aed6836c22b51e6bc1b820ec151515c6021",
+      "size": 2260
+    },
+    "usr/share/man/man1/sha1sum.1": {
+      "sha256": "fe3880d343e053d00c107121e7b9300eb513778670172d92fe5d18dda17e6360",
+      "size": 2654
+    },
+    "usr/share/man/man1/sha224sum.1": {
+      "sha256": "67f0237bbb5c20f46addbfde0ce0acb3c24489e9b63c37f51373e53e35a71e71",
+      "size": 2422
+    },
+    "usr/share/man/man1/sha256sum.1": {
+      "sha256": "05d3d7b0d1dfabc20428276696e64e7f7a665a510520cd05dc9f444465e62a19",
+      "size": 2426
+    },
+    "usr/share/man/man1/sha384sum.1": {
+      "sha256": "aaa604ce1c91ee06484180cd6be44c28ab5e29e4cc3e3e3d088b761cf45d1ea2",
+      "size": 2426
+    },
+    "usr/share/man/man1/sha512sum.1": {
+      "sha256": "2f52934e8da829fa2703b87bafb0669e1a1d16f7ea1f048035426945bcea406f",
+      "size": 2426
+    },
+    "usr/share/man/man1/shred.1": {
+      "sha256": "613c350b0e50bb50f34a813c289f99b551a6c5aefb3b6edc4fc75db8bb9dc310",
+      "size": 2866
+    },
+    "usr/share/man/man1/shuf.1": {
+      "sha256": "8291604a94273b504e4a7d1f0ab26a2e22a3efc5f59639d3ad4c2a02047980dd",
+      "size": 1891
+    },
+    "usr/share/man/man1/sleep.1": {
+      "sha256": "0008944eed531a53032edc136d36e1dfcffb3f09ef7745f3a50eb087e33cb71b",
+      "size": 1347
+    },
+    "usr/share/man/man1/sort.1": {
+      "sha256": "adf4da0834f04f4da8dbf1c9bceac57d0bc7dfe8082c3dd18d29347f70e34155",
+      "size": 5092
+    },
+    "usr/share/man/man1/split.1": {
+      "sha256": "42fd4308b4808d7de01d1cc48751b163d3a4e945259f9b1a09d33049e01c8258",
+      "size": 3223
+    },
+    "usr/share/man/man1/stat.1": {
+      "sha256": "735770306056e94fe6e894a1270174e95a3caea74a7e6ebb7768c80396c0a457",
+      "size": 4369
+    },
+    "usr/share/man/man1/stdbuf.1": {
+      "sha256": "9007bc1d274d0aab371eb169e5512a619ea89398e8129d87ec2aa9f92a50a2fc",
+      "size": 2506
+    },
+    "usr/share/man/man1/stty.1": {
+      "sha256": "8307dd9d26e4eab97eb3cc130f3aa4cef1796cd6099319fb0014fdde6720ab36",
+      "size": 8403
+    },
+    "usr/share/man/man1/sum.1": {
+      "sha256": "ac229970771788b7a602fd08384cb0a7f1715dbd2223eebef8160938a6e6a207",
+      "size": 1291
+    },
+    "usr/share/man/man1/sync.1": {
+      "sha256": "edb1c8934354b99ffbea56f97ab3543dcbb7c9f144fa795da28f8651313c258d",
+      "size": 1500
+    },
+    "usr/share/man/man1/tac.1": {
+      "sha256": "af7ac66e003624bdadbe1392cd0b493eda2ff1508775f59d51a410955493cffb",
+      "size": 1513
+    },
+    "usr/share/man/man1/tail.1": {
+      "sha256": "53eabe5b89630c1610ec4b70079bd73c97907ac7521d59defa3c6a4d21d1c03e",
+      "size": 3467
+    },
+    "usr/share/man/man1/tee.1": {
+      "sha256": "083cc8b1bdd2b3287129b3fa0d843308ff05e8787d28df71af5e4fbd1c3d3f2a",
+      "size": 1981
+    },
+    "usr/share/man/man1/test.1": {
+      "sha256": "c54a7eace9f3051c1ef1dba9f204d2961fb2a75440a29c19aff69ba65a2799aa",
+      "size": 4383
+    },
+    "usr/share/man/man1/timeout.1": {
+      "sha256": "fecc7c004d0d0b3147fa4406126b89cc364e1418f6db9efbe69e521e0b027d48",
+      "size": 2690
+    },
+    "usr/share/man/man1/touch.1": {
+      "sha256": "69d297e70a2dfe2e815f9670bd95bb04ae09f7d1e26f4b816c62cdcfa0b45692",
+      "size": 2878
+    },
+    "usr/share/man/man1/tr.1": {
+      "sha256": "7490a96cb0b512c89f3ada41ee3f6fc489602a4af5418e6ff07854f7f5f1cef1",
+      "size": 3080
+    },
+    "usr/share/man/man1/true.1": {
+      "sha256": "1fdb30de04c83bc45a145205ae6eeaf3e22a8b1b31ba8fa8f26e28ec7dc6ee33",
+      "size": 1289
+    },
+    "usr/share/man/man1/truncate.1": {
+      "sha256": "22dd6698089298ada735410dce0d51eaadbd0f9e85e09776e2c1ab276c9c7442",
+      "size": 2184
+    },
+    "usr/share/man/man1/tsort.1": {
+      "sha256": "cf8c54f49c70e6574aaa1ba07502f3562690048a254c8c14a9e9b35a1f2f516f",
+      "size": 1152
+    },
+    "usr/share/man/man1/tty.1": {
+      "sha256": "d513f96de16e0b9ced51d7b3e5a30de193dad37aee474a1201c474f4ff13e350",
+      "size": 1193
+    },
+    "usr/share/man/man1/uname.1": {
+      "sha256": "a81b2cbe98e5c0c5cc046f8d142b5775b34e58d05101ee0c5094adbffeff54a2",
+      "size": 1785
+    },
+    "usr/share/man/man1/unexpand.1": {
+      "sha256": "0e68facc091b1ca3485380fd4b066d5d7b71f635027488b873f8146f3dd7cdfb",
+      "size": 1879
+    },
+    "usr/share/man/man1/uniq.1": {
+      "sha256": "6f6384602756624f361aa059d3a15e20a713d84e7d7d34be26942934bceb44bc",
+      "size": 2594
+    },
+    "usr/share/man/man1/unlink.1": {
+      "sha256": "7a64479324ca3f2e6411c17dcb07d8410dc2c63c297877f923b98668772cb7ba",
+      "size": 1137
+    },
+    "usr/share/man/man1/updatedb.1": {
+      "sha256": "6d03a627a94c041c4abed071db9578bc76023b04551ac5d06d357757842e4495",
+      "size": 5011
+    },
+    "usr/share/man/man1/users.1": {
+      "sha256": "09887ebb49f908b2d9aca490205589cfb41aa1b06da9fde6b3818424a80e81ca",
+      "size": 1269
+    },
+    "usr/share/man/man1/vdir.1": {
+      "sha256": "174020b0dff0da017b0b49b89278f8952d90c909f6e875374292af2001cd344c",
+      "size": 8121
+    },
+    "usr/share/man/man1/wc.1": {
+      "sha256": "14138c514a273b472d48dcdc16bb568b4d73b9dee5ff5d0073690e9925694adb",
+      "size": 1963
+    },
+    "usr/share/man/man1/who.1": {
+      "sha256": "a37e9b66ae3a35f27d6d6bcc09ab6611462789415a617257088a82c876edc50e",
+      "size": 2326
+    },
+    "usr/share/man/man1/whoami.1": {
+      "sha256": "264d6cf8c3d3974bf0815cc64a13a524fd4fbdef59954055e5047a65e655617a",
+      "size": 1102
+    },
+    "usr/share/man/man1/xargs.1": {
+      "sha256": "4751071a10273202d1612bf7f52e63f8f779c99ec6000e56ad02bc0cc14d4023",
+      "size": 19668
+    },
+    "usr/share/man/man1/yes.1": {
+      "sha256": "b50abee9fd7ee03e116da8371135345a62304a932b0c39af2147efce666f07e9",
+      "size": 1104
+    },
+    "usr/share/man/man3/filefuncs.3am": {
+      "sha256": "b7a6a3d383ba5023d87729841fe3ab5ecdeedecd80d56f43a8a9f7d68c2ef3f0",
+      "size": 10496
+    },
+    "usr/share/man/man3/fnmatch.3am": {
+      "sha256": "82bed00452298d35b380fae5e9d9cc6116cdb4be847af92304851e425915f65d",
+      "size": 3013
+    },
+    "usr/share/man/man3/fork.3am": {
+      "sha256": "6087be91a06c38fb0d88164d66c6a243b01cfa74ef296592ea088762ca2f96ee",
+      "size": 2550
+    },
+    "usr/share/man/man3/inplace.3am": {
+      "sha256": "6c1986772fbd61a2c01efc6e27903580585f57459faac2b1a204f9f9abed41c9",
+      "size": 3170
+    },
+    "usr/share/man/man3/intdiv.3am": {
+      "sha256": "5d58913b34a1136d9132f6fb43e9e363b3d84a8cc17c3c596e96de304a506d9b",
+      "size": 2307
+    },
+    "usr/share/man/man3/ordchr.3am": {
+      "sha256": "a6dc5edfdc0143e5ccb31e82cada9a3ad00813f5c9ceedaede39795a81034705",
+      "size": 2293
+    },
+    "usr/share/man/man3/pcre.3": {
+      "sha256": "e2b52240cd935bb43ad893460b82fa255c8ff43f109ca0eae775a1585d8e20f2",
+      "size": 9244
+    },
+    "usr/share/man/man3/pcre16.3": {
+      "sha256": "9ec9bab668870f0daceef180f7d997689c114b71f4455614f8871a084bf7f768",
+      "size": 13298
+    },
+    "usr/share/man/man3/pcre16_assign_jit_stack.3": {
+      "sha256": "0a0da0666ad554a9b1b786e6154ad033e41591ac3fccff781d6443c03770c32e",
+      "size": 1938
+    },
+    "usr/share/man/man3/pcre16_compile.3": {
+      "sha256": "fda690fac79ca451ab4ce0b2f3dc7c4e21d0638c5542d7c111d0730cf794a620",
+      "size": 4169
+    },
+    "usr/share/man/man3/pcre16_compile2.3": {
+      "sha256": "e9116a881d28fc2b3ced7aca427c58a8608ca183feb0428afaa4c6403f7a75bf",
+      "size": 4330
+    },
+    "usr/share/man/man3/pcre16_config.3": {
+      "sha256": "2d03aa70d67e5d1121c6186be0e48a1934171f4df9cc382be113597848de472d",
+      "size": 3393
+    },
+    "usr/share/man/man3/pcre16_copy_named_substring.3": {
+      "sha256": "720b0505370d0e07f514d610f9d7922120928fedb4062af9e68d3717d41be30c",
+      "size": 1773
+    },
+    "usr/share/man/man3/pcre16_copy_substring.3": {
+      "sha256": "c86b6609334fddb61dd2378dd5c7d485fbcb0dcad562f8ad9d355ee707cacdb6",
+      "size": 1545
+    },
+    "usr/share/man/man3/pcre16_dfa_exec.3": {
+      "sha256": "a0437e609c3157b1741ddf2ca1471b1bd2f79d4dabb3c2a796d26479f58e06ab",
+      "size": 5317
+    },
+    "usr/share/man/man3/pcre16_exec.3": {
+      "sha256": "d3f5f36cc80fe4735a83023274e76346dfc439c4ea52cf7d3851df1b8f853a36",
+      "size": 4455
+    },
+    "usr/share/man/man3/pcre16_free_study.3": {
+      "sha256": "73f6997946ff623adfa826c59f4028e141c7dc0d9b8d94a8f619aa41dd13a211",
+      "size": 702
+    },
+    "usr/share/man/man3/pcre16_free_substring.3": {
+      "sha256": "7846e360407d0d15224bc72394ac746d69b5282419b1df47ebba28cffb2978e3",
+      "size": 749
+    },
+    "usr/share/man/man3/pcre16_free_substring_list.3": {
+      "sha256": "680ac9ba4106ebbb641cb442cf446e1ff82936c741d84c67fc9aff72ae919a1c",
+      "size": 751
+    },
+    "usr/share/man/man3/pcre16_fullinfo.3": {
+      "sha256": "4d97c74d610855af543eaeb5a1ad79795eb85f7ec236b2d29083052e7e1c1ce4",
+      "size": 4584
+    },
+    "usr/share/man/man3/pcre16_get_named_substring.3": {
+      "sha256": "942f52ae9e46cbe4d17f5bbbf1c5f30310ee2672f2aefb43e73f8578603df14e",
+      "size": 1877
+    },
+    "usr/share/man/man3/pcre16_get_stringnumber.3": {
+      "sha256": "a88c59d1d123f9ab2afc0e1d75b1464131ae80a01a18680b7d4a9672ce0d2748",
+      "size": 1223
+    },
+    "usr/share/man/man3/pcre16_get_stringtable_entries.3": {
+      "sha256": "515a26b44640bed7b872890022115108503b2fe63a28e966726a868d57aab5db",
+      "size": 1497
+    },
+    "usr/share/man/man3/pcre16_get_substring.3": {
+      "sha256": "b4a547cbddc573ea2bfcb2c81c69dd64cfb87568a50895a9050d7d1092088d3c",
+      "size": 1676
+    },
+    "usr/share/man/man3/pcre16_get_substring_list.3": {
+      "sha256": "19b26f9d564bc696ce69f7002ed0f601a3e39c072d65e5bc07b2171ffd0b9386",
+      "size": 1635
+    },
+    "usr/share/man/man3/pcre16_jit_exec.3": {
+      "sha256": "01c6ed1346eca0af1d7a62ae71cff82725948fcb481cb9dc07b512b273aa927f",
+      "size": 4200
+    },
+    "usr/share/man/man3/pcre16_jit_stack_alloc.3": {
+      "sha256": "703deed28ca6953036555b8cb0a8f2995d895e3e668ca16a373cd5eb438c8535",
+      "size": 1163
+    },
+    "usr/share/man/man3/pcre16_jit_stack_free.3": {
+      "sha256": "b8e9a6ddde44e5a82eb9391188a0e6cd9014e561e12304f4099975b085f6a3ae",
+      "size": 731
+    },
+    "usr/share/man/man3/pcre16_maketables.3": {
+      "sha256": "962e718f707a5e3729ddb8bf1c7fde5c0e309986a5a27d48f262cd09a55946f9",
+      "size": 870
+    },
+    "usr/share/man/man3/pcre16_pattern_to_host_byte_order.3": {
+      "sha256": "72c9fede6a45a391f2c6300824230cb4e0c49c176c666694078b39f26b1fc225",
+      "size": 1397
+    },
+    "usr/share/man/man3/pcre16_refcount.3": {
+      "sha256": "488da8b97f6dc6d8cb99e0c571aee22e66f293ef2c9f2185ddd93b63ef9b6a4d",
+      "size": 906
+    },
+    "usr/share/man/man3/pcre16_study.3": {
+      "sha256": "4ede4e7e5b06e3e790e6b3b7f85b0f3160d9ffb1930af5b52683bc3d7994572d",
+      "size": 1575
+    },
+    "usr/share/man/man3/pcre16_utf16_to_host_byte_order.3": {
+      "sha256": "e9cb80f06bdb03a1ae5be79ef5c14a604b7f4a1e50119a4547e432927974d794",
+      "size": 1494
+    },
+    "usr/share/man/man3/pcre16_version.3": {
+      "sha256": "25885c1ee3d2b55c44af860defb34c383795e9ada74eff29dcd6f3b26335be8a",
+      "size": 650
+    },
+    "usr/share/man/man3/pcre32.3": {
+      "sha256": "e7f3501536e39435e20a82f08e6e203a50d9bc59162ad4b4a1a3e5da5a3eb118",
+      "size": 13184
+    },
+    "usr/share/man/man3/pcre32_assign_jit_stack.3": {
+      "sha256": "0a0da0666ad554a9b1b786e6154ad033e41591ac3fccff781d6443c03770c32e",
+      "size": 1938
+    },
+    "usr/share/man/man3/pcre32_compile.3": {
+      "sha256": "fda690fac79ca451ab4ce0b2f3dc7c4e21d0638c5542d7c111d0730cf794a620",
+      "size": 4169
+    },
+    "usr/share/man/man3/pcre32_compile2.3": {
+      "sha256": "e9116a881d28fc2b3ced7aca427c58a8608ca183feb0428afaa4c6403f7a75bf",
+      "size": 4330
+    },
+    "usr/share/man/man3/pcre32_config.3": {
+      "sha256": "2d03aa70d67e5d1121c6186be0e48a1934171f4df9cc382be113597848de472d",
+      "size": 3393
+    },
+    "usr/share/man/man3/pcre32_copy_named_substring.3": {
+      "sha256": "720b0505370d0e07f514d610f9d7922120928fedb4062af9e68d3717d41be30c",
+      "size": 1773
+    },
+    "usr/share/man/man3/pcre32_copy_substring.3": {
+      "sha256": "c86b6609334fddb61dd2378dd5c7d485fbcb0dcad562f8ad9d355ee707cacdb6",
+      "size": 1545
+    },
+    "usr/share/man/man3/pcre32_dfa_exec.3": {
+      "sha256": "a0437e609c3157b1741ddf2ca1471b1bd2f79d4dabb3c2a796d26479f58e06ab",
+      "size": 5317
+    },
+    "usr/share/man/man3/pcre32_exec.3": {
+      "sha256": "d3f5f36cc80fe4735a83023274e76346dfc439c4ea52cf7d3851df1b8f853a36",
+      "size": 4455
+    },
+    "usr/share/man/man3/pcre32_free_study.3": {
+      "sha256": "73f6997946ff623adfa826c59f4028e141c7dc0d9b8d94a8f619aa41dd13a211",
+      "size": 702
+    },
+    "usr/share/man/man3/pcre32_free_substring.3": {
+      "sha256": "7846e360407d0d15224bc72394ac746d69b5282419b1df47ebba28cffb2978e3",
+      "size": 749
+    },
+    "usr/share/man/man3/pcre32_free_substring_list.3": {
+      "sha256": "680ac9ba4106ebbb641cb442cf446e1ff82936c741d84c67fc9aff72ae919a1c",
+      "size": 751
+    },
+    "usr/share/man/man3/pcre32_fullinfo.3": {
+      "sha256": "4d97c74d610855af543eaeb5a1ad79795eb85f7ec236b2d29083052e7e1c1ce4",
+      "size": 4584
+    },
+    "usr/share/man/man3/pcre32_get_named_substring.3": {
+      "sha256": "942f52ae9e46cbe4d17f5bbbf1c5f30310ee2672f2aefb43e73f8578603df14e",
+      "size": 1877
+    },
+    "usr/share/man/man3/pcre32_get_stringnumber.3": {
+      "sha256": "a88c59d1d123f9ab2afc0e1d75b1464131ae80a01a18680b7d4a9672ce0d2748",
+      "size": 1223
+    },
+    "usr/share/man/man3/pcre32_get_stringtable_entries.3": {
+      "sha256": "515a26b44640bed7b872890022115108503b2fe63a28e966726a868d57aab5db",
+      "size": 1497
+    },
+    "usr/share/man/man3/pcre32_get_substring.3": {
+      "sha256": "b4a547cbddc573ea2bfcb2c81c69dd64cfb87568a50895a9050d7d1092088d3c",
+      "size": 1676
+    },
+    "usr/share/man/man3/pcre32_get_substring_list.3": {
+      "sha256": "19b26f9d564bc696ce69f7002ed0f601a3e39c072d65e5bc07b2171ffd0b9386",
+      "size": 1635
+    },
+    "usr/share/man/man3/pcre32_jit_exec.3": {
+      "sha256": "01c6ed1346eca0af1d7a62ae71cff82725948fcb481cb9dc07b512b273aa927f",
+      "size": 4200
+    },
+    "usr/share/man/man3/pcre32_jit_stack_alloc.3": {
+      "sha256": "703deed28ca6953036555b8cb0a8f2995d895e3e668ca16a373cd5eb438c8535",
+      "size": 1163
+    },
+    "usr/share/man/man3/pcre32_jit_stack_free.3": {
+      "sha256": "b8e9a6ddde44e5a82eb9391188a0e6cd9014e561e12304f4099975b085f6a3ae",
+      "size": 731
+    },
+    "usr/share/man/man3/pcre32_maketables.3": {
+      "sha256": "962e718f707a5e3729ddb8bf1c7fde5c0e309986a5a27d48f262cd09a55946f9",
+      "size": 870
+    },
+    "usr/share/man/man3/pcre32_pattern_to_host_byte_order.3": {
+      "sha256": "72c9fede6a45a391f2c6300824230cb4e0c49c176c666694078b39f26b1fc225",
+      "size": 1397
+    },
+    "usr/share/man/man3/pcre32_refcount.3": {
+      "sha256": "488da8b97f6dc6d8cb99e0c571aee22e66f293ef2c9f2185ddd93b63ef9b6a4d",
+      "size": 906
+    },
+    "usr/share/man/man3/pcre32_study.3": {
+      "sha256": "4ede4e7e5b06e3e790e6b3b7f85b0f3160d9ffb1930af5b52683bc3d7994572d",
+      "size": 1575
+    },
+    "usr/share/man/man3/pcre32_utf32_to_host_byte_order.3": {
+      "sha256": "d28451636848d8e1d1276ebcc928db0029453f6ee367bd3a56dcfd73788595e1",
+      "size": 1491
+    },
+    "usr/share/man/man3/pcre32_version.3": {
+      "sha256": "25885c1ee3d2b55c44af860defb34c383795e9ada74eff29dcd6f3b26335be8a",
+      "size": 650
+    },
+    "usr/share/man/man3/pcre_assign_jit_stack.3": {
+      "sha256": "0a0da0666ad554a9b1b786e6154ad033e41591ac3fccff781d6443c03770c32e",
+      "size": 1938
+    },
+    "usr/share/man/man3/pcre_compile.3": {
+      "sha256": "fda690fac79ca451ab4ce0b2f3dc7c4e21d0638c5542d7c111d0730cf794a620",
+      "size": 4169
+    },
+    "usr/share/man/man3/pcre_compile2.3": {
+      "sha256": "e9116a881d28fc2b3ced7aca427c58a8608ca183feb0428afaa4c6403f7a75bf",
+      "size": 4330
+    },
+    "usr/share/man/man3/pcre_config.3": {
+      "sha256": "2d03aa70d67e5d1121c6186be0e48a1934171f4df9cc382be113597848de472d",
+      "size": 3393
+    },
+    "usr/share/man/man3/pcre_copy_named_substring.3": {
+      "sha256": "720b0505370d0e07f514d610f9d7922120928fedb4062af9e68d3717d41be30c",
+      "size": 1773
+    },
+    "usr/share/man/man3/pcre_copy_substring.3": {
+      "sha256": "c86b6609334fddb61dd2378dd5c7d485fbcb0dcad562f8ad9d355ee707cacdb6",
+      "size": 1545
+    },
+    "usr/share/man/man3/pcre_dfa_exec.3": {
+      "sha256": "a0437e609c3157b1741ddf2ca1471b1bd2f79d4dabb3c2a796d26479f58e06ab",
+      "size": 5317
+    },
+    "usr/share/man/man3/pcre_exec.3": {
+      "sha256": "d3f5f36cc80fe4735a83023274e76346dfc439c4ea52cf7d3851df1b8f853a36",
+      "size": 4455
+    },
+    "usr/share/man/man3/pcre_free_study.3": {
+      "sha256": "73f6997946ff623adfa826c59f4028e141c7dc0d9b8d94a8f619aa41dd13a211",
+      "size": 702
+    },
+    "usr/share/man/man3/pcre_free_substring.3": {
+      "sha256": "7846e360407d0d15224bc72394ac746d69b5282419b1df47ebba28cffb2978e3",
+      "size": 749
+    },
+    "usr/share/man/man3/pcre_free_substring_list.3": {
+      "sha256": "680ac9ba4106ebbb641cb442cf446e1ff82936c741d84c67fc9aff72ae919a1c",
+      "size": 751
+    },
+    "usr/share/man/man3/pcre_fullinfo.3": {
+      "sha256": "4d97c74d610855af543eaeb5a1ad79795eb85f7ec236b2d29083052e7e1c1ce4",
+      "size": 4584
+    },
+    "usr/share/man/man3/pcre_get_named_substring.3": {
+      "sha256": "942f52ae9e46cbe4d17f5bbbf1c5f30310ee2672f2aefb43e73f8578603df14e",
+      "size": 1877
+    },
+    "usr/share/man/man3/pcre_get_stringnumber.3": {
+      "sha256": "a88c59d1d123f9ab2afc0e1d75b1464131ae80a01a18680b7d4a9672ce0d2748",
+      "size": 1223
+    },
+    "usr/share/man/man3/pcre_get_stringtable_entries.3": {
+      "sha256": "515a26b44640bed7b872890022115108503b2fe63a28e966726a868d57aab5db",
+      "size": 1497
+    },
+    "usr/share/man/man3/pcre_get_substring.3": {
+      "sha256": "b4a547cbddc573ea2bfcb2c81c69dd64cfb87568a50895a9050d7d1092088d3c",
+      "size": 1676
+    },
+    "usr/share/man/man3/pcre_get_substring_list.3": {
+      "sha256": "19b26f9d564bc696ce69f7002ed0f601a3e39c072d65e5bc07b2171ffd0b9386",
+      "size": 1635
+    },
+    "usr/share/man/man3/pcre_jit_exec.3": {
+      "sha256": "01c6ed1346eca0af1d7a62ae71cff82725948fcb481cb9dc07b512b273aa927f",
+      "size": 4200
+    },
+    "usr/share/man/man3/pcre_jit_stack_alloc.3": {
+      "sha256": "703deed28ca6953036555b8cb0a8f2995d895e3e668ca16a373cd5eb438c8535",
+      "size": 1163
+    },
+    "usr/share/man/man3/pcre_jit_stack_free.3": {
+      "sha256": "b8e9a6ddde44e5a82eb9391188a0e6cd9014e561e12304f4099975b085f6a3ae",
+      "size": 731
+    },
+    "usr/share/man/man3/pcre_maketables.3": {
+      "sha256": "962e718f707a5e3729ddb8bf1c7fde5c0e309986a5a27d48f262cd09a55946f9",
+      "size": 870
+    },
+    "usr/share/man/man3/pcre_pattern_to_host_byte_order.3": {
+      "sha256": "72c9fede6a45a391f2c6300824230cb4e0c49c176c666694078b39f26b1fc225",
+      "size": 1397
+    },
+    "usr/share/man/man3/pcre_refcount.3": {
+      "sha256": "488da8b97f6dc6d8cb99e0c571aee22e66f293ef2c9f2185ddd93b63ef9b6a4d",
+      "size": 906
+    },
+    "usr/share/man/man3/pcre_study.3": {
+      "sha256": "4ede4e7e5b06e3e790e6b3b7f85b0f3160d9ffb1930af5b52683bc3d7994572d",
+      "size": 1575
+    },
+    "usr/share/man/man3/pcre_utf16_to_host_byte_order.3": {
+      "sha256": "e9cb80f06bdb03a1ae5be79ef5c14a604b7f4a1e50119a4547e432927974d794",
+      "size": 1494
+    },
+    "usr/share/man/man3/pcre_utf32_to_host_byte_order.3": {
+      "sha256": "d28451636848d8e1d1276ebcc928db0029453f6ee367bd3a56dcfd73788595e1",
+      "size": 1491
+    },
+    "usr/share/man/man3/pcre_version.3": {
+      "sha256": "25885c1ee3d2b55c44af860defb34c383795e9ada74eff29dcd6f3b26335be8a",
+      "size": 650
+    },
+    "usr/share/man/man3/pcreapi.3": {
+      "sha256": "b3f48bab04cd70c1fe2b38d9d20ca3eda7db332873cf1238acd3e2da8fa66ed6",
+      "size": 129130
+    },
+    "usr/share/man/man3/pcrebuild.3": {
+      "sha256": "df24afe0675e0568a32a0fb947535207b08553275a8ffe86769a482997e8bba3",
+      "size": 19745
+    },
+    "usr/share/man/man3/pcrecallout.3": {
+      "sha256": "a8a967c050286122197667c85640de0b432763caa688c0965e4a90961b2b347f",
+      "size": 10374
+    },
+    "usr/share/man/man3/pcrecompat.3": {
+      "sha256": "0240435dc2c3eb10458f8ef677358349c38fe5b10213cd06db10369132a87de9",
+      "size": 9178
+    },
+    "usr/share/man/man3/pcredemo.3": {
+      "sha256": "7115db0d9936121e6bad798e895c08a8de92ecb506e30b2d86e5f6400ff5f021",
+      "size": 15684
+    },
+    "usr/share/man/man3/pcrejit.3": {
+      "sha256": "6422a575b4f8f2b526bd1bcca58d444ed6b1f677b150a71892c2f2d1f9352563",
+      "size": 20125
+    },
+    "usr/share/man/man3/pcrelimits.3": {
+      "sha256": "f942f0c6ac4d6aba33d7ae3018d57c24e56169638cadbc24f90914470440e35b",
+      "size": 2657
+    },
+    "usr/share/man/man3/pcrematching.3": {
+      "sha256": "0f5c3c0742c4dce0c07ae424960f82cbe85f894cf838275cbdc8794df0a6c6a0",
+      "size": 9472
+    },
+    "usr/share/man/man3/pcrepartial.3": {
+      "sha256": "47e8a36b27f14151cf82d85202cabcf68e53ecb1b87f89ffe8b029504ecce3d6",
+      "size": 21605
+    },
+    "usr/share/man/man3/pcrepattern.3": {
+      "sha256": "ebf18c089b426e73af53e86c155b16a149ba2712084d137c6bf4b8519562ef3f",
+      "size": 136541
+    },
+    "usr/share/man/man3/pcreperform.3": {
+      "sha256": "9dd40e3ffc8750f1127d0fbf0e0a91f14acdd2195b28db0e1235bf15c28ff9aa",
+      "size": 7275
+    },
+    "usr/share/man/man3/pcreposix.3": {
+      "sha256": "14053288c3b15a1a6b3b605f1d9a7b4ef45c5a6287be135b2b960e8e1f039126",
+      "size": 10693
+    },
+    "usr/share/man/man3/pcreprecompile.3": {
+      "sha256": "35264269aff14f9e3c8742feac20279554ab1c5d2f15c07c30541a4e0cf9f93d",
+      "size": 6285
+    },
+    "usr/share/man/man3/pcresample.3": {
+      "sha256": "b31537bb0cb94539c04c8511cab02efe6360a1bba48bb41cabc1c4a64d5a8529",
+      "size": 3215
+    },
+    "usr/share/man/man3/pcrestack.3": {
+      "sha256": "16acc66262d122bd4aef42cd5a2bb05fe870079c1edd0b388f29f88075fdd03b",
+      "size": 8901
+    },
+    "usr/share/man/man3/pcresyntax.3": {
+      "sha256": "4a7bae353908776e5d9fb96f21b3b834b9a41a503bdefa207f59cfe58dad4c79",
+      "size": 13590
+    },
+    "usr/share/man/man3/pcreunicode.3": {
+      "sha256": "af4c887650469b30f322a3527516d235d23f1b300e773a0f7c4fd41f9dccb827",
+      "size": 10746
+    },
+    "usr/share/man/man3/readdir.3am": {
+      "sha256": "4422a0ea43f96678c193b03c34da368214b1db6d6a080774bde3798a081e0cf6",
+      "size": 3162
+    },
+    "usr/share/man/man3/readfile.3am": {
+      "sha256": "104dc74f6470fafe24e76a1c2b5208ba2af4d2efa1075807206bfd06d20a9325",
+      "size": 2344
+    },
+    "usr/share/man/man3/revoutput.3am": {
+      "sha256": "2edd40390f8014bb4de42f0df9fb1635016946337d5534c98870aa4449b74766",
+      "size": 2008
+    },
+    "usr/share/man/man3/revtwoway.3am": {
+      "sha256": "88ce804829dc66d684c287a327cd49ce44eae77cee26566886805d1919dad5f9",
+      "size": 1873
+    },
+    "usr/share/man/man3/rwarray.3am": {
+      "sha256": "18cfd1aa5bdb1781abbb2bf51d1e7003ab3410fdc0f994b5119d195739d88c53",
+      "size": 3926
+    },
+    "usr/share/man/man3/time.3am": {
+      "sha256": "67b05e73ba18d68e27a6d99f8fbdae39916a68150c3924d9464c6f55abbafeb8",
+      "size": 3625
+    },
+    "usr/share/man/man5/locatedb.5": {
+      "sha256": "87e4d2a1db7847539eab65e667231e76697338a9a936e4809d7f4602fdbbbcf2",
+      "size": 6596
+    },
+    "usr/share/native-build-receipts/runtime-execvp-handoff.json": {
+      "sha256": "f32ef8e115a78a24c8eec432fe2843df8e7896a9c5e5ebf8bd4bf411e7d29a98",
+      "size": 5878
+    },
+    "usr/share/native-build-receipts/util-linux-2.39.3-cygwin-include.patch": {
+      "sha256": "224505c3624f61f085130b4bc440c6237b19536bcdda57599ea4100f8b704d42",
+      "size": 1002
+    }
+  }
+}

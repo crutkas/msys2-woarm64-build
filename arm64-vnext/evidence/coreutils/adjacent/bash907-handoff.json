@@ -1,0 +1,5612 @@
+{
+  "schema": 1,
+  "status": "Bash907-requalification-complete-with-controlling-interactive-failure",
+  "runtime907_compatibility_admitted": false,
+  "existing_d70_admission_unchanged": true,
+  "input_contract": {
+    "path": "C:\\ap11-native-provider-intake\\bash-runtime907-qualification-input-v1.json",
+    "sha256": "4dc1ff625c82d762d25f157538146288758b7ffa2a150e09c6c4e8b28e137162",
+    "bytes": 9598
+  },
+  "input_inventory": {
+    "path": "C:\\ag-bash907-20260911-02\\inputs.json",
+    "sha256": "ca11ee6b4860d034c88f4a1dd7799768a293d3e60b7094ba13a20abe1c4dd0be",
+    "bytes": 622598
+  },
+  "subject_package": {
+    "source": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\package\\packages\\bash-5.3.015-2-aarch64.pkg.tar.zst",
+    "copy": "C:\\ag-bash907-20260911-02\\packages\\bash-5.3.015-2-aarch64.pkg.tar.zst",
+    "sha256": "c5e117fe9879bb68461db887da49e75415c2b27189272160a0da0b22e1179a90",
+    "size": 9137102,
+    "files": {
+      ".BUILDINFO": {
+        "size": 5802,
+        "sha256": "51c745f64bb595eea6ef757085d0b051481646d50e5ea31c0e480fcc90fd19cb"
+      },
+      ".MTREE": {
+        "size": 6478,
+        "sha256": "374a211c6a67c9035e138fcc8248add1b91f7ab35b87d33ef89c9fd474822888"
+      },
+      ".PKGINFO": {
+        "size": 350,
+        "sha256": "f2814bc85904f43257d630bb2787542625a204c8e61272861e3f81644b89648d"
+      },
+      "usr/bin/bash.exe": {
+        "size": 7728825,
+        "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+      },
+      "usr/bin/bashbug": {
+        "size": 6842,
+        "sha256": "835b1aa5d6bbfbedf25395b314bea185f901030f435061d6fb92c5757c490bf5"
+      },
+      "usr/bin/sh.exe": {
+        "size": 7728825,
+        "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a"
+      },
+      "usr/lib/bash/Makefile.inc": {
+        "size": 2768,
+        "sha256": "781afe65d5f243c333bc082f687a7e6a30fb3f5536aeef2e72d71b633a745e4b"
+      },
+      "usr/lib/bash/Makefile.sample": {
+        "size": 1419,
+        "sha256": "2d53e73935d2dc878b323f77fa75066edb3438ad676999241490b49a8b787230"
+      },
+      "usr/lib/bash/accept.exe": {
+        "size": 74855,
+        "sha256": "5ab1732e05d592e8c6aae20584accfda38f6c1a0a198650c70268220e1e420c1"
+      },
+      "usr/lib/bash/basename.exe": {
+        "size": 64050,
+        "sha256": "6c57c359a1d5ecc45a29c5370379092114f50ff65944f0d2dff1fb995b1f4ace"
+      },
+      "usr/lib/bash/chmod.exe": {
+        "size": 64416,
+        "sha256": "56a62f7d9465b0b86a355c391051c2fe5d659e9ac41dd3c613b51d0f1d2223b9"
+      },
+      "usr/lib/bash/csv.exe": {
+        "size": 67541,
+        "sha256": "6a017656e80402e1b0cabd6a3d092ec23a893246b18349da724cbc351f5094e0"
+      },
+      "usr/lib/bash/cut.exe": {
+        "size": 93336,
+        "sha256": "be33c75c01da5e240d8b741a4c9e94fc6f9fe5d80530324c42132c5691cf7bb7"
+      },
+      "usr/lib/bash/dirname.exe": {
+        "size": 63180,
+        "sha256": "2f535e1dbeaa26c1d4e9e7e9a7299ae5261c37208a3b479dbfca19128b26b75b"
+      },
+      "usr/lib/bash/dsv.exe": {
+        "size": 72496,
+        "sha256": "483b1300b26029c9928a5a49ee293ac8dcc5d0286d798ce711d4c63ea1f66537"
+      },
+      "usr/lib/bash/fdflags.exe": {
+        "size": 78723,
+        "sha256": "5c43f1503872ceddfe9e3a351a3f54e0991d80aae463619dbff1a8884d08c8a6"
+      },
+      "usr/lib/bash/finfo.exe": {
+        "size": 86626,
+        "sha256": "295acf5dbba60b9f7b6c38eeee4e7abcc19ccf540a37e44d9c80898d7dcc3a3e"
+      },
+      "usr/lib/bash/fltexpr.exe": {
+        "size": 2339209,
+        "sha256": "9493348dc9527579985934cecb6b9c835043b78fe4c38a39ceca1508a21b8979"
+      },
+      "usr/lib/bash/getconf.exe": {
+        "size": 88440,
+        "sha256": "6000220992ab4c7c7cfb4af693f271ad70b42ee33a7399e049c9f10309535bed"
+      },
+      "usr/lib/bash/head.exe": {
+        "size": 73832,
+        "sha256": "6ea5d913f292e39ba71427fa5fc3adc090b4a179e1a749a0fdb9d89962ecaf52"
+      },
+      "usr/lib/bash/id.exe": {
+        "size": 80122,
+        "sha256": "ce0aa16aaac200ecbd00a0277deec99cdf051d77da4cbe34943b0d90d4c95dc8"
+      },
+      "usr/lib/bash/kv.exe": {
+        "size": 73794,
+        "sha256": "16c50f05345a8671776426f892c73075db5382e00173d3131c5451fb27925538"
+      },
+      "usr/lib/bash/ln.exe": {
+        "size": 70220,
+        "sha256": "06a54de4414c7131ebfee0d0c8bd8827cab289ab9ee5bb5c8c58a2dd07584094"
+      },
+      "usr/lib/bash/loadables.h": {
+        "size": 993,
+        "sha256": "6d6454465c603205106fb0c29766de51f31cdf989c93f2cbe68114fe9d990ba6"
+      },
+      "usr/lib/bash/logname.exe": {
+        "size": 59147,
+        "sha256": "e78e1fd6449f0836b7478490282fcbfda31f315b9791477c596fcf7b7fa28b8e"
+      },
+      "usr/lib/bash/mkdir.exe": {
+        "size": 73136,
+        "sha256": "f2b56ef78392ae89bb7a83e1178eee80d1bbbaa72db9f0fe8811195f11e701d3"
+      },
+      "usr/lib/bash/mkfifo.exe": {
+        "size": 62644,
+        "sha256": "94954ffc7a48b5bfd25cd7e1789906c3010f31151cd6a5f200c0e674bd95dada"
+      },
+      "usr/lib/bash/mktemp.exe": {
+        "size": 68661,
+        "sha256": "eb1cdf836b8cd9291dd551f612646a82cbbe4d37297b9dc3ffeb281402a0f3e5"
+      },
+      "usr/lib/bash/mypid.exe": {
+        "size": 60670,
+        "sha256": "bfb6ff923f01e67e4387d5abf17dbf7ceba304d2eb885a6263f592498b80c169"
+      },
+      "usr/lib/bash/pathchk.exe": {
+        "size": 70371,
+        "sha256": "b63011ef560a4c59bb9a98cb9abb1c6f52b4bc6718a2619c9b68a516fad3bbdb"
+      },
+      "usr/lib/bash/print.exe": {
+        "size": 71989,
+        "sha256": "f294d01225bdd3a19aa6b1903b89a565434d08938de3fa62af536e43edeab418"
+      },
+      "usr/lib/bash/printenv.exe": {
+        "size": 62240,
+        "sha256": "4e9c89a47babc05bb8da4d73c6c545fbb1fd5023acd16987ff84824fe760fc57"
+      },
+      "usr/lib/bash/push.exe": {
+        "size": 68962,
+        "sha256": "59932d318db1774a3652b4e5fda92831fc7d4ec3e45e09430ac286c715b28a41"
+      },
+      "usr/lib/bash/realpath.exe": {
+        "size": 71601,
+        "sha256": "8059e267c0aca14ce45ebe23a5a3a52f6459d37afe8bf38b4c1758bf6ccadb97"
+      },
+      "usr/lib/bash/rm.exe": {
+        "size": 69839,
+        "sha256": "334e050214e8546929d79395baf55feae1169def944953ebecb494de0cd34ba8"
+      },
+      "usr/lib/bash/rmdir.exe": {
+        "size": 58929,
+        "sha256": "b126b2bda521c1d9c6dae63e531f5ae753f45400908e2a9966ebfe293a57844c"
+      },
+      "usr/lib/bash/seq.exe": {
+        "size": 91079,
+        "sha256": "9dfe790f5c3c6318f6095cdbf5d82b32f2b40000d26a1be854a173c9869826f1"
+      },
+      "usr/lib/bash/setpgid.exe": {
+        "size": 61591,
+        "sha256": "14d7f0ee208aa358e769b8d7aa8d8c2e0ed95facbf7e28bd1c23c84a32f8fd0c"
+      },
+      "usr/lib/bash/sleep.exe": {
+        "size": 64881,
+        "sha256": "245e4b25172f38e1ce51bfcb3adb5133a3f74c0ddc1c448712bba2bcce3e6038"
+      },
+      "usr/lib/bash/stat.exe": {
+        "size": 81462,
+        "sha256": "1a1e5e5b60216bac5a9f62d3e91e40416c75c9fbd8a863f15f71bfa972919508"
+      },
+      "usr/lib/bash/strftime.exe": {
+        "size": 66183,
+        "sha256": "59fe1e4f1a4cdf41e17d85ecf78f31c48e1b847b4cfda4ecbbdcac8b5faacafe"
+      },
+      "usr/lib/bash/strptime.exe": {
+        "size": 72391,
+        "sha256": "24a28c5eb0c1062241ac74fd99ef05b98e6a4a0500bd2c167f956eab024672a6"
+      },
+      "usr/lib/bash/sync.exe": {
+        "size": 60131,
+        "sha256": "3fb11c77880d289041af62d857dfe7b77cde009d8bb32803550437056fc66211"
+      },
+      "usr/lib/bash/tee.exe": {
+        "size": 67913,
+        "sha256": "a960476021e8e2f7ad7fe9311aa0d137f0513df2e9437cb872b739ceadbd650d"
+      },
+      "usr/lib/bash/truefalse.exe": {
+        "size": 55837,
+        "sha256": "725885c0ec98bc46ed1887f19df801e4dd720618eb761e8e49f38715655934c2"
+      },
+      "usr/lib/bash/tty.exe": {
+        "size": 60961,
+        "sha256": "e57a5e1c5866d053c7ee3e11f6591c53ff4b5186bfca9bf3247ed8af7e90b542"
+      },
+      "usr/lib/bash/uname.exe": {
+        "size": 64016,
+        "sha256": "02a923aa09995b612dac22e00876dad0418dba44098044b225d460f9df6e31d5"
+      },
+      "usr/lib/bash/unlink.exe": {
+        "size": 59447,
+        "sha256": "3382c030fb9e3c50f01539059dd7f24583d0206151c6677fef7a7e3a942168fe"
+      },
+      "usr/lib/bash/whoami.exe": {
+        "size": 60390,
+        "sha256": "ee29dd7e4b4c51d0983c303cc4ee5cc86d6170768dae8913e7ebe6cdd9d8159a"
+      },
+      "usr/lib/pkgconfig/bash.pc": {
+        "size": 705,
+        "sha256": "3397a58eeed8e4ded23046c98d83c8cbb9f6edcabc7f251c4bfc734e802178bf"
+      },
+      "usr/share/doc/bash/CHANGES": {
+        "size": 473382,
+        "sha256": "270856b93e0ed9bf088377165ca4db25fc1e6a68d6bd8ff2a4382ca15ab457fe"
+      },
+      "usr/share/doc/bash/COMPAT": {
+        "size": 28581,
+        "sha256": "e7bca221b50ce8413d775abda668ad79aa58c0b8fb2b09d855da1c694ea82bb1"
+      },
+      "usr/share/doc/bash/FAQ": {
+        "size": 99634,
+        "sha256": "1a8838790362d6cefc1b4b0a230710769ea47f4eb96c8dcd24b846dd7d445db3"
+      },
+      "usr/share/doc/bash/INTRO": {
+        "size": 7072,
+        "sha256": "88d4f438af6af108d5970aed3a88208a295b6dafc2d55b549169bb0a372ec1fb"
+      },
+      "usr/share/doc/bash/NEWS": {
+        "size": 118334,
+        "sha256": "ae22dc293dc2c42dbe1098f4204ae467ec54badaa137f2ede47df5e76d11f637"
+      },
+      "usr/share/doc/bash/POSIX": {
+        "size": 18794,
+        "sha256": "6f5fbc2204533ebae00c99f20954cbcae70c4efcf04fff1ad4014fc8b0cba10d"
+      },
+      "usr/share/doc/bash/RBASH": {
+        "size": 2747,
+        "sha256": "0fd1c24613e7d8c698c3f743dcbbae8d75563cbd65f597f37eb93751d91acc29"
+      },
+      "usr/share/doc/bash/README": {
+        "size": 4848,
+        "sha256": "0dda3f5817ac4d88c4cc17ecbe42f05223db368fb353d88e01fcb7259a50fe07"
+      },
+      "usr/share/doc/bash/bash.html": {
+        "size": 426217,
+        "sha256": "79394ccb66e4d572f47d8b01634d3b08a87f705a230605006e25aecd5e033475"
+      },
+      "usr/share/doc/bash/bashref.html": {
+        "size": 1040870,
+        "sha256": "b91026acffb159bd1e842e3116a95539bf858e2b57cbfa74df9e3a53379177a4"
+      },
+      "usr/share/info/bash.info.gz": {
+        "size": 167119,
+        "sha256": "cf39b9c138510e036e745d09c8e541a230a924fb9b2df3457f7608af33ba4400"
+      },
+      "usr/share/licenses/bash/COPYING": {
+        "size": 35147,
+        "sha256": "8ceb4b9ee5adedde47b31e975c1d90c73ad27b6b165a1dcd80c7c545eb65b903"
+      },
+      "usr/share/locale/af/LC_MESSAGES/bash.mo": {
+        "size": 1040,
+        "sha256": "052d862b0c7cc51b401e6d9b261ceb8842a1e6cf22127db67499e3c479e3d26f"
+      },
+      "usr/share/locale/bg/LC_MESSAGES/bash.mo": {
+        "size": 258404,
+        "sha256": "7cf93f86b0b15374b36e846593a7638f5f376c69d82b196f1aafd5a21402510f"
+      },
+      "usr/share/locale/ca/LC_MESSAGES/bash.mo": {
+        "size": 128568,
+        "sha256": "5cd7b6a86a1578c9e2f542346e1f6e5e415de8c557f58b820f50e98e5d769fbc"
+      },
+      "usr/share/locale/cs/LC_MESSAGES/bash.mo": {
+        "size": 192115,
+        "sha256": "b34acb20879d0e617c9febcf1314ba216138eaab672e955651f87a05c48ee155"
+      },
+      "usr/share/locale/da/LC_MESSAGES/bash.mo": {
+        "size": 60443,
+        "sha256": "65ef69ad05f96da1e3c6bb6b253947523f3eb9c392e1fd13533286fbc313901c"
+      },
+      "usr/share/locale/de/LC_MESSAGES/bash.mo": {
+        "size": 182342,
+        "sha256": "e5f534536b7a2a8f84f66a62fe32240a6d7d22873db56d84ba69cef93ddaecf8"
+      },
+      "usr/share/locale/el/LC_MESSAGES/bash.mo": {
+        "size": 77549,
+        "sha256": "4e7a21f92e762cd729a81916d2c61e5b9e30492883c8e73234b0e6a525ae2973"
+      },
+      "usr/share/locale/en@boldquot/LC_MESSAGES/bash.mo": {
+        "size": 180619,
+        "sha256": "165af15b504a082c3f8d81c7b1d9bdf9caafb5cca8bb20e90a1987d77af6bbfd"
+      },
+      "usr/share/locale/en@quot/LC_MESSAGES/bash.mo": {
+        "size": 178923,
+        "sha256": "2dd5196b9f028d850edf075d4bee1e240e2b5073d28ec1c05f706e08438aa345"
+      },
+      "usr/share/locale/eo/LC_MESSAGES/bash.mo": {
+        "size": 118409,
+        "sha256": "08c37e5fe3aff8e97960d75db9812a7dd352a50fadb844b430938731cd536069"
+      },
+      "usr/share/locale/es/LC_MESSAGES/bash.mo": {
+        "size": 190295,
+        "sha256": "2975e2a6c3a742fec6ddb3a172e164cf8b340569bd4676b9f78472621339a59e"
+      },
+      "usr/share/locale/et/LC_MESSAGES/bash.mo": {
+        "size": 27510,
+        "sha256": "20d873ec22c8b8d24b94c9389af552cccd8f7e1e3fec89da5ac03901df5895b2"
+      },
+      "usr/share/locale/fi/LC_MESSAGES/bash.mo": {
+        "size": 62932,
+        "sha256": "32e48f3ee9c6ac34b266645ba7aa220292754ce628325b204ceaca0a2db91f1b"
+      },
+      "usr/share/locale/fr/LC_MESSAGES/bash.mo": {
+        "size": 197028,
+        "sha256": "fe88029876d61cef07beea9344cb579dbd6b592079f7f3a7d6b1cd46bde9e6a4"
+      },
+      "usr/share/locale/ga/LC_MESSAGES/bash.mo": {
+        "size": 100049,
+        "sha256": "57e47b9137642888e4a58265fb7cba70c670f650438495fb3ffbab5a4a8a5438"
+      },
+      "usr/share/locale/gl/LC_MESSAGES/bash.mo": {
+        "size": 48557,
+        "sha256": "63845467029bd90dfc3210fbb95d83a792938bb2f864a2c8538130b7c0f2c8bc"
+      },
+      "usr/share/locale/hr/LC_MESSAGES/bash.mo": {
+        "size": 184243,
+        "sha256": "81d6a15bf4c9ec83f147e13b55786e138898d6606d60bd4044849779d1296437"
+      },
+      "usr/share/locale/hu/LC_MESSAGES/bash.mo": {
+        "size": 116359,
+        "sha256": "322f0a819ef2a10d25f6483884e85e7af59b0d73c1b7989a23472ebd051d4686"
+      },
+      "usr/share/locale/id/LC_MESSAGES/bash.mo": {
+        "size": 81233,
+        "sha256": "9f007d9d964d72651cd28ca2d87be6bc7a22eaa4f449261e8c0c85c30b72cc2e"
+      },
+      "usr/share/locale/it/LC_MESSAGES/bash.mo": {
+        "size": 190431,
+        "sha256": "0f8a4709db67ff45cdf3e9c50e96462eff3aa335b9d62051dee634eee3a16afd"
+      },
+      "usr/share/locale/ja/LC_MESSAGES/bash.mo": {
+        "size": 91569,
+        "sha256": "b4ac9e0e04e28f91f20fd11c7a0c6b6140386a65b909acc271f06707a4cd05af"
+      },
+      "usr/share/locale/ka/LC_MESSAGES/bash.mo": {
+        "size": 50697,
+        "sha256": "893c845936c6abce9ef8932a7a181ff02c745dccdebd68d52db47c6c88f66af0"
+      },
+      "usr/share/locale/ko/LC_MESSAGES/bash.mo": {
+        "size": 192128,
+        "sha256": "16aeaff4d13d4bee13090674cb43e1b10023c8c46c08cb64c877ff97a9dd8cc7"
+      },
+      "usr/share/locale/lt/LC_MESSAGES/bash.mo": {
+        "size": 26385,
+        "sha256": "ad2e451bd88f90f25601d6c3b744fe6b3e6672344ae3b426b5a801f2cd69c7bc"
+      },
+      "usr/share/locale/nb/LC_MESSAGES/bash.mo": {
+        "size": 120592,
+        "sha256": "49b7e31bad92c0e32046a54cf169870a043c6ec57d78a78e6bd1a2eb59dd8c9e"
+      },
+      "usr/share/locale/nl/LC_MESSAGES/bash.mo": {
+        "size": 187509,
+        "sha256": "302272c10f6ab91e05dbafa6e341716014e62566873109fa5aa2382d94a5e663"
+      },
+      "usr/share/locale/pl/LC_MESSAGES/bash.mo": {
+        "size": 190807,
+        "sha256": "d5c75d442a39991044d4df8fa4fcb8f77cc009dc7dd9c2da6e1bd57ff8e649d2"
+      },
+      "usr/share/locale/pt/LC_MESSAGES/bash.mo": {
+        "size": 186579,
+        "sha256": "ce78e2981523565a801004a0c327877d60009b7cf61475098933d0d3728be19f"
+      },
+      "usr/share/locale/pt_BR/LC_MESSAGES/bash.mo": {
+        "size": 190756,
+        "sha256": "7e2c259344b24cffbb374e49de1f0b9fc5a89ff1e98c77197e157444c9c4b2dd"
+      },
+      "usr/share/locale/ro/LC_MESSAGES/bash.mo": {
+        "size": 197068,
+        "sha256": "08a9e628435f2b94bab77270eef99fe4740d43a75171df3e177ff8433a7bb0a8"
+      },
+      "usr/share/locale/ru/LC_MESSAGES/bash.mo": {
+        "size": 105270,
+        "sha256": "152d9ae0666682c6ba97b77fa925fd34e098b947e5dc86921e7882a2bcd6ef66"
+      },
+      "usr/share/locale/sk/LC_MESSAGES/bash.mo": {
+        "size": 69047,
+        "sha256": "9cb0e7ffa345484cfd79c025724f0d22b74f446ac9eb890c4726bb3ab30c8156"
+      },
+      "usr/share/locale/sl/LC_MESSAGES/bash.mo": {
+        "size": 66641,
+        "sha256": "472eab42e4c1f3d71ab65040caeec9df927e7827c36099898f47ac74bfadf76c"
+      },
+      "usr/share/locale/sq/LC_MESSAGES/bash.mo": {
+        "size": 584,
+        "sha256": "4c4fa953f3bed011cc36932d626580bd6ab9183a0d86789f8d6db061b4a9d74b"
+      },
+      "usr/share/locale/sr/LC_MESSAGES/bash.mo": {
+        "size": 241651,
+        "sha256": "062240a475f44064c43e8a19b3da671f87275504554425214c95c89666a0a977"
+      },
+      "usr/share/locale/sv/LC_MESSAGES/bash.mo": {
+        "size": 183324,
+        "sha256": "5a605b06bb3cac26d7b72395f3aa3d483e416900b29afe1ea03d6689540ebd2a"
+      },
+      "usr/share/locale/tr/LC_MESSAGES/bash.mo": {
+        "size": 96241,
+        "sha256": "44bed93c877535520ab19bb2dde2730a94f19b1b7e92f7483cd989c59f7d54b0"
+      },
+      "usr/share/locale/uk/LC_MESSAGES/bash.mo": {
+        "size": 246838,
+        "sha256": "748c7f95114a384907c1824e953a4c6957e8fd12ea865e518334238a6a9f1d0e"
+      },
+      "usr/share/locale/vi/LC_MESSAGES/bash.mo": {
+        "size": 108706,
+        "sha256": "20e77b23216dbbe50992ed239e76e2b589cb121404e5e2f4e615a8495d5be081"
+      },
+      "usr/share/locale/zh_CN/LC_MESSAGES/bash.mo": {
+        "size": 176530,
+        "sha256": "f7e81c95e45b722686a9cff822f594ddf8bb8b49c4fee7b5764cb3943f945d43"
+      },
+      "usr/share/locale/zh_TW/LC_MESSAGES/bash.mo": {
+        "size": 118863,
+        "sha256": "5fa4abd414259909b2bd94a1a28d9034983c80f82119f5642096555262c75f3a"
+      },
+      "usr/share/man/man1/[.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/alias.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/bash.1.gz": {
+        "size": 107429,
+        "sha256": "8334e3906ff21aed591fad6e84ee8caea2e2ed39f4acc3dc032bd4af58fdf80a"
+      },
+      "usr/share/man/man1/bash_builtins.1.gz": {
+        "size": 568,
+        "sha256": "dcc1adf328cc9782401f1473f7c706e4d578797dca31c724d9b0244688476894"
+      },
+      "usr/share/man/man1/bashbug.1.gz": {
+        "size": 984,
+        "sha256": "b874207b8ff076fadc4e26ddc066f019b71e90ed38ca5e22d3515ce55de10310"
+      },
+      "usr/share/man/man1/bg.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/bind.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/break.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/builtin.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/caller.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/case.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/cd.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/command.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/compgen.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/complete.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/continue.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/declare.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/dirs.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/disown.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/do.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/done.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/elif.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/else.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/enable.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/esac.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/eval.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/exec.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/exit.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/export.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/fc.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/fg.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/fi.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/for.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/function.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/getopts.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/hash.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/help.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/history.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/if.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/in.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/jobs.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/let.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/local.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/logout.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/popd.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/pushd.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/read.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/readonly.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/return.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/select.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/set.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/sh.1.gz": {
+        "size": 36,
+        "sha256": "34cb24b40f839a62cc13a1c61c1df56325844b19e3ede8c13cdb7572baea52d0"
+      },
+      "usr/share/man/man1/shift.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/shopt.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/source.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/suspend.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/then.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/time.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/times.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/trap.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/type.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/typeset.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/ulimit.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/umask.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/unalias.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/unset.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/until.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/wait.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      },
+      "usr/share/man/man1/while.1.gz": {
+        "size": 56,
+        "sha256": "c50ae015f11d46d7aff79339f8fd5e4b93f7822a48ed1f43aaa46e2634e5b250"
+      }
+    },
+    "links": []
+  },
+  "bash_sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+  "runtime": {
+    "path": "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "bytes": 30874017,
+    "machine": "0xAA64",
+    "producer_handoff": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\handoff\\combined-runtime-handoff.json",
+      "sha256": "f8c7c49b46fdf0844555b99d3c1e4d2c342817a8b01eef1e9f283875796e2b9b",
+      "bytes": 17630
+    }
+  },
+  "subject_dependencies": {
+    "sourceRoot": "C:\\ap11-native-provider-intake\\bash-qualified-d70-v1\\readback-runtime\\usr",
+    "note": "Retain these exact admitted Bash dependency bytes while replacing only msys-2.0.dll with runtime 907 for the compatibility test. Their d70 origin must remain disclosed until the test qualifies them in this named scope.",
+    "files": [
+      {
+        "path": "bin/msys-iconv-2.dll",
+        "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "bytes": 2046237
+      },
+      {
+        "path": "bin/msys-intl-8.dll",
+        "sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "bytes": 754493
+      }
+    ]
+  },
+  "pe_images": {
+    "usr/bin/[.exe": {
+      "sha256": "c6bdc9051d71dd7eaec8d019cc7b2c66f778d581d0c4fe715557077ccaf6460e",
+      "size": 500388,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/arch.exe": {
+      "sha256": "20603d7d2ecb3a7c6b7f6ac7f90eb644d66170c3928d93681af76771ad5d87bc",
+      "size": 262308,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/awk.exe": {
+      "sha256": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+      "size": 5362934,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "msys-readline8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-gmp-10.dll",
+        "msys-mpfr-6.dll"
+      ]
+    },
+    "usr/bin/b2sum.exe": {
+      "sha256": "34c8049caf9d59f6d498285bac16714dd141a23af82011eba24c62109a589563",
+      "size": 499159,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/base32.exe": {
+      "sha256": "12b6ad6241aef6366069218e39e4f3b697bb1ae77343e1fee58558ef6defd8a6",
+      "size": 314470,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/base64.exe": {
+      "sha256": "d954e596314c370020ca36de358f6cfdaa153628e2b4a8e22a7bcccd714633e4",
+      "size": 312960,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/basename.exe": {
+      "sha256": "555dd2d7ff68c6978c91259eb50c25bd5fd921c89c0225b25f934015def204d8",
+      "size": 272138,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/basenc.exe": {
+      "sha256": "4690283fee4ab199c88ed01785d08db37b086096eab4222d282baf8f43daeb59",
+      "size": 373695,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/bash.exe": {
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+      "size": 7728825,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-iconv-2.dll",
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "USER32.dll"
+      ]
+    },
+    "usr/bin/cat.exe": {
+      "sha256": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+      "size": 299734,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/chcon.exe": {
+      "sha256": "63c0a19e84a2aa6788490a85ae4ae00f313bca5ba1ca50d0a69759309f46700d",
+      "size": 478802,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/chgrp.exe": {
+      "sha256": "8eb4d30cd5898beb422a39996f3a50fe8b0b0fdc0c6380ca161ded09ff139cd2",
+      "size": 526361,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/chmod.exe": {
+      "sha256": "ef2569ed950790d2d848c03fb00fec44ee8a22d2cb61e0a58a533cd4857863d7",
+      "size": 454212,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/chown.exe": {
+      "sha256": "73fdd42a56d606dc78826fec88bc24e0544f84f63d5081533168f65b6675635c",
+      "size": 537279,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/chroot.exe": {
+      "sha256": "3d2ffea07b5531d3c5aefa7d1b5c5a3949fe92a5c53c71b60b336841318affd1",
+      "size": 323293,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/cksum.exe": {
+      "sha256": "7db222b46a04cbff3790dea6ddb484ce9f1a176cb4f30a33e560aba7284563df",
+      "size": 285207,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/cmp.exe": {
+      "sha256": "ef8d01a45dcc1ff575dd6e19606f6f7c6035978d382472ecf34b77256b15fbb6",
+      "size": 394779,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/comm.exe": {
+      "sha256": "1d27d24d6dfcabd017a5300d42c1c55723ec6d57947486b8c63bd199271fe64a",
+      "size": 329100,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/cp.exe": {
+      "sha256": "fc098f58a9c694c0bd7f27b332487004a226ef182afc8870ab4d0234f37e8633",
+      "size": 997562,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/csplit.exe": {
+      "sha256": "debe07a3fb9ab16f763c4d3fb809f1e62d691ac708ccda48dac4c16a3f2e3e87",
+      "size": 819782,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/cut.exe": {
+      "sha256": "ddc366364e404470c4253cbb87b06dc5480ffebeab62062d369bde117e97bdbe",
+      "size": 350977,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/date.exe": {
+      "sha256": "9f0789d915e00ef9c26588da56728900bcc1d8fc64e1eb0086b24de055f1857e",
+      "size": 755882,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/dd.exe": {
+      "sha256": "10febd20ff3bdc540ee76281db0400123364fd5dd09f48fbfa6d574a94f144f1",
+      "size": 629465,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/df.exe": {
+      "sha256": "0f9f598775ad9413eef3ec3086406745e168190b19494b12c4d46fc14999f6c9",
+      "size": 790000,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/diff.exe": {
+      "sha256": "12075d637ec2918d40be5ed3032c42714bfe6a982b7ca5758e375dff1aae2399",
+      "size": 1754755,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/diff3.exe": {
+      "sha256": "e1b222040eaa9bc380ba1b1da49ccfd17aa8790bbcc3ba0e6a56c269a4ce83b7",
+      "size": 413743,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/dir.exe": {
+      "sha256": "72c8a449270bbce074a614774c10d49076b59cc8a9c79baa611cbe63b7a7fe7d",
+      "size": 1155680,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/dircolors.exe": {
+      "sha256": "c55b738a99ea2df2ace0758913e250dad52bf9a3a1b369e89971414769e0311e",
+      "size": 385903,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/dirname.exe": {
+      "sha256": "682b664af253fea80a19545633dfd879820d5205e8a556d3cc0dc0606b309d86",
+      "size": 264125,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/du.exe": {
+      "sha256": "3017e20ea6c129f7ea17b8289cb7313e4462d0c0123e0280add725242d15b60f",
+      "size": 1239067,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/echo.exe": {
+      "sha256": "bc7bf74e4a6045dbaca3eab8edb3277c74db128269aa7d9631fa0f2a3917e99e",
+      "size": 266295,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/env.exe": {
+      "sha256": "e33972b30a98d7385e685e47edf9d1beb6c25d4157366b8fff0b335313452540",
+      "size": 312821,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/expand.exe": {
+      "sha256": "480d2d7c35d08d6ffae4ed853664416b27a6dca74ea97e0254c9af96a81fb529",
+      "size": 297804,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/expr.exe": {
+      "sha256": "efb3dd9ce46326db13449565067bdd283215f831f8c1ece1ea7cbae25b1a9b28",
+      "size": 824398,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "msys-gmp-10.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/factor.exe": {
+      "sha256": "0bf974a8bc9da299d2845c2c82de04bd448c34156249213ff8629f8642598f52",
+      "size": 545881,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-iconv-2.dll",
+        "msys-intl-8.dll",
+        "msys-gmp-10.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/false.exe": {
+      "sha256": "1b9f4b88bb93d571134dc34804fb163274699ba38818a143590f3976a8c410f4",
+      "size": 249539,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/find.exe": {
+      "sha256": "6fc041358ebe027f8eca51cce88fb3479f4fa75e17c94e865d563864d8a1feb9",
+      "size": 2271736,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/fmt.exe": {
+      "sha256": "6590cfc4c113b08938a24d476bf52453e9e221c24748cf9c55a54f7ba4956fb0",
+      "size": 324946,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/fold.exe": {
+      "sha256": "b278b623f50fcb4e0e6ab13135eaaa437df260bb1e24d1696503e96ab52d5c2a",
+      "size": 294520,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/gawk-5.4.1.exe": {
+      "sha256": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+      "size": 5362934,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "msys-readline8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-gmp-10.dll",
+        "msys-mpfr-6.dll"
+      ]
+    },
+    "usr/bin/gawk.exe": {
+      "sha256": "bccb669767d79a3699d96b2533e3c7603055af6e627e1b07c747e440b31f4048",
+      "size": 5362934,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "msys-readline8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-gmp-10.dll",
+        "msys-mpfr-6.dll"
+      ]
+    },
+    "usr/bin/gkill.exe": {
+      "sha256": "3affb1666bb0e5f84846af524bd03cc14c8653bb45547b816fd89642da0cae7c",
+      "size": 270003,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/grep.exe": {
+      "sha256": "b3782095e266bc620dde3dddecab39ac5882bc43e3eaa6d9b48791ccec06b64a",
+      "size": 1628644,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-iconv-2.dll",
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-pcre-1.dll"
+      ]
+    },
+    "usr/bin/groups.exe": {
+      "sha256": "f7aa933b270633b22a34de1c148cab1933a24692d49428513edcd7b9731c0026",
+      "size": 290965,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/head.exe": {
+      "sha256": "35d33aa9730b18288ee4bdddd12228ea35cc0a119ad9c15971f5f0e04ee713e9",
+      "size": 344112,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/hexdump.exe": {
+      "sha256": "5a9dd1850cc0fe37e59f80f94ea9d5f44950954514d902aa71db33ee3275f554",
+      "size": 325201,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-ncursesw6.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/hostid.exe": {
+      "sha256": "bbf4fed8cafd5e60c657860fd2007b6f6c2f018d26d598a6f81e0973dadf6033",
+      "size": 260825,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/hostname.exe": {
+      "sha256": "ed7c6373aa7f2f71145196cc5730518f3c865ce0a170d0c959069c41adf838c4",
+      "size": 266869,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/id.exe": {
+      "sha256": "023a55d18ed50f8409685dd30e79f4cd8520a645fb1b4c3bc4b27707a8634b41",
+      "size": 330421,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/install.exe": {
+      "sha256": "43d40eb1816457a5240f28e3e9f6a52b045c16ce923c1baee49dec2052209c75",
+      "size": 1270634,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/join.exe": {
+      "sha256": "3812c8f933e11ccef406b2e653b2c1bd0af0da40ec7dd9d28f4b530c39171e6c",
+      "size": 405456,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/link.exe": {
+      "sha256": "09abc3e7d36447146d53d650bdb1dab179e0d0c0ef9eda61b6846bb1d438192e",
+      "size": 262508,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/ln.exe": {
+      "sha256": "1f909dc2707b04128073250f8b00487299027d854f5e54f9b051e24caf26db0d",
+      "size": 686601,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/locale.exe": {
+      "sha256": "27a57074b3286bb0b16e5447750ac3263329cf4b4209402ff460ac8bf987bfca",
+      "size": 137339,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "USER32.dll"
+      ]
+    },
+    "usr/bin/locate.exe": {
+      "sha256": "567fd93a9ed02dd9a79624ac411b0e3282670a57d6182343b2f89e908a5d8b6d",
+      "size": 1289451,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/logname.exe": {
+      "sha256": "716c77b77513917d5b61c8f8023731ad487d2676dcae70a4d3361a9f9affbb06",
+      "size": 261095,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/ls.exe": {
+      "sha256": "9641fdeeb6d88a10c5eee9c4fc4e6efaa1e297bea0e96559816b66722fbfdfd3",
+      "size": 1155680,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/md5sum.exe": {
+      "sha256": "accfadc7ee6dad22d3107ba1757d0c7b45a30b6ff8a5d958da010d0b2a00b181",
+      "size": 344688,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/mkdir.exe": {
+      "sha256": "2768035ab6b0c14454d576c0c734259e755b7128bd9ddfabdfe01e705a14b584",
+      "size": 538327,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/mkfifo.exe": {
+      "sha256": "5992a2eccb2f638e94fde3bf6087a87921d4ac88a4a99e3b00b9a2cd39a6ecec",
+      "size": 277572,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/mknod.exe": {
+      "sha256": "470ed4f9a9011253aef1499b5014aac55103fce82892926780e108ff3c649e7f",
+      "size": 295352,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/mktemp.exe": {
+      "sha256": "15c44406d6e7fa3199699af4e86e5672ef321b1c566a2e3eb580a828920f9e8d",
+      "size": 355798,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-2.0.dll": {
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "size": 30874017,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "ntdll.dll"
+      ]
+    },
+    "usr/bin/msys-asprintf-0.dll": {
+      "sha256": "72aff4c1c4da6d7f5d85bc9cd852b57b209332d58ad77023e25a294e9646f6d3",
+      "size": 17508933,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-charset-1.dll": {
+      "sha256": "0d6c999892ae10d3e173792596ef4653514777eebddb75015868a9056e6f7d73",
+      "size": 65228,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-edit-0.dll": {
+      "sha256": "b832b970d169c409ec334d3446ae7477103c59cc8c712886ddf0c68b1f806b13",
+      "size": 1180885,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-ncursesw6.dll"
+      ]
+    },
+    "usr/bin/msys-formw6.dll": {
+      "sha256": "a94d5d798645ab8922a20f667b676ab31dbbe7713a69e2795f617ce338aded04",
+      "size": 621023,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-ncursesw6.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-gmp-10.dll": {
+      "sha256": "b4802a0147dafe7cbab5b575c3fb194c137dc4501643d9093128da6bbe76807e",
+      "size": 4311106,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-gmpxx-4.dll": {
+      "sha256": "818b3aad724f7c6577953753ad9591efee4571193eb619e5a200fa42abe5ec39",
+      "size": 18000586,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-gmp-10.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-history8.dll": {
+      "sha256": "f48e5347c7610fd53ca8066f19f8b7d964a9c6d251718d3997a4dc8d46e34840",
+      "size": 272130,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-iconv-2.dll": {
+      "sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+      "size": 2046237,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-intl-8.dll": {
+      "sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+      "size": 754493,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-iconv-2.dll"
+      ]
+    },
+    "usr/bin/msys-menuw6.dll": {
+      "sha256": "30f46658ac5dbc10f22844217dd13fb7da5c1d3b0ee4dbcaf7327dd9a96bfc5f",
+      "size": 329502,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-ncursesw6.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-mpfr-6.dll": {
+      "sha256": "36c2c1aa095c51ac4189d6a84f0fb4e75b5a7b912727b3e8a903b6b03861042b",
+      "size": 4286366,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-gmp-10.dll"
+      ]
+    },
+    "usr/bin/msys-ncurses++w6.dll": {
+      "sha256": "bd599db06149f6479ae113a57a1016f472746d0b3086ebca6e77058416e986f4",
+      "size": 18124284,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-formw6.dll",
+        "msys-menuw6.dll",
+        "msys-ncursesw6.dll",
+        "msys-panelw6.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-ncursesw6.dll": {
+      "sha256": "e2d03ae2ac264d8788f3cd7ea4917c51c9b26ac59ee574e4cade633a96de3585",
+      "size": 3060460,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-panelw6.dll": {
+      "sha256": "7f3e872c929062c8f54b5e7aeaed0adf4861f77f3255a95bb3fd66f00d1ed514",
+      "size": 234850,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-ncursesw6.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-pcre-1.dll": {
+      "sha256": "22b5fe8fa5ecc49c697f341fc34192ec46300890dacad5455ff5154af228c632",
+      "size": 1023231,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-pcreposix-0.dll": {
+      "sha256": "6791c738080b6168633a7682e8ce495528ad4d900d535d850598be89175bc0b4",
+      "size": 70716,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-pcre-1.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/msys-readline8.dll": {
+      "sha256": "bf2a0cd06cb4951b8ad37c3e74970d6550f2d5fc101c3eb8056f7127b42253a7",
+      "size": 1604777,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "USER32.dll",
+        "msys-ncursesw6.dll"
+      ]
+    },
+    "usr/bin/msys-ticw6.dll": {
+      "sha256": "bc74db372eff6a82a8e3e77ba3cc6f4c1c6f197ae03eec5a42138602ded92730",
+      "size": 350292,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "msys-ncursesw6.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/mv.exe": {
+      "sha256": "04122237be637f72787cc88e7ef766086685dcb28ad3c17dad7e7e725775e835",
+      "size": 1104224,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/nice.exe": {
+      "sha256": "b1afcd466a03ac2fab34e7fc03c7976c8e433cff3d9c60efafa471e053b9ebde",
+      "size": 272172,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/nl.exe": {
+      "sha256": "833790233ea523b22bb2a6978d7c8d4d85947fbaae42f5dbede0c4c40a96d964",
+      "size": 762175,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/nohup.exe": {
+      "sha256": "446ae29f6d7f012be5a28d7c9a8c08e7e9917192ce6f9e3d87c2e5be9fdcf14a",
+      "size": 286534,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/nproc.exe": {
+      "sha256": "c8dac1c5ce5e8152530cf672f7e6ab9b13cf297fbadf20ac2c56ddc6594b0f0c",
+      "size": 280166,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/numfmt.exe": {
+      "sha256": "14896ca3fd8c6c0dc37afedf842f92e4e3a360c2fa7b0495cb0c4bedd707e953",
+      "size": 422651,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/od.exe": {
+      "sha256": "9a7dbcf7f2c3edb195adc0a874f1fdd9dcc92379439ed379401b0d3865eccdad",
+      "size": 619476,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/paste.exe": {
+      "sha256": "c27220882e0510920f0e739590dc786b5d8207c557fbfa97403c32724bbe768b",
+      "size": 295286,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/pathchk.exe": {
+      "sha256": "2826ade67835485407a23ddca46b10b4e63a1484b3b40c05d0aa2bcff105cf71",
+      "size": 266569,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/pcregrep.exe": {
+      "sha256": "4cf00d2f7fe62bbbc1024cfca543678657791fff48c6c931b98104c13b85deb6",
+      "size": 193122,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-pcre-1.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/pcretest.exe": {
+      "sha256": "9b20f5e44f9fcb9d1063adba8274f14bc6fae89c2b68a2dff51af2d247a97f8d",
+      "size": 315810,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-pcre-1.dll",
+        "msys-pcreposix-0.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/pinky.exe": {
+      "sha256": "07495a7291365e6ef9ffa0ec3e67c3d8bec1ca79c1cda276f74a11c8f7073b49",
+      "size": 324579,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/pr.exe": {
+      "sha256": "246c27c342b3745ea382d59b387f9b1fda9412b67a31d72f9bf97cc9fd76e526",
+      "size": 528439,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/printenv.exe": {
+      "sha256": "bd3c30527afd4dae33c67a246df5c3e4d391b07b36b903eec59a072935154c49",
+      "size": 68858,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/printf.exe": {
+      "sha256": "25eeaf83b800c53963ae9f54be0542bb9e07026d6b4ad564df9b75b0c499186d",
+      "size": 530635,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-iconv-2.dll",
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/ptx.exe": {
+      "sha256": "519e05d0c83464387fac8c3929d07fbf4214e272e0cff16b11feb3fa097197d2",
+      "size": 973489,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-iconv-2.dll",
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/pwd.exe": {
+      "sha256": "ab4663b896ed2fb93713c30e1dd6f178b9ebac35bb3d6786c918fecf9221c8f9",
+      "size": 301337,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/readlink.exe": {
+      "sha256": "a14f6ba1e918f793840c35cdda37de457c4e133269ae4540db5d3d088af779e3",
+      "size": 402292,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/realpath.exe": {
+      "sha256": "2549d40ebaee40d48abc42f7df3866f19ca6d2978b1f4e4c2eebe69f2d697702",
+      "size": 420796,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/recho.exe": {
+      "sha256": "ea64af8ace945c6f5e68e6b5e070a781a44d1080bad64c711080e5db14e8f34e",
+      "size": 68822,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/rm.exe": {
+      "sha256": "ce6b95b18aae78614e7e3c01b8979443a28a7dcd800f28af60971bb3ef5f5915",
+      "size": 512741,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/rmdir.exe": {
+      "sha256": "a8fbcc39798568ce21a1469ca85dda5e137548d0e11088bfa7d60d5b82c369a3",
+      "size": 465639,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/runcon.exe": {
+      "sha256": "488931ad71fa337bf18fa4d19c3cc2684367e87e9276e87fa51726a8caf90e6f",
+      "size": 256740,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sdiff.exe": {
+      "sha256": "327da38568a24cb159c35421c574980214c7a8009a25805f2fb6ccff8ac1892e",
+      "size": 441204,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sed.exe": {
+      "sha256": "2b8e9e72b18742a60a04a6ba926d3e17aae977e51de3a15ef4947d0db1f4f12f",
+      "size": 1291003,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/seq.exe": {
+      "sha256": "0cb30f88bb8295b12a73ae47925b65f4d23587cc30573f6713e73010c685bf47",
+      "size": 482244,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sh.exe": {
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+      "size": 7728825,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-iconv-2.dll",
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "USER32.dll"
+      ]
+    },
+    "usr/bin/sha1sum.exe": {
+      "sha256": "4d4a29cecdd5fdfc6e812c2063c891de6498cea9a19627c5fb4a468b58a807bb",
+      "size": 348387,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sha224sum.exe": {
+      "sha256": "4f957188b875954d6411bb28308e467d4755857bd54168d27be02cc0739bf00c",
+      "size": 370880,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sha256sum.exe": {
+      "sha256": "1e7e1a5fd26f0b0e81a184a6d267f7e8b5ce6ccc607d5f4b9ac6d97fe3d6c33e",
+      "size": 370880,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sha384sum.exe": {
+      "sha256": "1795a7ffa83367846506227c427e4b8b2dd83673efcad435add44b7cf93aa861",
+      "size": 384664,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sha512sum.exe": {
+      "sha256": "20ebec5eb006bc51f2dea7893e1b506ca0938886d10cc8461f8931dc87914313",
+      "size": 384664,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/shred.exe": {
+      "sha256": "44467d97a2ea262e3271142f778ac1e9dd423aadeea3f631d9ed17b88d6400c9",
+      "size": 457496,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/shuf.exe": {
+      "sha256": "9fa56931ee6fb19d9e4d0a7dfbaf391c2164bf7e91982e57e3eb1dd29963aee5",
+      "size": 462889,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sleep.exe": {
+      "sha256": "51af3baa162235b06874dddc2d159827a0ff83c440634f704933a6626043d1a5",
+      "size": 284311,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sort.exe": {
+      "sha256": "797339fb9ce94fc110731eca94d5302f24fabb9e64bbb88035f4bad16854072b",
+      "size": 855795,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/split.exe": {
+      "sha256": "03fcea844c07ee88db4583240da6f13840bab5e52661e8e259d7d2db811c2d12",
+      "size": 388833,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/stat.exe": {
+      "sha256": "da11e84a237d114452506987f98cb52b1877206e6c3387c1772da5181b915e6c",
+      "size": 738488,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/stdbuf.exe": {
+      "sha256": "7b821ba7106961b9007185cee73f5a053eda2402d88111f2a8e48db72e923e55",
+      "size": 494657,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/stty.exe": {
+      "sha256": "6615cd9f6a5cc48042bf090fe5cfe417412b2aece427a34242996297fd88a95c",
+      "size": 555652,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sum.exe": {
+      "sha256": "6975a3b7997bba7547cce3a3595ae4439adbcd26909e63e1ae9f1e0197b45cc4",
+      "size": 336413,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/sync.exe": {
+      "sha256": "de429985c39a7524cf53c6c3db1793189938f237a8a57f3e975c285493249d5a",
+      "size": 257915,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/tac.exe": {
+      "sha256": "05ed17b4cada854985ed509888ddfde2a2bb728519acf8662d9b5ecc671949c0",
+      "size": 839454,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/tail.exe": {
+      "sha256": "e876a076786e5c2f9e7dfd6f28f5a5b8c3d33ffd7ad29430337be7dbc5d976a2",
+      "size": 428741,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/tee.exe": {
+      "sha256": "76ed308633bff00c978e9bdb036a1127d19cbbdf9793cc25ecdb36b989896a9b",
+      "size": 299048,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/test.exe": {
+      "sha256": "7a62231de7877a31bffb9824db645b546d3936e178e15b4cca1602267798ccb2",
+      "size": 483191,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/timeout.exe": {
+      "sha256": "9eb864cfebca0d44a35a2394d62cd132c1105e02d3da6ee58594a4b0a19ee9e8",
+      "size": 298084,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/touch.exe": {
+      "sha256": "51a7e85431c0da7a50a3300923d4b498b5ca87b3334dadea4c2ed6d093cd898e",
+      "size": 689751,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/tr.exe": {
+      "sha256": "eb0736daa69c5cff53e79e2b166b112dbd19bec093e5122a03d7c9726b977d3a",
+      "size": 356226,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/true.exe": {
+      "sha256": "73a9751ec777db9645f5daddfa2a59310a2ff020ab20e454a5159dbb214806d7",
+      "size": 249539,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/truncate.exe": {
+      "sha256": "87f7b21f05dca0441c433a3e15ac3c5958cfcf76bcab9a505d929dec5efdb177",
+      "size": 288300,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/tsort.exe": {
+      "sha256": "8bb4d9c52b2185f5efc294c7da67943af3f26758defafc5b9bb7160d05f6b632",
+      "size": 408901,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/tty.exe": {
+      "sha256": "d6c3b3760109e2e663335820e81047e6874bea587560ae4736c9c87643f5b9f8",
+      "size": 254530,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/uname.exe": {
+      "sha256": "fc858cec8aeadf51bb75b22a8ed60a88cc180bd29ce814ebe0df34c88a5f825c",
+      "size": 262308,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/unexpand.exe": {
+      "sha256": "d17f94491d360154e3744235f3cb6edee62dd170637dace64042412882f0281c",
+      "size": 301375,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/uniq.exe": {
+      "sha256": "0e3da1b1e6117a686aa4b3c14d163b152d543e5cdb34e515e3fd04ae2a1c8f0a",
+      "size": 345864,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/unlink.exe": {
+      "sha256": "456e1f8552045191a460797aa317d5c422a315a67275eccbc4927bd815af9acd",
+      "size": 262492,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/users.exe": {
+      "sha256": "e0fb666213ff7e0c479b1885f15c503c6571fbf0d0a1929603514cc4a9a9d97e",
+      "size": 277872,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/vdir.exe": {
+      "sha256": "31d7db002d9a36fd6c8aeb5b99827b72a301adcad8cd5617e9ccdfbe1fcb3e07",
+      "size": 1155680,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/wc.exe": {
+      "sha256": "981f7e0e8586ac2308b464208e705ab025c1c3fff57c03fc4d0a41dceec9e6f0",
+      "size": 371937,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/who.exe": {
+      "sha256": "30ffe7165e488c375f71fd545ffd5f6d71a3806fc3ee62838c6a2f284cc7d1f4",
+      "size": 502773,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/whoami.exe": {
+      "sha256": "8cd1972c1d76c04e4f261ee3626bfd4e3b9014b6a5fb75465bdb5168355d8df8",
+      "size": 262933,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/xargs.exe": {
+      "sha256": "307e01d1dede595d0e27d4102bfa934dab5226e3fb8adca7f5c9366560d861f9",
+      "size": 521419,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/xcase.exe": {
+      "sha256": "0a662edb89c21447cb4f445c47f08c2bcdfd043827856b6b31fed55b969c71a9",
+      "size": 77500,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/yes.exe": {
+      "sha256": "01f3c2d2b74d8e6c92572d488bc7cd11c755cdf554b7c8787f8b1d3896be0a83",
+      "size": 270737,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "msys-intl-8.dll",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/bin/zecho.exe": {
+      "sha256": "c8f6bff1ad1b414ca91449da6e0f367ecbda7ed705e95b88a900f2d1c57935ad",
+      "size": 67723,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/accept.exe": {
+      "sha256": "5ab1732e05d592e8c6aae20584accfda38f6c1a0a198650c70268220e1e420c1",
+      "size": 74855,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/basename.exe": {
+      "sha256": "6c57c359a1d5ecc45a29c5370379092114f50ff65944f0d2dff1fb995b1f4ace",
+      "size": 64050,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/chmod.exe": {
+      "sha256": "56a62f7d9465b0b86a355c391051c2fe5d659e9ac41dd3c613b51d0f1d2223b9",
+      "size": 64416,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/csv.exe": {
+      "sha256": "6a017656e80402e1b0cabd6a3d092ec23a893246b18349da724cbc351f5094e0",
+      "size": 67541,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/cut.exe": {
+      "sha256": "be33c75c01da5e240d8b741a4c9e94fc6f9fe5d80530324c42132c5691cf7bb7",
+      "size": 93336,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/dirname.exe": {
+      "sha256": "2f535e1dbeaa26c1d4e9e7e9a7299ae5261c37208a3b479dbfca19128b26b75b",
+      "size": 63180,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/dsv.exe": {
+      "sha256": "483b1300b26029c9928a5a49ee293ac8dcc5d0286d798ce711d4c63ea1f66537",
+      "size": 72496,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/fdflags.exe": {
+      "sha256": "5c43f1503872ceddfe9e3a351a3f54e0991d80aae463619dbff1a8884d08c8a6",
+      "size": 78723,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/finfo.exe": {
+      "sha256": "295acf5dbba60b9f7b6c38eeee4e7abcc19ccf540a37e44d9c80898d7dcc3a3e",
+      "size": 86626,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/fltexpr.exe": {
+      "sha256": "9493348dc9527579985934cecb6b9c835043b78fe4c38a39ceca1508a21b8979",
+      "size": 2339209,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/getconf.exe": {
+      "sha256": "6000220992ab4c7c7cfb4af693f271ad70b42ee33a7399e049c9f10309535bed",
+      "size": 88440,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/head.exe": {
+      "sha256": "6ea5d913f292e39ba71427fa5fc3adc090b4a179e1a749a0fdb9d89962ecaf52",
+      "size": 73832,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/id.exe": {
+      "sha256": "ce0aa16aaac200ecbd00a0277deec99cdf051d77da4cbe34943b0d90d4c95dc8",
+      "size": 80122,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/kv.exe": {
+      "sha256": "16c50f05345a8671776426f892c73075db5382e00173d3131c5451fb27925538",
+      "size": 73794,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/ln.exe": {
+      "sha256": "06a54de4414c7131ebfee0d0c8bd8827cab289ab9ee5bb5c8c58a2dd07584094",
+      "size": 70220,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/logname.exe": {
+      "sha256": "e78e1fd6449f0836b7478490282fcbfda31f315b9791477c596fcf7b7fa28b8e",
+      "size": 59147,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/mkdir.exe": {
+      "sha256": "f2b56ef78392ae89bb7a83e1178eee80d1bbbaa72db9f0fe8811195f11e701d3",
+      "size": 73136,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/mkfifo.exe": {
+      "sha256": "94954ffc7a48b5bfd25cd7e1789906c3010f31151cd6a5f200c0e674bd95dada",
+      "size": 62644,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/mktemp.exe": {
+      "sha256": "eb1cdf836b8cd9291dd551f612646a82cbbe4d37297b9dc3ffeb281402a0f3e5",
+      "size": 68661,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/mypid.exe": {
+      "sha256": "bfb6ff923f01e67e4387d5abf17dbf7ceba304d2eb885a6263f592498b80c169",
+      "size": 60670,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/pathchk.exe": {
+      "sha256": "b63011ef560a4c59bb9a98cb9abb1c6f52b4bc6718a2619c9b68a516fad3bbdb",
+      "size": 70371,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/print.exe": {
+      "sha256": "f294d01225bdd3a19aa6b1903b89a565434d08938de3fa62af536e43edeab418",
+      "size": 71989,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/printenv.exe": {
+      "sha256": "4e9c89a47babc05bb8da4d73c6c545fbb1fd5023acd16987ff84824fe760fc57",
+      "size": 62240,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/push.exe": {
+      "sha256": "59932d318db1774a3652b4e5fda92831fc7d4ec3e45e09430ac286c715b28a41",
+      "size": 68962,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/realpath.exe": {
+      "sha256": "8059e267c0aca14ce45ebe23a5a3a52f6459d37afe8bf38b4c1758bf6ccadb97",
+      "size": 71601,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/rm.exe": {
+      "sha256": "334e050214e8546929d79395baf55feae1169def944953ebecb494de0cd34ba8",
+      "size": 69839,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/rmdir.exe": {
+      "sha256": "b126b2bda521c1d9c6dae63e531f5ae753f45400908e2a9966ebfe293a57844c",
+      "size": 58929,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/seq.exe": {
+      "sha256": "9dfe790f5c3c6318f6095cdbf5d82b32f2b40000d26a1be854a173c9869826f1",
+      "size": 91079,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/setpgid.exe": {
+      "sha256": "14d7f0ee208aa358e769b8d7aa8d8c2e0ed95facbf7e28bd1c23c84a32f8fd0c",
+      "size": 61591,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/sleep.exe": {
+      "sha256": "245e4b25172f38e1ce51bfcb3adb5133a3f74c0ddc1c448712bba2bcce3e6038",
+      "size": 64881,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/stat.exe": {
+      "sha256": "1a1e5e5b60216bac5a9f62d3e91e40416c75c9fbd8a863f15f71bfa972919508",
+      "size": 81462,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/strftime.exe": {
+      "sha256": "59fe1e4f1a4cdf41e17d85ecf78f31c48e1b847b4cfda4ecbbdcac8b5faacafe",
+      "size": 66183,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/strptime.exe": {
+      "sha256": "24a28c5eb0c1062241ac74fd99ef05b98e6a4a0500bd2c167f956eab024672a6",
+      "size": 72391,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/sync.exe": {
+      "sha256": "3fb11c77880d289041af62d857dfe7b77cde009d8bb32803550437056fc66211",
+      "size": 60131,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/tee.exe": {
+      "sha256": "a960476021e8e2f7ad7fe9311aa0d137f0513df2e9437cb872b739ceadbd650d",
+      "size": 67913,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/truefalse.exe": {
+      "sha256": "725885c0ec98bc46ed1887f19df801e4dd720618eb761e8e49f38715655934c2",
+      "size": 55837,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/tty.exe": {
+      "sha256": "e57a5e1c5866d053c7ee3e11f6591c53ff4b5186bfca9bf3247ed8af7e90b542",
+      "size": 60961,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/uname.exe": {
+      "sha256": "02a923aa09995b612dac22e00876dad0418dba44098044b225d460f9df6e31d5",
+      "size": 64016,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/unlink.exe": {
+      "sha256": "3382c030fb9e3c50f01539059dd7f24583d0206151c6677fef7a7e3a942168fe",
+      "size": 59447,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    },
+    "usr/lib/bash/whoami.exe": {
+      "sha256": "ee29dd7e4b4c51d0983c303cc4ee5cc86d6170768dae8913e7ebe6cdd9d8159a",
+      "size": 60390,
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "imports": [
+        "bash.exe",
+        "KERNEL32.dll",
+        "msys-2.0.dll"
+      ]
+    }
+  },
+  "test_source_pe_images": {
+    "bash.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "39ef42f62906be249b650dd9e0760109161c40c5b4e047093ef7e16b138c5d6a",
+      "size": 7728825
+    },
+    "bashversion.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "7f8a48f99afad41922164817e0ba3330976ffb20734fe9a09ca3279292e70e08",
+      "size": 80641
+    },
+    "mksignames.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "4d98bde99ce921e0a843ac0ecd08d4abd7ba7ad50e69629a6640ac27386a99b4",
+      "size": 83055
+    },
+    "mksyntax.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "31fa4e8f1b7a5d8043979d75021ee87a1e56a4118f3a572a1c879a8cf4c377f6",
+      "size": 89580
+    },
+    "printenv.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "bd3c30527afd4dae33c67a246df5c3e4d391b07b36b903eec59a072935154c49",
+      "size": 68858
+    },
+    "recho.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "ea64af8ace945c6f5e68e6b5e070a781a44d1080bad64c711080e5db14e8f34e",
+      "size": 68822
+    },
+    "xcase.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "0a662edb89c21447cb4f445c47f08c2bcdfd043827856b6b31fed55b969c71a9",
+      "size": 77500
+    },
+    "zecho.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "c8f6bff1ad1b414ca91449da6e0f367ecbda7ed705e95b88a900f2d1c57935ad",
+      "size": 67723
+    },
+    "builtins/mkbuiltins.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "c184717352edbc928acee7153690ef3e3f200aceca21563623948d99340d2aaa",
+      "size": 174899
+    },
+    "builtins/psize.aux": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "7cd518ff93bf70254efedee36bf21712c05f96eae0c4fde8afbba873f220a981",
+      "size": 72577
+    },
+    "support/man2html.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "93cc200141d29008c3ffed6b5317b5413ddd5ce1ba5bd17e7f4009c2f70fe294",
+      "size": 273214
+    },
+    "tests/printenv.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "bd3c30527afd4dae33c67a246df5c3e4d391b07b36b903eec59a072935154c49",
+      "size": 68858
+    },
+    "tests/recho.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "ea64af8ace945c6f5e68e6b5e070a781a44d1080bad64c711080e5db14e8f34e",
+      "size": 68822
+    },
+    "tests/xcase.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "0a662edb89c21447cb4f445c47f08c2bcdfd043827856b6b31fed55b969c71a9",
+      "size": 77500
+    },
+    "tests/zecho.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": false,
+      "sha256": "c8f6bff1ad1b414ca91449da6e0f367ecbda7ed705e95b88a900f2d1c57935ad",
+      "size": 67723
+    },
+    "examples/loadables/accept.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "5ab1732e05d592e8c6aae20584accfda38f6c1a0a198650c70268220e1e420c1",
+      "size": 74855
+    },
+    "examples/loadables/basename.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "6c57c359a1d5ecc45a29c5370379092114f50ff65944f0d2dff1fb995b1f4ace",
+      "size": 64050
+    },
+    "examples/loadables/chmod.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "56a62f7d9465b0b86a355c391051c2fe5d659e9ac41dd3c613b51d0f1d2223b9",
+      "size": 64416
+    },
+    "examples/loadables/csv.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "6a017656e80402e1b0cabd6a3d092ec23a893246b18349da724cbc351f5094e0",
+      "size": 67541
+    },
+    "examples/loadables/cut.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "be33c75c01da5e240d8b741a4c9e94fc6f9fe5d80530324c42132c5691cf7bb7",
+      "size": 93336
+    },
+    "examples/loadables/dirname.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "2f535e1dbeaa26c1d4e9e7e9a7299ae5261c37208a3b479dbfca19128b26b75b",
+      "size": 63180
+    },
+    "examples/loadables/dsv.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "483b1300b26029c9928a5a49ee293ac8dcc5d0286d798ce711d4c63ea1f66537",
+      "size": 72496
+    },
+    "examples/loadables/fdflags.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "5c43f1503872ceddfe9e3a351a3f54e0991d80aae463619dbff1a8884d08c8a6",
+      "size": 78723
+    },
+    "examples/loadables/finfo.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "295acf5dbba60b9f7b6c38eeee4e7abcc19ccf540a37e44d9c80898d7dcc3a3e",
+      "size": 86626
+    },
+    "examples/loadables/fltexpr.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "9493348dc9527579985934cecb6b9c835043b78fe4c38a39ceca1508a21b8979",
+      "size": 2339209
+    },
+    "examples/loadables/getconf.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "6000220992ab4c7c7cfb4af693f271ad70b42ee33a7399e049c9f10309535bed",
+      "size": 88440
+    },
+    "examples/loadables/head.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "6ea5d913f292e39ba71427fa5fc3adc090b4a179e1a749a0fdb9d89962ecaf52",
+      "size": 73832
+    },
+    "examples/loadables/id.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "ce0aa16aaac200ecbd00a0277deec99cdf051d77da4cbe34943b0d90d4c95dc8",
+      "size": 80122
+    },
+    "examples/loadables/kv.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "16c50f05345a8671776426f892c73075db5382e00173d3131c5451fb27925538",
+      "size": 73794
+    },
+    "examples/loadables/ln.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "06a54de4414c7131ebfee0d0c8bd8827cab289ab9ee5bb5c8c58a2dd07584094",
+      "size": 70220
+    },
+    "examples/loadables/logname.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "e78e1fd6449f0836b7478490282fcbfda31f315b9791477c596fcf7b7fa28b8e",
+      "size": 59147
+    },
+    "examples/loadables/mkdir.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "f2b56ef78392ae89bb7a83e1178eee80d1bbbaa72db9f0fe8811195f11e701d3",
+      "size": 73136
+    },
+    "examples/loadables/mkfifo.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "94954ffc7a48b5bfd25cd7e1789906c3010f31151cd6a5f200c0e674bd95dada",
+      "size": 62644
+    },
+    "examples/loadables/mktemp.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "eb1cdf836b8cd9291dd551f612646a82cbbe4d37297b9dc3ffeb281402a0f3e5",
+      "size": 68661
+    },
+    "examples/loadables/mypid.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "bfb6ff923f01e67e4387d5abf17dbf7ceba304d2eb885a6263f592498b80c169",
+      "size": 60670
+    },
+    "examples/loadables/pathchk.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "b63011ef560a4c59bb9a98cb9abb1c6f52b4bc6718a2619c9b68a516fad3bbdb",
+      "size": 70371
+    },
+    "examples/loadables/print.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "f294d01225bdd3a19aa6b1903b89a565434d08938de3fa62af536e43edeab418",
+      "size": 71989
+    },
+    "examples/loadables/printenv.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "4e9c89a47babc05bb8da4d73c6c545fbb1fd5023acd16987ff84824fe760fc57",
+      "size": 62240
+    },
+    "examples/loadables/push.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "59932d318db1774a3652b4e5fda92831fc7d4ec3e45e09430ac286c715b28a41",
+      "size": 68962
+    },
+    "examples/loadables/realpath.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "8059e267c0aca14ce45ebe23a5a3a52f6459d37afe8bf38b4c1758bf6ccadb97",
+      "size": 71601
+    },
+    "examples/loadables/rm.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "334e050214e8546929d79395baf55feae1169def944953ebecb494de0cd34ba8",
+      "size": 69839
+    },
+    "examples/loadables/rmdir.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "b126b2bda521c1d9c6dae63e531f5ae753f45400908e2a9966ebfe293a57844c",
+      "size": 58929
+    },
+    "examples/loadables/seq.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "9dfe790f5c3c6318f6095cdbf5d82b32f2b40000d26a1be854a173c9869826f1",
+      "size": 91079
+    },
+    "examples/loadables/setpgid.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "14d7f0ee208aa358e769b8d7aa8d8c2e0ed95facbf7e28bd1c23c84a32f8fd0c",
+      "size": 61591
+    },
+    "examples/loadables/sleep.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "245e4b25172f38e1ce51bfcb3adb5133a3f74c0ddc1c448712bba2bcce3e6038",
+      "size": 64881
+    },
+    "examples/loadables/stat.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "1a1e5e5b60216bac5a9f62d3e91e40416c75c9fbd8a863f15f71bfa972919508",
+      "size": 81462
+    },
+    "examples/loadables/strftime.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "59fe1e4f1a4cdf41e17d85ecf78f31c48e1b847b4cfda4ecbbdcac8b5faacafe",
+      "size": 66183
+    },
+    "examples/loadables/strptime.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "24a28c5eb0c1062241ac74fd99ef05b98e6a4a0500bd2c167f956eab024672a6",
+      "size": 72391
+    },
+    "examples/loadables/sync.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "3fb11c77880d289041af62d857dfe7b77cde009d8bb32803550437056fc66211",
+      "size": 60131
+    },
+    "examples/loadables/tee.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "a960476021e8e2f7ad7fe9311aa0d137f0513df2e9437cb872b739ceadbd650d",
+      "size": 67913
+    },
+    "examples/loadables/truefalse.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "725885c0ec98bc46ed1887f19df801e4dd720618eb761e8e49f38715655934c2",
+      "size": 55837
+    },
+    "examples/loadables/tty.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "e57a5e1c5866d053c7ee3e11f6591c53ff4b5186bfca9bf3247ed8af7e90b542",
+      "size": 60961
+    },
+    "examples/loadables/uname.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "02a923aa09995b612dac22e00876dad0418dba44098044b225d460f9df6e31d5",
+      "size": 64016
+    },
+    "examples/loadables/unlink.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "3382c030fb9e3c50f01539059dd7f24583d0206151c6677fef7a7e3a942168fe",
+      "size": 59447
+    },
+    "examples/loadables/whoami.exe": {
+      "machine": "0xAA64",
+      "format": "PE32+",
+      "dll": true,
+      "sha256": "ee29dd7e4b4c51d0983c303cc4ee5cc86d6170768dae8913e7ebe6cdd9d8159a",
+      "size": 60390
+    }
+  },
+  "source_archive": {
+    "id": "bash",
+    "version": "5.3",
+    "url": "https://ftp.gnu.org/gnu/bash/bash-5.3.tar.gz",
+    "file": "bash-5.3.tar.gz",
+    "sha256": "0d5cd86965f869a26cf64f4b71be7b96f90a3ba8b3d74e27e8e9d9d5550f31ba",
+    "prefix": "bash-5.3"
+  },
+  "actual_source_tree": {
+    "path": "C:\\ag-bash907-20260911-02\\source.inventory.json",
+    "sha256": "c2c5a7553d2c8b6f22ed6f8a8374c0221b61f84f3eab2cab4a22e7ead43a0198",
+    "bytes": 272581
+  },
+  "source_recipe_producer": {
+    "path": "C:\\ag-bash-e138-01\\bash-provider-handoff-02\\handoff.json",
+    "sha256": "f1aaeac6acb81efe8163cad3ea08a8f6432f7a77a9b1e2d0dae48b10efd8d58f",
+    "bytes": 4457
+  },
+  "upstream": {
+    "result": {
+      "path": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\result.json",
+      "sha256": "259394c49de5fa265dbfc6e8ea01193214cb1c4075db71123260060ed2fda818",
+      "bytes": 70367
+    },
+    "raw_counts": {
+      "total": 86,
+      "parent_zero": 82,
+      "parent_failures": 4,
+      "timeouts": 2,
+      "observer_passes": 32
+    },
+    "confirmed_failure_buckets": {
+      "bash_or_current_runtime_behavior": 0,
+      "absent_or_non_native_helper": 1,
+      "harness_or_MSYS_Windows_assumption": 1
+    },
+    "unresolved_timeout_count": 2,
+    "unresolved_timeout_cases": [
+      "run-ifs-posix",
+      "run-read"
+    ],
+    "classification_limit": "Requested three buckets are reported for confirmed causes. Two bounded noncompletions remain unresolved rather than being assigned a false cause.",
+    "cases": [
+      {
+        "name": "run-alias",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-alias"
+        ],
+        "seconds": 14.527440000034403,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 54,
+        "observed": 54,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 2,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-alias\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "f8465753c154316251137548cfd49077029fd7fb838ff654d4177f6894bf89ea",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-appendop",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-appendop"
+        ],
+        "seconds": 6.278336499992292,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 19,
+        "observed": 19,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-appendop\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "dac18c887ea645943069bae5cf474ba7c5ebf246803e4ea255f9ed2f86dcb362",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-arith",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-arith"
+        ],
+        "seconds": 18.009670500003267,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 72,
+        "observed": 72,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 11,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-arith\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "c91a202598af52d73eb10c97d358d3d9f52ea26dd76166be5cfa065ab15ae996",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-arith-for",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-arith-for"
+        ],
+        "seconds": 49.113302499987185,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 217,
+        "observed": 217,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 2,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-arith-for\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "ea948504893a46af2c418a46375e50f572dce29a9c4d6c143c00c3cac3ed1f9a",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-array",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-array"
+        ],
+        "seconds": 83.06773490004707,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 409,
+        "observed": 409,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 8,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-array\\observed.log",
+        "log_sha256": "da6421f94fa856a1eb9ec5ddf8e6866f119d08a609ccf50258f4f9730d822be7",
+        "observation_sha256": "e108ac1c0458330a318f73c4f7c54f27f52221a2cee322f5cd662312d8c0f9d3",
+        "output_bytes": 215,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-array2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-array2"
+        ],
+        "seconds": 25.185297399992123,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 119,
+        "observed": 119,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-array2\\observed.log",
+        "log_sha256": "00a100d141de6716f365b10f2d7de3ebecfa46aead9eebce8492b72cee549dab",
+        "observation_sha256": "a8a2ae00f0e92921864a28fba0dcb7489e2c7862c8e4bb742364163e60a6ca20",
+        "output_bytes": 95,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-assoc",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-assoc"
+        ],
+        "seconds": 38.72307170002023,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 173,
+        "observed": 173,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 4,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-assoc\\observed.log",
+        "log_sha256": "00a100d141de6716f365b10f2d7de3ebecfa46aead9eebce8492b72cee549dab",
+        "observation_sha256": "8361c406c6bf8ce098eefd49bd653a041d79c19d038ba2406de107b9d04ac93d",
+        "output_bytes": 95,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-attr",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-attr"
+        ],
+        "seconds": 2.8901366000063717,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 13,
+        "observed": 13,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-attr\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "9b4d8e749746e76bdab8ed3538471a6b616a93115efb808932b98229667be06e",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-braces",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-braces"
+        ],
+        "seconds": 3.930797300010454,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 19,
+        "observed": 19,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-braces\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "f61ac34753e232297abacd03045e87dd68759197bc3d52219a9a18e9722a5101",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-builtins",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-builtins"
+        ],
+        "seconds": 34.239339900028426,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 186,
+        "observed": 186,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 12,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-builtins\\observed.log",
+        "log_sha256": "6657874ba0d9f67846700c1285db9182a5b513ea249c9baeab8a68ace0672d0c",
+        "observation_sha256": "e73f96654edc783f8b450e34f98e22586d38919cd8688d6f18b25715a66c2836",
+        "output_bytes": 156,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-case",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-case"
+        ],
+        "seconds": 6.756703199993353,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 36,
+        "observed": 36,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-case\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "3b34f3252e7ae91362c9a0aabb1af0784936b30c0ec3d925ce6cf33ef852b2f8",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-casemod",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-casemod"
+        ],
+        "seconds": 1.6732799999881536,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 7,
+        "observed": 7,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-casemod\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "1a4b3f8933d8b1f864c5f336b05e65dea17a0140e1984bd5d84a48f285b1fc6c",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-complete",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-complete"
+        ],
+        "seconds": 1.5227173999883235,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 7,
+        "observed": 7,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-complete\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "3b1b23450dcfe9ce5809c89f44c815a3ec67acb93b2cb5728e635d1aa4b2c400",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-comsub",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-comsub"
+        ],
+        "seconds": 25.648972499999218,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 156,
+        "observed": 156,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 7,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-comsub\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "bcc1a77ce56e5965c98deec17aa89569f72617858ed66bc9e71dec29c177f829",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-comsub-eof",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-comsub-eof"
+        ],
+        "seconds": 7.113020199991297,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 44,
+        "observed": 44,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-comsub-eof\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "a1fbe291f7fc0f239d00d170f8e96e65829aa1f444170e580b31df05f51290b0",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-comsub-posix",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-comsub-posix"
+        ],
+        "seconds": 36.047271299990825,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 188,
+        "observed": 188,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 10,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-comsub-posix\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "5439c8f80e24c428940a5759f3c7b5aa6648e6ffcaeb8d24fb4a25bde1d9bbd2",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-comsub2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-comsub2"
+        ],
+        "seconds": 20.926003199943807,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 174,
+        "observed": 174,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 5,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-comsub2\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "696e96ebe71c08a6a33d6d063505e74b5d6b2028763c48a2bf19acce2f045b13",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-cond",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-cond"
+        ],
+        "seconds": 6.6596940999734215,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 63,
+        "observed": 63,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 12,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-cond\\observed.log",
+        "log_sha256": "afb157b9fec30bb6cdddc4b2f22185b5a48b922185f77d779997d9005dff1a9c",
+        "observation_sha256": "88585dd3144ae883a7c8a1191af59820c9b57fb01080488c1f62b67ff7f0db43",
+        "output_bytes": 327,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-coproc",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-coproc"
+        ],
+        "seconds": 5.89714279997861,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 28,
+        "observed": 28,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-coproc\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "d2ce465c281c74946bdbcd9672fa6257aaf9698e25c322f08695b2c4f86f0d19",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-cprint",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-cprint"
+        ],
+        "seconds": 1.8146690999856219,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 13,
+        "observed": 13,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-cprint\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "ebf09d7896e69ff3122e7e622048a76bcee234d43a139eefd246c6ebd6115fb0",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-dbg-support",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-dbg-support"
+        ],
+        "seconds": 5.585708099999465,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 27,
+        "observed": 27,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 6,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-dbg-support\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "f459d66bc556c6926646d5d8f9a2d2e0b17bf3f8f8ac8ae15f4f260d6ee04ee6",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-dbg-support2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-dbg-support2"
+        ],
+        "seconds": 1.3879142999649048,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 7,
+        "observed": 7,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-dbg-support2\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "fb053c70d6406a72aea22b455f08234774dcd4e0a475579e0d39f3f314dd4c78",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-dirstack",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-dirstack"
+        ],
+        "seconds": 2.0459701000363566,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 13,
+        "observed": 13,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-dirstack\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "4f2d121f328c40ea8ca7f478a02c9fdd4ef66af72ece1e12215daaa4b6d48dda",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-dollars",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-dollars"
+        ],
+        "seconds": 113.76707610004814,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 839,
+        "observed": 839,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-dollars\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "021aebf5f6c9b065f27ce5d51431caf130739664d905876039c2206bfa721bca",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-dynvar",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-dynvar"
+        ],
+        "seconds": 6.1607537000090815,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 18,
+        "observed": 18,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-dynvar\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "6e8bafd6402c06690e7bf743711b5b457bff496cc6361997530cbfbe777ad7fe",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-errors",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-errors"
+        ],
+        "seconds": 41.48654430004535,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 225,
+        "observed": 225,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 86,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-errors\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "169b4db334177f142b47c488c1cb9ed93537433c6a9085eba81f5fdeb19022f9",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-execscript",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-execscript"
+        ],
+        "seconds": 68.19921069999691,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 439,
+        "observed": 439,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 67,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-execscript\\observed.log",
+        "log_sha256": "84d40cdb70081fb293b96d4ff56a97887b491d737647da70c8a2bd91308f958f",
+        "observation_sha256": "c88c8ec1ef28a9b8c4cd0adba0e66ba1362391a97fce109c8b82c00d5fd866bb",
+        "output_bytes": 617,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-exp-tests",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-exp-tests"
+        ],
+        "seconds": 57.66248270001961,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 475,
+        "observed": 475,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-exp-tests\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "def6115e758415612b24c40e92ee73ccb9f59eab0a400942683d6e60b5b5f574",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-exportfunc",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-exportfunc"
+        ],
+        "seconds": 12.772755499987397,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 78,
+        "observed": 78,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 14,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-exportfunc\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "312420714fe2ed45da2d9041264d9557541270346acdca4ee0c308195f9e3474",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-extglob",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-extglob"
+        ],
+        "seconds": 15.678783899988048,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 108,
+        "observed": 108,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 4,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-extglob\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "4975c671112defe107cbb3fe2a2024bb8f72b1bd17dcd44f85eb5e572e45a60b",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-extglob2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-extglob2"
+        ],
+        "seconds": 1.6298636000137776,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 10,
+        "observed": 10,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-extglob2\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "6f2e14c66b4b47c6f877bd57713f102c0151a48fd629af2a99be85fd90c35163",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-extglob3",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-extglob3"
+        ],
+        "seconds": 1.4646610000054352,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 8,
+        "observed": 8,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-extglob3\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "37894529b983e44d715cbd693d8b686d696b05edd8a2db6d6fbb0a098341f256",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-func",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-func"
+        ],
+        "seconds": 15.104141600022558,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 55,
+        "observed": 55,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 10,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-func\\observed.log",
+        "log_sha256": "baa353678eef65d166ab9f7c11ed79a3198ef486458620a3983a3d78345fdfb5",
+        "observation_sha256": "d775ea0f8cc7eb7637cc40e27914ad190304a05a13cb36610d0ca5e8f6f1ef34",
+        "output_bytes": 170,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-getopts",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-getopts"
+        ],
+        "seconds": 12.196743899956346,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 43,
+        "observed": 43,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 3,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-getopts\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "a0a8e0fbc0ab92603be5d8022e89ae5980f2431f2506e607d3d86ad3eab66bd3",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-glob-bracket",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-glob-bracket"
+        ],
+        "seconds": 3.8352648000000045,
+        "parent_raw_exit": 1,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 20,
+        "observed": 20,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 3,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-glob-bracket\\observed.log",
+        "log_sha256": "6a88652c231d900ae203f1fdb3ee96d2942add263a1ac961f54dfc9de5439b02",
+        "observation_sha256": "7c487376268ecab1fd102404a1d38eacf6a468ffdb3483195128d157f944d6c1",
+        "output_bytes": 5042,
+        "raw_status": "failure",
+        "failure_classification": {
+          "bucket": "absent_or_non_native_helper",
+          "helper": "gcc",
+          "helper_state": "absent from mandated private AA64 runtime bin plus System32 PATH",
+          "explanation": "glob-bracket.tests invokes the actual compiler from its generated loadables Makefile to create fnmatch and strmatch test programs. The compiler command was not found at line69, so the case aborted before any of its bracket-matching assertions. The driver then compared an empty output against glob-bracket.right and returned raw1. This is not evidence of a Bash glob implementation failure.",
+          "evidence": [
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-glob-bracket\\observed.log",
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-glob-bracket\\native-job.json",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\glob-bracket.tests:69",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\run-glob-bracket"
+          ],
+          "raw_parent_exit": 1,
+          "created_processes": 20,
+          "observed_processes": 20,
+          "case_skipped": false,
+          "failure_waived": false
+        },
+        "matches_prior_registered_case_output": false
+      },
+      {
+        "name": "run-glob-test",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-glob-test"
+        ],
+        "seconds": 48.498796899977606,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 364,
+        "observed": 364,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 4,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-glob-test\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "0d6cbee3ae11b3d956185f938fa5231d20ac198c41823712c000ee2af4947933",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-globstar",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-globstar"
+        ],
+        "seconds": 11.133924600027967,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 74,
+        "observed": 74,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-globstar\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "11244d7ed409037c4f973d35665e9a593da1fda313373ae0914a6cc5317eda22",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-heredoc",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-heredoc"
+        ],
+        "seconds": 24.65294780000113,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 180,
+        "observed": 180,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 7,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-heredoc\\observed.log",
+        "log_sha256": "bc873ff536c5895b1ce928395f8d2da90df6ae3d79ede0840b4ac898dcab9675",
+        "observation_sha256": "f558835befba3101036008980b248dbe8ba0adf9d23b0ba77cd1eebb09e12923",
+        "output_bytes": 190,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-herestr",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-herestr"
+        ],
+        "seconds": 5.394813799997792,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 39,
+        "observed": 39,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-herestr\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "47ea5ca0f65d449b4bbb808c10b44e34fb2653f65c1949211acb3db39c45b79a",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-histexpand",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-histexpand"
+        ],
+        "seconds": 13.938294799998403,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 70,
+        "observed": 70,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-histexpand\\observed.log",
+        "log_sha256": "062fa47af4b793507bf58527ea6087b1a107f7ba87ebd9cdb6dc37161dfb260f",
+        "observation_sha256": "1621f67aadc6a9f916333b5bcc3c0f3cac2deeba8829d3245b78ca9c299e9f41",
+        "output_bytes": 95,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-history",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-history"
+        ],
+        "seconds": 20.06354399997508,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 143,
+        "observed": 143,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 2,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-history\\observed.log",
+        "log_sha256": "062fa47af4b793507bf58527ea6087b1a107f7ba87ebd9cdb6dc37161dfb260f",
+        "observation_sha256": "a159547f3c18664d781cbd3a5f6f35064e002844cad6566dcad5c968e46a3b59",
+        "output_bytes": 95,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-ifs",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-ifs"
+        ],
+        "seconds": 3.9447746999794617,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 21,
+        "observed": 21,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-ifs\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "058166c90fc401e33dad498f0e28bb48d5ee9adbf844c4008c6580e24ea0ba59",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-ifs-posix",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-ifs-posix"
+        ],
+        "seconds": 900.6793458000175,
+        "parent_raw_exit": 1460,
+        "timed_out": true,
+        "observer_passed": false,
+        "created": 7076,
+        "observed": 7072,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-ifs-posix\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "9db4c6b968d441c63a2a3e89d654637e5fbf5d1b9a029b808856b7ed290b3c25",
+        "output_bytes": 0,
+        "raw_status": "failure",
+        "failure_classification": {
+          "bucket": "unresolved_timeout",
+          "explanation": "The unchanged 6856-assertion source did not finish within the declared900-second bound. One predeclared1800-second replay with the same CPU budget also timed out. Neither run printed the final assertion counts. This cannot honestly be assigned to a Bash semantic defect, a missing utility, or merely an insufficient timing assumption without further evidence. Both raw1460 outcomes and generation-accounting deficits remain explicit failures.",
+          "evidence": [
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-ifs-posix\\native-job.json",
+            "C:\\ag-bash907-20260911-02\\run-ifs-posix-longer-bound-01\\result.json",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\ifs-posix.tests",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\ifs-posix.right"
+          ],
+          "raw_parent_exit": 1460,
+          "full_suite_bound_seconds": 900,
+          "supplemental_bound_seconds": 1800,
+          "full_suite_created": 7076,
+          "full_suite_observed": 7072,
+          "supplemental_created": 8113,
+          "supplemental_observed": 8109,
+          "assertions_removed": 0,
+          "failure_waived": false
+        },
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-input-test",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-input-test"
+        ],
+        "seconds": 1.6570595999946818,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 9,
+        "observed": 9,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-input-test\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "ae9bfecfe6308ad0991d4050df12075654f9218a4053e17f4d121f187b446fde",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-intl",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-intl"
+        ],
+        "seconds": 17.198671900026966,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 145,
+        "observed": 145,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 5,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-intl\\observed.log",
+        "log_sha256": "cac3a20c5b0e28a39c2e9bf27c89fda3b3956ab36b46874ee400a43029986ac0",
+        "observation_sha256": "c6dda3a12920bc7e93ea55154b829d4e298e122f7b959cd2f967e5a51c3bc90c",
+        "output_bytes": 416,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-invert",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-invert"
+        ],
+        "seconds": 6.007632100023329,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 28,
+        "observed": 28,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 6,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-invert\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "f1c3a8d7f8075b124bdbf7ab081c0dd9e03a0a458caa7093412255e8a406cef0",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-invocation",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-invocation"
+        ],
+        "seconds": 18.989646299974993,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 101,
+        "observed": 101,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 11,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-invocation\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "b193f654c375ad12d593cf047e67010c615a3cc46518ea72cbc33e3d391d7326",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-iquote",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-iquote"
+        ],
+        "seconds": 43.143555200018454,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 189,
+        "observed": 189,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-iquote\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "22c68f91853b275e1739f3059a3e80e27d82d22ae923c44b01f10c6dfdc7357f",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-jobs",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-jobs"
+        ],
+        "seconds": 147.59860389999812,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 194,
+        "observed": 194,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 15,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-jobs\\observed.log",
+        "log_sha256": "6842e6f39bacfc77d075b325431f4af4964c0193bd81103db17206b9b29ba5f8",
+        "observation_sha256": "b2f4bda55f76726088227be4f43b0594bfea0d4d3401a7aff47c9ea904141e2c",
+        "output_bytes": 206,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-lastpipe",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-lastpipe"
+        ],
+        "seconds": 17.916742799978238,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 78,
+        "observed": 78,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 9,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-lastpipe\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "281298bb144e4c645fccaa2ccb17f6524a1b5947efb232a2aeb06146f096283b",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-mapfile",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-mapfile"
+        ],
+        "seconds": 4.9659953999798745,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 15,
+        "observed": 15,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-mapfile\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "cd585124a94562f6b44dee272cd09c11af09b41f839bc6e368d549279cf2bc03",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-more-exp",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-more-exp"
+        ],
+        "seconds": 66.62276840000413,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 392,
+        "observed": 392,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 2,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-more-exp\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "5b5c7362a2f9b3178fcd0c36f36fbb9886ad3306d7ac4875f584a95e0660134f",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nameref",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nameref"
+        ],
+        "seconds": 34.2477425999823,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 149,
+        "observed": 149,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 14,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nameref\\observed.log",
+        "log_sha256": "be05cdd783921481c4875a1de9a7ea928f471bc01b1564ffd48340f01f3da74b",
+        "observation_sha256": "fc803fa475db09b70c9164dc72fcf8f544e8261195c0233423329fdc372c30c2",
+        "output_bytes": 96,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-new-exp",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-new-exp"
+        ],
+        "seconds": 117.2104937999975,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 546,
+        "observed": 546,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 17,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-new-exp\\observed.log",
+        "log_sha256": "108db56b8b03f8d979ab82d9637a5aa62cd2e809035d191f1df7e23defe25bd5",
+        "observation_sha256": "7e64f86c38e504f203fcf0142501dddf5b91df26af3bdb7358d5092a1d11cf59",
+        "output_bytes": 402,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nquote",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nquote"
+        ],
+        "seconds": 23.948982800007798,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 120,
+        "observed": 120,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 2,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nquote\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "29c1a5777bb61787028da29523049dee31176ee0d66c20f51e53666e870b4b85",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nquote1",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nquote1"
+        ],
+        "seconds": 16.60858310002368,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 122,
+        "observed": 121,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nquote1\\observed.log",
+        "log_sha256": "23f44f0a132d530d3fcd96eb2e62c8469b5bd63e8fd1bf9d744611ee0c3329e3",
+        "observation_sha256": "c3a3d541d34c9188b27961b0176b53c0c95a74a35d7a2a2e4921c5e5ddbe42f3",
+        "output_bytes": 100,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nquote2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nquote2"
+        ],
+        "seconds": 17.51330130000133,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 121,
+        "observed": 121,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nquote2\\observed.log",
+        "log_sha256": "23f44f0a132d530d3fcd96eb2e62c8469b5bd63e8fd1bf9d744611ee0c3329e3",
+        "observation_sha256": "cd487d5b6ed95640f4bf4b3736f47d43a831f7a2f47de5f32da6f5213b4f2532",
+        "output_bytes": 100,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nquote3",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nquote3"
+        ],
+        "seconds": 13.378662099945359,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 105,
+        "observed": 105,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nquote3\\observed.log",
+        "log_sha256": "23f44f0a132d530d3fcd96eb2e62c8469b5bd63e8fd1bf9d744611ee0c3329e3",
+        "observation_sha256": "cdbab75325694d1cfa0dbe59c757d12ca576264c8b0ffd91ae5c713b500ac0fe",
+        "output_bytes": 100,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nquote4",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nquote4"
+        ],
+        "seconds": 8.971702100010589,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 45,
+        "observed": 45,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nquote4\\observed.log",
+        "log_sha256": "243656b2e801fcd0065f14d8419b19370a4e6edb54dbc9c9a808f01161676dbf",
+        "observation_sha256": "23d8f3adee39cc48e1b06ba277823de84ccd47eed5166b0e3c8c47fc2b856998",
+        "output_bytes": 106,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-nquote5",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-nquote5"
+        ],
+        "seconds": 16.080310599994846,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 81,
+        "observed": 81,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-nquote5\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "991c5c507b138a26f0c61ded02e6d633527ec5a67627a0c1a60e69b1ec11f523",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-parser",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-parser"
+        ],
+        "seconds": 8.908887900004629,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 33,
+        "observed": 33,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 5,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-parser\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "36e7e2d69c1bb4dc018480f303ad0a961c59d83f7ec10353adca8da41c752680",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-posix2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-posix2"
+        ],
+        "seconds": 11.326634900004137,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 64,
+        "observed": 64,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-posix2\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "ea6b8e49d0d579fea0328141dd150ca024b438f4eca5885e51b2b4ad3dfec5c7",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-posixexp",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-posixexp"
+        ],
+        "seconds": 131.647458499996,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 809,
+        "observed": 809,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 38,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-posixexp\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "4b519407731b05bcac74548e4f9742659bdfb40973f34001ac8d45ebae94f3d8",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-posixexp2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-posixexp2"
+        ],
+        "seconds": 10.579761300003156,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 56,
+        "observed": 56,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-posixexp2\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "92038f40fc3806683e9291c0146db88fe5d1b8498ba8ce55bd3e72e4b73437d7",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-posixpat",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-posixpat"
+        ],
+        "seconds": 1.528404299984686,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 7,
+        "observed": 7,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-posixpat\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "3cd633f2f250ba940f4cec1b0b5bd57546a2b0b8acf577d14cacb4312de7b2a9",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-posixpipe",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-posixpipe"
+        ],
+        "seconds": 2.3718168000341393,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 14,
+        "observed": 14,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-posixpipe\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "2bfb0f0f7f74cac8ec41a26635e041f62d4d65d51f74b88b1536193b9c8cebf1",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-precedence",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-precedence"
+        ],
+        "seconds": 6.121287500020117,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 30,
+        "observed": 30,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 6,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-precedence\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "1a48f706ca0c6d7bce21fdfb99cb2e3e1df036694f3c32db74fabefb82d5cc9a",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-printf",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-printf"
+        ],
+        "seconds": 22.67543529998511,
+        "parent_raw_exit": 1,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 155,
+        "observed": 155,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 5,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-printf\\observed.log",
+        "log_sha256": "ea6004e64ecc0e12ff9635de5c535f4cc520aa74c326e649ad836cb34282f771",
+        "observation_sha256": "4cc6aec42c6138bd604851a8656e5152c561cc5d36b5aedfbbfec5dead7bde51",
+        "output_bytes": 101,
+        "raw_status": "failure",
+        "failure_classification": {
+          "bucket": "harness_or_MSYS_Windows_assumption",
+          "assumption": "Two separate wall-clock samples remain within the same second",
+          "explanation": "The sole diff is printf3.sub's own 'current time and -1 possible mismatch' warning. It compares an external date +%s sample with a subsequent Bash printf time=-1 sample for exact string equality. The recorded values are consecutive seconds, 11-Sep-2026 03:55:47 and 03:55:48. All other expected printf output matched. The raw1 failure is retained; no output or clock value was normalized and no retry was used to obtain a green second.",
+          "evidence": [
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-printf\\observed.log",
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-printf\\native-job.json",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\printf3.sub"
+          ],
+          "raw_parent_exit": 1,
+          "created_processes": 155,
+          "observed_processes": 155,
+          "failure_waived": false
+        },
+        "matches_prior_registered_case_output": false
+      },
+      {
+        "name": "run-procsub",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-procsub"
+        ],
+        "seconds": 81.75105349998921,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 482,
+        "observed": 482,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-procsub\\observed.log",
+        "log_sha256": "c0eea06a6b61c1883ee863e2d4e5a5458323de914611a8054fd2031bdbd88e75",
+        "observation_sha256": "40d844bdfc42ec98b7a67dd80ab27fb8c0e7d98a5c28e173c92e9396e4adbc25",
+        "output_bytes": 228,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-quote",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-quote"
+        ],
+        "seconds": 32.04286819999106,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 206,
+        "observed": 206,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-quote\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "03ff767974e9d8c9c94947a6abfe8af85bc4df9c0948b75ec88931e69daaed8e",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-quotearray",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-quotearray"
+        ],
+        "seconds": 3.646408699976746,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 20,
+        "observed": 20,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-quotearray\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "a7d1a9ab694ba5370d5c836a3faa7d31d873ee54dbc712571f6bb20812de6019",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-read",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-read"
+        ],
+        "seconds": 900.7966612000018,
+        "parent_raw_exit": 1460,
+        "timed_out": true,
+        "observer_passed": false,
+        "created": 3473,
+        "observed": 3468,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1678,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-read\\observed.log",
+        "log_sha256": "e25951f30f2da1e0fb7075aa5a70309db33fa8a2c4e4add3b250792683f06540",
+        "observation_sha256": "636d2090c2151d7db5ffd804eaa6e26213dab038f907e72bd99122eb50ce2818",
+        "output_bytes": 108,
+        "raw_status": "failure",
+        "failure_classification": {
+          "bucket": "unresolved_timeout",
+          "explanation": "The unchanged read case timed out at900 seconds in read2.sub's loop of2001 timed FIFO reads. The retained output additionally proves that /dev/tty was unavailable to this noninteractive suite capture, a concrete terminal-prerequisite mismatch, but this does not prove the cause of the timeout. No observed assertion count establishes completion; do not reclassify the entire failure as harmless missingTTY or a known Bash defect.",
+          "evidence": [
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-read\\native-job.json",
+            "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-read\\upstream.output",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\read2.sub",
+            "C:\\ag-bash907-20260911-02\\source\\tests\\run-read"
+          ],
+          "raw_parent_exit": 1460,
+          "bound_seconds": 900,
+          "created_processes": 3473,
+          "observed_processes": 3468,
+          "secondary_evidence": "/dev/tty: No such device or address at read2.sub lines18,27,45",
+          "failure_waived": false
+        },
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-redir",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-redir"
+        ],
+        "seconds": 96.66136919998098,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 482,
+        "observed": 482,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 16,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-redir\\observed.log",
+        "log_sha256": "2c6c560d6632e235259e340ab3e9abdc6b014f3237a7923d1b8aa9df912aaa1d",
+        "observation_sha256": "ee3e6eb35b01d90c2f10ff6fb9dcc4ab3f6b40c392bb34eabc64c8da787aadb7",
+        "output_bytes": 306,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-rhs-exp",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-rhs-exp"
+        ],
+        "seconds": 12.973829200025648,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 119,
+        "observed": 119,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-rhs-exp\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "715d1c4a4c84125a03a78110a167731f3ee374c1e8a75c5e527200bf7a5ecb17",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-rsh",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-rsh"
+        ],
+        "seconds": 4.020344199961983,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 28,
+        "observed": 28,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 3,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-rsh\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "373a11033d21e04c5b6739ee1bb4145a6e91b49317b7c7db776c8efcc23aee3a",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-set-e",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-set-e"
+        ],
+        "seconds": 24.201701900048647,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 167,
+        "observed": 167,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 42,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-set-e\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "a0d2b6aea016b85ea558f1b86b7b16c314ba9548af5ff086ce3efce3e5d897c7",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-set-x",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-set-x"
+        ],
+        "seconds": 3.0139858999755234,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 15,
+        "observed": 15,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-set-x\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "01f9527d72a6fa90f52b207c3bad9cdf54a6fea4be20b1e104047db3d45e5a01",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-shopt",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-shopt"
+        ],
+        "seconds": 4.950807300047018,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 31,
+        "observed": 31,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-shopt\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "fb2d7efd687bce96e60fdb36a1c9f5c676b1391b12e12a974514ed9b3ea93253",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-strip",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-strip"
+        ],
+        "seconds": 3.4249998000450432,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 18,
+        "observed": 18,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-strip\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "3c760f925f8245feb865cb6a999aeba03b0db8c37679fcfd8a034834b84c0df4",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-test",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-test"
+        ],
+        "seconds": 13.848646699974779,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 99,
+        "observed": 99,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-test\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "dccce504f335d9abab31d45ec8851000b606edabdb2f52fef507e14b3cc3c0cb",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-tilde",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-tilde"
+        ],
+        "seconds": 1.1145197000005282,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 7,
+        "observed": 7,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-tilde\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "349c04ff4d50f649704ee70d4b28772d3ed23b94553bfd5de27db47293fe923a",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-tilde2",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-tilde2"
+        ],
+        "seconds": 1.8878344999975525,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": true,
+        "created": 15,
+        "observed": 15,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 0,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-tilde2\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "6f596e7f5465941a635e8cf6cfd134ce1c65b003e4e6712c4194c0a9536f369a",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-trap",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-trap"
+        ],
+        "seconds": 29.347327000054065,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 96,
+        "observed": 96,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 12,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-trap\\observed.log",
+        "log_sha256": "bc873ff536c5895b1ce928395f8d2da90df6ae3d79ede0840b4ac898dcab9675",
+        "observation_sha256": "04fa0e3a4f2a88e85009e208cd48affd83fb2bcd21883b5acdce6206628bd2eb",
+        "output_bytes": 190,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-type",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-type"
+        ],
+        "seconds": 9.467002800025512,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 70,
+        "observed": 69,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 1,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-type\\observed.log",
+        "log_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "observation_sha256": "abf6855a822e1778c25f966bad2f043dee42cf60ac8e57e7513a1224001f7cf0",
+        "output_bytes": 0,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-varenv",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-varenv"
+        ],
+        "seconds": 16.17021479998948,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 148,
+        "observed": 148,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 7,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-varenv\\observed.log",
+        "log_sha256": "be05cdd783921481c4875a1de9a7ea928f471bc01b1564ffd48340f01f3da74b",
+        "observation_sha256": "843ecf073350e021b20cbaf1983622d1f123fbb902814e81204976e4f5077e00",
+        "output_bytes": 96,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      },
+      {
+        "name": "run-vredir",
+        "command": [
+          "C:\\ag-bash907-20260911-02\\runtime\\usr\\bin\\sh.exe",
+          "run-vredir"
+        ],
+        "seconds": 7.670189800031949,
+        "parent_raw_exit": 0,
+        "timed_out": false,
+        "observer_passed": false,
+        "created": 51,
+        "observed": 51,
+        "unobserved": [],
+        "unresolved": [],
+        "unrelayed_high_exits": 3,
+        "log": "C:\\ag-bash907-20260911-02\\upstream-suite-01\\cases\\run-vredir\\observed.log",
+        "log_sha256": "6b9a5e108379a7942e8292fbcb654e067d0b63811ecc0fa6318bdf29f29d5a54",
+        "observation_sha256": "7973370f5eecbb0944bc6e684ca7a8e688f16afc4ad66a3d74a0fc2526472e25",
+        "output_bytes": 103,
+        "raw_status": "zero",
+        "failure_classification": null,
+        "matches_prior_registered_case_output": true
+      }
+    ],
+    "observer_accounting": {
+      "created": 21464,
+      "observed": 21453,
+      "gaps": [
+        {
+          "name": "run-ifs-posix",
+          "parent_raw_exit": 1460,
+          "timed_out": true,
+          "created": 7076,
+          "observed": 7072,
+          "unobserved": [],
+          "unresolved": []
+        },
+        {
+          "name": "run-nquote1",
+          "parent_raw_exit": 0,
+          "timed_out": false,
+          "created": 122,
+          "observed": 121,
+          "unobserved": [],
+          "unresolved": []
+        },
+        {
+          "name": "run-read",
+          "parent_raw_exit": 1460,
+          "timed_out": true,
+          "created": 3473,
+          "observed": 3468,
+          "unobserved": [],
+          "unresolved": []
+        },
+        {
+          "name": "run-type",
+          "parent_raw_exit": 0,
+          "timed_out": false,
+          "created": 70,
+          "observed": 69,
+          "unobserved": [],
+          "unresolved": []
+        }
+      ],
+      "complete_generation_accounting_claimed": false,
+      "nonzero_or_missing_observer_verdicts_not_normalized": true
+    },
+    "raw_native_exit_DWORD_counts": {
+      "0": 19252,
+      "32512": 123,
+      "512": 68,
+      "256": 245,
+      "3072": 2,
+      "1024": 5,
+      "1280": 8,
+      "1536": 2,
+      "13": 4,
+      "10752": 7,
+      "15": 2,
+      "59136": 2,
+      "11520": 18,
+      "32256": 10,
+      "17408": 1,
+      "11264": 1,
+      "22016": 1,
+      "19968": 1,
+      "1": 3,
+      "9": 5,
+      "137": 1,
+      "768": 3,
+      "36352": 1680,
+      "3584": 1,
+      "31488": 1,
+      "4352": 7
+    },
+    "raw_DWORDs_normalized": false,
+    "observer_rule": "Conservative high-child-exit verdicts are reported separately from raw upstream driver statuses. No division, truncation, expected-exit override, or blanket success.",
+    "stdout_rule": "Nonempty logs matched the original registered warnings or received explicit evidence-based failure classification; oldd70passes were not reused."
+  },
+  "supplemental_missing_compiler_replay": {
+    "result": {
+      "path": "C:\\ag-bash907-20260911-02\\run-glob-bracket-native-compiler-01\\result.json",
+      "sha256": "8c7280c26274f6f9a0767371e6582daf8fd02787671e081241f794012ae34e26",
+      "bytes": 621058
+    },
+    "scope": "Same real upstream glob-bracket case, genuine copied AA64 test compiler, no stubs. This does not replace the original raw missing-gcc failure or its bucket count."
+  },
+  "supplemental_IFS_timeout_replay": {
+    "result": {
+      "path": "C:\\ag-bash907-20260911-02\\run-ifs-posix-longer-bound-01\\result.json",
+      "sha256": "9cd0b8ae8ea339a05eb2a00633789a3524b4a12c8207a88fed300c6f0f21037a",
+      "bytes": 2141818
+    },
+    "scope": "Same unchanged6856-assertion source, one predeclared1800-second bound; timed out again, not a semantic pass."
+  },
+  "interactive": {
+    "controlling_failure": {
+      "path": "C:\\ag-bash907-20260911-02\\signal-failure-handoff-01\\handoff.json",
+      "sha256": "3c753f5b569c2760fb58ad93e5099ef4aa74e6a0a39063dba00236ba6ec57b3e",
+      "bytes": 9748
+    },
+    "provider_failure_disposition": {
+      "path": "C:\\ap11-native-provider-intake\\bash-runtime907-qualification-failure-v1.json",
+      "sha256": "ad40b7e220d3be4373ef0811523cd443a71da60058c9b9c1c90ab11794294ac5",
+      "bytes": 3796
+    },
+    "original_controller907": {
+      "total": 19,
+      "passed": 16,
+      "failed": 1,
+      "not_reached": 2
+    },
+    "instrumented907": {
+      "total": 19,
+      "passed": 19,
+      "failed": 0,
+      "not_reached": 0
+    },
+    "instrumented_pass_is_not_failure_waiver": true,
+    "per_member_process_group_evidence": {
+      "path": "C:\\ag-bash907-20260911-02\\interactive-01\\group-members.tsv",
+      "sha256": "3b6ed59b15f5bbe95bf426397ccc02c91feae99ca4fd3224d1c14af5650da723",
+      "bytes": 399
+    },
+    "additional_unicode_path_checks": {
+      "path": "C:\\ag-bash907-20260911-02\\unicode-paths-01\\result.json",
+      "sha256": "980c2b36c09fba2f30c883521e630194a9abc38347d1554f387370c5b6579315",
+      "bytes": 821
+    }
+  },
+  "historical_invalid_selection": {
+    "path": "C:\\ag-bash907-20260911-01\\invalid-selection.json",
+    "sha256": "3116c150a98b2f2098c984295489e1d66ab8beb4874e8ea5a690dbd77762e588",
+    "bytes": 1996
+  },
+  "boundaries": {
+    "Bash_rebuilt": false,
+    "admitted_libraries_rebuilt": false,
+    "runtime_rebuilt": false,
+    "provider_or_package_mutations": false,
+    "x64_private_PE_inputs": 0,
+    "test_only_utilities_not_shipped_or_admitted": true,
+    "PATH": "Only the exact private AA64 runtime usr/bin plus Windows System32 at capture launch",
+    "desktop_console_touched": false
+  }
+}

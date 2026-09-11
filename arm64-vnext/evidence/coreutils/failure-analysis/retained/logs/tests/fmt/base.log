@@ -1,0 +1,61 @@
+fmt (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Ross Paterson.
+8-bit-pfx...
+wide-1...
+base.pl: test wide-1: stderr mismatch, comparing wide-1.1 (expected) and wide-1.E (actual)
+*** wide-1.1	Tue Sep  8 22:19:22 2026
+--- wide-1.E	Tue Sep  8 22:19:22 2026
+***************
+*** 1 ****
+! fmt: invalid width: '32768'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '32768'
+wide-2...
+base.pl: test wide-2: stderr mismatch, comparing wide-2.1 (expected) and wide-2.E (actual)
+*** wide-2.1	Tue Sep  8 22:19:23 2026
+--- wide-2.E	Tue Sep  8 22:19:23 2026
+***************
+*** 1 ****
+! fmt: invalid width: '2147483647'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '2147483647'
+bad-suffix...
+base.pl: test bad-suffix: stderr mismatch, comparing bad-suffix.2 (expected) and bad-suffix.E (actual)
+*** bad-suffix.2	Tue Sep  8 22:19:23 2026
+--- bad-suffix.E	Tue Sep  8 22:19:23 2026
+***************
+*** 1 ****
+! fmt: invalid width: '72x'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '72x'
+no-file...
+base.pl: test no-file: stderr mismatch, comparing no-file.1 (expected) and no-file.E (actual)
+*** no-file.1	Tue Sep  8 22:19:23 2026
+--- no-file.E	Tue Sep  8 22:19:23 2026
+***************
+*** 1 ****
+! fmt: cannot open 'no-such-file' for reading: No such file or directory
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: cannot open 'no-such-file' for reading: No such file or directory
+obs-1...
+base.pl: test obs-1: stderr mismatch, comparing obs-1.1 (expected) and obs-1.E (actual)
+*** obs-1.1	Tue Sep  8 22:19:24 2026
+--- obs-1.E	Tue Sep  8 22:19:24 2026
+***************
+*** 1,3 ****
+! fmt: invalid option -- 7; -WIDTH is recognized only when it is the first
+  option; use -w N instead
+! Try 'fmt --help' for more information.
+--- 1,3 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid option -- 7; -WIDTH is recognized only when it is the first
+  option; use -w N instead
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt --help' for more information.
+pfx-1...
+pfx-only...
+pfx-of-pfx...
+FAIL tests/fmt/base.pl (exit status: 1)

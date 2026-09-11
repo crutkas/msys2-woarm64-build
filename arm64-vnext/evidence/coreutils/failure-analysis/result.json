@@ -1,0 +1,1705 @@
+{
+  "MVP_admission_changed": false,
+  "acl_control": {
+    "additional_original_failures_with_test_exit0": [
+      "tests/chgrp/basic.sh",
+      "tests/rm/rm3.sh",
+      "tests/rm/unread2.sh",
+      "tests/chgrp/posix-H.sh",
+      "tests/chgrp/recurse.sh"
+    ],
+    "raw0": 6,
+    "raw1": 7,
+    "scope": "Only a fresh private ACL-configured runtime view; not a shipped/global mount change",
+    "still_failing_with_acl": [
+      "tests/rm/cycle.sh",
+      "tests/chmod/no-x.sh",
+      "tests/rm/fail-eacces.sh",
+      "tests/rm/inaccessible.sh",
+      "tests/rm/rm1.sh",
+      "tests/rm/rm2.sh",
+      "tests/chgrp/no-x.sh"
+    ],
+    "tests": 13
+  },
+  "all_runs": [
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-chgrp-basic-01\\result.json",
+      "sha256": "c124dc3d3f527b11b9f70124a29711a9c9d26ac92e7f95dce1cfe282b2d6fb7f",
+      "test": "tests/chgrp/basic.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-chmod-no-x-01\\result.json",
+      "sha256": "81c797006ca55e1b95d2686944a2e30cf84494298af7857ecc18e4b36a2af683",
+      "test": "tests/chmod/no-x.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-cycle-01\\result.json",
+      "sha256": "c6af50262c5fc39284e55a68d6f4a7c6dae0ed76c25a9f44888c35fd5676ee04",
+      "test": "tests/rm/cycle.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-permission-mechanism-01\\result.json",
+      "sha256": "2b24002a4171112ba9c8f8f66a57fd8153aa889b5f777d3449ca342450bbf8e9",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-unreadable-perl-mechanism-01\\result.json",
+      "sha256": "6c9c86ba88301ce29c27b38500f904aff7646f80d5801aa20c830df99bc189da",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\result.json",
+      "sha256": "deee73a2821aeb71b849b80971df2a44fff98abe8be97f9eafc00a416987cb3c",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\result.json",
+      "sha256": "e9c10d3a75341bef68e5d6f1d5c6b2484ed037b62b915c278aba9595c837c9d2",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-complete",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\result.json",
+      "sha256": "99da962eac82b404070b0d085d3ffdc4292bdbb159f6e4a68d998ae8bb92d139",
+      "test": "tests/misc/help-version.sh",
+      "test_shell_raw_exit": 1460,
+      "timed_out": true
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\result.json",
+      "sha256": "c66893e87c200a42a745dd697c81f204f269284403250cc517518a891bf326d0",
+      "test": "tests/misc/help-version-getopt.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\result.json",
+      "sha256": "11a207ba17b6af0f2d51f7b42e3be7a88937f35c90fa8f54c1f4db379754c5b0",
+      "test": "tests/tail-2/inotify-hash-abuse2.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-pwd-option-01\\result.json",
+      "sha256": "1279fc74fcecc032f0a42d4c7905bae9201d0c909b8cf1972a3860bd350a23d6",
+      "test": "tests/misc/pwd-option.sh",
+      "test_shell_raw_exit": 127,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-pwd-option-02\\result.json",
+      "sha256": "5aec095f815ef7231350a8bf294116c11c53bc8b9209ac1fab6427bfd0c7e575",
+      "test": "tests/misc/pwd-option.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-wc-proc-01\\result.json",
+      "sha256": "7ba8f776920c4efe755fe03c948960b2d47651635df69668fbb9ec5f28daa8fe",
+      "test": "tests/misc/wc-proc.sh",
+      "test_shell_raw_exit": 127,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-wc-proc-02\\result.json",
+      "sha256": "5c583d70d868ac3f016b0e94f204d4b5b7451da041b91e174860966fe74c4ae6",
+      "test": "tests/misc/wc-proc.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\diagnostic-dir-nonrecur-01\\result.json",
+      "sha256": "c22c2469773a288fa44b3843624c08f98fd70107e2d26aa39ef9d2417f4c526f",
+      "test": "tests/rm/dir-nonrecur.sh",
+      "test_shell_raw_exit": 127,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\diagnostic-dir-nonrecur-02\\result.json",
+      "sha256": "0d9301428327bdbc07c0e2186e94e3f3bdf24ec509914821e3c6e52cc453cb75",
+      "test": "tests/rm/dir-nonrecur.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\result.json",
+      "sha256": "14437ec16878d561b5111177ccf24c41766f02725038c78a3b88a5ce531c18c1",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\result.json",
+      "sha256": "0657516e21f9367a2636e6566f01a3769c126d78ef1fe6f8aaa25f437b6c5c77",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-current-noacl\\result.json",
+      "sha256": "51ddcd534d65a978fa3b408004998a1dc2478e1956413906a296ff7f9e1cae95",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-historical-noacl\\result.json",
+      "sha256": "7f2efb8dcaf02931ebab1eb930a49eef627e0a01567ae8197758167b685b0ba9",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-literal-high-byte-separator-current-noacl\\result.json",
+      "sha256": "3205809d60669abcf03aca8e956f1df3144138b80de7e20471b08e21863f588b",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-acl\\result.json",
+      "sha256": "6dbc14264ffd789b86656bddbc7632364ddaf647d957f1530cfe104220c2f13b",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-noacl\\result.json",
+      "sha256": "9227df3a0c6c897924f96043a68726028ce44d8426b6c846fb5a560d491a9bad",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\result.json",
+      "sha256": "f1c5f236b4d6b3d268580db5cbd125e58c8d20527e6030c5513a70258637218a",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\result.json",
+      "sha256": "d1bb0fd199d3e13f481ac43663fbe30c95cc442cd9a627fe480fbf375b5ff67e",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-quoted-args-current-noacl\\result.json",
+      "sha256": "39d2ee5bad4840b7f4cd70e29d490b095354377a1aff2e46a9f088978dc79da4",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-quoted-args-historical-noacl\\result.json",
+      "sha256": "6990d2cbf678d8b5b8dbd3c86912d7d09d25c2f2aa6c273178387392a3c21231",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\result.json",
+      "sha256": "ed03739e3375883b2de5186b51bb55f001fc36d78f098ca48873597d7b2075b8",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-complete",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-canonical-layout-01\\result.json",
+      "sha256": "d63e43ce92b6f741cd196d59f67a4057effc941e35a8abb70fbebfa30566d099",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-layout-current-noacl\\result.json",
+      "sha256": "37b77ac3694c6c3d5e19aa1966c9588bbb45d6363d44f6daf16a67c045fe3470",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-xargs-env-budget-current-noacl\\result.json",
+      "sha256": "d108a181673d084e8dd72c0611e1b34fdbfbfdd427b52ef614cfb68acf44b438",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-dir-nonrecur-01\\result.json",
+      "sha256": "46c6df6d84e96146037aae490997f4bc444de979dfdd16103a811206a0788ce2",
+      "test": "tests/rm/dir-nonrecur.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-pwd-option-01\\result.json",
+      "sha256": "1c51c79e2113c814ad26185164f46886899f5d5d7b76e276fa6e1583a69d0da3",
+      "test": "tests/misc/pwd-option.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "historical-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-wc-proc-01\\result.json",
+      "sha256": "7e8a4a27b37b880c0173207367353d8e0370deeea61dbf38ac518be42e8a77f2",
+      "test": "tests/misc/wc-proc.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\noacl-permission-mechanism-01\\result.json",
+      "sha256": "8d67cdd372b5246d52c0b6fa7b4818a90dae23fa53ccd1187e7e9df6c9e687a7",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": true,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\noacl-unreadable-perl-mechanism-01\\result.json",
+      "sha256": "af5be003900fa8218a8dfa2c867d7d9a0cf94d087a59bd961d7da62c2d1be60b",
+      "test": null,
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-complete",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-help-version-complete-01\\result.json",
+      "sha256": "8213657c66053fd6b5d6e8de686dcd6ac26942f0e137bcfb6f28f262595629eb",
+      "test": "tests/misc/help-version.sh",
+      "test_shell_raw_exit": 1460,
+      "timed_out": true
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-acl\\result.json",
+      "sha256": "2200048ad502f5ef77af3999ce87e8f897171b737ffd3509cda73a1d15714465",
+      "test": "tests/chgrp/basic.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-noacl\\result.json",
+      "sha256": "22eeeae17fe813b4e4c15fad63483dd12073e9a8f4ff54be37dc98a3d428288a",
+      "test": "tests/chgrp/basic.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-no-x-current-acl\\result.json",
+      "sha256": "1301eae7947f981e5612670289ac3d961896701051af48d3dcecd178c0f445f7",
+      "test": "tests/chgrp/no-x.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-no-x-current-noacl\\result.json",
+      "sha256": "5220226d57ceffb0b86000f709b75d0c9520953da3cf5bc58037d2eb77af1783",
+      "test": "tests/chgrp/no-x.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-posix-H-current-acl\\result.json",
+      "sha256": "e77feeab550a6ea4a07c927bb1020150d2e59b4c8ba196acd0488c90f7c33466",
+      "test": "tests/chgrp/posix-H.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-posix-H-current-noacl\\result.json",
+      "sha256": "acd4bf5859c055ef3f5cb97c761349cc07c8868726b4a789bab30140caa1b3c0",
+      "test": "tests/chgrp/posix-H.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-recurse-current-acl\\result.json",
+      "sha256": "9f80c8e96f3fb508fb9ec64f9325865836e0fdb738cdf897b33f42bb7401fcc2",
+      "test": "tests/chgrp/recurse.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-recurse-current-noacl\\result.json",
+      "sha256": "5edc333b6c78fb7f9370b6cfae8bb668d7b343e2132d8de943422897c74c9c3d",
+      "test": "tests/chgrp/recurse.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chmod-no-x-current-acl\\result.json",
+      "sha256": "98e955c1316f83e24b6e8c043051db5c6c17aeb000459c8ef2a930fd5a7479fc",
+      "test": "tests/chmod/no-x.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chmod-no-x-current-noacl\\result.json",
+      "sha256": "992664fb96bc9efadcf5aade45946c3fe8f2fd0b7242a0d45a56097cfa451d99",
+      "test": "tests/chmod/no-x.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-env-current-noacl\\result.json",
+      "sha256": "eb43ffec5244a0ac790249d8370f362577b0018f0e8f9c0e2071aac43e41ae3b",
+      "test": "tests/misc/env.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-help-version-current-noacl\\result.json",
+      "sha256": "132133b2ade6bc120564607f3ff721db75cf29ae0403e1926b79577eadc1d7f0",
+      "test": "tests/misc/help-version.sh",
+      "test_shell_raw_exit": 1460,
+      "timed_out": true
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-help-version-getopt-current-noacl\\result.json",
+      "sha256": "ff786da440d1cfc3407853a93a5b279d3eda28386b9798280cdf7776475021af",
+      "test": "tests/misc/help-version-getopt.sh",
+      "test_shell_raw_exit": 1460,
+      "timed_out": true
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-pwd-option-current-noacl\\result.json",
+      "sha256": "373ea32e9e939c0c0c35623c43b994045b96d87a63077991e9e08b2b2e671c67",
+      "test": "tests/misc/pwd-option.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-wc-proc-current-noacl\\result.json",
+      "sha256": "0fccb8a756ee092bc73f1549a1edcdf529aa64d0144147dea69e8d7f3fc2b1cf",
+      "test": "tests/misc/wc-proc.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-cycle-current-acl\\result.json",
+      "sha256": "9f306a87788a7df527e3647c9a54c2d0495906699160ce37bc64e2ff39ccb2c5",
+      "test": "tests/rm/cycle.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-cycle-current-noacl\\result.json",
+      "sha256": "d4d59c520f2dd79b47afcd75f2f4f3b2a8f8d974f5565426672cfdee7683578b",
+      "test": "tests/rm/cycle.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-d-2-current-noacl\\result.json",
+      "sha256": "33381450ded4ab78357a882d8c68ca0eee23880e2d7121b20babf3d8883feb9c",
+      "test": "tests/rm/d-2.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-d-3-current-noacl\\result.json",
+      "sha256": "fe5b1c77391804816b4f02c26f5a0104da8fd32072478520ece8a6d663f26a5c",
+      "test": "tests/rm/d-3.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dangling-symlink-current-noacl\\result.json",
+      "sha256": "eb240d19c3ffe9faeee4a45d231358509d243f661bea30e1d1368dcb26485103",
+      "test": "tests/rm/dangling-symlink.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dir-no-w-current-noacl\\result.json",
+      "sha256": "356e74041b0dede90b07dc98f6741105fbd54871eaa63f71c68818e58d81f03a",
+      "test": "tests/rm/dir-no-w.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dir-nonrecur-current-noacl\\result.json",
+      "sha256": "eaf11c2599be8ff68357d1a89cb2a3223dce8c7928b22c062cc4909bdcf3cbc9",
+      "test": "tests/rm/dir-nonrecur.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-fail-eacces-current-acl\\result.json",
+      "sha256": "48ed008c9f2f31fc4714076413d6cb14d58424dd1fe1838db337ce8db619acf3",
+      "test": "tests/rm/fail-eacces.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-fail-eacces-current-noacl\\result.json",
+      "sha256": "59be56ba8e961203836724949dfc208053c107cbc2d19f0905ef89b3783662b8",
+      "test": "tests/rm/fail-eacces.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-inaccessible-current-acl\\result.json",
+      "sha256": "cac638103ef94a1935427c062e680fa911f29f145235532a12de5cd1c4e041ae",
+      "test": "tests/rm/inaccessible.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-inaccessible-current-noacl\\result.json",
+      "sha256": "822ca2ed6231fdd2c773a62a764ce20f25307dd64bae21dd2c73689813682cc3",
+      "test": "tests/rm/inaccessible.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-interactive-always-current-noacl\\result.json",
+      "sha256": "d46ed09bff1b17b269f5c6ffcfec8203ea72fdfc5bca9e34c90c5c3b0013ae1c",
+      "test": "tests/rm/interactive-always.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-interactive-once-current-noacl\\result.json",
+      "sha256": "3ff50f31f6c9304d1dc1939e18c3a53866b79b00ea4fd8a91f7cf91176c9559d",
+      "test": "tests/rm/interactive-once.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-isatty-current-noacl\\result.json",
+      "sha256": "daf2efa44f185ac802d9bc96c83fb1a22e1ab3bd8901ab04273d128c2f631c02",
+      "test": "tests/rm/isatty.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-r-4-current-noacl\\result.json",
+      "sha256": "da58090c98e51d72d80512d3f42940ab3472f8cbdd7bbfdce7d9ace91673b5b3",
+      "test": "tests/rm/r-4.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm1-current-acl\\result.json",
+      "sha256": "009bb017d7adb97771dc3527f88b638a5cca1da0f5abf8de8da5a75c50344eff",
+      "test": "tests/rm/rm1.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm1-current-noacl\\result.json",
+      "sha256": "cf8e7058947137acb1472f1f7200d44d08184933fd531aae32d10cd34aa70131",
+      "test": "tests/rm/rm1.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm2-current-acl\\result.json",
+      "sha256": "d03454ad105bf4674d40b0ca3242a4eda2830b11e65ddaa28b963432e257e558",
+      "test": "tests/rm/rm2.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm2-current-noacl\\result.json",
+      "sha256": "a67288e638d07515f1d67811dccc0e4e8e3b533ccbc53ff4907452259e19ffdc",
+      "test": "tests/rm/rm2.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm3-current-acl\\result.json",
+      "sha256": "4ecb932c0eeac0f8f80c8fd4e390c4f8d848e0f42f9ed764034348c25736a0b2",
+      "test": "tests/rm/rm3.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm3-current-noacl\\result.json",
+      "sha256": "201263b20ebbb6d30feb90b457a6ef4c0aece7864fcffd5588cb8a10b9aa88e9",
+      "test": "tests/rm/rm3.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\result.json",
+      "sha256": "42b203fa165dfebf6324231f5bfa4ec1c44ed62f9ea1e813b3a16a265fb1f93c",
+      "test": "tests/rm/rm5.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread2-current-acl\\result.json",
+      "sha256": "897786f4a473021ea62638c33438929520d600d9788631ed2166c940520675a9",
+      "test": "tests/rm/unread2.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread2-current-noacl\\result.json",
+      "sha256": "278f33d405fbfecb29e4e9324e79a8dabaac3fd72ede0358bc263029e2c549aa",
+      "test": "tests/rm/unread2.sh",
+      "test_shell_raw_exit": 1,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-acl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread3-current-acl\\result.json",
+      "sha256": "aefafd2b4347ab9a944b6edf8b2a34c8c04559dd9f6f51f3ce8f2866ed83a649",
+      "test": "tests/rm/unread3.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread3-current-noacl\\result.json",
+      "sha256": "1772a2e283cf54b17bec4806143198382ff57e685401988498e2e5d5e1c0f7e4",
+      "test": "tests/rm/unread3.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\result.json",
+      "sha256": "83787f7582b28a7077b278d0291cfc652a93c717cf5a1e2ca03f6d4a1c4b03fa",
+      "test": "tests/tail-2/inotify-hash-abuse.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse2-current-noacl\\result.json",
+      "sha256": "ae2c83cbb45fbc69cf0dea97d868aa91006e2135310f23e5ac48b3bb922bb4a9",
+      "test": "tests/tail-2/inotify-hash-abuse2.sh",
+      "test_shell_raw_exit": 1460,
+      "timed_out": true
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\result.json",
+      "sha256": "17249ba471d3f43f5e187a280253a75070c601391ed8392e79f5b6123e49239e",
+      "test": "tests/tail-2/overlay-headers.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    },
+    {
+      "cohort": "current-noacl",
+      "observer_gate_passed": false,
+      "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\result.json",
+      "sha256": "05ff5aa4c08b5cf369a6f14bba947eb53325944831079b008b62452c5c330815",
+      "test": "tests/tail-2/pid.sh",
+      "test_shell_raw_exit": 0,
+      "timed_out": false
+    }
+  ],
+  "binary_or_runtime_changes": false,
+  "confirmed_setup_limits": {
+    "RTLD_NEXT": "Target header lacks required symbol; original injected readdir helper fails to compile before rm assertions. ERROR99 retained, not SKIP/PASS.",
+    "gzip": "No approved AA64 helper supplied; intake independently found only x64 copies. Fresh full help-version setup lacks gzip and the600s run remains incomplete. No bootstrap/fake fixture substituted."
+  },
+  "diagnostic_diff_analysis": {
+    "not_an_output_normalization_or_test_verdict": true,
+    "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\diagnostic-diff-analysis-v2.json",
+    "sha256": "3ebcfdcc04cf1ba601d6ba451c7ba4746c75299ac96c6921ccf9f4d2d1700c77"
+  },
+  "drain": {
+    "all_outer_job_trees_drained": true,
+    "coverage_gaps_retained": 20,
+    "created": 18915,
+    "max_aggregate_jobs_authorized": 3,
+    "max_simultaneous_native_jobs_used": 2,
+    "observed": 18895,
+    "retained_workdirs": "KEEP=yes preserves real exp/out files for independent inspection",
+    "run_count": 82,
+    "test_only_api_fixture_build": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\api-build\\result.json"
+  },
+  "full_coreutils_admitted": false,
+  "genuine_semantic_gap": {
+    "boundary": "MSYS/Windows POSIX permission behavior, reproduced below Coreutils",
+    "evidence": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\result.json",
+    "meaning": "Actual delete/traversal expectation failures, not seven tests reclassified as inapplicable",
+    "observed": [
+      "mode500/access(W_OK) denies butunlinkat(child) succeeds",
+      "open through mode600 parent succeeds whilechdir toparent denies"
+    ]
+  },
+  "groups": [
+    {
+      "confidence": "confirmed discrepancy and mechanism; Perl scripts not fully rerun",
+      "counts": {
+        "FAIL": 17
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-current-noacl\\target.log",
+          "log_sha256": "2ade8f95aabc62a1f391ea3da44e44ce226172bda96335b23655e9294e8f0b57",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-current-noacl\\result.json",
+          "sha256": "51ddcd534d65a978fa3b408004998a1dc2478e1956413906a296ff7f9e1cae95"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-historical-noacl\\target.log",
+          "log_sha256": "2ade8f95aabc62a1f391ea3da44e44ce226172bda96335b23655e9294e8f0b57",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-historical-noacl\\result.json",
+          "sha256": "7f2efb8dcaf02931ebab1eb930a49eef627e0a01567ae8197758167b685b0ba9"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-dir-nonrecur-01\\target.log",
+          "log_sha256": "b6a9ebcbfe295135f403b33806352a9b92fb33de696df2c42c2562cedc78220b",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-dir-nonrecur-01\\result.json",
+          "sha256": "46c6df6d84e96146037aae490997f4bc444de979dfdd16103a811206a0788ce2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\target.log",
+          "log_sha256": "ac48001e123a37ee8874fa20f0fb788446b13037cd76514e1447e1077342a15e",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\result.json",
+          "sha256": "c66893e87c200a42a745dd697c81f204f269284403250cc517518a891bf326d0"
+        }
+      ],
+      "id": "argv0-diagnostics",
+      "kind": "launch/harness interoperability",
+      "mechanism": "Native utility receives an absolute argv[0] in the retained mixed launch. gnulib deliberately preserves path-qualified argv[0]; tests expect basename invocation. seq's first-only s/-0/0/ also edits the path component e138-01 instead of the negative-zero operand.",
+      "not": "not an English translation error or incorrect cut/seq/pr data algorithm",
+      "tests": [
+        "tests/misc/help-version-getopt.sh",
+        "tests/rm/d-2.sh",
+        "tests/rm/d-3.sh",
+        "tests/rm/dir-no-w.sh",
+        "tests/rm/dir-nonrecur.sh",
+        "tests/rm/isatty.sh",
+        "tests/rm/empty-name.pl",
+        "tests/rm/interactive-always.sh",
+        "tests/rm/interactive-once.sh",
+        "tests/rm/r-4.sh",
+        "tests/rm/rm5.sh",
+        "tests/fmt/base.pl",
+        "tests/misc/env.sh",
+        "tests/misc/seq.pl",
+        "tests/misc/xstrtol.pl",
+        "tests/misc/cut.pl",
+        "tests/pr/pr-tests.pl"
+      ]
+    },
+    {
+      "confidence": "confirmed; residual layer localized to runtime/API permission semantics, not an ARM64 arithmetic/codegen defect",
+      "counts": {
+        "FAIL": 14
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\target.log",
+          "log_sha256": "6a3d90bc3b41a36027d152a33500e53b087edec7632c872ebf56eb47f9fc1b1f",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\result.json",
+          "sha256": "e9c10d3a75341bef68e5d6f1d5c6b2484ed037b62b915c278aba9595c837c9d2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\target.log",
+          "log_sha256": "2bd368410c4a2844922c0871eaa665a8907f7b4b37acc33c92c04d14fdada4dc",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\result.json",
+          "sha256": "deee73a2821aeb71b849b80971df2a44fff98abe8be97f9eafc00a416987cb3c"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-noacl\\target.log",
+          "log_sha256": "64863a478bbe8ad4982626469c3b9c382f8d7608369a1faec11972d43073e0b4",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-noacl\\result.json",
+          "sha256": "9227df3a0c6c897924f96043a68726028ce44d8426b6c846fb5a560d491a9bad"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-acl\\target.log",
+          "log_sha256": "7b5ae845bff0ba3a1d020a5cd982f9da86ae763aa49e3ddd08791164b221abd5",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-acl\\result.json",
+          "sha256": "6dbc14264ffd789b86656bddbc7632364ddaf647d957f1530cfe104220c2f13b"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-unreadable-perl-mechanism-01\\target.log",
+          "log_sha256": "ef636ff92320b6c8de365d60e5ab1b17e15a53764108287917e233618a73fa26",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-unreadable-perl-mechanism-01\\result.json",
+          "sha256": "6c9c86ba88301ce29c27b38500f904aff7646f80d5801aa20c830df99bc189da"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-acl\\target.log",
+          "log_sha256": "926a0f68881d92a070795690ba65adade501d1cd99b59d6b231a4566daa5ca85",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-acl\\result.json",
+          "sha256": "2200048ad502f5ef77af3999ce87e8f897171b737ffd3509cda73a1d15714465"
+        }
+      ],
+      "id": "permission-model",
+      "kind": "configuration plus genuine MSYS/Windows POSIX semantic gaps",
+      "mechanism": "noacl cannot encode Unix mode/group requirements (mktemp600 becomes644; directories remain755). Enabling ACL in a fresh private root fixes group/read/temporary-file semantics, but seven shell tests still expose unlinkat child deletion despite nonwritable parent or traversal despite nonsearchable parent. Direct runtime API fixture reproduces those boundaries without Coreutils.",
+      "not": "not reclassified as inapplicable: the POSIX behaviors remain genuinely unsupported/failing",
+      "tests": [
+        "tests/rm/cycle.sh",
+        "tests/chmod/no-x.sh",
+        "tests/chgrp/basic.sh",
+        "tests/rm/fail-eacces.sh",
+        "tests/rm/inaccessible.sh",
+        "tests/rm/rm1.sh",
+        "tests/rm/rm2.sh",
+        "tests/rm/rm3.sh",
+        "tests/rm/unread2.sh",
+        "tests/rm/unreadable.pl",
+        "tests/chgrp/no-x.sh",
+        "tests/chgrp/posix-H.sh",
+        "tests/chgrp/recurse.sh",
+        "tests/misc/mktemp.pl"
+      ]
+    },
+    {
+      "confidence": "confirmed boundary discrepancies; original parent PID/birth/callsite receipt does not exist, so exact legacy boundary implementation is not retroactively reconstructed",
+      "counts": {
+        "ERROR": 2,
+        "FAIL": 6
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-pwd-option-01\\target.log",
+          "log_sha256": "546a1fd5a95f213aa7629c5c7cdc861807b89f60fd868de745b0302889934dcd",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-pwd-option-01\\result.json",
+          "sha256": "1c51c79e2113c814ad26185164f46886899f5d5d7b76e276fa6e1583a69d0da3"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-wc-proc-01\\target.log",
+          "log_sha256": "8430f3ff391bafb51f90523bd1c0a098573f8a46a2b0a16167683f087f1ba127",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-wc-proc-01\\result.json",
+          "sha256": "7e8a4a27b37b880c0173207367353d8e0370deeea61dbf38ac518be42e8a77f2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\target.log",
+          "log_sha256": "68438a5757312c000c3a76d400a5e0e122476802456ccc25db82170ed52d55c1",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\result.json",
+          "sha256": "f1c5f236b4d6b3d268580db5cbd125e58c8d20527e6030c5513a70258637218a"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\target.log",
+          "log_sha256": "bc2e186a88400827da4cc03c49ef0fb6140ed92ba903c220a1647b3190a8427a",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\result.json",
+          "sha256": "d1bb0fd199d3e13f481ac43663fbe30c95cc442cd9a627fe480fbf375b5ff67e"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\target.log",
+          "log_sha256": "7b3c62c0e3daef6491f9df58baee1102ab4efbef1134f9fa1c2b962428a3e79e",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\result.json",
+          "sha256": "ed03739e3375883b2de5186b51bb55f001fc36d78f098ca48873597d7b2075b8"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\target.log",
+          "log_sha256": "75cbafd00469cd813bb4bd8c9c013f9f8e8698eabe2bab423d4d6f247f83d86f",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\result.json",
+          "sha256": "11a207ba17b6af0f2d51f7b42e3be7a88937f35c90fa8f54c1f4db379754c5b0"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\target.log",
+          "log_sha256": "7e3c0bf905cbfb9c5d9b6dd9f4591522217c28c83b4fc414f0b621f52b2ce021",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\result.json",
+          "sha256": "17249ba471d3f43f5e187a280253a75070c601391ed8392e79f5b6123e49239e"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\target.log",
+          "log_sha256": "77ae3c2c67f728e8e5e55476f0971535754e49222914d216b37fb73b9d679cf7",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\result.json",
+          "sha256": "05ff5aa4c08b5cf369a6f14bba947eb53325944831079b008b62452c5c330815"
+        }
+      ],
+      "id": "runtime-views-and-pids",
+      "kind": "mixed launch/runtime namespace and file-descriptor interoperability",
+      "mechanism": "Retained parent and native child disagree on symlink/root mapping, process IDs, /proc/version byte length or inherited special-file descriptors. Logs show /cygdrive paths remapped under host-bootstrap, kill($!) reporting ESRCH while tail remains alive, wrong proc skip length and wc EBADF. Coherent native-parent replays fix these without utility changes, including selected old-baa-runtime controls.",
+      "not": "not proof that tail/od/wc need output normalization or that inotify must be skipped",
+      "tests": [
+        "tests/rm/dangling-symlink.sh",
+        "tests/rm/unread3.sh",
+        "tests/tail-2/inotify-hash-abuse2.sh",
+        "tests/tail-2/pid.sh",
+        "tests/misc/od.pl",
+        "tests/misc/wc-proc.sh",
+        "tests/tail-2/overlay-headers.sh",
+        "tests/misc/pwd-option.sh"
+      ]
+    },
+    {
+      "confidence": "byte-level discrepancy confirmed; not a date parser/calendar calculation error",
+      "counts": {
+        "FAIL": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\result.json",
+          "sha256": "14437ec16878d561b5111177ccf24c41766f02725038c78a3b88a5ce531c18c1"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\result.json",
+          "sha256": "0657516e21f9367a2636e6566f01a3769c126d78ef1fe6f8aaa25f437b6c5c77"
+        }
+      ],
+      "id": "invalid-byte-argument",
+      "kind": "argument-byte interoperability",
+      "mechanism": "The exact invalid B0 date argument is reported as EF82B0 (UTF-8 private-use U+F0B0) in the retained stderr. Same binary under coherent native old/current parents preserves B0 and produces the expected diagnostic; deliberately passing EF82B0 recreates the observed diagnostic. The secondary invalid-TZ mismatch is argv0-only.",
+      "not": "not a message-catalog lookup or line-ending problem",
+      "tests": [
+        "tests/misc/date.pl"
+      ]
+    },
+    {
+      "confidence": "all four retained failure mechanisms identified; no claim that the entire help-version script now passes",
+      "counts": {
+        "FAIL": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-quoted-args-current-noacl\\target.log",
+          "log_sha256": "3b132c7912a44dd743c4981c090205c5f49cc29a31dd19d807f8c5cb11594243",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-quoted-args-current-noacl\\result.json",
+          "sha256": "39d2ee5bad4840b7f4cd70e29d490b095354377a1aff2e46a9f088978dc79da4"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\target.log",
+          "log_sha256": "7b3c62c0e3daef6491f9df58baee1102ab4efbef1134f9fa1c2b962428a3e79e",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\result.json",
+          "sha256": "ed03739e3375883b2de5186b51bb55f001fc36d78f098ca48873597d7b2075b8"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-layout-current-noacl\\target.log",
+          "log_sha256": "4a560c878d1938618cef40f877dfa18cd15e56267decccd3d999fd885ae68dea",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-layout-current-noacl\\result.json",
+          "sha256": "37b77ac3694c6c3d5e19aa1966c9588bbb45d6363d44f6daf16a67c045fe3470"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-canonical-layout-01\\target.log",
+          "log_sha256": "f1043c1151eac984c8b8de0f6b015eb7bea45446872b9ff4aa778a72f954f846",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-canonical-layout-01\\result.json",
+          "sha256": "d63e43ce92b6f741cd196d59f67a4057effc941e35a8abb70fbebfa30566d099"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\target.log",
+          "log_sha256": "ce5eb7fb9cca03a4341a152e6b31b252b1bf400067b3a95fffd5f291a02a136d",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\result.json",
+          "sha256": "99da962eac82b404070b0d085d3ffdc4292bdbb159f6e4a68d998ae8bb92d139"
+        }
+      ],
+      "id": "compound-help-dependencies",
+      "kind": "several launch failures plus a missing support-file layout",
+      "mechanism": "Four named retained failures: csplit // converted to /; native kill cannot resolve parent's background PID; ln/readlink cannot represent the requested link; stdbuf cannot locate real libstdbuf.dll. Quoting/syslink/PID controls and installing the original real DLL in /usr/lib/coreutils remove these specific symptoms. The full fresh script remained bounded-incomplete; the new all-native harness also lacks gzip.",
+      "not": "not one generic help/version implementation bug",
+      "tests": [
+        "tests/misc/help-version.sh"
+      ]
+    },
+    {
+      "confidence": "two original secondary mechanisms remain unconfirmed; common diagnostic mechanism is confirmed",
+      "counts": {
+        "FAIL": 2
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\result.json",
+          "sha256": "14437ec16878d561b5111177ccf24c41766f02725038c78a3b88a5ce531c18c1"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\result.json",
+          "sha256": "0657516e21f9367a2636e6566f01a3769c126d78ef1fe6f8aaa25f437b6c5c77"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\target.log",
+          "log_sha256": "68438a5757312c000c3a76d400a5e0e122476802456ccc25db82170ed52d55c1",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\result.json",
+          "sha256": "f1c5f236b4d6b3d268580db5cbd125e58c8d20527e6030c5513a70258637218a"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\target.log",
+          "log_sha256": "bc2e186a88400827da4cc03c49ef0fb6140ed92ba903c220a1647b3190a8427a",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\result.json",
+          "sha256": "d1bb0fd199d3e13f481ac43663fbe30c95cc442cd9a627fe480fbf375b5ff67e"
+        }
+      ],
+      "id": "residual-launch-proof-missing",
+      "kind": "known argv0 failures plus incompletely recorded secondary launch behavior",
+      "mechanism": "join has seven argv0-only diagnostics plus one A7-separator status mismatch; wc has six argv0-only diagnostics plus /dev/null files0 status mismatch. Exact coherent-native subcases succeed; PUA-encoding the join separator reproduces exit1. Original offending argv/file-descriptor snapshots were not retained, so those secondary root causes remain unconfirmed rather than assigned a cosmetic pass.",
+      "not": "not evidence of a current join data algorithm failure or justification to waive the original failures",
+      "tests": [
+        "tests/misc/join.pl",
+        "tests/misc/wc-files0-from.pl"
+      ]
+    },
+    {
+      "confidence": "confirmed",
+      "counts": {
+        "ERROR": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-xargs-env-budget-current-noacl\\target.log",
+          "log_sha256": "f758e193628246aaa0173f2ae4da45e97470c40cc56fbd6a2d13575eac73ac87",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-xargs-env-budget-current-noacl\\result.json",
+          "sha256": "d108a181673d084e8dd72c0611e1b34fdbfbfdd427b52ef614cfb68acf44b438"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\target.log",
+          "log_sha256": "d05fd4114aa32927e69a43b045dbd523eed3241aec749bb6fede37c6838b8cf2",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\result.json",
+          "sha256": "83787f7582b28a7077b278d0291cfc652a93c717cf5a1e2ca03f6d4a1c4b03fa"
+        }
+      ],
+      "id": "environment-size",
+      "kind": "suite environment/test dependency constraint",
+      "mechanism": "xargs refuses exec because the inherited environment exceeds its available exec budget, before the tail assertions. Small-environment unchanged script exits0; explicit 40000-byte environment reproduces the exact xargs diagnostic and raw failure.",
+      "not": "not a tail/inotify defect and not a permission/locale assumption",
+      "tests": [
+        "tests/tail-2/inotify-hash-abuse.sh"
+      ]
+    },
+    {
+      "confidence": "confirmed setup limitation; test not run to its behavioral assertions",
+      "counts": {
+        "ERROR": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\target.log",
+          "log_sha256": "6a3d90bc3b41a36027d152a33500e53b087edec7632c872ebf56eb47f9fc1b1f",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\result.json",
+          "sha256": "e9c10d3a75341bef68e5d6f1d5c6b2484ed037b62b915c278aba9595c837c9d2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\target.log",
+          "log_sha256": "2bd368410c4a2844922c0871eaa665a8907f7b4b37acc33c92c04d14fdada4dc",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\result.json",
+          "sha256": "deee73a2821aeb71b849b80971df2a44fff98abe8be97f9eafc00a416987cb3c"
+        }
+      ],
+      "id": "unsupported-preload-test-api",
+      "kind": "test-harness facility not supplied by this target ABI",
+      "mechanism": "The injected readdir helper cannot compile: RTLD_NEXT is undefined in the target dlfcn.h. The test requires ELF-style next-definition lookup through dlsym plus LD_PRELOAD to inject readdir errors. Failure is at helper compilation, before any rm behavior is exercised. The direct native API diagnostic confirms the header capability remains absent.",
+      "not": "not an rm failure and not silently changed to SKIP/PASS; needs a target-appropriate real fault-injection facility",
+      "tests": [
+        "tests/rm/rm-readdir-fail.sh"
+      ]
+    }
+  ],
+  "hypotheses": {
+    "clangarm64_gettext": "Different provider/ABI from msys-intl-8.dll used by these AA64 MSYS candidates; cannot attribute its bindtextdomain defect to this suite.",
+    "independent_coreutils_arithmetic_or_text_algorithm_defects_proven": 0,
+    "line_ending_only_failure_groups_evidenced": 0,
+    "locale_reason": "Tests force LC_ALL=C (Perl also LANGUAGE/LANG=C); retained mismatches are paths/bytes/errno/status rather than catalog text.",
+    "message_catalog_or_translation_failures_evidenced": 0,
+    "not_proven": "No claim that every untested byte path or every full Coreutils test is correct"
+  },
+  "identities_after": {
+    "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\identities-after.json",
+    "sha256": "eb4c7ff4a03ae7cceb77062b6bbcecb8d01d03d8225b7ca2c50ebc819e5e4ec2"
+  },
+  "mechanism_sources": {
+    "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\mechanism-sources.json",
+    "sha256": "dd44743f1b3af6c14e1051a03e9299195f4f2936a686d7be0c1bfe87bbb51154"
+  },
+  "old_receipts_modified": false,
+  "original41_followup_coverage": {
+    "Perl_evidence_scope": "Complete retained logs/source plus native discriminating subcase replays; not claimed full script passes",
+    "Perl_scripts_not_fully_rerun": 12,
+    "unchanged_script_bounded_incomplete": 1,
+    "unchanged_test_script_exit0_in_coherent_or_acl_controls": 21,
+    "unchanged_test_script_exit1_even_with_acl": 7
+  },
+  "original_full_suite_completed": false,
+  "original_totals": {
+    "ERROR": 4,
+    "FAIL": 41,
+    "PASS": 48,
+    "SKIP": 23
+  },
+  "per_test_ledger": {
+    "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\causes.json",
+    "sha256": "46d85ebbb726b65dfca1bd2f6fa61814c4a2db066e0f72598f7d148769273635"
+  },
+  "primary_group_counts": {
+    "argv0-diagnostics": {
+      "FAIL": 17
+    },
+    "compound-help-dependencies": {
+      "FAIL": 1
+    },
+    "environment-size": {
+      "ERROR": 1
+    },
+    "invalid-byte-argument": {
+      "FAIL": 1
+    },
+    "permission-model": {
+      "FAIL": 14
+    },
+    "residual-launch-proof-missing": {
+      "FAIL": 2
+    },
+    "runtime-views-and-pids": {
+      "ERROR": 2,
+      "FAIL": 6
+    },
+    "unsupported-preload-test-api": {
+      "ERROR": 1
+    }
+  },
+  "privilege_changes": false,
+  "progression": [
+    "Retained all48PASS41FAIL23SKIP4ERROR without relabelling.",
+    "First3 fresh harness runs failed127 because Makefile-style lowercaseexports were not established inside the native shell; retained, fixed harness exports only.",
+    "32unchanged shell tests: first17raw0/12raw1/3timeout; rerun2withlargerbounds reachedraw0, fullhelp stilltimeout.",
+    "13unchanged permission tests withprivateACL:6raw0/7raw1 (5newimprovements overnoacl).",
+    "Originalbaa runtime withnativeparent also passes diagnostic-dir-nonrecur, pwd-option,wc-proc, isolating parent/cohort fromruntimeupdate.",
+    "Real original libstdbuf.dll initsconfiguredinstalledlocation removes125missinglibrarysubcase; wholehelp remainsunqualified."
+  ],
+  "rejected_timeout_observations": [
+    {
+      "admissible_execution_evidence": false,
+      "created": 6211,
+      "observed": 6208,
+      "raw_exit": 1460,
+      "run": "complete-help-version-02"
+    },
+    {
+      "admissible_execution_evidence": false,
+      "created": 1685,
+      "observed": 1681,
+      "raw_exit": 1460,
+      "run": "upstream-help-version-complete-01"
+    },
+    {
+      "admissible_execution_evidence": false,
+      "created": 1331,
+      "observed": 1328,
+      "raw_exit": 1460,
+      "run": "upstream-tests-misc-help-version-current-noacl"
+    },
+    {
+      "admissible_execution_evidence": false,
+      "created": 579,
+      "observed": 574,
+      "raw_exit": 1460,
+      "run": "upstream-tests-misc-help-version-getopt-current-noacl"
+    },
+    {
+      "admissible_execution_evidence": false,
+      "created": 728,
+      "observed": 723,
+      "raw_exit": 1460,
+      "run": "upstream-tests-tail-2-inotify-hash-abuse2-current-noacl"
+    }
+  ],
+  "schema": 1,
+  "scope": "Exactly the retained41FAIL and4ERROR, not a new full Coreutils qualification",
+  "status": "grouped-root-causes-with-explicit-unresolved-boundaries",
+  "status_normalization": false,
+  "tooling": {
+    "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\tooling.json",
+    "sha256": "3703b05032fa0683eb53c81c5ff83b4e8db9a9608d0c3d4415448a2315d63585"
+  },
+  "unchanged_shell_test_replays": {
+    "observer_gate_is_separate_from_test_semantics": true,
+    "raw0": 19,
+    "raw1": 12,
+    "raw1460_bounded_incomplete": 1,
+    "records": [
+      {
+        "coverage": [
+          6208,
+          6211
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\result.json",
+        "sha256": "99da962eac82b404070b0d085d3ffdc4292bdbb159f6e4a68d998ae8bb92d139",
+        "test": "tests/misc/help-version.sh",
+        "test_shell_raw_exit": 1460,
+        "timed_out": true
+      },
+      {
+        "coverage": [
+          596,
+          596
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\result.json",
+        "sha256": "c66893e87c200a42a745dd697c81f204f269284403250cc517518a891bf326d0",
+        "test": "tests/misc/help-version-getopt.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          71,
+          71
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-cycle-current-noacl\\result.json",
+        "sha256": "d4d59c520f2dd79b47afcd75f2f4f3b2a8f8d974f5565426672cfdee7683578b",
+        "test": "tests/rm/cycle.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          119,
+          119
+        ],
+        "observer_gate_passed": false,
+        "original_status": "ERROR",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\result.json",
+        "sha256": "83787f7582b28a7077b278d0291cfc652a93c717cf5a1e2ca03f6d4a1c4b03fa",
+        "test": "tests/tail-2/inotify-hash-abuse.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          2477,
+          2477
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\result.json",
+        "sha256": "11a207ba17b6af0f2d51f7b42e3be7a88937f35c90fa8f54c1f4db379754c5b0",
+        "test": "tests/tail-2/inotify-hash-abuse2.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          81,
+          81
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chmod-no-x-current-noacl\\result.json",
+        "sha256": "992664fb96bc9efadcf5aade45946c3fe8f2fd0b7242a0d45a56097cfa451d99",
+        "test": "tests/chmod/no-x.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          239,
+          239
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-noacl\\result.json",
+        "sha256": "22eeeae17fe813b4e4c15fad63483dd12073e9a8f4ff54be37dc98a3d428288a",
+        "test": "tests/chgrp/basic.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          75,
+          75
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dangling-symlink-current-noacl\\result.json",
+        "sha256": "eb240d19c3ffe9faeee4a45d231358509d243f661bea30e1d1368dcb26485103",
+        "test": "tests/rm/dangling-symlink.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          65,
+          65
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-d-2-current-noacl\\result.json",
+        "sha256": "33381450ded4ab78357a882d8c68ca0eee23880e2d7121b20babf3d8883feb9c",
+        "test": "tests/rm/d-2.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          69,
+          69
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-d-3-current-noacl\\result.json",
+        "sha256": "fe5b1c77391804816b4f02c26f5a0104da8fd32072478520ece8a6d663f26a5c",
+        "test": "tests/rm/d-3.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          67,
+          67
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dir-no-w-current-noacl\\result.json",
+        "sha256": "356e74041b0dede90b07dc98f6741105fbd54871eaa63f71c68818e58d81f03a",
+        "test": "tests/rm/dir-no-w.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          63,
+          63
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dir-nonrecur-current-noacl\\result.json",
+        "sha256": "eaf11c2599be8ff68357d1a89cb2a3223dce8c7928b22c062cc4909bdcf3cbc9",
+        "test": "tests/rm/dir-nonrecur.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          79,
+          79
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-isatty-current-noacl\\result.json",
+        "sha256": "daf2efa44f185ac802d9bc96c83fb1a22e1ab3bd8901ab04273d128c2f631c02",
+        "test": "tests/rm/isatty.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          87,
+          87
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-fail-eacces-current-noacl\\result.json",
+        "sha256": "59be56ba8e961203836724949dfc208053c107cbc2d19f0905ef89b3783662b8",
+        "test": "tests/rm/fail-eacces.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          80,
+          80
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-inaccessible-current-noacl\\result.json",
+        "sha256": "822ca2ed6231fdd2c773a62a764ce20f25307dd64bae21dd2c73689813682cc3",
+        "test": "tests/rm/inaccessible.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          123,
+          123
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-interactive-always-current-noacl\\result.json",
+        "sha256": "d46ed09bff1b17b269f5c6ffcfec8203ea72fdfc5bca9e34c90c5c3b0013ae1c",
+        "test": "tests/rm/interactive-always.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          199,
+          199
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-interactive-once-current-noacl\\result.json",
+        "sha256": "3ff50f31f6c9304d1dc1939e18c3a53866b79b00ea4fd8a91f7cf91176c9559d",
+        "test": "tests/rm/interactive-once.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          81,
+          81
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-r-4-current-noacl\\result.json",
+        "sha256": "da58090c98e51d72d80512d3f42940ab3472f8cbdd7bbfdce7d9ace91673b5b3",
+        "test": "tests/rm/r-4.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          81,
+          81
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm1-current-noacl\\result.json",
+        "sha256": "cf8e7058947137acb1472f1f7200d44d08184933fd531aae32d10cd34aa70131",
+        "test": "tests/rm/rm1.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          91,
+          91
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm2-current-noacl\\result.json",
+        "sha256": "a67288e638d07515f1d67811dccc0e4e8e3b533ccbc53ff4907452259e19ffdc",
+        "test": "tests/rm/rm2.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          91,
+          91
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm3-current-noacl\\result.json",
+        "sha256": "201263b20ebbb6d30feb90b457a6ef4c0aece7864fcffd5588cb8a10b9aa88e9",
+        "test": "tests/rm/rm3.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          77,
+          77
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\result.json",
+        "sha256": "42b203fa165dfebf6324231f5bfa4ec1c44ed62f9ea1e813b3a16a265fb1f93c",
+        "test": "tests/rm/rm5.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          67,
+          67
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread2-current-noacl\\result.json",
+        "sha256": "278f33d405fbfecb29e4e9324e79a8dabaac3fd72ede0358bc263029e2c549aa",
+        "test": "tests/rm/unread2.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          75,
+          75
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread3-current-noacl\\result.json",
+        "sha256": "1772a2e283cf54b17bec4806143198382ff57e685401988498e2e5d5e1c0f7e4",
+        "test": "tests/rm/unread3.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          89,
+          89
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-no-x-current-noacl\\result.json",
+        "sha256": "5220226d57ceffb0b86000f709b75d0c9520953da3cf5bc58037d2eb77af1783",
+        "test": "tests/chgrp/no-x.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          101,
+          101
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-posix-H-current-noacl\\result.json",
+        "sha256": "acd4bf5859c055ef3f5cb97c761349cc07c8868726b4a789bab30140caa1b3c0",
+        "test": "tests/chgrp/posix-H.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          103,
+          103
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-recurse-current-noacl\\result.json",
+        "sha256": "5edc333b6c78fb7f9370b6cfae8bb668d7b343e2132d8de943422897c74c9c3d",
+        "test": "tests/chgrp/recurse.sh",
+        "test_shell_raw_exit": 1,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          229,
+          229
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-env-current-noacl\\result.json",
+        "sha256": "eb43ffec5244a0ac790249d8370f362577b0018f0e8f9c0e2071aac43e41ae3b",
+        "test": "tests/misc/env.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          108,
+          108
+        ],
+        "observer_gate_passed": false,
+        "original_status": "ERROR",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\result.json",
+        "sha256": "17249ba471d3f43f5e187a280253a75070c601391ed8392e79f5b6123e49239e",
+        "test": "tests/tail-2/overlay-headers.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          101,
+          101
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\result.json",
+        "sha256": "05ff5aa4c08b5cf369a6f14bba947eb53325944831079b008b62452c5c330815",
+        "test": "tests/tail-2/pid.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          108,
+          108
+        ],
+        "observer_gate_passed": false,
+        "original_status": "ERROR",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-pwd-option-current-noacl\\result.json",
+        "sha256": "373ea32e9e939c0c0c35623c43b994045b96d87a63077991e9e08b2b2e671c67",
+        "test": "tests/misc/pwd-option.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      },
+      {
+        "coverage": [
+          77,
+          77
+        ],
+        "observer_gate_passed": false,
+        "original_status": "FAIL",
+        "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-wc-proc-current-noacl\\result.json",
+        "sha256": "0fccb8a756ee092bc73f1549a1edcdf529aa64d0144147dea69e8d7f3fc2b1cf",
+        "test": "tests/misc/wc-proc.sh",
+        "test_shell_raw_exit": 0,
+        "timed_out": false
+      }
+    ],
+    "tests": 32
+  },
+  "unresolved_secondary_mechanisms": [
+    "join.pl 8-bit-t exact legacy argument",
+    "wc-files0-from.pl empty-nonreg exact legacy fd/path"
+  ],
+  "validation": {
+    "checks": 9,
+    "errors": 0,
+    "failures": 0,
+    "log_sha256": "7eb67be89b2a93e417af1facdf1c9d28ce7c5734e219696dcc9239da4849f516"
+  }
+}
