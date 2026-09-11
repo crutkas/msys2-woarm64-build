@@ -1,0 +1,20 @@
+--- a/winsup/cygwin/exceptions.cc
++++ b/winsup/cygwin/exceptions.cc
+@@ -665,6 +665,17 @@
+ exception::myfault (EXCEPTION_RECORD *e, exception_list *frame, CONTEXT *in,
+ 		    PDISPATCHER_CONTEXT dispatch)
+ {
++#ifdef __aarch64__
++  /* ARM64's language handler is also invoked during the unwind phase. */
++  if (e->ExceptionFlags & (EXCEPTION_UNWINDING | EXCEPTION_EXIT_UNWIND))
++    return ExceptionContinueSearch;
++
++  /* RtlUnwindEx overwrites its context argument.  The incoming ARM64
++     context can be the saved dispatcher frame needed during that unwind. */
++  CONTEXT unwind_context = *in;
++  in = &unwind_context;
++#endif
++
+   PSCOPE_TABLE table = (PSCOPE_TABLE) dispatch->HandlerData;
+   RtlUnwindEx (frame,
+ 	       (char *) dispatch->ImageBase + table->ScopeRecord[0].JumpTarget,
