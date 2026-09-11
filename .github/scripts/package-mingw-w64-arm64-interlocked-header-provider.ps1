@@ -36,6 +36,10 @@ $patchedFastfailSourceSha = '73f341f1783674ce3cd7c58a4e4aa545ece9f8e16e81474b0b0
 $installedFastfailHeaderSha = 'dc7a4b6814d2529862e4e254935adddf1c6ffddb0cd5069d8146513c5f81efb9'
 $expectedHeaderCount = 1685
 $expectedHeaderPathSetSha = 'c780e3df61a8154bf783634b355d9906658ad46536d5da0bb28cc3b857742681'
+$expectedBaselineHeaderCount = 2528
+$expectedBaselineHeaderPathSetSha = 'a441d95442647b3e5e11976509d32cea46a625c07bdc986e75ba689945da4321'
+$expectedBaselineOnlyCount = 843
+$expectedBaselineOnlyPathSetSha = '8bf8d4141d58ed4cfd9f08f61eceb750d25195b15f15d04ae288a80435ccf080'
 $packageName = 'mingw-w64-aarch64-headers-git'
 $packageVersion = '70d63e7c9-3'
 $monolithicGccPackage = 'mingw-w64-aarch64-gcc'
@@ -103,6 +107,25 @@ function Get-PeMachine {
     }
 }
 
+function Write-PathSet {
+    param(
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyCollection()]
+        [string[]]$Paths,
+
+        [Parameter(Mandatory = $true)]
+        [string]$OutputPath
+    )
+
+    $sortedPaths = @($Paths | Sort-Object)
+    $text = ($sortedPaths -join "`n") + "`n"
+    [System.IO.File]::WriteAllText(
+        $OutputPath,
+        $text,
+        [System.Text.UTF8Encoding]::new($false))
+    return $sortedPaths
+}
+
 function Write-RelativePathSet {
     param(
         [Parameter(Mandatory = $true)]
@@ -117,13 +140,8 @@ function Write-RelativePathSet {
 
     $paths = @($Files | ForEach-Object {
             $_.FullName.Substring($Root.Length + 1).Replace('\', '/')
-        } | Sort-Object)
-    $text = ($paths -join "`n") + "`n"
-    [System.IO.File]::WriteAllText(
-        $OutputPath,
-        $text,
-        [System.Text.UTF8Encoding]::new($false))
-    return $paths
+        })
+    return @(Write-PathSet -Paths $paths -OutputPath $OutputPath)
 }
 
 function ConvertTo-MsysPath {
@@ -481,6 +499,45 @@ if ($readbackHeaderPaths.Count -ne $expectedHeaderCount -or
     $actualReadbackHeaderPathSetSha -ne $expectedHeaderPathSetSha) {
     throw "Unexpected package-readback header path set: count=$($readbackHeaderPaths.Count), sha256=$actualReadbackHeaderPathSetSha"
 }
+
+$baselineIncludeFiles = @(Get-ChildItem $BaselineIncludeRoot -Recurse -File | Sort-Object FullName)
+$baselineHeaderPathsPath = Join-Path $controlsRoot 'baseline-header-paths.txt'
+$baselineHeaderPaths = @(Write-RelativePathSet -Files $baselineIncludeFiles `
+    -Root $BaselineIncludeRoot -OutputPath $baselineHeaderPathsPath)
+$actualBaselineHeaderPathSetSha = (Get-FileHash $baselineHeaderPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($baselineHeaderPaths.Count -ne $expectedBaselineHeaderCount -or
+    $actualBaselineHeaderPathSetSha -ne $expectedBaselineHeaderPathSetSha) {
+    throw "Unexpected deployed baseline header path set: count=$($baselineHeaderPaths.Count), sha256=$actualBaselineHeaderPathSetSha"
+}
+
+$pathDelta = @(Compare-Object $baselineHeaderPaths $readbackHeaderPaths)
+$readbackOnlyPaths = @($pathDelta | Where-Object SideIndicator -eq '=>' |
+    Select-Object -ExpandProperty InputObject | Sort-Object)
+$baselineOnlyPaths = @($pathDelta | Where-Object SideIndicator -eq '<=' |
+    Select-Object -ExpandProperty InputObject | Sort-Object)
+$readbackOnlyPathsPath = Join-Path $controlsRoot 'readback-only-header-paths.txt'
+$baselineOnlyPathsPath = Join-Path $controlsRoot 'baseline-only-header-paths.txt'
+$null = Write-PathSet -Paths $readbackOnlyPaths -OutputPath $readbackOnlyPathsPath
+$null = Write-PathSet -Paths $baselineOnlyPaths -OutputPath $baselineOnlyPathsPath
+$readbackOnlyPathSetSha = (Get-FileHash $readbackOnlyPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+$baselineOnlyPathSetSha = (Get-FileHash $baselineOnlyPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($readbackOnlyPaths.Count -ne 0) {
+    throw "Package contains header paths absent from the deployed toolchain: $($readbackOnlyPaths -join ', ')"
+}
+if ($baselineOnlyPaths.Count -ne $expectedBaselineOnlyCount -or
+    $baselineOnlyPathSetSha -ne $expectedBaselineOnlyPathSetSha) {
+    throw "Unexpected deployed-only header path set: count=$($baselineOnlyPaths.Count), sha256=$baselineOnlyPathSetSha"
+}
+$baselineOnlyCxxCount = @($baselineOnlyPaths | Where-Object { $_ -like 'c++/*' }).Count
+$baselineOnlyCSourceCount = @($baselineOnlyPaths | Where-Object { $_ -like '*.c' }).Count
+$baselineOnlyOtherPaths = @($baselineOnlyPaths |
+    Where-Object { $_ -notlike 'c++/*' -and $_ -notlike '*.c' })
+if ($baselineOnlyCxxCount -ne 831 -or
+    $baselineOnlyCSourceCount -ne 12 -or
+    $baselineOnlyOtherPaths.Count -ne 0) {
+    throw "Unexpected deployed-only classification: cxx=$baselineOnlyCxxCount, c=$baselineOnlyCSourceCount, other=$($baselineOnlyOtherPaths.Count)"
+}
+
 $readbackDifferences = @()
 foreach ($file in $readbackIncludeFiles) {
     $relativePath = $file.FullName.Substring($readbackIncludeRoot.Length + 1)
@@ -732,6 +789,20 @@ $handoff = [ordered]@{
         header_paths = $readbackHeaderPathsPath
         header_paths_sha256 = $actualReadbackHeaderPathSetSha
         baseline_include_root = (Resolve-Path $BaselineIncludeRoot).Path
+        baseline_header_count = $baselineHeaderPaths.Count
+        baseline_header_paths = $baselineHeaderPathsPath
+        baseline_header_paths_sha256 = $actualBaselineHeaderPathSetSha
+        readback_only_header_count = $readbackOnlyPaths.Count
+        readback_only_header_paths = $readbackOnlyPathsPath
+        readback_only_header_paths_sha256 = $readbackOnlyPathSetSha
+        baseline_only_header_count = $baselineOnlyPaths.Count
+        baseline_only_header_paths = $baselineOnlyPathsPath
+        baseline_only_header_paths_sha256 = $baselineOnlyPathSetSha
+        baseline_only_classification = [ordered]@{
+            cxx_headers = $baselineOnlyCxxCount
+            generated_c_sources = $baselineOnlyCSourceCount
+            other = $baselineOnlyOtherPaths.Count
+        }
         readback_differences_from_baseline = $readbackDifferences
     }
     payload = [ordered]@{

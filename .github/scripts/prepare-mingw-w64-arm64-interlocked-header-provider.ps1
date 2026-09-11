@@ -26,6 +26,10 @@ $installedFastfailHeaderSha = 'dc7a4b6814d2529862e4e254935adddf1c6ffddb0cd5069d8
 $fastfailPatchSha = '5c89fe22fe5b9a63b43ca4e82b6c1f9fee802cd259a75cf238a821d44529ebd6'
 $expectedHeaderCount = 1685
 $expectedHeaderPathSetSha = 'c780e3df61a8154bf783634b355d9906658ad46536d5da0bb28cc3b857742681'
+$expectedBaselineHeaderCount = 2528
+$expectedBaselineHeaderPathSetSha = 'a441d95442647b3e5e11976509d32cea46a625c07bdc986e75ba689945da4321'
+$expectedBaselineOnlyCount = 843
+$expectedBaselineOnlyPathSetSha = '8bf8d4141d58ed4cfd9f08f61eceb750d25195b15f15d04ae288a80435ccf080'
 $target = 'aarch64-w64-mingw32'
 $repositoryRoot = Resolve-Path (Join-Path $PSScriptRoot '..\..')
 $applier = Join-Path $PSScriptRoot 'apply-mingw-w64-arm64-interlocked-exchange-ordering.sh'
@@ -47,6 +51,25 @@ function Get-LfNormalizedSha256 {
     return [System.Convert]::ToHexString($hash).ToLowerInvariant()
 }
 
+function Write-PathSet {
+    param(
+        [Parameter(Mandatory = $true)]
+        [AllowEmptyCollection()]
+        [string[]]$Paths,
+
+        [Parameter(Mandatory = $true)]
+        [string]$OutputPath
+    )
+
+    $sortedPaths = @($Paths | Sort-Object)
+    $text = ($sortedPaths -join "`n") + "`n"
+    [System.IO.File]::WriteAllText(
+        $OutputPath,
+        $text,
+        [System.Text.UTF8Encoding]::new($false))
+    return $sortedPaths
+}
+
 function Write-RelativePathSet {
     param(
         [Parameter(Mandatory = $true)]
@@ -61,13 +84,8 @@ function Write-RelativePathSet {
 
     $paths = @($Files | ForEach-Object {
             $_.FullName.Substring($Root.Length + 1).Replace('\', '/')
-        } | Sort-Object)
-    $text = ($paths -join "`n") + "`n"
-    [System.IO.File]::WriteAllText(
-        $OutputPath,
-        $text,
-        [System.Text.UTF8Encoding]::new($false))
-    return $paths
+        })
+    return @(Write-PathSet -Paths $paths -OutputPath $OutputPath)
 }
 
 function Get-PeMachine {
@@ -211,6 +229,45 @@ if ($stageHeaderPaths.Count -ne $expectedHeaderCount -or
     $actualHeaderPathSetSha -ne $expectedHeaderPathSetSha) {
     throw "Unexpected installed header path set: count=$($stageHeaderPaths.Count), sha256=$actualHeaderPathSetSha"
 }
+
+$baselineIncludeFiles = @(Get-ChildItem $BaselineIncludeRoot -Recurse -File | Sort-Object FullName)
+$baselineHeaderPathsPath = Join-Path $controlsRoot 'baseline-header-paths.txt'
+$baselineHeaderPaths = @(Write-RelativePathSet -Files $baselineIncludeFiles `
+    -Root $BaselineIncludeRoot -OutputPath $baselineHeaderPathsPath)
+$actualBaselineHeaderPathSetSha = (Get-FileHash $baselineHeaderPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($baselineHeaderPaths.Count -ne $expectedBaselineHeaderCount -or
+    $actualBaselineHeaderPathSetSha -ne $expectedBaselineHeaderPathSetSha) {
+    throw "Unexpected deployed baseline header path set: count=$($baselineHeaderPaths.Count), sha256=$actualBaselineHeaderPathSetSha"
+}
+
+$pathDelta = @(Compare-Object $baselineHeaderPaths $stageHeaderPaths)
+$stageOnlyPaths = @($pathDelta | Where-Object SideIndicator -eq '=>' |
+    Select-Object -ExpandProperty InputObject | Sort-Object)
+$baselineOnlyPaths = @($pathDelta | Where-Object SideIndicator -eq '<=' |
+    Select-Object -ExpandProperty InputObject | Sort-Object)
+$stageOnlyPathsPath = Join-Path $controlsRoot 'stage-only-header-paths.txt'
+$baselineOnlyPathsPath = Join-Path $controlsRoot 'baseline-only-header-paths.txt'
+$null = Write-PathSet -Paths $stageOnlyPaths -OutputPath $stageOnlyPathsPath
+$null = Write-PathSet -Paths $baselineOnlyPaths -OutputPath $baselineOnlyPathsPath
+$stageOnlyPathSetSha = (Get-FileHash $stageOnlyPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+$baselineOnlyPathSetSha = (Get-FileHash $baselineOnlyPathsPath -Algorithm SHA256).Hash.ToLowerInvariant()
+if ($stageOnlyPaths.Count -ne 0) {
+    throw "Provider contains paths absent from the deployed toolchain: $($stageOnlyPaths -join ', ')"
+}
+if ($baselineOnlyPaths.Count -ne $expectedBaselineOnlyCount -or
+    $baselineOnlyPathSetSha -ne $expectedBaselineOnlyPathSetSha) {
+    throw "Unexpected deployed-only header path set: count=$($baselineOnlyPaths.Count), sha256=$baselineOnlyPathSetSha"
+}
+$baselineOnlyCxxCount = @($baselineOnlyPaths | Where-Object { $_ -like 'c++/*' }).Count
+$baselineOnlyCSourceCount = @($baselineOnlyPaths | Where-Object { $_ -like '*.c' }).Count
+$baselineOnlyOtherPaths = @($baselineOnlyPaths |
+    Where-Object { $_ -notlike 'c++/*' -and $_ -notlike '*.c' })
+if ($baselineOnlyCxxCount -ne 831 -or
+    $baselineOnlyCSourceCount -ne 12 -or
+    $baselineOnlyOtherPaths.Count -ne 0) {
+    throw "Unexpected deployed-only classification: cxx=$baselineOnlyCxxCount, c=$baselineOnlyCSourceCount, other=$($baselineOnlyOtherPaths.Count)"
+}
+
 $stagedDifferences = @()
 foreach ($file in $stageIncludeFiles) {
     $relativePath = $file.FullName.Substring($includeRoot.Length + 1)
@@ -337,6 +394,20 @@ $handoff = [ordered]@{
         header_paths = $headerPathsPath
         header_paths_sha256 = $actualHeaderPathSetSha
         baseline_include_root = (Resolve-Path $BaselineIncludeRoot).Path
+        baseline_header_count = $baselineHeaderPaths.Count
+        baseline_header_paths = $baselineHeaderPathsPath
+        baseline_header_paths_sha256 = $actualBaselineHeaderPathSetSha
+        stage_only_header_count = $stageOnlyPaths.Count
+        stage_only_header_paths = $stageOnlyPathsPath
+        stage_only_header_paths_sha256 = $stageOnlyPathSetSha
+        baseline_only_header_count = $baselineOnlyPaths.Count
+        baseline_only_header_paths = $baselineOnlyPathsPath
+        baseline_only_header_paths_sha256 = $baselineOnlyPathSetSha
+        baseline_only_classification = [ordered]@{
+            cxx_headers = $baselineOnlyCxxCount
+            generated_c_sources = $baselineOnlyCSourceCount
+            other = $baselineOnlyOtherPaths.Count
+        }
         staged_differences_from_baseline = $stagedDifferences
         archive = $archivePath
         archive_sha256 = (Get-FileHash $archivePath -Algorithm SHA256).Hash.ToLowerInvariant()
