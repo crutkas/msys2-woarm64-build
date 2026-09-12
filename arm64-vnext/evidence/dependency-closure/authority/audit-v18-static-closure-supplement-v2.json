@@ -1,0 +1,87 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T07:19:56.9382477Z",
+  "status": "accepted-read-only-runtime-corroboration-not-provider-admission",
+  "supersedes": {
+    "path": "C:\\ap11-native-provider-intake\\audit-v18-static-closure-supplement-v1.json",
+    "sha256": "0938eb27b5a0fa8ac85f43c5b9d6a08cf67cf739f8364049f0b148fa9956fa74",
+    "scope": "append live HTTPS and generation-specific CA behavior only",
+    "priorStaticCountsUnchanged": true
+  },
+  "authoritativeAudit": {
+    "path": "C:\\ap11-native-provider-intake\\audit-v18-qualified-openssl.json",
+    "sha256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb",
+    "status": "incomplete",
+    "blockerRows": 81,
+    "gettextRelatedRows": 22,
+    "otherRows": 59,
+    "unchanged": true
+  },
+  "evidence": {
+    "handoff": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\handoff.json",
+      "sha256": "5d68fc77f3e7357b47a031b4eeb3d452ed118d0833d3a29404a1953c4c34900d"
+    },
+    "report": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\report.md",
+      "sha256": "ef08ded7023f223655ff63c9b49aebab3716d03498473ca9a6a925d32f48166f"
+    },
+    "liveTls": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\live-tls-confirmation.json",
+      "sha256": "802d61391687857f2ce6297da1d11aa3d5e5d4b7040dfce4eebf786008f6aaa8"
+    },
+    "standaloneCurl": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\standalone-curl-confirmation.json",
+      "sha256": "3a9f5f01b601b907d3469b01b1ad2b160aff0d59a49c5d81557ffa8a38c08d2e"
+    },
+    "peerTls": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-02\\live-tls\\independent-tls-evidence-01.json",
+      "sha256": "94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc"
+    },
+    "peerMixed": {
+      "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\live-tls\\independent-full-mixed-report.json",
+      "sha256": "c44fb3f8238980bea3545938362e7e84ea5cb806780ea58b354261e3d3447c9b"
+    }
+  },
+  "liveResults": [
+    {
+      "artifact": "candidate-01",
+      "operation": "Git public HTTPS clone",
+      "rawExit": 128,
+      "caResult": "compiled C:/mingwarm64 default failed after relocation",
+      "tlsModules": "old superseded/unadmitted OpenSSL pair loaded"
+    },
+    {
+      "artifact": "named ZIP",
+      "operation": "Git public HTTPS clone",
+      "rawExit": 0,
+      "caResult": "shipped prefix-relative Git sslCAInfo selected present bundle",
+      "tlsModules": "same old superseded/unadmitted OpenSSL pair loaded"
+    },
+    {
+      "artifact": "same named ZIP",
+      "operation": "standalone curl HTTPS",
+      "rawExit": 77,
+      "caResult": "standalone curl still used compiled C:/mingwarm64 default",
+      "tlsModules": "same old superseded/unadmitted OpenSSL pair loaded"
+    }
+  ],
+  "observedModules": {
+    "libcurlSha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669",
+    "libsslSha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48",
+    "libcryptoSha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a",
+    "admission": "OpenSSL bytes remain superseded and unadmitted"
+  },
+  "findings": [
+    "Old OpenSSL use is confirmed in actual HTTPS helper and standalone curl processes, not only the static git-imap-send graph",
+    "Git clone success in the named ZIP reflects shipped prefix-relative Git CA configuration; it does not admit the loaded crypto bytes",
+    "Standalone curl remains relocation-broken at the compiled CA default",
+    "CA lookup failure and crypto-provider admission are separate gates"
+  ],
+  "limits": [
+    "No binary substitution, repair, alias, environment override, provider admission, or full-release blocker clearance occurred",
+    "A raw successful Git clone does not qualify superseded TLS",
+    "Live module samples are generation-bound and not exhaustive load-event coverage",
+    "Original static supplement and all prior evidence remain immutable"
+  ]
+}

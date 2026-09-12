@@ -1,0 +1,21 @@
+pkgname=woarm64-native-exit-control
+pkgver=1
+pkgrel=1
+pkgdesc='Actual native high-exit status package boundary control'
+arch=('aarch64')
+license=('custom')
+options=('!strip' '!debug' '!lto' '!ccache')
+source=('exit-status.exe')
+sha256sums=('@EXE_SHA256@')
+
+check() {
+    if [[ ${CONTROL_UNRELAYED:-0} == 1 ]]; then
+        "$srcdir/exit-status.exe" "${CONTROL_NATIVE_EXIT:?}"
+    else
+        bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/exit-status.exe" "${CONTROL_NATIVE_EXIT:?}"
+    fi
+}
+
+package() {
+    install -Dm755 "$srcdir/exit-status.exe" "$pkgdir/usr/bin/native-exit-control.exe"
+}

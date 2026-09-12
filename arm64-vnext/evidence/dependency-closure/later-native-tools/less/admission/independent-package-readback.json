@@ -1,0 +1,274 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:05:28.472222+00:00",
+  "provider": "less",
+  "decision": "PASS_PACKAGE_PROVIDER",
+  "source": {
+    "export": "C:\\ap17-accd-less01\\delivery-01\\export.json",
+    "exportSha256": "257a9f18724477eb349456a56f9ee2d4a392e979fe0b7896431f11bb59820a50",
+    "handoff": "C:\\ap17-accd-less01\\delivery-01\\handoff.json",
+    "handoffSha256": "2acb7812d739b89a3d9a98616edf71c5e3765a3b057be35a7a21b1b2ddcc6889"
+  },
+  "packages": [
+    {
+      "name": "less",
+      "version": "704-1",
+      "arch": "aarch64",
+      "depends": [
+        "ncurses",
+        "libpcre2_8"
+      ],
+      "provides": [],
+      "conflicts": [],
+      "licenses": [
+        "spdx:GPL-3.0-or-later"
+      ],
+      "archive": "less-704-1-aarch64.pkg.tar.zst",
+      "sha256": "fe9b92485b8062f0ddddb209e93fd5200d2bed42442478f3a0dd3badfa4cf847",
+      "tarMembers": 12,
+      "payloadFiles": 9,
+      "links": {},
+      "unsafePaths": [],
+      "metadataPresent": [
+        ".BUILDINFO",
+        ".MTREE",
+        ".PKGINFO"
+      ],
+      "pkginfo": {
+        "pkgname": [
+          "less"
+        ],
+        "pkgbase": [
+          "less"
+        ],
+        "pkgver": [
+          "704-1"
+        ],
+        "xdata": [
+          "pkgtype=pkg"
+        ],
+        "pkgdesc": [
+          "A terminal based program for viewing text files"
+        ],
+        "url": [
+          "http://www.greenwoodsoftware.com/less"
+        ],
+        "builddate": [
+          "1788825600"
+        ],
+        "packager": [
+          "Native ARM64 less producer"
+        ],
+        "size": [
+          "444467"
+        ],
+        "arch": [
+          "aarch64"
+        ],
+        "license": [
+          "spdx:GPL-3.0-or-later"
+        ],
+        "depend": [
+          "ncurses",
+          "libpcre2_8"
+        ]
+      },
+      "buildinfoPathRows": [],
+      "buildinfoCanonical": true,
+      "metadataPrivateHits": [],
+      "mtreePrivateHits": [],
+      "runtimePePrivateHits": [],
+      "staticArchivePrivateHits": [],
+      "otherPayloadPrivateHits": [],
+      "files": [
+        {
+          "path": "usr/bin/less.exe",
+          "sha256": "55546b45e4d7a80f4e87f20045eef4cc0417bfd716b258c83ce46ba3bc224702",
+          "size": 246559,
+          "pe": {
+            "machine": "0xaa64",
+            "optional_magic": "0x020b",
+            "managed": false,
+            "imports": [
+              "KERNEL32.dll",
+              "msys-2.0.dll",
+              "msys-ncursesw6.dll",
+              "msys-pcre2-8-0.dll"
+            ]
+          }
+        },
+        {
+          "path": "usr/bin/lesskey.exe",
+          "sha256": "b40bb4aae7f5e9b2080471d93abfad337c61814bad981d8985551a49bfeb4b87",
+          "size": 19315,
+          "pe": {
+            "machine": "0xaa64",
+            "optional_magic": "0x020b",
+            "managed": false,
+            "imports": [
+              "KERNEL32.dll",
+              "msys-2.0.dll"
+            ]
+          }
+        },
+        {
+          "path": "usr/libexec/less-osc8-open",
+          "sha256": "67597ae3d23d064662c8ea5c8df469cc21f65dabe4832daf2e7fa92c05e6d062",
+          "size": 1067,
+          "pe": null
+        },
+        {
+          "path": "usr/libexec/lessecho.exe",
+          "sha256": "8f41dcdd8a09536410420810f4275b65f77e5e789a9d344ee4ac42fc982afc39",
+          "size": 9849,
+          "pe": {
+            "machine": "0xaa64",
+            "optional_magic": "0x020b",
+            "managed": false,
+            "imports": [
+              "KERNEL32.dll",
+              "msys-2.0.dll"
+            ]
+          }
+        },
+        {
+          "path": "usr/share/licenses/less/COPYING",
+          "sha256": "3972dc9744f6499f0f9b2dbf76696f2ae7ad8af9b23dde66d6af86c9dfb36986",
+          "size": 35149,
+          "pe": null
+        },
+        {
+          "path": "usr/share/licenses/less/LICENSE",
+          "sha256": "0f94cd7f9b1d122522e1b988e42be49c88a997781494615113e7bbcf28d2c952",
+          "size": 1271,
+          "pe": null
+        },
+        {
+          "path": "usr/share/man/man1/less.1",
+          "sha256": "251ea88d4924f27ebf0b20f39c61caac8bf199e1b8470b7659a80f67ce4b3d60",
+          "size": 114494,
+          "pe": null
+        },
+        {
+          "path": "usr/share/man/man1/lessecho.1",
+          "sha256": "ff05761b5d18d9cc1238bd6a277372463b2c003808f8b3e99bb6a24787ce0dc5",
+          "size": 2135,
+          "pe": null
+        },
+        {
+          "path": "usr/share/man/man1/lesskey.1",
+          "sha256": "729b737071fc8b464e664f158099452c2642f41e7f3c5d9d5fb488b54a146da8",
+          "size": 14628,
+          "pe": null
+        }
+      ],
+      "nativeImports": [
+        {
+          "consumer": "usr/bin/less.exe",
+          "import": "msys-2.0.dll"
+        },
+        {
+          "consumer": "usr/bin/less.exe",
+          "import": "msys-ncursesw6.dll"
+        },
+        {
+          "consumer": "usr/bin/less.exe",
+          "import": "msys-pcre2-8-0.dll"
+        },
+        {
+          "consumer": "usr/bin/lesskey.exe",
+          "import": "msys-2.0.dll"
+        },
+        {
+          "consumer": "usr/libexec/lessecho.exe",
+          "import": "msys-2.0.dll"
+        }
+      ],
+      "unresolvedNativeImports": []
+    }
+  ],
+  "duplicateOwnership": [],
+  "packageFailures": [],
+  "admittedPackageCandidates": [
+    "less"
+  ],
+  "extraControls": {
+    "sourceArchiveMatches": true,
+    "recipeMatches": true,
+    "strict": {
+      "tests": 18,
+      "steps": 2245,
+      "errors": 0,
+      "created": 169,
+      "observed": 169,
+      "parent_raw_exit": 0,
+      "high_exits": 0,
+      "test_only_instrumentation": true,
+      "shipped_LESSTEST": false,
+      "supported_layout": "One coherent check-runtime/usr/bin MSYS installation; original executable and DLL bytes. No claim of arbitrary cross-install fork/exec support.",
+      "earlier_split_layout_failure_preserved": true,
+      "first_fault_diagnostic_not_waiver": [
+        {
+          "process_identity": "28884@134336102300296961",
+          "exception": {
+            "address": 140713921200572,
+            "code": 3221225477,
+            "first_chance": true,
+            "flags": 0,
+            "parameters": [
+              0,
+              140713949231224
+            ]
+          },
+          "module": {
+            "base": 140713921085440,
+            "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+            "path": "\\\\?\\C:\\ap17-accd-less01\\debug-tools\\split-runtime\\child\\msys-2.0.dll"
+          },
+          "runtime_rva": "0x1c1bc",
+          "raw_process_exit": 3221225477
+        }
+      ]
+    },
+    "functional": {
+      "before_and_after_real_move": true,
+      "old_root_absent": true,
+      "text_assertions_each": 8,
+      "large_file_assertions_each": 4,
+      "large_file_bytes": 4294969239,
+      "off_t_bytes": 8,
+      "positive_control_before_and_after": true,
+      "features": [
+        "PCRE2 numeric regex search/repeat",
+        "Unicode rendering/search",
+        "page/home/end navigation",
+        "quit",
+        ">4GiB head/end seeks"
+      ],
+      "terminfo": "Ordinary compiled default lookup; no TERMINFO or TERMINFO_DIRS override",
+      "PATH": "Only the actual moved private usr/bin and Windows System32",
+      "shipped_helpers": [
+        "less-version",
+        "lesskey-version",
+        "lessecho-numeric-quotes",
+        "lesskey-real-output",
+        "less-exact-file-read"
+      ]
+    },
+    "staticClosure": {
+      "package_pes": 3,
+      "private_dlls": 3,
+      "iat_unsatisfied": 0,
+      "import_descriptors": 14,
+      "windows_dlls": 2,
+      "delay_import_descriptors": 0
+    },
+    "expectedMetadata": true,
+    "expectedExactPayloads": true,
+    "evidenceReferences": {
+      "count": 339,
+      "matched": 339,
+      "mismatches": []
+    }
+  }
+}

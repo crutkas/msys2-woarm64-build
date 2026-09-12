@@ -1,0 +1,490 @@
+{
+  "status": "fresh-retained-PCRE2-API-JIT-Unicode-POSIX-passed",
+  "prefix": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b",
+  "runs": [
+    {
+      "width": 8,
+      "case": "unicode-properties",
+      "engine": "interpreter",
+      "return": 1,
+      "offsets": [
+        0,
+        5
+      ],
+      "expected": [
+        0,
+        5
+      ],
+      "passed": true
+    },
+    {
+      "width": 8,
+      "case": "unicode-properties",
+      "engine": "direct-jit",
+      "return": 1,
+      "offsets": [
+        0,
+        5
+      ],
+      "expected": [
+        0,
+        5
+      ],
+      "passed": true
+    },
+    {
+      "width": 8,
+      "case": "unicode-properties-nonmatch",
+      "return": -1,
+      "expected": -1,
+      "passed": true
+    },
+    {
+      "width": 8,
+      "case": "lookahead",
+      "engine": "interpreter",
+      "return": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "width": 8,
+      "case": "lookahead",
+      "engine": "direct-jit",
+      "return": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "width": 8,
+      "case": "lookahead-nonmatch",
+      "return": -1,
+      "expected": -1,
+      "passed": true
+    },
+    {
+      "width": 8,
+      "case": "invalid-pattern",
+      "null_code": true,
+      "error": 114,
+      "error_offset": 1,
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "unicode-properties",
+      "engine": "interpreter",
+      "return": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "expected": [
+        0,
+        4
+      ],
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "unicode-properties",
+      "engine": "direct-jit",
+      "return": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "expected": [
+        0,
+        4
+      ],
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "unicode-properties-nonmatch",
+      "return": -1,
+      "expected": -1,
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "lookahead",
+      "engine": "interpreter",
+      "return": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "lookahead",
+      "engine": "direct-jit",
+      "return": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "lookahead-nonmatch",
+      "return": -1,
+      "expected": -1,
+      "passed": true
+    },
+    {
+      "width": 16,
+      "case": "invalid-pattern",
+      "null_code": true,
+      "error": 114,
+      "error_offset": 1,
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "unicode-properties",
+      "engine": "interpreter",
+      "return": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "expected": [
+        0,
+        4
+      ],
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "unicode-properties",
+      "engine": "direct-jit",
+      "return": 1,
+      "offsets": [
+        0,
+        4
+      ],
+      "expected": [
+        0,
+        4
+      ],
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "unicode-properties-nonmatch",
+      "return": -1,
+      "expected": -1,
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "lookahead",
+      "engine": "interpreter",
+      "return": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "lookahead",
+      "engine": "direct-jit",
+      "return": 1,
+      "offsets": [
+        0,
+        1
+      ],
+      "expected": [
+        0,
+        1
+      ],
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "lookahead-nonmatch",
+      "return": -1,
+      "expected": -1,
+      "passed": true
+    },
+    {
+      "width": 32,
+      "case": "invalid-pattern",
+      "null_code": true,
+      "error": 114,
+      "error_offset": 1,
+      "passed": true
+    }
+  ],
+  "scope": "Fresh retained63ca DLL API/JIT/Unicode qualification; not a source rebuild or inherited10.48-3 proof",
+  "libraries": [
+    {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-8.dll",
+      "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff",
+      "features": {
+        "jit": 1,
+        "unicode": 1,
+        "compiled_widths": 7
+      }
+    },
+    {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-16.dll",
+      "sha256": "0eb16103b86387d8eedbf39dee8d52c3bc5a6e21e5a95bec864acf913e2d2cec",
+      "features": {
+        "jit": 1,
+        "unicode": 1,
+        "compiled_widths": 7
+      }
+    },
+    {
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-32.dll",
+      "sha256": "482daf556866ceea196906e77f3c18f04890bec8f38aed14d7129218aef86f9e",
+      "features": {
+        "jit": 1,
+        "unicode": 1,
+        "compiled_widths": 7
+      }
+    }
+  ],
+  "posix": {
+    "return": 0,
+    "offsets": [
+      [
+        0,
+        10
+      ],
+      [
+        0,
+        6
+      ],
+      [
+        7,
+        10
+      ]
+    ],
+    "no_match": 17,
+    "expected_nonmatch": 17,
+    "structure_size": 48,
+    "passed": true
+  },
+  "modules": [
+    {
+      "name": "python.exe",
+      "path": "C:\\Program Files\\Python314-arm64\\python.exe",
+      "sha256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29"
+    },
+    {
+      "name": "ntdll.dll",
+      "path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+      "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+    },
+    {
+      "name": "KERNEL32.DLL",
+      "path": "C:\\Windows\\System32\\KERNEL32.DLL",
+      "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+    },
+    {
+      "name": "KERNELBASE.dll",
+      "path": "C:\\Windows\\System32\\KERNELBASE.dll",
+      "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+    },
+    {
+      "name": "ucrtbase.dll",
+      "path": "C:\\Windows\\System32\\ucrtbase.dll",
+      "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+    },
+    {
+      "name": "python314.dll",
+      "path": "C:\\Program Files\\Python314-arm64\\python314.dll",
+      "sha256": "f955b33bb661483b9c3348c76702f0efdaa08cb8d92bf4d36fb905b0284e6b72"
+    },
+    {
+      "name": "VCRUNTIME140.dll",
+      "path": "C:\\Program Files\\Python314-arm64\\VCRUNTIME140.dll",
+      "sha256": "560cd0ab1ec81b8b2197b119e198453a9c23d2f9e846f15c79a26bf5d75b68c4"
+    },
+    {
+      "name": "WS2_32.dll",
+      "path": "C:\\Windows\\System32\\WS2_32.dll",
+      "sha256": "67ebbfc3a456a5623e649e1dcb26deba2b58fa0e5e8cb09aa1e03ab7355a7a49"
+    },
+    {
+      "name": "RPCRT4.dll",
+      "path": "C:\\Windows\\System32\\RPCRT4.dll",
+      "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+    },
+    {
+      "name": "VERSION.dll",
+      "path": "C:\\Windows\\SYSTEM32\\VERSION.dll",
+      "sha256": "c89d4b66ac2a6a48db72ff00673ec519dbc9c137e49285a5e83c87d70836abef"
+    },
+    {
+      "name": "bcrypt.dll",
+      "path": "C:\\Windows\\System32\\bcrypt.dll",
+      "sha256": "e08ecfb7d6b5e6997c5054a07b81c54d37a6855b723fcba460c422130a928592"
+    },
+    {
+      "name": "sechost.dll",
+      "path": "C:\\Windows\\System32\\sechost.dll",
+      "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+    },
+    {
+      "name": "msvcrt.dll",
+      "path": "C:\\Windows\\System32\\msvcrt.dll",
+      "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+    },
+    {
+      "name": "ADVAPI32.dll",
+      "path": "C:\\Windows\\System32\\ADVAPI32.dll",
+      "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+    },
+    {
+      "name": "bcryptprimitives.dll",
+      "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+      "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+    },
+    {
+      "name": "python3.DLL",
+      "path": "C:\\Program Files\\Python314-arm64\\python3.DLL",
+      "sha256": "c468bc8f46b046e693d2ae24fd24308825fd22480b534787e861babe0c8727ef"
+    },
+    {
+      "name": "_ctypes.pyd",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_ctypes.pyd",
+      "sha256": "e3847709f47193d5078ff4065b95f6f965e541153409372850a9209179f0de87"
+    },
+    {
+      "name": "ole32.dll",
+      "path": "C:\\Windows\\System32\\ole32.dll",
+      "sha256": "b7034c17619f8b706f57b6392bf02c75bbfa4f3b84d49c5d5addf1591132f320"
+    },
+    {
+      "name": "libffi-8.dll",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\libffi-8.dll",
+      "sha256": "e58c4277555a8637bff3aaec251aee433ecb1b8f0795f5e8c76408daeec12ac3"
+    },
+    {
+      "name": "msvcp_win.dll",
+      "path": "C:\\Windows\\System32\\msvcp_win.dll",
+      "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4"
+    },
+    {
+      "name": "GDI32.dll",
+      "path": "C:\\Windows\\System32\\GDI32.dll",
+      "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc"
+    },
+    {
+      "name": "win32u.dll",
+      "path": "C:\\Windows\\System32\\win32u.dll",
+      "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335"
+    },
+    {
+      "name": "gdi32full.dll",
+      "path": "C:\\Windows\\System32\\gdi32full.dll",
+      "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb"
+    },
+    {
+      "name": "USER32.dll",
+      "path": "C:\\Windows\\System32\\USER32.dll",
+      "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383"
+    },
+    {
+      "name": "combase.dll",
+      "path": "C:\\Windows\\System32\\combase.dll",
+      "sha256": "caf3fc442da8057cf1bea166654a8254058252c8f20e472f5d23b6d69262736e"
+    },
+    {
+      "name": "OLEAUT32.dll",
+      "path": "C:\\Windows\\System32\\OLEAUT32.dll",
+      "sha256": "7ddf2f8b1661daf1cd3b9a3d4e98589d25514f6d67c2efc833890cb7f391fd6b"
+    },
+    {
+      "name": "IMM32.DLL",
+      "path": "C:\\Windows\\System32\\IMM32.DLL",
+      "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33"
+    },
+    {
+      "name": "_hashlib.pyd",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_hashlib.pyd",
+      "sha256": "70d2b430b851d88284d23ef17f43ec403216f645a73b4630e16331a9daa175ce"
+    },
+    {
+      "name": "libcrypto-3-arm64.dll",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\libcrypto-3-arm64.dll",
+      "sha256": "c85465829f48d73dacfd5dcd67a0f6a7f4ef4712b2389f6990a11ca7f5a57def"
+    },
+    {
+      "name": "CRYPT32.dll",
+      "path": "C:\\Windows\\SYSTEM32\\CRYPT32.dll",
+      "sha256": "9bbf4ff3065dd0a9acd6a665542381da5bb8f831e367338b6eafbd7712621535"
+    },
+    {
+      "name": "_bz2.pyd",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_bz2.pyd",
+      "sha256": "31f0475dd459fff8f838810e87719954d26950feaedd1b212688cc705eeec0db"
+    },
+    {
+      "name": "_lzma.pyd",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_lzma.pyd",
+      "sha256": "72cf3461112fe7f81af7c39f6637b35171012e058a1aca9eb590a0657f207c60"
+    },
+    {
+      "name": "_zstd.pyd",
+      "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_zstd.pyd",
+      "sha256": "c96afd03a06bd0e93cc25a6aed143021533a532fb162419464ef1116bfadd210"
+    },
+    {
+      "name": "libpcre2-8.dll",
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-8.dll",
+      "sha256": "631cd65ed9d1a33938e6cdb63dd3c2e866d1d9b2dc81c4cdfd813ccbf50c1bff"
+    },
+    {
+      "name": "libpcre2-16.dll",
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-16.dll",
+      "sha256": "0eb16103b86387d8eedbf39dee8d52c3bc5a6e21e5a95bec864acf913e2d2cec"
+    },
+    {
+      "name": "libpcre2-32.dll",
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-32.dll",
+      "sha256": "482daf556866ceea196906e77f3c18f04890bec8f38aed14d7129218aef86f9e"
+    },
+    {
+      "name": "libpcre2-posix.dll",
+      "path": "C:\\ap11-accd-pcre2-mvp01\\qualification-moved-b\\bin\\libpcre2-posix.dll",
+      "sha256": "448a3517ce5d287cae1ea7501ea0697d5c068b018e6f33edbf1ad1859f47850a"
+    }
+  ]
+}

@@ -1,0 +1,23 @@
+# Native PCRE2 recipe for Git
+
+The full native MinGW ARM64 PCRE2 leaf uses `mingw-w64-pcre2` at
+[`msys2/MINGW-packages@fbb9173f78adaea078046ea53e35cee47e7a5527`](https://github.com/msys2/MINGW-packages/tree/fbb9173f78adaea078046ea53e35cee47e7a5527/mingw-w64-pcre2)
+(PCRE2 10.48-3). From this repository's root, prepare an isolated recipe with:
+
+```powershell
+.\.github\scripts\prepare-pcre2-recipe.ps1 `
+  -UpstreamDirectory C:\sources\MINGW-packages\mingw-w64-pcre2 `
+  -OutputDirectory C:\private-build\pcre2-recipe
+```
+
+The output directory must not already exist. The helper verifies both pinned recipe
+inputs before copying them, adds `mingwarm64`, and makes failures in either the
+static or shared upstream `make check` fatal. It preserves JIT, Unicode, all three
+code-unit widths, compressed-input support, editline, licenses, source checksums,
+and the upstream signing-key requirement.
+
+This only prepares the recipe. Build it with the qualified native package adapter,
+an isolated bootstrap, actual native bzip2/wineditline/zlib providers, source signature
+verification, and checks explicitly enabled. The generic `build-package.sh` defaults
+to skipping checks and signatures and is not suitable for admitting this package.
+Package creation alone does not establish native runtime or DLL-closure acceptance.

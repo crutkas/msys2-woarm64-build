@@ -1,0 +1,200 @@
+diff --git a/RunGrepTest b/RunGrepTest
+index eaed73f..6b02a56 100644
+--- a/RunGrepTest
++++ b/RunGrepTest
+@@ -605,7 +605,7 @@ echo "---------------------------- Test 109 -----------------------------" >>tes
+ echo "RC=$?" >>testtrygrep
+ 
+ echo "---------------------------- Test 110 -----------------------------" >>testtrygrep
+-(cd $srcdir; $valgrind $vjs $pcre2grep --om-separator / -Mo0 -o1 -o2 'match (\d+):\n (.)\n' testdata/grepinput) >>testtrygrep
++(cd $srcdir; MSYS2_ARG_CONV_EXCL=/ $valgrind $vjs $pcre2grep --om-separator / -Mo0 -o1 -o2 'match (\d+):\n (.)\n' testdata/grepinput) >>testtrygrep
+ echo "RC=$?" >>testtrygrep
+ 
+ echo "---------------------------- Test 111 -----------------------------" >>testtrygrep
+@@ -774,7 +774,7 @@ echo "---------------------------- Test 140 -----------------------------" >>tes
+ echo "RC=$?" >>testtrygrep
+ 
+ echo "---------------------------- Test 141 -----------------------------" >>testtrygrep
+-printf "%s/testdata/grepinputv\n-\n" "$srcdir" >testtemp1grep
++printf "%s/testdata/grepinputv\n-\n" "$(cygpath -am "$srcdir")" >testtemp1grep
+ printf 'This is a line from stdin.' >testtemp2grep
+ $valgrind $vjs $pcre2grep --file-list testtemp1grep "line from stdin" <testtemp2grep >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+@@ -791,7 +791,7 @@ $valgrind $vjs $pcre2grep -f - $srcdir/testdata/grepinputv <testtemp1grep >>test
+ echo "RC=$?" >>testtrygrep
+ 
+ echo "---------------------------- Test 144 -----------------------------" >>testtrygrep
+-$valgrind $vjs $pcre2grep -f /non/exist $srcdir/testdata/grepinputv >>testtrygrep 2>&1
++MSYS2_ARG_CONV_EXCL=/non $valgrind $vjs $pcre2grep -f /non/exist $srcdir/testdata/grepinputv >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+ 
+ echo "---------------------------- Test 145 -----------------------------" >>testtrygrep
+@@ -844,11 +844,11 @@ $valgrind $vjs $pcre2grep --buffer-size=0 >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+ $valgrind $vjs $pcre2grep --exclude '(badpat' abc /dev/null >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+-$valgrind $vjs $pcre2grep --exclude-from /non/exist abc /dev/null >>testtrygrep 2>&1
++MSYS2_ARG_CONV_EXCL=/non $valgrind $vjs $pcre2grep --exclude-from /non/exist abc /dev/null >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+-$valgrind $vjs $pcre2grep --include-from /non/exist abc /dev/null >>testtrygrep 2>&1
++MSYS2_ARG_CONV_EXCL=/non $valgrind $vjs $pcre2grep --include-from /non/exist abc /dev/null >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+-$valgrind $vjs $pcre2grep --file-list=/non/exist abc /dev/null >>testtrygrep 2>&1
++MSYS2_ARG_CONV_EXCL=/non $valgrind $vjs $pcre2grep --file-list /non/exist abc /dev/null >>testtrygrep 2>&1
+ echo "RC=$?" >>testtrygrep
+ 
+ echo "---------------------------- Test 149 -----------------------------" >>testtrygrep
+@@ -1266,16 +1266,16 @@ fi
+ if $valgrind $vjs $pcre2grep --help | $valgrind $vjs $pcre2grep -q 'callout scripts in patterns are supported'; then
+   echo "Testing pcre2grep script callouts"
+   echo "--- Test 1 ---" >testtrygrep
+-  $valgrind $vjs $pcre2grep '(T)(..(.))(?C"/bin/echo|Arg1: [$1] [$2] [$3]|Arg2: $|${1}$| ($4) ($14) ($0)")()' $srcdir/testdata/grepinputv >>testtrygrep
++  $valgrind $vjs $pcre2grep '(T)(..(.))(?C"echo|Arg1: [$1] [$2] [$3]|Arg2: $|${1}$| ($4) ($14) ($0)")()' $srcdir/testdata/grepinputv >>testtrygrep
+   echo "RC=$?" >>testtrygrep
+   echo "--- Test 2 ---" >>testtrygrep
+-  $valgrind $vjs $pcre2grep '(T)(..(.))()()()()()()()(..)(?C"/bin/echo|Arg1: [$11] [${11}]")' $srcdir/testdata/grepinputv >>testtrygrep
++  $valgrind $vjs $pcre2grep '(T)(..(.))()()()()()()()(..)(?C"echo|Arg1: [$11] [${11}]")' $srcdir/testdata/grepinputv >>testtrygrep
+   echo "RC=$?" >>testtrygrep
+   echo "--- Test 3 ---" >>testtrygrep
+   $valgrind $vjs $pcre2grep '(T)(?C"|$0:$1$n")' $srcdir/testdata/grepinputv >>testtrygrep
+   echo "RC=$?" >>testtrygrep
+   echo "--- Test 4 ---" >>testtrygrep
+-  $valgrind $vjs $pcre2grep '(T)(?C"/bin/echo|$0:$1$n")' $srcdir/testdata/grepinputv >>testtrygrep
++  $valgrind $vjs $pcre2grep '(T)(?C"echo|-e|$0:$1\n")' $srcdir/testdata/grepinputv >>testtrygrep
+   echo "RC=$?" >>testtrygrep
+   echo "--- Test 5 ---" >>testtrygrep
+   $valgrind $vjs $pcre2grep '(T)(?C"|$1$n")(*F)' $srcdir/testdata/grepinputv >>testtrygrep
+@@ -1301,7 +1301,7 @@ if $valgrind $vjs $pcre2grep --help | $valgrind $vjs $pcre2grep -q 'callout scri
+     $valgrind $vjs $pcre2grep -u '(T)(?C"|$0:$x{a6}$n")' $srcdir/testdata/grepinputv >>testtrygrep
+     echo "RC=$?" >>testtrygrep
+     echo "--- Test 2 ---" >>testtrygrep
+-    $valgrind $vjs $pcre2grep -u '(T)(?C"/bin/echo|$0:$x{a6}$n")' $srcdir/testdata/grepinputv >>testtrygrep
++    $valgrind $vjs $pcre2grep -u '(T)(?C"echo|-e|$0:$x{a6}\n")' $srcdir/testdata/grepinputv >>testtrygrep
+     echo "RC=$?" >>testtrygrep
+ 
+     if [ $nonfork = 1 ] ; then
+diff --git a/RunTest b/RunTest
+index 306427b..9135c17 100644
+--- a/RunTest
++++ b/RunTest
+@@ -135,6 +135,7 @@ fi
+ cf="diff"
+ gdiff /dev/null /dev/null 2>/dev/null && cf="gdiff"
+ $cf -u /dev/null /dev/null 2>/dev/null && cf="$cf -u"
++cf="$cf --strip-trailing-cr"
+ 
+ # Find the test data
+ 
+@@ -592,86 +593,37 @@ for bmode in "$test8" "$test16" "$test32"; do
+     done
+   fi
+ 
+-  # Locale-specific tests, provided that either the "fr_FR", "fr_CA", "french"
+-  # or "fr" locale is available. The first two are Unix-like standards; the
+-  # last two are for Windows. Unfortunately, different versions of the French
+-  # locale give different outputs for some items. This test passes if the
+-  # output matches any one of the alternative output files.
++  # Use the unchanged native Windows fixtures selected by RunTest.bat, not
++  # the POSIX locales reported by the foreign MSYS test driver.
+ 
+   if [ $do3 = yes ] ; then
+-    locale=
+-
+-    # In some environments locales that are listed by the "locale -a"
+-    # command do not seem to work with setlocale(). Therefore, we do
+-    # a preliminary test to see if pcre2test can set one before going
+-    # on to use it.
+-
+-    for loc in 'fr_FR' 'french' 'fr' 'fr_CA'; do
+-      locale -a | grep "^$loc\$" >/dev/null
+-      if [ $? -eq 0 ] ; then
+-        echo "/a/locale=$loc" | \
+-          $sim $valgrind $pcre2test -q $bmode | \
+-            grep "Failed to set locale" >/dev/null
+-        if [ $? -ne 0 ] ; then
+-          locale=$loc
+-          if [ "$locale" = "fr_FR" ] ; then
+-            infile=$testdata/testinput3
+-            outfile=$testdata/testoutput3
+-            outfile2=$testdata/testoutput3A
+-            outfile3=$testdata/testoutput3B
+-            outfile4=$testdata/testoutput3C
+-          else
+-            infile=test3input
+-            outfile=test3output
+-            outfile2=test3outputA
+-            outfile3=test3outputB
+-            outfile4=test3outputC
+-            sed "s/fr_FR/$loc/" $testdata/testinput3 >test3input
+-            sed "s/fr_FR/$loc/" $testdata/testoutput3 >test3output
+-            sed "s/fr_FR/$loc/" $testdata/testoutput3A >test3outputA
+-            sed "s/fr_FR/$loc/" $testdata/testoutput3B >test3outputB
+-            sed "s/fr_FR/$loc/" $testdata/testoutput3C >test3outputC
+-          fi
+-          break
+-        fi
+-      fi
+-    done
+-
+-    if [ "$locale" != "" ] ; then
+-      echo $title3 "(using '$locale' locale)"
+-      for opt in "" $jitopt; do
+-        $sim $valgrind ${opt:+$vjs} $pcre2test $globalopts $bmode $opt $infile testoutput$bits/testoutput3
+-        if [ $? = 0 ] ; then
+-          case "$opt" in
+-            -jit) with=" with JIT";;
+-            *)    with="";;
+-          esac
+-          if $cf $outfile testoutput$bits/testoutput3 >teststdout || \
+-             $cf $outfile2 testoutput$bits/testoutput3 >>teststdout || \
+-             $cf $outfile3 testoutput$bits/testoutput3 >>teststdout || \
+-             $cf $outfile4 testoutput$bits/testoutput3 >>teststdout
+-          then
+-            echo "  OK$with"
+-          else
+-            cat teststdout
+-            echo ""
+-            echo "** Locale test did not run successfully$with. The output did not match"
+-            echo "   $outfile, $outfile2, $outfile3 or $outfile4."
+-            echo "   This may mean that there is a problem with the locale settings rather"
+-            echo "   than a bug in PCRE2."
+-            yield=1
+-          fi
++    infile=$testdata/wintestinput3
++    outfile=$testdata/wintestoutput3
++    if [ ! -r "$infile" -o ! -r "$outfile" ] ; then
++      echo "** The original Windows locale fixtures are required."
++      exit 1
++    fi
++    echo $title3 "(using 'french' locale and upstream Windows fixtures)"
++    for opt in "" $jitopt; do
++      $sim $valgrind ${opt:+$vjs} $pcre2test $globalopts $bmode $opt $infile testoutput$bits/testoutput3
++      if [ $? = 0 ] ; then
++        case "$opt" in
++          -jit) with=" with JIT";;
++          *)    with="";;
++        esac
++        if $cf $outfile testoutput$bits/testoutput3 >teststdout
++        then
++          echo "  OK$with"
+         else
+-          echo "** pcre2test failed - check testoutput$bits/testoutput3"
++          cat teststdout
++          echo "** Windows locale test failed$with against the unchanged upstream oracle."
+           yield=1
+         fi
+-      done
+-    else
+-      echo "Cannot test locale-specific features - none of the 'fr_FR', 'fr_CA',"
+-      echo "'fr' or 'french' locales can be set, or the \"locale\" command is"
+-      echo "not available to check for them."
+-      echo " "
+-    fi
++      else
++        echo "** pcre2test failed - check testoutput$bits/testoutput3"
++        yield=1
++      fi
++    done
+   fi
+ 
+   # Tests for UTF and Unicode property support

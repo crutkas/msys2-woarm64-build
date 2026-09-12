@@ -1,0 +1,35 @@
+{
+  "Status": "observed-expected-exit",
+  "Name": "nls-public-api-default-diagnostic",
+  "Executable": "C:\\Program Files\\Python314-arm64\\python.exe",
+  "ExecutableSHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+  "Arguments": [
+    "-I",
+    "-c",
+    "import ctypes, json, os\nlib=ctypes.CDLL(r\"C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\libintl-8.dll\")\nlib.libintl_setlocale.argtypes=[ctypes.c_int,ctypes.c_char_p]; lib.libintl_setlocale.restype=ctypes.c_char_p\nlib.libintl_bindtextdomain.argtypes=[ctypes.c_char_p,ctypes.c_char_p]; lib.libintl_bindtextdomain.restype=ctypes.c_char_p\nlib.libintl_dgettext.argtypes=[ctypes.c_char_p,ctypes.c_char_p]; lib.libintl_dgettext.restype=ctypes.c_char_p\nr={\"LANGUAGE\":os.environ.get(\"LANGUAGE\"),\"LC_ALL\":os.environ.get(\"LC_ALL\"),\"setlocale_empty\":repr(lib.libintl_setlocale(0,b\"\")),\"domain_query\":repr(lib.libintl_bindtextdomain(b\"gettext-runtime\",None)),\"translation\":repr(lib.libintl_dgettext(b\"gettext-runtime\",b\"too many arguments\"))}\nprint(json.dumps(r),flush=True)"
+  ],
+  "Environment": {
+    "HOME": "C:\\ap11-accd-gettext01\\home",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "TEMP": "C:\\ap11-accd-gettext01\\tmp",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\home",
+    "LANGUAGE": "fr",
+    "LANG": "fr_FR.UTF-8",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD",
+    "LC_ALL": "fr_FR.UTF-8",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin;C:\\Windows\\System32",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "TMP": "C:\\ap11-accd-gettext01\\tmp",
+    "GIT_TERMINAL_PROMPT": "0",
+    "SystemRoot": "C:\\Windows",
+    "WINDIR": "C:\\Windows"
+  },
+  "WorkingDirectory": "C:\\ap11-accd-gettext01",
+  "PID": 19796,
+  "RawExit": 0,
+  "ExpectedExit": 0,
+  "StartedAt": "2026-09-11T03:35:00.7792079Z",
+  "Stdout": "C:\\ap11-accd-gettext01\\evidence\\nls-public-api-default-diagnostic.stdout.log",
+  "Stderr": "C:\\ap11-accd-gettext01\\evidence\\nls-public-api-default-diagnostic.stderr.log",
+  "CompletedAt": "2026-09-11T03:35:01.0863792Z"
+}

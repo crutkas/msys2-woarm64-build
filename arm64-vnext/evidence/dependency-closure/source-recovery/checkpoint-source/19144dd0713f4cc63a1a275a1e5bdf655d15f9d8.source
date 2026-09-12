@@ -1,0 +1,49 @@
+"""Prepare real text and sparse files for bounded native less interaction."""
+import argparse
+import ctypes as c
+from ctypes import wintypes as w
+import hashlib
+import json
+import msvcrt
+from pathlib import Path
+import shutil
+
+
+parser = argparse.ArgumentParser()
+parser.add_argument("output", type=Path)
+args = parser.parse_args()
+if args.output.exists():
+    raise RuntimeError("Fixture output must be new")
+if shutil.disk_usage(args.output.parent).free < 8 * 1024 ** 3:
+    raise RuntimeError("At least 8 GiB free space is required")
+args.output.mkdir()
+lines = ["FIRST_LINE\n"]
+for index in range(2, 160):
+    if index in (50, 100):
+        lines.append(f"NEEDLE_{index:03d}\n")
+    elif index == 120:
+        lines.append("UNICODE_TARGET caf\u00e9 \u03bb \u4e2d\n")
+    else:
+        lines.append(f"LINE_{index:03d} native pager content\n")
+lines.append("LAST_LINE\n")
+text = args.output / "real text with spaces.txt"
+text.write_bytes("".join(lines).encode("utf-8"))
+large = args.output / "large sparse file.bin"
+kernel = c.WinDLL("kernel32", use_last_error=True)
+kernel.DeviceIoControl.argtypes = [w.HANDLE, w.DWORD, c.c_void_p, w.DWORD,
+                                  c.c_void_p, w.DWORD, c.POINTER(w.DWORD), c.c_void_p]
+kernel.DeviceIoControl.restype = w.BOOL
+with large.open("w+b") as stream:
+    returned = w.DWORD()
+    if not kernel.DeviceIoControl(msvcrt.get_osfhandle(stream.fileno()), 0x900C4,
+                                  None, 0, None, 0, c.byref(returned), None):
+        raise c.WinError(c.get_last_error())
+    stream.write(b"LARGE_FILE_BEGIN\n")
+    stream.seek(4 * 1024 ** 3 + 1024)
+    stream.write(b"\nLARGE_FILE_END_4G\n")
+result = {"text": str(text), "text_sha256": hashlib.sha256(text.read_bytes()).hexdigest(),
+          "lines": len(lines), "large": str(large), "large_size": large.stat().st_size,
+          "large_sparse": True, "large_tail_offset": 4 * 1024 ** 3 + 1024,
+          "scope": "Real file offsets and real bytes; not a mocked file API"}
+(args.output / "fixtures.json").write_text(json.dumps(result, indent=2) + "\n")
+print(json.dumps(result))

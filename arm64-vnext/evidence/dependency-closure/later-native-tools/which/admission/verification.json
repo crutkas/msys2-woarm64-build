@@ -1,0 +1,75 @@
+{
+  "binary": {
+    "imports": [
+      "KERNEL32.dll",
+      "msys-2.0.dll"
+    ],
+    "machine": "0xaa64",
+    "managed": false,
+    "path": "usr/bin/which.exe",
+    "sha256": "87bc4ca5b81c912586f1280a3499011ec3db51da88eab3c92b95a2c78b783d02"
+  },
+  "dependency_disposition": {
+    "declared": [
+      "sh"
+    ],
+    "full_release_dependency_satisfied": false,
+    "runtime907_sh_provider_admitted": false
+  },
+  "evidence": {
+    "functional": {
+      "before02": {
+        "all_passed": true,
+        "cases": 15,
+        "created_processes": 16,
+        "observed_processes": 16,
+        "parent_raw_exit": 0,
+        "unrelayed_high_exits": 0
+      },
+      "moved01": {
+        "all_passed": true,
+        "cases": 15,
+        "created_processes": 16,
+        "observed_processes": 16,
+        "parent_raw_exit": 0,
+        "unrelayed_high_exits": 0
+      }
+    },
+    "moved_root_old_absent_recorded": true,
+    "operational_private_path_hits": 0,
+    "upstream_documentation_path_examples": 2,
+    "verified_references": 174
+  },
+  "limitations": [
+    "The package is runtime-907 scoped and does not claim d70 compatibility.",
+    "The preserved sh dependency remains unsatisfied by an admitted runtime-907 shell provider.",
+    "The upstream make check command returned raw 0 but registered no test cases; no suite count is invented.",
+    "No reproducibility rebuild or full-release admission is claimed."
+  ],
+  "package": {
+    "architecture": "aarch64",
+    "mtree_validated_by_assembler": true,
+    "name": "which",
+    "path": "C:\\ap11-native-provider-intake\\native-msys-which-runtime907-admitted-v1\\packages\\which-2.25-1-aarch64.pkg.tar.zst",
+    "payload_files": 4,
+    "sha256": "89b61c779aa6c883d4a55645c19687f1e8c9113c7eabe365d6d54930029eb2bc",
+    "size": 25585,
+    "version": "2.25-1"
+  },
+  "runtime": {
+    "cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "d70_compatibility_claimed": false
+  },
+  "schema": 1,
+  "source": {
+    "export": {
+      "path": "C:\\ap18-accd-tools01\\which\\delivery-01\\export.json",
+      "sha256": "a74bf0e6b246e23377c1ae0104822d4df7253bb6ef0c726da56f92bea231de47"
+    },
+    "handoff": {
+      "path": "C:\\ap18-accd-tools01\\which\\delivery-01\\handoff.json",
+      "sha256": "e0cbdbfa5a99a9ccbe82979f16554154095c2a6892375e23bc8067cde1bfcc15"
+    }
+  },
+  "status": "verified"
+}

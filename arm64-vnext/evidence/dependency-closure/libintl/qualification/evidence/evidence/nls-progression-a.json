@@ -1,0 +1,301 @@
+{
+  "status": "measured-mixed-results-not-admitted",
+  "root": "C:\\ap11-accd-gettext01\\projection-a",
+  "scope": "MinGW/UCRT C runtime only, no MSYS load",
+  "locale_environment": {
+    "LANGUAGE": "fr",
+    "LC_ALL": "fr_FR.UTF-8",
+    "LANG": "fr_FR.UTF-8"
+  },
+  "runs": [
+    {
+      "name": "cli-default-french",
+      "command": [
+        "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\gettext.exe",
+        "-d",
+        "gettext-runtime",
+        "-s",
+        "too many arguments"
+      ],
+      "raw_exit": 0,
+      "expected_exit": 0,
+      "stdout": "C:\\ap11-accd-gettext01\\evidence\\nls-progression-a-cli-default-french.stdout",
+      "stderr": "C:\\ap11-accd-gettext01\\evidence\\nls-progression-a-cli-default-french.stderr",
+      "stdout_sha256": "1d0d62aaa351589c67e641bb5f88c5f109fdd4a0038d40bb891e86dc38ab5fac",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_matches": true,
+      "output_matches": false
+    },
+    {
+      "name": "git-french-diagnostic",
+      "command": [
+        "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\git.exe",
+        "-C",
+        "C:\\ap11-accd-gettext01\\projection-a\\intentionally-absent",
+        "status"
+      ],
+      "raw_exit": 128,
+      "expected_exit": 128,
+      "stdout": "C:\\ap11-accd-gettext01\\evidence\\nls-progression-a-git-french-diagnostic.stdout",
+      "stderr": "C:\\ap11-accd-gettext01\\evidence\\nls-progression-a-git-french-diagnostic.stderr",
+      "stdout_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "stderr_sha256": "a5eff8c5e192e33d8a19bd427a95415a225d660e5cc68661a1c33b99d73bc207",
+      "exit_matches": true,
+      "output_matches": null
+    },
+    {
+      "name": "git-version",
+      "command": [
+        "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\git.exe",
+        "--version"
+      ],
+      "raw_exit": 0,
+      "expected_exit": 0,
+      "stdout": "C:\\ap11-accd-gettext01\\evidence\\nls-progression-a-git-version.stdout",
+      "stderr": "C:\\ap11-accd-gettext01\\evidence\\nls-progression-a-git-version.stderr",
+      "stdout_sha256": "72dc60e11b0dfa68bc7b055fc909e74ec8634b2caebfe31538631cefc442c46c",
+      "stderr_sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "exit_matches": true,
+      "output_matches": null
+    }
+  ],
+  "api": {
+    "locale": "fr_FR.UTF-8",
+    "unbound_gettext_directory": "/clangarm64/share/locale",
+    "unbound_libidn2_directory": "/clangarm64/share/locale",
+    "unbound_messages_directory": "/clangarm64/share/locale",
+    "unbound_translation": "too many arguments",
+    "application_binding": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\share\\locale",
+    "application_codeset": "UTF-8",
+    "bound_translation": "trop d'arguments",
+    "expected_translation": "trop d'arguments",
+    "bound_lookup_passed": true,
+    "libidn2_catalog_present": false,
+    "idn2": {
+      "return": 0,
+      "actual": "xn--bcher-kva.example",
+      "expected": "xn--bcher-kva.example",
+      "passed": true,
+      "localized_error_minus_200": "string encoding error"
+    },
+    "live_modules": [
+      {
+        "name": "python.exe",
+        "path": "C:\\Program Files\\Python314-arm64\\python.exe",
+        "sha256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29"
+      },
+      {
+        "name": "ntdll.dll",
+        "path": "C:\\Windows\\SYSTEM32\\ntdll.dll",
+        "sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b"
+      },
+      {
+        "name": "KERNEL32.DLL",
+        "path": "C:\\Windows\\System32\\KERNEL32.DLL",
+        "sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3"
+      },
+      {
+        "name": "KERNELBASE.dll",
+        "path": "C:\\Windows\\System32\\KERNELBASE.dll",
+        "sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011"
+      },
+      {
+        "name": "ucrtbase.dll",
+        "path": "C:\\Windows\\System32\\ucrtbase.dll",
+        "sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f"
+      },
+      {
+        "name": "VCRUNTIME140.dll",
+        "path": "C:\\Program Files\\Python314-arm64\\VCRUNTIME140.dll",
+        "sha256": "560cd0ab1ec81b8b2197b119e198453a9c23d2f9e846f15c79a26bf5d75b68c4"
+      },
+      {
+        "name": "python314.dll",
+        "path": "C:\\Program Files\\Python314-arm64\\python314.dll",
+        "sha256": "f955b33bb661483b9c3348c76702f0efdaa08cb8d92bf4d36fb905b0284e6b72"
+      },
+      {
+        "name": "WS2_32.dll",
+        "path": "C:\\Windows\\System32\\WS2_32.dll",
+        "sha256": "67ebbfc3a456a5623e649e1dcb26deba2b58fa0e5e8cb09aa1e03ab7355a7a49"
+      },
+      {
+        "name": "VERSION.dll",
+        "path": "C:\\Windows\\SYSTEM32\\VERSION.dll",
+        "sha256": "c89d4b66ac2a6a48db72ff00673ec519dbc9c137e49285a5e83c87d70836abef"
+      },
+      {
+        "name": "RPCRT4.dll",
+        "path": "C:\\Windows\\System32\\RPCRT4.dll",
+        "sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff"
+      },
+      {
+        "name": "msvcrt.dll",
+        "path": "C:\\Windows\\System32\\msvcrt.dll",
+        "sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6"
+      },
+      {
+        "name": "bcrypt.dll",
+        "path": "C:\\Windows\\System32\\bcrypt.dll",
+        "sha256": "e08ecfb7d6b5e6997c5054a07b81c54d37a6855b723fcba460c422130a928592"
+      },
+      {
+        "name": "sechost.dll",
+        "path": "C:\\Windows\\System32\\sechost.dll",
+        "sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad"
+      },
+      {
+        "name": "ADVAPI32.dll",
+        "path": "C:\\Windows\\System32\\ADVAPI32.dll",
+        "sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d"
+      },
+      {
+        "name": "bcryptprimitives.dll",
+        "path": "C:\\Windows\\System32\\bcryptprimitives.dll",
+        "sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd"
+      },
+      {
+        "name": "python3.DLL",
+        "path": "C:\\Program Files\\Python314-arm64\\python3.DLL",
+        "sha256": "c468bc8f46b046e693d2ae24fd24308825fd22480b534787e861babe0c8727ef"
+      },
+      {
+        "name": "_ctypes.pyd",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_ctypes.pyd",
+        "sha256": "e3847709f47193d5078ff4065b95f6f965e541153409372850a9209179f0de87"
+      },
+      {
+        "name": "ole32.dll",
+        "path": "C:\\Windows\\System32\\ole32.dll",
+        "sha256": "b7034c17619f8b706f57b6392bf02c75bbfa4f3b84d49c5d5addf1591132f320"
+      },
+      {
+        "name": "msvcp_win.dll",
+        "path": "C:\\Windows\\System32\\msvcp_win.dll",
+        "sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4"
+      },
+      {
+        "name": "libffi-8.dll",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\libffi-8.dll",
+        "sha256": "e58c4277555a8637bff3aaec251aee433ecb1b8f0795f5e8c76408daeec12ac3"
+      },
+      {
+        "name": "GDI32.dll",
+        "path": "C:\\Windows\\System32\\GDI32.dll",
+        "sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc"
+      },
+      {
+        "name": "win32u.dll",
+        "path": "C:\\Windows\\System32\\win32u.dll",
+        "sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335"
+      },
+      {
+        "name": "gdi32full.dll",
+        "path": "C:\\Windows\\System32\\gdi32full.dll",
+        "sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb"
+      },
+      {
+        "name": "USER32.dll",
+        "path": "C:\\Windows\\System32\\USER32.dll",
+        "sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383"
+      },
+      {
+        "name": "combase.dll",
+        "path": "C:\\Windows\\System32\\combase.dll",
+        "sha256": "caf3fc442da8057cf1bea166654a8254058252c8f20e472f5d23b6d69262736e"
+      },
+      {
+        "name": "OLEAUT32.dll",
+        "path": "C:\\Windows\\System32\\OLEAUT32.dll",
+        "sha256": "7ddf2f8b1661daf1cd3b9a3d4e98589d25514f6d67c2efc833890cb7f391fd6b"
+      },
+      {
+        "name": "IMM32.DLL",
+        "path": "C:\\Windows\\System32\\IMM32.DLL",
+        "sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33"
+      },
+      {
+        "name": "_hashlib.pyd",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_hashlib.pyd",
+        "sha256": "70d2b430b851d88284d23ef17f43ec403216f645a73b4630e16331a9daa175ce"
+      },
+      {
+        "name": "libcrypto-3-arm64.dll",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\libcrypto-3-arm64.dll",
+        "sha256": "c85465829f48d73dacfd5dcd67a0f6a7f4ef4712b2389f6990a11ca7f5a57def"
+      },
+      {
+        "name": "CRYPT32.dll",
+        "path": "C:\\Windows\\SYSTEM32\\CRYPT32.dll",
+        "sha256": "9bbf4ff3065dd0a9acd6a665542381da5bb8f831e367338b6eafbd7712621535"
+      },
+      {
+        "name": "_bz2.pyd",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_bz2.pyd",
+        "sha256": "31f0475dd459fff8f838810e87719954d26950feaedd1b212688cc705eeec0db"
+      },
+      {
+        "name": "_lzma.pyd",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_lzma.pyd",
+        "sha256": "72cf3461112fe7f81af7c39f6637b35171012e058a1aca9eb590a0657f207c60"
+      },
+      {
+        "name": "_zstd.pyd",
+        "path": "C:\\Program Files\\Python314-arm64\\DLLs\\_zstd.pyd",
+        "sha256": "c96afd03a06bd0e93cc25a6aed143021533a532fb162419464ef1116bfadd210"
+      },
+      {
+        "name": "kernel.appcore.dll",
+        "path": "C:\\Windows\\SYSTEM32\\kernel.appcore.dll",
+        "sha256": "a9cade2b96cd67250a2bd7ea6b3b84cf2e68d3bc9398c19005227b2b2996cdbc"
+      },
+      {
+        "name": "libintl-8.dll",
+        "path": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\libintl-8.dll",
+        "sha256": "31db0d0e7780cf28dca1309a894cb775b2ab130c4ba777c546a206970ca47320"
+      },
+      {
+        "name": "libiconv-2.dll",
+        "path": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\libiconv-2.dll",
+        "sha256": "5eb3e024adbeb40e990530b64498fa5305b4ebeaa34db971196f92317f70a35d"
+      },
+      {
+        "name": "CRYPTBASE.DLL",
+        "path": "C:\\Windows\\SYSTEM32\\CRYPTBASE.DLL",
+        "sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785"
+      },
+      {
+        "name": "libidn2-0.dll",
+        "path": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\libidn2-0.dll",
+        "sha256": "20a7f146b22d0674cc3d963bdf0b901cde2ac434b55b4b8190aee053f0d561bf"
+      },
+      {
+        "name": "libunistring-5.dll",
+        "path": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\libunistring-5.dll",
+        "sha256": "db9e0e32a203c2279641f943577f676a316cbe3602d401eb0bf73b971f755eab"
+      }
+    ]
+  },
+  "child_environment": {
+    "SystemRoot": "C:\\Windows",
+    "WINDIR": "C:\\Windows",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin;C:\\Windows\\System32",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD",
+    "HOME": "C:\\ap11-accd-gettext01\\evidence\\home",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\evidence\\home",
+    "TEMP": "C:\\ap11-accd-gettext01\\evidence\\tmp",
+    "TMP": "C:\\ap11-accd-gettext01\\evidence\\tmp",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "GIT_CONFIG_GLOBAL": "C:\\ap11-accd-gettext01\\evidence\\empty.gitconfig",
+    "GIT_TERMINAL_PROMPT": "0",
+    "GIT_EXEC_PATH": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\libexec\\git-core",
+    "LANGUAGE": "fr",
+    "LC_ALL": "fr_FR.UTF-8",
+    "LANG": "fr_FR.UTF-8"
+  },
+  "catalog": {
+    "path": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\share\\locale\\fr\\LC_MESSAGES\\gettext-runtime.mo",
+    "sha256": "067a9bcaf632fc285870058753f1fda0ba1607ad9bf11318be96bf6e30f33809"
+  },
+  "default_lookup_passed": false
+}

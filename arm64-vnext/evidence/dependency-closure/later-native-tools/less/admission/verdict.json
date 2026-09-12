@@ -1,0 +1,26 @@
+{
+  "schema": 1,
+  "generatedUtc": "2026-09-11T15:08:36.5023388Z",
+  "decision": "ADMIT_NATIVE_MSYS_LESS704_RUNTIME907_SCOPED",
+  "export": {
+    "path": "export.json",
+    "sha256": "6f426710bdacceb32c31a89d427678c3373068a5df90bf521debbcad556ab809"
+  },
+  "controlsPassed": [
+    "Producer export, handoff, source, recipe, package, and 339/339 evidence references match",
+    "Pacman metadata is coherent: less 704-1 aarch64, ncurses and libpcre2_8 dependencies, GPL-3.0-or-later",
+    "Nine payload files and three metadata members; no duplicate ownership, unsafe paths, or symlink flattening",
+    "Three unmanaged AA64 PEs have exact runtime-907/ncurses/PCRE2 import closure and zero private markers",
+    "Original strict suite 18/18 PASS across 2,245 steps with 169/169 observation and zero high exits",
+    "PTY, Unicode/PCRE2, moved-root, default terminfo, and four >4 GiB assertions before and after move passed",
+    "Fresh independent package readback ran less 704, lesskey 704, and documented numeric lessecho quote handling raw 0"
+  ],
+  "gatesRetained": [
+    "Runtime-907 remains separately nonadmitted as the full-release runtime",
+    "No d70 compatibility claim",
+    "Dynamic shell escape, OSC8, remote-host, and man helpers are not supplied by this package",
+    "The corrected strict suite is valid only in one coherent runtime usr/bin layout; the earlier split-layout failures remain preserved",
+    "The source tag archive is SHA256-pinned and is not claimed as detached-signature verified",
+    "Full release remains incomplete"
+  ]
+}

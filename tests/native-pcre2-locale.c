@@ -1,0 +1,64 @@
+#define PCRE2_CODE_UNIT_WIDTH 8
+#include <pcre2.h>
+#include <ctype.h>
+#include <locale.h>
+#include <stdio.h>
+
+int main(void)
+{
+    static const char *patterns[] = { "^[[:alpha:]]$", "^[[:^alpha:]]$" };
+    const uint8_t *tables;
+    pcre2_compile_context *context;
+    unsigned failures = 0;
+
+    if (setlocale(LC_CTYPE, "french") == NULL) {
+        fputs("Cannot select the Windows French locale\n", stderr);
+        return 2;
+    }
+    tables = pcre2_maketables(NULL);
+    context = pcre2_compile_context_create(NULL);
+    if (tables == NULL || context == NULL) {
+        fputs("Cannot allocate locale tables/context\n", stderr);
+        pcre2_maketables_free(NULL, tables);
+        pcre2_compile_context_free(context);
+        return 2;
+    }
+    if (pcre2_set_character_tables(context, tables) != 0) {
+        fputs("Cannot set locale tables\n", stderr);
+        pcre2_compile_context_free(context);
+        pcre2_maketables_free(NULL, tables);
+        return 2;
+    }
+    for (unsigned negate = 0; negate != 2; ++negate) {
+        int error;
+        PCRE2_SIZE offset;
+        pcre2_code *code = pcre2_compile((PCRE2_SPTR)patterns[negate],
+            PCRE2_ZERO_TERMINATED, 0, &error, &offset, context);
+        pcre2_match_data *match = code ? pcre2_match_data_create_from_pattern(code, NULL) : NULL;
+        if (code == NULL || match == NULL) {
+            fprintf(stderr, "Cannot compile locale regression (error %d)\n", code ? 0 : error);
+            pcre2_match_data_free(match);
+            pcre2_code_free(code);
+            pcre2_compile_context_free(context);
+            pcre2_maketables_free(NULL, tables);
+            return 2;
+        }
+        for (unsigned value = 0; value != 256; ++value) {
+            PCRE2_UCHAR subject = (PCRE2_UCHAR)value;
+            int expected = (isalpha((int)value) != 0) != (negate != 0);
+            int rc = pcre2_match(code, &subject, 1, 0, 0, match, NULL);
+            if ((rc >= 0) != expected || (rc < 0 && rc != PCRE2_ERROR_NOMATCH)) {
+                fprintf(stderr, "byte=%02x negate=%u alpha=%d digit=%d alnum=%d match=%d\n",
+                    value, negate, isalpha((int)value) != 0, isdigit((int)value) != 0,
+                    isalnum((int)value) != 0, rc);
+                ++failures;
+            }
+        }
+        pcre2_match_data_free(match);
+        pcre2_code_free(code);
+    }
+    pcre2_compile_context_free(context);
+    pcre2_maketables_free(NULL, tables);
+    printf("French POSIX alpha: 512 independent CRT comparisons, %u failures\n", failures);
+    return failures ? 1 : 0;
+}

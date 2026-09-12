@@ -1,0 +1,150 @@
+{
+  "binaries": {
+    "usr/bin/d2u.exe": {
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-intl-8.dll"
+      ],
+      "machine": "0xaa64",
+      "managed": false,
+      "sha256": "b6b643d57d3df65eeec12b28b4e8a85e0dcc6b04ae0adcab6d0e88d80ffd3be2"
+    },
+    "usr/bin/dos2unix.exe": {
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-intl-8.dll"
+      ],
+      "machine": "0xaa64",
+      "managed": false,
+      "sha256": "b6b643d57d3df65eeec12b28b4e8a85e0dcc6b04ae0adcab6d0e88d80ffd3be2"
+    },
+    "usr/bin/u2d.exe": {
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-intl-8.dll"
+      ],
+      "machine": "0xaa64",
+      "managed": false,
+      "sha256": "e37f6be5f13a3cad6441bbeb3875e31d4d68368306b3174a84952bc75c64a846"
+    },
+    "usr/bin/unix2dos.exe": {
+      "imports": [
+        "KERNEL32.dll",
+        "msys-2.0.dll",
+        "msys-intl-8.dll"
+      ],
+      "machine": "0xaa64",
+      "managed": false,
+      "sha256": "e37f6be5f13a3cad6441bbeb3875e31d4d68368306b3174a84952bc75c64a846"
+    }
+  },
+  "evidence": {
+    "functional": {
+      "before04": {
+        "all_passed": true,
+        "all_six_names_exercised": true,
+        "cases": 30,
+        "created_processes": 35,
+        "observed_processes": 35,
+        "parent_raw_exit": 0,
+        "unrelayed_high_exits": 0
+      },
+      "moved01": {
+        "all_passed": true,
+        "all_six_names_exercised": true,
+        "cases": 30,
+        "created_processes": 35,
+        "observed_processes": 35,
+        "parent_raw_exit": 0,
+        "unrelayed_high_exits": 0
+      }
+    },
+    "moved_root_old_absent_recorded": true,
+    "operational_private_path_hits": 0,
+    "original_test": {
+      "created_processes": 1094,
+      "files": 9,
+      "observed_processes": 1094,
+      "parent_raw_exit": 0,
+      "status": "PASS",
+      "tests": 174,
+      "unrelayed_high_exits": 0
+    },
+    "preserved_historical_failure": {
+      "created_processes": 923,
+      "disposition": "x64-bootstrap symlink/argv0 harness only",
+      "observed_processes": 923,
+      "parent_raw_exit": 2
+    },
+    "upstream_documentation_paths": [
+      {
+        "path": "usr/share/doc/dos2unix-7.5.7/ChangeLog.txt",
+        "value": "c:/dos32"
+      }
+    ],
+    "verified_references": 397
+  },
+  "limitations": [
+    "The package is runtime-907 scoped and does not claim d70 compatibility.",
+    "The exact runtime-907, libintl and libiconv DLLs are test-only dependency inputs outside package ownership.",
+    "The preserved x64-bootstrap alias failure is a cross-architecture symlink/argv0 harness failure; the unchanged target bytes pass through native runtime-907 execv.",
+    "The source recipe entry is unsigned; no detached-signature claim is made.",
+    "A second independent reproducibility rebuild and full-release admission are not claimed."
+  ],
+  "package": {
+    "architecture": "aarch64",
+    "archive_members": 118,
+    "conflicts": [
+      "hd2u"
+    ],
+    "dependencies": [
+      "libintl"
+    ],
+    "executable_aliases": {
+      "usr/bin/mac2unix.exe": "dos2unix.exe",
+      "usr/bin/unix2mac.exe": "unix2dos.exe"
+    },
+    "licenses": [
+      "spdx:BSD-2-Clause"
+    ],
+    "manpage_symlinks": 39,
+    "metadata_members": 3,
+    "mtree_validated_by_assembler": true,
+    "name": "dos2unix",
+    "path": "C:\\ap11-native-provider-intake\\native-msys-dos2unix-runtime907-admitted-v1\\packages\\dos2unix-7.5.7-1-aarch64.pkg.tar.zst",
+    "payload_members": 115,
+    "regular_files": 74,
+    "sha256": "db48658b51c185ec961606d8c46e169f21c1cb3758422995aba8476b5b286be6",
+    "size": 346205,
+    "symlinks": 41,
+    "version": "7.5.7-1"
+  },
+  "runtime": {
+    "cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "d70_compatibility_claimed": false,
+    "libiconv": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+    "libintl": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c"
+  },
+  "schema": 1,
+  "source": {
+    "archive": {
+      "path": "C:\\ap18-accd-tools01\\dos2unix\\delivery-01\\source\\dos2unix-7.5.7.tar.gz",
+      "sha256": "669ee27120ae71589f638fe3a167d6ea54f8633f5ab1b282551bd7a7c9510dfa",
+      "signature": "unsigned-recipe-source-entry"
+    },
+    "export": {
+      "path": "C:\\ap18-accd-tools01\\dos2unix\\delivery-01\\export.json",
+      "sha256": "1d70395400981b3404648ad9457cea31b6a17b67980035212d67ecd1bbf6eeec"
+    },
+    "handoff": {
+      "path": "C:\\ap18-accd-tools01\\dos2unix\\delivery-01\\handoff.json",
+      "sha256": "c08af43f21d531fa9a02eaf3e4ec48d4048a3b138b9d732f9c7bb731591d4fa0"
+    },
+    "recipe_commit": "fc03a3300db9bcdd0ccc082749e006abf1a04414",
+    "unchanged_source_tests_and_fixtures": 114
+  },
+  "status": "verified"
+}

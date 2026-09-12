@@ -1,0 +1,55 @@
+# Native PCRE2 recipe for Git
+
+The full native MinGW ARM64 PCRE2 leaf uses `mingw-w64-pcre2` at
+[`msys2/MINGW-packages@fbb9173f78adaea078046ea53e35cee47e7a5527`](https://github.com/msys2/MINGW-packages/tree/fbb9173f78adaea078046ea53e35cee47e7a5527/mingw-w64-pcre2)
+(PCRE2 10.48-3). From this repository's root, prepare an isolated recipe with:
+
+```powershell
+.\.github\scripts\prepare-pcre2-recipe.ps1 `
+  -UpstreamDirectory C:\sources\MINGW-packages\mingw-w64-pcre2 `
+  -OutputDirectory C:\private-build\pcre2-recipe
+```
+
+Import the qualified pipeline engine before using the helper. The output directory
+must not already exist. The helper verifies both pinned recipe
+inputs before copying them, adds `mingwarm64`, and makes failures in either the
+static or shared upstream `make check` fatal. It preserves JIT, Unicode, all three
+code-unit widths, compressed-input support, editline, licenses, source checksums,
+and the upstream signing-key requirement.
+
+The circular native `autotools` aggregate is replaced with actual `autoconf`,
+`automake`, `make`, and `libtool` MSYS build-host packages plus native MinGW ARM64
+`pkgconf`. These host generators may be emulated x64; they are not native payload
+or providers of native `libtool`/`libltdl`. Both configure invocations explicitly
+select the separate native dependency include and library directories without
+adding the MSYS host headers to the native compiler search path.
+
+Two source correctness fixes retain the ordinary feature set: POSIX alpha uses
+the existing letter table rather than assuming `isalnum - isdigit` is equivalent
+under Windows/GCC, and UTF-8 callout arguments use Windows' wide spawn API instead
+of being reinterpreted in the ANSI code page. An independent 512-case CRT
+classification regression covers positive and negated alpha classes.
+
+The test driver uses the unchanged upstream `wintestinput3`/`wintestoutput3`
+fixtures, requires their comparisons to pass, and normalizes only trailing CR
+at text line boundaries. No golden output is regenerated. Grep path and callout
+transport fixes follow patches 5-7 from
+[`git-for-windows/MINGW-packages@d65b87de173ac2209a63cef8c4528669b5571fd3`](https://github.com/git-for-windows/MINGW-packages/tree/d65b87de173ac2209a63cef8c4528669b5571fd3/mingw-w64-pcre2);
+the test-skipping patch from that older recipe is not used.
+
+This only prepares the recipe. Build it with the qualified native package adapter,
+an isolated bootstrap, actual native bzip2/wineditline/zlib providers, source signature
+verification, and checks explicitly enabled. The generic `build-package.sh` defaults
+to skipping checks and signatures and is not suitable for admitting this package.
+Package creation alone does not establish native runtime or DLL-closure acceptance.
+
+After the full static and shared upstream checks and native exit observer pass,
+run `.github\scripts\test-pcre2-package.ps1` with the build directory, a new readback
+directory, the pinned source directory, the header-delta manifest, and a JSON array
+of admitted dependency archives (`Path` and `SHA256` for bzip2, wineditline, and
+zlib). The readback keeps dependency files separate from the package payload.
+It checks ordinary ARM64 image identity, observes exact loaded DLL paths/hashes
+while the real CLIs wait on stdin, exercises all three JIT widths and compressed
+input, and builds/runs the unchanged upstream JIT and POSIX API tests against both
+the extracted static and shared libraries. Any failure leaves failed evidence,
+not an admission receipt.

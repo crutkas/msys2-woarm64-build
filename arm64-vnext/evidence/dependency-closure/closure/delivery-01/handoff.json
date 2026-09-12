@@ -1,0 +1,69 @@
+{
+  "SchemaVersion": 1,
+  "Status": "read-only-fixed-point-closure-audit-complete-findings-not-admission",
+  "CompletedAt": "2026-09-11T07:07:11.1229137Z",
+  "Snapshot": "limited-candidate-02",
+  "ArtifactRoot": "C:\\ag-mvp-f6-20260911\\limited-candidate-02",
+  "ArtifactManifest": {
+    "path": "C:\\ag-mvp-f6-20260911\\limited-candidate-02.manifest.json",
+    "sha256": "708394d8b303874307db541d278b9891d2b1fde1a9948e5266a3a992555e33f1"
+  },
+  "ConsumerBoundary": {
+    "path": "C:\\ag-mvp-f6-20260911\\libintl-consumer-boundary-01.json",
+    "sha256": "ecaa96a91879c81ec43ea3f51b359994881f08510ce58fb74d45fd6c56d88718"
+  },
+  "Counts": {
+    "seed_consumers": 21,
+    "package_PE_nodes": 29,
+    "distinct_private_DLL_files": 10,
+    "normal_import_edges": 516,
+    "delay_import_edges": 0,
+    "distinct_windows_leaves": 19,
+    "missing_DLL_names": 0,
+    "private_symbol_failures": 0,
+    "MSYS_imports": 0
+  },
+  "AdmissionCounts": {
+    "unadmitted-superseded-bytes": 2,
+    "admitted-selected-package": 5,
+    "admitted-limited-role": 3,
+    "Windows-satisfied": 19
+  },
+  "FullReleaseBlockerRows": 81,
+  "GettextRelatedRows": 22,
+  "OtherRows": 59,
+  "CurrentIntake": {
+    "SHA256": "72dde6b8014c8ff0b6d96cea1ccc3d7ccfd35c241333cf9773b6191251a990cb",
+    "Path": "C:\\ap11-native-provider-intake\\audit-v18-qualified-openssl.json"
+  },
+  "Report": {
+    "SHA256": "22b79d6d71afc5103a36efae48753debd02062de572ed9f7c97767a25bb517df",
+    "Path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\report.md"
+  },
+  "DLLTable": {
+    "SHA256": "ac964ec2e40b568128c060dc2b52c6ab8f67b5e5be5897563d7a0c5abb367644",
+    "Path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\dll-admission-table.csv"
+  },
+  "OtherBlockerTable": {
+    "SHA256": "bf30c9c0de6afe5bf5a52d29b3a35acff22fe3b06b956b29eb7f08d769d3dfaa",
+    "Path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\remaining-59-blockers.csv"
+  },
+  "Inventory": {
+    "SHA256": "88a038bd12119cc6663fad60e278f0dbb4334bd4032384c73c462f91109f0971",
+    "Path": "C:\\ap16-accd-mingw-closure-01\\delivery-01\\export-inventory.json"
+  },
+  "Findings": [
+    "Two inspected old OpenSSL DLLs are physically present but superseded/unadmitted under current v18; no automatic substitution",
+    "Eight other private DLLs have exact current selected-package or limited-role bindings;19Windows boundaries resolve",
+    "Static-only TLS reachability is git-imap-send for these21seeds, not an assurance about HTTPS/dynamic/static-linked code exposure",
+    "Current strict package view still lacks one libintl DLL identity at21edges plusgettext package identity",
+    "Remaining59globalrows are heterogeneous overlapping requirements, not59independentDLLsorimplementationestimates"
+  ],
+  "OSBoundary": "System32/API-set contracts are legitimate terminal leaves; all package imports expanded to fixed point, not a recursive audit of Windows",
+  "DynamicHelpers": "NativeMSYSsh and process-launched remote/SSH/credential/pager/hook helpers are separate runtimecommand dependencies; knowncloneSHproof linked",
+  "OtherSessionWrites": false,
+  "PayloadExecution": false,
+  "NewAliasOrSubstitution": false,
+  "Rebuilds": false,
+  "Scope": "Findings apply to the exact identified snapshot and currentv18authority; no assertion that a later unpublished artifact has identicalbytes"
+}

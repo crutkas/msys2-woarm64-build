@@ -1,0 +1,70 @@
+{
+  "schema": 1,
+  "status": "standalone-shipped-curl-CA-failure-confirmed-read-only",
+  "peer_report": {
+    "path": "C:\\ap16-accd-mingw-closure-01\\delivery-03\\live-tls\\independent-full-mixed-report.json",
+    "sha256": "c44fb3f8238980bea3545938362e7e84ea5cb806780ea58b354261e3d3447c9b",
+    "size": 45071
+  },
+  "curl_evidence": {
+    "request": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\request.json",
+      "sha256": "b223ee40180e726fa4160dbd1ea862f600b3c778188b92da5738fabf58aa778c",
+      "size": 1838
+    },
+    "output": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\output.log",
+      "sha256": "6629743422516870f9cdacb999280888ece4af9a77467dfe217795b662c2ed4d",
+      "size": 92
+    },
+    "observation": {
+      "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP standalone curl baseline\\observation.json",
+      "sha256": "ec6c6145d29855437f2f242daed0175277b92c2384d5c6931dbeedafe5132e1b",
+      "size": 16569
+    },
+    "parent_raw_exit": 77,
+    "generation": {
+      "pid": 2644,
+      "creation_filetime": 134335842597890221,
+      "image": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\curl.exe",
+      "image_query_errors": [],
+      "machine": "0xAA64",
+      "sha256": "6ddfbcd7c5fcd015112d7e002727b20abc70b7e2c7f643b029cd8d70e9e196be",
+      "raw_exit": 77
+    },
+    "sampled_tls": [
+      {
+        "pid": 2644,
+        "creation_filetime": 134335842597890221,
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcurl-4.dll",
+        "machine": "0xAA64",
+        "sha256": "d060e2d1127b52b49f7956d5eee59681ae160cd79bdac2156a45c05fbdd46669"
+      },
+      {
+        "pid": 2644,
+        "creation_filetime": 134335842597890221,
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libcrypto-3-arm64.dll",
+        "machine": "0xAA64",
+        "sha256": "0d35dfe504cfc03e49c2d6c989ff3838216c658aa5c23559de2756e46fd6561a"
+      },
+      {
+        "pid": 2644,
+        "creation_filetime": 134335842597890221,
+        "path": "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\libssl-3-arm64.dll",
+        "machine": "0xAA64",
+        "sha256": "819faab1f9b057302009d35fda49853aea8ccaadc29d2189420237ae8528da48"
+      }
+    ]
+  },
+  "command": [
+    "C:\\ag-tcl-e138-01\\independent replay 20260911-01\\named ZIP custody\\relocated at a different depth\\candidate with spaces\\mingwarm64\\bin\\curl.exe",
+    "--head",
+    "--silent",
+    "--show-error",
+    "--max-time",
+    "30",
+    "https://github.com/octocat/Hello-World"
+  ],
+  "scope": "Same named ZIP as the successful Git HTTPS clone, but a separate curl.exe command. Git's shipped prefix-relative sslCAInfo does not configure standalone curl.",
+  "no_new_execution_or_repairs_by_this_author": true
+}

@@ -1,0 +1,102 @@
+"""Archive genuine installed tool payload with recipe metadata, without providers."""
+import argparse
+import gzip
+import hashlib
+import io
+import json
+from pathlib import Path
+import subprocess
+import tarfile
+
+
+def sha(data):
+    return hashlib.sha256(data).hexdigest()
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--package", choices=("which", "dos2unix"), required=True)
+    args = parser.parse_args()
+    root, name = args.root, args.package
+    stage, output = root / name / "stage", root / name / "packages"
+    if output.exists():
+        raise RuntimeError("Package output must be new")
+    version = {"which": "2.25-1", "dos2unix": "7.5.7-1"}[name]
+    epoch = 1788825600
+    metadata = {
+        "which": ["pkgdesc = A utility to show the full path of commands",
+                  "url = https://savannah.gnu.org/projects/which/",
+                  "license = spdx:GPL-3.0-or-later", "depend = sh"],
+        "dos2unix": ["pkgdesc = Text file format converter",
+                     "url = https://waterlander.net/dos2unix/",
+                     "license = spdx:BSD-2-Clause", "depend = libintl", "conflict = hd2u"],
+    }[name]
+    output.mkdir()
+    payload, excluded = [], []
+    for path in sorted(stage.rglob("*")):
+        if not path.is_file():
+            continue
+        relative = path.relative_to(stage).as_posix()
+        if relative == "usr/share/info/dir":
+            excluded.append({"path": relative, "sha256": sha(path.read_bytes()),
+                             "reason": "Shared generated Info index, normally purged by makepkg; not which ownership."})
+            continue
+        if relative.endswith(".dll") or any(part in relative for part in ("test-only", "native-runner", "controller")):
+            raise RuntimeError("Dependency/test helper cannot enter tool package ownership")
+        data = path.read_bytes()
+        if path.is_symlink() or data.startswith(b"!<symlink>"):
+            raise RuntimeError("MSYS symlink payload requires explicit archive encoding")
+        payload.append({"path": relative, "size": len(data), "sha256": sha(data),
+                        "mode": 0o755 if relative.endswith(".exe") else 0o644})
+    required = ["usr/bin/which.exe", "usr/share/man/man1/which.1", "usr/share/info/which.info",
+                "usr/share/licenses/which/COPYING"] if name == "which" else [
+                    "usr/bin/" + exe + ".exe" for exe in ("dos2unix", "unix2dos", "mac2unix", "unix2mac", "d2u", "u2d")]
+    if not set(required) <= {item["path"] for item in payload}:
+        raise RuntimeError("Required recipe payload is missing")
+    package_info = "\n".join(["pkgname = " + name, "pkgbase = " + name, "pkgver = " + version,
+                             "xdata = pkgtype=pkg", "arch = aarch64", f"builddate = {epoch}",
+                             "packager = Native ARM64 utilities producer",
+                             "size = " + str(sum(item["size"] for item in payload)), *metadata]) + "\n"
+    build_info = "\n".join(["format = 2", "pkgname = " + name, "pkgbase = " + name, "pkgver = " + version,
+                           "pkgarch = aarch64", f"builddate = {epoch}",
+                           "pkgbuild_sha256sum = " + sha((root / name / "recipe/PKGBUILD").read_bytes()),
+                           "buildenv = !distcc", "buildenv = !ccache", "options = strip", "options = docs"]) + "\n"
+    extra = {".PKGINFO": package_info.encode(), ".BUILDINFO": build_info.encode()}
+    mtree = ["#mtree", "/set type=file uid=0 gid=0 mode=644"]
+    for filename, data in extra.items():
+        mtree.append(f"./{filename} time={epoch}.0 size={len(data)} sha256digest={sha(data)}")
+    for item in payload:
+        mtree.append(f"./{item['path']} mode={item['mode']:o} time={epoch}.0 size={item['size']} sha256digest={item['sha256']}")
+    extra[".MTREE"] = gzip.compress(("\n".join(mtree) + "\n").encode(), mtime=0)
+    archive_path = output / f"{name}-{version}-aarch64.pkg.tar"
+    with tarfile.open(archive_path, "w", format=tarfile.PAX_FORMAT) as archive:
+        for filename, data in extra.items():
+            item = tarfile.TarInfo(filename)
+            item.size, item.mtime, item.mode = len(data), epoch, 0o644
+            archive.addfile(item, io.BytesIO(data))
+        for item in payload:
+            entry = tarfile.TarInfo(item["path"])
+            entry.size, entry.mtime, entry.mode = item["size"], epoch, item["mode"]
+            with (stage / item["path"]).open("rb") as stream:
+                archive.addfile(entry, stream)
+    compressed = Path(str(archive_path) + ".zst")
+    command = [str(root / "host/usr/bin/zstd.exe"), "-q", "-19", "-T1",
+               str(archive_path), "-o", str(compressed)]
+    result = subprocess.run(command, capture_output=True, timeout=120)
+    (output / "compression.stdout").write_bytes(result.stdout)
+    (output / "compression.stderr").write_bytes(result.stderr)
+    receipt = {"schema": 1, "command": command, "raw_exit": result.returncode,
+               "payload": payload, "excluded_shared_generated_metadata": excluded,
+               "package": str(compressed), "new_provides": [],
+               "metadata_scope": "Original dependencies, not a native package-manager transaction or dependency admission"}
+    if not result.returncode:
+        receipt["sha256"] = sha(compressed.read_bytes())
+    (output / "packaging.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    if result.returncode:
+        raise RuntimeError("Package compression failed")
+    print(json.dumps({"package": str(compressed), "sha256": receipt["sha256"], "payload": len(payload)}))
+
+
+if __name__ == "__main__":
+    main()

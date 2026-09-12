@@ -1,0 +1,45 @@
+pkgname=mingw-w64-aarch64-rust-bootstrap
+pkgver=1.98.1
+pkgrel=1
+pkgdesc='Official native ARM64 GNU Rust bootstrap; explicit bundled LLVM linker/runtime integration'
+arch=('aarch64')
+url='https://www.rust-lang.org/'
+license=('MIT' 'Apache-2.0')
+provides=("mingw-w64-aarch64-rust=${pkgver}")
+options=('!strip' '!debug' '!lto' 'staticlibs' 'libtool' '!purge' '!zipman')
+source=('payload.tar' 'payload-files.sha256' 'provenance.tar')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@' '@PROVENANCE_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+check() {
+    local rust="$srcdir/payload"
+    "$rust/bin/rustc.exe" -vV | grep -Fx 'host: aarch64-pc-windows-gnullvm'
+    "$rust/bin/rustc.exe" -vV | grep -Fx 'release: 1.98.1'
+    export PATH="$rust/bin:$PATH"
+    export CARGO_HOME="$srcdir/cargo-home" CARGO_NET_OFFLINE=true
+    export CARGO_TARGET_AARCH64_PC_WINDOWS_GNULLVM_LINKER
+    CARGO_TARGET_AARCH64_PC_WINDOWS_GNULLVM_LINKER="$(cygpath -m "$rust/lib/rustlib/aarch64-pc-windows-gnullvm/bin/rust-lld.exe")"
+    export RUSTFLAGS='-C linker-flavor=ld.lld -C link-self-contained=yes -C link-arg=-m -C link-arg=arm64pe'
+    "$rust/bin/cargo.exe" build --offline --jobs "${WOARM64_JOBS:?}" \
+        --manifest-path "$srcdir/provenance/cargo-probe/Cargo.toml" --target-dir "$srcdir/cargo-target"
+    bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/cargo-target/debug/native-cargo-build-script-probe.exe"
+}
+
+package() {
+    install -dm755 "$pkgdir/mingwarm64"
+    cp -a "$srcdir/payload/." "$pkgdir/mingwarm64/"
+    # Pacman owns removal, not the vendor installer's original absolute-path manifests.
+    rm "$pkgdir/mingwarm64/lib/rustlib/components" \
+       "$pkgdir/mingwarm64/lib/rustlib/install.log" \
+       "$pkgdir/mingwarm64/lib/rustlib/rust-installer-version" \
+       "$pkgdir/mingwarm64/lib/rustlib/uninstall.sh"
+    for component in cargo rustc rust-std-aarch64-pc-windows-gnullvm rust-mingw; do
+        rm "$pkgdir/mingwarm64/lib/rustlib/manifest-$component"
+    done
+    install -dm755 "$pkgdir/mingwarm64/share/woarm64-package-provenance/rust"
+    cp -a "$srcdir/provenance/." "$pkgdir/mingwarm64/share/woarm64-package-provenance/rust/"
+}

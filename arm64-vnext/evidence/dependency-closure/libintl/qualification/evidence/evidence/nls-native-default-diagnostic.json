@@ -1,0 +1,35 @@
+{
+  "Status": "failed",
+  "Name": "nls-native-default-diagnostic",
+  "Executable": "C:\\Program Files\\Python314-arm64\\python.exe",
+  "ExecutableSHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+  "Arguments": [
+    "-I",
+    "-c",
+    "import ctypes, json, os\np=r\"C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin\\libintl-8.dll\"\nlib=ctypes.CDLL(p)\nlib.libintl_setlocale.argtypes=[ctypes.c_int,ctypes.c_char_p]; lib.libintl_setlocale.restype=ctypes.c_char_p\nlib.libintl_bindtextdomain.argtypes=[ctypes.c_char_p,ctypes.c_char_p]; lib.libintl_bindtextdomain.restype=ctypes.c_char_p\nlib.libintl_dgettext.argtypes=[ctypes.c_char_p,ctypes.c_char_p]; lib.libintl_dgettext.restype=ctypes.c_char_p\nr={\"LANGUAGE\":os.environ.get(\"LANGUAGE\"),\"LC_ALL\":os.environ.get(\"LC_ALL\"),\"setlocale_empty\":lib.libintl_setlocale(0,b\"\").decode(errors=\"backslashreplace\"),\"default_dir\":ctypes.c_char_p.in_dll(lib,\"libintl_nl_default_dirname\").value.decode(errors=\"backslashreplace\"),\"domain_query\":lib.libintl_bindtextdomain(b\"gettext-runtime\",None).decode(errors=\"backslashreplace\"),\"translation\":lib.libintl_dgettext(b\"gettext-runtime\",b\"too many arguments\").decode(errors=\"backslashreplace\")}\nprint(json.dumps(r))"
+  ],
+  "Environment": {
+    "GIT_TERMINAL_PROMPT": "0",
+    "HOME": "C:\\ap11-accd-gettext01\\home",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\home",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD",
+    "TEMP": "C:\\ap11-accd-gettext01\\tmp",
+    "WINDIR": "C:\\Windows",
+    "TMP": "C:\\ap11-accd-gettext01\\tmp",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "LC_ALL": "fr_FR.UTF-8",
+    "PATH": "C:\\ap11-accd-gettext01\\projection-a\\mingwarm64\\bin;C:\\Windows\\System32",
+    "LANG": "fr_FR.UTF-8",
+    "LANGUAGE": "fr",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "SystemRoot": "C:\\Windows"
+  },
+  "WorkingDirectory": "C:\\ap11-accd-gettext01",
+  "PID": 7944,
+  "RawExit": 3221225477,
+  "ExpectedExit": 0,
+  "StartedAt": "2026-09-11T03:34:44.2750766Z",
+  "Stdout": "C:\\ap11-accd-gettext01\\evidence\\nls-native-default-diagnostic.stdout.log",
+  "Stderr": "C:\\ap11-accd-gettext01\\evidence\\nls-native-default-diagnostic.stderr.log",
+  "CompletedAt": "2026-09-11T03:34:47.2774715Z"
+}

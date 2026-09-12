@@ -1,0 +1,26 @@
+pkgname=woarm64-ccache-probe
+pkgver=1
+pkgrel=1
+pkgdesc='Local makepkg environment discriminator; no compiler or network sources'
+arch=('any')
+license=('custom')
+options=('!strip' '!debug' '!lto')
+[[ ${PROBE_DISABLE_CCACHE:-0} == 1 ]] && options+=('!ccache')
+
+build() {
+    printf 'Inside actual PKGBUILD build(): PATH=%s\n' "$PATH"
+    if [[ ${PROBE_DISABLE_CCACHE:-0} == 1 ]]; then
+        ! check_buildoption ccache y
+        [[ ":$PATH:" != *:/usr/lib/ccache/bin:* ]]
+    else
+        check_buildoption ccache y
+        [[ ":$PATH:" == *:/usr/lib/ccache/bin:* ]]
+    fi
+    if [[ ${PROBE_REQUIRE_MAKEINFO:-0} == 1 ]]; then
+        makeinfo --version
+    fi
+}
+
+package() {
+    install -dm755 "$pkgdir/usr/share/woarm64-ccache-probe"
+}

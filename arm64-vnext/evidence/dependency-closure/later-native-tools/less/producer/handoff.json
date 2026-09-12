@@ -1,0 +1,1935 @@
+{
+  "schema": 1,
+  "status": "producer-native-msys-less907-complete-not-self-admitted",
+  "package": {
+    "name": "less",
+    "version": "704-1",
+    "architecture": "aarch64",
+    "path": "C:\\ap17-accd-less01\\delivery-01\\packages\\less-704-1-aarch64.pkg.tar.zst",
+    "sha256": "fe9b92485b8062f0ddddb209e93fd5200d2bed42442478f3a0dd3badfa4cf847",
+    "size": 155369
+  },
+  "target": {
+    "triple": "aarch64-pc-cygwin",
+    "pe_machine": "AA64 / 0xAA64",
+    "live_identity_api": "GetProcessInformation(ProcessMachineTypeInfo=9), value 0xAA64",
+    "runtime_cohort": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+    "mingw": false,
+    "d70_compatibility_claimed": false
+  },
+  "source": {
+    "schema": 1,
+    "status": "pinned-native-msys-less-source-prepared",
+    "recipe_repository": "msys2/MSYS2-packages",
+    "recipe_commit": "fc03a3300db9bcdd0ccc082749e006abf1a04414",
+    "recipe_blob": "df539c5719125fc5915a69858dd10dd5882296ff",
+    "recipe_path": "C:\\ap15-d207\\less-native-01\\recipe\\PKGBUILD.upstream",
+    "recipe_sha256": "9d443477b3a9ae72d677736d555b523ac947e6305cf1918922f4ad899827b522",
+    "version": "704",
+    "source_url": "https://github.com/gwsw/less/archive/refs/tags/v704.tar.gz",
+    "source_path": "C:\\ap15-d207\\less-native-01\\sources\\less-704.tar.gz",
+    "source_sha256": "0a801a147af1e41c1d9daa273316ce6d560053534659b5487ed5de6fc5032de4",
+    "required_features": [
+      "--with-regex=pcre2"
+    ],
+    "required_runtime": [
+      "msys-2.0.dll",
+      "msys-ncursesw6.dll",
+      "msys-pcre2-8-0.dll"
+    ],
+    "delivered_source": {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\source\\less-704.tar.gz",
+      "sha256": "0a801a147af1e41c1d9daa273316ce6d560053534659b5487ed5de6fc5032de4",
+      "size": 1269124
+    },
+    "signature_scope": "The original recipe contains validpgpkeys but no detached source signature entry. This GitHub tag archive is SHA256-pinned, not falsely described as detached-signature verified.",
+    "original_product_and_test_c_h_unchanged": 66
+  },
+  "recipe": {
+    "path": "C:\\ap17-accd-less01\\delivery-01\\recipe\\PKGBUILD",
+    "sha256": "b5f50e3efa27c4a8178d82832e74b33684fa6f83d767c6a4e1d58a6937de97b6",
+    "size": 1030
+  },
+  "compiler": {
+    "driver": {
+      "path": "C:\\ap17-accd-less01\\compiler\\bin\\aarch64-pc-cygwin-gcc.exe",
+      "sha256": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+      "size": 6437203
+    },
+    "runtime": {
+      "path": "C:\\ap17-accd-less01\\compiler\\bin\\msys-2.0.dll",
+      "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+      "size": 30874017
+    },
+    "import": {
+      "path": "C:\\ap17-accd-less01\\compiler\\aarch64-pc-cygwin\\lib\\libmsys-2.0.a",
+      "sha256": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c",
+      "size": 1442128
+    },
+    "crt": {
+      "path": "C:\\ap17-accd-less01\\compiler\\aarch64-pc-cygwin\\lib\\crt0.o",
+      "sha256": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737",
+      "size": 8083
+    },
+    "strip": {
+      "path": "C:\\ap17-accd-less01\\compiler\\bin\\aarch64-pc-cygwin-strip.exe",
+      "sha256": "47281b22cc747b731309453f119afa364a4d2989e98101f716bcd8e52ea0d04a",
+      "size": 2439426
+    }
+  },
+  "compiler_scope": "Private copy of scoped ED4 combined compiler plus the qualified907 SDK overlay. The actual invoked prefixed driver is fff0; no claim that every binary in the combined tree is fff0 or generically requalified.",
+  "sdk_inventory": {
+    "path": "C:\\ap17-accd-less01\\evidence\\sdk-inputs.json",
+    "sha256": "69bde4474dc5c93660a598fac1ca8d3f97907cdabdbd4a454f51adeace711d34",
+    "size": 2375561
+  },
+  "dependency_authority": [
+    {
+      "name": "native-msys-bzip2-pcre2-admitted-v1",
+      "path": "C:\\ap11-native-provider-intake\\native-msys-bzip2-pcre2-admitted-v1\\export.json",
+      "sha256": "7032ded0427c23c698d043739349385d391220f3df30ff96a48670aa1c2a939b"
+    },
+    {
+      "name": "ncurses-v2",
+      "path": "C:\\ap11-native-provider-intake\\ncurses-v2\\export.json",
+      "sha256": "6857ba52e2004b0c7592baa2e2a517c824f54bbfbb7fe2c41b1f93b3415caafd"
+    }
+  ],
+  "build": {
+    "recipe_functions": [
+      "prepare",
+      "build",
+      "package"
+    ],
+    "workers": 1,
+    "CFLAGS": "-O2 -g -pipe -fstack-protector-strong -D_FORTIFY_SOURCE=2",
+    "configure": "--build=aarch64-pc-cygwin --prefix=/usr --sysconfdir=/etc --with-regex=pcre2",
+    "native_observer": {
+      "path": "C:\\ap17-accd-less01\\observed-build-03\\native-job.json",
+      "sha256": "0c1765b8ca5e0e8e25e10597993d044976ce3835578fdf5208413da822db3cce",
+      "size": 135148
+    },
+    "native_strip_observer": {
+      "path": "C:\\ap17-accd-less01\\observed-strip-01\\native-job.json",
+      "sha256": "4331710cd98cf8da4670557ccaea8757d2038958efd69dea714f049f4677b6e7",
+      "size": 760
+    },
+    "emulated_role": "Private x64 MSYS orchestration including make/autotools/groff/pacman/zstd; none is a less payload or native target substitute.",
+    "dependencies_rebuilt": false,
+    "product_source_or_feature_workarounds": false,
+    "second_independent_rebuild_performed": false,
+    "source_date_epoch": 1788825600
+  },
+  "strict_upstream": {
+    "tests": 18,
+    "steps": 2245,
+    "errors": 0,
+    "created": 169,
+    "observed": 169,
+    "parent_raw_exit": 0,
+    "high_exits": 0,
+    "test_only_instrumentation": true,
+    "shipped_LESSTEST": false,
+    "supported_layout": "One coherent check-runtime/usr/bin MSYS installation; original executable and DLL bytes. No claim of arbitrary cross-install fork/exec support.",
+    "earlier_split_layout_failure_preserved": true,
+    "first_fault_diagnostic_not_waiver": [
+      {
+        "process_identity": "28884@134336102300296961",
+        "exception": {
+          "address": 140713921200572,
+          "code": 3221225477,
+          "first_chance": true,
+          "flags": 0,
+          "parameters": [
+            0,
+            140713949231224
+          ]
+        },
+        "module": {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ap17-accd-less01\\debug-tools\\split-runtime\\child\\msys-2.0.dll"
+        },
+        "runtime_rva": "0x1c1bc",
+        "raw_process_exit": 3221225477
+      }
+    ]
+  },
+  "final_package": {
+    "regular_stripped_less": {
+      "path": "C:\\ap17-accd-less01\\relocated package 01\\deeper prefix with spaces\\usr\\bin\\less.exe",
+      "sha256": "55546b45e4d7a80f4e87f20045eef4cc0417bfd716b258c83ce46ba3bc224702",
+      "size": 246559
+    },
+    "payload_files": 9,
+    "metadata_files": 3,
+    "pe_files": 3,
+    "licenses": [
+      "usr/share/licenses/less/COPYING",
+      "usr/share/licenses/less/LICENSE"
+    ],
+    "manpages": 3,
+    "provides": [],
+    "dependencies": [
+      "ncurses",
+      "libpcre2_8"
+    ],
+    "test_or_dependency_DLLs_packaged": false,
+    "signature": "Unsigned producer archive; admission and any signing remain intake responsibilities.",
+    "pacman_metadata_readback": {
+      "path": "C:\\ap17-accd-less01\\evidence\\pacman-less-package-metadata-readback.stdout.log",
+      "sha256": "8552f1a923021a6d3b240800caccc0c8fd598ab7a76e3480cd97c0c5368621bb",
+      "size": 602
+    }
+  },
+  "native_functional": {
+    "before_and_after_real_move": true,
+    "old_root_absent": true,
+    "text_assertions_each": 8,
+    "large_file_assertions_each": 4,
+    "large_file_bytes": 4294969239,
+    "off_t_bytes": 8,
+    "positive_control_before_and_after": true,
+    "features": [
+      "PCRE2 numeric regex search/repeat",
+      "Unicode rendering/search",
+      "page/home/end navigation",
+      "quit",
+      ">4GiB head/end seeks"
+    ],
+    "terminfo": "Ordinary compiled default lookup; no TERMINFO or TERMINFO_DIRS override",
+    "PATH": "Only the actual moved private usr/bin and Windows System32",
+    "shipped_helpers": [
+      "less-version",
+      "lesskey-version",
+      "lessecho-numeric-quotes",
+      "lesskey-real-output",
+      "less-exact-file-read"
+    ]
+  },
+  "static_closure": {
+    "package_pes": 3,
+    "private_dlls": 3,
+    "iat_unsatisfied": 0,
+    "import_descriptors": 14,
+    "windows_dlls": 2,
+    "delay_import_descriptors": 0
+  },
+  "dynamic_helpers_not_claimed": "Static imports exclude process launches. Shell escapes and the original OSC8 helper require native /bin/sh; remote file-host detection may invoke bash/uname, and man: links invoke man. Those helpers are not supplied or functionally admitted by this less package.",
+  "preserved_limitations": [
+    "The initial >4GiB unbroken-line readiness timeout is retained, not declared fixed by the bounded-line large-file fixture.",
+    "Earlier source-path, host-prerequisite, test-layout and test-invocation failures are retained with raw results; corrected original tests are authoritative only for the supported coherent runtime root.",
+    "The two early lessecho quote trials used character options -o/-c incorrectly for numeric input; documented -p39/-d39 is the strict final quoted-output case. No product behavior was changed.",
+    "No compatibility claim for d70, arbitrary cross-install fork/exec, complete Git release, or dependencies reached only by optional process launches.",
+    "BUILDINFO target versions represent exact staged SDK packages, not a native package-manager transaction or invented GCC package."
+  ],
+  "reproduction": [
+    "Provision a new owned root from the bound compiler/SDK and package inputs; never mutate the shared/provider roots.",
+    "Use the maintained build wrapper with LESS_BUILD_ROOT and the unchanged pinned recipe; keep make -j1 and protective flags.",
+    "Use the maintained check wrapper, original 18 fixtures, and one check-runtime/usr/bin installation for all test-only executables.",
+    "Strip only the regular staged PEs using the bound prefixed target strip; run the maintained packager and archive readback.",
+    "Exercise final package bytes using the maintained openpty helper before and after an actual move, with default terminfo."
+  ],
+  "evidence": [
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\check-source\\less-704\\lesstest\\runtest",
+      "sha256": "52f42329d35a99aee4a5c2a548bdaab7880d46f7f678be3cb76da127fbac22bd",
+      "size": 2924
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\check-source\\less-704\\Makefile",
+      "sha256": "d9d0e609dcf10b27491c42798588c023175d7120c01370bc60afdaccf68cf1b5",
+      "size": 4987
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\debug-tools\\inputs.json",
+      "sha256": "c0805ee07582c6070c0eff52964e99a5bb9799c6ef654eb3cae2e600cc2213a6",
+      "size": 3683
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\debug-tools\\split-firstfault\\result.json",
+      "sha256": "b62405bda303b126a62836cf7b1c6676f662623fb2879296ee7b5a0533d693a6",
+      "size": 86473
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\actual-readback-move.json",
+      "sha256": "6b4a8bb57c5650861b9777c2205adb12a1b0ef8e041eeeb57883881a819d1fb2",
+      "size": 504989
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\admitted-dependencies.json",
+      "sha256": "7032ded0427c23c698d043739349385d391220f3df30ff96a48670aa1c2a939b",
+      "size": 3290
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\build-host-prerequisites.json",
+      "sha256": "aa11cc5d64b5eb594d3b05dd77117de900d23d73b0ddfef752b420e388fac1cd",
+      "size": 1505
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\build-host-prerequisites.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\build-host-prerequisites.stdout.log",
+      "sha256": "011b06681f4c5b857c844faa238df242ddd487e6dcef307e3cd3b624d8243be6",
+      "size": 48
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\compile-native-less-pty.json",
+      "sha256": "a99334fab8c9c87f93f49d73b7884d58058937f5840eee1489a9eee08d8df135",
+      "size": 1705
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\compile-native-less-pty.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\compile-native-less-pty.stdout.log",
+      "sha256": "99a8b1532d6fc5d00c22dc0c3ec1b574fb865d23c586113df62ee78e21b37056",
+      "size": 1167
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\debug-split-firstfault.json",
+      "sha256": "c89d0e64a0d5b85a278153d1922586e1078e6cc70c4dcfadf1e94db9dfac5e61",
+      "size": 2425
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\debug-split-firstfault.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\debug-split-firstfault.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\direct-dump-then-quit.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\direct-dump-then-quit.stdout",
+      "sha256": "6deadb05bf39cac504c172dfc14d37e34702a20085c5d4f1fa2d4bcf2ec1b851",
+      "size": 1200
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\direct-lesstest-dump-discriminator.json",
+      "sha256": "3ac181404cf1e6c8b61fd2718139b6853fafef7c993e1fd8c44f3b7a194c614e",
+      "size": 2201
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\direct-lesstest-dump-discriminator.stderr.log",
+      "sha256": "0ca329fb014acb394d258d10cd710c5281f18c06f243a57989500e87a1a6470e",
+      "size": 964
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\direct-lesstest-dump-discriminator.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\extract-final-less-package.json",
+      "sha256": "f2231ae650f7e57a39a9daacc478528c859441f8ac2ad71d8f6a35847bcf1874",
+      "size": 1609
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\extract-final-less-package.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\extract-final-less-package.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before-positive-control.json",
+      "sha256": "294df18591c9d2bf2f661f2609f92de8b5b4c18fdeed53135ec5c596b21266ec",
+      "size": 1929
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before-positive-control.stderr.log",
+      "sha256": "084cbfc3e9e18ae098f801f25b7be2b62f528c225767fbcbe49226ab5f8f7502",
+      "size": 862
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before-positive-control.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-large.json",
+      "sha256": "050079e5869e512f4e7ef756042efe8542d5c8eff2b4aada7955332b9951e33d",
+      "size": 1906
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-large.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-large.stdout.log",
+      "sha256": "01338a15a0844a2c2c6c2bdda1f79ee530fe6f84036afc188895925eec1c2546",
+      "size": 213
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-positive-control.json",
+      "sha256": "849ffa5d4bb544befbee54a6a01d15a9c088d43b12d474709de29d0990abea21",
+      "size": 1965
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-positive-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-positive-control.stdout.log",
+      "sha256": "192c4fb224e8949170e04aded650c62762a42ad53ee7a7daf61383de882e6331",
+      "size": 237
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-text.json",
+      "sha256": "a68d6599fd2466c04405ef8f3edc4019d382385dd5afecd68b71226372a6aad2",
+      "size": 1904
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-text.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-before02-text.stdout.log",
+      "sha256": "d7832d18f3fcf612021d6801a6db2082ad0b37e2a6214a81596b21855b4d2615",
+      "size": 211
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-audit.json",
+      "sha256": "d735f845092c7887552ff5832b94446680d0415fd57188b50a2d1ada6145d3fe",
+      "size": 382863
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-exact-file-read.json",
+      "sha256": "3343e3e16637063bf5e79f463aa6efcfad3a76135e997468851961054675225d",
+      "size": 2130
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-exact-file-read.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-exact-file-read.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-package-member-readback.json",
+      "sha256": "326eb6e18dda3ec2be8e73fbfc774c1590e6569890b3006d8f0e1b78cf5fb6f3",
+      "size": 1584
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-package-member-readback.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-package-member-readback.stdout.log",
+      "sha256": "7d7477fa6d1c809c80bf265734c026e970f88fd5912d6579f442120b2c0130d2",
+      "size": 130
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-static-source-layout-audit.json",
+      "sha256": "b6b5a62fac4824c06c471fd0080098da701ef8bba70b69fa54883cccfdc7425b",
+      "size": 1716
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-static-source-layout-audit.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-static-source-layout-audit.stdout.log",
+      "sha256": "68843f827791e3e0efc4175368927a659f4b1d83e5380951f0acc422249f47e4",
+      "size": 241
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-version.json",
+      "sha256": "60725ad1dca7e5d71f36f67be501d9edee771a0616dac38a9473f9fb929326a7",
+      "size": 2030
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-less-version.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-numeric-quotes.json",
+      "sha256": "2211926102b15ef12870d90e12a9d88725d89126887ddaa6dd2aac83b78e4d1f",
+      "size": 2113
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-numeric-quotes.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-numeric-quotes.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-quote-codepoint.json",
+      "sha256": "d369f3c7a38d46791ce2bac2b5c03bb3e92955e4dbd09f42f363baa868d176f4",
+      "size": 2121
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-quote-codepoint.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-quote-codepoint.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-quoted-argument.json",
+      "sha256": "56b677576f1bf390cbc2370e0793762f423ad97e2b62ec79d7597518afc6009e",
+      "size": 2146
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-quoted-argument.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lessecho-quoted-argument.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lesskey-real-output.json",
+      "sha256": "65644e2f69e2d6a86556151975fba51c57d442a601dd3de15536ad77d0c109aa",
+      "size": 2175
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lesskey-real-output.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lesskey-real-output.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lesskey-version.json",
+      "sha256": "495ee02c8499b85ec39bedd8f55aae2ae74a76ede087c8af5549f0409e2bae10",
+      "size": 2048
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lesskey-version.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-lesskey-version.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-large.json",
+      "sha256": "107bad7fe58c34f46e0fa3bc8051b5d22da7fc73ab22e601b05caa4ceee141a8",
+      "size": 1915
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-large.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-large.stdout.log",
+      "sha256": "684584ecb44aef0c2b8fce49f27eee0ed8394746fab6be15e7c221ae8294ac3b",
+      "size": 210
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-positive-control.json",
+      "sha256": "88f92813a5fb70de4c647feef2ace6dbaff51f5e08d5cc67e4ca5694cef6cfbb",
+      "size": 1974
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-positive-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-positive-control.stdout.log",
+      "sha256": "7d9245f289b9da978e4cf2f87ee17f85829590425ac783c1f97fc865ef493f80",
+      "size": 234
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-text.json",
+      "sha256": "6b91fc9b2bcc878c56dcf496cf5798edb5c790a7273985ba9d117087f39992d9",
+      "size": 1914
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-text.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-moved-text.stdout.log",
+      "sha256": "49e3daca31c824d4721f7c5efc7586be025c3af434441bb60215446821bf1b14",
+      "size": 208
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\final-package-readback.json",
+      "sha256": "6fda1bf48102d698ce21c5c231c2977293fcad54e715df6055929ef9398496f1",
+      "size": 14147
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-install-groff.json",
+      "sha256": "b2a5f942fa8f02cdfa505e9a8b3e9539d225f5f22ec1b43add96d1198d067b45",
+      "size": 1334
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-install-groff.stderr.log",
+      "sha256": "710e617dd522bb657fb2d3c36001db3cdf394bcabfbc5899a2961cfafb8e60a5",
+      "size": 43
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-install-groff.stdout.log",
+      "sha256": "fb69e488cc317b995da9e88ec7c706a0d8f4cb31bd8670322d0d02bf9c0795ad",
+      "size": 586
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-proc-cygdrive-conversion-control.json",
+      "sha256": "c36e377db6a1887b8131cd13883427efb5f8b3a37bf066cc5909e7480a78f7c2",
+      "size": 1406
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-proc-cygdrive-conversion-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-proc-cygdrive-conversion-control.stdout.log",
+      "sha256": "1391180cc4664f54306058ebc20b6b2cd9ab44f0a02a7c4cfaee7ec5abd122bd",
+      "size": 56
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-proc-cygdrive-conversion-posix-control.json",
+      "sha256": "8b65677f0789f6ec8073ece2975a67ef96c4f6cd9c4b2f2c7886862d3070f77b",
+      "size": 1421
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-proc-cygdrive-conversion-posix-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\host-proc-cygdrive-conversion-posix-control.stdout.log",
+      "sha256": "edaf6d53627ed9d5c3e61e5f5e71059d0e3093d4d1a3a81fb7abe21910d116a4",
+      "size": 42
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\input-copy.json",
+      "sha256": "cb73e5ba8f5254599a2917396e7cafcab1ff1c2ab9950f0336cc69b59e40b1f9",
+      "size": 1050
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\instrumented-startup-env-discriminator.json",
+      "sha256": "d564fe180f6e6614a5a6881084939ea9e8240c73308e089809590eb38b08f84b",
+      "size": 2844
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\instrumented-startup-env-discriminator.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\instrumented-startup-env-discriminator.stdout.log",
+      "sha256": "42db66967ab8830fecee2dabcc89d3188fbf4074e0b420fef8b353a6a68cf9c3",
+      "size": 184
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-01.json",
+      "sha256": "c1340cc35b2031658abd75965c0e7ce289b603dfa116aa3ed1789d3f99815f32",
+      "size": 2017
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-02.json",
+      "sha256": "9fd1200c9434d0250634c2386107ea697f20dc610e5619e991a3214a263c9ef1",
+      "size": 2016
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-02.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-02.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-03.json",
+      "sha256": "7cf92e33c6cf62ec971d47fd453c2a93eea23df756ea99ebeaf73b0a8a40015f",
+      "size": 2026
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-03.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-full-build-03.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\less-source-preparation.json",
+      "sha256": "497ecfc8debfe0dfed4720f75aef45f3905775a11aab98ac2579520b79461b8e",
+      "size": 845
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\minimal-lesstest-debug-01.json",
+      "sha256": "557c3b907c2b40098b14074a439172e1875eec39a04e65bcf3cf1266262afd4e",
+      "size": 2372
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\minimal-lesstest-debug-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\minimal-lesstest-debug-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-instrumented-pty-01.json",
+      "sha256": "b89cefa7d841404bbf2348362079e31c81a71d42bcfd1af4ca7beac23ce03933",
+      "size": 2443
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-instrumented-pty-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-instrumented-pty-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-less-stable-cygdrive-file-control.json",
+      "sha256": "edc4c664cac6801536615130226b6405f377eeb2a25af3d28c109cb7d4e87024",
+      "size": 1480
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-less-stable-cygdrive-file-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-less-stable-cygdrive-file-control.stdout.log",
+      "sha256": "6f043c7a4902c636cd33bc4b214e48888e62824466316f7aa5511e317e074e21",
+      "size": 60096
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-large-01.json",
+      "sha256": "22336683eb4ccf3b038159f91a4b7765b81bb8d9b0d1402f99a3ec9b2bad15ac",
+      "size": 2379
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-large-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-large-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-large-02.json",
+      "sha256": "545d02306d74b3dd58dfa3e0bb16ced422e7693eb9a93e7cfef2d92fb31c4079",
+      "size": 2390
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-large-02.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-large-02.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-text-01.json",
+      "sha256": "a30ffe27bdc03aa1a6e8ba7808726ba8c084126ba44806847598fa6a32b72298",
+      "size": 2384
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-text-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-pager-text-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-positive-pty-01.json",
+      "sha256": "69e9c89499a0b987d6a6f4ad06ab611fcd5842c03329bdda67433891a27a9de6",
+      "size": 2399
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-positive-pty-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-positive-pty-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-positive-pty-02.json",
+      "sha256": "d23ddcc3030d622f5385df0c53c5b5abec65d04dfe6c1f8f0f65fb021b1e65a0",
+      "size": 2409
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-positive-pty-02.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\native-positive-pty-02.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\ordinary-check-path-timing-discriminator.json",
+      "sha256": "9b1fdf64339794a6f93be18bcd5846fefecff1a0645ce773512a71497fc5b749",
+      "size": 2562
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\ordinary-check-path-timing-discriminator.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\ordinary-check-path-timing-discriminator.stdout.log",
+      "sha256": "799941345ce716d16337e72472fc021993946866b01b075429b8b247def03169",
+      "size": 2210
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\ordinary-coherent-test-runtime.json",
+      "sha256": "3128739188b41d83347638bff1d90f560461b5189299c72a5527efd30cbba3b3",
+      "size": 2151
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\ordinary-coherent-test-runtime.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\ordinary-coherent-test-runtime.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\package-less704-stripped.json",
+      "sha256": "e537d559d9a03a0604cbc5bb419be3adbdf28f70ef6685e7e13a163010ee345b",
+      "size": 1615
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\package-less704-stripped.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\package-less704-stripped.stdout.log",
+      "sha256": "4f992d0d7c6d465e02f20abae8ba67a3fad2bd11d13769853b4d212381b305fb",
+      "size": 169
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\pacman-less-package-metadata-readback.json",
+      "sha256": "02eb0ffad2e51f4e6ef2d5d9748161a031d0190100796a74b01940911674cb9f",
+      "size": 1414
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\pacman-less-package-metadata-readback.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\pacman-less-package-metadata-readback.stdout.log",
+      "sha256": "8552f1a923021a6d3b240800caccc0c8fd598ab7a76e3480cd97c0c5368621bb",
+      "size": 602
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-editor-pty-exe.json",
+      "sha256": "924cb32975e0d5a20f084a44f1aa8f6c74c3925dbe20ad0e4dab73c841d288c0",
+      "size": 1444
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-editor-pty-exe.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-editor-pty-exe.stdout.log",
+      "sha256": "a104d198506fb8af1d6289119254b38884d7e7fdadf39e2f32d5e10b1a0d25d6",
+      "size": 4352
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-msys-ncurses++w6-dll.json",
+      "sha256": "cc01ad9bbd6d01b0ec0970f23a1b58bb3feb369c3ab2d00d017f10417b8d43a4",
+      "size": 1468
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-msys-ncurses++w6-dll.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-msys-ncurses++w6-dll.stdout.log",
+      "sha256": "100831062c7aaf5bab4433dddf1b24e7f94e5b965c73656546ab49dd474633d2",
+      "size": 317046
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-probe-exe.json",
+      "sha256": "4d6c105e9caa6cb4169608a03b3770db5b0ed2e6eb892a0f3eb524f8dbf0657f",
+      "size": 1424
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-probe-exe.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-closure-probe-exe.stdout.log",
+      "sha256": "4ec050f205a024807203856417c6b3fccf561e43b25e17959f999e9c02f4aa35",
+      "size": 265586
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-control-binaries.json",
+      "sha256": "a237bca276cbe8a4d1bd942187619dfbd29d21eba77bfe5cecb7b1f2224db13b",
+      "size": 693
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\positive-control-closure-correction.json",
+      "sha256": "d148758d602ab0fd2eef592679b5b77ef02f93de199fffcb1ab7a48326d915f9",
+      "size": 1175
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-bounded-large-file-fixtures.json",
+      "sha256": "d0e3eb0eff9718755ed026db1309d11d17f7f6faa5688077f34eeb1cddfec243",
+      "size": 1536
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-bounded-large-file-fixtures.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-bounded-large-file-fixtures.stdout.log",
+      "sha256": "b3efe8dd95751c3303efd852461948dc97289e33a4f524f148b1d6659cc0dd76",
+      "size": 502
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-existing-zero-write-debugger.json",
+      "sha256": "160c154ec4f484d420b831961e2a9ebd74741c387d3e33eaddc67a511692e090",
+      "size": 1528
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-existing-zero-write-debugger.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-existing-zero-write-debugger.stdout.log",
+      "sha256": "c72bd965ff4baee48f8c79b5106345df22f708b04ec31ed58c70667d5857d645",
+      "size": 45
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-real-pager-fixtures.json",
+      "sha256": "a9c0f9b50f2bd1319a3d489bdbea299e439b9d6276d08083afd45cee133da8f3",
+      "size": 1510
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-real-pager-fixtures.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\prepare-real-pager-fixtures.stdout.log",
+      "sha256": "771c892da7a1e32b843887158c12375101427fddb79cd020c6cfc49b7a742078",
+      "size": 383
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\private-package-pins.json",
+      "sha256": "328e8c40194936e70203a96da3bbfdeded733ad2563ef257fc552b347afda18f",
+      "size": 1253
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\pty-helper-binding.json",
+      "sha256": "2142e736d2f0860c10d9e2a62b64167ea1e61b55add0dba760b4e66c020aa48e",
+      "size": 255
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\regular-install-before-check.json",
+      "sha256": "1218d408d6d000db63a2e9aaf81de046c5c21037a3817f6d2a83e83906e558aa",
+      "size": 1252
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-inputs.json",
+      "sha256": "69bde4474dc5c93660a598fac1ca8d3f97907cdabdbd4a454f51adeace711d34",
+      "size": 2375561
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-native-personality-control.json",
+      "sha256": "c06ff37a94a4412f9f27bd38a0d91c30b3786a117c874ae88386d517eb40e8fe",
+      "size": 1361
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-native-personality-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-native-personality-control.stdout.log",
+      "sha256": "088d1138584f27af866bb0859748228b2b2bb3f0824a4a70bebb056e68a57b6c",
+      "size": 71
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-symlink-aware-extraction.json",
+      "sha256": "9fe9d2fc60aeadeca079a8ffdfd11aefb4d4c45ddb6c6942647391e90d1be976",
+      "size": 1567
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-symlink-aware-extraction.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-symlink-aware-extraction.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-windows-path-link-control.json",
+      "sha256": "803e3406c0d5920635a35c30c349379da830e56bdb384dbdaded85ece599dcf6",
+      "size": 1882
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-windows-path-link-control.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\sdk-windows-path-link-control.stdout.log",
+      "sha256": "0728f0d63df2aaabd0d6b8aec5ede9cbcabf4efe47a5846d7bd72ba08f6cd2aa",
+      "size": 1158
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-env-discriminator.json",
+      "sha256": "9bc99e78c0a8651c2993043f8408714257b8394b8a133ee112623124ebb43a21",
+      "size": 6057
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-exact-test-env.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-exact-test-env.stdout",
+      "sha256": "53afeb12bfd31dcafb8969669bf8557a91b6fa5c5bc5ef061efcd8c806a9fd71",
+      "size": 1190
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-system-and-terminal.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-system-and-terminal.stdout",
+      "sha256": "5c5931899e6bbd27519de3f14dedcc4fdece5b42000efea0a8bde2ac5364ac5c",
+      "size": 1240
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-systemroot-only.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-systemroot-only.stdout",
+      "sha256": "53afeb12bfd31dcafb8969669bf8557a91b6fa5c5bc5ef061efcd8c806a9fd71",
+      "size": 1190
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-terminal-data-only.stderr",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\startup-terminal-data-only.stdout",
+      "sha256": "5c5931899e6bbd27519de3f14dedcc4fdece5b42000efea0a8bde2ac5364ac5c",
+      "size": 1240
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\strip-production-package.json",
+      "sha256": "0c2dc191ff54f9c8a87717d183105816c73787c490bba23d072b7ab40ef5868c",
+      "size": 1986
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\strip-production-package.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\strip-production-package.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-check-launcher-attempt-01.json",
+      "sha256": "0b4a0f9d7c2f247a31a765fa687562b58b4a075532d4fcddd21e720ae76c64a3",
+      "size": 267
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-01.json",
+      "sha256": "5f3d89970a78ead9b53702b6a2817b814467621c4c6fed6aa3596970d2eaa779",
+      "size": 2029
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-01.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-01.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-02.json",
+      "sha256": "031795ff703bf76a3b37487c6422792c1eaad7332a422a49c4f22888af724c81",
+      "size": 2029
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-02.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-02.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-03.json",
+      "sha256": "895f365143c039acf42b715dcc0fa09a513991811d5145e29261e46fe026ee79",
+      "size": 2028
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-03.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-03.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-04.json",
+      "sha256": "7259c9007f82cee42df28151f1d815458d8c4ed4e6e0d3036ee04332af822c73",
+      "size": 2027
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-04.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-04.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-05.json",
+      "sha256": "fba0c9648ecef695d7f914be1e265a633e89cc111b96d1e715b3f1c55414613b",
+      "size": 2028
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-05.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-05.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-06.json",
+      "sha256": "0d96d6fb9c6b0ee6713c3844cdd758428970aabd5730219dd0ef1bd13dd55c0f",
+      "size": 2037
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-06.stderr.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-less-check-06.stdout.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-positive-pty-control.json",
+      "sha256": "0cf80d0454b5b18030a5881ecd12d1d22d1c33320cacf0281913c9562cc68001",
+      "size": 14967
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\evidence\\upstream-runtest-unchanged.pl",
+      "sha256": "52f42329d35a99aee4a5c2a548bdaab7880d46f7f678be3cb76da127fbac22bd",
+      "size": 2924
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\live-modules.json",
+      "sha256": "f4d1e17310e3537a1983ad269b49f532b5fd321e2d3c8a7e748b514d301b60c5",
+      "size": 8500
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\pager-ready.json",
+      "sha256": "c2df9e5823028f1b0c51abcd8784489cfbb1e8e6880f024f6b2db7e1bf73072d",
+      "size": 44
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\pty-output.bin",
+      "sha256": "69328d4e22f817e59968ae337c3a683639c422f6e07888671e67e54c0e7234b5",
+      "size": 954
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\pty-result.json",
+      "sha256": "955abb64577319bcce7c3f4539cd2aab6ae603047d9aa129f683748d37c7a4f0",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-large\\result.json",
+      "sha256": "4aaadfabd1ad5d125bf8e0323211a07137f46d02f1cfc36dce7de99aa711fbe9",
+      "size": 9035
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\api.json",
+      "sha256": "dda3b3ecb524624639288c90d78dbae62a60f7134c6a9ea8a6be34331e7d7f2b",
+      "size": 65
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\editor-ready.json",
+      "sha256": "31ddd727e1832dbbcc4baadb9c911c49c0aaed82db7e66fa49e8bdb08b4bf8dc",
+      "size": 22
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\live-modules.json",
+      "sha256": "639d8cfb7ffab4c213f0512ef3925ddf3621e87685a3daa4eb2b43e48eef93f9",
+      "size": 9348
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\pty-output.bin",
+      "sha256": "732271bfca04bb6aebf207b49a3c538438c81ce7880187e3007523f9d571c4a3",
+      "size": 99
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-positive-control\\result.json",
+      "sha256": "0ffc853489d12245cd5a7cba2b1fedf6b5ac59b89166e3d07a8c50d2f02b40eb",
+      "size": 9885
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\live-modules.json",
+      "sha256": "10319d48218bd4e9fc1145b504061a8d32f3f5c2c14869a67ce04748ddd42e48",
+      "size": 8497
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\pager-ready.json",
+      "sha256": "1f1a3faca490eab3c333ac0b6231559d63f7fab94f48bc33ca10c64a58fc949f",
+      "size": 45
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\pty-output.bin",
+      "sha256": "66cb0de60f6861e6cf3f3e6c6a807d0a575c3b2c99c54278458f5e5aee72a202",
+      "size": 13794
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\pty-result.json",
+      "sha256": "5e0bef59e7d1184c2c8ee9e3e3a027bb35430b60143cdc8f9a0276b93f89e5ef",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-before02-text\\result.json",
+      "sha256": "e05c9799ee71cb95d1c78cde5ba4aa48e2982067e4e771ce32d16e1abe93651a",
+      "size": 9032
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\live-modules.json",
+      "sha256": "c119778f26e0d7eaabc69464c834319c8825a60c5b2f911df7fddcccc1ff2833",
+      "size": 8698
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\pager-ready.json",
+      "sha256": "19e6ec96a5e8f7438f1c912df59fdc7b93c59a1b3828d76995ca3efc58c98e3c",
+      "size": 44
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\pty-output.bin",
+      "sha256": "69328d4e22f817e59968ae337c3a683639c422f6e07888671e67e54c0e7234b5",
+      "size": 954
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\pty-result.json",
+      "sha256": "955abb64577319bcce7c3f4539cd2aab6ae603047d9aa129f683748d37c7a4f0",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-large\\result.json",
+      "sha256": "1322b88fcc41b3be095d85159f044b6a7ea088afa33f3577808896b94fd8c6b2",
+      "size": 9233
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\api.json",
+      "sha256": "dda3b3ecb524624639288c90d78dbae62a60f7134c6a9ea8a6be34331e7d7f2b",
+      "size": 65
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\editor-ready.json",
+      "sha256": "bc8dcb256f92201e6e1285bad9a1cd88224ee9eb2da4ac558b03f3d86330bd09",
+      "size": 22
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\live-modules.json",
+      "sha256": "d86d69eb9feafb4d0e65012459543ba2f3e9e69e78eb29ea1dfc5071f254f54d",
+      "size": 9606
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\pty-output.bin",
+      "sha256": "732271bfca04bb6aebf207b49a3c538438c81ce7880187e3007523f9d571c4a3",
+      "size": 99
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-positive-control\\result.json",
+      "sha256": "857c1053c2ae1d275446bf7cc49f5a1fa56b4ba9a876c9536331d2c71a8a2d18",
+      "size": 10143
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\live-modules.json",
+      "sha256": "116234552125c92f9ec1496d76b4418d38b86c34dbd32fde01e50b1edcf58efb",
+      "size": 8695
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\pager-ready.json",
+      "sha256": "39ef9f568493f83cc9d6eb02c932d26af0f98fc766b37e4416b6e9da4e7f4ed2",
+      "size": 45
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\pty-output.bin",
+      "sha256": "66cb0de60f6861e6cf3f3e6c6a807d0a575c3b2c99c54278458f5e5aee72a202",
+      "size": 13794
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\pty-result.json",
+      "sha256": "5e0bef59e7d1184c2c8ee9e3e3a027bb35430b60143cdc8f9a0276b93f89e5ef",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\final-moved-text\\result.json",
+      "sha256": "5df5db3f01f5796acafdc96e9b347b9bae29fc44fc0009ca0fc1b1baeb165434",
+      "size": 9230
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\fixtures02\\compiled.lesskey",
+      "sha256": "c90c3098d6e63f38e10b7bd5628cd5e3b9b2486ec3f310a36f33b2425a5d154c",
+      "size": 29
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\fixtures02\\fixtures.json",
+      "sha256": "17cccbf9011bbcd5a0e5d3100123db56f169ba21b4808d1f92e5f8af8e28d859",
+      "size": 529
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\fixtures02\\pager.lesskey",
+      "sha256": "b2e9a129c3d7d6afe9897c2156dbd7bf0448424847c2dc10c035aae35cc1305a",
+      "size": 40
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\live-modules.json",
+      "sha256": "2e7fc0ddae81b1b522857c20e79de1c8748baf476ff001a270ef4865adc89d18",
+      "size": 8528
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\pager-ready.json",
+      "sha256": "95abfe9cbf3992c679c98ea8f0e0e9240380f8b6b9898e3b4ca2f50fa2c01f21",
+      "size": 44
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\pty-output.bin",
+      "sha256": "bad4c0b468bd6f93c0f35c3c9651f1351339dacd3d8044fda66c909c123f7d9f",
+      "size": 13288
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\pty-result.json",
+      "sha256": "5e0bef59e7d1184c2c8ee9e3e3a027bb35430b60143cdc8f9a0276b93f89e5ef",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\instrumented-pty-01\\result.json",
+      "sha256": "fd637b7a914e8682e7e202064d5db8c5f6f010501e1ab231611814aad10200c2",
+      "size": 9062
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-build-01\\build.log",
+      "sha256": "ec715be9205a5f629460fb52a09f4912fc86141e1914dd7eff746bfa414dc454",
+      "size": 234
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-build-01\\native-job.json",
+      "sha256": "6496053c98ccf89fa14e988536fd8c634b567a5db6c37ba5d29ad977fc96cf83",
+      "size": 518
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-build-02\\build.log",
+      "sha256": "8830337a12ebe8cba5d4a4a4ed70cfabb670c47756f5e9fc8b8e8be7e26d6cc5",
+      "size": 5096
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-build-02\\native-job.json",
+      "sha256": "5bffa7121f9421b2bc62fffcc3f6e1e5655dd1f4c7efa24b4f61d614bb70b76d",
+      "size": 51445
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-build-03\\build.log",
+      "sha256": "90e3213ecb203c61e9d843af2e983550095ec3e8f7f07991e34171f57774e255",
+      "size": 23520
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-build-03\\native-job.json",
+      "sha256": "0c1765b8ca5e0e8e25e10597993d044976ce3835578fdf5208413da822db3cce",
+      "size": 135148
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-01\\check.log",
+      "sha256": "999eb97d2b2baa512b821b277583d26dc3831d57043e3f07822804985ea699f6",
+      "size": 22209
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-01\\native-job.json",
+      "sha256": "f604dfb58de51b60730b2767081e20fb6698df1bba2f25abf0bc0bbde797b712",
+      "size": 43021
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-02\\check.log",
+      "sha256": "4d64045313586871c47a2ac5c2ff44d6c5adb9167d2dec89df857734f3d3223f",
+      "size": 29715
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-02\\native-job.json",
+      "sha256": "314eb874a466e6fe12b722866355b77d1e65b16fa627216f18d98a8f9da0e09f",
+      "size": 47681
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-03\\check.log",
+      "sha256": "2c39ad407f84f52c386c9cd1909a9a3d6b8de0cc56e244007fd0b5e803e5e902",
+      "size": 7096
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-03\\native-job.json",
+      "sha256": "a0f65a42b6a59b64b4e6a3da05a3f8caa8b43661c8d60cf846f5bba60c94426c",
+      "size": 5457
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-04\\check.log",
+      "sha256": "7d4e2ed0df77c91665ae31f6d0d5d56b8b4534e5e61b7455bd63477746f22ff4",
+      "size": 13400
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-04\\native-job.json",
+      "sha256": "22063f81fd32d47808a5074938a607c74fb147befccc08d3c05f36cc298632e2",
+      "size": 43463
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-05\\check.log",
+      "sha256": "b1a6f0b3ed37d334f8e7304306a43e7b2ca4c42effb355e10e757ce9146062cd",
+      "size": 7712
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-05\\native-job.json",
+      "sha256": "7f0b4d5eb19d32a565b9fcb660e137391863b0ae339ed1b073f7ca91065a7ce1",
+      "size": 28757
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-06\\check.log",
+      "sha256": "9dfb40bcd825a7cd22b49b18584ab3072510b06589240db41fc84e592de8e083",
+      "size": 1085
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-check-06\\native-job.json",
+      "sha256": "6469c83fe04442d81d22928b709e7f897b49eaeb74b8074ffcc9c6a97e69d153",
+      "size": 23362
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-coherent-test-runtime\\native-job.json",
+      "sha256": "669cad7ac5da2741d5c341db8f30c1947bcf76196d309645e983abcf072bab6a",
+      "size": 1737
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-coherent-test-runtime\\run.log",
+      "sha256": "7c253cebafdb68f2c393a88784d4cc593e48aa02ffd00a0a2ff0b93b15e765f5",
+      "size": 24
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-debug-split-firstfault\\native-job.json",
+      "sha256": "5b0587f568efa59a43cf01f8a7623d22888604bb3807c69474870ed103e75df9",
+      "size": 2107
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-debug-split-firstfault\\run.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-less-exact-file-read\\native-job.json",
+      "sha256": "c031537c93dd43bfee329f6f4e313ba7cd60d1c9c1b7e8cd95d72929db9454b7",
+      "size": 834
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-less-exact-file-read\\run.log",
+      "sha256": "40adaa69866e45069e1ef95f7e09b4008c836144a9637d7e43f2a699e8ef64b3",
+      "size": 4721
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-less-version\\native-job.json",
+      "sha256": "5aa7c6a59230f73606b0753d7be02228140734f08c7e025150dcdea5f3db9078",
+      "size": 834
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-less-version\\run.log",
+      "sha256": "8d20c013fe2905a86d16b56ff8ebdd371ef68a2988867aefac09f703de4ae1bd",
+      "size": 287
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lessecho-numeric-quotes\\native-job.json",
+      "sha256": "654379001512ca954062b33b97fc0c2f7f2b0cdb95de165a60d94d3ca13a03b8",
+      "size": 842
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lessecho-numeric-quotes\\run.log",
+      "sha256": "310f6c3a1c46924b9f3f849917e8e45e114d2efddc6e178e5b14901b6ef5aba1",
+      "size": 21
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lessecho-quote-codepoint\\native-job.json",
+      "sha256": "f0f0bc7e15cc38f60f7dd7eb90f8c2ffaa2521fb85130d2d72aa9dec7c6bb4cc",
+      "size": 842
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lessecho-quote-codepoint\\run.log",
+      "sha256": "ca6bc0b6d49d4f21b1b753bb5b638e709589513881c254e28ef7a5394e01316b",
+      "size": 21
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lessecho-quoted-argument\\native-job.json",
+      "sha256": "769375163217dfb78f63dce1b958bd959b8d81c5cfe28407b4697a764545aa06",
+      "size": 840
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lessecho-quoted-argument\\run.log",
+      "sha256": "7961ae2f01a50d5cf462914bd15a938173641a5143bdaa84c9d4b082dcaf87d6",
+      "size": 21
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lesskey-real-output\\native-job.json",
+      "sha256": "ddc165619b509c39de277ea5b4d155f6147cdc8446b1071ff75dc66ecfd30f76",
+      "size": 837
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lesskey-real-output\\run.log",
+      "sha256": "e6760a046afff5fb4f7085abe919b227294fae28ad7e5e99f3ae96308f4a6e2e",
+      "size": 122
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lesskey-version\\native-job.json",
+      "sha256": "c821063e75d2949df8ae33b0b98ee237225b174737e775f880ceeaf7a73c7385",
+      "size": 837
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-final-lesskey-version\\run.log",
+      "sha256": "90884c1cda3987a4a3b33f107e1b22787edce019ddfa06f339fa457e5d280268",
+      "size": 21
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-instrumented-pty-01\\native-job.json",
+      "sha256": "4c2834b71afff1402c91cd64685ed6dc583b771a0208984d875b3d297e52c122",
+      "size": 1304
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-instrumented-pty-01\\run.log",
+      "sha256": "ac0399466f1d8a65ff18111af1c36445ebf03664483c4f8918e7893a66f39127",
+      "size": 211
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-minimal-debug-01\\native-job.json",
+      "sha256": "9ca9c30b56067bf04a443b39606dfb812d954531045f8f0b2de29b1c4f177ddc",
+      "size": 1760
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-minimal-debug-01\\run.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-pager-large-01\\native-job.json",
+      "sha256": "b9b4a67865bcf14c0805a9a9c5a0d3e3016e8f3294532d0400348e7020f59954",
+      "size": 1271
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-pager-large-01\\run.log",
+      "sha256": "a4848574317910e6a50bda51b246e0b357f1db3f075ff411dfade0773c7c117c",
+      "size": 1167
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-pager-large-02\\native-job.json",
+      "sha256": "982edcc7e912265437d95e488f3498c2b776bfcb4f4a3dc8bdec43ed5e78b0db",
+      "size": 1274
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-pager-large-02\\run.log",
+      "sha256": "6f4fa384e74ca5bf7fe82e2ac48581ca4ba76f271718aecfbbab1ff77c039d04",
+      "size": 207
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-pager-text-01\\native-job.json",
+      "sha256": "80a417887f802314afafb23f47b79401423243723d767d158abf3bf7ef7349c4",
+      "size": 1273
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-pager-text-01\\run.log",
+      "sha256": "a0d4dd14df0083fbfce85af8946aa0aef89357974d3a2c6b44fb7b53825c9c11",
+      "size": 205
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-positive-pty-01\\native-job.json",
+      "sha256": "181f3fd5d367f3d758b9d530721dde76aaf29810252331fb65860ba173a1e67d",
+      "size": 1793
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-positive-pty-01\\run.log",
+      "sha256": "a4848574317910e6a50bda51b246e0b357f1db3f075ff411dfade0773c7c117c",
+      "size": 1167
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-positive-pty-02\\native-job.json",
+      "sha256": "f67ee9393e4594f39d30da19d84dfe5ebde42d242898d1d4945d2b5d496d122a",
+      "size": 1260
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-positive-pty-02\\run.log",
+      "sha256": "5166ff81226bc85d7cd7b915f7113f8c4cf01182a914ac4f3738bf95060f673e",
+      "size": 221
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-strip-01\\native-job.json",
+      "sha256": "4331710cd98cf8da4670557ccaea8757d2038958efd69dea714f049f4677b6e7",
+      "size": 760
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observed-strip-01\\run.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observer\\expected-exit-contracts.json",
+      "sha256": "3a9b043b1c3c201b768cec86338914b6788e6af05508813c224ea670e5fb72d2",
+      "size": 306
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observer\\native-job.py",
+      "sha256": "4fc0922c9be78d9355372335fec9cfb4fc4f92906bf2f628858f8ece4df6a6fa",
+      "size": 23552
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observer\\native-target-exec.py",
+      "sha256": "caa2a31e13a465abb0557482c289f1228ae34a1bd020eb8bb5c3ee6d3d675818",
+      "size": 3985
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\observer\\native-target-exec.sh",
+      "sha256": "6c52480af548957dbba36c1d643ae510912f2df87232dc3291f0f2ab154b8476",
+      "size": 779
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\packages\\packaging.json",
+      "sha256": "3fbd2ff36e51e5cb09dddacf636ee188dd5d244beeedc1441724a55a7b359230",
+      "size": 2433
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-01\\controller.log",
+      "sha256": "85c8d17cc44a9b6eac24f5b3460ddfa5e94804f920db8100c5dd7b9441df6315",
+      "size": 48
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-01\\pty-output.bin",
+      "sha256": "ad7b5508b785c08b118d9e60e13abefcbe95bf173dcb8597fd5aa7c45aab3d89",
+      "size": 36
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-01\\pty-result.json",
+      "sha256": "00d4a58866f272cdaf19758a8b029e5462614c6566ae9b829e12e1dfe94590df",
+      "size": 64
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-01\\result.json",
+      "sha256": "35a6e61e8bb0dd23c9c08b753a75c25b79cfd21f7e7353f68580dd35025d2089",
+      "size": 1580
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\live-modules.json",
+      "sha256": "ac699a65f6ddb2d15fad92541c2a6821d11b6d9a418a1bf15c6b1100dc23306b",
+      "size": 8391
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\pager-ready.json",
+      "sha256": "ed10bf82d41cbf8ab87eca706574abddf61e37fd5b21e0e3e6ee0b16dbc0fd02",
+      "size": 44
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\pty-output.bin",
+      "sha256": "23e67ce3a3ea04fe5c302932cccc89e108f59fdcc0129eedf550206db6178e78",
+      "size": 975
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\pty-result.json",
+      "sha256": "955abb64577319bcce7c3f4539cd2aab6ae603047d9aa129f683748d37c7a4f0",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-large-02\\result.json",
+      "sha256": "32025bbb37697e393b2326672e7c9d14ddbeb306903ef6d541bea349380313ee",
+      "size": 8926
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\live-modules.json",
+      "sha256": "3396dc03372a780be971e9958c55e3e625861bface01882012cf7f1f28a8b121",
+      "size": 8384
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\pager-ready.json",
+      "sha256": "99373e64237fa5ca6c430dab57281fe0dc100c32ffdbcf4fec0a3d9b273a8926",
+      "size": 45
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\pty-output.bin",
+      "sha256": "66cb0de60f6861e6cf3f3e6c6a807d0a575c3b2c99c54278458f5e5aee72a202",
+      "size": 13794
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\pty-result.json",
+      "sha256": "5e0bef59e7d1184c2c8ee9e3e3a027bb35430b60143cdc8f9a0276b93f89e5ef",
+      "size": 63
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\pager-text-01\\result.json",
+      "sha256": "505b3d315156a8de4abacb65b69adbf322cafd7f3e1905c0e15624527160f3b9",
+      "size": 8919
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-01\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-01\\pty-output.bin",
+      "sha256": "d0f1d13d5193c9f787d5bf12d186b195913c3d886bf8622d72ca609a4ecd42af",
+      "size": 149
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-01\\result.json",
+      "sha256": "0ab8c14583373c77e73cadae346be50ef132577cb3416a230236f5412b40df08",
+      "size": 1586
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\api.json",
+      "sha256": "dda3b3ecb524624639288c90d78dbae62a60f7134c6a9ea8a6be34331e7d7f2b",
+      "size": 65
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\continue",
+      "sha256": "c2fc355f2b52e01ea670dc8b27f1c8f3a268d68b4b399a0cf91544cb975792df",
+      "size": 3
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\controller.log",
+      "sha256": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+      "size": 0
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\editor-ready.json",
+      "sha256": "e5f5521b276b0f5d29cb75f8bae9f4515fd23aed62bce578d1ba8af336311724",
+      "size": 20
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\live-modules.json",
+      "sha256": "d704566fe90d46aa6cd8f7aa2c85254ebb51440916c405d4bd3cc681ff7a86cd",
+      "size": 9130
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\pty-output.bin",
+      "sha256": "732271bfca04bb6aebf207b49a3c538438c81ce7880187e3007523f9d571c4a3",
+      "size": 99
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\positive-pty-02\\result.json",
+      "sha256": "eeffead22ae8419fc18a89a5bd0c5be093696b38c2dc98b537fd37a70aefb1d9",
+      "size": 9666
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\src\\less-704\\config.log",
+      "sha256": "9f37c4035fe08def02a1ba3d0741da32c4a77972dad49e751c125f610dc65c85",
+      "size": 122329
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\src\\less-704\\config.status",
+      "sha256": "c57186215ead17e25c327912794f38e64770ee8765f455b106bda42d6f071776",
+      "size": 29132
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\src\\less-704\\defines.h",
+      "sha256": "09c625ece71b0ccd6d49de3d80b7d4fbff49f70f57d42821c79b1a0015ca3892",
+      "size": 14405
+    },
+    {
+      "path": "C:\\ap17-accd-less01\\delivery-01\\evidence\\src\\less-704\\Makefile",
+      "sha256": "d9d0e609dcf10b27491c42798588c023175d7120c01370bc60afdaccf68cf1b5",
+      "size": 4987
+    }
+  ],
+  "admission": {
+    "producer_export_only": true,
+    "intake_owner": "a2dd0a44-30ad-4164-89bb-f2d7aaa0e5e5",
+    "package_admitted_by_this_session": false
+  }
+}

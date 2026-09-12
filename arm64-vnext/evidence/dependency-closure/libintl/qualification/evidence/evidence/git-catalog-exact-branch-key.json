@@ -1,0 +1,32 @@
+{
+  "Status": "observed-expected-exit",
+  "Name": "git-catalog-exact-branch-key",
+  "Executable": "C:\\Program Files\\Python314-arm64\\python.exe",
+  "ExecutableSHA256": "7e402261031efd4524809c57a1759cda1c8ba334fb498184fa13b8ca2bc98c29",
+  "Arguments": [
+    "-I",
+    "-c",
+    "import gettext,json\nwith open(r'C:\\ap11-accd-gettext01\\projection-moved-b\\mingwarm64\\share\\locale\\fr\\LC_MESSAGES\\git.mo','rb') as f: t=gettext.GNUTranslations(f)\nprint(json.dumps({k:v for k,v in t._catalog.items() if isinstance(k,str) and k.startswith('On branch')},ensure_ascii=True))"
+  ],
+  "Environment": {
+    "TMP": "C:\\ap11-accd-gettext01\\tmp",
+    "GIT_CONFIG_GLOBAL": "NUL",
+    "TEMP": "C:\\ap11-accd-gettext01\\tmp",
+    "SystemRoot": "C:\\Windows",
+    "HOME": "C:\\ap11-accd-gettext01\\home",
+    "WINDIR": "C:\\Windows",
+    "GIT_TERMINAL_PROMPT": "0",
+    "USERPROFILE": "C:\\ap11-accd-gettext01\\home",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD",
+    "GIT_CONFIG_NOSYSTEM": "1",
+    "PATH": "C:\\Windows\\System32"
+  },
+  "WorkingDirectory": "C:\\ap11-accd-gettext01",
+  "PID": 21596,
+  "RawExit": 0,
+  "ExpectedExit": 0,
+  "StartedAt": "2026-09-11T03:43:47.9661064Z",
+  "Stdout": "C:\\ap11-accd-gettext01\\evidence\\git-catalog-exact-branch-key.stdout.log",
+  "Stderr": "C:\\ap11-accd-gettext01\\evidence\\git-catalog-exact-branch-key.stderr.log",
+  "CompletedAt": "2026-09-11T03:43:48.1209525Z"
+}

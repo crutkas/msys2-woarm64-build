@@ -1,0 +1,36 @@
+pkgname=cygpath
+pkgver=3.6.10
+pkgrel=1
+pkgdesc='Native ARM64 MSYS path conversion utility, split from its separately paired runtime'
+arch=('aarch64')
+url='https://www.cygwin.com/'
+license=('GPL-3.0-or-later')
+depends=('msys2-runtime')
+options=('!strip' '!debug' '!lto' '!ccache' '!purge' '!zipman')
+source=('payload.tar' 'payload-files.sha256' 'provenance.tar' 'control.tar')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@' '@PROVENANCE_SHA256@' '@CONTROL_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+check() {
+    cp "$srcdir/payload/usr/bin/cygpath.exe" "$srcdir/control/"
+    export MSYS2_ARG_CONV_EXCL='*'
+    local native="$srcdir/control/cygpath.exe" mixed unix relay status=0
+    relay=$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")
+    set -o pipefail
+    bash "$relay" "$native" --version | grep -Fx 'cygpath (cygwin) 3.6.10'
+    mixed=$(/usr/bin/cygpath -am "$native")
+    unix=$(bash "$relay" "$native" -u "$mixed")
+    [[ $(bash "$relay" "$native" -m "$unix") == "$mixed" ]]
+    bash "$relay" "$native" --this-option-must-not-exist || status=$?
+    [[ $status == 1 ]]
+}
+
+package() {
+    cp -a "$srcdir/payload/usr" "$pkgdir/"
+    install -dm755 "$pkgdir/usr/share/woarm64-package-provenance/cygpath"
+    cp -a "$srcdir/provenance/." "$pkgdir/usr/share/woarm64-package-provenance/cygpath/"
+}
