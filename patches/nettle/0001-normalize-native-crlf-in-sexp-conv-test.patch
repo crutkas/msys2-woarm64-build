@@ -1,0 +1,19 @@
+From: Git for Windows ARM64 recovery
+Subject: [PATCH] tests: normalize native CRLF hash output
+
+The other textual sexp-conv test modes already remove carriage returns
+before comparing output. Do the same for --hash so the native Windows
+program's text-mode line endings do not fail an otherwise byte-identical
+digest comparison.
+
+--- a/tools/sexp-conv-test
++++ b/tools/sexp-conv-test
+@@ -50,7 +50,7 @@ test_canonical () {
+ 
+ test_hash () {
+     print_raw "$1" test.in
+-    $EMULATOR ./sexp-conv$EXEEXT --hash=sha256 <test.in >test1.out || exit 1
++    $EMULATOR ./sexp-conv$EXEEXT --hash=sha256 <test.in | tr -d '\r' >test1.out || exit 1
+ 
+     print_nl "$2" test2.out
+ 

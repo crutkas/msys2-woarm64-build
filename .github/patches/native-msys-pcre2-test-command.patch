@@ -1,0 +1,31 @@
+--- a/RunTest
++++ b/RunTest
+@@ -231,7 +231,8 @@
+ # This is in case the caller has set aliases (as I do - PH)
+ unset cp ls mv rm
+ 
+-if [ ! -x $pcre2test ] ; then
++if ! command -v "$pcre2test" >/dev/null 2>&1 &&
++   [ ! -x "$pcre2test" ] ; then
+   echo "** $pcre2test does not exist or is not executable."
+   exit 1
+ fi
+--- a/RunGrepTest
++++ b/RunGrepTest
+@@ -28,12 +28,14 @@
+ : ${pcre2grep:=$builddir/pcre2grep}
+ : ${pcre2test:=$builddir/pcre2test}
+ 
+-if [ ! -x $pcre2grep ] ; then
++if ! command -v "$pcre2grep" >/dev/null 2>&1 &&
++   [ ! -x "$pcre2grep" ] ; then
+   echo "** $pcre2grep does not exist or is not executable."
+   exit 1
+ fi
+ 
+-if [ ! -x $pcre2test ] ; then
++if ! command -v "$pcre2test" >/dev/null 2>&1 &&
++   [ ! -x "$pcre2test" ] ; then
+   echo "** $pcre2test does not exist or is not executable."
+   exit 1
+ fi

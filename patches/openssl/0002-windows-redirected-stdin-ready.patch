@@ -1,0 +1,49 @@
+From: Copilot App <223556219+Copilot@users.noreply.github.com>
+Date: Tue, 8 Sep 2026 12:00:00 -0700
+Subject: [PATCH] apps: do not block on an empty redirected stdin pipe
+
+PeekConsoleInput() fails for redirected standard input.  The previous
+fallback treated every open redirected stream as immediately readable,
+which made interactive applications such as s_server block in
+raw_read_stdin() before servicing an already-readable socket.
+
+Use PeekNamedPipe() for redirected pipes so only available data or a
+closed writer makes the stream readable.  Preserve the existing regular
+file fallback and EOF handling.
+---
+ apps/lib/apps.c | 13 +++++++++++++
+ 1 file changed, 13 insertions(+)
+
+diff --git a/apps/lib/apps.c b/apps/lib/apps.c
+index f2297fc..054b669 100644
+--- a/apps/lib/apps.c
++++ b/apps/lib/apps.c
+@@ -3335,6 +3335,7 @@ int has_stdin_waiting(void)
+ #if defined(OPENSSL_SYS_WINDOWS)
+     HANDLE inhand = GetStdHandle(STD_INPUT_HANDLE);
+     DWORD events = 0;
++    DWORD available = 0;
+     INPUT_RECORD inputrec;
+     DWORD insize = 1;
+     BOOL peeked;
+@@ -3346,6 +3347,18 @@ int has_stdin_waiting(void)
+     peeked = PeekConsoleInput(inhand, &inputrec, insize, &events);
+     if (!peeked) {
+         /* Probably redirected input? _kbhit() does not work in this case */
++        if (GetFileType(inhand) == FILE_TYPE_PIPE) {
++            if (PeekNamedPipe(inhand, NULL, 0, NULL, &available, NULL)) {
++                return available > 0;
++            }
++
++            /*
++             * A closed pipe is readable as EOF.  Other failures should not
++             * make the caller perform a potentially blocking read.
++             */
++            return GetLastError() == ERROR_BROKEN_PIPE;
++        }
++
+         if (!feof(stdin)) {
+             return 1;
+         }
+-- 
+2.51.0.windows.1

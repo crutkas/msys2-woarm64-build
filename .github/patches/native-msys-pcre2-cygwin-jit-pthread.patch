@@ -1,0 +1,16 @@
+--- a/configure.ac
++++ b/configure.ac
+@@ -788,6 +788,14 @@
+   if test "$HAVE_WINDOWS_H" != "1"; then
+     AX_PTHREAD([], [AC_MSG_ERROR([JIT support requires pthreads])])
++
++    # Cygwin/MSYS GCC's -pthread driver flag supplies the runtime pthread
++    # symbols. Keeping AX_PTHREAD's explicit -lpthread result makes libtool
++    # misclassify the static import archive as a missing shared dependency
++    # and suppress all PCRE2 DLLs.
++    case "$host_os" in
++      cygwin*) PTHREAD_LIBS= ;;
++    esac
+     CC="$PTHREAD_CC"
+     CFLAGS="$PTHREAD_CFLAGS $CFLAGS"
+     LIBS="$PTHREAD_LIBS $LIBS"
