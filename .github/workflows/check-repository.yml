@@ -2,7 +2,24 @@ name: Check MSYS2 repository
 
 on:
   workflow_dispatch:
+    inputs:
+      native_runner:
+        description: "ARM64 runner"
+        type: choice
+        options:
+          - self-hosted
+          - windows-11-arm
+        default: self-hosted
   workflow_call:
+    inputs:
+      native_runner:
+        description: "self-hosted or windows-11-arm"
+        type: string
+        default: self-hosted
+
+concurrency:
+  group: ${{ github.workflow }}-check-repository-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   build-cross:
@@ -48,7 +65,7 @@ jobs:
 
   test-cross:
     needs: [build-cross]
-    runs-on: [Windows, GCC, ARM64]
+    runs-on: ${{ fromJson(inputs.native_runner == 'windows-11-arm' && '["windows-11-arm"]' || '["Windows", "GCC", "ARM64"]') }}
 
     steps:
       - name: Download artifacts
@@ -62,7 +79,7 @@ jobs:
           ${{ github.workspace }}\artifacts\hello-world.exe
 
   build-native:
-    runs-on: ["Windows", "ARM64", "MSYS2"]
+    runs-on: ${{ fromJson(inputs.native_runner == 'windows-11-arm' && '["windows-11-arm"]' || '["Windows", "ARM64", "MSYS2"]') }}
 
     defaults:
       run:
@@ -73,6 +90,7 @@ jobs:
 
     steps:
       - name: Kill hanging processes
+        if: inputs.native_runner == 'self-hosted'
         shell: powershell
         run: |
           taskkill /F /FI 'MODULES eq msys-2.0.dll'
@@ -80,7 +98,7 @@ jobs:
           Remove-Item -Recurse -Force -ErrorAction SilentlyContinue -Path packages
           exit 0
 
-      - uses: Windows-on-ARM-Experiments/setup-msys2@main
+      - uses: Windows-on-ARM-Experiments/setup-msys2@813d75cc630f7932cf669c1e9cb7fcf1c435741c
         timeout-minutes: 10
         with:
           msystem: MINGWARM64
@@ -116,7 +134,7 @@ jobs:
          
   test-native:
     needs: [build-native]
-    runs-on: [Windows, GCC, ARM64]
+    runs-on: ${{ fromJson(inputs.native_runner == 'windows-11-arm' && '["windows-11-arm"]' || '["Windows", "GCC", "ARM64"]') }}
 
     steps:
       - name: Download artifacts

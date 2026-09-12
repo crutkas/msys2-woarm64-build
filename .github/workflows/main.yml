@@ -41,6 +41,17 @@ on:
           - false
         required: false
         default: 'true'
+      native_runner:
+        description: "ARM64 runner (hosted uses an emulated x64 MSYS2 bootstrap)"
+        type: choice
+        options:
+          - self-hosted
+          - windows-11-arm
+        default: self-hosted
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   mingw-cross-toolchain:
@@ -57,6 +68,7 @@ jobs:
     with:
       mingw_packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       build_with_native: ${{ inputs.build_native_with_native || 'true' }}
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
 
   repository:
     name: Create MSYS2 repository
@@ -147,3 +159,5 @@ jobs:
     name: Check MSYS2 repository
     needs: deploy
     uses: ./.github/workflows/check-repository.yml
+    with:
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}

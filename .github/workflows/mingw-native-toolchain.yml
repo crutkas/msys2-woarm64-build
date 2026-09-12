@@ -16,6 +16,13 @@ on:
           - false
         required: false
         default: 'true'
+      native_runner:
+        description: "ARM64 runner (not the architecture of every build dependency)"
+        type: choice
+        options:
+          - self-hosted
+          - windows-11-arm
+        default: self-hosted
   workflow_call:
     inputs:
       mingw_packages_branch:
@@ -27,9 +34,18 @@ on:
         type: string
         required: false
         default: 'true'
+      native_runner:
+        description: "self-hosted or windows-11-arm"
+        type: string
+        default: self-hosted
     outputs:
       artifacts:
         value: ${{ toJson(jobs) }}
+
+# Keep this distinct from the caller and the cross-toolchain workflow.
+concurrency:
+  group: ${{ github.workflow }}-mingw-native-${{ github.ref }}
+  cancel-in-progress: true
 
 jobs:
   mingw-w64-libiconv:
@@ -39,6 +55,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-libtre:
@@ -48,6 +65,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-libsystre:
@@ -60,6 +78,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -75,6 +94,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -91,6 +111,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -101,6 +122,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-crt-git:
@@ -113,6 +135,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -127,6 +150,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -137,6 +161,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-zlib:
@@ -149,6 +174,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -159,6 +185,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-gmp:
@@ -168,6 +195,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-mpfr:
@@ -180,6 +208,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -193,6 +222,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -218,6 +248,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -232,6 +263,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}
 
@@ -242,6 +274,7 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
 
   mingw-w64-gcc:
@@ -270,5 +303,6 @@ jobs:
       packages_repository: Windows-on-ARM-Experiments/MINGW-packages
       packages_branch: ${{ inputs.mingw_packages_branch || 'woarm64' }}
       runner_arch: aarch64
+      native_runner: ${{ inputs.native_runner || 'self-hosted' }}
       build_with_native: ${{ inputs.build_with_native != 'false' }}
       needs: ${{ toJson(needs) }}

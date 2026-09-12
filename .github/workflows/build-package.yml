@@ -15,13 +15,21 @@ on:
         type: string
         default: "woarm64"
       runner_arch:
-        description: "Architecture to build on"
+        description: "Runner hardware architecture, not build-dependency architecture"
         type: string
         default: "x86_64"
+      native_runner:
+        description: "ARM64 runner: self-hosted or windows-11-arm"
+        type: string
+        default: self-hosted
       build_with_native:
         description: "Build with native MinGW toolchain"
         type: boolean
         default: false
+      build_jobs:
+        description: "Explicit build/test worker limit (1-16); package compression uses one thread"
+        type: number
+        default: 2
       needs:
         description: "Parent workflow job dependencies"
         type: string
@@ -38,19 +46,40 @@ env:
   GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   FLAVOR: ${{ (inputs.runner_arch == 'aarch64') && (inputs.build_with_native && 'NATIVE_WITH_NATIVE' || 'NATIVE_WITH_CROSS') || 'CROSS' }}
   CLEAN_BUILD: 1
+  WOARM64_JOBS: ${{ inputs.build_jobs }}
 
 jobs:
   build:
     name: Build ${{ inputs.package_name }}
-    timeout-minutes: 720
+    timeout-minutes: ${{ inputs.runner_arch == 'aarch64' && inputs.native_runner == 'self-hosted' && 720 || 360 }}
     runs-on: >-
       ${{ fromJson(inputs.runner_arch == 'aarch64'
-        && '["Windows", "ARM64", "MSYS2"]'
+        && (inputs.native_runner == 'windows-11-arm' && '["windows-11-arm"]' || '["Windows", "ARM64", "MSYS2"]')
         || '["windows-latest"]') }}
 
     steps:
+      - name: Validate requested build host
+        shell: pwsh
+        env:
+          REQUESTED_ARCH: ${{ inputs.runner_arch }}
+          REQUESTED_RUNNER: ${{ inputs.native_runner }}
+        run: |
+          if ($env:REQUESTED_ARCH -notin @('x86_64', 'aarch64')) {
+            throw "Unsupported runner_arch: $env:REQUESTED_ARCH"
+          }
+          if ($env:WOARM64_JOBS -notmatch '^([1-9]|1[0-6])$') {
+            throw 'build_jobs must be an integer from 1 to 16.'
+          }
+          if ($env:REQUESTED_RUNNER -notin @('self-hosted', 'windows-11-arm')) {
+            throw "Unsupported native_runner: $env:REQUESTED_RUNNER"
+          }
+          if ($env:REQUESTED_ARCH -eq 'aarch64' -and [Runtime.InteropServices.RuntimeInformation]::OSArchitecture -ne 'Arm64') {
+            throw 'The native-output lane requires ARM64 Windows hardware.'
+          }
+          Write-Output "Runner hardware: $([Runtime.InteropServices.RuntimeInformation]::OSArchitecture); MSYS/x64 helpers remain bootstrap tools."
+
       - name: Kill hanging processes
-        if: inputs.runner_arch == 'aarch64'
+        if: inputs.runner_arch == 'aarch64' && inputs.native_runner == 'self-hosted'
         shell: powershell
         run: |
           taskkill /F /FI 'MODULES eq msys-2.0.dll'
@@ -58,7 +87,7 @@ jobs:
           Remove-Item -Recurse -Force -ErrorAction SilentlyContinue -Path packages
           exit 0
 
-      - uses: Windows-on-ARM-Experiments/setup-msys2@main
+      - uses: Windows-on-ARM-Experiments/setup-msys2@813d75cc630f7932cf669c1e9cb7fcf1c435741c
         timeout-minutes: 10
         with:
           msystem: >-
@@ -121,22 +150,30 @@ jobs:
         uses: actions/cache/restore@v4
         with:
           path: ${{ github.workspace }}/ccache
-          key: ${{ inputs.package_name }}-ccache-${{ steps.enable-ccache.outputs.timestamp }}
-          restore-keys: ${{ inputs.package_name }}-
+          key: ccache-v2-${{ runner.os }}-${{ runner.arch }}-${{ env.FLAVOR }}-${{ inputs.package_name }}-${{ hashFiles('patches/ccache/**', 'patches/makepkg/**', '.github/scripts/enable-ccache.sh') }}-${{ github.run_id }}-${{ github.run_attempt }}
+          restore-keys: ccache-v2-${{ runner.os }}-${{ runner.arch }}-${{ env.FLAVOR }}-${{ inputs.package_name }}-${{ hashFiles('patches/ccache/**', 'patches/makepkg/**', '.github/scripts/enable-ccache.sh') }}-
 
       - name: Build ${{ inputs.package_name }}
-        timeout-minutes: 720
+        timeout-minutes: ${{ inputs.runner_arch == 'aarch64' && inputs.native_runner == 'self-hosted' && 720 || 360 }}
         working-directory: ${{ github.workspace }}/packages/${{ inputs.package_name }}
         run: |
           `cygpath "${{ github.workspace }}"`/.github/scripts/build-package.sh \
-            ${{ inputs.packages_repository }}
+            ${{ inputs.packages_repository }} 2>&1 | tee build-output.log
+
+      - name: Upload build evidence
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: ${{ inputs.package_name }}-${{ env.FLAVOR }}-evidence
+          retention-days: 7
+          path: ${{ github.workspace }}/packages/${{ inputs.package_name }}/*.log
 
       - name: Save Ccache
-        if: always()
+        if: ${{ !cancelled() && steps.enable-ccache.outcome == 'success' }}
         uses: actions/cache/save@v4
         with:
           path: ${{ github.workspace }}/ccache
-          key: ${{ inputs.package_name }}-ccache-${{ steps.enable-ccache.outputs.timestamp }}
+          key: ccache-v2-${{ runner.os }}-${{ runner.arch }}-${{ env.FLAVOR }}-${{ inputs.package_name }}-${{ hashFiles('patches/ccache/**', 'patches/makepkg/**', '.github/scripts/enable-ccache.sh') }}-${{ github.run_id }}-${{ github.run_attempt }}
 
       - name: Upload ${{ inputs.package_name }}
         uses: actions/upload-artifact@v4

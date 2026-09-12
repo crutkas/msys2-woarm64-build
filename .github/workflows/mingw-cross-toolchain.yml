@@ -18,6 +18,11 @@ on:
       artifacts:
         value: ${{ toJson(jobs) }}
 
+# github.workflow is the caller's name in a reusable workflow.
+concurrency:
+  group: ${{ github.workflow }}-mingw-cross-${{ github.ref }}
+  cancel-in-progress: true
+
 jobs:
   mingw-w64-cross-mingwarm64-headers:
     uses: ./.github/workflows/build-package.yml

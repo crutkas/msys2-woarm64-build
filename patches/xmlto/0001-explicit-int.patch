@@ -1,0 +1,30 @@
+diff --git a/xmlif/xmlif.l b/xmlif/xmlif.l
+--- a/xmlif/xmlif.l
++++ b/xmlif/xmlif.l
+@@ -44,4 +44,4 @@
+ static char **selections;	/* selection tokens */
+ static int nselections;		/* number of selections */
+-static ifsense;			/* sense of last `if' or unless seen */
++static int ifsense;			/* sense of last `if' or unless seen */
+ static char *attribute;		/* last attribute scanned */
+@@ -240,4 +240,4 @@
+ int yywrap() {exit(0);};
+ 
+-main(int argc, char *argv[])
++int main(int argc, char *argv[])
+ {
+diff --git a/xmlif/xmlif.c b/xmlif/xmlif.c
+--- a/xmlif/xmlif.c
++++ b/xmlif/xmlif.c
+@@ -1152,4 +1152,4 @@
+ static char **selections;	/* selection tokens */
+ static int nselections;		/* number of selections */
+-static ifsense;			/* sense of last `if' or unless seen */
++static int ifsense;			/* sense of last `if' or unless seen */
+ static char *attribute;		/* last attribute scanned */
+@@ -2633,4 +2633,4 @@
+ int yywrap() {exit(0);};
+ 
+-main(int argc, char *argv[])
++int main(int argc, char *argv[])
+ {

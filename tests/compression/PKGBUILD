@@ -1,0 +1,22 @@
+pkgname=woarm64-compression-control
+pkgver=1
+pkgrel=1
+pkgdesc='Compiler-free package compression boundary control'
+arch=('any')
+mingw_arch=('mingwarm64')
+license=('custom')
+options=('!strip' '!debug' '!lto')
+source=()
+sha256sums=()
+
+# Deliberately override configuration late, as real PKGBUILDs may do.
+COMPRESSXZ=(xz -c -z -7 -T0 -)
+COMPRESSZST=(zstd -c -7 --threads=0 -)
+if [[ ${PROBE_OPAQUE_COMPRESSOR:-0} == 1 ]]; then
+    COMPRESSXZ=(env xz -c -T0 -)
+fi
+
+package() {
+    install -dm755 "$pkgdir/usr/share/woarm64-compression-control"
+    printf 'real makepkg archive payload\n' > "$pkgdir/usr/share/woarm64-compression-control/payload.txt"
+}

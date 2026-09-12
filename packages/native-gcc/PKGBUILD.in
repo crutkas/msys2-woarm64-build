@@ -1,0 +1,36 @@
+pkgname=mingw-w64-aarch64-gcc
+pkgver=15.0.1
+pkgrel=1
+pkgdesc='Experimental native ARM64 GCC C/C++ toolchain snapshot, qualified SEH and Windows cache fixes'
+arch=('aarch64')
+url='https://github.com/crutkas/gcc-woarm64'
+license=('GPL-3.0-or-later' 'LGPL-3.0-or-later' 'custom')
+provides=("mingw-w64-aarch64-cc=${pkgver}-${pkgrel}")
+options=('!strip' '!debug' '!lto' 'staticlibs' 'libtool' '!purge' '!zipman')
+source=('payload.tar' 'payload-files.sha256' 'provenance.tar')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@' '@PROVENANCE_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+check() {
+    [[ $("${srcdir}/payload/bin/gcc.exe" -dumpmachine) == aarch64-w64-mingw32 ]]
+    [[ $("${srcdir}/payload/bin/g++.exe" -dumpmachine) == aarch64-w64-mingw32 ]]
+    if (( pkgrel >= 2 )); then
+        printf '#include <stdio.h>\nint main(void){return 0;}\n' > "$srcdir/package-c89.c"
+        "${srcdir}/payload/bin/gcc.exe" -std=c89 -Werror -fsyntax-only "$srcdir/package-c89.c"
+    fi
+    printf '#include <vector>\nint main(){std::vector<int> x{42};return x[0]!=42;}\n' > "$srcdir/package-smoke.cc"
+    "${srcdir}/payload/bin/g++.exe" -O2 -static -o "$srcdir/package-smoke.exe" "$srcdir/package-smoke.cc"
+    bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/package-smoke.exe"
+}
+
+package() {
+    install -dm755 "$pkgdir/mingwarm64"
+    cp -a "$srcdir/payload/." "$pkgdir/mingwarm64/"
+    install -dm755 "$pkgdir/mingwarm64/share/woarm64-package-provenance/gcc"
+    cp -a "$srcdir/provenance/." "$pkgdir/mingwarm64/share/woarm64-package-provenance/gcc/"
+    install -m644 "$srcdir/payload-files.sha256" "$pkgdir/mingwarm64/share/woarm64-package-provenance/gcc/"
+}
