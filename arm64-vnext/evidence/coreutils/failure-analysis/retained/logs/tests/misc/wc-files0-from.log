@@ -1,0 +1,75 @@
+wc (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Paul Rubin and David MacKenzie.
+f-extra-arg...
+wc-files0-from.pl: test f-extra-arg: stderr mismatch, comparing f-extra-arg.2 (expected) and f-extra-arg.E (actual)
+*** f-extra-arg.2	Tue Sep  8 23:50:55 2026
+--- f-extra-arg.E	Tue Sep  8 23:50:56 2026
+***************
+*** 1,3 ****
+! wc: extra operand 'no-such'
+  file operands cannot be combined with --files0-from
+! Try 'wc --help' for more information.
+--- 1,3 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: extra operand 'no-such'
+  file operands cannot be combined with --files0-from
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc --help' for more information.
+missing...
+wc-files0-from.pl: test missing: stderr mismatch, comparing missing.1 (expected) and missing.E (actual)
+*** missing.1	Tue Sep  8 23:50:56 2026
+--- missing.E	Tue Sep  8 23:50:56 2026
+***************
+*** 1 ****
+! wc: cannot open 'missing' for reading: No such file or directory
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: cannot open 'missing' for reading: No such file or directory
+minus-in-stdin...
+wc-files0-from.pl: test minus-in-stdin: stderr mismatch, comparing minus-in-stdin.1 (expected) and minus-in-stdin.E (actual)
+*** minus-in-stdin.1	Tue Sep  8 23:50:56 2026
+--- minus-in-stdin.E	Tue Sep  8 23:50:56 2026
+***************
+*** 1 ****
+! wc: when reading file names from stdin, no file name of '-' allowed
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: when reading file names from stdin, no file name of '-' allowed
+empty...
+empty-nonreg...
+wc-files0-from.pl: test empty-nonreg failed: exit status mismatch:  expected 0, got 1
+nul-1...
+wc-files0-from.pl: test nul-1: stderr mismatch, comparing nul-1.2 (expected) and nul-1.E (actual)
+*** nul-1.2	Tue Sep  8 23:50:57 2026
+--- nul-1.E	Tue Sep  8 23:50:57 2026
+***************
+*** 1 ****
+! wc: -:1: invalid zero-length file name
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name
+nul-2...
+wc-files0-from.pl: test nul-2: stderr mismatch, comparing nul-2.3 (expected) and nul-2.E (actual)
+*** nul-2.3	Tue Sep  8 23:50:57 2026
+--- nul-2.E	Tue Sep  8 23:50:57 2026
+***************
+*** 1,2 ****
+! wc: -:1: invalid zero-length file name
+! wc: -:2: invalid zero-length file name
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:2: invalid zero-length file name
+1...
+1a...
+2...
+2a...
+zero-len...
+wc-files0-from.pl: test zero-len: stderr mismatch, comparing zero-len.2 (expected) and zero-len.E (actual)
+*** zero-len.2	Tue Sep  8 23:50:58 2026
+--- zero-len.E	Tue Sep  8 23:50:58 2026
+***************
+*** 1 ****
+! wc: -:1: invalid zero-length file name
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name
+FAIL tests/misc/wc-files0-from.pl (exit status: 1)

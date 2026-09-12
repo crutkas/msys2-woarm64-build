@@ -1,0 +1,748 @@
+{
+  "cohort": "current-noacl",
+  "command": [
+    "C:\\Program Files\\Python314-arm64\\python.exe",
+    "-I",
+    "-B",
+    "C:\\ag-exit-e138-01\\resume-20260909-01\\driver\\native-job.py",
+    "--cwd",
+    "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\work",
+    "--target-root",
+    "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl",
+    "--relay-records",
+    "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\relay",
+    "--log",
+    "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\target.log",
+    "--result",
+    "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\native-job.json",
+    "--timeout",
+    "90",
+    "--",
+    "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "-c",
+    "exec 9>&2; cd /c/ag-exit-e138-01/coreutils-failures-20260911-01/runs/upstream-tests-rm-rm5-current-noacl/work || exit $?; export srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source abs_srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source abs_top_srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source top_srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source abs_top_builddir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/runs/upstream-tests-rm-rm5-current-noacl/work CONFIG_HEADER=/c/ag-exit-e138-01/coreutils-failures-20260911-01/config.h built_programs='chroot hostid timeout nice who users pinky stty df stdbuf [ b2sum base64 base32 basenc basename cat chcon chgrp chmod chown cksum comm cp csplit cut date dd dir dircolors dirname du echo env expand expr factor false fmt fold ginstall groups head id join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nl nproc nohup numfmt od paste pathchk pr printenv printf ptx pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf sleep sort split stat sum sync tac tail tee test touch tr true truncate tsort tty uname unexpand uniq unlink vdir wc whoami yes arch hostname' fail=0 EXEEXT=.exe SHELL=/usr/bin/bash BOURNE_SHELL=/usr/bin/sh AWK=gawk EGREP='grep -E' PACKAGE_VERSION=8.32 VERSION=8.32 host_os=cygwin host_triplet=aarch64-pc-cygwin VERBOSE=yes CU_TEST_NAME=upstream-tests-rm-rm5-current-noacl KEEP=yes; ln -s /usr/bin src || exit $?; exec /usr/bin/bash --noprofile --norc /c/ag-exit-e138-01/coreutils-failures-20260911-01/source/tests/rm/rm5.sh"
+  ],
+  "environment": {
+    "AWK": "gawk",
+    "BOURNE_SHELL": "/usr/bin/sh",
+    "COMSPEC": "C:\\Windows\\system32\\cmd.exe",
+    "CONFIG_HEADER": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/config.h",
+    "CU_TEST_NAME": "upstream-tests-rm-rm5-current-noacl",
+    "EGREP": "grep -E",
+    "EXEEXT": ".exe",
+    "HOME": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\home",
+    "KEEP": "yes",
+    "LANG": "C",
+    "LANGUAGE": "C",
+    "LC_ALL": "C",
+    "MSYS": "winsymlinks:sys",
+    "PACKAGE_VERSION": "8.32",
+    "PATH": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin;C:\\Windows\\System32",
+    "PATHEXT": ".COM;.EXE;.BAT;.CMD;.VBS;.VBE;.JS;.JSE;.WSF;.WSH;.MSC;.PY;.PYW;.CPL",
+    "PYTHONDONTWRITEBYTECODE": "1",
+    "SHELL": "/usr/bin/bash",
+    "SystemRoot": "C:\\Windows",
+    "TEMP": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\work",
+    "TMP": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\work",
+    "TMPDIR": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/runs/upstream-tests-rm-rm5-current-noacl/work",
+    "TZ": "UTC",
+    "USERPROFILE": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\home",
+    "VERBOSE": "yes",
+    "VERSION": "8.32",
+    "WINDIR": "C:\\Windows",
+    "abs_srcdir": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/source",
+    "abs_top_builddir": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/runs/upstream-tests-rm-rm5-current-noacl/work",
+    "abs_top_srcdir": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/source",
+    "built_programs": "chroot hostid timeout nice who users pinky stty df stdbuf [ b2sum base64 base32 basenc basename cat chcon chgrp chmod chown cksum comm cp csplit cut date dd dir dircolors dirname du echo env expand expr factor false fmt fold ginstall groups head id join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nl nproc nohup numfmt od paste pathchk pr printenv printf ptx pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf sleep sort split stat sum sync tac tail tee test touch tr true truncate tsort tty uname unexpand uniq unlink vdir wc whoami yes arch hostname",
+    "fail": "0",
+    "host_os": "cygwin",
+    "host_triplet": "aarch64-pc-cygwin",
+    "srcdir": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/source",
+    "top_srcdir": "/c/ag-exit-e138-01/coreutils-failures-20260911-01/source"
+  },
+  "free_after": 33144619008,
+  "free_before": 33147916288,
+  "log_sha256": "c33fbe2978d47bd46210a6b75ded7c6060b1af404d75fca5de64abec230b5ac3",
+  "native_job": {
+    "created_processes": 77,
+    "expected_probe_exits": [],
+    "image_query_recoveries": [],
+    "native_target_exits": [
+      {
+        "created": 134335845349613543,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845348424552,
+        "parent_pid": 21116,
+        "pid": 28128,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845350950724,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\ln.exe",
+        "parent_created": 134335845349613543,
+        "parent_pid": 28128,
+        "pid": 21176,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845354965847,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\expr.exe",
+        "parent_created": 134335845353514216,
+        "parent_pid": 8560,
+        "pid": 7304,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845353514216,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 8560,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845355950053,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 11496,
+        "raw_exit": 32512
+      },
+      {
+        "created": 134335845357561605,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845357091981,
+        "parent_pid": 8368,
+        "pid": 19376,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845357091981,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 8368,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845362767012,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 8988,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845364140366,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 23008,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845364558795,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 20532,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845365719923,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\tr.exe",
+        "parent_created": 134335845364558795,
+        "parent_pid": 20532,
+        "pid": 25192,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845365811699,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 24728,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845366882457,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\grep.exe",
+        "parent_created": 134335845365811699,
+        "parent_pid": 24728,
+        "pid": 17320,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845368557006,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 1236,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845369707013,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 27484,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845369880115,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\tr.exe",
+        "parent_created": 134335845369707013,
+        "parent_pid": 27484,
+        "pid": 21280,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845369930615,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 17784,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845371361385,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\grep.exe",
+        "parent_created": 134335845369930615,
+        "parent_pid": 17784,
+        "pid": 21132,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845373290896,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 28376,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845375666412,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845374439168,
+        "parent_pid": 15824,
+        "pid": 22772,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845374439168,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 15824,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845378194223,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845361559179,
+        "parent_pid": 12500,
+        "pid": 24168,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845361559179,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 12500,
+        "raw_exit": 2560
+      },
+      {
+        "created": 134335845382137801,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845380467554,
+        "parent_pid": 19376,
+        "pid": 20912,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845382382623,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\diff.exe",
+        "parent_created": 134335845382137801,
+        "parent_pid": 20912,
+        "pid": 17216,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845380467554,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 19376,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845384836346,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 9620,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845385311468,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\ls.exe",
+        "parent_created": 134335845384836346,
+        "parent_pid": 9620,
+        "pid": 13424,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845386814379,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 14884,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845387277617,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\ls.exe",
+        "parent_created": 134335845386814379,
+        "parent_pid": 14884,
+        "pid": 13656,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845388684431,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 4716,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845392450044,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845392210730,
+        "parent_pid": 24540,
+        "pid": 13656,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845394572858,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\mktemp.exe",
+        "parent_created": 134335845392450044,
+        "parent_pid": 13656,
+        "pid": 10392,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845392210730,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845390999140,
+        "parent_pid": 20992,
+        "pid": 24540,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845398672356,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845396923390,
+        "parent_pid": 22248,
+        "pid": 16364,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845399331434,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\ls.exe",
+        "parent_created": 134335845398672356,
+        "parent_pid": 16364,
+        "pid": 7968,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845396923390,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845390999140,
+        "parent_pid": 20992,
+        "pid": 22248,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845390999140,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 20992,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845402947446,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 22784,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845404318395,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\expr.exe",
+        "parent_created": 134335845402947446,
+        "parent_pid": 22784,
+        "pid": 26460,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845408260457,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\expr.exe",
+        "parent_created": 134335845406016383,
+        "parent_pid": 23008,
+        "pid": 14820,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845406016383,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 23008,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845410124301,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 13300,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845411820850,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\expr.exe",
+        "parent_created": 134335845410124301,
+        "parent_pid": 13300,
+        "pid": 13656,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845413264832,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\expr.exe",
+        "parent_created": 134335845412302274,
+        "parent_pid": 13608,
+        "pid": 19376,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845412302274,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 13608,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845415997862,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\expr.exe",
+        "parent_created": 134335845415384078,
+        "parent_pid": 13716,
+        "pid": 18872,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845415384078,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 13716,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845417276444,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 27724,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845419142959,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 24440,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845420290350,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\env.exe",
+        "parent_created": 134335845419142959,
+        "parent_pid": 24440,
+        "pid": 2404,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845421541858,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\rm.exe",
+        "parent_created": 134335845420290350,
+        "parent_pid": 2404,
+        "pid": 22904,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845422747224,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 28164,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845423856904,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\id.exe",
+        "parent_created": 134335845422747224,
+        "parent_pid": 28164,
+        "pid": 12236,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845425531659,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\mkdir.exe",
+        "parent_created": 134335845424827361,
+        "parent_pid": 24636,
+        "pid": 6564,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845424827361,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 24636,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845426823754,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 21820,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845427473359,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\cat.exe",
+        "parent_created": 134335845426823754,
+        "parent_pid": 21820,
+        "pid": 22124,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845429739694,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\cat.exe",
+        "parent_created": 134335845428743190,
+        "parent_pid": 20532,
+        "pid": 13236,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845428743190,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 20532,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845431169370,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 17800,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845431826149,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\rm.exe",
+        "parent_created": 134335845431169370,
+        "parent_pid": 17800,
+        "pid": 13716,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845433316951,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 21132,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845433590401,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\tr.exe",
+        "parent_created": 134335845433316951,
+        "parent_pid": 21132,
+        "pid": 8020,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845433529296,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 27368,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845435821356,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\head.exe",
+        "parent_created": 134335845433529296,
+        "parent_pid": 27368,
+        "pid": 21596,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845435810449,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 10948,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845437162331,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\sed.exe",
+        "parent_created": 134335845435810449,
+        "parent_pid": 10948,
+        "pid": 17728,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845439654487,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\mv.exe",
+        "parent_created": 134335845439436099,
+        "parent_pid": 26464,
+        "pid": 24440,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845439436099,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 26464,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845440809499,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 20052,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845442436166,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\test.exe",
+        "parent_created": 134335845440809499,
+        "parent_pid": 20052,
+        "pid": 8988,
+        "raw_exit": 256
+      },
+      {
+        "created": 134335845445834359,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\diff.exe",
+        "parent_created": 134335845443293501,
+        "parent_pid": 24996,
+        "pid": 25260,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845443293501,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 24996,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845446856172,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 17200,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845351729911,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845348424552,
+        "parent_pid": 21116,
+        "pid": 11316,
+        "raw_exit": 0
+      },
+      {
+        "created": 134335845348424552,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": null,
+        "parent_pid": null,
+        "pid": 21116,
+        "raw_exit": 0
+      }
+    ],
+    "native_target_root": "\\device\\harddiskvolume3\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl",
+    "native_target_root_error": null,
+    "observation_count_matches": true,
+    "observed_processes": 77,
+    "parent_pid": 21116,
+    "parent_raw_exit": 0,
+    "passed": false,
+    "runtime_exit_relays": [],
+    "timed_out": false,
+    "unobserved_processes": [],
+    "unrelayed_high_exits": [
+      {
+        "created": 134335845355950053,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 11496,
+        "raw_exit": 32512
+      },
+      {
+        "created": 134335845361559179,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\bash.exe",
+        "parent_created": 134335845351729911,
+        "parent_pid": 11316,
+        "pid": 12500,
+        "raw_exit": 2560
+      },
+      {
+        "created": 134335845442436166,
+        "executable": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\current-noacl\\usr\\bin\\test.exe",
+        "parent_created": 134335845440809499,
+        "parent_pid": 20052,
+        "pid": 8988,
+        "raw_exit": 256
+      }
+    ],
+    "unresolved_processes": []
+  },
+  "native_job_sha256": "a28970375cae045bc6a41070c28baf025a87f4f1c62746481115029d58fbb71c",
+  "not_a_package_admission": true,
+  "observer_gate_passed": false,
+  "outer": {
+    "active_at_boundary": 0,
+    "active_at_parent_exit": 0,
+    "created_processes": 78,
+    "exit": 255,
+    "passed": false,
+    "pid": 5776,
+    "remaining_process_details": [],
+    "remaining_process_ids": [],
+    "timed_out": false
+  },
+  "same_test_source": true,
+  "schema": 1,
+  "semantic_test_shell_raw_exit": 0,
+  "shell": "exec 9>&2; cd /c/ag-exit-e138-01/coreutils-failures-20260911-01/runs/upstream-tests-rm-rm5-current-noacl/work || exit $?; export srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source abs_srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source abs_top_srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source top_srcdir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/source abs_top_builddir=/c/ag-exit-e138-01/coreutils-failures-20260911-01/runs/upstream-tests-rm-rm5-current-noacl/work CONFIG_HEADER=/c/ag-exit-e138-01/coreutils-failures-20260911-01/config.h built_programs='chroot hostid timeout nice who users pinky stty df stdbuf [ b2sum base64 base32 basenc basename cat chcon chgrp chmod chown cksum comm cp csplit cut date dd dir dircolors dirname du echo env expand expr factor false fmt fold ginstall groups head id join kill link ln logname ls md5sum mkdir mkfifo mknod mktemp mv nl nproc nohup numfmt od paste pathchk pr printenv printf ptx pwd readlink realpath rm rmdir runcon seq sha1sum sha224sum sha256sum sha384sum sha512sum shred shuf sleep sort split stat sum sync tac tail tee test touch tr true truncate tsort tty uname unexpand uniq unlink vdir wc whoami yes arch hostname' fail=0 EXEEXT=.exe SHELL=/usr/bin/bash BOURNE_SHELL=/usr/bin/sh AWK=gawk EGREP='grep -E' PACKAGE_VERSION=8.32 VERSION=8.32 host_os=cygwin host_triplet=aarch64-pc-cygwin VERBOSE=yes CU_TEST_NAME=upstream-tests-rm-rm5-current-noacl KEEP=yes; ln -s /usr/bin src || exit $?; exec /usr/bin/bash --noprofile --norc /c/ag-exit-e138-01/coreutils-failures-20260911-01/source/tests/rm/rm5.sh",
+  "test": "tests/rm/rm5.sh",
+  "test_source_sha256": "d7262db14747c53b6c7cc527f3d172d9d96eb249ce5ced273a820d0b0ad7944a"
+}

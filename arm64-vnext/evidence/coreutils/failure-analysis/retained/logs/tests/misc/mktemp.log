@@ -1,0 +1,30 @@
+mktemp (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Jim Meyering and Eric Blake.
+too-many...
+mktemp.pl: test too-many: stderr mismatch, comparing too-many.1 (expected) and too-many.E (actual)
+*** too-many.1	Tue Sep  8 22:27:26 2026
+--- too-many.E	Tue Sep  8 22:27:26 2026
+***************
+*** 1,2 ****
+! mktemp: too many templates
+! Try 'mktemp --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp: too many templates
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp --help' for more information.
+too-few-x...
+mktemp.pl: test too-few-x: stderr mismatch, comparing too-few-x.1 (expected) and too-few-x.E (actual)
+*** too-few-x.1	Tue Sep  8 22:27:27 2026
+--- too-few-x.E	Tue Sep  8 22:27:27 2026
+***************
+*** 1 ****
+! mktemp: too few X's in template 'foo.XX'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp: too few X's in template 'foo.XX'
+1f...
+mktemp.pl: bar.H9O6 doesn't have required permissions
+FAIL tests/misc/mktemp.pl (exit status: 255)

@@ -1,0 +1,16 @@
+== date original single byte B0 ==
+date_exit=1
+date: invalid date '\260'
+== date foreign-boundary PUA representation ==
+date_exit=1
+date: invalid date '\357\202\260'
+== join exact original A7 separator ==
+join_exit=0
+ 61 a7 31 a7 32 a7 0a 62 a7 31 a7 32 a7 0a
+== join PUA-encoded separator ==
+join: multi-character tab '\357\202\247'
+join_exit=1
+== seq negative zero ==
+seq_exit=1
+seq: invalid Zero increment value: '-0'
+Try 'seq --help' for more information.

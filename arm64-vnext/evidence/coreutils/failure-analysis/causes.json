@@ -1,0 +1,3908 @@
+{
+  "catalog_or_translation_root_causes_evidenced": 0,
+  "counts": {
+    "ERROR": 4,
+    "FAIL": 41,
+    "PASS": 48,
+    "SKIP": 23
+  },
+  "every_original_status_preserved": true,
+  "groups": [
+    {
+      "confidence": "confirmed discrepancy and mechanism; Perl scripts not fully rerun",
+      "counts": {
+        "FAIL": 17
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-current-noacl\\target.log",
+          "log_sha256": "2ade8f95aabc62a1f391ea3da44e44ce226172bda96335b23655e9294e8f0b57",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-current-noacl\\result.json",
+          "sha256": "51ddcd534d65a978fa3b408004998a1dc2478e1956413906a296ff7f9e1cae95"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-historical-noacl\\target.log",
+          "log_sha256": "2ade8f95aabc62a1f391ea3da44e44ce226172bda96335b23655e9294e8f0b57",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-diagnostic-argv0-historical-noacl\\result.json",
+          "sha256": "7f2efb8dcaf02931ebab1eb930a49eef627e0a01567ae8197758167b685b0ba9"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-dir-nonrecur-01\\target.log",
+          "log_sha256": "b6a9ebcbfe295135f403b33806352a9b92fb33de696df2c42c2562cedc78220b",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-dir-nonrecur-01\\result.json",
+          "sha256": "46c6df6d84e96146037aae490997f4bc444de979dfdd16103a811206a0788ce2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\target.log",
+          "log_sha256": "ac48001e123a37ee8874fa20f0fb788446b13037cd76514e1447e1077342a15e",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\result.json",
+          "sha256": "c66893e87c200a42a745dd697c81f204f269284403250cc517518a891bf326d0"
+        }
+      ],
+      "id": "argv0-diagnostics",
+      "kind": "launch/harness interoperability",
+      "mechanism": "Native utility receives an absolute argv[0] in the retained mixed launch. gnulib deliberately preserves path-qualified argv[0]; tests expect basename invocation. seq's first-only s/-0/0/ also edits the path component e138-01 instead of the negative-zero operand.",
+      "not": "not an English translation error or incorrect cut/seq/pr data algorithm",
+      "tests": [
+        "tests/misc/help-version-getopt.sh",
+        "tests/rm/d-2.sh",
+        "tests/rm/d-3.sh",
+        "tests/rm/dir-no-w.sh",
+        "tests/rm/dir-nonrecur.sh",
+        "tests/rm/isatty.sh",
+        "tests/rm/empty-name.pl",
+        "tests/rm/interactive-always.sh",
+        "tests/rm/interactive-once.sh",
+        "tests/rm/r-4.sh",
+        "tests/rm/rm5.sh",
+        "tests/fmt/base.pl",
+        "tests/misc/env.sh",
+        "tests/misc/seq.pl",
+        "tests/misc/xstrtol.pl",
+        "tests/misc/cut.pl",
+        "tests/pr/pr-tests.pl"
+      ]
+    },
+    {
+      "confidence": "confirmed; residual layer localized to runtime/API permission semantics, not an ARM64 arithmetic/codegen defect",
+      "counts": {
+        "FAIL": 14
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\target.log",
+          "log_sha256": "6a3d90bc3b41a36027d152a33500e53b087edec7632c872ebf56eb47f9fc1b1f",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\result.json",
+          "sha256": "e9c10d3a75341bef68e5d6f1d5c6b2484ed037b62b915c278aba9595c837c9d2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\target.log",
+          "log_sha256": "2bd368410c4a2844922c0871eaa665a8907f7b4b37acc33c92c04d14fdada4dc",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\result.json",
+          "sha256": "deee73a2821aeb71b849b80971df2a44fff98abe8be97f9eafc00a416987cb3c"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-noacl\\target.log",
+          "log_sha256": "64863a478bbe8ad4982626469c3b9c382f8d7608369a1faec11972d43073e0b4",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-noacl\\result.json",
+          "sha256": "9227df3a0c6c897924f96043a68726028ce44d8426b6c846fb5a560d491a9bad"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-acl\\target.log",
+          "log_sha256": "7b5ae845bff0ba3a1d020a5cd982f9da86ae763aa49e3ddd08791164b221abd5",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-mktemp-mode-current-acl\\result.json",
+          "sha256": "6dbc14264ffd789b86656bddbc7632364ddaf647d957f1530cfe104220c2f13b"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-unreadable-perl-mechanism-01\\target.log",
+          "log_sha256": "ef636ff92320b6c8de365d60e5ab1b17e15a53764108287917e233618a73fa26",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-unreadable-perl-mechanism-01\\result.json",
+          "sha256": "6c9c86ba88301ce29c27b38500f904aff7646f80d5801aa20c830df99bc189da"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-acl\\target.log",
+          "log_sha256": "926a0f68881d92a070795690ba65adade501d1cd99b59d6b231a4566daa5ca85",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-acl\\result.json",
+          "sha256": "2200048ad502f5ef77af3999ce87e8f897171b737ffd3509cda73a1d15714465"
+        }
+      ],
+      "id": "permission-model",
+      "kind": "configuration plus genuine MSYS/Windows POSIX semantic gaps",
+      "mechanism": "noacl cannot encode Unix mode/group requirements (mktemp600 becomes644; directories remain755). Enabling ACL in a fresh private root fixes group/read/temporary-file semantics, but seven shell tests still expose unlinkat child deletion despite nonwritable parent or traversal despite nonsearchable parent. Direct runtime API fixture reproduces those boundaries without Coreutils.",
+      "not": "not reclassified as inapplicable: the POSIX behaviors remain genuinely unsupported/failing",
+      "tests": [
+        "tests/rm/cycle.sh",
+        "tests/chmod/no-x.sh",
+        "tests/chgrp/basic.sh",
+        "tests/rm/fail-eacces.sh",
+        "tests/rm/inaccessible.sh",
+        "tests/rm/rm1.sh",
+        "tests/rm/rm2.sh",
+        "tests/rm/rm3.sh",
+        "tests/rm/unread2.sh",
+        "tests/rm/unreadable.pl",
+        "tests/chgrp/no-x.sh",
+        "tests/chgrp/posix-H.sh",
+        "tests/chgrp/recurse.sh",
+        "tests/misc/mktemp.pl"
+      ]
+    },
+    {
+      "confidence": "confirmed boundary discrepancies; original parent PID/birth/callsite receipt does not exist, so exact legacy boundary implementation is not retroactively reconstructed",
+      "counts": {
+        "ERROR": 2,
+        "FAIL": 6
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-pwd-option-01\\target.log",
+          "log_sha256": "546a1fd5a95f213aa7629c5c7cdc861807b89f60fd868de745b0302889934dcd",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-pwd-option-01\\result.json",
+          "sha256": "1c51c79e2113c814ad26185164f46886899f5d5d7b76e276fa6e1583a69d0da3"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-wc-proc-01\\target.log",
+          "log_sha256": "8430f3ff391bafb51f90523bd1c0a098573f8a46a2b0a16167683f087f1ba127",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-wc-proc-01\\result.json",
+          "sha256": "7e8a4a27b37b880c0173207367353d8e0370deeea61dbf38ac518be42e8a77f2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\target.log",
+          "log_sha256": "68438a5757312c000c3a76d400a5e0e122476802456ccc25db82170ed52d55c1",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\result.json",
+          "sha256": "f1c5f236b4d6b3d268580db5cbd125e58c8d20527e6030c5513a70258637218a"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\target.log",
+          "log_sha256": "bc2e186a88400827da4cc03c49ef0fb6140ed92ba903c220a1647b3190a8427a",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\result.json",
+          "sha256": "d1bb0fd199d3e13f481ac43663fbe30c95cc442cd9a627fe480fbf375b5ff67e"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\target.log",
+          "log_sha256": "7b3c62c0e3daef6491f9df58baee1102ab4efbef1134f9fa1c2b962428a3e79e",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\result.json",
+          "sha256": "ed03739e3375883b2de5186b51bb55f001fc36d78f098ca48873597d7b2075b8"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\target.log",
+          "log_sha256": "75cbafd00469cd813bb4bd8c9c013f9f8e8698eabe2bab423d4d6f247f83d86f",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\result.json",
+          "sha256": "11a207ba17b6af0f2d51f7b42e3be7a88937f35c90fa8f54c1f4db379754c5b0"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\target.log",
+          "log_sha256": "7e3c0bf905cbfb9c5d9b6dd9f4591522217c28c83b4fc414f0b621f52b2ce021",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\result.json",
+          "sha256": "17249ba471d3f43f5e187a280253a75070c601391ed8392e79f5b6123e49239e"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\target.log",
+          "log_sha256": "77ae3c2c67f728e8e5e55476f0971535754e49222914d216b37fb73b9d679cf7",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\result.json",
+          "sha256": "05ff5aa4c08b5cf369a6f14bba947eb53325944831079b008b62452c5c330815"
+        }
+      ],
+      "id": "runtime-views-and-pids",
+      "kind": "mixed launch/runtime namespace and file-descriptor interoperability",
+      "mechanism": "Retained parent and native child disagree on symlink/root mapping, process IDs, /proc/version byte length or inherited special-file descriptors. Logs show /cygdrive paths remapped under host-bootstrap, kill($!) reporting ESRCH while tail remains alive, wrong proc skip length and wc EBADF. Coherent native-parent replays fix these without utility changes, including selected old-baa-runtime controls.",
+      "not": "not proof that tail/od/wc need output normalization or that inotify must be skipped",
+      "tests": [
+        "tests/rm/dangling-symlink.sh",
+        "tests/rm/unread3.sh",
+        "tests/tail-2/inotify-hash-abuse2.sh",
+        "tests/tail-2/pid.sh",
+        "tests/misc/od.pl",
+        "tests/misc/wc-proc.sh",
+        "tests/tail-2/overlay-headers.sh",
+        "tests/misc/pwd-option.sh"
+      ]
+    },
+    {
+      "confidence": "byte-level discrepancy confirmed; not a date parser/calendar calculation error",
+      "counts": {
+        "FAIL": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\result.json",
+          "sha256": "14437ec16878d561b5111177ccf24c41766f02725038c78a3b88a5ce531c18c1"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\result.json",
+          "sha256": "0657516e21f9367a2636e6566f01a3769c126d78ef1fe6f8aaa25f437b6c5c77"
+        }
+      ],
+      "id": "invalid-byte-argument",
+      "kind": "argument-byte interoperability",
+      "mechanism": "The exact invalid B0 date argument is reported as EF82B0 (UTF-8 private-use U+F0B0) in the retained stderr. Same binary under coherent native old/current parents preserves B0 and produces the expected diagnostic; deliberately passing EF82B0 recreates the observed diagnostic. The secondary invalid-TZ mismatch is argv0-only.",
+      "not": "not a message-catalog lookup or line-ending problem",
+      "tests": [
+        "tests/misc/date.pl"
+      ]
+    },
+    {
+      "confidence": "all four retained failure mechanisms identified; no claim that the entire help-version script now passes",
+      "counts": {
+        "FAIL": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-quoted-args-current-noacl\\target.log",
+          "log_sha256": "3b132c7912a44dd743c4981c090205c5f49cc29a31dd19d807f8c5cb11594243",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-quoted-args-current-noacl\\result.json",
+          "sha256": "39d2ee5bad4840b7f4cd70e29d490b095354377a1aff2e46a9f088978dc79da4"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\target.log",
+          "log_sha256": "7b3c62c0e3daef6491f9df58baee1102ab4efbef1134f9fa1c2b962428a3e79e",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-readlink-sys-representation-current-noacl\\result.json",
+          "sha256": "ed03739e3375883b2de5186b51bb55f001fc36d78f098ca48873597d7b2075b8"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-layout-current-noacl\\target.log",
+          "log_sha256": "4a560c878d1938618cef40f877dfa18cd15e56267decccd3d999fd885ae68dea",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-layout-current-noacl\\result.json",
+          "sha256": "37b77ac3694c6c3d5e19aa1966c9588bbb45d6363d44f6daf16a67c045fe3470"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-canonical-layout-01\\target.log",
+          "log_sha256": "f1043c1151eac984c8b8de0f6b015eb7bea45446872b9ff4aa778a72f954f846",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-stdbuf-canonical-layout-01\\result.json",
+          "sha256": "d63e43ce92b6f741cd196d59f67a4057effc941e35a8abb70fbebfa30566d099"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\target.log",
+          "log_sha256": "ce5eb7fb9cca03a4341a152e6b31b252b1bf400067b3a95fffd5f291a02a136d",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\result.json",
+          "sha256": "99da962eac82b404070b0d085d3ffdc4292bdbb159f6e4a68d998ae8bb92d139"
+        }
+      ],
+      "id": "compound-help-dependencies",
+      "kind": "several launch failures plus a missing support-file layout",
+      "mechanism": "Four named retained failures: csplit // converted to /; native kill cannot resolve parent's background PID; ln/readlink cannot represent the requested link; stdbuf cannot locate real libstdbuf.dll. Quoting/syslink/PID controls and installing the original real DLL in /usr/lib/coreutils remove these specific symptoms. The full fresh script remained bounded-incomplete; the new all-native harness also lacks gzip.",
+      "not": "not one generic help/version implementation bug",
+      "tests": [
+        "tests/misc/help-version.sh"
+      ]
+    },
+    {
+      "confidence": "two original secondary mechanisms remain unconfirmed; common diagnostic mechanism is confirmed",
+      "counts": {
+        "FAIL": 2
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-current-noacl\\result.json",
+          "sha256": "14437ec16878d561b5111177ccf24c41766f02725038c78a3b88a5ce531c18c1"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\target.log",
+          "log_sha256": "978a14388ef55a00306076565a62651139f3ce130a2b3446e64a9462d8f2c5be",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\exact-byte-subcases-historical-noacl\\result.json",
+          "sha256": "0657516e21f9367a2636e6566f01a3769c126d78ef1fe6f8aaa25f437b6c5c77"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\target.log",
+          "log_sha256": "68438a5757312c000c3a76d400a5e0e122476802456ccc25db82170ed52d55c1",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-current-noacl\\result.json",
+          "sha256": "f1c5f236b4d6b3d268580db5cbd125e58c8d20527e6030c5513a70258637218a"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\target.log",
+          "log_sha256": "bc2e186a88400827da4cc03c49ef0fb6140ed92ba903c220a1647b3190a8427a",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-proc-byte-domain-historical-noacl\\result.json",
+          "sha256": "d1bb0fd199d3e13f481ac43663fbe30c95cc442cd9a627fe480fbf375b5ff67e"
+        }
+      ],
+      "id": "residual-launch-proof-missing",
+      "kind": "known argv0 failures plus incompletely recorded secondary launch behavior",
+      "mechanism": "join has seven argv0-only diagnostics plus one A7-separator status mismatch; wc has six argv0-only diagnostics plus /dev/null files0 status mismatch. Exact coherent-native subcases succeed; PUA-encoding the join separator reproduces exit1. Original offending argv/file-descriptor snapshots were not retained, so those secondary root causes remain unconfirmed rather than assigned a cosmetic pass.",
+      "not": "not evidence of a current join data algorithm failure or justification to waive the original failures",
+      "tests": [
+        "tests/misc/join.pl",
+        "tests/misc/wc-files0-from.pl"
+      ]
+    },
+    {
+      "confidence": "confirmed",
+      "counts": {
+        "ERROR": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-xargs-env-budget-current-noacl\\target.log",
+          "log_sha256": "f758e193628246aaa0173f2ae4da45e97470c40cc56fbd6a2d13575eac73ac87",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\focused-xargs-env-budget-current-noacl\\result.json",
+          "sha256": "d108a181673d084e8dd72c0611e1b34fdbfbfdd427b52ef614cfb68acf44b438"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\target.log",
+          "log_sha256": "d05fd4114aa32927e69a43b045dbd523eed3241aec749bb6fede37c6838b8cf2",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\result.json",
+          "sha256": "83787f7582b28a7077b278d0291cfc652a93c717cf5a1e2ca03f6d4a1c4b03fa"
+        }
+      ],
+      "id": "environment-size",
+      "kind": "suite environment/test dependency constraint",
+      "mechanism": "xargs refuses exec because the inherited environment exceeds its available exec budget, before the tail assertions. Small-environment unchanged script exits0; explicit 40000-byte environment reproduces the exact xargs diagnostic and raw failure.",
+      "not": "not a tail/inotify defect and not a permission/locale assumption",
+      "tests": [
+        "tests/tail-2/inotify-hash-abuse.sh"
+      ]
+    },
+    {
+      "confidence": "confirmed setup limitation; test not run to its behavioral assertions",
+      "counts": {
+        "ERROR": 1
+      },
+      "evidence": [
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\target.log",
+          "log_sha256": "6a3d90bc3b41a36027d152a33500e53b087edec7632c872ebf56eb47f9fc1b1f",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-noacl\\result.json",
+          "sha256": "e9c10d3a75341bef68e5d6f1d5c6b2484ed037b62b915c278aba9595c837c9d2"
+        },
+        {
+          "log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\target.log",
+          "log_sha256": "2bd368410c4a2844922c0871eaa665a8907f7b4b37acc33c92c04d14fdada4dc",
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\api-boundary-current-acl\\result.json",
+          "sha256": "deee73a2821aeb71b849b80971df2a44fff98abe8be97f9eafc00a416987cb3c"
+        }
+      ],
+      "id": "unsupported-preload-test-api",
+      "kind": "test-harness facility not supplied by this target ABI",
+      "mechanism": "The injected readdir helper cannot compile: RTLD_NEXT is undefined in the target dlfcn.h. The test requires ELF-style next-definition lookup through dlsym plus LD_PRELOAD to inject readdir errors. Failure is at helper compilation, before any rm behavior is exercised. The direct native API diagnostic confirms the header capability remains absent.",
+      "not": "not an rm failure and not silently changed to SKIP/PASS; needs a target-appropriate real fault-injection facility",
+      "tests": [
+        "tests/rm/rm-readdir-fail.sh"
+      ]
+    }
+  ],
+  "line_ending_only_root_causes_evidenced": 0,
+  "locale_scope": "Upstream lang-default and Perl scripts force C locale; official CLANGARM64 gettext is a different ABI/provider and not imported by these MSYS targets.",
+  "multiple_causes_recorded": true,
+  "primary_buckets_are_disjoint": true,
+  "schema": 1,
+  "tests": [
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "43046014ec6ccc8ace86ca27adaeebecff1334950356f92b339dd9f3f49c54b9",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\help-version-getopt.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\help-version-getopt.sh",
+      "source_sha256": "9bd920a8679cc2e35e133f843638aeb10c71d3d35b54e06ed8ca949dd09e1a58",
+      "test": "tests/misc/help-version-getopt.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            596,
+            596
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-getopt-02\\result.json",
+          "sha256": "c66893e87c200a42a745dd697c81f204f269284403250cc517518a891bf326d0",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            574,
+            579
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-help-version-getopt-current-noacl\\result.json",
+          "sha256": "ff786da440d1cfc3407853a93a5b279d3eda28386b9798280cdf7776475021af",
+          "test_shell_raw_exit": 1460,
+          "timed_out": true
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1673,
+          "text": "-Usage: /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/df [OPTION]... [FILE]..."
+        },
+        {
+          "line": 1692,
+          "text": "-Usage: /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/df [OPTION]... [FILE]..."
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "c9936a1b6a499f2d8e508aabc15cf833945400dd818cb7e225ce779d065b1142",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\d-2.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\d-2.sh",
+      "source_sha256": "1a205a4df1a9940c9df9cf79d1222ce6d99881d04804f21ca05a529e0ad85430",
+      "test": "tests/rm/d-2.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            65,
+            65
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-d-2-current-noacl\\result.json",
+          "sha256": "33381450ded4ab78357a882d8c68ca0eee23880e2d7121b20babf3d8883feb9c",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1212,
+          "text": "+ printf.exe '%s\\n' 'rm: cannot remove '\\''d'\\'': Directory not empty'"
+        },
+        {
+          "line": 1225,
+          "text": "-rm: cannot remove 'd': Directory not empty"
+        },
+        {
+          "line": 1226,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'd': Directory not empty"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "0a1c66552118643040f078dd1246412e1c0bf4b0d505c9d7ee8cc08fcd790113",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\d-3.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\d-3.sh",
+      "source_sha256": "f3dccd6c2b6a8a9dbd9783fee43e8c0a997ee4cbd609d3176940dac575e2de01",
+      "test": "tests/rm/d-3.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            69,
+            69
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-d-3-current-noacl\\result.json",
+          "sha256": "fe5b1c77391804816b4f02c26f5a0104da8fd32072478520ece8a6d663f26a5c",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1212,
+          "text": "+ printf.exe %s 'rm: remove directory '\\''d'\\''? '"
+        },
+        {
+          "line": 1235,
+          "text": "-rm: remove directory 'd'? "
+        },
+        {
+          "line": 1237,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory 'd'? "
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "028367ecec7d5660aa7ac70b7ea2f7b9d09ab4c57f084ff0bf3abe765c5c21aa",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\dir-no-w.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\dir-no-w.sh",
+      "source_sha256": "711b9592ff1bfa408cd121d469a461d5b4bb7571446113c0d22d8e6c2dc46da2",
+      "test": "tests/rm/dir-no-w.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            67,
+            67
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dir-no-w-current-noacl\\result.json",
+          "sha256": "356e74041b0dede90b07dc98f6741105fbd54871eaa63f71c68818e58d81f03a",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1226,
+          "text": "-rm: cannot remove 'unwritable-dir': Is a directory"
+        },
+        {
+          "line": 1227,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'unwritable-dir': Is a directory"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "786057a447971b1b9ff058532e6664cf57a75a35f0df47a98a5f7ac08674b143",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\dir-nonrecur.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\dir-nonrecur.sh",
+      "source_sha256": "c1a366f24fdd0410c5c290fc43f3f76a959d391b41af263aee88480ddab73093",
+      "test": "tests/rm/dir-nonrecur.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            14,
+            14
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\diagnostic-dir-nonrecur-01\\result.json",
+          "sha256": "c22c2469773a288fa44b3843624c08f98fd70107e2d26aa39ef9d2417f4c526f",
+          "test_shell_raw_exit": 127,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            63,
+            63
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\diagnostic-dir-nonrecur-02\\result.json",
+          "sha256": "0d9301428327bdbc07c0e2186e94e3f3bdf24ec509914821e3c6e52cc453cb75",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "historical-noacl",
+          "coverage": [
+            63,
+            63
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-dir-nonrecur-01\\result.json",
+          "sha256": "46c6df6d84e96146037aae490997f4bc444de979dfdd16103a811206a0788ce2",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            63,
+            63
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dir-nonrecur-current-noacl\\result.json",
+          "sha256": "eaf11c2599be8ff68357d1a89cb2a3223dce8c7928b22c062cc4909bdcf3cbc9",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1224,
+          "text": "-rm: cannot remove 'd': Is a directory"
+        },
+        {
+          "line": 1225,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'd': Is a directory"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "02447b9d9f28dc9f39fafa31f6105b8857acd0b7d0e4fc50ecdab482a702c6ab",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\isatty.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\isatty.sh",
+      "source_sha256": "a448f594d2cd0aea80f830eee2151fe3461aeee70acad82408daea319bb069e2",
+      "test": "tests/rm/isatty.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            79,
+            79
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-isatty-current-noacl\\result.json",
+          "sha256": "daf2efa44f185ac802d9bc96c83fb1a22e1ab3bd8901ab04273d128c2f631c02",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1238,
+          "text": "-rm: remove write-protected regular empty file 'f'? x"
+        },
+        {
+          "line": 1239,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular empty file 'f'? x"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "7d98515e3ec8f26562f37c3180af2d5b99e716cad67837d3051b5399f9d35aaa",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\empty-name.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\empty-name.pl",
+      "source_sha256": "83652e78db40ff2953dd27f2a710ff314de5a9d5462e5ffcfc15373d04d1ca46",
+      "test": "tests/rm/empty-name.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 10,
+          "text": "empty-name.pl: test empty-name-1: stderr mismatch, comparing empty-name-1.1 (expected) and empty-name-1.E (actual)"
+        },
+        {
+          "line": 15,
+          "text": "! rm: cannot remove '': No such file or directory"
+        },
+        {
+          "line": 17,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory"
+        },
+        {
+          "line": 19,
+          "text": "empty-name.pl: test empty-name-2: stderr mismatch, comparing empty-name-2.1 (expected) and empty-name-2.E (actual)"
+        },
+        {
+          "line": 24,
+          "text": "! rm: cannot remove '': No such file or directory"
+        },
+        {
+          "line": 26,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "e4f6926b9177fd87433d93df4bfb24f01a724d62566347f11621f784ac483d84",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\interactive-always.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\interactive-always.sh",
+      "source_sha256": "260f6de6d40b2cca2f9b05b803347335d1edd276e256524430bfe6b5dcea8395",
+      "test": "tests/rm/interactive-always.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            123,
+            123
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-interactive-always-current-noacl\\result.json",
+          "sha256": "d46ed09bff1b17b269f5c6ffcfec8203ea72fdfc5bca9e34c90c5c3b0013ae1c",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1241,
+          "text": "+ sed 's/@remove_empty/rm: remove regular empty file/g'"
+        },
+        {
+          "line": 1262,
+          "text": "-rm: remove regular empty file 'file1-1'? rm: remove regular empty file 'file1-2'? ."
+        },
+        {
+          "line": 1263,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file1-1'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file1-2'? ."
+        },
+        {
+          "line": 1267,
+          "text": "-rm: remove 2 arguments recursively? ."
+        },
+        {
+          "line": 1268,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 2 arguments recursively? ."
+        },
+        {
+          "line": 1270,
+          "text": "-rm: remove regular empty file 'file4-1'? rm: remove regular empty file 'file4-2'? ."
+        },
+        {
+          "line": 1271,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file4-1'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file4-2'? ."
+        },
+        {
+          "line": 1275,
+          "text": "-rm: remove 1 argument recursively? ."
+        },
+        {
+          "line": 1276,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 1 argument recursively? ."
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "0dfb8ececda6dd406ea8737d575833823c37068765b1bf00d4c143dd8e698a57",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\interactive-once.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\interactive-once.sh",
+      "source_sha256": "d67e963798e0bef7b2c1e8d2e3f36adbfc36a0eaff016b851376279e6c5e5e77",
+      "test": "tests/rm/interactive-once.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            199,
+            199
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-interactive-once-current-noacl\\result.json",
+          "sha256": "3ff50f31f6c9304d1dc1939e18c3a53866b79b00ea4fd8a91f7cf91176c9559d",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1223,
+          "text": "+ write_prot_msg1='rm: remove write-protected regular empty file '\\''file1-1'\\''? '"
+        },
+        {
+          "line": 1226,
+          "text": "+ test.exe 'rm: remove write-protected regular empty file '\\''file1-1'\\''? '"
+        },
+        {
+          "line": 1254,
+          "text": "+ write_prot_msg2='rm: remove write-protected regular file '\\''file3-4'\\''? '"
+        },
+        {
+          "line": 1261,
+          "text": "+ test.exe 'rm: remove write-protected regular file '\\''file3-4'\\''? '"
+        },
+        {
+          "line": 1304,
+          "text": "-rm: remove write-protected regular empty file 'file1-1'? ."
+        },
+        {
+          "line": 1305,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular empty file 'file1-1'? ."
+        },
+        {
+          "line": 1309,
+          "text": "-rm: remove 4 arguments? ."
+        },
+        {
+          "line": 1310,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 4 arguments? ."
+        },
+        {
+          "line": 1312,
+          "text": "-rm: remove 4 arguments? ."
+        },
+        {
+          "line": 1313,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 4 arguments? ."
+        },
+        {
+          "line": 1315,
+          "text": "-rm: remove 4 arguments? rm: remove write-protected regular file 'file3-4'? ."
+        },
+        {
+          "line": 1316,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 4 arguments? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular file 'file3-4'? ."
+        },
+        {
+          "line": 1318,
+          "text": "-rm: remove 1 argument recursively? ."
+        },
+        {
+          "line": 1319,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 1 argument recursively? ."
+        },
+        {
+          "line": 1321,
+          "text": "-rm: remove 1 argument recursively? ."
+        },
+        {
+          "line": 1322,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 1 argument recursively? ."
+        },
+        {
+          "line": 1324,
+          "text": "-rm: remove 2 arguments recursively? ."
+        },
+        {
+          "line": 1325,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 2 arguments recursively? ."
+        },
+        {
+          "line": 1327,
+          "text": "-rm: remove 2 arguments recursively? ."
+        },
+        {
+          "line": 1328,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 2 arguments recursively? ."
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "2ffabf4174281f2fa186fade1efd40ca662a4c9e09a692be525a85932d59e765",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\r-4.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\r-4.sh",
+      "source_sha256": "116123097cdd941ef28b2b6dd02b3d3c4f837c113a98c5eb20a68e0589a96313",
+      "test": "tests/rm/r-4.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            81,
+            81
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-r-4-current-noacl\\result.json",
+          "sha256": "da58090c98e51d72d80512d3f42940ab3472f8cbdd7bbfdce7d9ace91673b5b3",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1211,
+          "text": "+ exp='^rm: refusing to remove '\\''\\.'\\'' or '\\''\\.\\.'\\'' directory: skipping '\\''.*'\\''$'"
+        },
+        {
+          "line": 1214,
+          "text": "+ grep '^rm: refusing to remove '\\''\\.'\\'' or '\\''\\.\\.'\\'' directory: skipping '\\''.*'\\''$' err"
+        },
+        {
+          "line": 1222,
+          "text": "+ grep '^rm: refusing to remove '\\''\\.'\\'' or '\\''\\.\\.'\\'' directory: skipping '\\''.*'\\''$' err"
+        },
+        {
+          "line": 1230,
+          "text": "+ grep '^rm: refusing to remove '\\''\\.'\\'' or '\\''\\.\\.'\\'' directory: skipping '\\''.*'\\''$' err"
+        },
+        {
+          "line": 1238,
+          "text": "+ grep '^rm: refusing to remove '\\''\\.'\\'' or '\\''\\.\\.'\\'' directory: skipping '\\''.*'\\''$' err"
+        },
+        {
+          "line": 1246,
+          "text": "+ grep '^rm: refusing to remove '\\''\\.'\\'' or '\\''\\.\\.'\\'' directory: skipping '\\''.*'\\''$' err"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "a19a10b3969e29e122c4762f6feb52a552208d6d7f11506f3c7f81470a734f22",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\rm5.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\rm5.sh",
+      "source_sha256": "d7262db14747c53b6c7cc527f3d172d9d96eb249ce5ced273a820d0b0ad7944a",
+      "test": "tests/rm/rm5.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            77,
+            77
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm5-current-noacl\\result.json",
+          "sha256": "42b203fa165dfebf6324231f5bfa4ec1c44ed62f9ea1e813b3a16a265fb1f93c",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1236,
+          "text": "-rm: descend into directory 'd'"
+        },
+        {
+          "line": 1237,
+          "text": "-rm: remove directory 'd/e'"
+        },
+        {
+          "line": 1238,
+          "text": "-rm: remove directory 'd'"
+        },
+        {
+          "line": 1239,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: descend into directory 'd'"
+        },
+        {
+          "line": 1240,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory 'd/e'"
+        },
+        {
+          "line": 1241,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory 'd'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "d9bf22ddf2fe7a49143254b8ab4c8681953c7f78042c9d433c2709a797924914",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\fmt\\base.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\fmt\\base.pl",
+      "source_sha256": "ccadc58713e1a7b00a83f1c3a19291eae69d79aa89eb51d423191f59396020de",
+      "test": "tests/fmt/base.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 10,
+          "text": "base.pl: test wide-1: stderr mismatch, comparing wide-1.1 (expected) and wide-1.E (actual)"
+        },
+        {
+          "line": 17,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '32768'"
+        },
+        {
+          "line": 19,
+          "text": "base.pl: test wide-2: stderr mismatch, comparing wide-2.1 (expected) and wide-2.E (actual)"
+        },
+        {
+          "line": 26,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '2147483647'"
+        },
+        {
+          "line": 28,
+          "text": "base.pl: test bad-suffix: stderr mismatch, comparing bad-suffix.2 (expected) and bad-suffix.E (actual)"
+        },
+        {
+          "line": 35,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '72x'"
+        },
+        {
+          "line": 37,
+          "text": "base.pl: test no-file: stderr mismatch, comparing no-file.1 (expected) and no-file.E (actual)"
+        },
+        {
+          "line": 44,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: cannot open 'no-such-file' for reading: No such file or directory"
+        },
+        {
+          "line": 46,
+          "text": "base.pl: test obs-1: stderr mismatch, comparing obs-1.1 (expected) and obs-1.E (actual)"
+        },
+        {
+          "line": 55,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid option -- 7; -WIDTH is recognized only when it is the first"
+        },
+        {
+          "line": 57,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt --help' for more information."
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "efc7e4772e7f6d261e5ebd762365c096be0c7581a35c655c0f44ef4ad68cf6df",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\env.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\env.sh",
+      "source_sha256": "a3094dba59d4987625fb1ab3afa9580fa33fcc2c5c04ccf803f60186fc3f9daf",
+      "test": "tests/misc/env.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            229,
+            229
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-env-current-noacl\\result.json",
+          "sha256": "eb43ffec5244a0ac790249d8370f362577b0018f0e8f9c0e2071aac43e41ae3b",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1375,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env: must specify command with --chdir (-C)"
+        },
+        {
+          "line": 1376,
+          "text": "+Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env --help' for more information."
+        },
+        {
+          "line": 1380,
+          "text": "+ exp=/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.xWeS/empty"
+        },
+        {
+          "line": 1382,
+          "text": "+ got=/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.xWeS/empty"
+        },
+        {
+          "line": 1383,
+          "text": "+ test.exe /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.xWeS/empty = /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.xWeS/empty"
+        }
+      ]
+    },
+    {
+      "additional_mechanisms": [
+        "first-only test ERR_SUBST mutates e138-01 path rather than argument -0"
+      ],
+      "full_perl_script_replayed": false,
+      "log_sha256": "a3145221f1050e2973e5b1d76f952a5284b7529f5e7859391ec622773cc0752e",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\seq.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\seq.pl",
+      "source_sha256": "cd3a9d7d1224e1b2c720b0fd3fe2aad14b35b28aeda006b99dbe0af277620eff",
+      "test": "tests/misc/seq.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 54,
+          "text": "seq.pl: test fmt-c: stderr mismatch, comparing fmt-c.1 (expected) and fmt-c.E (actual)"
+        },
+        {
+          "line": 61,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%%g' has no % directive"
+        },
+        {
+          "line": 63,
+          "text": "seq.pl: test fmt-eos1: stderr mismatch, comparing fmt-eos1.1 (expected) and fmt-eos1.E (actual)"
+        },
+        {
+          "line": 70,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%' ends in %"
+        },
+        {
+          "line": 72,
+          "text": "seq.pl: test fmt-eos2: stderr mismatch, comparing fmt-eos2.1 (expected) and fmt-eos2.E (actual)"
+        },
+        {
+          "line": 79,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%g%' has too many % directives"
+        },
+        {
+          "line": 81,
+          "text": "seq.pl: test fmt-d: stderr mismatch, comparing fmt-d.1 (expected) and fmt-d.E (actual)"
+        },
+        {
+          "line": 88,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '' has no % directive"
+        },
+        {
+          "line": 90,
+          "text": "seq.pl: test fmt-e: stderr mismatch, comparing fmt-e.1 (expected) and fmt-e.E (actual)"
+        },
+        {
+          "line": 97,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%g%g' has too many % directives"
+        },
+        {
+          "line": 119,
+          "text": "seq.pl: test inc-zero-1: stderr mismatch, comparing inc-zero-1.1 (expected) and inc-zero-1.E (actual)"
+        },
+        {
+          "line": 127,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'"
+        },
+        {
+          "line": 128,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 130,
+          "text": "seq.pl: test inc-zero-2: stderr mismatch, comparing inc-zero-2.1 (expected) and inc-zero-2.E (actual)"
+        },
+        {
+          "line": 138,
+          "text": "! /cygdrive/c/ag-coreutils-e13801/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '-0'"
+        },
+        {
+          "line": 139,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e13801/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 141,
+          "text": "seq.pl: test inc-zero-3: stderr mismatch, comparing inc-zero-3.1 (expected) and inc-zero-3.E (actual)"
+        },
+        {
+          "line": 149,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'"
+        },
+        {
+          "line": 150,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 152,
+          "text": "seq.pl: test inc-zero-4: stderr mismatch, comparing inc-zero-4.1 (expected) and inc-zero-4.E (actual)"
+        },
+        {
+          "line": 160,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'"
+        },
+        {
+          "line": 161,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 163,
+          "text": "seq.pl: test nan-first-1: stderr mismatch, comparing nan-first-1.1 (expected) and nan-first-1.E (actual)"
+        },
+        {
+          "line": 171,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 172,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 174,
+          "text": "seq.pl: test nan-first-2: stderr mismatch, comparing nan-first-2.1 (expected) and nan-first-2.E (actual)"
+        },
+        {
+          "line": 182,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 183,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 185,
+          "text": "seq.pl: test nan-first-3: stderr mismatch, comparing nan-first-3.1 (expected) and nan-first-3.E (actual)"
+        },
+        {
+          "line": 193,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 194,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 196,
+          "text": "seq.pl: test nan-first-4: stderr mismatch, comparing nan-first-4.1 (expected) and nan-first-4.E (actual)"
+        },
+        {
+          "line": 204,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 205,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 207,
+          "text": "seq.pl: test nan-inc-1: stderr mismatch, comparing nan-inc-1.1 (expected) and nan-inc-1.E (actual)"
+        },
+        {
+          "line": 215,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 216,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 218,
+          "text": "seq.pl: test nan-inc-2: stderr mismatch, comparing nan-inc-2.1 (expected) and nan-inc-2.E (actual)"
+        },
+        {
+          "line": 226,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 227,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 229,
+          "text": "seq.pl: test nan-last-1: stderr mismatch, comparing nan-last-1.1 (expected) and nan-last-1.E (actual)"
+        },
+        {
+          "line": 237,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 238,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 240,
+          "text": "seq.pl: test nan-last-2: stderr mismatch, comparing nan-last-2.1 (expected) and nan-last-2.E (actual)"
+        },
+        {
+          "line": 248,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 249,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        },
+        {
+          "line": 251,
+          "text": "seq.pl: test nan-last-3: stderr mismatch, comparing nan-last-3.1 (expected) and nan-last-3.E (actual)"
+        },
+        {
+          "line": 259,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'"
+        },
+        {
+          "line": 260,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "4bc15447bd0f532c3ebc88a35f3930b2d544011566c8bb82f129186b4edb45fa",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\xstrtol.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\xstrtol.pl",
+      "source_sha256": "2cafbcc50ec217314aa09cce2b9a49f00d2ffd38c036c44704d8fa5fd1524b49",
+      "test": "tests/misc/xstrtol.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 9,
+          "text": "xstrtol.pl: test inval-suffix: stderr mismatch, comparing inval-suffix.1 (expected) and inval-suffix.E (actual)"
+        },
+        {
+          "line": 16,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid suffix in --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999h'"
+        },
+        {
+          "line": 18,
+          "text": "xstrtol.pl: test too-big: stderr mismatch, comparing too-big.1 (expected) and too-big.E (actual)"
+        },
+        {
+          "line": 25,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999' too large"
+        },
+        {
+          "line": 27,
+          "text": "xstrtol.pl: test simply-inval: stderr mismatch, comparing simply-inval.1 (expected) and simply-inval.E (actual)"
+        },
+        {
+          "line": 34,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument 'x'"
+        },
+        {
+          "line": 36,
+          "text": "xstrtol.pl: test inv-pg-range: stderr mismatch, comparing inv-pg-range.1 (expected) and inv-pg-range.E (actual)"
+        },
+        {
+          "line": 43,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid page range '9x'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "c0fbc593b92ba0d73972d0f8e658573a707a405fef59b91e15ce7a57008c08ce",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\cut.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\cut.pl",
+      "source_sha256": "d4c4c3076668adf6ad1492829fa7429770f22e40ef0ed7f9b457702ed76055de",
+      "test": "tests/misc/cut.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 10,
+          "text": "cut.pl: test zero-1: stderr mismatch, comparing zero-1.1 (expected) and zero-1.E (actual)"
+        },
+        {
+          "line": 18,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 19,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 21,
+          "text": "cut.pl: test zero-2: stderr mismatch, comparing zero-2.1 (expected) and zero-2.E (actual)"
+        },
+        {
+          "line": 29,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 30,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 32,
+          "text": "cut.pl: test zero-3b: stderr mismatch, comparing zero-3b.1 (expected) and zero-3b.E (actual)"
+        },
+        {
+          "line": 40,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 41,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 43,
+          "text": "cut.pl: test zero-3c: stderr mismatch, comparing zero-3c.1 (expected) and zero-3c.E (actual)"
+        },
+        {
+          "line": 51,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 52,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 54,
+          "text": "cut.pl: test zero-3f: stderr mismatch, comparing zero-3f.1 (expected) and zero-3f.E (actual)"
+        },
+        {
+          "line": 62,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 63,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 164,
+          "text": "cut.pl: test y: stderr mismatch, comparing y.3 (expected) and y.E (actual)"
+        },
+        {
+          "line": 173,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense"
+        },
+        {
+          "line": 175,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 177,
+          "text": "cut.pl: test y.r: stderr mismatch, comparing y.r.3 (expected) and y.r.E (actual)"
+        },
+        {
+          "line": 186,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense"
+        },
+        {
+          "line": 188,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 190,
+          "text": "cut.pl: test y.p: stderr mismatch, comparing y.p.3 (expected) and y.p.E (actual)"
+        },
+        {
+          "line": 199,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense"
+        },
+        {
+          "line": 201,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 203,
+          "text": "cut.pl: test z: stderr mismatch, comparing z.3 (expected) and z.E (actual)"
+        },
+        {
+          "line": 211,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields"
+        },
+        {
+          "line": 212,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 214,
+          "text": "cut.pl: test z.r: stderr mismatch, comparing z.r.3 (expected) and z.r.E (actual)"
+        },
+        {
+          "line": 222,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields"
+        },
+        {
+          "line": 223,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 225,
+          "text": "cut.pl: test z.p: stderr mismatch, comparing z.p.3 (expected) and z.p.E (actual)"
+        },
+        {
+          "line": 233,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields"
+        },
+        {
+          "line": 234,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 236,
+          "text": "cut.pl: test empty-fl: stderr mismatch, comparing empty-fl.3 (expected) and empty-fl.E (actual)"
+        },
+        {
+          "line": 244,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 245,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 247,
+          "text": "cut.pl: test empty-fl.r: stderr mismatch, comparing empty-fl.r.3 (expected) and empty-fl.r.E (actual)"
+        },
+        {
+          "line": 255,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 256,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 258,
+          "text": "cut.pl: test empty-fl.p: stderr mismatch, comparing empty-fl.p.3 (expected) and empty-fl.p.E (actual)"
+        },
+        {
+          "line": 266,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 267,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 269,
+          "text": "cut.pl: test missing-fl: stderr mismatch, comparing missing-fl.3 (expected) and missing-fl.E (actual)"
+        },
+        {
+          "line": 277,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range"
+        },
+        {
+          "line": 278,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 280,
+          "text": "cut.pl: test missing-fl.r: stderr mismatch, comparing missing-fl.r.3 (expected) and missing-fl.r.E (actual)"
+        },
+        {
+          "line": 288,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range"
+        },
+        {
+          "line": 289,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 291,
+          "text": "cut.pl: test missing-fl.p: stderr mismatch, comparing missing-fl.p.3 (expected) and missing-fl.p.E (actual)"
+        },
+        {
+          "line": 299,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range"
+        },
+        {
+          "line": 300,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 302,
+          "text": "cut.pl: test empty-bl: stderr mismatch, comparing empty-bl.3 (expected) and empty-bl.E (actual)"
+        },
+        {
+          "line": 310,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 311,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 313,
+          "text": "cut.pl: test empty-bl.r: stderr mismatch, comparing empty-bl.r.3 (expected) and empty-bl.r.E (actual)"
+        },
+        {
+          "line": 321,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 322,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 324,
+          "text": "cut.pl: test empty-bl.p: stderr mismatch, comparing empty-bl.p.3 (expected) and empty-bl.p.E (actual)"
+        },
+        {
+          "line": 332,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 333,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 335,
+          "text": "cut.pl: test missing-bl: stderr mismatch, comparing missing-bl.3 (expected) and missing-bl.E (actual)"
+        },
+        {
+          "line": 343,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range"
+        },
+        {
+          "line": 344,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 346,
+          "text": "cut.pl: test missing-bl.r: stderr mismatch, comparing missing-bl.r.3 (expected) and missing-bl.r.E (actual)"
+        },
+        {
+          "line": 354,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range"
+        },
+        {
+          "line": 355,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 357,
+          "text": "cut.pl: test missing-bl.p: stderr mismatch, comparing missing-bl.p.3 (expected) and missing-bl.p.E (actual)"
+        },
+        {
+          "line": 365,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range"
+        },
+        {
+          "line": 366,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 386,
+          "text": "cut.pl: test delim-no-field1: stderr mismatch, comparing delim-no-field1.1 (expected) and delim-no-field1.E (actual)"
+        },
+        {
+          "line": 394,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields"
+        },
+        {
+          "line": 395,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 397,
+          "text": "cut.pl: test delim-no-field2: stderr mismatch, comparing delim-no-field2.1 (expected) and delim-no-field2.E (actual)"
+        },
+        {
+          "line": 405,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields"
+        },
+        {
+          "line": 406,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 408,
+          "text": "cut.pl: test 8bit-delim failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 410,
+          "text": "cut.pl: test 8bit-delim.r failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 412,
+          "text": "cut.pl: test 8bit-delim.p failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 543,
+          "text": "cut.pl: test inval1: stderr mismatch, comparing inval1.3 (expected) and inval1.E (actual)"
+        },
+        {
+          "line": 551,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range"
+        },
+        {
+          "line": 552,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 554,
+          "text": "cut.pl: test inval1.r: stderr mismatch, comparing inval1.r.3 (expected) and inval1.r.E (actual)"
+        },
+        {
+          "line": 562,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range"
+        },
+        {
+          "line": 563,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 565,
+          "text": "cut.pl: test inval1.p: stderr mismatch, comparing inval1.p.3 (expected) and inval1.p.E (actual)"
+        },
+        {
+          "line": 573,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range"
+        },
+        {
+          "line": 574,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 576,
+          "text": "cut.pl: test inval2: stderr mismatch, comparing inval2.3 (expected) and inval2.E (actual)"
+        },
+        {
+          "line": 584,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 585,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 587,
+          "text": "cut.pl: test inval2.r: stderr mismatch, comparing inval2.r.3 (expected) and inval2.r.E (actual)"
+        },
+        {
+          "line": 595,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 596,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 598,
+          "text": "cut.pl: test inval2.p: stderr mismatch, comparing inval2.p.3 (expected) and inval2.p.E (actual)"
+        },
+        {
+          "line": 606,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 607,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 609,
+          "text": "cut.pl: test inval3: stderr mismatch, comparing inval3.3 (expected) and inval3.E (actual)"
+        },
+        {
+          "line": 617,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 618,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 620,
+          "text": "cut.pl: test inval3.r: stderr mismatch, comparing inval3.r.3 (expected) and inval3.r.E (actual)"
+        },
+        {
+          "line": 628,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 629,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 631,
+          "text": "cut.pl: test inval3.p: stderr mismatch, comparing inval3.p.3 (expected) and inval3.p.E (actual)"
+        },
+        {
+          "line": 639,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 640,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 642,
+          "text": "cut.pl: test inval4: stderr mismatch, comparing inval4.3 (expected) and inval4.E (actual)"
+        },
+        {
+          "line": 650,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 651,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 653,
+          "text": "cut.pl: test inval4.r: stderr mismatch, comparing inval4.r.3 (expected) and inval4.r.E (actual)"
+        },
+        {
+          "line": 661,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 662,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 664,
+          "text": "cut.pl: test inval4.p: stderr mismatch, comparing inval4.p.3 (expected) and inval4.p.E (actual)"
+        },
+        {
+          "line": 672,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 673,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 675,
+          "text": "cut.pl: test inval5: stderr mismatch, comparing inval5.3 (expected) and inval5.E (actual)"
+        },
+        {
+          "line": 683,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 684,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 686,
+          "text": "cut.pl: test inval5.r: stderr mismatch, comparing inval5.r.3 (expected) and inval5.r.E (actual)"
+        },
+        {
+          "line": 694,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 695,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 697,
+          "text": "cut.pl: test inval5.p: stderr mismatch, comparing inval5.p.3 (expected) and inval5.p.E (actual)"
+        },
+        {
+          "line": 705,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 706,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 708,
+          "text": "cut.pl: test inval6: stderr mismatch, comparing inval6.3 (expected) and inval6.E (actual)"
+        },
+        {
+          "line": 716,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 717,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 719,
+          "text": "cut.pl: test inval6.r: stderr mismatch, comparing inval6.r.3 (expected) and inval6.r.E (actual)"
+        },
+        {
+          "line": 727,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 728,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 730,
+          "text": "cut.pl: test inval6.p: stderr mismatch, comparing inval6.p.3 (expected) and inval6.p.E (actual)"
+        },
+        {
+          "line": 738,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 739,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 775,
+          "text": "cut.pl: test zero-1-mb: stderr mismatch, comparing zero-1-mb.1 (expected) and zero-1-mb.E (actual)"
+        },
+        {
+          "line": 783,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 784,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 786,
+          "text": "cut.pl: test zero-2-mb: stderr mismatch, comparing zero-2-mb.1 (expected) and zero-2-mb.E (actual)"
+        },
+        {
+          "line": 794,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 795,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 797,
+          "text": "cut.pl: test zero-3b-mb: stderr mismatch, comparing zero-3b-mb.1 (expected) and zero-3b-mb.E (actual)"
+        },
+        {
+          "line": 805,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 806,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 808,
+          "text": "cut.pl: test zero-3c-mb: stderr mismatch, comparing zero-3c-mb.1 (expected) and zero-3c-mb.E (actual)"
+        },
+        {
+          "line": 816,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 817,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 819,
+          "text": "cut.pl: test zero-3f-mb: stderr mismatch, comparing zero-3f-mb.1 (expected) and zero-3f-mb.E (actual)"
+        },
+        {
+          "line": 827,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 828,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 929,
+          "text": "cut.pl: test y-mb: stderr mismatch, comparing y-mb.3 (expected) and y-mb.E (actual)"
+        },
+        {
+          "line": 938,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense"
+        },
+        {
+          "line": 940,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 942,
+          "text": "cut.pl: test y-mb.r: stderr mismatch, comparing y-mb.r.3 (expected) and y-mb.r.E (actual)"
+        },
+        {
+          "line": 951,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense"
+        },
+        {
+          "line": 953,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 955,
+          "text": "cut.pl: test y-mb.p: stderr mismatch, comparing y-mb.p.3 (expected) and y-mb.p.E (actual)"
+        },
+        {
+          "line": 964,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense"
+        },
+        {
+          "line": 966,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 968,
+          "text": "cut.pl: test z-mb: stderr mismatch, comparing z-mb.3 (expected) and z-mb.E (actual)"
+        },
+        {
+          "line": 976,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields"
+        },
+        {
+          "line": 977,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 979,
+          "text": "cut.pl: test z-mb.r: stderr mismatch, comparing z-mb.r.3 (expected) and z-mb.r.E (actual)"
+        },
+        {
+          "line": 987,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields"
+        },
+        {
+          "line": 988,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 990,
+          "text": "cut.pl: test z-mb.p: stderr mismatch, comparing z-mb.p.3 (expected) and z-mb.p.E (actual)"
+        },
+        {
+          "line": 998,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields"
+        },
+        {
+          "line": 999,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1001,
+          "text": "cut.pl: test empty-fl-mb: stderr mismatch, comparing empty-fl-mb.3 (expected) and empty-fl-mb.E (actual)"
+        },
+        {
+          "line": 1009,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 1010,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1012,
+          "text": "cut.pl: test empty-fl-mb.r: stderr mismatch, comparing empty-fl-mb.r.3 (expected) and empty-fl-mb.r.E (actual)"
+        },
+        {
+          "line": 1020,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 1021,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1023,
+          "text": "cut.pl: test empty-fl-mb.p: stderr mismatch, comparing empty-fl-mb.p.3 (expected) and empty-fl-mb.p.E (actual)"
+        },
+        {
+          "line": 1031,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1"
+        },
+        {
+          "line": 1032,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1034,
+          "text": "cut.pl: test missing-fl-mb: stderr mismatch, comparing missing-fl-mb.3 (expected) and missing-fl-mb.E (actual)"
+        },
+        {
+          "line": 1042,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range"
+        },
+        {
+          "line": 1043,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1045,
+          "text": "cut.pl: test missing-fl-mb.r: stderr mismatch, comparing missing-fl-mb.r.3 (expected) and missing-fl-mb.r.E (actual)"
+        },
+        {
+          "line": 1053,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range"
+        },
+        {
+          "line": 1054,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1056,
+          "text": "cut.pl: test missing-fl-mb.p: stderr mismatch, comparing missing-fl-mb.p.3 (expected) and missing-fl-mb.p.E (actual)"
+        },
+        {
+          "line": 1064,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range"
+        },
+        {
+          "line": 1065,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1067,
+          "text": "cut.pl: test empty-bl-mb: stderr mismatch, comparing empty-bl-mb.3 (expected) and empty-bl-mb.E (actual)"
+        },
+        {
+          "line": 1075,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 1076,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1078,
+          "text": "cut.pl: test empty-bl-mb.r: stderr mismatch, comparing empty-bl-mb.r.3 (expected) and empty-bl-mb.r.E (actual)"
+        },
+        {
+          "line": 1086,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 1087,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1089,
+          "text": "cut.pl: test empty-bl-mb.p: stderr mismatch, comparing empty-bl-mb.p.3 (expected) and empty-bl-mb.p.E (actual)"
+        },
+        {
+          "line": 1097,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1"
+        },
+        {
+          "line": 1098,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1100,
+          "text": "cut.pl: test missing-bl-mb: stderr mismatch, comparing missing-bl-mb.3 (expected) and missing-bl-mb.E (actual)"
+        },
+        {
+          "line": 1108,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range"
+        },
+        {
+          "line": 1109,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1111,
+          "text": "cut.pl: test missing-bl-mb.r: stderr mismatch, comparing missing-bl-mb.r.3 (expected) and missing-bl-mb.r.E (actual)"
+        },
+        {
+          "line": 1119,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range"
+        },
+        {
+          "line": 1120,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1122,
+          "text": "cut.pl: test missing-bl-mb.p: stderr mismatch, comparing missing-bl-mb.p.3 (expected) and missing-bl-mb.p.E (actual)"
+        },
+        {
+          "line": 1130,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range"
+        },
+        {
+          "line": 1131,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1151,
+          "text": "cut.pl: test delim-no-field1-mb: stderr mismatch, comparing delim-no-field1-mb.1 (expected) and delim-no-field1-mb.E (actual)"
+        },
+        {
+          "line": 1159,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields"
+        },
+        {
+          "line": 1160,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1162,
+          "text": "cut.pl: test delim-no-field2-mb: stderr mismatch, comparing delim-no-field2-mb.1 (expected) and delim-no-field2-mb.E (actual)"
+        },
+        {
+          "line": 1170,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields"
+        },
+        {
+          "line": 1171,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1173,
+          "text": "cut.pl: test 8bit-delim-mb failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 1175,
+          "text": "cut.pl: test 8bit-delim-mb.r failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 1177,
+          "text": "cut.pl: test 8bit-delim-mb.p failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 1308,
+          "text": "cut.pl: test inval1-mb: stderr mismatch, comparing inval1-mb.3 (expected) and inval1-mb.E (actual)"
+        },
+        {
+          "line": 1316,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range"
+        },
+        {
+          "line": 1317,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1319,
+          "text": "cut.pl: test inval1-mb.r: stderr mismatch, comparing inval1-mb.r.3 (expected) and inval1-mb.r.E (actual)"
+        },
+        {
+          "line": 1327,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range"
+        },
+        {
+          "line": 1328,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1330,
+          "text": "cut.pl: test inval1-mb.p: stderr mismatch, comparing inval1-mb.p.3 (expected) and inval1-mb.p.E (actual)"
+        },
+        {
+          "line": 1338,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range"
+        },
+        {
+          "line": 1339,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1341,
+          "text": "cut.pl: test inval2-mb: stderr mismatch, comparing inval2-mb.3 (expected) and inval2-mb.E (actual)"
+        },
+        {
+          "line": 1349,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1350,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1352,
+          "text": "cut.pl: test inval2-mb.r: stderr mismatch, comparing inval2-mb.r.3 (expected) and inval2-mb.r.E (actual)"
+        },
+        {
+          "line": 1360,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1361,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1363,
+          "text": "cut.pl: test inval2-mb.p: stderr mismatch, comparing inval2-mb.p.3 (expected) and inval2-mb.p.E (actual)"
+        },
+        {
+          "line": 1371,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1372,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1374,
+          "text": "cut.pl: test inval3-mb: stderr mismatch, comparing inval3-mb.3 (expected) and inval3-mb.E (actual)"
+        },
+        {
+          "line": 1382,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1383,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1385,
+          "text": "cut.pl: test inval3-mb.r: stderr mismatch, comparing inval3-mb.r.3 (expected) and inval3-mb.r.E (actual)"
+        },
+        {
+          "line": 1393,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1394,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1396,
+          "text": "cut.pl: test inval3-mb.p: stderr mismatch, comparing inval3-mb.p.3 (expected) and inval3-mb.p.E (actual)"
+        },
+        {
+          "line": 1404,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1405,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1407,
+          "text": "cut.pl: test inval4-mb: stderr mismatch, comparing inval4-mb.3 (expected) and inval4-mb.E (actual)"
+        },
+        {
+          "line": 1415,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1416,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1418,
+          "text": "cut.pl: test inval4-mb.r: stderr mismatch, comparing inval4-mb.r.3 (expected) and inval4-mb.r.E (actual)"
+        },
+        {
+          "line": 1426,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1427,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1429,
+          "text": "cut.pl: test inval4-mb.p: stderr mismatch, comparing inval4-mb.p.3 (expected) and inval4-mb.p.E (actual)"
+        },
+        {
+          "line": 1437,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1438,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1440,
+          "text": "cut.pl: test inval5-mb: stderr mismatch, comparing inval5-mb.3 (expected) and inval5-mb.E (actual)"
+        },
+        {
+          "line": 1448,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1449,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1451,
+          "text": "cut.pl: test inval5-mb.r: stderr mismatch, comparing inval5-mb.r.3 (expected) and inval5-mb.r.E (actual)"
+        },
+        {
+          "line": 1459,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1460,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1462,
+          "text": "cut.pl: test inval5-mb.p: stderr mismatch, comparing inval5-mb.p.3 (expected) and inval5-mb.p.E (actual)"
+        },
+        {
+          "line": 1470,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1471,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1473,
+          "text": "cut.pl: test inval6-mb: stderr mismatch, comparing inval6-mb.3 (expected) and inval6-mb.E (actual)"
+        },
+        {
+          "line": 1481,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1482,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1484,
+          "text": "cut.pl: test inval6-mb.r: stderr mismatch, comparing inval6-mb.r.3 (expected) and inval6-mb.r.E (actual)"
+        },
+        {
+          "line": 1492,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1493,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        },
+        {
+          "line": 1495,
+          "text": "cut.pl: test inval6-mb.p: stderr mismatch, comparing inval6-mb.p.3 (expected) and inval6-mb.p.E (actual)"
+        },
+        {
+          "line": 1503,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -"
+        },
+        {
+          "line": 1504,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "fdafd5c55d0bf0e8a650503cb0d3a9e122c5a6a68fcbf1b16432f0808dcba2ef",
+      "original_status": "FAIL",
+      "primary_group": "argv0-diagnostics",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\pr\\pr-tests.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\pr\\pr-tests.pl",
+      "source_sha256": "6f0d352877dce7e39387de40cd292b223834d25ff5e31b312596361132125b9f",
+      "test": "tests/pr/pr-tests.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 698,
+          "text": "pr: test col-0: stderr mismatch, comparing col-0.3 (expected) and col-0.E (actual)"
+        },
+        {
+          "line": 705,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '0'"
+        },
+        {
+          "line": 707,
+          "text": "pr: test col-0.r: stderr mismatch, comparing col-0.r.3 (expected) and col-0.r.E (actual)"
+        },
+        {
+          "line": 714,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '0'"
+        },
+        {
+          "line": 716,
+          "text": "pr: test col-0.p: stderr mismatch, comparing col-0.p.3 (expected) and col-0.p.E (actual)"
+        },
+        {
+          "line": 723,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '0'"
+        },
+        {
+          "line": 725,
+          "text": "pr: test col-inval: stderr mismatch, comparing col-inval.3 (expected) and col-inval.E (actual)"
+        },
+        {
+          "line": 732,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+        },
+        {
+          "line": 734,
+          "text": "pr: test col-inval.r: stderr mismatch, comparing col-inval.r.3 (expected) and col-inval.r.E (actual)"
+        },
+        {
+          "line": 741,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+        },
+        {
+          "line": 743,
+          "text": "pr: test col-inval.p: stderr mismatch, comparing col-inval.p.3 (expected) and col-inval.p.E (actual)"
+        },
+        {
+          "line": 750,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+        },
+        {
+          "line": 752,
+          "text": "pr: test neg-page: stderr mismatch, comparing neg-page.3 (expected) and neg-page.E (actual)"
+        },
+        {
+          "line": 759,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument '1:-1'"
+        },
+        {
+          "line": 761,
+          "text": "pr: test neg-page.r: stderr mismatch, comparing neg-page.r.3 (expected) and neg-page.r.E (actual)"
+        },
+        {
+          "line": 768,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument '1:-1'"
+        },
+        {
+          "line": 770,
+          "text": "pr: test neg-page.p: stderr mismatch, comparing neg-page.p.3 (expected) and neg-page.p.E (actual)"
+        },
+        {
+          "line": 777,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument '1:-1'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "8ad87c21ac448d0d13126db6405325b83e769bc30fbcb1a67578707f6fac7ee0",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\cycle.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\cycle.sh",
+      "source_sha256": "71296d147821ba63053dd739fec4ea33a24202c107d11ac85b4699dbb1f4f007",
+      "test": "tests/rm/cycle.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            71,
+            71
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-cycle-01\\result.json",
+          "sha256": "c6af50262c5fc39284e55a68d6f4a7c6dae0ed76c25a9f44888c35fd5676ee04",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            71,
+            71
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-cycle-current-acl\\result.json",
+          "sha256": "9f306a87788a7df527e3647c9a54c2d0495906699160ce37bc64e2ff39ccb2c5",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            71,
+            71
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-cycle-current-noacl\\result.json",
+          "sha256": "d4d59c520f2dd79b47afcd75f2f4f3b2a8f8d974f5565426672cfdee7683578b",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1233,
+          "text": "-rm: cannot remove 'a/b/file'"
+        },
+        {
+          "line": 1234,
+          "text": "-rm: cannot remove 'a/b/file'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "25a10c3d36ebc2d432cb29fc964c9288469f3493dd8e34c106e500a38c9f895a",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\chmod\\no-x.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\chmod\\no-x.sh",
+      "source_sha256": "ee3ecfc97b74de6cd40b1a8758d823ccadecc5123272a1bacfcc8d36dddef33f",
+      "test": "tests/chmod/no-x.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            81,
+            81
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-chmod-no-x-01\\result.json",
+          "sha256": "81c797006ca55e1b95d2686944a2e30cf84494298af7857ecc18e4b36a2af683",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            81,
+            81
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chmod-no-x-current-acl\\result.json",
+          "sha256": "98e955c1316f83e24b6e8c043051db5c6c17aeb000459c8ef2a930fd5a7479fc",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            81,
+            81
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chmod-no-x-current-noacl\\result.json",
+          "sha256": "992664fb96bc9efadcf5aade45946c3fe8f2fd0b7242a0d45a56097cfa451d99",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1219,
+          "text": "+ sed 's/^chmod: cannot access /chmod: /' out"
+        },
+        {
+          "line": 1221,
+          "text": "+ sed 's/^chmod: cannot read directory /chmod: /' out"
+        },
+        {
+          "line": 1238,
+          "text": "-chmod: 'd/no-x': Permission denied"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "17b61548d34786f610377e30e0988adb6f2b06b9ec932e8fd2ed6254947af1ad",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\chgrp\\basic.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\chgrp\\basic.sh",
+      "source_sha256": "a5227732b2f120593d01e1a33073af9693c03b920442e393fcd6666137276225",
+      "test": "tests/chgrp/basic.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            237,
+            237
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\acl-chgrp-basic-01\\result.json",
+          "sha256": "c124dc3d3f527b11b9f70124a29711a9c9d26ac92e7f95dce1cfe282b2d6fb7f",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            237,
+            237
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-acl\\result.json",
+          "sha256": "2200048ad502f5ef77af3999ce87e8f897171b737ffd3509cda73a1d15714465",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            239,
+            239
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-basic-current-noacl\\result.json",
+          "sha256": "22eeeae17fe813b4e4c15fad63483dd12073e9a8f4ff54be37dc98a3d428288a",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "additional_mechanisms": [
+        "retained symbolic-link setup disagreement"
+      ],
+      "full_perl_script_replayed": null,
+      "log_sha256": "173a45eff63c0f0aa43ffedc9fbfd18327ae25bcb56a4e56e67b1be538777db1",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\fail-eacces.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\fail-eacces.sh",
+      "source_sha256": "34d4884d132549d2aefb1263e72cce8ef293104efcb9cc3c971cf00848a40b4b",
+      "test": "tests/rm/fail-eacces.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            87,
+            87
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-fail-eacces-current-acl\\result.json",
+          "sha256": "48ed008c9f2f31fc4714076413d6cb14d58424dd1fe1838db337ce8db619acf3",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            87,
+            87
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-fail-eacces-current-noacl\\result.json",
+          "sha256": "59be56ba8e961203836724949dfc208053c107cbc2d19f0905ef89b3783662b8",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1241,
+          "text": "-rm: cannot remove 'd/f': Permission denied"
+        },
+        {
+          "line": 1258,
+          "text": "-rm: cannot remove 'e/slink': Permission denied"
+        }
+      ]
+    },
+    {
+      "additional_mechanisms": [
+        "retained absolute path remapped under host-bootstrap root"
+      ],
+      "full_perl_script_replayed": null,
+      "log_sha256": "19d3a7ba81c6dc8085bc0d2f8a769b3ac623ccd5288cc09c32ab886afe4da04e",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\inaccessible.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\inaccessible.sh",
+      "source_sha256": "04a2a3537db66cd34028e8447af5e525f0cb0f512bef90e9e6acbb765a4c88fc",
+      "test": "tests/rm/inaccessible.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            80,
+            80
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-inaccessible-current-acl\\result.json",
+          "sha256": "cac638103ef94a1935427c062e680fa911f29f145235532a12de5cd1c4e041ae",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            80,
+            80
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-inaccessible-current-noacl\\result.json",
+          "sha256": "822ca2ed6231fdd2c773a62a764ce20f25307dd64bae21dd2c73689813682cc3",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1224,
+          "text": "+ p=/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J"
+        },
+        {
+          "line": 1230,
+          "text": "-rm: cannot remove 'rel': Permission denied"
+        },
+        {
+          "line": 1231,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J/abs1': No such file or directory"
+        },
+        {
+          "line": 1232,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'rel': No such file or directory"
+        },
+        {
+          "line": 1233,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J/abs2': No such file or directory"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "c87ed66a8bef51204aeb6b865fc60fc54be355e8c7a54d15377fc280a6fa813d",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\rm1.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\rm1.sh",
+      "source_sha256": "81b129412b6bb623d40591bc72b377431820beff21c8ccaa7cb387ad45950c56",
+      "test": "tests/rm/rm1.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            81,
+            81
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm1-current-acl\\result.json",
+          "sha256": "009bb017d7adb97771dc3527f88b638a5cca1da0f5abf8de8da5a75c50344eff",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            81,
+            81
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm1-current-noacl\\result.json",
+          "sha256": "cf8e7058947137acb1472f1f7200d44d08184933fd531aae32d10cd34aa70131",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1238,
+          "text": "-rm: cannot remove directory 'b/a/p': Permission denied"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "b8011c82248303e5f3b013b45ccf8f19827210a2f9416ea521ec6692bfa4e914",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\rm2.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\rm2.sh",
+      "source_sha256": "dd33b8d7534f8c16c7667197f16d2a2b80130a90d3134aca86270e8bc26bdef0",
+      "test": "tests/rm/rm2.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            91,
+            91
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm2-current-acl\\result.json",
+          "sha256": "d03454ad105bf4674d40b0ca3242a4eda2830b11e65ddaa28b963432e257e558",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            91,
+            91
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm2-current-noacl\\result.json",
+          "sha256": "a67288e638d07515f1d67811dccc0e4e8e3b533ccbc53ff4907452259e19ffdc",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1239,
+          "text": "-rm: cannot remove 'a/1': Permission denied"
+        },
+        {
+          "line": 1240,
+          "text": "-rm: cannot remove 'b': Permission denied"
+        }
+      ]
+    },
+    {
+      "additional_mechanisms": [
+        "foreign argv glob expands tr '?' to matching filename z",
+        "symlink representation",
+        "argv0 prefix"
+      ],
+      "full_perl_script_replayed": null,
+      "log_sha256": "2fa397c72c191debd1611875694fb9e2f53939578ef804c1cf583d466f3d3e7c",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\rm3.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\rm3.sh",
+      "source_sha256": "a707dbd07fc338d13fc37d6aa4480c4e09465cd3b71f7fbb5ee083cdc7320a57",
+      "test": "tests/rm/rm3.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            91,
+            91
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm3-current-acl\\result.json",
+          "sha256": "4ecb932c0eeac0f8f80c8fd4e390c4f8d848e0f42f9ed764034348c25736a0b2",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            91,
+            91
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-rm3-current-noacl\\result.json",
+          "sha256": "201263b20ebbb6d30feb90b457a6ef4c0aece7864fcffd5588cb8a10b9aa88e9",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1222,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'slinkdot': Too many levels of symbolic links"
+        },
+        {
+          "line": 1246,
+          "text": "-rm: descend into directory 'z'"
+        },
+        {
+          "line": 1247,
+          "text": "-rm: remove directory 'z'"
+        },
+        {
+          "line": 1248,
+          "text": "-rm: remove directory 'z/d'"
+        },
+        {
+          "line": 1249,
+          "text": "-rm: remove regular empty file 'z/empty'"
+        },
+        {
+          "line": 1250,
+          "text": "-rm: remove symbolic link 'z/slink'"
+        },
+        {
+          "line": 1251,
+          "text": "-rm: remove symbolic link 'z/slinkdot'"
+        },
+        {
+          "line": 1252,
+          "text": "-rm: remove write-protected directory 'z/du'"
+        },
+        {
+          "line": 1253,
+          "text": "-rm: remove write-protected regular empty file 'z/empty-u'"
+        },
+        {
+          "line": 1254,
+          "text": "-rm: remove write-protected regular file 'z/fu'"
+        },
+        {
+          "line": 1256,
+          "text": "+'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '"
+        },
+        {
+          "line": 1257,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: descend into directory '"
+        },
+        {
+          "line": 1258,
+          "text": "+/d'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '"
+        },
+        {
+          "line": 1259,
+          "text": "+/du'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file '"
+        },
+        {
+          "line": 1260,
+          "text": "+/empty'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular empty file '"
+        },
+        {
+          "line": 1261,
+          "text": "+/empty-u'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular file '"
+        },
+        {
+          "line": 1262,
+          "text": "+/fu'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: descend into directory '"
+        },
+        {
+          "line": 1263,
+          "text": "+/slinkdot'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '"
+        },
+        {
+          "line": 1264,
+          "text": "+/slinkdot'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file '"
+        },
+        {
+          "line": 1265,
+          "text": "+/slinkdot/empty'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file '"
+        },
+        {
+          "line": 1266,
+          "text": "+/slinkdot/empty-u'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular file '"
+        },
+        {
+          "line": 1267,
+          "text": "+/slinkdot/fu'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "6f54c89ccce996720586844c43257b2d9179f7985c43134175bc75736b9eab8b",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\unread2.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\unread2.sh",
+      "source_sha256": "f8e6a071a1596a968617d4033cee32fb8fd1b2eae9b1852d06777207da1380ec",
+      "test": "tests/rm/unread2.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            67,
+            67
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread2-current-acl\\result.json",
+          "sha256": "897786f4a473021ea62638c33438929520d600d9788631ed2166c940520675a9",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            67,
+            67
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread2-current-noacl\\result.json",
+          "sha256": "278f33d405fbfecb29e4e9324e79a8dabaac3fd72ede0358bc263029e2c549aa",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1232,
+          "text": "-rm: cannot remove 'a': Permission denied"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "8e387a77118be2711e06eb74834972f184e379e361e46e1278092a9188fa4fad",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\unreadable.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\unreadable.pl",
+      "source_sha256": "a84debab43a2cd460d56540f650090e48d6bedbb8f1ccd34cf9c349a4d07c92e",
+      "test": "tests/rm/unreadable.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 11,
+          "text": "unreadable.pl: test unreadable-2 failed: exit status mismatch:  expected 1, got 0"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "d079b9230c586c5d0650880d908bd78aad492b841a92ab1d77d85b8303117837",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\chgrp\\no-x.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\chgrp\\no-x.sh",
+      "source_sha256": "be683cbd2e5ac1fa1ac389a3cb2286c944f6ebd1f086b9d8ed9088c87641d0d9",
+      "test": "tests/chgrp/no-x.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            89,
+            89
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-no-x-current-acl\\result.json",
+          "sha256": "1301eae7947f981e5612670289ac3d961896701051af48d3dcecd178c0f445f7",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            89,
+            89
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-no-x-current-noacl\\result.json",
+          "sha256": "5220226d57ceffb0b86000f709b75d0c9520953da3cf5bc58037d2eb77af1783",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1235,
+          "text": "+ sed 's/^chgrp: cannot access /chgrp: /' out"
+        },
+        {
+          "line": 1237,
+          "text": "+ sed 's/^chgrp: cannot read directory /chgrp: /' out"
+        },
+        {
+          "line": 1254,
+          "text": "-chgrp: 'd/no-x': Permission denied"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "466e5c4e9fcd7b9f9722cf82190cc10e31a33c55ef08c51acfa5d723af7165b6",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\chgrp\\posix-H.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\chgrp\\posix-H.sh",
+      "source_sha256": "7d2f2e05856cc00139056f3346d4f03172483acc2e2c3a760b9ff2b968f7f31a",
+      "test": "tests/chgrp/posix-H.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            101,
+            101
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-posix-H-current-acl\\result.json",
+          "sha256": "e77feeab550a6ea4a07c927bb1020150d2e59b4c8ba196acd0488c90f7c33466",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            101,
+            101
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-posix-H-current-noacl\\result.json",
+          "sha256": "acd4bf5859c055ef3f5cb97c761349cc07c8868726b4a789bab30140caa1b3c0",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "cbd6a842bf28c0bb053e243c17ec32afb43b26ab124c2d86aa1f13bb4032d2c1",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\chgrp\\recurse.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\chgrp\\recurse.sh",
+      "source_sha256": "002d62990ff16c7df8306424d60d99a34a65a3cd1eefd72d6216f95fb8794ebd",
+      "test": "tests/chgrp/recurse.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            103,
+            103
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-recurse-current-acl\\result.json",
+          "sha256": "9f80c8e96f3fb508fb9ec64f9325865836e0fdb738cdf897b33f42bb7401fcc2",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            103,
+            103
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-chgrp-recurse-current-noacl\\result.json",
+          "sha256": "5edc333b6c78fb7f9370b6cfae8bb668d7b343e2132d8de943422897c74c9c3d",
+          "test_shell_raw_exit": 1,
+          "timed_out": false
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "additional_mechanisms": [
+        "two argv0-only diagnostics before mode600-vs644 termination"
+      ],
+      "full_perl_script_replayed": false,
+      "log_sha256": "ec8916808e0394bdc31c9165cddfc61630d187d88cd6628d0fe0e634df2b6b92",
+      "original_status": "FAIL",
+      "primary_group": "permission-model",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\mktemp.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\mktemp.pl",
+      "source_sha256": "968509c667dc0077cec663acde53374d6994bf58013ead033e9049a9b95f5bad",
+      "test": "tests/misc/mktemp.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 9,
+          "text": "mktemp.pl: test too-many: stderr mismatch, comparing too-many.1 (expected) and too-many.E (actual)"
+        },
+        {
+          "line": 17,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp: too many templates"
+        },
+        {
+          "line": 18,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp --help' for more information."
+        },
+        {
+          "line": 20,
+          "text": "mktemp.pl: test too-few-x: stderr mismatch, comparing too-few-x.1 (expected) and too-few-x.E (actual)"
+        },
+        {
+          "line": 27,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp: too few X's in template 'foo.XX'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "dffdc77786327336789e6af46c792d48e77c0e34cf476ccfe61da57329963caf",
+      "original_status": "FAIL",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\dangling-symlink.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\dangling-symlink.sh",
+      "source_sha256": "e7a7c7eee237c85e0676201e8e3bee74817f542e25cbeb39818ab5a2dba44d98",
+      "test": "tests/rm/dangling-symlink.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            75,
+            75
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-dangling-symlink-current-noacl\\result.json",
+          "sha256": "eb240d19c3ffe9faeee4a45d231358509d243f661bea30e1d1368dcb26485103",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "e47e2b803f1b4f1a8931b0220285094d7a169dbb8754e1112ebb32af1dbe8f44",
+      "original_status": "FAIL",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\unread3.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\unread3.sh",
+      "source_sha256": "acd10d5f536f74437f23a025132840e7a565207c0c741b0535b6429caf517aa5",
+      "test": "tests/rm/unread3.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-acl",
+          "coverage": [
+            75,
+            75
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread3-current-acl\\result.json",
+          "sha256": "aefafd2b4347ab9a944b6edf8b2a34c8c04559dd9f6f51f3ce8f2866ed83a649",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            75,
+            75
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-rm-unread3-current-noacl\\result.json",
+          "sha256": "1772a2e283cf54b17bec4806143198382ff57e685401988498e2e5d5e1c0f7e4",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1217,
+          "text": "+ t=/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B"
+        },
+        {
+          "line": 1220,
+          "text": "+ rm.exe -r /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/a /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/b"
+        },
+        {
+          "line": 1224,
+          "text": "+ rm.exe -r /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/d /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/e"
+        },
+        {
+          "line": 1228,
+          "text": "+ test.exe -d /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/a"
+        },
+        {
+          "line": 1229,
+          "text": "+ test.exe -d /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/b"
+        },
+        {
+          "line": 1230,
+          "text": "+ test.exe -d /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/d"
+        },
+        {
+          "line": 1231,
+          "text": "+ test.exe -d /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/e"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "63e02de110eee09766d9c179d3aa07eda7632d975d79823c536792b8df4816ab",
+      "original_status": "FAIL",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\tail-2\\inotify-hash-abuse2.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\tail-2\\inotify-hash-abuse2.sh",
+      "source_sha256": "a4799421a18fba85f83c2bc6df5f3bc77b061fa6f01bc332678effa59e48c38a",
+      "test": "tests/tail-2/inotify-hash-abuse2.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            2477,
+            2477
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-inotify-hash-abuse2-02\\result.json",
+          "sha256": "11a207ba17b6af0f2d51f7b42e3be7a88937f35c90fa8f54c1f4db379754c5b0",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            723,
+            728
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse2-current-noacl\\result.json",
+          "sha256": "ae2c83cbb45fbc69cf0dea97d868aa91006e2135310f23e5ac48b3bb922bb4a9",
+          "test_shell_raw_exit": 1460,
+          "timed_out": true
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1217,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21664': No such process"
+        },
+        {
+          "line": 1220,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21664': No such process"
+        },
+        {
+          "line": 1231,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21670': No such process"
+        },
+        {
+          "line": 1234,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21670': No such process"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "dfc2d72a4b356c0b0059fcd1558d592c6f367688a83ea363118376dc8aa1ab32",
+      "original_status": "FAIL",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\tail-2\\pid.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\tail-2\\pid.sh",
+      "source_sha256": "382f3a48e12824556ab88051529dee84025b4df5e033b665bc2c0fac6b951002",
+      "test": "tests/tail-2/pid.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            101,
+            101
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-pid-current-noacl\\result.json",
+          "sha256": "05ff5aa4c08b5cf369a6f14bba947eb53325944831079b008b62452c5c330815",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": []
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "d986792fe2a00ae4512286fa552590f78e8b7a398bc9b5350d08eefa30822e5b",
+      "original_status": "FAIL",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\od.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\od.pl",
+      "source_sha256": "4a9229fc9d45375b9977717d4626a95cf94a5da2363de87dd72d58887f73003e",
+      "test": "tests/misc/od.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 13,
+          "text": "od.pl: test j-proc: stdout mismatch, comparing j-proc.1 (expected) and j-proc.O (actual)"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "4d3f6738084ed324393c5ce945211d78a4b04b726e4327bdd840484372007ab5",
+      "original_status": "FAIL",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\wc-proc.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\wc-proc.sh",
+      "source_sha256": "406aadf031204645f635a2a34197b13283ec2d2e1a6f1d20d2d02961ecd6ecd7",
+      "test": "tests/misc/wc-proc.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            23,
+            23
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-wc-proc-01\\result.json",
+          "sha256": "7ba8f776920c4efe755fe03c948960b2d47651635df69668fbb9ec5f28daa8fe",
+          "test_shell_raw_exit": 127,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            77,
+            77
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-wc-proc-02\\result.json",
+          "sha256": "5c583d70d868ac3f016b0e94f204d4b5b7451da041b91e174860966fe74c4ae6",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "historical-noacl",
+          "coverage": [
+            77,
+            77
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-wc-proc-01\\result.json",
+          "sha256": "7e8a4a27b37b880c0173207367353d8e0370deeea61dbf38ac518be42e8a77f2",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            77,
+            77
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-wc-proc-current-noacl\\result.json",
+          "sha256": "0fccb8a756ee092bc73f1549a1edcdf529aa64d0144147dea69e8d7f3fc2b1cf",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1213,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: failed to set file descriptor text/binary mode: Bad file descriptor"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "6a6211c80169fee261d04ae96490bd2ea6b76d704107474655db40b3a0cc9005",
+      "original_status": "ERROR",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\tail-2\\overlay-headers.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\tail-2\\overlay-headers.sh",
+      "source_sha256": "d1852ea59671eef0bf132899c2ac0fb5a8e2ab9bf49f5cbeaf1e7173560b3937",
+      "test": "tests/tail-2/overlay-headers.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            108,
+            108
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-overlay-headers-current-noacl\\result.json",
+          "sha256": "17249ba471d3f43f5e187a280253a75070c601391ed8392e79f5b6123e49239e",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1228,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32459': No such process"
+        },
+        {
+          "line": 1252,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32459': No such process"
+        },
+        {
+          "line": 1259,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32459': No such process"
+        },
+        {
+          "line": 1381,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32458': No such process"
+        },
+        {
+          "line": 1383,
+          "text": "+ warn_ '0: set-up failure: '"
+        },
+        {
+          "line": 1385,
+          "text": "+ printf '%s\\n' '0: set-up failure: '"
+        },
+        {
+          "line": 1386,
+          "text": "0: set-up failure: "
+        },
+        {
+          "line": 1388,
+          "text": "+ printf '%s\\n' '0: set-up failure: '"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "2d84e19a6f18db281a50b5e743637f59d194daa498ca196aa75cc0afd37d2be5",
+      "original_status": "ERROR",
+      "primary_group": "runtime-views-and-pids",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\pwd-option.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\pwd-option.sh",
+      "source_sha256": "9f98e1baf9cb6a9c79e70f6a2b7f1e097ff784f7640a6a65fd9bec020681a8b5",
+      "test": "tests/misc/pwd-option.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            39,
+            39
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-pwd-option-01\\result.json",
+          "sha256": "1279fc74fcecc032f0a42d4c7905bae9201d0c909b8cf1972a3860bd350a23d6",
+          "test_shell_raw_exit": 127,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            108,
+            108
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\current-pwd-option-02\\result.json",
+          "sha256": "5aec095f815ef7231350a8bf294116c11c53bc8b9209ac1fab6427bfd0c7e575",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "historical-noacl",
+          "coverage": [
+            108,
+            108
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\historical-native-pwd-option-01\\result.json",
+          "sha256": "1c51c79e2113c814ad26185164f46886899f5d5d7b76e276fa6e1583a69d0da3",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            108,
+            108
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-pwd-option-current-noacl\\result.json",
+          "sha256": "373ea32e9e939c0c0c35623c43b994045b96d87a63077991e9e08b2b2e671c67",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1211,
+          "text": "+ base=/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.c0Fc"
+        },
+        {
+          "line": 1212,
+          "text": "+ cd /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.c0Fc"
+        },
+        {
+          "line": 1215,
+          "text": "+ warn_ '0: set-up failure: '"
+        },
+        {
+          "line": 1217,
+          "text": "+ printf '%s\\n' '0: set-up failure: '"
+        },
+        {
+          "line": 1218,
+          "text": "0: set-up failure: "
+        },
+        {
+          "line": 1220,
+          "text": "+ printf '%s\\n' '0: set-up failure: '"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "bc68c1a4b45ed4912e514790a39a999e3260a49b8c3ee9ddbe3930822b21dc6d",
+      "original_status": "FAIL",
+      "primary_group": "invalid-byte-argument",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\date.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\date.pl",
+      "source_sha256": "6b3b27259a7f7bc26219f997a4076720744a33ce1e854b888edd9b29a497b277",
+      "test": "tests/misc/date.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 103,
+          "text": "date.pl: test invalid-high-bit-set: stderr mismatch, comparing invalid-high-bit-set.1 (expected) and invalid-high-bit-set.E (actual)"
+        },
+        {
+          "line": 110,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/date: invalid date '\\357\\202\\260'"
+        },
+        {
+          "line": 112,
+          "text": "date.pl: test invalid-TZ-crash: stderr mismatch, comparing invalid-TZ-crash.1 (expected) and invalid-TZ-crash.E (actual)"
+        },
+        {
+          "line": 119,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/date: invalid date 'TZ=\"\"\"'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "975e7101bcdaf373cd092394115015ff8036c0bd03edaa3132991d2191ec2619",
+      "original_status": "FAIL",
+      "primary_group": "compound-help-dependencies",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\help-version.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\help-version.sh",
+      "source_sha256": "7bc20486cc452ce63e41525dc2334864e783117edfc73662da0422f10f965a8e",
+      "test": "tests/misc/help-version.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-complete",
+          "coverage": [
+            6208,
+            6211
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\complete-help-version-02\\result.json",
+          "sha256": "99da962eac82b404070b0d085d3ffdc4292bdbb159f6e4a68d998ae8bb92d139",
+          "test_shell_raw_exit": 1460,
+          "timed_out": true
+        },
+        {
+          "cohort": "current-complete",
+          "coverage": [
+            1681,
+            1685
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-help-version-complete-01\\result.json",
+          "sha256": "8213657c66053fd6b5d6e8de686dcd6ac26942f0e137bcfb6f28f262595629eb",
+          "test_shell_raw_exit": 1460,
+          "timed_out": true
+        },
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            1328,
+            1331
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-misc-help-version-current-noacl\\result.json",
+          "sha256": "132133b2ade6bc120564607f3ff721db75cf29ae0403e1926b79577eadc1d7f0",
+          "test_shell_raw_exit": 1460,
+          "timed_out": true
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 2833,
+          "text": "kill: '19533': No such process"
+        },
+        {
+          "line": 3322,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'slink': Too many levels of symbolic links"
+        },
+        {
+          "line": 3642,
+          "text": "stdbuf: failed to find 'libstdbuf.dll'"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "f058754784d5fd42cff6b878da4ae6f2df6f85c791a2847b84bd807368be2929",
+      "original_status": "FAIL",
+      "primary_group": "residual-launch-proof-missing",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\join.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\join.pl",
+      "source_sha256": "f81aef258cb28b8e8b9b55fecec13d7983c6ef1319e17f485ebd12104ac7480f",
+      "test": "tests/misc/join.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 55,
+          "text": "join: test 8-bit-t failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 59,
+          "text": "join: test invalid-j: stderr mismatch, comparing invalid-j.2 (expected) and invalid-j.E (actual)"
+        },
+        {
+          "line": 66,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: invalid field number: 'x'"
+        },
+        {
+          "line": 72,
+          "text": "join: test chkodr-5: stderr mismatch, comparing chkodr-5.4 (expected) and chkodr-5.E (actual)"
+        },
+        {
+          "line": 79,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5.1:2: is not sorted:  a 2"
+        },
+        {
+          "line": 81,
+          "text": "join: test chkodr-5b: stderr mismatch, comparing chkodr-5b.4 (expected) and chkodr-5b.E (actual)"
+        },
+        {
+          "line": 88,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5b.2:2: is not sorted:  a Z"
+        },
+        {
+          "line": 90,
+          "text": "join: test chkodr-5c: stderr mismatch, comparing chkodr-5c.4 (expected) and chkodr-5c.E (actual)"
+        },
+        {
+          "line": 97,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5c.2:2: is not sorted: "
+        },
+        {
+          "line": 99,
+          "text": "join: test chkodr-5d: stderr mismatch, comparing chkodr-5d.4 (expected) and chkodr-5d.E (actual)"
+        },
+        {
+          "line": 108,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5d.1:3: is not sorted: "
+        },
+        {
+          "line": 109,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5d.2:3: is not sorted: "
+        },
+        {
+          "line": 110,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: input is not in sorted order"
+        },
+        {
+          "line": 112,
+          "text": "join: test chkodr-5e: stderr mismatch, comparing chkodr-5e.4 (expected) and chkodr-5e.E (actual)"
+        },
+        {
+          "line": 121,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5e.1:3: is not sorted: o"
+        },
+        {
+          "line": 122,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5e.2:3: is not sorted: p"
+        },
+        {
+          "line": 123,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: input is not in sorted order"
+        },
+        {
+          "line": 130,
+          "text": "join: test header-3: stderr mismatch, comparing header-3.4 (expected) and header-3.E (actual)"
+        },
+        {
+          "line": 137,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: header-3.1:3: is not sorted: 1 A"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": false,
+      "log_sha256": "c4a0a06ffe96e3cc3d9fdc3d4032ad1c52da3d906c594abbbbb1745ba6b73186",
+      "original_status": "FAIL",
+      "primary_group": "residual-launch-proof-missing",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\misc\\wc-files0-from.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\misc\\wc-files0-from.pl",
+      "source_sha256": "50fbf3cacb39249102042d924819625959b8e4c2fb67aa59b2ec29c574a3c132",
+      "test": "tests/misc/wc-files0-from.pl",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 9,
+          "text": "wc-files0-from.pl: test f-extra-arg: stderr mismatch, comparing f-extra-arg.2 (expected) and f-extra-arg.E (actual)"
+        },
+        {
+          "line": 18,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: extra operand 'no-such'"
+        },
+        {
+          "line": 20,
+          "text": "! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc --help' for more information."
+        },
+        {
+          "line": 22,
+          "text": "wc-files0-from.pl: test missing: stderr mismatch, comparing missing.1 (expected) and missing.E (actual)"
+        },
+        {
+          "line": 29,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: cannot open 'missing' for reading: No such file or directory"
+        },
+        {
+          "line": 31,
+          "text": "wc-files0-from.pl: test minus-in-stdin: stderr mismatch, comparing minus-in-stdin.1 (expected) and minus-in-stdin.E (actual)"
+        },
+        {
+          "line": 38,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: when reading file names from stdin, no file name of '-' allowed"
+        },
+        {
+          "line": 41,
+          "text": "wc-files0-from.pl: test empty-nonreg failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 43,
+          "text": "wc-files0-from.pl: test nul-1: stderr mismatch, comparing nul-1.2 (expected) and nul-1.E (actual)"
+        },
+        {
+          "line": 50,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name"
+        },
+        {
+          "line": 52,
+          "text": "wc-files0-from.pl: test nul-2: stderr mismatch, comparing nul-2.3 (expected) and nul-2.E (actual)"
+        },
+        {
+          "line": 60,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name"
+        },
+        {
+          "line": 61,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:2: invalid zero-length file name"
+        },
+        {
+          "line": 67,
+          "text": "wc-files0-from.pl: test zero-len: stderr mismatch, comparing zero-len.2 (expected) and zero-len.E (actual)"
+        },
+        {
+          "line": 74,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "ceb961780c3cad419e431582733905caf54166ee79b275891f561966ddffaf64",
+      "original_status": "ERROR",
+      "primary_group": "environment-size",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\tail-2\\inotify-hash-abuse.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\tail-2\\inotify-hash-abuse.sh",
+      "source_sha256": "7f5146dea742eecb4700071243c4817161cecc219f53844a731fde33c4822fc9",
+      "test": "tests/tail-2/inotify-hash-abuse.sh",
+      "unchanged_script_replays": [
+        {
+          "cohort": "current-noacl",
+          "coverage": [
+            119,
+            119
+          ],
+          "observer_gate_passed": false,
+          "path": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\runs\\upstream-tests-tail-2-inotify-hash-abuse-current-noacl\\result.json",
+          "sha256": "83787f7582b28a7077b278d0291cfc652a93c717cf5a1e2ca03f6d4a1c4b03fa",
+          "test_shell_raw_exit": 0,
+          "timed_out": false
+        }
+      ],
+      "witnesses": [
+        {
+          "line": 1212,
+          "text": "xargs: environment is too large for exec"
+        },
+        {
+          "line": 1214,
+          "text": "+ warn_ '0: set-up failure: '"
+        },
+        {
+          "line": 1216,
+          "text": "+ printf '%s\\n' '0: set-up failure: '"
+        },
+        {
+          "line": 1217,
+          "text": "0: set-up failure: "
+        },
+        {
+          "line": 1219,
+          "text": "+ printf '%s\\n' '0: set-up failure: '"
+        }
+      ]
+    },
+    {
+      "full_perl_script_replayed": null,
+      "log_sha256": "614cfa0d2f295125cdc193d524244238b6e21425d65bb0abb8f2e0df2bc5994d",
+      "original_status": "ERROR",
+      "primary_group": "unsupported-preload-test-api",
+      "retained_log": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\logs\\tests\\rm\\rm-readdir-fail.log",
+      "source": "C:\\ag-exit-e138-01\\coreutils-failures-20260911-01\\retained\\source\\tests\\rm\\rm-readdir-fail.sh",
+      "source_sha256": "5bd7da7b421b5f1729f9cdfc834797583dff278576b5beedd9702b4852750a1a",
+      "test": "tests/rm/rm-readdir-fail.sh",
+      "unchanged_script_replays": [],
+      "witnesses": [
+        {
+          "line": 1226,
+          "text": "k.c:26:50: error: 'RTLD_NEXT' undeclared (first use in this function); did you mean 'RTLD_NOW'?"
+        },
+        {
+          "line": 1227,
+          "text": "   26 |   if (! real_readdir && ! (real_readdir = dlsym (RTLD_NEXT, \"readdir\")))"
+        },
+        {
+          "line": 1232,
+          "text": "+ warn_ '0: set-up failure: failed to build shared library'"
+        },
+        {
+          "line": 1234,
+          "text": "+ printf '%s\\n' '0: set-up failure: failed to build shared library'"
+        },
+        {
+          "line": 1235,
+          "text": "0: set-up failure: failed to build shared library"
+        },
+        {
+          "line": 1237,
+          "text": "+ printf '%s\\n' '0: set-up failure: failed to build shared library'"
+        }
+      ]
+    }
+  ],
+  "unconfirmed_secondary_causes": [
+    "join.pl 8-bit-t exact legacy argument",
+    "wc-files0-from.pl empty-nonreg exact legacy fd/path"
+  ]
+}

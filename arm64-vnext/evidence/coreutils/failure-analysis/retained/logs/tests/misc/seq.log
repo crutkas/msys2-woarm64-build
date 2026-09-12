@@ -1,0 +1,261 @@
+Possible attempt to separate words with commas at /c/ag-coreutils-e138-01/coreutils-native-13/source/coreutils-8.32/tests/misc/seq.pl line 139.
+Possible attempt to separate words with commas at /c/ag-coreutils-e138-01/coreutils-native-13/source/coreutils-8.32/tests/misc/seq.pl line 139.
+Possible attempt to separate words with commas at /c/ag-coreutils-e138-01/coreutils-native-13/source/coreutils-8.32/tests/misc/seq.pl line 140.
+Possible attempt to separate words with commas at /c/ag-coreutils-e138-01/coreutils-native-13/source/coreutils-8.32/tests/misc/seq.pl line 141.
+Possible attempt to separate words with commas at /c/ag-coreutils-e138-01/coreutils-native-13/source/coreutils-8.32/tests/misc/seq.pl line 141.
+seq (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Ulrich Drepper.
+onearg-1...
+onearg-2...
+empty-rev...
+neg-1...
+neg-3...
+neg-4...
+float-1...
+float-2...
+float-3...
+float-4...
+float-5...
+float-6...
+wid-1...
+wid-2...
+eq-wid-1...
+eq-wid-2...
+eq-wid-3...
+eq-wid-4...
+eq-wid-5...
+eq-wid-6...
+eq-wid-7...
+eq-wid-8...
+eq-wid-9...
+eq-wid-10...
+eq-wid-11...
+eq-wid-12...
+eq-wid-13...
+eq-wid-14...
+eq-wid-15...
+fmt-1...
+fmt-2...
+fmt-3...
+fmt-4...
+fmt-5...
+fmt-6...
+fmt-7...
+fmt-8...
+fmt-9...
+fmt-a...
+fmt-b...
+fmt-c...
+seq.pl: test fmt-c: stderr mismatch, comparing fmt-c.1 (expected) and fmt-c.E (actual)
+*** fmt-c.1	Tue Sep  8 22:21:24 2026
+--- fmt-c.E	Tue Sep  8 22:21:24 2026
+***************
+*** 1 ****
+! seq: format '%%g' has no % directive
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%%g' has no % directive
+fmt-eos1...
+seq.pl: test fmt-eos1: stderr mismatch, comparing fmt-eos1.1 (expected) and fmt-eos1.E (actual)
+*** fmt-eos1.1	Tue Sep  8 22:21:25 2026
+--- fmt-eos1.E	Tue Sep  8 22:21:25 2026
+***************
+*** 1 ****
+! seq: format '%' ends in %
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%' ends in %
+fmt-eos2...
+seq.pl: test fmt-eos2: stderr mismatch, comparing fmt-eos2.1 (expected) and fmt-eos2.E (actual)
+*** fmt-eos2.1	Tue Sep  8 22:21:25 2026
+--- fmt-eos2.E	Tue Sep  8 22:21:25 2026
+***************
+*** 1 ****
+! seq: format '%g%' has too many % directives
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%g%' has too many % directives
+fmt-d...
+seq.pl: test fmt-d: stderr mismatch, comparing fmt-d.1 (expected) and fmt-d.E (actual)
+*** fmt-d.1	Tue Sep  8 22:21:25 2026
+--- fmt-d.E	Tue Sep  8 22:21:26 2026
+***************
+*** 1 ****
+! seq: format '' has no % directive
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '' has no % directive
+fmt-e...
+seq.pl: test fmt-e: stderr mismatch, comparing fmt-e.1 (expected) and fmt-e.E (actual)
+*** fmt-e.1	Tue Sep  8 22:21:26 2026
+--- fmt-e.E	Tue Sep  8 22:21:26 2026
+***************
+*** 1 ****
+! seq: format '%g%g' has too many % directives
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%g%g' has too many % directives
+locale-dec-pt...
+long-1...
+long-leading-zeros1...
+long-leading-zeros2...
+long-leading-zeros3...
+long-leading-zeros4...
+sep-1...
+sep-2...
+sep-3...
+not-fast-1...
+not-fast-2...
+not-fast-3...
+not-fast-4...
+not-fast-5...
+fast-1...
+fast-2...
+fast-3...
+fast-4...
+fast-5...
+fast-6...
+inc-zero-1...
+seq.pl: test inc-zero-1: stderr mismatch, comparing inc-zero-1.1 (expected) and inc-zero-1.E (actual)
+*** inc-zero-1.1	Tue Sep  8 22:21:30 2026
+--- inc-zero-1.E	Tue Sep  8 22:21:30 2026
+***************
+*** 1,2 ****
+! seq: invalid Zero increment value: '0'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+inc-zero-2...
+seq.pl: test inc-zero-2: stderr mismatch, comparing inc-zero-2.1 (expected) and inc-zero-2.E (actual)
+*** inc-zero-2.1	Tue Sep  8 22:21:30 2026
+--- inc-zero-2.E	Tue Sep  8 22:21:31 2026
+***************
+*** 1,2 ****
+! seq: invalid Zero increment value: '0'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e13801/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '-0'
+! Try '/cygdrive/c/ag-coreutils-e13801/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+inc-zero-3...
+seq.pl: test inc-zero-3: stderr mismatch, comparing inc-zero-3.1 (expected) and inc-zero-3.E (actual)
+*** inc-zero-3.1	Tue Sep  8 22:21:31 2026
+--- inc-zero-3.E	Tue Sep  8 22:21:31 2026
+***************
+*** 1,2 ****
+! seq: invalid Zero increment value: '0'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+inc-zero-4...
+seq.pl: test inc-zero-4: stderr mismatch, comparing inc-zero-4.1 (expected) and inc-zero-4.E (actual)
+*** inc-zero-4.1	Tue Sep  8 22:21:31 2026
+--- inc-zero-4.E	Tue Sep  8 22:21:31 2026
+***************
+*** 1,2 ****
+! seq: invalid Zero increment value: '0'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-first-1...
+seq.pl: test nan-first-1: stderr mismatch, comparing nan-first-1.1 (expected) and nan-first-1.E (actual)
+*** nan-first-1.1	Tue Sep  8 22:21:32 2026
+--- nan-first-1.E	Tue Sep  8 22:21:32 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-first-2...
+seq.pl: test nan-first-2: stderr mismatch, comparing nan-first-2.1 (expected) and nan-first-2.E (actual)
+*** nan-first-2.1	Tue Sep  8 22:21:32 2026
+--- nan-first-2.E	Tue Sep  8 22:21:32 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-first-3...
+seq.pl: test nan-first-3: stderr mismatch, comparing nan-first-3.1 (expected) and nan-first-3.E (actual)
+*** nan-first-3.1	Tue Sep  8 22:21:32 2026
+--- nan-first-3.E	Tue Sep  8 22:21:32 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-first-4...
+seq.pl: test nan-first-4: stderr mismatch, comparing nan-first-4.1 (expected) and nan-first-4.E (actual)
+*** nan-first-4.1	Tue Sep  8 22:21:33 2026
+--- nan-first-4.E	Tue Sep  8 22:21:33 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-inc-1...
+seq.pl: test nan-inc-1: stderr mismatch, comparing nan-inc-1.1 (expected) and nan-inc-1.E (actual)
+*** nan-inc-1.1	Tue Sep  8 22:21:33 2026
+--- nan-inc-1.E	Tue Sep  8 22:21:33 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-inc-2...
+seq.pl: test nan-inc-2: stderr mismatch, comparing nan-inc-2.1 (expected) and nan-inc-2.E (actual)
+*** nan-inc-2.1	Tue Sep  8 22:21:33 2026
+--- nan-inc-2.E	Tue Sep  8 22:21:34 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-last-1...
+seq.pl: test nan-last-1: stderr mismatch, comparing nan-last-1.1 (expected) and nan-last-1.E (actual)
+*** nan-last-1.1	Tue Sep  8 22:21:34 2026
+--- nan-last-1.E	Tue Sep  8 22:21:34 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-last-2...
+seq.pl: test nan-last-2: stderr mismatch, comparing nan-last-2.1 (expected) and nan-last-2.E (actual)
+*** nan-last-2.1	Tue Sep  8 22:21:34 2026
+--- nan-last-2.E	Tue Sep  8 22:21:34 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+nan-last-3...
+seq.pl: test nan-last-3: stderr mismatch, comparing nan-last-3.1 (expected) and nan-last-3.E (actual)
+*** nan-last-3.1	Tue Sep  8 22:21:35 2026
+--- nan-last-3.E	Tue Sep  8 22:21:35 2026
+***************
+*** 1,2 ****
+! seq: invalid 'not-a-number' argument: 'nan'
+! Try 'seq --help' for more information.
+--- 1,2 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'
+! Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information.
+FAIL tests/misc/seq.pl (exit status: 1)

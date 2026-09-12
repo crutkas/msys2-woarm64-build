@@ -1,0 +1,44 @@
+pr (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Pete TerMaat and Roland Huebner.
+inval-suffix...
+xstrtol.pl: test inval-suffix: stderr mismatch, comparing inval-suffix.1 (expected) and inval-suffix.E (actual)
+*** inval-suffix.1	Tue Sep  8 22:26:50 2026
+--- inval-suffix.E	Tue Sep  8 22:26:51 2026
+***************
+*** 1 ****
+! pr: invalid suffix in --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999h'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid suffix in --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999h'
+too-big...
+xstrtol.pl: test too-big: stderr mismatch, comparing too-big.1 (expected) and too-big.E (actual)
+*** too-big.1	Tue Sep  8 22:26:51 2026
+--- too-big.E	Tue Sep  8 22:26:51 2026
+***************
+*** 1 ****
+! pr: --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999' too large
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999' too large
+simply-inval...
+xstrtol.pl: test simply-inval: stderr mismatch, comparing simply-inval.1 (expected) and simply-inval.E (actual)
+*** simply-inval.1	Tue Sep  8 22:26:51 2026
+--- simply-inval.E	Tue Sep  8 22:26:51 2026
+***************
+*** 1 ****
+! pr: invalid --pages argument 'x'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument 'x'
+inv-pg-range...
+xstrtol.pl: test inv-pg-range: stderr mismatch, comparing inv-pg-range.1 (expected) and inv-pg-range.E (actual)
+*** inv-pg-range.1	Tue Sep  8 22:26:51 2026
+--- inv-pg-range.E	Tue Sep  8 22:26:52 2026
+***************
+*** 1 ****
+! pr: invalid page range '9x'
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid page range '9x'
+FAIL tests/misc/xstrtol.pl (exit status: 1)

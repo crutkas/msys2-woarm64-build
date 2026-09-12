@@ -1,0 +1,16 @@
+--- a/libgcc/unwind-seh.c
++++ b/libgcc/unwind-seh.c
+@@ -197,6 +197,13 @@
+ 		       PCONTEXT ms_orig_context, PDISPATCHER_CONTEXT ms_disp,
+ 		       _Unwind_Personality_Fn gcc_per)
+ {
++#if defined (__aarch64__)
++  /* RtlUnwindEx writes its context argument.  On ARM64 the incoming context
++     can be the saved dispatcher frame that phase 2 must still restore.  */
++  CONTEXT ms_unwind_context = *ms_orig_context;
++  ms_orig_context = &ms_unwind_context;
++#endif
++
+   DWORD ms_flags = ms_exc->ExceptionFlags;
+   DWORD ms_code = ms_exc->ExceptionCode;
+ 

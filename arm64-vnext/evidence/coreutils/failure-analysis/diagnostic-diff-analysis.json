@@ -1,0 +1,3535 @@
+{
+  "schema": 1,
+  "scope": "Counterfactual string comparison localizes discrepancy only; never a test rerun, skip, pass, or output normalization",
+  "tests": [
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 2833,
+          "text": "kill: '19533': No such process"
+        },
+        {
+          "line": 3322,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'slink': Too many levels of symbolic links"
+        },
+        {
+          "line": 3642,
+          "text": "stdbuf: failed to find 'libstdbuf.dll'"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/misc/help-version.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "Usage: df [OPTION]... [FILE]...",
+            "Show information about the file system on which each FILE resides,",
+            "or all file systems by default.",
+            ""
+          ],
+          "expected": [
+            "Usage: /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/df [OPTION]... [FILE]...",
+            "Show information about the file system on which each FILE resides,",
+            "or all file systems by default.",
+            ""
+          ],
+          "kind": "unified",
+          "line": 1672,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "Usage: df [OPTION]... [FILE]...",
+            "Show information about the file system on which each FILE resides,",
+            "or all file systems by default.",
+            ""
+          ],
+          "expected": [
+            "Usage: /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/df [OPTION]... [FILE]...",
+            "Show information about the file system on which each FILE resides,",
+            "or all file systems by default.",
+            ""
+          ],
+          "kind": "unified",
+          "line": 1691,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 2,
+      "status": "FAIL",
+      "test": "tests/misc/help-version-getopt.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "rm: cannot remove 'a/b/file'",
+            "rm: cannot remove 'a/b/file'"
+          ],
+          "kind": "unified",
+          "line": 1232,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1233,
+          "text": "-rm: cannot remove 'a/b/file'"
+        },
+        {
+          "line": 1234,
+          "text": "-rm: cannot remove 'a/b/file'"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/cycle.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1212,
+          "text": "xargs: environment is too large for exec"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "ERROR",
+      "test": "tests/tail-2/inotify-hash-abuse.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1217,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21664': No such process"
+        },
+        {
+          "line": 1220,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21664': No such process"
+        },
+        {
+          "line": 1231,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21670': No such process"
+        },
+        {
+          "line": 1234,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '21670': No such process"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/tail-2/inotify-hash-abuse2.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "chmod: 'd/no-x': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1237,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1219,
+          "text": "+ sed 's/^chmod: cannot access /chmod: /' out"
+        },
+        {
+          "line": 1221,
+          "text": "+ sed 's/^chmod: cannot read directory /chmod: /' out"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/chmod/no-x.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1214,
+          "text": "+ local 'mount_list_fail=cannot read table of mounted file systems'"
+        },
+        {
+          "line": 1216,
+          "text": "+ grep -F 'cannot read table of mounted file systems'"
+        },
+        {
+          "line": 1285,
+          "text": "+ echo.exe 'info: failed to set group of symlink'"
+        },
+        {
+          "line": 1286,
+          "text": "info: failed to set group of symlink"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/chgrp/basic.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1210,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'dangle': No such file or directory"
+        },
+        {
+          "line": 1223,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'dangle': No such file or directory"
+        },
+        {
+          "line": 1224,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'symlink': Is a directory"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/dangling-symlink.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'd': Directory not empty"
+          ],
+          "expected": [
+            "rm: cannot remove 'd': Directory not empty"
+          ],
+          "kind": "unified",
+          "line": 1224,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1212,
+          "text": "+ printf.exe '%s\\n' 'rm: cannot remove '\\''d'\\'': Directory not empty'"
+        },
+        {
+          "line": 1225,
+          "text": "-rm: cannot remove 'd': Directory not empty"
+        },
+        {
+          "line": 1226,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'd': Directory not empty"
+        }
+      ],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/d-2.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "rm: remove directory 'd'? "
+          ],
+          "kind": "unified",
+          "line": 1234,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/d-3.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'unwritable-dir': Is a directory"
+          ],
+          "expected": [
+            "rm: cannot remove 'unwritable-dir': Is a directory"
+          ],
+          "kind": "unified",
+          "line": 1225,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1226,
+          "text": "-rm: cannot remove 'unwritable-dir': Is a directory"
+        },
+        {
+          "line": 1227,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'unwritable-dir': Is a directory"
+        }
+      ],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/dir-no-w.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'd': Is a directory"
+          ],
+          "expected": [
+            "rm: cannot remove 'd': Is a directory"
+          ],
+          "kind": "unified",
+          "line": 1223,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1224,
+          "text": "-rm: cannot remove 'd': Is a directory"
+        },
+        {
+          "line": 1225,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'd': Is a directory"
+        }
+      ],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/dir-nonrecur.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular empty file 'f'? x"
+          ],
+          "expected": [
+            "rm: remove write-protected regular empty file 'f'? x"
+          ],
+          "kind": "unified",
+          "line": 1237,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/isatty.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory"
+          ],
+          "expected": [
+            "rm: cannot remove '': No such file or directory"
+          ],
+          "kind": "context",
+          "line": 14,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory"
+          ],
+          "expected": [
+            "rm: cannot remove '': No such file or directory"
+          ],
+          "kind": "context",
+          "line": 23,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 10,
+          "text": "empty-name.pl: test empty-name-1: stderr mismatch, comparing empty-name-1.1 (expected) and empty-name-1.E (actual)"
+        },
+        {
+          "line": 15,
+          "text": "! rm: cannot remove '': No such file or directory"
+        },
+        {
+          "line": 17,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory"
+        },
+        {
+          "line": 19,
+          "text": "empty-name.pl: test empty-name-2: stderr mismatch, comparing empty-name-2.1 (expected) and empty-name-2.E (actual)"
+        },
+        {
+          "line": 24,
+          "text": "! rm: cannot remove '': No such file or directory"
+        },
+        {
+          "line": 26,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory"
+        }
+      ],
+      "prefix_only_diff_count": 2,
+      "status": "FAIL",
+      "test": "tests/rm/empty-name.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "rm: cannot remove 'd/f': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1240,
+          "same_after_diagnostic_prefix_removal": false
+        },
+        {
+          "actual": [],
+          "expected": [
+            "rm: cannot remove 'e/slink': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1257,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 2,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1224,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'e/slink': No such file or directory"
+        },
+        {
+          "line": 1241,
+          "text": "-rm: cannot remove 'd/f': Permission denied"
+        },
+        {
+          "line": 1258,
+          "text": "-rm: cannot remove 'e/slink': Permission denied"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/fail-eacces.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J/abs1': No such file or directory",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'rel': No such file or directory",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J/abs2': No such file or directory"
+          ],
+          "expected": [
+            "rm: cannot remove 'rel': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1229,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1230,
+          "text": "-rm: cannot remove 'rel': Permission denied"
+        },
+        {
+          "line": 1231,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J/abs1': No such file or directory"
+        },
+        {
+          "line": 1232,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'rel': No such file or directory"
+        },
+        {
+          "line": 1233,
+          "text": "+/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.oU8J/abs2': No such file or directory"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/inaccessible.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "no WHEN",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file1-1'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file1-2'? .",
+            "WHEN=never",
+            ".",
+            "WHEN=once",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 2 arguments recursively? .",
+            "WHEN=always",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file4-1'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file 'file4-2'? .",
+            "-f overrides --interactive",
+            ".",
+            "--interactive overrides -f",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 1 argument recursively? ."
+          ],
+          "expected": [
+            "no WHEN",
+            "rm: remove regular empty file 'file1-1'? rm: remove regular empty file 'file1-2'? .",
+            "WHEN=never",
+            ".",
+            "WHEN=once",
+            "rm: remove 2 arguments recursively? .",
+            "WHEN=always",
+            "rm: remove regular empty file 'file4-1'? rm: remove regular empty file 'file4-2'? .",
+            "-f overrides --interactive",
+            ".",
+            "--interactive overrides -f",
+            "rm: remove 1 argument recursively? ."
+          ],
+          "kind": "unified",
+          "line": 1260,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/interactive-always.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "one file, no recursion",
+            ".",
+            "one file, read only, answer no",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular empty file 'file1-1'? .",
+            "three files, no recursion",
+            ".",
+            "four files, no recursion, answer no",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 4 arguments? .",
+            "four files, no recursion, answer yes",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 4 arguments? .",
+            "four files, no recursion, 1 read only, answer yes no",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 4 arguments? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular file 'file3-4'? .",
+            "one file, recursion, answer no",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 1 argument recursively? .",
+            "one file, recursion, answer yes",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 1 argument recursively? .",
+            "multiple files, recursion, answer no",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 2 arguments recursively? .",
+            "multiple files, recursion, answer yes",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove 2 arguments recursively? ."
+          ],
+          "expected": [
+            "one file, no recursion",
+            ".",
+            "one file, read only, answer no",
+            "rm: remove write-protected regular empty file 'file1-1'? .",
+            "three files, no recursion",
+            ".",
+            "four files, no recursion, answer no",
+            "rm: remove 4 arguments? .",
+            "four files, no recursion, answer yes",
+            "rm: remove 4 arguments? .",
+            "four files, no recursion, 1 read only, answer yes no",
+            "rm: remove 4 arguments? rm: remove write-protected regular file 'file3-4'? .",
+            "one file, recursion, answer no",
+            "rm: remove 1 argument recursively? .",
+            "one file, recursion, answer yes",
+            "rm: remove 1 argument recursively? .",
+            "multiple files, recursion, answer no",
+            "rm: remove 2 arguments recursively? .",
+            "multiple files, recursion, answer yes",
+            "rm: remove 2 arguments recursively? ."
+          ],
+          "kind": "unified",
+          "line": 1300,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/interactive-once.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/r-4.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "rm: cannot remove directory 'b/a/p': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1237,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1238,
+          "text": "-rm: cannot remove directory 'b/a/p': Permission denied"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/rm1.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "rm: cannot remove 'a/1': Permission denied",
+            "rm: cannot remove 'b': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1238,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1239,
+          "text": "-rm: cannot remove 'a/1': Permission denied"
+        },
+        {
+          "line": 1240,
+          "text": "-rm: cannot remove 'b': Permission denied"
+        },
+        {
+          "line": 1247,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/chmod: cannot access 'b': No such file or directory"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/rm2.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "'?",
+            "'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: descend into directory '",
+            "/d'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '",
+            "/du'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file '",
+            "/empty'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular empty file '",
+            "/empty-u'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove write-protected regular file '",
+            "/fu'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: descend into directory '",
+            "/slinkdot'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '",
+            "/slinkdot'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file '",
+            "/slinkdot/empty'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular empty file '",
+            "/slinkdot/empty-u'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove regular file '",
+            "/slinkdot/fu'? /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory '"
+          ],
+          "expected": [
+            "rm: descend into directory 'z'",
+            "rm: remove directory 'z'",
+            "rm: remove directory 'z/d'",
+            "rm: remove regular empty file 'z/empty'",
+            "rm: remove symbolic link 'z/slink'",
+            "rm: remove symbolic link 'z/slinkdot'",
+            "rm: remove write-protected directory 'z/du'",
+            "rm: remove write-protected regular empty file 'z/empty-u'",
+            "rm: remove write-protected regular file 'z/fu'"
+          ],
+          "kind": "unified",
+          "line": 1245,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1220,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'slink': No such file or directory"
+        },
+        {
+          "line": 1222,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/ln: failed to create symbolic link 'slinkdot': Too many levels of symbolic links"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/rm3.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: descend into directory 'd'",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory 'd/e'",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: remove directory 'd'"
+          ],
+          "expected": [
+            "rm: descend into directory 'd'",
+            "rm: remove directory 'd/e'",
+            "rm: remove directory 'd'"
+          ],
+          "kind": "unified",
+          "line": 1235,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/rm/rm5.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "rm: cannot remove 'a': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1231,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1232,
+          "text": "-rm: cannot remove 'a': Permission denied"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/unread2.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1221,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/a': No such file or directory"
+        },
+        {
+          "line": 1222,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/b': No such file or directory"
+        },
+        {
+          "line": 1225,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/d': No such file or directory"
+        },
+        {
+          "line": 1226,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove 'C:/ag-bash-e138-01/host-bootstrap-02/msys64/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/gt-0.vq4B/e': No such file or directory"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/unread3.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 11,
+          "text": "unreadable.pl: test unreadable-2 failed: exit status mismatch:  expected 1, got 0"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/rm/unreadable.pl"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1226,
+          "text": "k.c:26:50: error: 'RTLD_NEXT' undeclared (first use in this function); did you mean 'RTLD_NOW'?"
+        },
+        {
+          "line": 1227,
+          "text": "   26 |   if (! real_readdir && ! (real_readdir = dlsym (RTLD_NEXT, \"readdir\")))"
+        },
+        {
+          "line": 1231,
+          "text": "+ framework_failure_ 'failed to build shared library'"
+        },
+        {
+          "line": 1232,
+          "text": "+ warn_ '0: set-up failure: failed to build shared library'"
+        },
+        {
+          "line": 1234,
+          "text": "+ printf '%s\\n' '0: set-up failure: failed to build shared library'"
+        },
+        {
+          "line": 1235,
+          "text": "0: set-up failure: failed to build shared library"
+        },
+        {
+          "line": 1237,
+          "text": "+ printf '%s\\n' '0: set-up failure: failed to build shared library'"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "ERROR",
+      "test": "tests/rm/rm-readdir-fail.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "chgrp: 'd/no-x': Permission denied"
+          ],
+          "kind": "unified",
+          "line": 1253,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1220,
+          "text": "+ local 'mount_list_fail=cannot read table of mounted file systems'"
+        },
+        {
+          "line": 1222,
+          "text": "+ grep -F 'cannot read table of mounted file systems'"
+        },
+        {
+          "line": 1235,
+          "text": "+ sed 's/^chgrp: cannot access /chgrp: /' out"
+        },
+        {
+          "line": 1237,
+          "text": "+ sed 's/^chgrp: cannot read directory /chgrp: /' out"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/chgrp/no-x.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1214,
+          "text": "+ local 'mount_list_fail=cannot read table of mounted file systems'"
+        },
+        {
+          "line": 1216,
+          "text": "+ grep -F 'cannot read table of mounted file systems'"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/chgrp/posix-H.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1214,
+          "text": "+ local 'mount_list_fail=cannot read table of mounted file systems'"
+        },
+        {
+          "line": 1216,
+          "text": "+ grep -F 'cannot read table of mounted file systems'"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/chgrp/recurse.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '32768'"
+          ],
+          "expected": [
+            "fmt: invalid width: '32768'"
+          ],
+          "kind": "context",
+          "line": 14,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '2147483647'"
+          ],
+          "expected": [
+            "fmt: invalid width: '2147483647'"
+          ],
+          "kind": "context",
+          "line": 23,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid width: '72x'"
+          ],
+          "expected": [
+            "fmt: invalid width: '72x'"
+          ],
+          "kind": "context",
+          "line": 32,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: cannot open 'no-such-file' for reading: No such file or directory"
+          ],
+          "expected": [
+            "fmt: cannot open 'no-such-file' for reading: No such file or directory"
+          ],
+          "kind": "context",
+          "line": 41,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: invalid option -- 7; -WIDTH is recognized only when it is the first",
+            "option; use -w N instead",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt --help' for more information."
+          ],
+          "expected": [
+            "fmt: invalid option -- 7; -WIDTH is recognized only when it is the first",
+            "option; use -w N instead",
+            "Try 'fmt --help' for more information."
+          ],
+          "kind": "context",
+          "line": 50,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 10,
+          "text": "base.pl: test wide-1: stderr mismatch, comparing wide-1.1 (expected) and wide-1.E (actual)"
+        },
+        {
+          "line": 19,
+          "text": "base.pl: test wide-2: stderr mismatch, comparing wide-2.1 (expected) and wide-2.E (actual)"
+        },
+        {
+          "line": 28,
+          "text": "base.pl: test bad-suffix: stderr mismatch, comparing bad-suffix.2 (expected) and bad-suffix.E (actual)"
+        },
+        {
+          "line": 37,
+          "text": "base.pl: test no-file: stderr mismatch, comparing no-file.1 (expected) and no-file.E (actual)"
+        },
+        {
+          "line": 42,
+          "text": "! fmt: cannot open 'no-such-file' for reading: No such file or directory"
+        },
+        {
+          "line": 44,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/fmt: cannot open 'no-such-file' for reading: No such file or directory"
+        },
+        {
+          "line": 46,
+          "text": "base.pl: test obs-1: stderr mismatch, comparing obs-1.1 (expected) and obs-1.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 5,
+      "status": "FAIL",
+      "test": "tests/fmt/base.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env: must specify command with --chdir (-C)",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env --help' for more information."
+          ],
+          "expected": [
+            "env: must specify command with --chdir (-C)",
+            "Try 'env --help' for more information."
+          ],
+          "kind": "unified",
+          "line": 1372,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1353,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env: cannot unset 'a=b': Invalid argument"
+        },
+        {
+          "line": 1355,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env: cannot unset '': Invalid argument"
+        },
+        {
+          "line": 1358,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/env: cannot change directory to 'empty/nonexistent': No such file or directory"
+        }
+      ],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/misc/env.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%%g' has no % directive"
+          ],
+          "expected": [
+            "seq: format '%%g' has no % directive"
+          ],
+          "kind": "context",
+          "line": 58,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%' ends in %"
+          ],
+          "expected": [
+            "seq: format '%' ends in %"
+          ],
+          "kind": "context",
+          "line": 67,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%g%' has too many % directives"
+          ],
+          "expected": [
+            "seq: format '%g%' has too many % directives"
+          ],
+          "kind": "context",
+          "line": 76,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '' has no % directive"
+          ],
+          "expected": [
+            "seq: format '' has no % directive"
+          ],
+          "kind": "context",
+          "line": 85,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: format '%g%g' has too many % directives"
+          ],
+          "expected": [
+            "seq: format '%g%g' has too many % directives"
+          ],
+          "kind": "context",
+          "line": 94,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid Zero increment value: '0'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 123,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e13801/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '-0'",
+            "Try '/cygdrive/c/ag-coreutils-e13801/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid Zero increment value: '0'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 134,
+          "same_after_diagnostic_prefix_removal": false
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid Zero increment value: '0'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 145,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid Zero increment value: '0'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid Zero increment value: '0'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 156,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 167,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 178,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 189,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 200,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 211,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 222,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 233,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 244,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq: invalid 'not-a-number' argument: 'nan'",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/seq --help' for more information."
+          ],
+          "expected": [
+            "seq: invalid 'not-a-number' argument: 'nan'",
+            "Try 'seq --help' for more information."
+          ],
+          "kind": "context",
+          "line": 255,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 54,
+          "text": "seq.pl: test fmt-c: stderr mismatch, comparing fmt-c.1 (expected) and fmt-c.E (actual)"
+        },
+        {
+          "line": 63,
+          "text": "seq.pl: test fmt-eos1: stderr mismatch, comparing fmt-eos1.1 (expected) and fmt-eos1.E (actual)"
+        },
+        {
+          "line": 72,
+          "text": "seq.pl: test fmt-eos2: stderr mismatch, comparing fmt-eos2.1 (expected) and fmt-eos2.E (actual)"
+        },
+        {
+          "line": 81,
+          "text": "seq.pl: test fmt-d: stderr mismatch, comparing fmt-d.1 (expected) and fmt-d.E (actual)"
+        },
+        {
+          "line": 90,
+          "text": "seq.pl: test fmt-e: stderr mismatch, comparing fmt-e.1 (expected) and fmt-e.E (actual)"
+        },
+        {
+          "line": 119,
+          "text": "seq.pl: test inc-zero-1: stderr mismatch, comparing inc-zero-1.1 (expected) and inc-zero-1.E (actual)"
+        },
+        {
+          "line": 130,
+          "text": "seq.pl: test inc-zero-2: stderr mismatch, comparing inc-zero-2.1 (expected) and inc-zero-2.E (actual)"
+        },
+        {
+          "line": 141,
+          "text": "seq.pl: test inc-zero-3: stderr mismatch, comparing inc-zero-3.1 (expected) and inc-zero-3.E (actual)"
+        },
+        {
+          "line": 152,
+          "text": "seq.pl: test inc-zero-4: stderr mismatch, comparing inc-zero-4.1 (expected) and inc-zero-4.E (actual)"
+        },
+        {
+          "line": 163,
+          "text": "seq.pl: test nan-first-1: stderr mismatch, comparing nan-first-1.1 (expected) and nan-first-1.E (actual)"
+        },
+        {
+          "line": 174,
+          "text": "seq.pl: test nan-first-2: stderr mismatch, comparing nan-first-2.1 (expected) and nan-first-2.E (actual)"
+        },
+        {
+          "line": 185,
+          "text": "seq.pl: test nan-first-3: stderr mismatch, comparing nan-first-3.1 (expected) and nan-first-3.E (actual)"
+        },
+        {
+          "line": 196,
+          "text": "seq.pl: test nan-first-4: stderr mismatch, comparing nan-first-4.1 (expected) and nan-first-4.E (actual)"
+        },
+        {
+          "line": 207,
+          "text": "seq.pl: test nan-inc-1: stderr mismatch, comparing nan-inc-1.1 (expected) and nan-inc-1.E (actual)"
+        },
+        {
+          "line": 218,
+          "text": "seq.pl: test nan-inc-2: stderr mismatch, comparing nan-inc-2.1 (expected) and nan-inc-2.E (actual)"
+        },
+        {
+          "line": 229,
+          "text": "seq.pl: test nan-last-1: stderr mismatch, comparing nan-last-1.1 (expected) and nan-last-1.E (actual)"
+        },
+        {
+          "line": 240,
+          "text": "seq.pl: test nan-last-2: stderr mismatch, comparing nan-last-2.1 (expected) and nan-last-2.E (actual)"
+        },
+        {
+          "line": 251,
+          "text": "seq.pl: test nan-last-3: stderr mismatch, comparing nan-last-3.1 (expected) and nan-last-3.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 17,
+      "status": "FAIL",
+      "test": "tests/misc/seq.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/date: invalid date '\\357\\202\\260'"
+          ],
+          "expected": [
+            "date: invalid date '\\260'"
+          ],
+          "kind": "context",
+          "line": 107,
+          "same_after_diagnostic_prefix_removal": false
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/date: invalid date 'TZ=\"\"\"'"
+          ],
+          "expected": [
+            "date: invalid date 'TZ=\"\"\"'"
+          ],
+          "kind": "context",
+          "line": 116,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 103,
+          "text": "date.pl: test invalid-high-bit-set: stderr mismatch, comparing invalid-high-bit-set.1 (expected) and invalid-high-bit-set.E (actual)"
+        },
+        {
+          "line": 112,
+          "text": "date.pl: test invalid-TZ-crash: stderr mismatch, comparing invalid-TZ-crash.1 (expected) and invalid-TZ-crash.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 1,
+      "status": "FAIL",
+      "test": "tests/misc/date.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid suffix in --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999h'"
+          ],
+          "expected": [
+            "pr: invalid suffix in --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999h'"
+          ],
+          "kind": "context",
+          "line": 13,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999' too large"
+          ],
+          "expected": [
+            "pr: --pages argument '999999999999999999999999999999999999999999999999999999999999999999999999999999999' too large"
+          ],
+          "kind": "context",
+          "line": 22,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument 'x'"
+          ],
+          "expected": [
+            "pr: invalid --pages argument 'x'"
+          ],
+          "kind": "context",
+          "line": 31,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid page range '9x'"
+          ],
+          "expected": [
+            "pr: invalid page range '9x'"
+          ],
+          "kind": "context",
+          "line": 40,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 9,
+          "text": "xstrtol.pl: test inval-suffix: stderr mismatch, comparing inval-suffix.1 (expected) and inval-suffix.E (actual)"
+        },
+        {
+          "line": 18,
+          "text": "xstrtol.pl: test too-big: stderr mismatch, comparing too-big.1 (expected) and too-big.E (actual)"
+        },
+        {
+          "line": 27,
+          "text": "xstrtol.pl: test simply-inval: stderr mismatch, comparing simply-inval.1 (expected) and simply-inval.E (actual)"
+        },
+        {
+          "line": 36,
+          "text": "xstrtol.pl: test inv-pg-range: stderr mismatch, comparing inv-pg-range.1 (expected) and inv-pg-range.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 4,
+      "status": "FAIL",
+      "test": "tests/misc/xstrtol.pl"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1228,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32459': No such process"
+        },
+        {
+          "line": 1245,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1252,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32459': No such process"
+        },
+        {
+          "line": 1259,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32459': No such process"
+        },
+        {
+          "line": 1276,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1294,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1312,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1330,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1348,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1366,
+          "text": "++ grep -Ev 'inotify (resources exhausted|cannot be used)' out"
+        },
+        {
+          "line": 1381,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/kill: '32458': No such process"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "ERROR",
+      "test": "tests/tail-2/overlay-headers.sh"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/tail-2/pid.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "       2   0   2   6   -   0   9   -   0   1       0   1   :   0",
+            "   0       U   T   C  \\n   e"
+          ],
+          "expected": [
+            "   e"
+          ],
+          "kind": "context",
+          "line": 17,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 13,
+          "text": "od.pl: test j-proc: stdout mismatch, comparing j-proc.1 (expected) and j-proc.O (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/misc/od.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp: too many templates",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp --help' for more information."
+          ],
+          "expected": [
+            "mktemp: too many templates",
+            "Try 'mktemp --help' for more information."
+          ],
+          "kind": "context",
+          "line": 13,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/mktemp: too few X's in template 'foo.XX'"
+          ],
+          "expected": [
+            "mktemp: too few X's in template 'foo.XX'"
+          ],
+          "kind": "context",
+          "line": 24,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 9,
+          "text": "mktemp.pl: test too-many: stderr mismatch, comparing too-many.1 (expected) and too-many.E (actual)"
+        },
+        {
+          "line": 20,
+          "text": "mktemp.pl: test too-few-x: stderr mismatch, comparing too-few-x.1 (expected) and too-few-x.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 2,
+      "status": "FAIL",
+      "test": "tests/misc/mktemp.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: invalid field number: 'x'"
+          ],
+          "expected": [
+            "join: invalid field number: 'x'"
+          ],
+          "kind": "context",
+          "line": 63,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5.1:2: is not sorted:  a 2"
+          ],
+          "expected": [
+            "join: chkodr-5.1:2: is not sorted:  a 2"
+          ],
+          "kind": "context",
+          "line": 76,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5b.2:2: is not sorted:  a Z"
+          ],
+          "expected": [
+            "join: chkodr-5b.2:2: is not sorted:  a Z"
+          ],
+          "kind": "context",
+          "line": 85,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5c.2:2: is not sorted: "
+          ],
+          "expected": [
+            "join: chkodr-5c.2:2: is not sorted: "
+          ],
+          "kind": "context",
+          "line": 94,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5d.1:3: is not sorted: ",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5d.2:3: is not sorted: ",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: input is not in sorted order"
+          ],
+          "expected": [
+            "join: chkodr-5d.1:3: is not sorted: ",
+            "join: chkodr-5d.2:3: is not sorted: ",
+            "join: input is not in sorted order"
+          ],
+          "kind": "context",
+          "line": 103,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5e.1:3: is not sorted: o",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: chkodr-5e.2:3: is not sorted: p",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: input is not in sorted order"
+          ],
+          "expected": [
+            "join: chkodr-5e.1:3: is not sorted: o",
+            "join: chkodr-5e.2:3: is not sorted: p",
+            "join: input is not in sorted order"
+          ],
+          "kind": "context",
+          "line": 116,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/join: header-3.1:3: is not sorted: 1 A"
+          ],
+          "expected": [
+            "join: header-3.1:3: is not sorted: 1 A"
+          ],
+          "kind": "context",
+          "line": 134,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 55,
+          "text": "join: test 8-bit-t failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 59,
+          "text": "join: test invalid-j: stderr mismatch, comparing invalid-j.2 (expected) and invalid-j.E (actual)"
+        },
+        {
+          "line": 72,
+          "text": "join: test chkodr-5: stderr mismatch, comparing chkodr-5.4 (expected) and chkodr-5.E (actual)"
+        },
+        {
+          "line": 81,
+          "text": "join: test chkodr-5b: stderr mismatch, comparing chkodr-5b.4 (expected) and chkodr-5b.E (actual)"
+        },
+        {
+          "line": 90,
+          "text": "join: test chkodr-5c: stderr mismatch, comparing chkodr-5c.4 (expected) and chkodr-5c.E (actual)"
+        },
+        {
+          "line": 99,
+          "text": "join: test chkodr-5d: stderr mismatch, comparing chkodr-5d.4 (expected) and chkodr-5d.E (actual)"
+        },
+        {
+          "line": 112,
+          "text": "join: test chkodr-5e: stderr mismatch, comparing chkodr-5e.4 (expected) and chkodr-5e.E (actual)"
+        },
+        {
+          "line": 130,
+          "text": "join: test header-3: stderr mismatch, comparing header-3.4 (expected) and header-3.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 7,
+      "status": "FAIL",
+      "test": "tests/misc/join.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '0'"
+          ],
+          "expected": [
+            "pr: invalid number of columns: '0'"
+          ],
+          "kind": "context",
+          "line": 702,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '0'"
+          ],
+          "expected": [
+            "pr: invalid number of columns: '0'"
+          ],
+          "kind": "context",
+          "line": 711,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '0'"
+          ],
+          "expected": [
+            "pr: invalid number of columns: '0'"
+          ],
+          "kind": "context",
+          "line": 720,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+          ],
+          "expected": [
+            "pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+          ],
+          "kind": "context",
+          "line": 729,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+          ],
+          "expected": [
+            "pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+          ],
+          "kind": "context",
+          "line": 738,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+          ],
+          "expected": [
+            "pr: invalid number of columns: '9999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999999'"
+          ],
+          "kind": "context",
+          "line": 747,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument '1:-1'"
+          ],
+          "expected": [
+            "pr: invalid --pages argument '1:-1'"
+          ],
+          "kind": "context",
+          "line": 756,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument '1:-1'"
+          ],
+          "expected": [
+            "pr: invalid --pages argument '1:-1'"
+          ],
+          "kind": "context",
+          "line": 765,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/pr: invalid --pages argument '1:-1'"
+          ],
+          "expected": [
+            "pr: invalid --pages argument '1:-1'"
+          ],
+          "kind": "context",
+          "line": 774,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 698,
+          "text": "pr: test col-0: stderr mismatch, comparing col-0.3 (expected) and col-0.E (actual)"
+        },
+        {
+          "line": 707,
+          "text": "pr: test col-0.r: stderr mismatch, comparing col-0.r.3 (expected) and col-0.r.E (actual)"
+        },
+        {
+          "line": 716,
+          "text": "pr: test col-0.p: stderr mismatch, comparing col-0.p.3 (expected) and col-0.p.E (actual)"
+        },
+        {
+          "line": 725,
+          "text": "pr: test col-inval: stderr mismatch, comparing col-inval.3 (expected) and col-inval.E (actual)"
+        },
+        {
+          "line": 734,
+          "text": "pr: test col-inval.r: stderr mismatch, comparing col-inval.r.3 (expected) and col-inval.r.E (actual)"
+        },
+        {
+          "line": 743,
+          "text": "pr: test col-inval.p: stderr mismatch, comparing col-inval.p.3 (expected) and col-inval.p.E (actual)"
+        },
+        {
+          "line": 752,
+          "text": "pr: test neg-page: stderr mismatch, comparing neg-page.3 (expected) and neg-page.E (actual)"
+        },
+        {
+          "line": 761,
+          "text": "pr: test neg-page.r: stderr mismatch, comparing neg-page.r.3 (expected) and neg-page.r.E (actual)"
+        },
+        {
+          "line": 770,
+          "text": "pr: test neg-page.p: stderr mismatch, comparing neg-page.p.3 (expected) and neg-page.p.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 9,
+      "status": "FAIL",
+      "test": "tests/pr/pr-tests.pl"
+    },
+    {
+      "diffs": [],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [],
+      "prefix_only_diff_count": 0,
+      "status": "ERROR",
+      "test": "tests/misc/pwd-option.sh"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 14,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 25,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 36,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 47,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 58,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 168,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 181,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 194,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: you must specify a list of bytes, characters, or fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 207,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: you must specify a list of bytes, characters, or fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 218,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: you must specify a list of bytes, characters, or fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 229,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 240,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 251,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 262,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid field range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 273,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid field range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 284,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid field range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 295,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 306,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 317,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 328,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid byte or character range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 339,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid byte or character range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 350,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid byte or character range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 361,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: an input delimiter may be specified only when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 390,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: an input delimiter may be specified only when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 401,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid decreasing range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 547,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid decreasing range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 558,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid decreasing range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 569,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 580,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 591,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 602,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 613,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 624,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 635,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 646,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 657,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 668,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 679,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 690,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 701,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 712,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 723,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 734,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 779,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 790,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 801,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 812,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 823,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 933,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 946,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: suppressing non-delimited lines makes sense",
+            "\tonly when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 959,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: you must specify a list of bytes, characters, or fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 972,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: you must specify a list of bytes, characters, or fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 983,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: you must specify a list of bytes, characters, or fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: you must specify a list of bytes, characters, or fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 994,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1005,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1016,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: fields are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: fields are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1027,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid field range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1038,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid field range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1049,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid field range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid field range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1060,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1071,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1082,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: byte/character positions are numbered from 1",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: byte/character positions are numbered from 1",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1093,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid byte or character range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1104,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid byte or character range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1115,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid byte or character range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid byte or character range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1126,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: an input delimiter may be specified only when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1155,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: an input delimiter may be specified only when operating on fields",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: an input delimiter may be specified only when operating on fields",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1166,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid decreasing range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1312,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid decreasing range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1323,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid decreasing range",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid decreasing range",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1334,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1345,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1356,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1367,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1378,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1389,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1400,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1411,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1422,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1433,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1444,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1455,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1466,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1477,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1488,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut: invalid range with no endpoint: -",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/cut --help' for more information."
+          ],
+          "expected": [
+            "cut: invalid range with no endpoint: -",
+            "Try 'cut --help' for more information."
+          ],
+          "kind": "context",
+          "line": 1499,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 10,
+          "text": "cut.pl: test zero-1: stderr mismatch, comparing zero-1.1 (expected) and zero-1.E (actual)"
+        },
+        {
+          "line": 21,
+          "text": "cut.pl: test zero-2: stderr mismatch, comparing zero-2.1 (expected) and zero-2.E (actual)"
+        },
+        {
+          "line": 32,
+          "text": "cut.pl: test zero-3b: stderr mismatch, comparing zero-3b.1 (expected) and zero-3b.E (actual)"
+        },
+        {
+          "line": 43,
+          "text": "cut.pl: test zero-3c: stderr mismatch, comparing zero-3c.1 (expected) and zero-3c.E (actual)"
+        },
+        {
+          "line": 54,
+          "text": "cut.pl: test zero-3f: stderr mismatch, comparing zero-3f.1 (expected) and zero-3f.E (actual)"
+        },
+        {
+          "line": 164,
+          "text": "cut.pl: test y: stderr mismatch, comparing y.3 (expected) and y.E (actual)"
+        },
+        {
+          "line": 177,
+          "text": "cut.pl: test y.r: stderr mismatch, comparing y.r.3 (expected) and y.r.E (actual)"
+        },
+        {
+          "line": 190,
+          "text": "cut.pl: test y.p: stderr mismatch, comparing y.p.3 (expected) and y.p.E (actual)"
+        },
+        {
+          "line": 203,
+          "text": "cut.pl: test z: stderr mismatch, comparing z.3 (expected) and z.E (actual)"
+        },
+        {
+          "line": 214,
+          "text": "cut.pl: test z.r: stderr mismatch, comparing z.r.3 (expected) and z.r.E (actual)"
+        },
+        {
+          "line": 225,
+          "text": "cut.pl: test z.p: stderr mismatch, comparing z.p.3 (expected) and z.p.E (actual)"
+        },
+        {
+          "line": 236,
+          "text": "cut.pl: test empty-fl: stderr mismatch, comparing empty-fl.3 (expected) and empty-fl.E (actual)"
+        },
+        {
+          "line": 247,
+          "text": "cut.pl: test empty-fl.r: stderr mismatch, comparing empty-fl.r.3 (expected) and empty-fl.r.E (actual)"
+        },
+        {
+          "line": 258,
+          "text": "cut.pl: test empty-fl.p: stderr mismatch, comparing empty-fl.p.3 (expected) and empty-fl.p.E (actual)"
+        },
+        {
+          "line": 269,
+          "text": "cut.pl: test missing-fl: stderr mismatch, comparing missing-fl.3 (expected) and missing-fl.E (actual)"
+        },
+        {
+          "line": 280,
+          "text": "cut.pl: test missing-fl.r: stderr mismatch, comparing missing-fl.r.3 (expected) and missing-fl.r.E (actual)"
+        },
+        {
+          "line": 291,
+          "text": "cut.pl: test missing-fl.p: stderr mismatch, comparing missing-fl.p.3 (expected) and missing-fl.p.E (actual)"
+        },
+        {
+          "line": 302,
+          "text": "cut.pl: test empty-bl: stderr mismatch, comparing empty-bl.3 (expected) and empty-bl.E (actual)"
+        },
+        {
+          "line": 313,
+          "text": "cut.pl: test empty-bl.r: stderr mismatch, comparing empty-bl.r.3 (expected) and empty-bl.r.E (actual)"
+        },
+        {
+          "line": 324,
+          "text": "cut.pl: test empty-bl.p: stderr mismatch, comparing empty-bl.p.3 (expected) and empty-bl.p.E (actual)"
+        },
+        {
+          "line": 335,
+          "text": "cut.pl: test missing-bl: stderr mismatch, comparing missing-bl.3 (expected) and missing-bl.E (actual)"
+        },
+        {
+          "line": 346,
+          "text": "cut.pl: test missing-bl.r: stderr mismatch, comparing missing-bl.r.3 (expected) and missing-bl.r.E (actual)"
+        },
+        {
+          "line": 357,
+          "text": "cut.pl: test missing-bl.p: stderr mismatch, comparing missing-bl.p.3 (expected) and missing-bl.p.E (actual)"
+        },
+        {
+          "line": 386,
+          "text": "cut.pl: test delim-no-field1: stderr mismatch, comparing delim-no-field1.1 (expected) and delim-no-field1.E (actual)"
+        },
+        {
+          "line": 397,
+          "text": "cut.pl: test delim-no-field2: stderr mismatch, comparing delim-no-field2.1 (expected) and delim-no-field2.E (actual)"
+        },
+        {
+          "line": 408,
+          "text": "cut.pl: test 8bit-delim failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 410,
+          "text": "cut.pl: test 8bit-delim.r failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 412,
+          "text": "cut.pl: test 8bit-delim.p failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 543,
+          "text": "cut.pl: test inval1: stderr mismatch, comparing inval1.3 (expected) and inval1.E (actual)"
+        },
+        {
+          "line": 554,
+          "text": "cut.pl: test inval1.r: stderr mismatch, comparing inval1.r.3 (expected) and inval1.r.E (actual)"
+        },
+        {
+          "line": 565,
+          "text": "cut.pl: test inval1.p: stderr mismatch, comparing inval1.p.3 (expected) and inval1.p.E (actual)"
+        },
+        {
+          "line": 576,
+          "text": "cut.pl: test inval2: stderr mismatch, comparing inval2.3 (expected) and inval2.E (actual)"
+        },
+        {
+          "line": 587,
+          "text": "cut.pl: test inval2.r: stderr mismatch, comparing inval2.r.3 (expected) and inval2.r.E (actual)"
+        },
+        {
+          "line": 598,
+          "text": "cut.pl: test inval2.p: stderr mismatch, comparing inval2.p.3 (expected) and inval2.p.E (actual)"
+        },
+        {
+          "line": 609,
+          "text": "cut.pl: test inval3: stderr mismatch, comparing inval3.3 (expected) and inval3.E (actual)"
+        },
+        {
+          "line": 620,
+          "text": "cut.pl: test inval3.r: stderr mismatch, comparing inval3.r.3 (expected) and inval3.r.E (actual)"
+        },
+        {
+          "line": 631,
+          "text": "cut.pl: test inval3.p: stderr mismatch, comparing inval3.p.3 (expected) and inval3.p.E (actual)"
+        },
+        {
+          "line": 642,
+          "text": "cut.pl: test inval4: stderr mismatch, comparing inval4.3 (expected) and inval4.E (actual)"
+        },
+        {
+          "line": 653,
+          "text": "cut.pl: test inval4.r: stderr mismatch, comparing inval4.r.3 (expected) and inval4.r.E (actual)"
+        },
+        {
+          "line": 664,
+          "text": "cut.pl: test inval4.p: stderr mismatch, comparing inval4.p.3 (expected) and inval4.p.E (actual)"
+        },
+        {
+          "line": 675,
+          "text": "cut.pl: test inval5: stderr mismatch, comparing inval5.3 (expected) and inval5.E (actual)"
+        },
+        {
+          "line": 686,
+          "text": "cut.pl: test inval5.r: stderr mismatch, comparing inval5.r.3 (expected) and inval5.r.E (actual)"
+        },
+        {
+          "line": 697,
+          "text": "cut.pl: test inval5.p: stderr mismatch, comparing inval5.p.3 (expected) and inval5.p.E (actual)"
+        },
+        {
+          "line": 708,
+          "text": "cut.pl: test inval6: stderr mismatch, comparing inval6.3 (expected) and inval6.E (actual)"
+        },
+        {
+          "line": 719,
+          "text": "cut.pl: test inval6.r: stderr mismatch, comparing inval6.r.3 (expected) and inval6.r.E (actual)"
+        },
+        {
+          "line": 730,
+          "text": "cut.pl: test inval6.p: stderr mismatch, comparing inval6.p.3 (expected) and inval6.p.E (actual)"
+        },
+        {
+          "line": 775,
+          "text": "cut.pl: test zero-1-mb: stderr mismatch, comparing zero-1-mb.1 (expected) and zero-1-mb.E (actual)"
+        },
+        {
+          "line": 786,
+          "text": "cut.pl: test zero-2-mb: stderr mismatch, comparing zero-2-mb.1 (expected) and zero-2-mb.E (actual)"
+        },
+        {
+          "line": 797,
+          "text": "cut.pl: test zero-3b-mb: stderr mismatch, comparing zero-3b-mb.1 (expected) and zero-3b-mb.E (actual)"
+        },
+        {
+          "line": 808,
+          "text": "cut.pl: test zero-3c-mb: stderr mismatch, comparing zero-3c-mb.1 (expected) and zero-3c-mb.E (actual)"
+        },
+        {
+          "line": 819,
+          "text": "cut.pl: test zero-3f-mb: stderr mismatch, comparing zero-3f-mb.1 (expected) and zero-3f-mb.E (actual)"
+        },
+        {
+          "line": 929,
+          "text": "cut.pl: test y-mb: stderr mismatch, comparing y-mb.3 (expected) and y-mb.E (actual)"
+        },
+        {
+          "line": 942,
+          "text": "cut.pl: test y-mb.r: stderr mismatch, comparing y-mb.r.3 (expected) and y-mb.r.E (actual)"
+        },
+        {
+          "line": 955,
+          "text": "cut.pl: test y-mb.p: stderr mismatch, comparing y-mb.p.3 (expected) and y-mb.p.E (actual)"
+        },
+        {
+          "line": 968,
+          "text": "cut.pl: test z-mb: stderr mismatch, comparing z-mb.3 (expected) and z-mb.E (actual)"
+        },
+        {
+          "line": 979,
+          "text": "cut.pl: test z-mb.r: stderr mismatch, comparing z-mb.r.3 (expected) and z-mb.r.E (actual)"
+        },
+        {
+          "line": 990,
+          "text": "cut.pl: test z-mb.p: stderr mismatch, comparing z-mb.p.3 (expected) and z-mb.p.E (actual)"
+        },
+        {
+          "line": 1001,
+          "text": "cut.pl: test empty-fl-mb: stderr mismatch, comparing empty-fl-mb.3 (expected) and empty-fl-mb.E (actual)"
+        },
+        {
+          "line": 1012,
+          "text": "cut.pl: test empty-fl-mb.r: stderr mismatch, comparing empty-fl-mb.r.3 (expected) and empty-fl-mb.r.E (actual)"
+        },
+        {
+          "line": 1023,
+          "text": "cut.pl: test empty-fl-mb.p: stderr mismatch, comparing empty-fl-mb.p.3 (expected) and empty-fl-mb.p.E (actual)"
+        },
+        {
+          "line": 1034,
+          "text": "cut.pl: test missing-fl-mb: stderr mismatch, comparing missing-fl-mb.3 (expected) and missing-fl-mb.E (actual)"
+        },
+        {
+          "line": 1045,
+          "text": "cut.pl: test missing-fl-mb.r: stderr mismatch, comparing missing-fl-mb.r.3 (expected) and missing-fl-mb.r.E (actual)"
+        },
+        {
+          "line": 1056,
+          "text": "cut.pl: test missing-fl-mb.p: stderr mismatch, comparing missing-fl-mb.p.3 (expected) and missing-fl-mb.p.E (actual)"
+        },
+        {
+          "line": 1067,
+          "text": "cut.pl: test empty-bl-mb: stderr mismatch, comparing empty-bl-mb.3 (expected) and empty-bl-mb.E (actual)"
+        },
+        {
+          "line": 1078,
+          "text": "cut.pl: test empty-bl-mb.r: stderr mismatch, comparing empty-bl-mb.r.3 (expected) and empty-bl-mb.r.E (actual)"
+        },
+        {
+          "line": 1089,
+          "text": "cut.pl: test empty-bl-mb.p: stderr mismatch, comparing empty-bl-mb.p.3 (expected) and empty-bl-mb.p.E (actual)"
+        },
+        {
+          "line": 1100,
+          "text": "cut.pl: test missing-bl-mb: stderr mismatch, comparing missing-bl-mb.3 (expected) and missing-bl-mb.E (actual)"
+        },
+        {
+          "line": 1111,
+          "text": "cut.pl: test missing-bl-mb.r: stderr mismatch, comparing missing-bl-mb.r.3 (expected) and missing-bl-mb.r.E (actual)"
+        },
+        {
+          "line": 1122,
+          "text": "cut.pl: test missing-bl-mb.p: stderr mismatch, comparing missing-bl-mb.p.3 (expected) and missing-bl-mb.p.E (actual)"
+        },
+        {
+          "line": 1151,
+          "text": "cut.pl: test delim-no-field1-mb: stderr mismatch, comparing delim-no-field1-mb.1 (expected) and delim-no-field1-mb.E (actual)"
+        },
+        {
+          "line": 1162,
+          "text": "cut.pl: test delim-no-field2-mb: stderr mismatch, comparing delim-no-field2-mb.1 (expected) and delim-no-field2-mb.E (actual)"
+        },
+        {
+          "line": 1173,
+          "text": "cut.pl: test 8bit-delim-mb failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 1175,
+          "text": "cut.pl: test 8bit-delim-mb.r failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 1177,
+          "text": "cut.pl: test 8bit-delim-mb.p failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 1308,
+          "text": "cut.pl: test inval1-mb: stderr mismatch, comparing inval1-mb.3 (expected) and inval1-mb.E (actual)"
+        },
+        {
+          "line": 1319,
+          "text": "cut.pl: test inval1-mb.r: stderr mismatch, comparing inval1-mb.r.3 (expected) and inval1-mb.r.E (actual)"
+        },
+        {
+          "line": 1330,
+          "text": "cut.pl: test inval1-mb.p: stderr mismatch, comparing inval1-mb.p.3 (expected) and inval1-mb.p.E (actual)"
+        },
+        {
+          "line": 1341,
+          "text": "cut.pl: test inval2-mb: stderr mismatch, comparing inval2-mb.3 (expected) and inval2-mb.E (actual)"
+        },
+        {
+          "line": 1352,
+          "text": "cut.pl: test inval2-mb.r: stderr mismatch, comparing inval2-mb.r.3 (expected) and inval2-mb.r.E (actual)"
+        },
+        {
+          "line": 1363,
+          "text": "cut.pl: test inval2-mb.p: stderr mismatch, comparing inval2-mb.p.3 (expected) and inval2-mb.p.E (actual)"
+        },
+        {
+          "line": 1374,
+          "text": "cut.pl: test inval3-mb: stderr mismatch, comparing inval3-mb.3 (expected) and inval3-mb.E (actual)"
+        },
+        {
+          "line": 1385,
+          "text": "cut.pl: test inval3-mb.r: stderr mismatch, comparing inval3-mb.r.3 (expected) and inval3-mb.r.E (actual)"
+        },
+        {
+          "line": 1396,
+          "text": "cut.pl: test inval3-mb.p: stderr mismatch, comparing inval3-mb.p.3 (expected) and inval3-mb.p.E (actual)"
+        },
+        {
+          "line": 1407,
+          "text": "cut.pl: test inval4-mb: stderr mismatch, comparing inval4-mb.3 (expected) and inval4-mb.E (actual)"
+        },
+        {
+          "line": 1418,
+          "text": "cut.pl: test inval4-mb.r: stderr mismatch, comparing inval4-mb.r.3 (expected) and inval4-mb.r.E (actual)"
+        },
+        {
+          "line": 1429,
+          "text": "cut.pl: test inval4-mb.p: stderr mismatch, comparing inval4-mb.p.3 (expected) and inval4-mb.p.E (actual)"
+        },
+        {
+          "line": 1440,
+          "text": "cut.pl: test inval5-mb: stderr mismatch, comparing inval5-mb.3 (expected) and inval5-mb.E (actual)"
+        },
+        {
+          "line": 1451,
+          "text": "cut.pl: test inval5-mb.r: stderr mismatch, comparing inval5-mb.r.3 (expected) and inval5-mb.r.E (actual)"
+        },
+        {
+          "line": 1462,
+          "text": "cut.pl: test inval5-mb.p: stderr mismatch, comparing inval5-mb.p.3 (expected) and inval5-mb.p.E (actual)"
+        },
+        {
+          "line": 1473,
+          "text": "cut.pl: test inval6-mb: stderr mismatch, comparing inval6-mb.3 (expected) and inval6-mb.E (actual)"
+        },
+        {
+          "line": 1484,
+          "text": "cut.pl: test inval6-mb.r: stderr mismatch, comparing inval6-mb.r.3 (expected) and inval6-mb.r.E (actual)"
+        },
+        {
+          "line": 1495,
+          "text": "cut.pl: test inval6-mb.p: stderr mismatch, comparing inval6-mb.p.3 (expected) and inval6-mb.p.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 86,
+      "status": "FAIL",
+      "test": "tests/misc/cut.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: extra operand 'no-such'",
+            "file operands cannot be combined with --files0-from",
+            "Try '/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc --help' for more information."
+          ],
+          "expected": [
+            "wc: extra operand 'no-such'",
+            "file operands cannot be combined with --files0-from",
+            "Try 'wc --help' for more information."
+          ],
+          "kind": "context",
+          "line": 13,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: cannot open 'missing' for reading: No such file or directory"
+          ],
+          "expected": [
+            "wc: cannot open 'missing' for reading: No such file or directory"
+          ],
+          "kind": "context",
+          "line": 26,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: when reading file names from stdin, no file name of '-' allowed"
+          ],
+          "expected": [
+            "wc: when reading file names from stdin, no file name of '-' allowed"
+          ],
+          "kind": "context",
+          "line": 35,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name"
+          ],
+          "expected": [
+            "wc: -:1: invalid zero-length file name"
+          ],
+          "kind": "context",
+          "line": 47,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name",
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:2: invalid zero-length file name"
+          ],
+          "expected": [
+            "wc: -:1: invalid zero-length file name",
+            "wc: -:2: invalid zero-length file name"
+          ],
+          "kind": "context",
+          "line": 56,
+          "same_after_diagnostic_prefix_removal": true
+        },
+        {
+          "actual": [
+            "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: -:1: invalid zero-length file name"
+          ],
+          "expected": [
+            "wc: -:1: invalid zero-length file name"
+          ],
+          "kind": "context",
+          "line": 71,
+          "same_after_diagnostic_prefix_removal": true
+        }
+      ],
+      "non_prefix_diff_count": 0,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 9,
+          "text": "wc-files0-from.pl: test f-extra-arg: stderr mismatch, comparing f-extra-arg.2 (expected) and f-extra-arg.E (actual)"
+        },
+        {
+          "line": 15,
+          "text": "  file operands cannot be combined with --files0-from"
+        },
+        {
+          "line": 19,
+          "text": "  file operands cannot be combined with --files0-from"
+        },
+        {
+          "line": 22,
+          "text": "wc-files0-from.pl: test missing: stderr mismatch, comparing missing.1 (expected) and missing.E (actual)"
+        },
+        {
+          "line": 27,
+          "text": "! wc: cannot open 'missing' for reading: No such file or directory"
+        },
+        {
+          "line": 29,
+          "text": "! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: cannot open 'missing' for reading: No such file or directory"
+        },
+        {
+          "line": 31,
+          "text": "wc-files0-from.pl: test minus-in-stdin: stderr mismatch, comparing minus-in-stdin.1 (expected) and minus-in-stdin.E (actual)"
+        },
+        {
+          "line": 41,
+          "text": "wc-files0-from.pl: test empty-nonreg failed: exit status mismatch:  expected 0, got 1"
+        },
+        {
+          "line": 43,
+          "text": "wc-files0-from.pl: test nul-1: stderr mismatch, comparing nul-1.2 (expected) and nul-1.E (actual)"
+        },
+        {
+          "line": 52,
+          "text": "wc-files0-from.pl: test nul-2: stderr mismatch, comparing nul-2.3 (expected) and nul-2.E (actual)"
+        },
+        {
+          "line": 67,
+          "text": "wc-files0-from.pl: test zero-len: stderr mismatch, comparing zero-len.2 (expected) and zero-len.E (actual)"
+        }
+      ],
+      "prefix_only_diff_count": 6,
+      "status": "FAIL",
+      "test": "tests/misc/wc-files0-from.pl"
+    },
+    {
+      "diffs": [
+        {
+          "actual": [],
+          "expected": [
+            "157"
+          ],
+          "kind": "unified",
+          "line": 1226,
+          "same_after_diagnostic_prefix_removal": false
+        }
+      ],
+      "non_prefix_diff_count": 1,
+      "original_test_outcome_unchanged": true,
+      "other_discrepancies": [
+        {
+          "line": 1213,
+          "text": "/cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/wc: failed to set file descriptor text/binary mode: Bad file descriptor"
+        }
+      ],
+      "prefix_only_diff_count": 0,
+      "status": "FAIL",
+      "test": "tests/misc/wc-proc.sh"
+    }
+  ]
+}

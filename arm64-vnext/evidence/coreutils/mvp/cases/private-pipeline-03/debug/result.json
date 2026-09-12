@@ -1,0 +1,4840 @@
+{
+  "bootstrap_lock_sha256": "7d26c79265871a88774224de4d424c217555d04beb661756506251ebc3d18d00",
+  "collector_pid": 19788,
+  "command": [
+    "C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe",
+    "--noprofile",
+    "--norc",
+    "-o",
+    "pipefail",
+    "-c",
+    "cd .. || exit $?; /usr/bin/cat.exe sample.txt | /usr/bin/sort.exe | /usr/bin/uniq.exe | /usr/bin/tee.exe pipeline.txt"
+  ],
+  "context_reads_enabled": false,
+  "debug_event_abi": {
+    "context_flags": 0,
+    "context_pc": 264,
+    "context_size": 912,
+    "context_sp": 256,
+    "context_x": 8,
+    "debug_data": 16,
+    "debug_event_size": 176,
+    "startup_size": 104
+  },
+  "debug_mode": "DEBUG_PROCESS",
+  "debug_root_pid": 17068,
+  "error": null,
+  "events": [
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 0,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 17068,
+      "sequence": 1,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 17068,
+      "sequence": 2,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 17068,
+      "sequence": 3,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 4,
+      "tid": 27580
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 5,
+      "tid": 10676
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716972113920,
+        "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+        "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+      },
+      "pid": 17068,
+      "sequence": 6,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716919816192,
+        "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+        "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+      },
+      "pid": 17068,
+      "sequence": 7,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716988891136,
+        "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+      },
+      "pid": 17068,
+      "sequence": 8,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 9,
+      "tid": 21096
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716917522432,
+        "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+        "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+      },
+      "pid": 17068,
+      "sequence": 10,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 17068,
+      "sequence": 11,
+      "tid": 27580
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 17068,
+      "sequence": 12,
+      "tid": 10676
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716921389056,
+        "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+      },
+      "pid": 17068,
+      "sequence": 13,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716930760704,
+        "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+      },
+      "pid": 17068,
+      "sequence": 14,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 17068,
+      "sequence": 15,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 17068,
+      "sequence": 16,
+      "tid": 21096
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 2472146829312,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 17068,
+      "sequence": 17,
+      "tid": 27580
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 18,
+      "tid": 27580,
+      "unloaded_base": 2472146829312
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 2472172126208,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 17068,
+      "sequence": 19,
+      "tid": 10676
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 20,
+      "tid": 10676,
+      "unloaded_base": 2472172126208
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 21,
+      "thread_created": 134335714938610059,
+      "thread_name_debugger_notification": false,
+      "tid": 18020
+    },
+    {
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "debug_string": {
+        "bytes": "635967464646464646464620374646413833364439324130203000",
+        "error": 0,
+        "read": 27,
+        "requested": 27,
+        "success": true,
+        "trusted_exit_evidence": false,
+        "unicode": false
+      },
+      "event": 8,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 22,
+      "thread_created": 134335714938610059,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 17068,
+      "sequence": 23,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 17068,
+      "sequence": 24,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 17068,
+      "sequence": 25,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 17068,
+      "sequence": 26,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 17068,
+      "sequence": 27,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716934823936,
+        "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+        "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+      },
+      "pid": 17068,
+      "sequence": 28,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 29,
+      "tid": 19832
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          19832
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 30,
+      "thread_created": 134335714942954000,
+      "thread_name_debugger_notification": true,
+      "tid": 19832
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716407586816,
+        "mapped_file_sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f",
+        "path": "\\\\?\\C:\\Windows\\System32\\netapi32.dll"
+      },
+      "pid": 17068,
+      "sequence": 31,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716836323328,
+        "mapped_file_sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c",
+        "path": "\\\\?\\C:\\Windows\\System32\\samcli.dll"
+      },
+      "pid": 17068,
+      "sequence": 32,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716836585472,
+        "mapped_file_sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535",
+        "path": "\\\\?\\C:\\Windows\\System32\\samlib.dll"
+      },
+      "pid": 17068,
+      "sequence": 33,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716836192256,
+        "mapped_file_sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6",
+        "path": "\\\\?\\C:\\Windows\\System32\\netutils.dll"
+      },
+      "pid": 17068,
+      "sequence": 34,
+      "tid": 18020
+    },
+    {
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "debug_string": {
+        "bytes": "6359677374642030783766666566636265382064203300",
+        "error": 0,
+        "read": 23,
+        "requested": 23,
+        "success": true,
+        "trusted_exit_evidence": false,
+        "unicode": false
+      },
+      "event": 8,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 35,
+      "thread_created": 134335714938610059,
+      "tid": 18020
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          42949676297,
+          18020
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 36,
+      "thread_created": 134335714938610059,
+      "thread_name_debugger_notification": true,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716837634048,
+        "mapped_file_sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b",
+        "path": "\\\\?\\C:\\Windows\\System32\\IPHLPAPI.DLL"
+      },
+      "pid": 17068,
+      "sequence": 37,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716838944768,
+        "mapped_file_sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319",
+        "path": "\\\\?\\C:\\Windows\\System32\\dnsapi.dll"
+      },
+      "pid": 17068,
+      "sequence": 38,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716838092800,
+        "mapped_file_sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d",
+        "path": "\\\\?\\C:\\Windows\\System32\\dsparse.dll"
+      },
+      "pid": 17068,
+      "sequence": 39,
+      "tid": 21096
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "17068@134335714938610043",
+      "module": {
+        "base": 140716974800896,
+        "mapped_file_sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2",
+        "path": "\\\\?\\C:\\Windows\\System32\\nsi.dll"
+      },
+      "pid": 17068,
+      "sequence": 40,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 41,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 10868,
+      "sequence": 42,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 10868,
+      "sequence": 43,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 10868,
+      "sequence": 44,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716972113920,
+        "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+        "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+      },
+      "pid": 10868,
+      "sequence": 45,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 46,
+      "tid": 22916
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 47,
+      "tid": 17676
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 48,
+      "tid": 28328
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716919816192,
+        "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+        "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+      },
+      "pid": 10868,
+      "sequence": 49,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716988891136,
+        "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+      },
+      "pid": 10868,
+      "sequence": 50,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 10868,
+      "sequence": 51,
+      "tid": 28328
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 10868,
+      "sequence": 52,
+      "tid": 17676
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716917522432,
+        "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+        "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+      },
+      "pid": 10868,
+      "sequence": 53,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 10868,
+      "sequence": 54,
+      "tid": 22916
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716921389056,
+        "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+      },
+      "pid": 10868,
+      "sequence": 55,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716930760704,
+        "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+      },
+      "pid": 10868,
+      "sequence": 56,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 2603277680640,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 10868,
+      "sequence": 57,
+      "tid": 17676
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 58,
+      "tid": 17676,
+      "unloaded_base": 2603277680640
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 10868,
+      "sequence": 59,
+      "tid": 13728
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 60,
+      "thread_created": 134335714943265648,
+      "thread_name_debugger_notification": false,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 10868,
+      "sequence": 61,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 10868,
+      "sequence": 62,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 10868,
+      "sequence": 63,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 10868,
+      "sequence": 64,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 10868,
+      "sequence": 65,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10868@134335714943265636",
+      "module": {
+        "base": 140716934823936,
+        "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+        "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+      },
+      "pid": 10868,
+      "sequence": 66,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 67,
+      "tid": 4264
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          4264
+        ]
+      },
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 68,
+      "thread_created": 134335714945682996,
+      "thread_name_debugger_notification": true,
+      "tid": 4264
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 69,
+      "tid": 1856
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923739704,
+          1856
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 70,
+      "thread_created": 134335714945686728,
+      "thread_name_debugger_notification": true,
+      "tid": 1856
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 71,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 19408,
+      "sequence": 72,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 19408,
+      "sequence": 73,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 19408,
+      "sequence": 74,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 75,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 10560,
+      "sequence": 76,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 77,
+      "tid": 28100
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716972113920,
+        "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+        "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+      },
+      "pid": 19408,
+      "sequence": 78,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 10560,
+      "sequence": 79,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 80,
+      "tid": 15512
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716919816192,
+        "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+        "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+      },
+      "pid": 19408,
+      "sequence": 81,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 10560,
+      "sequence": 82,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716988891136,
+        "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+      },
+      "pid": 19408,
+      "sequence": 83,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 84,
+      "tid": 27340
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 19408,
+      "sequence": 85,
+      "tid": 28100
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716917522432,
+        "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+        "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+      },
+      "pid": 19408,
+      "sequence": 86,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 19408,
+      "sequence": 87,
+      "tid": 27340
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 10560,
+      "sequence": 88,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 2455640801280,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 19408,
+      "sequence": 89,
+      "tid": 28100
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 90,
+      "tid": 5364
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 91,
+      "tid": 28100,
+      "unloaded_base": 2455640801280
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716921389056,
+        "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+      },
+      "pid": 19408,
+      "sequence": 92,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 93,
+      "tid": 21228
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 19408,
+      "sequence": 94,
+      "tid": 15512
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 95,
+      "tid": 8524
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 10560,
+      "sequence": 96,
+      "tid": 5364
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716930760704,
+        "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+      },
+      "pid": 19408,
+      "sequence": 97,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 1982497488896,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 10560,
+      "sequence": 98,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 19408,
+      "sequence": 99,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 100,
+      "tid": 392,
+      "unloaded_base": 1982497488896
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 10560,
+      "sequence": 101,
+      "tid": 21228
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 102,
+      "thread_created": 134335714945711164,
+      "thread_name_debugger_notification": false,
+      "tid": 24288
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 103,
+      "thread_created": 134335714946666146,
+      "thread_name_debugger_notification": false,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 19408,
+      "sequence": 104,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 10560,
+      "sequence": 105,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 19408,
+      "sequence": 106,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 10560,
+      "sequence": 107,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 19408,
+      "sequence": 108,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 10560,
+      "sequence": 109,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 19408,
+      "sequence": 110,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 10560,
+      "sequence": 111,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 19408,
+      "sequence": 112,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 10560,
+      "sequence": 113,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10560@134335714946666109",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 10560,
+      "sequence": 114,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 115,
+      "thread_exit": 0,
+      "tid": 13728
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 116,
+      "thread_exit": 0,
+      "tid": 4264
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 117,
+      "thread_exit": 0,
+      "tid": 22916
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "sequence": 118,
+      "thread_exit": 0,
+      "tid": 28328
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 119,
+      "tid": 22640
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          22640
+        ]
+      },
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 120,
+      "thread_created": 134335714951454913,
+      "thread_name_debugger_notification": true,
+      "tid": 22640
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          34359880441,
+          392
+        ]
+      },
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 121,
+      "thread_created": 134335714946666146,
+      "thread_name_debugger_notification": true,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 122,
+      "thread_exit": 0,
+      "tid": 392
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 123,
+      "thread_exit": 0,
+      "tid": 21228
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 124,
+      "thread_exit": 0,
+      "tid": 22640
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "sequence": 125,
+      "thread_exit": 0,
+      "tid": 8524
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "10560@134335714946666109",
+      "pid": 10560,
+      "raw_exit": 0,
+      "sequence": 126,
+      "tid": 5364
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19408@134335714945711138",
+      "module": {
+        "base": 140716934823936,
+        "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+        "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+      },
+      "pid": 19408,
+      "sequence": 127,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "10868@134335714943265636",
+      "pid": 10868,
+      "raw_exit": 0,
+      "sequence": 128,
+      "tid": 17676
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923739704,
+          1856
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 129,
+      "thread_created": 134335714945686728,
+      "thread_name_debugger_notification": true,
+      "tid": 1856
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 130,
+      "tid": 16176
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          16176
+        ]
+      },
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 131,
+      "thread_created": 134335714951976557,
+      "thread_name_debugger_notification": true,
+      "tid": 16176
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 132,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 133,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 19852,
+      "sequence": 134,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 10332,
+      "sequence": 135,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 19852,
+      "sequence": 136,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 19852,
+      "sequence": 137,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 10332,
+      "sequence": 138,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 10332,
+      "sequence": 139,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 140,
+      "tid": 4604
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716972113920,
+        "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+        "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+      },
+      "pid": 19852,
+      "sequence": 141,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 142,
+      "tid": 26500
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 143,
+      "tid": 2472
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716919816192,
+        "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+        "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+      },
+      "pid": 19852,
+      "sequence": 144,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 19852,
+      "sequence": 145,
+      "tid": 2472
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 146,
+      "tid": 23640
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716988891136,
+        "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+      },
+      "pid": 19852,
+      "sequence": 147,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 148,
+      "tid": 19472
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 19852,
+      "sequence": 149,
+      "tid": 4604
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 10332,
+      "sequence": 150,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 19852,
+      "sequence": 151,
+      "tid": 26500
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 152,
+      "tid": 11972
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 10332,
+      "sequence": 153,
+      "tid": 23640
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716917522432,
+        "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+        "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+      },
+      "pid": 19852,
+      "sequence": 154,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 2416081829888,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 10332,
+      "sequence": 155,
+      "tid": 19472
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716921389056,
+        "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+      },
+      "pid": 19852,
+      "sequence": 156,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 157,
+      "tid": 19472,
+      "unloaded_base": 2416081829888
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 10332,
+      "sequence": 158,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716930760704,
+        "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+      },
+      "pid": 19852,
+      "sequence": 159,
+      "tid": 10496
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 160,
+      "thread_created": 134335714952047876,
+      "thread_name_debugger_notification": false,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 19852,
+      "sequence": 161,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 10332,
+      "sequence": 162,
+      "tid": 7068
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 163,
+      "thread_created": 134335714952038619,
+      "thread_name_debugger_notification": false,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 10332,
+      "sequence": 164,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 19852,
+      "sequence": 165,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 10332,
+      "sequence": 166,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 19852,
+      "sequence": 167,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 10332,
+      "sequence": 168,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 19852,
+      "sequence": 169,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 10332,
+      "sequence": 170,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "10332@134335714952047848",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 10332,
+      "sequence": 171,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 19852,
+      "sequence": 172,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 19852,
+      "sequence": 173,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 174,
+      "thread_exit": 0,
+      "tid": 24288
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 175,
+      "thread_exit": 0,
+      "tid": 16176
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 176,
+      "thread_exit": 0,
+      "tid": 27340
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "sequence": 177,
+      "thread_exit": 0,
+      "tid": 15512
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 178,
+      "tid": 13936
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          13936
+        ]
+      },
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 179,
+      "thread_created": 134335714956166563,
+      "thread_name_debugger_notification": true,
+      "tid": 13936
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          34359881337,
+          7068
+        ]
+      },
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 180,
+      "thread_created": 134335714952047876,
+      "thread_name_debugger_notification": true,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 181,
+      "thread_exit": 0,
+      "tid": 7068
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 182,
+      "thread_exit": 0,
+      "tid": 13936
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 183,
+      "thread_exit": 0,
+      "tid": 11972
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "sequence": 184,
+      "thread_exit": 0,
+      "tid": 19472
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "10332@134335714952047848",
+      "pid": 10332,
+      "raw_exit": 0,
+      "sequence": 185,
+      "tid": 23640
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "19852@134335714952038602",
+      "module": {
+        "base": 140716934823936,
+        "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+        "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+      },
+      "pid": 19852,
+      "sequence": 186,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "19408@134335714945711138",
+      "pid": 19408,
+      "raw_exit": 0,
+      "sequence": 187,
+      "tid": 28100
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 188,
+      "tid": 16104
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          16104
+        ]
+      },
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 189,
+      "thread_created": 134335714956855942,
+      "thread_name_debugger_notification": true,
+      "tid": 16104
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923739704,
+          1856
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 190,
+      "thread_created": 134335714945686728,
+      "thread_name_debugger_notification": true,
+      "tid": 1856
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 191,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 192,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 7352,
+      "sequence": 193,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 16260,
+      "sequence": 194,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 7352,
+      "sequence": 195,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 16260,
+      "sequence": 196,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 7352,
+      "sequence": 197,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 16260,
+      "sequence": 198,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716972113920,
+        "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+        "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+      },
+      "pid": 7352,
+      "sequence": 199,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 16260,
+      "sequence": 200,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716919816192,
+        "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+        "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+      },
+      "pid": 7352,
+      "sequence": 201,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 202,
+      "tid": 25248
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716988891136,
+        "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+      },
+      "pid": 7352,
+      "sequence": 203,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 204,
+      "tid": 14872
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 205,
+      "tid": 11488
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 2568432189440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 16260,
+      "sequence": 206,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 207,
+      "tid": 20688
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 16260,
+      "sequence": 208,
+      "tid": 25248
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 209,
+      "tid": 13844
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 210,
+      "tid": 15560,
+      "unloaded_base": 2568432189440
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716917522432,
+        "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+        "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+      },
+      "pid": 7352,
+      "sequence": 211,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 212,
+      "tid": 5792
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 7352,
+      "sequence": 213,
+      "tid": 11488
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 16260,
+      "sequence": 214,
+      "tid": 14872
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716921389056,
+        "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+        "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+      },
+      "pid": 7352,
+      "sequence": 215,
+      "tid": 1712
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 216,
+      "thread_created": 134335714956911717,
+      "thread_name_debugger_notification": false,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 16260,
+      "sequence": 217,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 7352,
+      "sequence": 218,
+      "tid": 20688
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 16260,
+      "sequence": 219,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716930760704,
+        "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+      },
+      "pid": 7352,
+      "sequence": 220,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 16260,
+      "sequence": 221,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 7352,
+      "sequence": 222,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 16260,
+      "sequence": 223,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 2010198704128,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 7352,
+      "sequence": 224,
+      "tid": 11488
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 16260,
+      "sequence": 225,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 226,
+      "tid": 11488,
+      "unloaded_base": 2010198704128
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 7352,
+      "sequence": 227,
+      "tid": 13844
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "16260@134335714956911700",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 16260,
+      "sequence": 228,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 2010198704128,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 7352,
+      "sequence": 229,
+      "tid": 20688
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 230,
+      "thread_exit": 0,
+      "tid": 10496
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 231,
+      "thread_exit": 0,
+      "tid": 2472
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 232,
+      "thread_exit": 0,
+      "tid": 26500
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "sequence": 233,
+      "thread_exit": 0,
+      "tid": 16104
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 234,
+      "tid": 24780
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 235,
+      "tid": 20688,
+      "unloaded_base": 2010198704128
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 236,
+      "thread_created": 134335714956902979,
+      "thread_name_debugger_notification": false,
+      "tid": 1712
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          24780
+        ]
+      },
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 237,
+      "thread_created": 134335714962100640,
+      "thread_name_debugger_notification": true,
+      "tid": 24780
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 7352,
+      "sequence": 238,
+      "tid": 1712
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          34359877897,
+          15560
+        ]
+      },
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 239,
+      "thread_created": 134335714956911717,
+      "thread_name_debugger_notification": true,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 7352,
+      "sequence": 240,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 241,
+      "thread_exit": 0,
+      "tid": 15560
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 242,
+      "thread_exit": 0,
+      "tid": 24780
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 243,
+      "thread_exit": 0,
+      "tid": 14872
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "sequence": 244,
+      "thread_exit": 0,
+      "tid": 5792
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "16260@134335714956911700",
+      "pid": 16260,
+      "raw_exit": 0,
+      "sequence": 245,
+      "tid": 25248
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 7352,
+      "sequence": 246,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 7352,
+      "sequence": 247,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 7352,
+      "sequence": 248,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "19852@134335714952038602",
+      "pid": 19852,
+      "raw_exit": 0,
+      "sequence": 249,
+      "tid": 4604
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "7352@134335714956902951",
+      "module": {
+        "base": 140716934823936,
+        "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+        "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+      },
+      "pid": 7352,
+      "sequence": 250,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 251,
+      "tid": 17976
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          17976
+        ]
+      },
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 252,
+      "thread_created": 134335714963182643,
+      "thread_name_debugger_notification": true,
+      "tid": 17976
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923739704,
+          1856
+        ]
+      },
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 253,
+      "thread_created": 134335714945686728,
+      "thread_name_debugger_notification": true,
+      "tid": 1856
+    },
+    {
+      "continue_status": 65538,
+      "event": 3,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 254,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140717003309056,
+        "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+        "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+      },
+      "pid": 6228,
+      "sequence": 255,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716969689088,
+        "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+        "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+      },
+      "pid": 6228,
+      "sequence": 256,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716923420672,
+        "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+        "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+      },
+      "pid": 6228,
+      "sequence": 257,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 258,
+      "tid": 25208
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 259,
+      "tid": 23228
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140715644878848,
+        "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+      },
+      "pid": 6228,
+      "sequence": 260,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140713921085440,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 6228,
+      "sequence": 261,
+      "tid": 25208
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 262,
+      "tid": 19276
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 2011200946176,
+        "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+      },
+      "pid": 6228,
+      "sequence": 263,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 7,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 264,
+      "tid": 23296,
+      "unloaded_base": 2011200946176
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140715000725504,
+        "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+      },
+      "pid": 6228,
+      "sequence": 265,
+      "tid": 23228
+    },
+    {
+      "bootstrap_breakpoint": true,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140717004758212,
+        "code": 2147483651,
+        "first_chance": true,
+        "flags": 0,
+        "parameters": [
+          0
+        ]
+      },
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 266,
+      "thread_created": 134335714963420975,
+      "thread_name_debugger_notification": false,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140717001605120,
+        "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+        "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+      },
+      "pid": 6228,
+      "sequence": 267,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716985417728,
+        "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+        "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+      },
+      "pid": 6228,
+      "sequence": 268,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716944457728,
+        "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+        "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+      },
+      "pid": 6228,
+      "sequence": 269,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716974931968,
+        "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+        "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+      },
+      "pid": 6228,
+      "sequence": 270,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716862537728,
+        "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+        "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+      },
+      "pid": 6228,
+      "sequence": 271,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 6,
+      "identity": "6228@134335714963420917",
+      "module": {
+        "base": 140716920274944,
+        "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+        "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+      },
+      "pid": 6228,
+      "sequence": 272,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 273,
+      "thread_exit": 0,
+      "tid": 1712
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 274,
+      "thread_exit": 0,
+      "tid": 17976
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 275,
+      "thread_exit": 0,
+      "tid": 13844
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "sequence": 276,
+      "thread_exit": 0,
+      "tid": 11488
+    },
+    {
+      "continue_status": 65538,
+      "event": 2,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 277,
+      "tid": 11376
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          140713923755912,
+          11376
+        ]
+      },
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 278,
+      "thread_created": 134335714966012077,
+      "thread_name_debugger_notification": true,
+      "tid": 11376
+    },
+    {
+      "bootstrap_breakpoint": false,
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "event": 1,
+      "exception": {
+        "address": 140716924583764,
+        "code": 1080890248,
+        "first_chance": true,
+        "flags": 128,
+        "parameters": [
+          4096,
+          34359877897,
+          23296
+        ]
+      },
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 279,
+      "thread_created": 134335714963420975,
+      "thread_name_debugger_notification": true,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 280,
+      "thread_exit": 0,
+      "tid": 23296
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 281,
+      "thread_exit": 0,
+      "tid": 11376
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 282,
+      "thread_exit": 0,
+      "tid": 19276
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "sequence": 283,
+      "thread_exit": 0,
+      "tid": 25208
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "6228@134335714963420917",
+      "pid": 6228,
+      "raw_exit": 0,
+      "sequence": 284,
+      "tid": 23228
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "7352@134335714956902951",
+      "pid": 7352,
+      "raw_exit": 0,
+      "sequence": 285,
+      "tid": 20688
+    },
+    {
+      "context": {
+        "reason": "no-context semantic-isolation control",
+        "requested": false
+      },
+      "continue_status": 65538,
+      "debug_string": {
+        "bytes": "635967536947773030662032302030783436363420307837464645464443413000",
+        "error": 0,
+        "read": 33,
+        "requested": 33,
+        "success": true,
+        "trusted_exit_evidence": false,
+        "unicode": false
+      },
+      "event": 8,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 286,
+      "thread_created": 134335714942954000,
+      "tid": 19832
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 287,
+      "thread_exit": 0,
+      "tid": 18020
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 288,
+      "thread_exit": 0,
+      "tid": 1856
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 289,
+      "thread_exit": 0,
+      "tid": 21096
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 290,
+      "thread_exit": 0,
+      "tid": 10676
+    },
+    {
+      "continue_status": 65538,
+      "event": 4,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "sequence": 291,
+      "thread_exit": 0,
+      "tid": 27580
+    },
+    {
+      "continue_status": 65538,
+      "event": 5,
+      "identity": "17068@134335714938610043",
+      "pid": 17068,
+      "raw_exit": 0,
+      "sequence": 292,
+      "tid": 19832
+    }
+  ],
+  "exception_policy": "exact native-control loader bootstrap and MSVC thread-name protocol handled; faults NOT_HANDLED",
+  "exit_decoding_enabled": false,
+  "loader_breakpoint_rva": 1560272,
+  "memory_writes": 0,
+  "outer_job_owns_cleanup": true,
+  "processes": [
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714938610043,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 564,
+      "held_parent_identity": null,
+      "image": {
+        "base": 140696176099328,
+        "mapped_file_sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140716972113920,
+          "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+          "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+        },
+        {
+          "base": 140716919816192,
+          "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+          "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+        },
+        {
+          "base": 140716988891136,
+          "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+        },
+        {
+          "base": 140716917522432,
+          "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+          "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140716921389056,
+          "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+        },
+        {
+          "base": 140716930760704,
+          "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 2472146829312,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 2472172126208,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        },
+        {
+          "base": 140716934823936,
+          "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+          "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+        },
+        {
+          "base": 140716407586816,
+          "mapped_file_sha256": "db3d52664ff28ce89a5da8cc739770a669222b16607c21485d9072163b42b90f",
+          "path": "\\\\?\\C:\\Windows\\System32\\netapi32.dll"
+        },
+        {
+          "base": 140716836323328,
+          "mapped_file_sha256": "88a941dce29466d50fc8c0a9920d46a8ca0f240cdb5eff1532dcb623ef99d59c",
+          "path": "\\\\?\\C:\\Windows\\System32\\samcli.dll"
+        },
+        {
+          "base": 140716836585472,
+          "mapped_file_sha256": "2c346953cfb0e9b2a20c04fef6f6414ac677a5ca87982f75878aef4a222e9535",
+          "path": "\\\\?\\C:\\Windows\\System32\\samlib.dll"
+        },
+        {
+          "base": 140716836192256,
+          "mapped_file_sha256": "4451d3ec6a9a4426fe430dd68bfacdce5e71a22c431f7f3ecae98850865eb5d6",
+          "path": "\\\\?\\C:\\Windows\\System32\\netutils.dll"
+        },
+        {
+          "base": 140716837634048,
+          "mapped_file_sha256": "39016eae561086856a3e70b2cf3ef2ee47751e4d33d48ced9b307914a3355a6b",
+          "path": "\\\\?\\C:\\Windows\\System32\\IPHLPAPI.DLL"
+        },
+        {
+          "base": 140716838944768,
+          "mapped_file_sha256": "44c3bddcddd3db1b5d4ffa32afe3a84f54a55bdbccd2e81f0d70f78df0664319",
+          "path": "\\\\?\\C:\\Windows\\System32\\dnsapi.dll"
+        },
+        {
+          "base": 140716838092800,
+          "mapped_file_sha256": "5e825ddf330f6fdb2997111f13f25e37b804f4eb4b62f38fcad5af25c1d4cb4d",
+          "path": "\\\\?\\C:\\Windows\\System32\\dsparse.dll"
+        },
+        {
+          "base": 140716974800896,
+          "mapped_file_sha256": "32a2d288130abd78ac63562ebce6e0fe778121f31e61ee386bc9d0edce20d2a2",
+          "path": "\\\\?\\C:\\Windows\\System32\\nsi.dll"
+        }
+      ],
+      "os_parent_pid": 19788,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 17068,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714943265636,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 608,
+      "held_parent_identity": "17068@134335714938610043",
+      "image": {
+        "base": 140696176099328,
+        "mapped_file_sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140716972113920,
+          "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+          "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+        },
+        {
+          "base": 140716919816192,
+          "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+          "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+        },
+        {
+          "base": 140716988891136,
+          "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140716917522432,
+          "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+          "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140716921389056,
+          "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+        },
+        {
+          "base": 140716930760704,
+          "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+        },
+        {
+          "base": 2603277680640,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        },
+        {
+          "base": 140716934823936,
+          "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+          "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+        }
+      ],
+      "os_parent_pid": 17068,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 10868,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714945711138,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 664,
+      "held_parent_identity": "17068@134335714938610043",
+      "image": {
+        "base": 140696176099328,
+        "mapped_file_sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140716972113920,
+          "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+          "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+        },
+        {
+          "base": 140716919816192,
+          "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+          "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+        },
+        {
+          "base": 140716988891136,
+          "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140716917522432,
+          "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+          "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 2455640801280,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140716921389056,
+          "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140716930760704,
+          "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        },
+        {
+          "base": 140716934823936,
+          "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+          "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+        }
+      ],
+      "os_parent_pid": 17068,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 19408,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714946666109,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 636,
+      "held_parent_identity": "10868@134335714943265636",
+      "image": {
+        "base": 140701527769088,
+        "mapped_file_sha256": "6e661f6cedcd7335c3cb05cad6be1bff921a293b7e9af225ef2f4188c6e78d2c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\cat.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 1982497488896,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        }
+      ],
+      "os_parent_pid": 10868,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 10560,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714952038602,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 620,
+      "held_parent_identity": "17068@134335714938610043",
+      "image": {
+        "base": 140696176099328,
+        "mapped_file_sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140716972113920,
+          "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+          "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+        },
+        {
+          "base": 140716919816192,
+          "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+          "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140716988891136,
+          "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140716917522432,
+          "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+          "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+        },
+        {
+          "base": 140716921389056,
+          "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+        },
+        {
+          "base": 140716930760704,
+          "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        },
+        {
+          "base": 140716934823936,
+          "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+          "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+        }
+      ],
+      "os_parent_pid": 17068,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 19852,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714952047848,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 740,
+      "held_parent_identity": "19408@134335714945711138",
+      "image": {
+        "base": 140699766685696,
+        "mapped_file_sha256": "797339fb9ce94fc110731eca94d5302f24fabb9e64bbb88035f4bad16854072b",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\sort.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 2416081829888,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        }
+      ],
+      "os_parent_pid": 19408,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 10332,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714956902951,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 800,
+      "held_parent_identity": "17068@134335714938610043",
+      "image": {
+        "base": 140696176099328,
+        "mapped_file_sha256": "0937e8a6c5811b044efeb9cd1f1074bda10a913ebab345bd4a6827305f891a0c",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\bash.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140716972113920,
+          "mapped_file_sha256": "e51ed41287efd6b7cdfd8d51b82ecd5d21fffcfd0233da25074db8944c121383",
+          "path": "\\\\?\\C:\\Windows\\System32\\user32.dll"
+        },
+        {
+          "base": 140716919816192,
+          "mapped_file_sha256": "d4907bc4c7795182437530d57d77c075e8ad670aa4f8732c62e9b1eb803ab335",
+          "path": "\\\\?\\C:\\Windows\\System32\\win32u.dll"
+        },
+        {
+          "base": 140716988891136,
+          "mapped_file_sha256": "8a3424917908807a6c2b841997fd224ca02ad02d943d7ee7e977ef788dde64fc",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32.dll"
+        },
+        {
+          "base": 140716917522432,
+          "mapped_file_sha256": "b08033104b472c51ea026446a5ec6417b02c935d4c31907b34b1e79e9e2f904f",
+          "path": "\\\\?\\C:\\Windows\\System32\\ucrtbase.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140716921389056,
+          "mapped_file_sha256": "17144441bd0bb04dd471f7c6c62d5869f31e04d2069cfcf35f04cb9f8dccf2fb",
+          "path": "\\\\?\\C:\\Windows\\System32\\gdi32full.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140716930760704,
+          "mapped_file_sha256": "f2f24f92ef7ee83aae1eb3878b6436032942a7f25af836e965f5ebd79bbc8db4",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcp_win.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 2010198704128,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 2010198704128,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        },
+        {
+          "base": 140716934823936,
+          "mapped_file_sha256": "0e927257bb424175f86ace1cb7724f6a0cfaaa94668b333e5828e6cccb9cba33",
+          "path": "\\\\?\\C:\\Windows\\System32\\imm32.dll"
+        }
+      ],
+      "os_parent_pid": 17068,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 7352,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714956911700,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 804,
+      "held_parent_identity": "19852@134335714952038602",
+      "image": {
+        "base": 140701284368384,
+        "mapped_file_sha256": "0e3da1b1e6117a686aa4b3c14d163b152d543e5cdb34e515e3fd04ae2a1c8f0a",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\uniq.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 2568432189440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        }
+      ],
+      "os_parent_pid": 19852,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 16260,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    },
+    {
+      "bootstrap_breakpoints": 1,
+      "created": 134335714963420917,
+      "debug_event_raw_exit": 0,
+      "decoded_status": null,
+      "encoding": "UNKNOWN",
+      "event_matches_handle_exit": true,
+      "exit_event_image_read": {
+        "bytes": "4d5a90000300000004000000ffff0000",
+        "error": 0,
+        "read": 16,
+        "requested": 16,
+        "success": true
+      },
+      "handle": 852,
+      "held_parent_identity": "7352@134335714956902951",
+      "image": {
+        "base": 140700153937920,
+        "mapped_file_sha256": "76ed308633bff00c978e9bdb036a1127d19cbbdf9793cc25ecdb36b989896a9b",
+        "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\tee.exe"
+      },
+      "machine": 43620,
+      "modules": [
+        {
+          "base": 140717003309056,
+          "mapped_file_sha256": "81f9d523d199ba1a8bb5fb6081b39e62cdb3289aa2346880c4db43edc6922f9b",
+          "path": "\\\\?\\C:\\Windows\\System32\\ntdll.dll"
+        },
+        {
+          "base": 140716969689088,
+          "mapped_file_sha256": "98f44d4a53a503ae1e94bb128675491bd05143177809626dea3e5caebdb7f2d3",
+          "path": "\\\\?\\C:\\Windows\\System32\\kernel32.dll"
+        },
+        {
+          "base": 140716923420672,
+          "mapped_file_sha256": "4666d0eb010a0023a37b2e1318ba284a92171b37d2abc09828b4fa6d3dc43011",
+          "path": "\\\\?\\C:\\Windows\\System32\\KernelBase.dll"
+        },
+        {
+          "base": 140715644878848,
+          "mapped_file_sha256": "44c50b20168751f4b5a0107a7b85c7e9ff9565062b1be2b86c65eb5beeaa339c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-intl-8.dll"
+        },
+        {
+          "base": 140713921085440,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 2011200946176,
+          "mapped_file_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-2.0.dll"
+        },
+        {
+          "base": 140715000725504,
+          "mapped_file_sha256": "86aa5600dd67dc8985ed4f218420549ed46539ae739dbbeaf11f68d0c1db4215",
+          "path": "\\\\?\\C:\\ag-exit-e138-01\\coreutils-20260910-01\\private\\usr\\bin\\msys-iconv-2.dll"
+        },
+        {
+          "base": 140717001605120,
+          "mapped_file_sha256": "cadebff57e2f902855e521cdfbfdf6fbde908ce3d7e6f9edb8457d7aa15eed7d",
+          "path": "\\\\?\\C:\\Windows\\System32\\advapi32.dll"
+        },
+        {
+          "base": 140716985417728,
+          "mapped_file_sha256": "ccece3c2c0ab2118e84ac75b5ab0cdcd377ef273318352fd8d684e20d9c5c4a6",
+          "path": "\\\\?\\C:\\Windows\\System32\\msvcrt.dll"
+        },
+        {
+          "base": 140716944457728,
+          "mapped_file_sha256": "8a3a3003bfec3484e7dccdc5803228e1f9b50b5fa2987cba6849d97cc59d89ad",
+          "path": "\\\\?\\C:\\Windows\\System32\\sechost.dll"
+        },
+        {
+          "base": 140716974931968,
+          "mapped_file_sha256": "e45e2e423b4d06c6a33d84cbcfe8fbc55b5c1fa7f259ff30ce7a1170163794ff",
+          "path": "\\\\?\\C:\\Windows\\System32\\rpcrt4.dll"
+        },
+        {
+          "base": 140716862537728,
+          "mapped_file_sha256": "34c1b99c81db881341b91977d66d84893cc791f0588932e6242f6f6cb30e3785",
+          "path": "\\\\?\\C:\\Windows\\System32\\cryptbase.dll"
+        },
+        {
+          "base": 140716920274944,
+          "mapped_file_sha256": "aff5685748adb1537a243098f7ddc693b9cfd8e197ce4e62fb83c79b794e5dfd",
+          "path": "\\\\?\\C:\\Windows\\System32\\bcryptprimitives.dll"
+        }
+      ],
+      "os_parent_pid": 7352,
+      "parent_binding": "not-creator-callsite-qualified",
+      "pid": 6228,
+      "raw_exit": 0,
+      "role": "UNKNOWN",
+      "terminal_evidence": null
+    }
+  ],
+  "qualified": false,
+  "register_writes": 0,
+  "schema": 1,
+  "status": "experimental-raw-only",
+  "unwind_probes": null
+}

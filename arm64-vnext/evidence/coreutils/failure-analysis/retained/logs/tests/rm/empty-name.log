@@ -1,0 +1,27 @@
+rm (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+License GPLv3+: GNU GPL version 3 or later <https://gnu.org/licenses/gpl.html>.
+This is free software: you are free to change and redistribute it.
+There is NO WARRANTY, to the extent permitted by law.
+
+Written by Paul Rubin, David MacKenzie, Richard M. Stallman,
+and Jim Meyering.
+empty-name-1...
+empty-name.pl: test empty-name-1: stderr mismatch, comparing empty-name-1.1 (expected) and empty-name-1.E (actual)
+*** empty-name-1.1	Tue Sep  8 22:15:20 2026
+--- empty-name-1.E	Tue Sep  8 22:15:21 2026
+***************
+*** 1 ****
+! rm: cannot remove '': No such file or directory
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory
+empty-name-2...
+empty-name.pl: test empty-name-2: stderr mismatch, comparing empty-name-2.1 (expected) and empty-name-2.E (actual)
+*** empty-name-2.1	Tue Sep  8 22:15:21 2026
+--- empty-name-2.E	Tue Sep  8 22:15:21 2026
+***************
+*** 1 ****
+! rm: cannot remove '': No such file or directory
+--- 1 ----
+! /cygdrive/c/ag-coreutils-e138-01/coreutils-native-13/build/coreutils/src/rm: cannot remove '': No such file or directory
+FAIL tests/rm/empty-name.pl (exit status: 1)
