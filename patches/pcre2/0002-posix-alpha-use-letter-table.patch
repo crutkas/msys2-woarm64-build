@@ -1,0 +1,40 @@
+diff --git a/src/pcre2_compile_class.c b/src/pcre2_compile_class.c
+index c060664..7c8dd11 100644
+--- a/src/pcre2_compile_class.c
++++ b/src/pcre2_compile_class.c
+@@ -1272,14 +1272,30 @@ while (TRUE)
+ 
+     posix_class *= 3;
+ 
+-    /* Copy in the first table (always present) */
++    /* Alpha must use isalpha's table. On Windows, isalnum may include
++    superscript digits while the compiler's isdigit follows the C standard's
++    ASCII-only definition, so subtracting digit from word is not equivalent. */
+ 
+-    memcpy(pbits.classbits, cbits + PRIV(posix_class_maps)[posix_class], 32);
++    if (posix_class == 0)
++      {
++      memset(pbits.classbits, 0, 32);
++      for (int i = 0; i < 256; i++)
++        if ((cb->ctypes[i] & ctype_letter) != 0)
++          pbits.classbits[i / 8] |= 1u << (i & 7);
++      taboffset = -1;
++      tabopt = 0;
++      }
++    else
++      {
++      /* Copy in the first table (always present for the other classes). */
++
++      memcpy(pbits.classbits, cbits + PRIV(posix_class_maps)[posix_class], 32);
+ 
+-    /* If there is a second table, add or remove it as required. */
++      /* If there is a second table, add or remove it as required. */
+ 
+-    taboffset = PRIV(posix_class_maps)[posix_class + 1];
+-    tabopt = PRIV(posix_class_maps)[posix_class + 2];
++      taboffset = PRIV(posix_class_maps)[posix_class + 1];
++      tabopt = PRIV(posix_class_maps)[posix_class + 2];
++      }
+ 
+     if (taboffset >= 0)
+       {

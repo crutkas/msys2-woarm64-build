@@ -1,0 +1,53 @@
+--- a/PKGBUILD
++++ b/PKGBUILD
+@@ -7,7 +7,7 @@
+ pkgrel=3
+ pkgdesc="A library that implements Perl 5-style regular expressions (mingw-w64)"
+ arch=('any')
+-mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clangarm64')
++mingw_arch=('mingw32' 'mingw64' 'ucrt64' 'clang64' 'clangarm64' 'mingwarm64')
+ url="https://pcre.org/"
+ msys2_repository_url="https://github.com/PhilipHazel/pcre2"
+ msys2_changelog_url="https://github.com/PCRE2Project/pcre2/blob/master/NEWS"
+@@ -17,7 +17,8 @@
+   "cpe: cpe:/a:pcre:pcre2"
+ )
+ license=("spdx:BSD-3-Clause")
+-makedepends=("${MINGW_PACKAGE_PREFIX}-cc" "${MINGW_PACKAGE_PREFIX}-autotools")
++makedepends=("${MINGW_PACKAGE_PREFIX}-cc" 'autoconf' 'automake' 'make'
++             'libtool' "${MINGW_PACKAGE_PREFIX}-pkgconf")
+ depends=("${MINGW_PACKAGE_PREFIX}-bzip2"
+          #"${MINGW_PACKAGE_PREFIX}-readline"
+          "${MINGW_PACKAGE_PREFIX}-wineditline"
+@@ -46,7 +47,8 @@
+ 
+   mkdir -p "${srcdir}/build-${MSYSTEM}-static" && cd "${srcdir}/build-${MSYSTEM}-static"
+ 
+-  CPPFLAGS+=" -DPCRE2_STATIC" \
++  CPPFLAGS+=" -DPCRE2_STATIC -idirafter ${MINGW_PREFIX}/include" \
++  LDFLAGS+=" -L${MINGW_PREFIX}/lib" \
+   "${srcdir}"/${_realname}-${pkgver}/configure \
+     --prefix=${MINGW_PREFIX} \
+     --build=${MINGW_CHOST} \
+@@ -60,6 +62,8 @@
+ 
+   mkdir -p "${srcdir}/build-${MSYSTEM}-shared" && cd "${srcdir}/build-${MSYSTEM}-shared"
+ 
++  CPPFLAGS+=" -idirafter ${MINGW_PREFIX}/include" \
++  LDFLAGS+=" -L${MINGW_PREFIX}/lib" \
+   "${srcdir}"/${_realname}-${pkgver}/configure \
+     --prefix=${MINGW_PREFIX} \
+     --build=${MINGW_CHOST} \
+@@ -75,10 +79,10 @@
+ 
+ check() {
+   cd "${srcdir}/build-${MSYSTEM}-static"
+-  make check || true
++  make check || return 1
+ 
+   cd "${srcdir}/build-${MSYSTEM}-shared"
+-  make check || true
++  make check || return 1
+ }
+ 
+ package() {

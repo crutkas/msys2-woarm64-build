@@ -1,0 +1,39 @@
+pkgname=woarm64-native-msys-pipeline-probe
+pkgver=1
+pkgrel=1
+pkgdesc='Bounded native MSYS C/C++ LP64 locale, cache and package integration control'
+arch=('aarch64')
+license=('custom')
+options=('!strip' '!debug' '!lto')
+source=('probe.c' 'probe.cpp')
+sha256sums=('eef783e04cc8a8320e5bb857d247d0eb0f419bdc9210846ec8defb3d1c04799a'
+            '62da4fc1da822d2ea9209c628cf057b95ff647194e2c7111662ebb95be765c2c')
+
+build() {
+    [[ $CARCH == aarch64 && $CHOST == aarch64-pc-cygwin ]]
+    [[ $CC == gcc && $CXX == g++ && $AR == ar ]]
+    [[ $("$CC" -dumpmachine) == aarch64-pc-cygwin ]]
+    [[ $("$CXX" -dumpmachine) == aarch64-pc-cygwin ]]
+    [[ $MAKEFLAGS == "-j${PROBE_JOBS:?}" && $CCACHE_NAMESPACE == msys-* ]]
+    ccache --zero-stats
+    "$CC" -O2 -c "$srcdir/probe.c" -o "$srcdir/probe.o"
+    "$CC" -O2 -c "$srcdir/probe.c" -o "$srcdir/probe.o"
+    "$AR" rcs "$srcdir/libprobe.a" "$srcdir/probe.o"
+    "$CXX" -O2 -static-libgcc -static-libstdc++ "$srcdir/probe.cpp" "$srcdir/libprobe.a" -o "$srcdir/native-msys-probe.exe"
+    ccache --print-stats > "$srcdir/ccache-stats.txt"
+    awk '$1 == "direct_cache_hit" || $1 == "preprocessed_cache_hit" { hits += $2 } END { exit hits < 1 }' "$srcdir/ccache-stats.txt"
+}
+
+check() {
+    set -o pipefail
+    bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/native-msys-probe.exe" | tr -d '\r' > "$srcdir/runtime-readback.txt"
+    cat "$srcdir/runtime-readback.txt"
+    grep -Fxi "MSYS_RUNTIME=${PROBE_RUNTIME_WINDOWS:?}" "$srcdir/runtime-readback.txt"
+    grep -Fx 'PASS: native ARM64 MSYS C/C++ LP64 locale package reached main' "$srcdir/runtime-readback.txt"
+}
+
+package() {
+    install -Dm755 "$srcdir/native-msys-probe.exe" "$pkgdir/usr/bin/native-msys-probe.exe"
+    install -Dm644 "$srcdir/ccache-stats.txt" "$pkgdir/usr/share/woarm64-msys-pipeline/ccache-stats.txt"
+    install -Dm644 "$srcdir/runtime-readback.txt" "$pkgdir/usr/share/woarm64-msys-pipeline/runtime-readback.txt"
+}

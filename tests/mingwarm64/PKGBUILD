@@ -1,0 +1,32 @@
+pkgname=woarm64-mingwarm64-config-probe
+pkgver=1
+pkgrel=1
+pkgdesc='Actual makepkg-mingw configuration smoke test; no compiler'
+arch=('any')
+license=('custom')
+options=('!strip' '!debug' '!lto')
+if [[ -n ${PROBE_NATIVE_TOOLCHAIN_BIN:-} ]]; then
+    export PATH="$PROBE_NATIVE_TOOLCHAIN_BIN:$PATH"
+fi
+if [[ -n ${PROBE_X64_COMPILER_PATH:-} ]]; then
+    CC=$PROBE_X64_COMPILER_PATH
+    CXX=$CC
+fi
+
+build() {
+    [[ $MSYSTEM == MINGWARM64 && $CARCH == aarch64 ]]
+    [[ $MINGW_PREFIX == /mingwarm64 && $CHOST == aarch64-w64-mingw32 ]]
+    if [[ $FLAVOR == NATIVE_WITH_CROSS ]]; then
+        [[ $CC == aarch64-w64-mingw32-gcc ]]
+        bash -c '[[ $STRIP == aarch64-w64-mingw32-strip ]]'
+        [[ ":$PATH:" == *:/opt/aarch64-w64-mingw32/bin:* ]]
+    else
+        [[ $CC == gcc ]]
+        [[ ":$PATH:" != *:/opt/bin:* ]]
+    fi
+    printf 'PASS: actual makepkg-mingw %s configuration (no compilation)\n' "$FLAVOR"
+}
+
+package() {
+    install -dm755 "$pkgdir/mingwarm64/share/woarm64-config-probe"
+}

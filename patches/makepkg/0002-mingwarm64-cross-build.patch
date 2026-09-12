@@ -46,7 +46,7 @@
  
  	# ensure all necessary build variables are exported
 -	export ${buildenv_vars[@]} CC CXX CHOST MAKEFLAGS
-+	export ${buildenv_vars[@]} CC CXX RC WINDRES RANLIB SRIP OBJDUMP OBJCOPY CHOST MAKEFLAGS
++	export ${buildenv_vars[@]} CC CXX RC WINDRES RANLIB STRIP OBJDUMP OBJCOPY CHOST MAKEFLAGS
  }
 --- a/usr/share/makepkg/tidy/strip.sh
 +++ b/usr/share/makepkg/tidy/strip.sh

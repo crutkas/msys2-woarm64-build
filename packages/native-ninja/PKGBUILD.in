@@ -1,0 +1,27 @@
+pkgname=mingw-w64-aarch64-ninja
+pkgver=1.13.2
+pkgrel=1
+pkgdesc='Official Ninja native Windows ARM64 build runner bootstrap package'
+arch=('aarch64')
+url='https://ninja-build.org/'
+license=('Apache-2.0')
+options=('!strip' '!debug' '!lto' 'libtool' '!purge' '!zipman')
+source=('payload.tar' 'payload-files.sha256' 'provenance.tar')
+sha256sums=('@PAYLOAD_SHA256@' '@FILES_SHA256@' '@PROVENANCE_SHA256@')
+
+prepare() {
+    cd "$srcdir"
+    sha256sum --check --strict payload-files.sha256
+}
+
+check() {
+    "$srcdir/payload/bin/ninja.exe" --version | grep -Fx '1.13.2'
+}
+
+package() {
+    install -Dm755 "$srcdir/payload/bin/ninja.exe" "$pkgdir/mingwarm64/bin/ninja.exe"
+    install -Dm644 "$srcdir/provenance/COPYING" "$pkgdir/mingwarm64/share/licenses/ninja/COPYING"
+    install -dm755 "$pkgdir/mingwarm64/share/woarm64-package-provenance/ninja"
+    cp -a "$srcdir/provenance/." "$pkgdir/mingwarm64/share/woarm64-package-provenance/ninja/"
+    install -m644 "$srcdir/payload-files.sha256" "$pkgdir/mingwarm64/share/woarm64-package-provenance/ninja/"
+}

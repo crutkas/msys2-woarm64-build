@@ -1,0 +1,38 @@
+pkgname=woarm64-native-pipeline-probe
+pkgver=1
+pkgrel=1
+pkgdesc='Bounded compiler, ccache and package-pipeline integration probe'
+arch=('aarch64')
+license=('custom')
+options=('!strip' '!debug' '!lto')
+source=('probe.c' 'probe.cpp')
+sha256sums=('39d141f1177a8ac4980a71dc53eb59cb0f33756a09e6596b26103e14a58c4cb3'
+            'e673bb412bab280f5b47b21d7a93316f1870963b2bcfffe450a6f8bcc5dc2e2b')
+
+build() {
+    [[ $CARCH == aarch64 && $CHOST == aarch64-w64-mingw32 ]]
+    [[ $CC == gcc && $CXX == g++ && $AR == ar && $RANLIB == ranlib && $WINDRES == windres ]]
+    [[ $MAKEFLAGS == "-j$WOARM64_JOBS" && -n $CCACHE_NAMESPACE ]]
+    [[ $CCACHE_NAMESPACE == "$WOARM64_TOOLCHAIN_EPOCH"-* ]]
+    ccache --zero-stats
+    "$CC" -O2 -c "$srcdir/probe.c" -o "$srcdir/probe.o"
+    "$CC" -O2 -c "$srcdir/probe.c" -o "$srcdir/probe.o"
+    "$AR" rcs "$srcdir/libprobe.a" "$srcdir/probe.o"
+    "$RANLIB" "$srcdir/libprobe.a"
+    "$CXX" -O2 -c "$srcdir/probe.cpp" -o "$srcdir/main.o"
+    "$CXX" -static-libgcc -static-libstdc++ "$srcdir/main.o" "$srcdir/libprobe.a" -o "$srcdir/native-probe.exe"
+    ccache --print-stats > "$srcdir/ccache-stats.txt"
+    awk '$1 == "direct_cache_hit" || $1 == "preprocessed_cache_hit" { hits += $2 } END { exit hits < 1 }' "$srcdir/ccache-stats.txt"
+    printf 'PASS: real compiler compilation and ccache hit reached\n'
+}
+
+check() {
+    bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/native-probe.exe"
+    powershell.exe -NoProfile -NonInteractive -File \
+        "$(cygpath -w "$WOARM64_SCRIPTS/assert-arm64-pe.ps1")" -Path "$(cygpath -w "$srcdir/native-probe.exe")"
+}
+
+package() {
+    install -Dm755 "$srcdir/native-probe.exe" "$pkgdir/mingwarm64/bin/native-probe.exe"
+    install -Dm644 "$srcdir/ccache-stats.txt" "$pkgdir/mingwarm64/share/woarm64-pipeline/ccache-stats.txt"
+}

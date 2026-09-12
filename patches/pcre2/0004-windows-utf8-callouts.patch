@@ -1,0 +1,63 @@
+diff --git a/src/pcre2grep.c b/src/pcre2grep.c
+index 613b350..9207833 100644
+--- a/src/pcre2grep.c
++++ b/src/pcre2grep.c
+@@ -85,6 +85,7 @@ POSSIBILITY OF SUCH DAMAGE.
+ 
+ #if defined(SUPPORT_PCRE2GREP_CALLOUT) && defined(SUPPORT_PCRE2GREP_CALLOUT_FORK)
+ #ifdef WIN32
++#include <windows.h>
+ #include <process.h>
+ #else
+ #include <sys/wait.h>
+@@ -2507,7 +2508,49 @@ necessary, otherwise assume fork(). */
+ 
+ #ifdef WIN32
+ (void)fflush(stdout);
+-result = _spawnvp(_P_WAIT, argsvector[0], (const char * const *)argsvector) != 0;
++if (utf)
++  {
++  /* Captures and dollar escapes are UTF-8. The narrow spawn API would
++  reinterpret them using the Windows ANSI code page. */
++  wchar_t **wideargs = (wchar_t **)calloc(argsvectorlen, sizeof(wchar_t *));
++  PCRE2_SIZE i = 0;
++  result = 1;
++  if (wideargs == NULL)
++    fputs("pcre2grep: failed to allocate Unicode callout arguments\n", stderr);
++  else
++    {
++    for (; argsvector[i] != NULL; i++)
++      {
++      int count = MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS,
++        argsvector[i], -1, NULL, 0);
++      if (count == 0)
++        {
++        fputs("pcre2grep: invalid UTF-8 in callout argument\n", stderr);
++        break;
++        }
++      wideargs[i] = (wchar_t *)malloc((size_t)count * sizeof(wchar_t));
++      if (wideargs[i] == NULL)
++        {
++        fputs("pcre2grep: failed to allocate Unicode callout argument\n", stderr);
++        break;
++        }
++      if (MultiByteToWideChar(CP_UTF8, MB_ERR_INVALID_CHARS,
++          argsvector[i], -1, wideargs[i], count) != count)
++        {
++        fputs("pcre2grep: failed to convert Unicode callout argument\n", stderr);
++        break;
++        }
++      }
++    if (argsvector[i] == NULL)
++      result = _wspawnvp(_P_WAIT, wideargs[0],
++        (const wchar_t * const *)wideargs) != 0;
++    for (i = 0; i < argsvectorlen; i++) free(wideargs[i]);
++    free(wideargs);
++    }
++  }
++else
++  result = _spawnvp(_P_WAIT, argsvector[0],
++    (const char * const *)argsvector) != 0;
+ 
+ #elif defined __VMS
+   {

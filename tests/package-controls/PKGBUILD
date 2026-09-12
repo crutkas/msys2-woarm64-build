@@ -1,0 +1,33 @@
+pkgname=woarm64-adapter-control
+pkgver=1
+pkgrel=1
+pkgdesc='No-compiler package destination and requested-check control'
+arch=('any')
+license=('custom')
+options=('!strip' '!debug' '!lto' '!ccache')
+if [[ -z ${CONTROL_OUTPUT:-} ]]; then
+    export CONTROL_OUTPUT
+    CONTROL_OUTPUT=$(cygpath -u "$WOARM64_OUTPUT_ROOT")
+fi
+
+build() {
+    [[ $BUILDDIR == "$CONTROL_OUTPUT/build" ]]
+    [[ $SRCDEST == "$CONTROL_OUTPUT/sources" ]]
+    [[ $SRCPKGDEST == "$CONTROL_OUTPUT/source-packages" ]]
+    [[ $LOGDEST == "$CONTROL_OUTPUT/logs" ]]
+    [[ $PKGDEST == "$CONTROL_OUTPUT/packages" ]]
+    [[ $srcdir == "$CONTROL_OUTPUT/build/$pkgbase/src" ]]
+    printf 'build reached\n' > "$CONTROL_OUTPUT/build-reached"
+}
+
+check() {
+    printf 'check reached\n' > "$CONTROL_OUTPUT/check-reached"
+    if [[ ${CONTROL_FAIL_CHECK:-0} == 1 ]]; then
+        printf 'INTENTIONAL CHECK FAILURE\n' >&2
+        return 37
+    fi
+}
+
+package() {
+    install -dm755 "$pkgdir/usr/share/woarm64-adapter-control"
+}

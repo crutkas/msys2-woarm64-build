@@ -1,0 +1,25 @@
+package NativeUtilityTransport;
+use strict;
+use warnings;
+
+BEGIN {
+    no warnings 'redefine';
+    *CORE::GLOBAL::system = sub {
+        if (@_ == 1) {
+            my $original = $_[0];
+            my $command = $original;
+            my $count = ($command =~ s{(^|[;|]\s*)(\.\./(?:dos2unix|unix2dos|mac2unix|unix2mac)(?:\.exe)?)(?=\s|$)}
+                                     {$1../native-utility-exec.exe $2}g);
+            if ($count) {
+                die "Owned transport log is required" unless $ENV{NATIVE_UTILITY_TRANSPORT_LOG};
+                open my $log, '>>', $ENV{NATIVE_UTILITY_TRANSPORT_LOG} or die "Cannot record transport: $!";
+                print {$log} "ORIGINAL $original\nNATIVE   $command\n";
+                close $log or die "Cannot close transport log: $!";
+            }
+            return CORE::system($command);
+        }
+        return CORE::system(@_);
+    };
+}
+
+1;

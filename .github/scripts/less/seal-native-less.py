@@ -1,0 +1,223 @@
+"""Seal a producer export; package admission remains the intake owner's decision."""
+import argparse
+import hashlib
+import json
+from pathlib import Path
+import shutil
+
+
+def sha(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def bound(path):
+    return {"path": str(path), "sha256": sha(path), "size": path.stat().st_size}
+
+
+def load(path):
+    return json.loads(path.read_text(encoding="utf-8-sig"))
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--workspace", type=Path, required=True)
+    args = parser.parse_args()
+    root = args.root.resolve()
+    destination = root / "delivery-01"
+    if destination.exists():
+        raise RuntimeError("An immutable delivery cannot be overwritten")
+    audit = load(root / "evidence/final-less-audit.json")
+    if audit["status"] != "native-less907-static-and-final-member-contract-passed":
+        raise RuntimeError("Final native less audit is not a pass")
+    move = load(root / "evidence/actual-readback-move.json")
+    if Path(move["Before"]).exists():
+        raise RuntimeError("Old package readback root still exists")
+    moved = Path(move["After"])
+    for member in load(root / "packages/packaging.json")["payload"]:
+        if sha(moved / member["path"]) != member["sha256"]:
+            raise RuntimeError("Final moved package member changed")
+    for phase in ("before02", "moved"):
+        for mode in ("positive-control", "text", "large"):
+            report = load(root / f"final-{phase}-{mode}/result.json")
+            if not report["process"]["passed"] or not report["assertions"]["passed"]:
+                raise RuntimeError("A final native PTY control failed")
+    cli_cases = ("less-version", "lesskey-version", "lessecho-numeric-quotes",
+                 "lesskey-real-output", "less-exact-file-read")
+    for name in cli_cases:
+        report = load(root / f"observed-final-{name}/native-job.json")
+        if not report["passed"] or report["parent_raw_exit"] or report["unrelayed_high_exits"]:
+            raise RuntimeError("A final shipped executable failed")
+    if sha(root / "observed-final-less-exact-file-read/run.log") != sha(root / "fixtures02/real text with spaces.txt"):
+        raise RuntimeError("Regular less changed noninteractive Unicode file bytes")
+    if (root / "observed-final-lessecho-numeric-quotes/run.log").read_bytes() != b"'native quoted text'\n":
+        raise RuntimeError("Shipped lessecho quote result changed")
+    if (root / "fixtures02/compiled.lesskey").stat().st_size != 29:
+        raise RuntimeError("Real lesskey output was not produced")
+    for item in load(root / "evidence/input-copy.json"):
+        if sha(root / item["Dest"]) != item["Hash"]:
+            raise RuntimeError("A pinned source/recipe/SDK input changed")
+    for item in load(root / "evidence/private-package-pins.json"):
+        if sha(Path(item["Path"])) != item["SHA256"]:
+            raise RuntimeError("A frozen provider archive changed")
+    compiler = {
+        "driver": root / "compiler/bin/aarch64-pc-cygwin-gcc.exe",
+        "runtime": root / "compiler/bin/msys-2.0.dll",
+        "import": root / "compiler/aarch64-pc-cygwin/lib/libmsys-2.0.a",
+        "crt": root / "compiler/aarch64-pc-cygwin/lib/crt0.o",
+        "strip": root / "compiler/bin/aarch64-pc-cygwin-strip.exe",
+    }
+    expected = {
+        "driver": "fff0fa4da353da74bbfd7e1f3424103e32fd73ab47878c9447cf5c67b43b2c38",
+        "runtime": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+        "import": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c",
+        "crt": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737",
+    }
+    for name, digest in expected.items():
+        if sha(compiler[name]) != digest:
+            raise RuntimeError(f"Qualified compiler input changed: {name}")
+    destination.mkdir()
+    for folder in ("packages", "source", "recipe", "maintained", "evidence"):
+        (destination / folder).mkdir()
+    package = root / "packages/less-704-1-aarch64.pkg.tar.zst"
+    shipped = destination / "packages" / package.name
+    shutil.copyfile(package, shipped)
+    if sha(shipped) != load(root / "packages/packaging.json")["package_sha256"]:
+        raise RuntimeError("Delivered archive changed")
+    shutil.copyfile(root / "inputs/less-704.tar.gz", destination / "source/less-704.tar.gz")
+    for name in ("PKGBUILD", "PKGBUILD.upstream"):
+        shutil.copyfile(root / "recipe" / name, destination / "recipe" / name)
+    maintained = list((args.workspace / ".github/scripts/less").glob("*"))
+    maintained += [args.workspace / "tests/native-less-pty.c", args.workspace / "tests/native-less-dependencies.c"]
+    maintained += [root / "inputs" / name for name in ("bounded_process.py", "inspect-native-archive.py",
+                  "native-editor-pty.c", "native-curses-cpp.cc", "test-combined-terminal.py")]
+    for path in maintained:
+        if path.is_file():
+            target = destination / "maintained" / path.name
+            if target.exists():
+                raise RuntimeError("Ambiguous maintained source basename")
+            shutil.copyfile(path, target)
+    evidence = []
+    for folder in (root / "evidence", root / "observer"):
+        evidence.extend(path for path in folder.rglob("*") if path.is_file())
+    for folder in root.iterdir():
+        if folder.is_dir() and folder.name.startswith(("observed-", "final-before", "final-moved")):
+            evidence.extend(path for path in folder.rglob("*") if path.is_file())
+    evidence += [root / "packages/packaging.json", root / "fixtures02/fixtures.json",
+                 root / "fixtures02/pager.lesskey", root / "fixtures02/compiled.lesskey",
+                 root / "src/less-704/config.log", root / "src/less-704/config.status",
+                 root / "src/less-704/defines.h", root / "src/less-704/Makefile",
+                 root / "check-source/less-704/Makefile",
+                 root / "check-source/less-704/lesstest/runtest",
+                 root / "debug-tools/inputs.json", root / "debug-tools/split-firstfault/result.json"]
+    for directory in ("positive-pty-01", "positive-pty-02", "pager-large-01", "pager-large-02",
+                      "pager-text-01", "instrumented-pty-01"):
+        evidence.extend(path for path in (root / directory).rglob("*") if path.is_file())
+    copied = []
+    for path in sorted(set(evidence)):
+        target = destination / "evidence" / path.relative_to(root)
+        target.parent.mkdir(parents=True, exist_ok=True)
+        shutil.copyfile(path, target)
+        copied.append(bound(target))
+    fault = load(root / "debug-tools/split-firstfault/result.json")
+    exceptions = []
+    for event in fault["events"]:
+        if event.get("exception", {}).get("code") != 0xC0000005:
+            continue
+        process = next(item for item in fault["processes"]
+                       if event["identity"] == f"{item['pid']}@{item['created']}")
+        module = next(item for item in process["modules"]
+                      if item["mapped_file_sha256"] == expected["runtime"])
+        exceptions.append({"process_identity": event["identity"], "exception": event["exception"],
+                           "module": module, "runtime_rva": hex(event["exception"]["address"] - module["base"]),
+                           "raw_process_exit": process["raw_exit"]})
+    source = load(root / "evidence/less-source-preparation.json")
+    handoff = {
+        "schema": 1, "status": "producer-native-msys-less907-complete-not-self-admitted",
+        "package": {"name": "less", "version": "704-1", "architecture": "aarch64", **bound(shipped)},
+        "target": {"triple": "aarch64-pc-cygwin", "pe_machine": "AA64 / 0xAA64",
+                   "live_identity_api": "GetProcessInformation(ProcessMachineTypeInfo=9), value 0xAA64",
+                   "runtime_cohort": expected["runtime"], "mingw": False, "d70_compatibility_claimed": False},
+        "source": {**source, "delivered_source": bound(destination / "source/less-704.tar.gz"),
+                   "signature_scope": "The original recipe contains validpgpkeys but no detached source signature entry. This GitHub tag archive is SHA256-pinned, not falsely described as detached-signature verified.",
+                   "original_product_and_test_c_h_unchanged": len(audit["original_source_c_h_files"])},
+        "recipe": bound(destination / "recipe/PKGBUILD"),
+        "compiler": {name: bound(path) for name, path in compiler.items()},
+        "compiler_scope": "Private copy of scoped ED4 combined compiler plus the qualified907 SDK overlay. The actual invoked prefixed driver is fff0; no claim that every binary in the combined tree is fff0 or generically requalified.",
+        "sdk_inventory": bound(root / "evidence/sdk-inputs.json"),
+        "dependency_authority": [
+            {"name": "native-msys-bzip2-pcre2-admitted-v1",
+             "path": r"C:\ap11-native-provider-intake\native-msys-bzip2-pcre2-admitted-v1\export.json",
+             "sha256": "7032ded0427c23c698d043739349385d391220f3df30ff96a48670aa1c2a939b"},
+            {"name": "ncurses-v2", "path": r"C:\ap11-native-provider-intake\ncurses-v2\export.json",
+             "sha256": "6857ba52e2004b0c7592baa2e2a517c824f54bbfbb7fe2c41b1f93b3415caafd"},
+        ],
+        "build": {"recipe_functions": ["prepare", "build", "package"], "workers": 1,
+                  "CFLAGS": "-O2 -g -pipe -fstack-protector-strong -D_FORTIFY_SOURCE=2",
+                  "configure": "--build=aarch64-pc-cygwin --prefix=/usr --sysconfdir=/etc --with-regex=pcre2",
+                  "native_observer": bound(root / "observed-build-03/native-job.json"),
+                  "native_strip_observer": bound(root / "observed-strip-01/native-job.json"),
+                  "emulated_role": "Private x64 MSYS orchestration including make/autotools/groff/pacman/zstd; none is a less payload or native target substitute.",
+                  "dependencies_rebuilt": False, "product_source_or_feature_workarounds": False,
+                  "second_independent_rebuild_performed": False,
+                  "source_date_epoch": 1788825600},
+        "strict_upstream": {"tests": 18, "steps": audit["upstream_steps"], "errors": 0,
+                            "created": 169, "observed": 169, "parent_raw_exit": 0, "high_exits": 0,
+                            "test_only_instrumentation": True, "shipped_LESSTEST": False,
+                            "supported_layout": audit["supported_test_layout"],
+                            "earlier_split_layout_failure_preserved": True,
+                            "first_fault_diagnostic_not_waiver": exceptions},
+        "final_package": {"regular_stripped_less": bound(moved / "usr/bin/less.exe"),
+                          "payload_files": 9, "metadata_files": 3, "pe_files": 3,
+                          "licenses": ["usr/share/licenses/less/COPYING", "usr/share/licenses/less/LICENSE"],
+                          "manpages": 3, "provides": [], "dependencies": ["ncurses", "libpcre2_8"],
+                          "test_or_dependency_DLLs_packaged": False,
+                          "signature": "Unsigned producer archive; admission and any signing remain intake responsibilities.",
+                          "pacman_metadata_readback": bound(root / "evidence/pacman-less-package-metadata-readback.stdout.log")},
+        "native_functional": {"before_and_after_real_move": True, "old_root_absent": True,
+                              "text_assertions_each": 8, "large_file_assertions_each": 4,
+                              "large_file_bytes": (root / "fixtures02/large sparse file.bin").stat().st_size,
+                              "off_t_bytes": 8, "positive_control_before_and_after": True,
+                              "features": ["PCRE2 numeric regex search/repeat", "Unicode rendering/search",
+                                           "page/home/end navigation", "quit", ">4GiB head/end seeks"],
+                              "terminfo": "Ordinary compiled default lookup; no TERMINFO or TERMINFO_DIRS override",
+                              "PATH": "Only the actual moved private usr/bin and Windows System32",
+                              "shipped_helpers": list(cli_cases)},
+        "static_closure": audit["counts"],
+        "dynamic_helpers_not_claimed": audit["dynamic_scope"],
+        "preserved_limitations": [
+            "The initial >4GiB unbroken-line readiness timeout is retained, not declared fixed by the bounded-line large-file fixture.",
+            "Earlier source-path, host-prerequisite, test-layout and test-invocation failures are retained with raw results; corrected original tests are authoritative only for the supported coherent runtime root.",
+            "The two early lessecho quote trials used character options -o/-c incorrectly for numeric input; documented -p39/-d39 is the strict final quoted-output case. No product behavior was changed.",
+            "No compatibility claim for d70, arbitrary cross-install fork/exec, complete Git release, or dependencies reached only by optional process launches.",
+            "BUILDINFO target versions represent exact staged SDK packages, not a native package-manager transaction or invented GCC package.",
+        ],
+        "reproduction": [
+            "Provision a new owned root from the bound compiler/SDK and package inputs; never mutate the shared/provider roots.",
+            "Use the maintained build wrapper with LESS_BUILD_ROOT and the unchanged pinned recipe; keep make -j1 and protective flags.",
+            "Use the maintained check wrapper, original 18 fixtures, and one check-runtime/usr/bin installation for all test-only executables.",
+            "Strip only the regular staged PEs using the bound prefixed target strip; run the maintained packager and archive readback.",
+            "Exercise final package bytes using the maintained openpty helper before and after an actual move, with default terminfo.",
+        ],
+        "evidence": copied,
+        "admission": {"producer_export_only": True, "intake_owner": "a2dd0a44-30ad-4164-89bb-f2d7aaa0e5e5",
+                      "package_admitted_by_this_session": False},
+    }
+    handoff_path = destination / "handoff.json"
+    handoff_path.write_text(json.dumps(handoff, indent=2) + "\n")
+    export = {"schema": 1, "packages": [{"name": "less", "path": str(shipped), "sha256": sha(shipped)}],
+              "handoff": bound(handoff_path), "runtime_cohort": expected["runtime"],
+              "scope": handoff["status"]}
+    export_path = destination / "export.json"
+    export_path.write_text(json.dumps(export, indent=2) + "\n")
+    inventory = [bound(path) for path in sorted(destination.rglob("*")) if path.is_file()]
+    (destination / "files.json").write_text(json.dumps(inventory, indent=2) + "\n")
+    for entry in inventory:
+        if sha(Path(entry["path"])) != entry["sha256"]:
+            raise RuntimeError("Sealed output readback failed")
+    print(json.dumps({"export": bound(export_path), "handoff": bound(handoff_path), "package": bound(shipped),
+                      "files": len(inventory), "status": handoff["status"]}))
+
+
+if __name__ == "__main__":
+    main()
