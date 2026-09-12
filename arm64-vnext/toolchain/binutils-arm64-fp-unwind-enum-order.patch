@@ -1,0 +1,16 @@
+diff --git a/gas/config/obj-coff-seh.h b/gas/config/obj-coff-seh.h
+--- a/gas/config/obj-coff-seh.h
++++ b/gas/config/obj-coff-seh.h
+@@ -77,11 +77,11 @@ typedef enum seh_arm64_unwind_types
+   save_reg_x,
+   save_regp,
+   save_regp_x,
++  save_lrpair,
+   save_fregp,
+   save_fregp_x,
+   save_freg,
+   save_freg_x,
+-  save_lrpair,
+   save_fplr,
+   save_fplr_x,
+   save_r19r20_x,

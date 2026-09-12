@@ -1,0 +1,137 @@
+diff --git a/gcc/tree-emutls.cc b/gcc/tree-emutls.cc
+--- a/gcc/tree-emutls.cc
++++ b/gcc/tree-emutls.cc
+@@ -28,6 +28,8 @@ along with GCC; see the file COPYING3.  If not see
+ #include "gimple-iterator.h"
+ #include "gimple-walk.h"
+ #include "langhooks.h"
++#include "tree-dfa.h"
++#include "tree-phinodes.h"
+ #include "tree-iterator.h"
+ #include "gimplify.h"
+ #include "diagnostic-core.h" /* for seen_error */
+@@ -645,6 +647,92 @@ clear_access_vars (void)
+   tls_map->traverse<void *, reset_access> (NULL);
+ }
+ 
++/* Fix up emutls address materialization for ECF_RETURNS_TWICE calls.
++   The materialization statements are first inserted immediately before
++   the call so their SSA names can replace TLS operands.  That is not
++   valid final IL for a returns_twice block with abnormal predecessors:
++   move those statements to the normal incoming edge, then add PHIs for
++   any generated SSA names still used by the call.  */
++
++static void
++fixup_returns_twice_call (cgraph_node *node, gimple *stmt)
++{
++  auto_vec<gimple *, 8> arg_stmts;
++  gimple_stmt_iterator gsi = gsi_after_labels (gimple_bb (stmt));
++
++  while (gsi_stmt (gsi) != stmt)
++    {
++      if (is_gimple_debug (gsi_stmt (gsi)))
++	gsi_next (&gsi);
++      else
++	{
++	  arg_stmts.safe_push (gsi_stmt (gsi));
++	  gsi_remove (&gsi, false);
++	}
++    }
++
++  basic_block bb = NULL;
++  edge e = NULL, ead = NULL;
++  for (unsigned int i = 0; i < arg_stmts.length (); ++i)
++    {
++      gimple *g = arg_stmts[i];
++      gsi_safe_insert_before (&gsi, g);
++      if (i == 0)
++	{
++	  bb = gimple_bb (stmt);
++	  gcc_checking_assert (EDGE_COUNT (bb->preds) == 2);
++	  e = EDGE_PRED (bb, 0);
++	  ead = EDGE_PRED (bb, 1);
++	  if ((ead->flags & EDGE_ABNORMAL) == 0)
++	    std::swap (e, ead);
++	  gcc_checking_assert ((e->flags & EDGE_ABNORMAL) == 0
++			       && (ead->flags & EDGE_ABNORMAL));
++	}
++
++      tree lhs = gimple_get_lhs (g);
++      if (lhs == NULL_TREE || TREE_CODE (lhs) != SSA_NAME)
++	continue;
++
++      bool used_by_call = false;
++      imm_use_iterator iter;
++      gimple *use_stmt;
++      FOR_EACH_IMM_USE_STMT (use_stmt, iter, lhs)
++	if (use_stmt == stmt)
++	  {
++	    used_by_call = true;
++	    break;
++	  }
++      if (!used_by_call)
++	continue;
++
++      tree arg = lhs;
++      gphi *phi = create_phi_node (copy_ssa_name (arg), bb);
++      add_phi_arg (phi, arg, e, UNKNOWN_LOCATION);
++      tree var = create_tmp_reg (TREE_TYPE (arg));
++      suppress_warning (var);
++      arg = get_or_create_ssa_default_def (cfun, var);
++      SSA_NAME_OCCURS_IN_ABNORMAL_PHI (arg) = 1;
++      add_phi_arg (phi, arg, ead, UNKNOWN_LOCATION);
++      arg = gimple_phi_result (phi);
++      SSA_NAME_OCCURS_IN_ABNORMAL_PHI (arg) = 1;
++
++      FOR_EACH_IMM_USE_STMT (use_stmt, iter, lhs)
++	{
++	  if (use_stmt == phi)
++	    continue;
++	  if (use_stmt != stmt)
++	    continue;
++	  use_operand_p use_p;
++	  FOR_EACH_IMM_USE_ON_STMT (use_p, iter)
++	    SET_USE (use_p, arg);
++	}
++    }
++
++  update_stmt (stmt);
++  if (cgraph_edge *e = node->get_edge (stmt))
++    e->count = gimple_bb (stmt)->count;
++}
++
+ /* Lower the entire function NODE.  */
+ 
+ static void
+@@ -655,5 +699,6 @@ lower_emutls_function_body (struct cgraph_node *node)
+   struct lower_emutls_data d;
+   bool any_edge_inserts = false;
++  auto_vec<gimple *, 16> returns_twice_calls;
+ 
+   push_cfun (DECL_STRUCT_FUNCTION (node->decl));
+ 
+@@ -693,13 +738,23 @@ lower_emutls_function_body (struct cgraph_node *node)
+ 	  /* If any new statements were created, insert them immediately
+ 	     before the first use.  This prevents variable lifetimes from
+ 	     becoming unnecessarily long.  */
+ 	  if (d.seq)
+-	    gsi_insert_seq_before (&gsi, d.seq, GSI_SAME_STMT);
++	    {
++	      gimple *stmt = gsi_stmt (gsi);
++	      gsi_insert_seq_before (&gsi, d.seq, GSI_SAME_STMT);
++	      if (stmt
++		  && is_gimple_call (stmt)
++		  && (gimple_call_flags (stmt) & ECF_RETURNS_TWICE) != 0
++		  && bb_has_abnormal_pred (gsi_bb (gsi)))
++		returns_twice_calls.safe_push (stmt);
++	    }
+ 	}
+     }
+ 
+   if (any_edge_inserts)
+     gsi_commit_edge_inserts ();
++  while (!returns_twice_calls.is_empty ())
++    fixup_returns_twice_call (node, returns_twice_calls.pop ());
+ 
+   pop_cfun ();
+ }

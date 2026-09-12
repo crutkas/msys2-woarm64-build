@@ -18,6 +18,15 @@ on:
         description: "Architecture to build on"
         type: string
         default: "x86_64"
+      hosted_arm64:
+        description: >-
+          Opt in to GitHub-hosted windows-11-arm runners for aarch64 jobs
+          instead of the self-hosted ["Windows", "ARM64", "MSYS2"] pool.
+          This only changes runner selection. MSYS2 has no native ARM64
+          build, so the MSYS2 environment is x86_64 emulated there and this
+          is NOT equivalent to the self-hosted native runner.
+        type: boolean
+        default: false
       build_with_native:
         description: "Build with native MinGW toolchain"
         type: boolean
@@ -45,7 +54,9 @@ jobs:
     timeout-minutes: 720
     runs-on: >-
       ${{ fromJson(inputs.runner_arch == 'aarch64'
-        && '["Windows", "ARM64", "MSYS2"]'
+        && (inputs.hosted_arm64
+          && '["windows-11-arm"]'
+          || '["Windows", "ARM64", "MSYS2"]')
         || '["windows-latest"]') }}
 
     steps:

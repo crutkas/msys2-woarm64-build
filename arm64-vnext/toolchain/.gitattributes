@@ -1,0 +1,11 @@
+*.sh text eol=lf
+*.patch text eol=lf
+*.c text eol=lf
+*.cc text eol=lf
+*.s text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.rc text eol=lf
+# Preserve the exact CRLF-transported recovery patch identity.
+gcc-arm64-seh-sp-direct-save.patch -text
+mingw-woarm64-interlocked-exchange-ordering-original.patch -text

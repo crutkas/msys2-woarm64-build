@@ -1,0 +1,30 @@
+diff --git a/gcc/config/aarch64/aarch64.cc b/gcc/config/aarch64/aarch64.cc
+--- a/gcc/config/aarch64/aarch64.cc
++++ b/gcc/config/aarch64/aarch64.cc
+@@ -6240,11 +6240,24 @@ aarch64_expand_mov_immediate (rtx dest, rtx imm)
+       /* Reload can rematerialize symbol+offset addresses.  Load the local
+ 	 import cell into the destination itself, rather than creating an
+ 	 untracked force_reg pseudo while LRA is assigning registers.  */
+-      rtx imported = legitimize_pe_coff_symbol (base, false);
++      rtx unsalted_base = strip_salt (base);
++      rtx imported = legitimize_pe_coff_symbol (unsalted_base, false);
+       if (imported)
+ 	{
+ 	  gcc_assert (MEM_P (imported));
+-	  aarch64_expand_mov_immediate (dest, XEXP (imported, 0));
++	  rtx cell_addr = XEXP (imported, 0);
++	  if (unsalted_base != base)
++	    {
++	      /* Keep the SET/TEST address separation on the local import
++		 cell.  Dropping the salt would let CSE share the two paths.  */
++	      rtx salted = GET_CODE (base) == CONST ? XEXP (base, 0) : base;
++	      gcc_assert (GET_CODE (salted) == UNSPEC
++			  && XINT (salted, 1) == UNSPEC_SALT_ADDR);
++	      rtvec v = gen_rtvec (2, cell_addr, XVECEXP (salted, 0, 1));
++	      cell_addr = gen_rtx_CONST (Pmode,
++					gen_rtx_UNSPEC (Pmode, v, UNSPEC_SALT_ADDR));
++	    }
++	  aarch64_expand_mov_immediate (dest, cell_addr);
+ 	  emit_move_insn (dest, replace_equiv_address (imported, dest));
+ 	  if (const_offset != 0)
+ 	    aarch64_add_offset (int_mode, dest, dest, const_offset,

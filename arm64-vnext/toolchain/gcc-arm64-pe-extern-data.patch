@@ -1,0 +1,42 @@
+diff --git a/gcc/config/aarch64/cygming.h b/gcc/config/aarch64/cygming.h
+--- a/gcc/config/aarch64/cygming.h
++++ b/gcc/config/aarch64/cygming.h
+@@ -291,7 +291,11 @@
+ #define GOT_ALIAS_SET mingw_GOT_alias_set ()
+ 
+ #define PE_COFF_LEGITIMIZE_EXTERN_DECL(RTX) \
+-  (GET_CODE (RTX) == SYMBOL_REF && SYMBOL_REF_WEAK (RTX))
++  (SYMBOL_REF_P (RTX) \
++   && (SYMBOL_REF_WEAK (RTX) \
++       || (SYMBOL_REF_DECL (RTX) \
++	   && VAR_P (SYMBOL_REF_DECL (RTX)) \
++	   && !DECL_THREAD_LOCAL_P (SYMBOL_REF_DECL (RTX)))))
+ 
+ #define HAVE_64BIT_POINTERS 1
+ 
+diff --git a/gcc/config/mingw/winnt-dll.cc b/gcc/config/mingw/winnt-dll.cc
+--- a/gcc/config/mingw/winnt-dll.cc
++++ b/gcc/config/mingw/winnt-dll.cc
+@@ -208,7 +208,10 @@ legitimize_pe_coff_symbol (rtx addr, bool inreg)
+ 	}
+     }
+ 
+-  if (!PE_COFF_LEGITIMIZE_EXTERN_DECL (addr))
++  rtx base = addr;
++  if (GET_CODE (base) == CONST && GET_CODE (XEXP (base, 0)) == PLUS)
++    base = XEXP (XEXP (base, 0), 0);
++  if (!PE_COFF_LEGITIMIZE_EXTERN_DECL (base))
+     return NULL_RTX;
+ 
+   if (GET_CODE (addr) == SYMBOL_REF
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -820,6 +820,7 @@ mingw_pe_file_end (void)
+ 	  fprintf (asm_out_file, "\t.section\t.rdata$%s, \"dr\"\n"
+ 	  		   "\t.globl\t%s\n"
+ 			   "\t.linkonce\tdiscard\n", oname, oname);
++	  ASM_OUTPUT_ALIGN (asm_out_file, 3);
+ 	  fprintf (asm_out_file, "%s:\n\t.quad\t%s\n", oname, name);
+ 	}
+     }

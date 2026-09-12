@@ -1,0 +1,446 @@
+--- a/winsup/cygwin/Makefile.am
++++ b/winsup/cygwin/Makefile.am
+@@ -453,12 +453,25 @@
+ $(srcdir)/devices.cc: scripts/gendevices devices.in local_includes/devices.h
+ 	$(wordlist 1,2,$^) $@
+ 
+-tlsoffsets: scripts/gentls_offsets config.h \
++runtime_generation_guard = $(srcdir)/scripts/guard-runtime-generation
++EXTRA_DIST = scripts/guard-runtime-generation
++GENTLS_OFFSETS = $(srcdir)/scripts/gentls_offsets
++SIGNAL_GENERATOR = $(srcdir)/scripts/gendef
++runtime_tls_inputs = config.h \
+ 	$(wildcard $(srcdir)/local_includes/*.h) \
+ 	$(wildcard $(srcdir)/include/cygwin/*.h) \
+ 	$(newlib_build)/targ-include/newlib.h
+-	$(AM_V_GEN)CXXCOMPILE="$(CXXCOMPILE)" $(srcdir)/scripts/gentls_offsets \
+-		$(srcdir)/local_includes/cygtls.h $@
++
++# Always validate receipt-bound outputs, even when make's timestamps look fresh.
++# The guard preserves output timestamps when every input and output is unchanged.
++.PHONY: runtime-generation-force
++runtime-generation-force:
++
++tlsoffsets: $(GENTLS_OFFSETS) $(runtime_generation_guard) $(runtime_tls_inputs) runtime-generation-force
++	$(AM_V_GEN)CXXCOMPILE="$(CXXCOMPILE)" perl $(runtime_generation_guard) \
++		--mode=tls --cpu=@target_cpu@ --generator="$(GENTLS_OFFSETS)" \
++		--header="$(srcdir)/local_includes/cygtls.h" --offsets="$@" \
++		$(foreach file,$(runtime_tls_inputs),--input="$(file)")
+ 
+ sigfe.o: tlsoffsets
+ exceptions.o: local_includes/signal-frame-arm64.h
+@@ -689,13 +702,15 @@
+ # msys-2.0 import library
+ toolopts=--cpu=@target_cpu@ --ar=@AR@ --as=@AS@ --nm=@NM@ --objcopy=@OBJCOPY@
+ 
+-$(DEF_FILE): scripts/gendef cygwin.din
+-	$(AM_V_GEN)$(srcdir)/scripts/gendef --cpu=@target_cpu@ --output-def=$(DEF_FILE) $(srcdir)/cygwin.din
++signal_generation_args = --mode=signals --cpu=@target_cpu@ \
++	--generator="$(SIGNAL_GENERATOR)" --exports="$(srcdir)/cygwin.din" \
++	--definition="$(DEF_FILE)" --assembly=sigfe.s --offsets=tlsoffsets
++
++$(DEF_FILE): $(SIGNAL_GENERATOR) cygwin.din $(runtime_generation_guard) tlsoffsets runtime-generation-force
++	$(AM_V_GEN)perl $(runtime_generation_guard) $(signal_generation_args)
+ 
+ sigfe.s: $(DEF_FILE)
+-	@[ -s $@ ] || \
+-	{ rm -f $(DEF_FILE); $(MAKE) -s -j1 $(DEF_FILE); }; \
+-	[ -s $@ ] && touch $@
++	$(AM_V_GEN)perl $(runtime_generation_guard) $(signal_generation_args)
+ 
+ LIBCOS=$(addsuffix .o,$(basename $(LIB_FILES)))
+ $(LIB_NAME): $(DEF_FILE) $(LIBCOS) | $(NEW_DLL_NAME)
+@@ -761,6 +776,7 @@
+ 	-rm -f $(LIB_NAME) $(SUBLIBS)
+ 	-rm -f version.cc
+ 	-rm -f tlsoffsets
++	-rm -f tlsoffsets.generation.json sigfe.s.generation.json
+ 
+ maintainer-clean-local:
+ 	-rm -f $(srcdir)/devices.cc
+--- /dev/null
++++ b/winsup/cygwin/scripts/guard-runtime-generation
+@@ -0,0 +1,211 @@
++#!/usr/bin/env perl
++# Validate in private files; publish each artifact atomically and its receipt last.
++use strict;
++use warnings;
++use Cwd qw(abs_path);
++use Digest::SHA qw(sha256_hex);
++use File::Basename qw(dirname basename);
++use File::Spec;
++use File::Temp qw(tempdir tempfile);
++use Fcntl qw(:flock);
++use Getopt::Long qw(GetOptions);
++use JSON::PP;
++
++my ($mode, $cpu, $generator, $exports, $definition, $assembly, $offsets, $header);
++my @inputs;
++GetOptions ('mode=s' => \$mode, 'cpu=s' => \$cpu, 'generator=s' => \$generator,
++            'exports=s' => \$exports, 'definition=s' => \$definition,
++            'assembly=s' => \$assembly, 'offsets=s' => \$offsets,
++            'header=s' => \$header, 'input=s@' => \@inputs)
++  or die "Invalid runtime-generation options\n";
++die "Expected --mode tls or signals\n" unless defined $mode && $mode =~ /^(tls|signals)$/;
++die "Unsupported runtime-generation CPU\n" unless defined $cpu && $cpu =~ /^(aarch64|x86_64)$/;
++die "Missing generator or offsets\n" unless defined $generator && defined $offsets;
++$generator = abs_path ($generator) // die "Generator does not exist\n";
++$offsets = File::Spec->rel2abs ($offsets);
++my $directory = dirname ($offsets);
++die "Output directory does not exist\n" unless -d $directory;
++open my $lock, '>>', "$directory/.runtime-generation.lock" or die "Open generation lock: $!\n";
++flock ($lock, LOCK_EX) or die "Lock runtime generation: $!\n";
++my $json = JSON::PP->new->canonical->pretty;
++
++sub read_file {
++  my ($path) = @_;
++  open my $file, '<:raw', $path or die "Read $path: $!\n";
++  local $/;
++  my $data = <$file>;
++  close $file or die "Close $path: $!\n";
++  return $data // '';
++}
++
++sub file_hash { return sha256_hex (read_file ($_[0])); }
++
++sub validate_tls {
++  my ($path) = @_;
++  my %values;
++  for my $line (split /\n/, read_file ($path)) {
++    $line =~ s/#.*//;
++    next if $line =~ /^\s*$/;
++    my ($name, $value) = $line =~ /^\s*\.equ\s+(_cygtls\.[A-Za-z_]\w*)\s*,\s*(-?\d+)\s*$/;
++    die "Malformed TLS offset: $line\n" unless defined $name;
++    die "Duplicate TLS offset $name\n" if exists $values{$name};
++    $values{$name} = 0 + $value;
++  }
++  for my $field (qw(start_offset initialized stacklock stackptr stack incyg current_sig saved_errno errno_addr context)) {
++    die "Missing TLS signal field $field\n" unless exists $values{"_cygtls.$field"};
++  }
++  my $start = $values{'_cygtls.start_offset'};
++  die "Invalid TLS start offset\n" if $start >= 0 || $start % 16;
++  for my $name (keys %values) {
++    next if $name eq '_cygtls.start_offset';
++    if ($name =~ /_p$/) {
++      (my $base = $name) =~ s/_p$//;
++      die "Unpaired TLS offset $name\n" unless exists $values{$base};
++      next;
++    }
++    die "Inconsistent TLS pair $name\n"
++      unless $values{$name} >= $start && $values{$name} < 0
++        && exists $values{"${name}_p"} && $values{"${name}_p"} == $values{$name} - $start;
++  }
++  my %alignment = (initialized => 4, stacklock => 4, incyg => 4, current_sig => 4,
++                   saved_errno => 4, stackptr => 8, stack => 8, errno_addr => 8, context => 16);
++  for my $field (keys %alignment) {
++    die "Misaligned TLS field $field\n" if $values{"_cygtls.$field"} % $alignment{$field};
++  }
++  my $size = $values{'_cygtls.initialized'} - $values{'_cygtls.stack'};
++  die "Invalid TLS signal stack\n"
++    unless $values{'_cygtls.stackptr'} + 8 == $values{'_cygtls.stack'} && $size >= 16 && $size % 8 == 0;
++}
++
++sub export_names {
++  my ($path, $conditional) = @_;
++  my (%names, @enabled);
++  @enabled = (1);
++  my $started = 0;
++  for my $line (split /\n/, read_file ($path)) {
++    $line =~ s/^\s+|\s+$//g;
++    if ($conditional) {
++      if ($line =~ /^#(ifdef|ifndef)\s+(__aarch64__|__x86_64__)$/) {
++        my $matches = $2 eq ($cpu eq 'aarch64' ? '__aarch64__' : '__x86_64__');
++        push @enabled, $enabled[-1] && ($1 eq 'ifdef' ? $matches : !$matches);
++        next;
++      }
++      if ($line eq '#endif') {
++        die "Unmatched export #endif\n" if @enabled == 1;
++        pop @enabled;
++        next;
++      }
++      die "Unsupported source-export conditional $line\n" if $line =~ /^#\s*(if|ifdef|ifndef|else|elif|endif)\b/;
++    }
++    next unless $enabled[-1];
++    $line =~ s/#.*//;
++    $line =~ s/^\s+|\s+$//g;
++    next unless length $line;
++    if (!$started) {
++      $started = 1 if lc ($line) eq 'exports';
++      next;
++    }
++    my ($name) = split /[\s=]/, $line;
++    die "Malformed export $name\n" unless $name =~ /^[A-Za-z_.\$\?\@][\w.\$\?\@]*$/;
++    die "Duplicate export $name\n" if $names{$name}++;
++  }
++  die "Missing or unterminated export list\n" unless $started && %names && @enabled == 1;
++  return join "\n", sort keys %names;
++}
++
++sub validate_signals {
++  my ($def, $asm) = @_;
++  die "Generated export list differs from source\n" unless export_names ($exports, 1) eq export_names ($def, 0);
++  my $text = read_file ($asm);
++  die "Signal generator produced empty assembly\n" unless length $text;
++  my (%labels, %public, %required);
++  while ($text =~ /^([A-Za-z_.\$][\w.\$]*):/mg) {
++    die "Duplicate assembly label $1\n" if $labels{$1}++;
++  }
++  while ($text =~ /^\s*\.(?:global|globl)\s+([A-Za-z_.\$][\w.\$]*)\s*$/mg) {
++    $public{$1} = 1;
++  }
++  my $definition_text = read_file ($def);
++  while ($definition_text =~ /=\s*(_sigfe\w+)\s*$/mg) { $required{$1} = 1; }
++  die "No generated signal exports\n" unless %required;
++  my @core = qw(_sigfe _sigfe_maybe _sigbe sigdelayed _sigdelayed_end sigsetjmp siglongjmp setjmp longjmp stabilize_sig_stack);
++  for my $name (keys %required, @core) {
++    die "Missing assembly provider $name\n" unless $labels{$name};
++  }
++  for my $name (keys %required, qw(_sigbe sigdelayed _sigdelayed_end sigsetjmp siglongjmp setjmp longjmp)) {
++    die "Assembly provider is not public: $name\n" unless $public{$name};
++  }
++}
++
++my @outputs;
++my $receipt;
++my %configuration = (mode => $mode, cpu => $cpu, generator => $generator);
++if ($mode eq 'tls') {
++  die "Missing TLS header or compiler setting\n" unless defined $header && length ($ENV{CXXCOMPILE} // '');
++  $header = abs_path ($header) // die "TLS header does not exist\n";
++  $configuration{compiler} = $ENV{CXXCOMPILE};
++  @outputs = ($offsets);
++  $receipt = "$offsets.generation.json";
++  push @inputs, $header;
++} else {
++  die "Missing signal generation paths\n" unless defined $exports && defined $definition && defined $assembly;
++  $exports = abs_path ($exports) // die "Export source does not exist\n";
++  $definition = File::Spec->rel2abs ($definition);
++  $assembly = File::Spec->rel2abs ($assembly);
++  die "Signal outputs must share the TLS directory\n"
++    unless dirname ($definition) eq $directory && dirname ($assembly) eq $directory;
++  validate_tls ($offsets);
++  @outputs = ($assembly, $definition);
++  $receipt = "$assembly.generation.json";
++  push @inputs, $exports, $offsets;
++}
++push @inputs, $generator, abs_path ($0);
++my %input_hashes = map {
++  my $path = abs_path ($_) // die "Generation prerequisite does not exist: $_\n";
++  ($path => file_hash ($path))
++} @inputs;
++my $signature = {configuration => \%configuration, files => \%input_hashes};
++if (-f $receipt) {
++  my $previous = $json->decode (read_file ($receipt));
++  die "Unsupported runtime-generation receipt\n" unless $previous->{schema} == 1;
++  if ($json->encode ($previous->{inputs}) eq $json->encode ($signature)) {
++    for my $path (@outputs) {
++      die "Generated artifact changed or missing: $path; regenerate explicitly after removing its receipt\n"
++        unless -f $path && exists $previous->{outputs}{$path} && file_hash ($path) eq $previous->{outputs}{$path};
++    }
++    $mode eq 'tls' ? validate_tls ($offsets) : validate_signals ($definition, $assembly);
++    exit 0;
++  }
++}
++
++my $temporary = tempdir ('.runtime-generation-XXXXXX', DIR => $directory, CLEANUP => 1);
++my @staged = map { "$temporary/" . basename ($_) } @outputs;
++my @command = $mode eq 'tls'
++  ? ('bash', $generator, $header, $staged[0])
++  : ($^X, $generator, "--cpu=$cpu", "--output-def=$staged[1]", $exports);
++my $child = fork ();
++die "Fork generation failed: $!\n" unless defined $child;
++if ($child == 0) {
++  if ($mode eq 'signals') {
++    chdir $temporary or die "Enter private generation directory: $!\n";
++  }
++  exec @command or die "Execute generator: $!\n";
++}
++waitpid ($child, 0) == $child or die "Wait for generator: $!\n";
++die "Runtime generator failed (status $?)\n" if $?;
++$mode eq 'tls' ? validate_tls ($staged[0]) : validate_signals ($staged[1], $staged[0]);
++for my $path (keys %input_hashes) {
++  die "Generation input changed: $path\n" unless file_hash ($path) eq $input_hashes{$path};
++}
++my %hashes;
++for my $i (0 .. $#outputs) {
++  $hashes{$outputs[$i]} = file_hash ($staged[$i]);
++  # Keep timestamps stable when a legitimate dependency touch changed no bytes.
++  next if -f $outputs[$i] && file_hash ($outputs[$i]) eq $hashes{$outputs[$i]};
++  rename $staged[$i], $outputs[$i] or die "Publish $outputs[$i]: $!\n";
++}
++my ($record, $record_path) = tempfile ('.runtime-receipt-XXXXXX', DIR => $directory, UNLINK => 1);
++print {$record} $json->encode ({schema => 1, inputs => $signature, outputs => \%hashes})
++  or die "Write generation receipt: $!\n";
++close $record or die "Close generation receipt: $!\n";
++rename $record_path, $receipt or die "Publish generation receipt: $!\n";
+--- /dev/null
++++ b/winsup/testsuite/build/runtime-generation-make.py
+@@ -0,0 +1,169 @@
++#!/usr/bin/env python3
++"""Fault-inject the actual configured cygwin make targets in a disposable copy."""
++import argparse
++import hashlib
++import json
++import os
++from pathlib import Path
++import shlex
++import struct
++import subprocess
++
++
++def sha(path):
++    return hashlib.sha256(path.read_bytes()).hexdigest()
++
++
++def main():
++    parser = argparse.ArgumentParser(description=__doc__)
++    parser.add_argument("--root", type=Path, required=True,
++                        help="Owned copy containing source, prefix and configured build/winsup/cygwin")
++    parser.add_argument("--output", type=Path, required=True)
++    parser.add_argument("--stale-generator", type=Path, required=True)
++    parser.add_argument("--stale-tls-generator", type=Path)
++    args = parser.parse_args()
++    root = args.root.resolve(strict=True)
++    build = root / "build/winsup/cygwin"
++    source = root / "source/winsup/cygwin"
++    guard = source / "scripts/guard-runtime-generation"
++    if not guard.is_file() or str(root) not in (build / "Makefile").read_text():
++        raise ValueError("Use the newly configured owned proposal, never a preserved producer tree")
++    args.output.mkdir(parents=True, exist_ok=False)
++    out = args.output.resolve()
++    if not out.is_relative_to(root):
++        raise ValueError("Evidence and injected fixtures must stay within the owned proposal")
++    fixtures = out / "fixtures"
++    fixtures.mkdir()
++    env = dict(os.environ, PATH=str(root / "prefix/bin") + ":/usr/bin:/bin", SOURCE_DATE_EPOCH="1788224411")
++    names = ("tlsoffsets", "msys.def", "sigfe.s", "sigfe.o",
++             "tlsoffsets.generation.json", "sigfe.s.generation.json")
++    report = {"schema": 1, "status": "failed", "makefile_sha256": sha(build / "Makefile"),
++              "source_makefile_sha256": sha(source / "Makefile.am"), "guard_sha256": sha(guard),
++              "stale_generator_sha256": sha(args.stale_generator), "cases": []}
++
++    def inventory():
++        return {name: sha(build / name) if (build / name).exists() else None for name in names}
++
++    def make(name, expect_success, *options, preserve=None, target="sigfe.o"):
++        command = ["make", "-C", str(build), "-j1", "V=1", target, *options]
++        stdout, stderr = out / (name + ".stdout"), out / (name + ".stderr")
++        with stdout.open("xb") as a, stderr.open("xb") as b:
++            result = subprocess.run(command, env=env, stdout=a, stderr=b, timeout=90)
++        after = inventory()
++        report["cases"].append({"name": name, "command": command, "exit": result.returncode,
++                                "expectedSuccess": expect_success, "outputs": after,
++                                "stdout_sha256": sha(stdout), "stderr_sha256": sha(stderr)})
++        if (result.returncode == 0) != expect_success:
++            raise ValueError(f"Unexpected actual make result: {name}: {stderr.read_text()[-2000:]}")
++        if not expect_success and not stderr.stat().st_size:
++            raise ValueError(f"Failure was not diagnosed: {name}")
++        if preserve is not None and after != preserve:
++            raise ValueError(f"Failed generation changed existing artifacts: {name}")
++
++    def signal_fixture(name, action):
++        path = fixtures / name
++        path.write_text(
++            "#!/usr/bin/env perl\nuse strict; use warnings;\n"
++            "use Getopt::Long; my ($cpu, $out); my @original = @ARGV;\n"
++            "GetOptions('cpu=s'=>\\$cpu,'output-def=s'=>\\$out) or die;\n"
++            f"system($^X, {json.dumps(str(source / 'scripts/gendef'))}, @original) == 0 or die;\n"
++            + action + "\n", encoding="utf-8", newline="\n")
++        return "SIGNAL_GENERATOR=" + str(path)
++
++    try:
++        # Recompile the copied object with this configured build's own flags,
++        # so the later clean-regeneration comparison has the same debug paths.
++        if (build / "sigfe.o").exists():
++            (out / "copied-sigfe.o").write_bytes((build / "sigfe.o").read_bytes())
++            (build / "sigfe.o").unlink()
++        make("initial-valid-generation", True)
++        good = inventory()
++        raw = (build / "sigfe.o").read_bytes()
++        if struct.unpack_from("<H", raw)[0] != 0xaa64:
++            raise ValueError("Successful actual make did not produce ARM64 COFF")
++        times = {name: (build / name).stat().st_mtime_ns for name in names}
++        make("unchanged-repeat", True, preserve=good)
++        if {name: (build / name).stat().st_mtime_ns for name in names} != times:
++            raise ValueError("Unchanged make rewrote/reassembled valid generated artifacts")
++        saved = {name: (build / name).read_bytes() for name in names}
++
++        make("real-stale-x86-generator", False,
++             "SIGNAL_GENERATOR=" + str(args.stale_generator.resolve()), preserve=good)
++        make("empty-assembly-after-zero-exit", False,
++             signal_fixture("empty-signal", "open my $f, '>', 'sigfe.s' or die; close $f or die;"), preserve=good)
++        make("generator-fails-after-writing", False,
++             signal_fixture("failed-signal", "die \"injected late generator failure\\n\";"), preserve=good)
++        make("missing-trampoline-label", False, signal_fixture("missing-label",
++             "local $/; open my $f, '<', 'sigfe.s' or die; my $s=<$f>; close $f;\n"
++             "$s =~ s/^_sigfe_malloc:/_removed_malloc:/m or die;\n"
++             "open $f, '>', 'sigfe.s' or die; print $f $s; close $f or die;"), preserve=good)
++        make("dropped-source-export-from-both", False, signal_fixture("dropped-export",
++             "local $/; open my $f, '<', $out or die; my $s=<$f>; close $f;\n"
++             "$s =~ s/^malloc\\s*=.*\\n//m or die;\n"
++             "open $f, '>', $out or die; print $f $s; close $f or die;\n"
++             "open $f, '<', 'sigfe.s' or die; $s=<$f>; close $f;\n"
++             "$s =~ s/^_sigfe_malloc:/_removed_malloc:/m or die;\n"
++             "open $f, '>', 'sigfe.s' or die; print $f $s; close $f or die;"), preserve=good)
++
++        for name, data in (("zero-offsets", ".equ _cygtls.start_offset, 0\n"),
++                           ("malformed-offsets", "not a TLS offset\n")):
++            generator = fixtures / name
++            generator.write_text("#!/usr/bin/env bash\nset -eu\nprintf '%s' "
++                                 + "'" + data.replace("'", "'\\''") + "' > \"$2\"\n",
++                                 encoding="utf-8", newline="\n")
++            make(name, False, "GENTLS_OFFSETS=" + str(generator), preserve=good)
++        make("compiler-failure", False, "CXXCOMPILE=false", preserve=good, target="tlsoffsets")
++        if args.stale_tls_generator:
++            make("real-long-only-tls-generator", False,
++                 "GENTLS_OFFSETS=" + str(args.stale_tls_generator.resolve()), preserve=good)
++            # The old script only accepts a basename (it constructs /tmp/$2.$$).
++            # Adapt the output pathname, not its parser, to reproduce .word loss.
++            adapter = fixtures / "historical-tls-basename"
++            captured = fixtures / "historical-tls-output"
++            adapter.write_text(
++                "#!/usr/bin/env bash\nset -u\n"
++                "saved=.historical-tls-$$\ntrap 'rm -f -- \"$saved\"' EXIT\nstatus=0\n"
++                f"bash {shlex.quote(str(args.stale_tls_generator.resolve()))} \"$1\" \"$saved\" || status=$?\n"
++                "if [[ -f $saved ]]; then\n"
++                f"  cp -- \"$saved\" {shlex.quote(str(captured))}\n"
++                "  mv -- \"$saved\" \"$2\"\nfi\nexit \"$status\"\n",
++                encoding="utf-8", newline="\n")
++            make("real-long-only-parser-with-relative-output", False,
++                 "GENTLS_OFFSETS=" + str(adapter), preserve=good)
++            if not captured.is_file():
++                raise ValueError("Historical parser did not produce its invalid offset payload")
++            report["historical_tls_payload"] = {
++                "path": str(captured), "bytes": captured.stat().st_size, "sha256": sha(captured),
++                "text": captured.read_text(),
++                "scope": "Unmodified old parser; wrapper only adapts its basename-only output convention."}
++
++        for name in ("sigfe.s", "tlsoffsets", "msys.def"):
++            path = build / name
++            try:
++                path.write_bytes(b"")
++                os.utime(path, ns=(path.stat().st_atime_ns, times[name] + 10_000_000_000))
++                corrupt = inventory()
++                make("reject-newer-corrupt-" + name.replace(".", "-"), False, preserve=corrupt)
++            finally:
++                path.write_bytes(saved[name])
++                os.utime(path, ns=(path.stat().st_atime_ns, times[name]))
++
++        # Drop all generated outputs/receipts only in this disposable copy;
++        # normal make must regenerate both stages with the real compiler.
++        for name in names:
++            (build / name).unlink()
++        make("clean-regeneration", True)
++        regenerated = inventory()
++        for name in ("tlsoffsets", "msys.def", "sigfe.s", "sigfe.o"):
++            if regenerated[name] != good[name]:
++                raise ValueError(f"Clean regeneration changes qualified bytes: {name}")
++        report.update(status="actual-runtime-make-generation-guards-qualified",
++                      casesPassed=len(report["cases"]), generated=regenerated,
++                      limits="Host generation/actual make and ARM64 assembly only; no DLL rebuild or changed runtime ABI.")
++    finally:
++        (out / "result.json").write_text(json.dumps(report, indent=2) + "\n", encoding="utf-8", newline="\n")
++    print(out / "result.json")
++
++
++if __name__ == "__main__":
++    main()

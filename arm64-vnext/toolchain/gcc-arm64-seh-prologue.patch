@@ -1,0 +1,223 @@
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+index 1599c19..cfe33ad 100644
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -40,6 +40,7 @@ along with GCC; see the file COPYING3.  If not see
+ #include "output.h"
+ #include "varasm.h"
+ #include "lto-section-names.h"
++#include "insn-attr.h"
+ 
+ /* i386/PE specific attribute support.
+ 
+@@ -1079,7 +1080,7 @@ seh_emit_save (FILE *f, struct seh_frame_state *seh,
+ 
+ /* Emit an assembler directive to adjust RSP by OFFSET.  */
+ 
+-static void
++static bool
+ seh_emit_stackalloc (FILE *f, struct seh_frame_state *seh,
+ 		     HOST_WIDE_INT offset)
+ {
+@@ -1099,7 +1100,11 @@ seh_emit_stackalloc (FILE *f, struct seh_frame_state *seh,
+   /* Do not output the stackalloc in that case (it won't work as there is no
+      encoding for very large frame size).  */
+   if (offset < SEH_MAX_FRAME_SIZE)
+-    fprintf (f, "\t.seh_stackalloc\t" HOST_WIDE_INT_PRINT_DEC "\n", offset);
++    {
++      fprintf (f, "\t.seh_stackalloc\t" HOST_WIDE_INT_PRINT_DEC "\n", offset);
++      return true;
++    }
++  return false;
+ }
+ 
+ /* Process REG_CFA_ADJUST_CFA for SEH.  */
+@@ -1397,9 +1402,10 @@ seh_parallel_offset (rtx pat, HOST_WIDE_INT wanted_regnum)
+   return result;
+ }
+ 
+-static void
++static bool
+ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ {
++  bool emitted = false;
+ #if defined (TARGET_AARCH64_MS_ABI)
+ 
+    rtx dest, src;
+@@ -1423,7 +1429,8 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 
+ 	  if (GET_CODE (dest) == REG
+ 	      && GET_CODE (src) == PLUS
+-	      && XEXP (src, 0) == stack_pointer_rtx)
++	      && XEXP (src, 0) == stack_pointer_rtx
++	      && CONST_INT_P (XEXP (src, 1)))
+ 	  {
+ 	    increment = INTVAL (XEXP (src, 1));
+ 	  }
+@@ -1466,14 +1473,14 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 	    increment != 0 ? "regp_x" : "regp",
+ 	    min_regno,
+ 	    offset);
++	emitted = true;
+       }
+     }
+   else
+     {
+-      src = SET_SRC (pat);
+-
+       if (GET_CODE (pat) == SET)
+       {
++	src = SET_SRC (pat);
+ 	HOST_WIDE_INT increment = 0;
+ 	dest = SET_DEST (pat);
+ 	static HOST_WIDE_INT stack_alloc = 0;
+@@ -1486,17 +1493,17 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 	      case REG:
+ 		if (dest == hard_frame_pointer_rtx
+ 		    && src == stack_pointer_rtx)
+-		  fputs ("\t.seh_set_fp\n", f);
+-		else if (CALLEE_SAVED_REG_NUMBER (REGNO (dest))
+-			 && src == stack_pointer_rtx)
+-		  seh_emit_save (f, seh, dest, INTVAL (XEXP (src, 1)));
++		  {
++		    fputs ("\t.seh_set_fp\n", f);
++		    emitted = true;
++		  }
+ 		break;
+ 
+ 	      case PLUS:
+-		increment = INTVAL (XEXP (src, 1));
+-		src = XEXP (src, 0);
+-		if (dest == stack_pointer_rtx)
+-		  seh_emit_stackalloc (f, seh, increment);
++		if (dest == stack_pointer_rtx
++		    && CONST_INT_P (XEXP (src, 1)))
++		  emitted = seh_emit_stackalloc (f, seh,
++						 INTVAL (XEXP (src, 1)));
+ 		break;
+ 
+ 	      case MINUS:
+@@ -1505,8 +1512,8 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 		extend = SET_SRC (pat);
+ 		extend = XEXP (extend, 1);
+ 		if (dest == stack_pointer_rtx && src == stack_pointer_rtx
+-		    && REGNO(extend) == R12_REGNUM) 
+-		  seh_emit_stackalloc (f, seh, stack_alloc);
++		    && REG_P (extend) && REGNO (extend) == R12_REGNUM)
++		  emitted = seh_emit_stackalloc (f, seh, stack_alloc);
+    	      break;
+ 
+ 	      case CONST_INT:
+@@ -1521,7 +1528,10 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 		    && GET_CODE (XEXP (src, 0)) == REG
+ 		    && CALLEE_SAVED_REG_NUMBER (REGNO (dest))
+ 		    && XEXP (src, 0) == stack_pointer_rtx)
+-		  seh_emit_save (f, seh, dest, INTVAL (XEXP (src, 1)));
++		  {
++		    seh_emit_save (f, seh, dest, INTVAL (XEXP (src, 1)));
++		    emitted = true;
++		  }
+ 		break;
+ 
+ 	      default:
+@@ -1532,13 +1542,21 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 	  case MEM: // Save
+ 	    dest = XEXP (dest, 0);
+ 	    if (GET_CODE (dest) == PRE_DEC
++		&& REG_P (src)
+ 		&& CALLEE_SAVED_REG_NUMBER (REGNO (src))
+ 		&& XEXP (dest, 0) == stack_pointer_rtx)
+-	      seh_emit_save (f, seh, src, INTVAL (XEXP (dest, 1)));
++	      {
++		seh_emit_save (f, seh, src, INTVAL (XEXP (dest, 1)));
++		emitted = true;
++	      }
+ 	    else if (GET_CODE (dest) == PLUS
++		     && REG_P (src)
+ 		     && CALLEE_SAVED_REG_NUMBER (REGNO (src))
+ 		     && XEXP (dest, 0) == stack_pointer_rtx)
+-	      seh_emit_save (f, seh, src, INTVAL (XEXP (dest, 1)));
++	      {
++		seh_emit_save (f, seh, src, INTVAL (XEXP (dest, 1)));
++		emitted = true;
++	      }
+ 	    break;
+ 
+ 	  default:
+@@ -1551,6 +1569,7 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+     }
+ 
+ #endif
++  return emitted;
+ }
+ 
+ /* This function looks at a single insn and emits any SEH directives
+@@ -1565,7 +1584,7 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+   if (!TARGET_SEH)
+     return;
+ 
+-  if (NOTE_P (insn))
++  if (!INSN_P (insn))
+     return;
+ 
+   seh = cfun->machine->seh;
+@@ -1573,6 +1592,11 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+   if (!seh || seh->after_prologue)
+     return;
+ 
++  unsigned int length = get_attr_length (insn);
++  if (length == 0)
++    return;
++  gcc_assert (length % 4 == 0);
++
+   pat = PATTERN (insn);
+ 
+   if (GET_CODE (pat) == SET)
+@@ -1583,6 +1607,7 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+     }
+ 
+   bool related_exp_needed = true;
++  bool emitted = false;
+ 
+   for (note = REG_NOTES (insn); note ; note = XEXP (note, 1))
+     {
+@@ -1590,7 +1615,7 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+ 	{
+ 	case REG_FRAME_RELATED_EXPR:
+ 	  pat = XEXP (note, 0);
+-	  seh_pattern_emit (out_file, seh, pat);
++	  emitted |= seh_pattern_emit (out_file, seh, pat);
+ 	  related_exp_needed = false;
+ 	  break;
+ 
+@@ -1605,11 +1630,28 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+ 	}
+     }
+ 
+-  if (related_exp_needed)
++  if (related_exp_needed || !emitted)
+     {
+       pat = PATTERN (insn);
+-      seh_pattern_emit (out_file, seh, pat);
++      emitted |= seh_pattern_emit (out_file, seh, pat);
++    }
++
++  if (!emitted)
++    {
++      /* ARM64 unwind codes count instructions, including volatile stack
++	 probes and argument homing.  Unknown frame effects are not nops.  */
++      if (RTX_FRAME_RELATED_P (insn))
++	{
++	  error_at (INSN_LOCATION (insn),
++		    "unsupported ARM64 SEH frame instruction");
++	  return;
++	}
++      for (unsigned int i = 0; i < length; i += 4)
++	fputs ("\t.seh_nop\n", out_file);
+     }
++  else if (length != 4)
++    error_at (INSN_LOCATION (insn),
++	      "multiple instructions require explicit ARM64 SEH frame descriptions");
+ }
+ 
+ void

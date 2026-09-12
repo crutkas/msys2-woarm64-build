@@ -1,0 +1,42 @@
+diff --git a/libgcc/config/aarch64/sync-cache.c b/libgcc/config/aarch64/sync-cache.c
+--- a/libgcc/config/aarch64/sync-cache.c
++++ b/libgcc/config/aarch64/sync-cache.c
+@@ -23,6 +23,11 @@
+ see the files COPYING3 and COPYING.RUNTIME respectively.  If not, see
+ <http://www.gnu.org/licenses/>.  */
+ 
++#if defined (_WIN32) || defined (__CYGWIN__)
++#define WIN32_LEAN_AND_MEAN
++#include <windows.h>
++#endif
++
+ #define CTR_IDC_SHIFT           28
+ #define CTR_DIC_SHIFT           29
+ 
+@@ -31,6 +36,20 @@ void __aarch64_sync_cache_range (const void *, const void *);
+ void
+ __aarch64_sync_cache_range (const void *base, const void *end)
+ {
++#if defined (_WIN32) || defined (__CYGWIN__)
++  __UINTPTR_TYPE__ first = (__UINTPTR_TYPE__) base;
++  __UINTPTR_TYPE__ last = (__UINTPTR_TYPE__) end;
++
++  if (first == last)
++    return;
++
++  /* Windows owns cache maintenance; EL0 cache registers/instructions are
++     not a supported user-mode interface.  END is an exclusive byte bound.  */
++  if (last < first
++      || !FlushInstructionCache (GetCurrentProcess (), base,
++				 (SIZE_T) (last - first)))
++    __builtin_abort ();
++#else
+   unsigned icache_lsize;
+   unsigned dcache_lsize;
+   static unsigned int cache_info = 0;
+@@ -86,4 +105,5 @@ __aarch64_sync_cache_range (const void *base, const void *end)
+   }
+ 
+   asm volatile("isb" : : : "memory");
++#endif
+ }

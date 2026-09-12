@@ -9,6 +9,7 @@ case $FLAVOR in
     pacman -S --noconfirm \
       git \
       base-devel \
+      texinfo \
       $DEPENDENCIES
     ;;
   "NATIVE_WITH_CROSS")

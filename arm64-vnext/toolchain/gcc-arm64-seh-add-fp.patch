@@ -1,0 +1,22 @@
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -1502,6 +1502,18 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 		    && CONST_INT_P (XEXP (src, 1)))
+ 		  emitted = seh_emit_stackalloc (f, seh,
+ 						 INTVAL (XEXP (src, 1)));
++		else if (dest == hard_frame_pointer_rtx
++			 && XEXP (src, 0) == stack_pointer_rtx
++			 && CONST_INT_P (XEXP (src, 1)))
++		  {
++		    increment = INTVAL (XEXP (src, 1));
++		    if (IN_RANGE (increment, 0, 2040) && increment % 8 == 0)
++		      {
++			fprintf (f, "\t.seh_add_fp\t"
++				 HOST_WIDE_INT_PRINT_DEC "\n", increment);
++			emitted = true;
++		      }
++		  }
+ 		break;
+ 
+ 	      case MINUS:

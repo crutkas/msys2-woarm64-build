@@ -1,0 +1,55 @@
+diff --git a/gcc/config/aarch64/aarch64.cc b/gcc/config/aarch64/aarch64.cc
+--- a/gcc/config/aarch64/aarch64.cc
++++ b/gcc/config/aarch64/aarch64.cc
+@@ -10059,8 +10059,12 @@ aarch64_expand_prologue (void)
+ 			     emit_frame_chain);
+ 
+   if (defer_frame_pointer)
+-    establish_frame_pointer (frame_size - bytes_below_sp
+-			     - frame.bytes_above_hard_fp);
++    {
++      /* Do not let scheduling hoist FP setup above a saved-register store.  */
++      emit_insn (gen_blockage ());
++      establish_frame_pointer (frame_size - bytes_below_sp
++			       - frame.bytes_above_hard_fp);
++    }
+ 
+   /* We may need to probe the final adjustment if it is larger than the guard
+      that is assumed by the called.  */
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -41,6 +41,7 @@
+ #include "varasm.h"
+ #include "lto-section-names.h"
+ #include "insn-attr.h"
++#include "insn-constants.h"
+ 
+ /* i386/PE specific attribute support.
+ 
+@@ -1374,13 +1375,24 @@ seh_parallel_offset (rtx pat, HOST_WIDE_INT wanted_regnum)
+ 	  dest = SET_DEST (ele);
+ 	  src = SET_SRC (ele);
+ 
++	  HOST_WIDE_INT element_offset = 0;
++#if defined (TARGET_AARCH64_MS_ABI)
++	  if (GET_CODE (src) == UNSPEC
++	      && (XINT (src, 1) == UNSPEC_LDP_FST
++		  || XINT (src, 1) == UNSPEC_LDP_SND))
++	    {
++	      if (XINT (src, 1) == UNSPEC_LDP_SND)
++		element_offset = UNITS_PER_WORD;
++	      src = XVECEXP (src, 0, 0);
++	    }
++#endif
+ 	  if (GET_CODE (dest) == REG
+ 	      && REGNO (dest) == wanted_regnum
+ 	      && GET_CODE (src) == MEM
+ 	      && GET_CODE (XEXP (src, 0)) == PLUS
+ 	      && XEXP (XEXP (src, 0), 0) == stack_pointer_rtx)
+ 	  {
+-	    result = INTVAL (XEXP (XEXP (src, 0), 1));
++	    result = INTVAL (XEXP (XEXP (src, 0), 1)) + element_offset;
+ 	  }
+ 
+ 	  if (GET_CODE (src) == REG

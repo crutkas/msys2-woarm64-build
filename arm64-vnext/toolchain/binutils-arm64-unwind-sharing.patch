@@ -1,0 +1,167 @@
+diff --git a/gas/config/obj-coff-seh.c b/gas/config/obj-coff-seh.c
+index f9af23b..3663350 100644
+--- a/gas/config/obj-coff-seh.c
++++ b/gas/config/obj-coff-seh.c
+@@ -523,7 +523,7 @@ seh_arm64_add_unwind_element (seh_arm64_unwind_types unwind_type, int offset,
+   if (ctx->unwind_codes_byte_count + unwind_code_pack_info->size
+       > ARM64_MAX_UNWIND_CODES)
+     {
+-      as_bad (_("ARM64 unwind codes exceed the 1020-byte format limit"));
++      as_bad (_("ARM64 unwind storage limit exceeded"));
+       return;
+     }
+   if (ctx->unwind_codes_count == ctx->unwind_codes_allocated)
+@@ -1255,12 +1255,14 @@ seh_arm64_emit_epilog_scopes (uint64_t fragment_offset,
+ 			      uint32_t prolog_size,
+ 			      unsigned int first_fragment_scope,
+ 			      unsigned int last_fragment_scope,
+-			      bool has_phantom_prolog)
++			      bool has_phantom_prolog,
++			      bool shared_codes)
+ {
+   int32_t start_index_offset = 0;
+   const
+   seh_arm64_epilogue_scope* scopes = seh_ctx_cur->arm64_ctx.epilogue_scopes;
+-  if (first_fragment_scope < seh_ctx_cur->arm64_ctx.epilogue_scopes_count)
++  if (!shared_codes
++      && first_fragment_scope < seh_ctx_cur->arm64_ctx.epilogue_scopes_count)
+     start_index_offset = scopes[first_fragment_scope].epilogue_start_index
+ 			 - prolog_size;
+   if (has_phantom_prolog)
+@@ -1271,8 +1273,14 @@ seh_arm64_emit_epilog_scopes (uint64_t fragment_offset,
+     scope.epilogue_start_offset_reduced = (scope.epilogue_start_offset
+ 					  - fragment_offset) >> 2;
+     scope.epilogue_start_index -= start_index_offset;
+-    uint32_t scope_code;
+-    memcpy (&scope_code, &scope, sizeof (scope_code));
++    if (scope.epilogue_start_index > 1023
++	|| scope.epilogue_start_offset_reduced > 0x3ffff)
++      {
++	as_bad (_("ARM64 epilogue scope is out of range"));
++	return;
++      }
++    uint32_t scope_code = (scope.epilogue_start_offset_reduced
++			  | (scope.epilogue_start_index << 22));
+     out_four (scope_code);
+   }
+ }
+@@ -1415,6 +1423,65 @@ seh_x64_write_function_xdata (seh_context *c)
+ }
+ 
+ /* Write out the xdata information for one function (arm64).  */
++/* Windows scopes can share a suffix of the prologue or an earlier epilogue.
++   Keep source indices wide while collecting, then compact before encoding.  */
++static void
++seh_arm64_share_epilog_codes (seh_arm64_context *ctx, unsigned int prolog_count,
++			     unsigned int prolog_bytes)
++{
++  seh_arm64_unwind_code *original = ctx->unwind_codes;
++  seh_arm64_unwind_code *compact
++    = XNEWVEC (seh_arm64_unwind_code, ctx->unwind_codes_count);
++  memcpy (compact, original, prolog_count * sizeof (*compact));
++  unsigned int count = prolog_count;
++  unsigned int bytes = prolog_bytes;
++  unsigned int source_start = prolog_count;
++  unsigned int source_bytes = prolog_bytes;
++
++  for (unsigned int scope = 0; scope < ctx->epilogue_scopes_count; ++scope)
++    {
++      unsigned int source_end = source_start;
++      unsigned int end_bytes
++	= scope + 1 < ctx->epilogue_scopes_count
++	  ? ctx->epilogue_scopes[scope + 1].epilogue_start_index
++	  : ctx->unwind_codes_byte_count;
++      while (source_bytes < end_bytes && source_end < ctx->unwind_codes_count)
++	source_bytes += unwind_code_pack_infos[original[source_end++].type].size;
++      unsigned int length = source_end - source_start;
++      unsigned int offset = 0;
++      bool found = false;
++      for (unsigned int start = 0; start + length <= count; ++start)
++	{
++	  unsigned int match = 0;
++	  while (match < length
++		 && compact[start + match].type == original[source_start + match].type
++		 && compact[start + match].value == original[source_start + match].value)
++	    ++match;
++	  if (match == length)
++	    {
++	      found = true;
++	      break;
++	    }
++	  offset += unwind_code_pack_infos[compact[start].type].size;
++	}
++      if (!found)
++	{
++	  offset = bytes;
++	  memcpy (compact + count, original + source_start,
++		  length * sizeof (*compact));
++	  count += length;
++	  for (unsigned int i = source_start; i < source_end; ++i)
++	    bytes += unwind_code_pack_infos[original[i].type].size;
++	}
++      ctx->epilogue_scopes[scope].epilogue_start_index = offset;
++      source_start = source_end;
++    }
++  free (original);
++  ctx->unwind_codes = compact;
++  ctx->unwind_codes_count = count;
++  ctx->unwind_codes_byte_count = bytes;
++}
++
+ static void
+ seh_arm64_write_function_xdata (seh_context *c)
+ {
+@@ -1458,6 +1525,11 @@ seh_arm64_write_function_xdata (seh_context *c)
+   else
+     prolog_size = c->arm64_ctx.unwind_codes_byte_count;
+ 
++  bool shared_codes = !is_fragmented_function;
++  if (shared_codes)
++    seh_arm64_share_epilog_codes (&c->arm64_ctx, prolog_insruction_count,
++				 prolog_size);
++
+   while (true)
+   {
+     c->xdata_addr = symbol_temp_new_now ();
+@@ -1511,7 +1583,12 @@ seh_arm64_write_function_xdata (seh_context *c)
+ 
+     uint32_t first_epilog_index = 0;
+     uint32_t last_epilog_index = 0;
+-    if (!header->ext_epilogue_count)
++    if (shared_codes)
++    {
++      first_epilog_index = prolog_size;
++      last_epilog_index = c->arm64_ctx.unwind_codes_byte_count;
++    }
++    else if (!header->ext_epilogue_count)
+     {
+       first_epilog_index = prolog_size;
+       last_epilog_index = prolog_size;
+@@ -1574,7 +1651,7 @@ seh_arm64_write_function_xdata (seh_context *c)
+     {
+       seh_arm64_emit_epilog_scopes (fragment_offset, prolog_size,
+ 				    first_fragment_scope, last_fragment_scope,
+-				    has_phantom_prolog);
++				    has_phantom_prolog, shared_codes);
+       if (is_fragmented_function && is_last_frag)
+       {
+ 	uint32_t epilog_start_offset = frag_size - prolog_insruction_count * 4;
+diff --git a/gas/config/obj-coff-seh.h b/gas/config/obj-coff-seh.h
+index d09cf9e..cdedaf3 100644
+--- a/gas/config/obj-coff-seh.h
++++ b/gas/config/obj-coff-seh.h
+@@ -206,12 +206,12 @@ typedef struct seh_arm64_epilogue_scope
+ {
+   uint32_t epilogue_start_offset_reduced : 18;
+   uint32_t reserved : 4;
+-  uint32_t epilogue_start_index : 10;
++  uint32_t epilogue_start_index;
+   uintptr_t epilogue_start_offset;
+   uintptr_t epilogue_end_offset;
+ } seh_arm64_epilogue_scope;
+ 
+-#define ARM64_MAX_UNWIND_CODES 1020
++#define ARM64_MAX_UNWIND_CODES (1020 * 65535)
+ #define ARM64_MAX_EPILOGUE_SCOPES 65535
+ 
+ typedef struct seh_arm64_context

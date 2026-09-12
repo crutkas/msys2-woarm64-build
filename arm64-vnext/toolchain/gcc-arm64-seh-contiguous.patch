@@ -1,0 +1,15 @@
+diff --git a/gcc/config/aarch64/aarch64.cc b/gcc/config/aarch64/aarch64.cc
+--- a/gcc/config/aarch64/aarch64.cc
++++ b/gcc/config/aarch64/aarch64.cc
+@@ -18600,6 +18600,11 @@ aarch64_override_options_after_change_1 (struct gcc_options *opts)
+ #if defined (TARGET_AARCH64_MS_ABI)
+   if (opts->x_flag_unwind_tables == 0)
+     opts->x_flag_unwind_tables = 1;
++  /* The Windows SEH emitter describes a contiguous entry prologue, not
++     saves and restores shrink-wrapped around individual basic blocks.  */
++  opts->x_flag_shrink_wrap = 0;
++  opts->x_flag_shrink_wrap_separate = 0;
++
+ #endif // TARGET_AARCH64_MS_ABI
+ }
+ 

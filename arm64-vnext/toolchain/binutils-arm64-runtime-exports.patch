@@ -1,0 +1,45 @@
+diff --git a/ld/pe-dll.c b/ld/pe-dll.c
+--- a/ld/pe-dll.c
++++ b/ld/pe-dll.c
+@@ -213,12 +213,15 @@ static const autofilter_entry_type autofilter_symbollist_i386[] =
+   { STRING_COMMA_LEN ("_NULL_IMPORT_DESCRIPTOR") },
+   /* Entry point symbols, and entry hooks.  */
+   { STRING_COMMA_LEN ("cygwin_crt0") },
++  { STRING_COMMA_LEN ("msys_crt0") },
+ #ifdef pe_use_plus
+   { STRING_COMMA_LEN ("DllMain") },
+   { STRING_COMMA_LEN ("DllEntryPoint") },
+   { STRING_COMMA_LEN ("DllMainCRTStartup") },
+   { STRING_COMMA_LEN ("_cygwin_dll_entry") },
++  { STRING_COMMA_LEN ("_msys_dll_entry") },
+   { STRING_COMMA_LEN ("_cygwin_crt0_common") },
++  { STRING_COMMA_LEN ("_msys_crt0_common") },
+   { STRING_COMMA_LEN ("_cygwin_noncygwin_dll_entry") },
+ #else
+   { STRING_COMMA_LEN ("DllMain@12") },
+@@ -357,7 +360,7 @@ static pe_details_type pe_detail_list[] =
+     PE_ARCH_aarch64,
+     bfd_arch_aarch64,
+     false,
+-    autofilter_symbollist_generic
++    autofilter_symbollist_i386
+   },
+   {
+     "pei-aarch64-little",
+@@ -369,7 +372,7 @@ static pe_details_type pe_detail_list[] =
+     PE_ARCH_aarch64,
+     bfd_arch_aarch64,
+     false,
+-    autofilter_symbollist_generic
++    autofilter_symbollist_i386
+   },
+   { NULL, NULL, 0, 0, 0, 0, 0, 0, false, NULL }
+ };
+@@ -382,6 +385,7 @@ static const autofilter_entry_type autofilter_liblist[] =
+ {
+   { STRING_COMMA_LEN ("libcegcc") },
+   { STRING_COMMA_LEN ("libcygwin") },
++  { STRING_COMMA_LEN ("libmsys-2.0") },
+   { STRING_COMMA_LEN ("libgcc") },
+   { STRING_COMMA_LEN ("libgcc_s") },
+   { STRING_COMMA_LEN ("libstdc++") },

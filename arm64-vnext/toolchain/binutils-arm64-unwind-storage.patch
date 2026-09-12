@@ -1,0 +1,166 @@
+diff --git a/gas/config/obj-coff-seh.c b/gas/config/obj-coff-seh.c
+index abe578b..f9af23b 100644
+--- a/gas/config/obj-coff-seh.c
++++ b/gas/config/obj-coff-seh.c
+@@ -511,17 +511,33 @@ static void
+ seh_arm64_add_unwind_element (seh_arm64_unwind_types unwind_type, int offset,
+ 			      int reg)
+ {
+-  if (seh_ctx_cur == NULL
+-      || seh_ctx_cur->arm64_ctx.unwind_codes_count >= ARM64_MAX_UNWIND_CODES)
++  if (seh_ctx_cur == NULL)
+     {
+-      as_warn (_("no unwind element available."));
++      as_bad (_("no unwind context available"));
+       return;
+     }
+ 
+-  seh_arm64_unwind_code *arm64_element = seh_ctx_cur->arm64_ctx.unwind_codes
+-    + seh_ctx_cur->arm64_ctx.unwind_codes_count++;
+   const struct unwind_code_pack_info *unwind_code_pack_info;
+   unwind_code_pack_info = unwind_code_pack_infos + unwind_type;
++  seh_arm64_context *ctx = &seh_ctx_cur->arm64_ctx;
++  if (ctx->unwind_codes_byte_count + unwind_code_pack_info->size
++      > ARM64_MAX_UNWIND_CODES)
++    {
++      as_bad (_("ARM64 unwind codes exceed the 1020-byte format limit"));
++      return;
++    }
++  if (ctx->unwind_codes_count == ctx->unwind_codes_allocated)
++    {
++      unsigned int size = ctx->unwind_codes_allocated
++			  ? ctx->unwind_codes_allocated * 2 : 32;
++      if (size > ARM64_MAX_UNWIND_CODES)
++	size = ARM64_MAX_UNWIND_CODES;
++      ctx->unwind_codes = XRESIZEVEC (seh_arm64_unwind_code,
++				     ctx->unwind_codes, size);
++      ctx->unwind_codes_allocated = size;
++    }
++  seh_arm64_unwind_code *arm64_element
++    = ctx->unwind_codes + ctx->unwind_codes_count++;
+   arm64_element->value = 0;
+   int value_offset_bits = 0;
+ 
+@@ -562,6 +578,8 @@ do_seh_endproc (void)
+ {
+   seh_ctx_cur->end_addr = symbol_temp_new_now ();
+   const seh_kind kind = seh_get_target_kind ();
++  if (kind == seh_kind_arm64 && seh_ctx_cur->arm64_ctx.in_epilogue)
++    as_bad (_("unterminated ARM64 epilogue"));
+ 
+   if (kind != seh_kind_arm64
+        || seh_ctx_cur->arm64_ctx.unwind_codes_byte_count > 0)
+@@ -570,6 +588,9 @@ do_seh_endproc (void)
+       write_function_pdata (seh_ctx_cur);
+     }
+ 
++  /* Fragment contexts share immutable arrays after xdata construction.  */
++  free (seh_ctx_cur->arm64_ctx.unwind_codes);
++  free (seh_ctx_cur->arm64_ctx.epilogue_scopes);
+   while (seh_ctx_cur)
+   {
+     seh_context *ctx = seh_ctx_cur;
+@@ -696,6 +717,12 @@ obj_coff_seh_startepilogue (int what ATTRIBUTE_UNUSED)
+   if (seh_get_target_kind () != seh_kind_arm64)
+     return;
+ 
++  if (seh_ctx_cur->arm64_ctx.in_epilogue)
++    {
++      as_bad (_("nested ARM64 epilogue"));
++      return;
++    }
++
+   epilogue_start_addr = symbol_temp_new_now ();
+   exp.X_op = O_subtract;
+   exp.X_add_symbol = epilogue_start_addr;
+@@ -708,6 +735,22 @@ obj_coff_seh_startepilogue (int what ATTRIBUTE_UNUSED)
+       "does not evaluate to a non-negative constant"),
+       S_GET_NAME (epilogue_start_addr));
+ 
++  seh_arm64_context *ctx = &seh_ctx_cur->arm64_ctx;
++  if (ctx->epilogue_scopes_count == ARM64_MAX_EPILOGUE_SCOPES)
++    {
++      as_bad (_("too many ARM64 epilogue scopes"));
++      return;
++    }
++  if (ctx->epilogue_scopes_count == ctx->epilogue_scopes_allocated)
++    {
++      unsigned int size = ctx->epilogue_scopes_allocated
++			  ? ctx->epilogue_scopes_allocated * 2 : 32;
++      if (size > ARM64_MAX_EPILOGUE_SCOPES)
++	size = ARM64_MAX_EPILOGUE_SCOPES;
++      ctx->epilogue_scopes = XRESIZEVEC (seh_arm64_epilogue_scope,
++					ctx->epilogue_scopes, size);
++      ctx->epilogue_scopes_allocated = size;
++    }
+   seh_arm64_epilogue_scope *epilogue_scope;
+   epilogue_scope = seh_ctx_cur->arm64_ctx.epilogue_scopes
+     + seh_ctx_cur->arm64_ctx.epilogue_scopes_count;
+@@ -716,6 +759,7 @@ obj_coff_seh_startepilogue (int what ATTRIBUTE_UNUSED)
+   epilogue_scope->epilogue_start_index
+     = seh_ctx_cur->arm64_ctx.unwind_codes_byte_count;
+   seh_ctx_cur->arm64_ctx.epilogue_scopes_count++;
++  seh_ctx_cur->arm64_ctx.in_epilogue = true;
+ }
+ 
+ static void
+@@ -725,6 +769,14 @@ obj_coff_seh_endepilogue (int what ATTRIBUTE_UNUSED)
+       || !seh_validate_seg (".seh_endepilogue"))
+     return;
+ 
++  if (!seh_ctx_cur->arm64_ctx.in_epilogue)
++    {
++      as_bad (_(".seh_endepilogue without .seh_startepilogue"));
++      ignore_rest_of_line ();
++      return;
++    }
++  seh_ctx_cur->arm64_ctx.in_epilogue = false;
++
+   demand_empty_rest_of_line ();
+ 
+   expressionS exp;
+@@ -1486,7 +1538,12 @@ seh_arm64_write_function_xdata (seh_context *c)
+       ++header->ext_epilogue_count;
+     }
+ 
+-    header->ext_code_words = (unwind_bytes  + 3) / 4;
++    if ((unwind_bytes + 3) / 4 > 255)
++      {
++	as_bad (_("ARM64 unwind codes exceed the extended header limit"));
++	return;
++      }
++    header->ext_code_words = (unwind_bytes + 3) / 4;
+ 
+     if ((header->ext_code_words == 0 && header->ext_epilogue_count == 0)
+ 	|| header->ext_code_words > 31
+diff --git a/gas/config/obj-coff-seh.h b/gas/config/obj-coff-seh.h
+index a5ad3b1..d09cf9e 100644
+--- a/gas/config/obj-coff-seh.h
++++ b/gas/config/obj-coff-seh.h
+@@ -211,8 +211,8 @@ typedef struct seh_arm64_epilogue_scope
+   uintptr_t epilogue_end_offset;
+ } seh_arm64_epilogue_scope;
+ 
+-#define ARM64_MAX_UNWIND_CODES 286
+-#define ARM64_MAX_EPILOGUE_SCOPES 32
++#define ARM64_MAX_UNWIND_CODES 1020
++#define ARM64_MAX_EPILOGUE_SCOPES 65535
+ 
+ typedef struct seh_arm64_context
+ {
+@@ -222,10 +222,13 @@ typedef struct seh_arm64_context
+     valueT xdata_header_value;
+   };
+   unsigned int unwind_codes_count;
++  unsigned int unwind_codes_allocated;
+   unsigned int unwind_codes_byte_count;
+-  seh_arm64_unwind_code unwind_codes[ARM64_MAX_UNWIND_CODES];
++  seh_arm64_unwind_code *unwind_codes;
+   unsigned int epilogue_scopes_count;
+-  seh_arm64_epilogue_scope epilogue_scopes[ARM64_MAX_EPILOGUE_SCOPES];
++  unsigned int epilogue_scopes_allocated;
++  bool in_epilogue;
++  seh_arm64_epilogue_scope *epilogue_scopes;
+   uintptr_t fragment_offset;
+   expressionS except_handler;
+   expressionS except_handler_data;

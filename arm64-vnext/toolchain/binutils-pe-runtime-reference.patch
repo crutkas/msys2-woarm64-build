@@ -1,0 +1,18 @@
+diff --git a/ld/emultempl/pep.em b/ld/emultempl/pep.em
+--- a/ld/emultempl/pep.em
++++ b/ld/emultempl/pep.em
+@@ -1023,6 +1023,14 @@ gld${EMULATION_NAME}_after_parse (void)
+ 
+   set_entry_point ();
+ 
++#ifdef DLL_SUPPORT
++  /* Auto-import creates its relocation reference after archive scanning.
++     Queue it early so an existing runtime archive member can be selected.  */
++  if (!bfd_link_relocatable (&link_info)
++      && link_info.pei386_auto_import
++      && link_info.pei386_runtime_pseudo_reloc)
++    ldlang_add_undef (U ("_pei386_runtime_relocator"), false);
++#endif
+   after_parse_default ();
+ }
+ 
