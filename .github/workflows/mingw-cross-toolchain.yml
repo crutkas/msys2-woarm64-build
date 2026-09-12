@@ -69,7 +69,6 @@ jobs:
     with:
       package_name: mingw-w64-cross-mingwarm64-crt
       needs: ${{ toJson(needs) }}
-      dependencies: mingw-w64-cross-mingw64-winpthreads
       packages_repository: Windows-on-ARM-Experiments/MSYS2-packages
       packages_branch: ${{ inputs.msys2_packages_branch || 'woarm64' }}
 
