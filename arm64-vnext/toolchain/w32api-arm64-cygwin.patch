@@ -1,0 +1,24 @@
+diff --git a/mingw-w64-headers/crt/_cygwin.h b/mingw-w64-headers/crt/_cygwin.h
+--- a/mingw-w64-headers/crt/_cygwin.h
++++ b/mingw-w64-headers/crt/_cygwin.h
+@@ -30,7 +30,7 @@
+    The Cygwin-targeting gcc does not define it by default, same as
+    with _WIN32.  Therefore we set it here.  The result is that _WIN64
+    is only defined if Windows headers are included. */
+-#ifdef __x86_64__
++#if defined(__x86_64__) || defined(__aarch64__)
+ #define _WIN64
+ #endif
+ 
+diff --git a/mingw-w64-headers/include/basetsd.h b/mingw-w64-headers/include/basetsd.h
+--- a/mingw-w64-headers/include/basetsd.h
++++ b/mingw-w64-headers/include/basetsd.h
+@@ -7,7 +7,7 @@
+ #ifndef _BASETSD_H_
+ #define _BASETSD_H_
+ 
+-#if (defined (__x86_64__) || defined (__ia64__)) && !(defined (__WIDL__) || defined (RC_INVOKED))
++#if (defined (__x86_64__) || defined (__ia64__) || defined (__aarch64__)) && !(defined (__WIDL__) || defined (RC_INVOKED))
+ __MINGW_EXTENSION typedef unsigned __int64 POINTER_64_INT;
+ #else
+ typedef unsigned long POINTER_64_INT;

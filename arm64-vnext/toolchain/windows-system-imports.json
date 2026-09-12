@@ -1,0 +1,31 @@
+{
+  "schema": 1,
+  "source": "mingw-w64",
+  "revision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba",
+  "definitions": {
+    "wsock32": {
+      "path": "mingw-w64-crt/lib-common/wsock32.def",
+      "sha256": "180f9e2f1995676931b77ec1fb32b56c8834be5dd63833eb1507653674882f30",
+      "dll": "WSOCK32.dll",
+      "probe": "WSAGetLastError"
+    },
+    "bcrypt": {
+      "path": "mingw-w64-crt/lib-common/bcrypt.def",
+      "sha256": "c65ceff5ab79716af6244a4540a73192b8db41de69b7800fc254638f2391fd20",
+      "dll": "bcrypt.dll",
+      "probe": "BCryptGenRandom"
+    },
+    "setupapi": {
+      "path": "mingw-w64-crt/lib-common/setupapi.def",
+      "sha256": "929349fb1cfd3049d34ebc9cc29de91c763faad5ac5103f05eb9ec1095eb57a5",
+      "dll": "SETUPAPI.dll",
+      "probe": "SetupDiGetClassDevsW"
+    },
+    "hid": {
+      "path": "mingw-w64-crt/lib-common/hid.def",
+      "sha256": "62516d301de8434946bed3f6959f05d7b5487516eb678a89c7f5e322fc8ee42b",
+      "dll": "HID.DLL",
+      "probe": "HidD_GetHidGuid"
+    }
+  }
+}

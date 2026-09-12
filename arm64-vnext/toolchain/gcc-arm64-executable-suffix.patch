@@ -1,0 +1,12 @@
+diff --git a/gcc/config/aarch64/cygming.h b/gcc/config/aarch64/cygming.h
+--- a/gcc/config/aarch64/cygming.h
++++ b/gcc/config/aarch64/cygming.h
+@@ -22,6 +22,8 @@
+ #ifndef GCC_AARCH64_CYGMING_H
+ #define GCC_AARCH64_CYGMING_H
+ 
++#define TARGET_EXECUTABLE_SUFFIX ".exe"
++
+ #define DWARF2_DEBUGGING_INFO 1
+ 
+ #undef PREFERRED_DEBUGGING_TYPE

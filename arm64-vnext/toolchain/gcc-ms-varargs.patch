@@ -1,0 +1,286 @@
+diff --git a/gcc/config/aarch64/aarch64.h b/gcc/config/aarch64/aarch64.h
+--- a/gcc/config/aarch64/aarch64.h
++++ b/gcc/config/aarch64/aarch64.h
+@@ -1184,6 +1184,7 @@
+   enum arm_pcs pcs_variant;
+   aarch64_isa_mode isa_mode;
+   bool indirect_return;		/* Whether function is marked with indirect_return attribute.  */
++  bool ms_variadic;		/* Microsoft variadic argument convention.  */
+   int aapcs_arg_processed;	/* No need to lay out this argument again.  */
+   int aapcs_ncrn;		/* Next Core register number.  */
+   int aapcs_nextncrn;		/* Next next core register number.  */
+@@ -1197,8 +1198,8 @@
+   MACHMODE aapcs_vfp_rmode;
+   int aapcs_stack_words;	/* If the argument is passed on the stack, this
+ 				   is the number of words needed, after rounding
+-				   up.  Only meaningful when
+-				   aapcs_reg == NULL_RTX.  */
++				   up.  This can accompany aapcs_reg for a
++				   split Microsoft variadic argument.  */
+   int aapcs_stack_size;		/* The total size (in words, per 8 byte) of the
+ 				   stack arg area so far.  */
+   bool silent_p;		/* True if we should act silently, rather than
+diff --git a/gcc/config/aarch64/aarch64.cc b/gcc/config/aarch64/aarch64.cc
+--- a/gcc/config/aarch64/aarch64.cc
++++ b/gcc/config/aarch64/aarch64.cc
+@@ -6652,10 +6652,17 @@
+   if (size < 0)
+     return true;
+ 
++  bool ms_variadic = pcum && pcum->ms_variadic;
++#ifdef TARGET_AARCH64_MS_ABI
++  /* va_arg asks about indirect arguments without a call context.  */
++  ms_variadic |= !pcum;
++#endif
++
+   /* Can this be a candidate to be passed in fp/simd register(s)?  */
+-  if (aarch64_vfp_is_call_or_return_candidate (arg.mode, arg.type,
+-					       &dummymode, &nregs, NULL,
+-					       !pcum || pcum->silent_p))
++  if (!ms_variadic
++      && aarch64_vfp_is_call_or_return_candidate (arg.mode, arg.type,
++						 &dummymode, &nregs, NULL,
++						 !pcum || pcum->silent_p))
+     return false;
+ 
+   /* Arguments which are variable sized or larger than 2 registers are
+@@ -7206,11 +7213,11 @@
+     size = GET_MODE_SIZE (mode).to_constant ();
+   size = ROUND_UP (size, UNITS_PER_WORD);
+ 
+-  allocate_ncrn = (type) ? !(FLOAT_TYPE_P (type)) : !FLOAT_MODE_P (mode);
+-  allocate_nvrn = aarch64_vfp_is_call_candidate (pcum_v,
+-						 mode,
+-						 type,
+-						 &nregs);
++  allocate_ncrn = (pcum->ms_variadic
++		   || (type ? !FLOAT_TYPE_P (type) : !FLOAT_MODE_P (mode)));
++  allocate_nvrn = (!pcum->ms_variadic
++		   && aarch64_vfp_is_call_candidate (pcum_v, mode, type,
++						     &nregs));
+   gcc_assert (!sve_p || !allocate_nvrn);
+ 
+   unsigned int alignment
+@@ -7367,6 +7374,20 @@
+       return;
+     }
+ 
++  /* Microsoft variadic arguments can straddle x7 and the stack.  */
++  if (pcum->ms_variadic
++      && ncrn == NUM_ARG_REGS - 1
++      && nregs == 2
++      && alignment <= PARM_BOUNDARY)
++    {
++      rtx reg = gen_rtx_REG (word_mode, R0_REGNUM + ncrn);
++      rtx piece = gen_rtx_EXPR_LIST (VOIDmode, reg, const0_rtx);
++      pcum->aapcs_reg = gen_rtx_PARALLEL (mode, gen_rtvec (1, piece));
++      pcum->aapcs_nextncrn = NUM_ARG_REGS;
++      pcum->aapcs_stack_words = 1;
++      return;
++    }
++
+   /* C.11  */
+   pcum->aapcs_nextncrn = NUM_ARG_REGS;
+ 
+@@ -7436,6 +7457,24 @@
+   auto argvec = gen_rtvec_v (pcum->num_sme_mode_switch_args,
+ 			     pcum->sme_mode_switch_args);
+   return gen_rtx_PARALLEL (VOIDmode, argvec);
++}
++
++/* Implement TARGET_ARG_PARTIAL_BYTES.  */
++
++static int
++aarch64_arg_partial_bytes (cumulative_args_t pcum_v,
++			   const function_arg_info &arg)
++{
++  CUMULATIVE_ARGS *pcum = get_cumulative_args (pcum_v);
++  if (!pcum->ms_variadic)
++    return 0;
++  aarch64_layout_arg (pcum_v, arg);
++  if (pcum->aapcs_reg != NULL_RTX && pcum->aapcs_stack_words != 0)
++    {
++      gcc_assert (pcum->aapcs_stack_words == 1);
++      return UNITS_PER_WORD;
++    }
++  return 0;
+ }
+ 
+ /* Implement TARGET_FUNCTION_ARG.  */
+@@ -7480,6 +7519,10 @@
+   pcum->aapcs_nextncrn = 0;
+   pcum->aapcs_nextnvrn = 0;
+   pcum->aapcs_nextnprn = 0;
++  pcum->ms_variadic = false;
++#ifdef TARGET_AARCH64_MS_ABI
++  pcum->ms_variadic = stdarg_p (fntype);
++#endif
+   if (fntype)
+     {
+       pcum->pcs_variant = (arm_pcs) fntype_abi (fntype).id ();
+@@ -7542,7 +7585,9 @@
+     {
+       aarch64_layout_arg (pcum_v, arg);
+       gcc_assert ((pcum->aapcs_reg != NULL_RTX)
+-		  != (pcum->aapcs_stack_words != 0));
++		  != (pcum->aapcs_stack_words != 0)
++		  || (pcum->ms_variadic && pcum->aapcs_reg != NULL_RTX
++		      && pcum->aapcs_stack_words == 1));
+       if (pcum->aapcs_reg
+ 	  && aarch64_call_switches_pstate_sm (pcum->isa_mode))
+ 	aarch64_record_sme_mode_switch_args (pcum);
+@@ -21271,6 +21316,10 @@
+ static tree
+ aarch64_build_builtin_va_list (void)
+ {
++#ifdef TARGET_AARCH64_MS_ABI
++  return build_pointer_type (char_type_node);
++#endif
++
+   tree va_list_name;
+   tree f_stack, f_grtop, f_vrtop, f_groff, f_vroff;
+ 
+@@ -21338,6 +21387,14 @@
+ static void
+ aarch64_expand_builtin_va_start (tree valist, rtx nextarg ATTRIBUTE_UNUSED)
+ {
++#ifdef TARGET_AARCH64_MS_ABI
++  /* The save area ends at incoming SP; do not include alignment padding.  */
++  int saved = NUM_ARG_REGS - crtl->args.info.aapcs_ncrn;
++  std_expand_builtin_va_start
++    (valist, plus_constant (Pmode, nextarg, -saved * UNITS_PER_WORD));
++  return;
++#endif
++
+   const CUMULATIVE_ARGS *cum;
+   tree f_stack, f_grtop, f_vrtop, f_groff, f_vroff;
+   tree stack, grtop, vrtop, groff, vroff;
+@@ -21423,6 +21480,10 @@
+ aarch64_gimplify_va_arg_expr (tree valist, tree type, gimple_seq *pre_p,
+ 			      gimple_seq *post_p ATTRIBUTE_UNUSED)
+ {
++#ifdef TARGET_AARCH64_MS_ABI
++  return std_gimplify_va_arg_expr (valist, type, pre_p, post_p);
++#endif
++
+   tree addr;
+   bool indirect_p;
+   bool is_ha;		/* is HFA or HVA.  */
+@@ -21740,7 +21801,15 @@
+     vr_saved = MIN (NUM_FP_ARG_REGS - local_cum.aapcs_nvrn,
+ 		    cfun->va_list_fpr_size / UNITS_PER_VREG);
+ 
+-  if (!TARGET_FLOAT)
++  if (local_cum.ms_variadic)
++    {
++      /* Keep xN-x7 contiguous with arguments in the caller's stack.  */
++      gr_saved = cfun->va_list_gpr_size
++		 ? NUM_ARG_REGS - local_cum.aapcs_ncrn : 0;
++      vr_saved = 0;
++    }
++
++  if (!TARGET_FLOAT || local_cum.ms_variadic)
+     {
+       gcc_assert (local_cum.aapcs_nvrn == 0);
+       vr_saved = 0;
+@@ -22578,8 +22647,10 @@
+ {
+   /* The AArch64 ABI documents say that "__va_list" has to be
+      mangled as if it is in the "std" namespace.  */
++#ifndef TARGET_AARCH64_MS_ABI
+   if (lang_hooks.types_compatible_p (CONST_CAST_TREE (type), va_list_type))
+     return "St9__va_list";
++#endif
+ 
+   /* Half-precision floating point types.  */
+   if (SCALAR_FLOAT_TYPE_P (type) && TYPE_PRECISION (type) == 16)
+@@ -31449,6 +31520,9 @@
+ #undef TARGET_FOLD_BUILTIN
+ #define TARGET_FOLD_BUILTIN aarch64_fold_builtin
+ 
++#undef TARGET_ARG_PARTIAL_BYTES
++#define TARGET_ARG_PARTIAL_BYTES aarch64_arg_partial_bytes
++
+ #undef TARGET_FUNCTION_ARG
+ #define TARGET_FUNCTION_ARG aarch64_function_arg
+ 
+diff --git a/gcc/testsuite/gcc.target/aarch64/ms-abi-varargs.c b/gcc/testsuite/gcc.target/aarch64/ms-abi-varargs.c
+new file mode 100644
+--- /dev/null
++++ b/gcc/testsuite/gcc.target/aarch64/ms-abi-varargs.c
+@@ -0,0 +1,75 @@
++/* { dg-do run { target aarch64*-*-mingw* } } */
++
++#include <stdarg.h>
++#include <stdio.h>
++#include <stdlib.h>
++#include <string.h>
++
++_Static_assert (__builtin_types_compatible_p (__builtin_va_list, char *),
++                "Microsoft va_list must be a pointer");
++
++struct pair { unsigned long long a, b; };
++struct hfa { double a, b, c; };
++
++__attribute__((noinline, noclone))
++static void
++check_slots (int marker, ...)
++{
++  va_list ap, copy;
++  va_start (ap, marker);
++  va_copy (copy, ap);
++  for (int i = 1; i <= 6; ++i)
++    if (va_arg (ap, int) != i)
++      abort ();
++  struct pair p = va_arg (ap, struct pair);
++  struct hfa h = va_arg (ap, struct hfa);
++  if (p.a != 7 || p.b != 8 || h.a != 9.0 || h.b != 10.0 || h.c != 11.0
++      || va_arg (ap, double) != 12.5 || va_arg (copy, int) != 1)
++    abort ();
++  va_end (copy);
++  va_end (ap);
++}
++
++__attribute__((noinline, noclone))
++static void
++check_named_double (double named, ...)
++{
++  va_list ap;
++  va_start (ap, named);
++  if (named != 4.5 || va_arg (ap, int) != 17 || va_arg (ap, double) != 6.5)
++    abort ();
++  va_end (ap);
++}
++
++__attribute__((noinline, noclone))
++static double
++fixed_double (double value)
++{
++  return value + 1.0;
++}
++
++__attribute__((noinline, noclone))
++static void
++check_ucrt (const char *format, ...)
++{
++  char buffer[80];
++  va_list ap;
++  va_start (ap, format);
++  int count = vsnprintf (buffer, sizeof buffer, format, ap);
++  va_end (ap);
++  if (count != 25 || strcmp (buffer, "17 1234567890123 4.5 safe") != 0)
++    abort ();
++}
++
++int
++main (void)
++{
++  struct pair p = { 7, 8 };
++  struct hfa h = { 9.0, 10.0, 11.0 };
++  check_slots (0, 1, 2, 3, 4, 5, 6, p, h, 12.5);
++  check_named_double (4.5, 17, 6.5);
++  if (fixed_double (2.5) != 3.5)
++    abort ();
++  check_ucrt ("%d %llu %.1f %s", 17, 1234567890123ULL, 4.5, "safe");
++  return 0;
++}

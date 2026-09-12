@@ -1,0 +1,37 @@
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -1638,7 +1638,15 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 
+ 	      case MEM:
+ 		src = XEXP (src, 0);
+-		if (seh->in_epilogue
++		if (seh->in_epilogue
++		    && src == stack_pointer_rtx
++		    && GP_REGNUM_P (REGNO (dest))
++		    && CALLEE_SAVED_REG_NUMBER (REGNO (dest)))
++		  {
++		    seh_emit_save (f, seh, dest, 0);
++		    emitted = true;
++		  }
++		else if (seh->in_epilogue
+ 		    && GET_CODE (src) == POST_MODIFY
+ 		    && CALLEE_SAVED_REG_NUMBER (REGNO (dest))
+ 		    && XEXP (src, 0) == stack_pointer_rtx
+@@ -1677,7 +1685,15 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 
+ 	  case MEM: // Save
+ 	    dest = XEXP (dest, 0);
+-	    if (GET_CODE (dest) == PRE_MODIFY
++	    if (dest == stack_pointer_rtx
++		&& REG_P (src)
++		&& GP_REGNUM_P (REGNO (src))
++		&& CALLEE_SAVED_REG_NUMBER (REGNO (src)))
++	      {
++		seh_emit_save (f, seh, src, 0);
++		emitted = true;
++	      }
++	    else if (GET_CODE (dest) == PRE_MODIFY
+ 		&& REG_P (src)
+ 		&& CALLEE_SAVED_REG_NUMBER (REGNO (src))
+ 		&& XEXP (dest, 0) == stack_pointer_rtx

@@ -1,0 +1,32 @@
+diff --git a/libgcc/config/i386/cygming-crtbegin.c b/libgcc/config/i386/cygming-crtbegin.c
+--- a/libgcc/config/i386/cygming-crtbegin.c
++++ b/libgcc/config/i386/cygming-crtbegin.c
+@@ -30,6 +30,12 @@
+ #include "auto-host.h"
++/* Match crtstuff.c: host fallbacks must not replace target types/functions.  */
++#undef caddr_t
++#undef pid_t
++#undef rlim_t
++#undef ssize_t
++#undef vfork
+ #include "tconfig.h"
+ #include "tsystem.h"
+ #include "coretypes.h"
+ #include "tm.h"
+ #include "libgcc_tm.h"
+diff --git a/libgcc/config/i386/cygming-crtend.c b/libgcc/config/i386/cygming-crtend.c
+--- a/libgcc/config/i386/cygming-crtend.c
++++ b/libgcc/config/i386/cygming-crtend.c
+@@ -32,6 +32,12 @@
+ #include "auto-host.h"
++/* Match crtstuff.c: host fallbacks must not replace target types/functions.  */
++#undef caddr_t
++#undef pid_t
++#undef rlim_t
++#undef ssize_t
++#undef vfork
+ #include "tconfig.h"
+ #include "tsystem.h"
+ #include "coretypes.h"
+ #include "tm.h"
+ #include "libgcc_tm.h"

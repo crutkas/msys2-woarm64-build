@@ -1,0 +1,39 @@
+diff --git a/gcc/config.gcc b/gcc/config.gcc
+--- a/gcc/config.gcc
++++ b/gcc/config.gcc
+@@ -1313,7 +1313,7 @@
+ 	tmake_file="${tmake_file} aarch64/t-aarch64"
+ 	target_gtfiles="$target_gtfiles \$(srcdir)/config/mingw/winnt.cc"
+ 	target_gtfiles="$target_gtfiles \$(srcdir)/config/mingw/winnt-dll.cc"
+-	extra_options="${extra_options} mingw/cygming.opt mingw/mingw.opt"
++	extra_options="${extra_options} mingw/cygming.opt mingw/mingw.opt i386/mingw-w64.opt"
+ 	extra_objs="${extra_objs} winnt.o winnt-dll.o"
+ 	c_target_objs="${c_target_objs} msformat-c.o"
+ 	cxx_target_objs="${cxx_target_objs} msformat-c.o"
+@@ -1325,6 +1325,7 @@
+ 	    ;;
+ 	  posix)
+ 	    thread_file='posix'
++	    tm_defines="${tm_defines} TARGET_USE_PTHREAD_BY_DEFAULT=1"
+ 	    ;;
+ 	esac
+ 	default_use_cxa_atexit=yes
+diff --git a/gcc/config/mingw/mingw32.h b/gcc/config/mingw/mingw32.h
+--- a/gcc/config/mingw/mingw32.h
++++ b/gcc/config/mingw/mingw32.h
+@@ -102,5 +102,6 @@
+ #undef CPP_SPEC
+ #define CPP_SPEC "%{posix:-D_POSIX_SOURCE} %{mthreads:-D_MT} " \
++		 "%{municode:-DUNICODE} " \
+ 		 "%{" SPEC_PTHREAD1 ":-D_REENTRANT} " \
+ 		 "%{" SPEC_PTHREAD2 ": } " \
+ 		 "%{mcrtdll=crtdll*:-U__MSVCRT__ -D__CRTDLL__} " \
+@@ -227,7 +228,7 @@
+   %{shared|mdll:%{mcrtdll=crtdll*:dllcrt1%O%s}} \
+   %{shared|mdll:%{!mcrtdll=crtdll*:dllcrt2%O%s}} \
+   %{!shared:%{!mdll:%{mcrtdll=crtdll*:crt1%O%s}}} \
+-  %{!shared:%{!mdll:%{!mcrtdll=crtdll*:crt2%O%s}}} \
++  %{!shared:%{!mdll:%{!mcrtdll=crtdll*:%{municode:crt2u%O%s;:crt2%O%s}}}} \
+   %{pg:%{mcrtdll=crtdll*:gcrt1%O%s}} \
+   %{pg:%{!mcrtdll=crtdll*:gcrt2%O%s}} \
+   crtbegin.o%s \

@@ -59,6 +59,11 @@ to instal native `aarch64-w64-mingw32` host, `aarch64-w64-mingw32` target MinGW 
 
 ## Building Packages Locally
 
+For clean ARM64 Linux/WSL recovery of the custom runtime compiler, see the
+[local toolchain bootstrap](arm64-vnext/toolchain/README.md). It keeps pinned
+dependency sources, incremental builds, and logs in a dedicated Linux build
+root and distinguishes cross-compilers from native Windows-hosted tools.
+
 In case one would like to build all the cross-compilation toolchain packages locally, there is
 a `build-cross.sh` script. It expects that the
 [Windows-on-ARM-Experiments/MSYS2-packages](https://github.com/Windows-on-ARM-Experiments/MSYS2-packages)

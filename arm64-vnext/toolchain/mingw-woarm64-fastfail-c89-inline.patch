@@ -1,0 +1,12 @@
+diff --git a/mingw-w64-headers/crt/_mingw.h.in b/mingw-w64-headers/crt/_mingw.h.in
+--- a/mingw-w64-headers/crt/_mingw.h.in
++++ b/mingw-w64-headers/crt/_mingw.h.in
+@@ -621,7 +621,7 @@ extern "C" {
+ #if defined(__aarch64__)
+ /* Inline fails for aarch64 */
+ #define __MINGW_FASTFAIL_INLINE_DECL static
+-#define __MINGW_FASTFAIL_INLINE static inline
++#define __MINGW_FASTFAIL_INLINE static __inline__
+ #else
+ #define __MINGW_FASTFAIL_INLINE_DECL
+ #define __MINGW_FASTFAIL_INLINE __MINGW_INTRIN_INLINE
