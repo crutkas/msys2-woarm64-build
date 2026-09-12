@@ -377,6 +377,20 @@ their separate original receipts.
 
 ### Source-custody checklist for each owner
 
+**A clean Git porcelain result is not a preservation guarantee.** Distinguish
+three source-loss categories: uncommitted files inside a worktree, local source
+objects never pushed to any remote ref, and authored source **outside every Git
+worktree**, which `git status` cannot enumerate.
+
+In the coordinator's update received `2026-09-12T05:23:44Z`, the SQLite owner
+reported a clean worktree and an already-pushed source-preservation commit, yet
+found **four externally stored MVP controllers plus a session preservation
+helper**, approximately 60 KB, outside that worktree. A separate **UNCOMMITTED
+SOURCE** snapshot was in progress; its remote publication was not confirmed to
+this guide. This is an attributed discovery, not a review, CI, qualification or
+admission claim. Include owned external/session-source roots in custody checks,
+not just files reachable from a repository's index or refs.
+
 Before a wipe, each owner must inventory its **own** tracked working-tree
 changes, untracked/ignored source, staged changes, local-only commits, stashes,
 reflogs and checkpoint objects. Merely checking remote branches or evidence
