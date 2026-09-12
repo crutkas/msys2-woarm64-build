@@ -78,6 +78,11 @@ Original JSON paths are deliberately unchanged; resolve them through the
 preservation index by path or SHA-256. An unlisted local file is **not backed up
 merely because another receipt mentions it**.
 
+**Discovery rule: evidence is NOT confined to `arm64-vnext/evidence/`.**
+Search the contents of complete branch trees in both repositories, not only
+canonical directory names. A missing canonical path is not a missing finding.
+The non-canonical Berkeley DB report below is a directly verified counterexample.
+
 | Topic / owner | Repository, branch / PR | Portable evidence and publication status |
 |---|---|---|
 | Master continuity, Ruby/Asciidoctor, merge-readiness (`ab17e048`) | `crutkas/msys2-woarm64-build`, `crutkas-arm64-ruby-documentation`, [PR 15](https://github.com/crutkas/msys2-woarm64-build/pull/15) | This branch: `arm64-vnext/evidence/ruby-asciidoctor/` and `arm64-vnext/evidence/programme-reconciliation/`. Complete original Ruby packet, six signed upstream runtime archives plus real Asciidoctor package, exact generated documentation, source archives, API/owner records and primary receipt backups. See their READMEs and `preservation-manifest.json`. |
@@ -87,7 +92,7 @@ merely because another receipt mentions it**.
 | Combined runtime, Bash/PTY investigation (`67ba2e76`) | Runtime repo, `crutkas-arm64-runtime-integration`, PR 33 | Owner preservation requested; confirm its final evidence-publication commit/path before claiming the complete runtime/toolchain/build tree survives. A byte-exact `combined-runtime-handoff.json` backup is already in this branch's `programme-reconciliation/source-receipts/`. |
 | Signal/myfault/Texinfo producer (`5b01b4e5`) | Build repo, `crutkas-arm64-toolchain-bootstrap`, PR 11 | Owner preservation requested. This branch already preserves exact Texinfo root-cause/success handoffs, actual successful binutils log, old TLS proposal handoff and known-good TLS offsets under `programme-reconciliation/source-receipts/`. Complete producer environment custody must come from the owner export. |
 | Mechanical/runtime exit contracts (`0af73d1b`) | Runtime PR 32 and build `crutkas-native-exit-observer-contract`, PR 12 | Qualified source is pushed at the heads below. Complete native proof publication locator has not yet been confirmed to this document; inspect those branches' new evidence directories. Do not mistake source/tests alone for preserved native execution receipts. |
-| Berkeley DB (`2f98bedd`) | Build repo, `crutkas-native-berkeley-db`, PR 13 | Root-cause source is published at `4ff861de52ae8ec5fb36fd1d853f916bb1b21640`. Owner evidence publication requested. Exact completed D70 matrix and timing handoffs are backed up here in `programme-reconciliation/source-receipts/`; complete package/SDK custody requires the owner's export. |
+| Berkeley DB (`2f98bedd`) | Build repo, `crutkas-native-berkeley-db`, PR 13 | **Published non-canonical finding:** [`arm64-git-recovery/native/DB-MUTEX-TIMING.md`](https://github.com/crutkas/msys2-woarm64-build/blob/5350bc1e0ce39ee8bc3c5d9727660b3e5251949f/arm64-git-recovery/native/DB-MUTEX-TIMING.md) at `5350bc1e0ce39ee8bc3c5d9727660b3e5251949f`, **8,873 bytes**, SHA-256 **`391b48ffa4fa277511ea1b2310da9876af1c4d5db473bb480d2713f9c04824c7`**, independently downloaded/read. It preserves the complete timing finding, not an owner still awaiting publication of that finding. Earlier root-cause source is at `4ff861de52ae8ec5fb36fd1d853f916bb1b21640`; exact D70 matrix/timing handoffs also exist here in `programme-reconciliation/source-receipts/`. The report does not by itself prove custody of every package/SDK/build-tree binary. |
 | MVP assembly and replacement-TLS candidate (`f6ea7713`) | Build repo, `crutkas-full-native-git-assembly`, draft PR 14 | Owner evidence publication requested. Qualified candidate/ZIP binary preservation is **not confirmed here**; do not assume the 186 MB named ZIP is in Git. Independent verification and dependency-closure exports above preserve measured identities and failures even if a binary must be rebuilt. |
 | Provider ledger/admission (`a2dd0a44`, pipeline `2160ef10`) | Build repo, [`crutkas-native-provider-intake`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-provider-intake); **NO PR** (creation returned 422 twice, per coordinator) | **Published and remote directories confirmed** at `3ebc0c133105c77496ae80d4ea76fad7ed463c80`: [`arm64-vnext/evidence/provider-intake/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-intake/README.md) covers ordered contracts, rejected libintl-selection captures and limited roles; [`arm64-vnext/evidence/provider-admission/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-admission/README.md) covers strict authority, OpenSSL/header scopes and ledger v20-v42. Provider-intake `manifest.json` SHA-256 `df94ef731519e129e1dde7b497be7b501726366c2326b85b3f0f9291b1f8c65e` was verified from GitHub bytes. **No archives or payload binaries** are included: replacement OpenSSL payload custody is still separate. Search this branch directly, not only the PR list. |
 | Git helpers / GnuPG dependencies (`6b81b146`) | Build repo, [`crutkas-native-git-helper-packages`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-git-helper-packages) | **Published and remote root confirmed** at `2460d9fbd50a894c774e938670fae27ece1202cf`: [`arm64-vnext/evidence/git-helper-packages/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/2460d9fbd50a894c774e938670fae27ece1202cf/arm64-vnext/evidence/git-helper-packages/README.md), with per-file SHA-256 and `ORIGINS.tsv`. Includes Git LFS/git-extra evidence, later runtime907 client-only MSYS OpenSSH admission, crypto/libxcrypt dependency records and GnuPG work. Ledger v42's runtime907 GMP versus d70 conflict remains explicit. The interrupted libgcrypt `1-04` run proves no completed test/package success. No archives, PE binaries, private keyrings or build trees are included. |
@@ -99,10 +104,12 @@ also commits 153 rescued source files at their live repository paths, plus
 the source-publication manifest. The old `7368ba69` evidence and `0da6e92a`
 recovery archive remain distinct; see the direct-publication boundary below.
 
-**Publication gaps are explicit, not absence claims.** Owners were pushing in
-parallel during shutdown. If an entry says requested/unconfirmed, inspect that
-branch's latest `arm64-vnext/evidence/` or documented alternate directory and
-record its exact commit/hash before using it. Do not invent a completed backup.
+**Publication gaps require content-level evidence, not directory-name
+inference.** Owners were pushing in parallel during shutdown. If an entry says
+requested/unconfirmed, inspect the complete branch tree, including source/docs
+paths outside `arm64-vnext/evidence/`, and record exact commits/hashes before
+claiming presence or absence. Treat those labels as locator-confirmation limits,
+not a current count of delinquent owners. Do not invent a completed backup.
 
 ### Coordinator fallback gist: duplicate custody, not owner authority
 
@@ -163,25 +170,76 @@ verdict. Preserve the DB result's D70-only scope and the strict audit's
 anyone holding the URL can read it.** The coordinator explicitly accepted that
 tradeoff. Do not place credentials or private keys in such a fallback.
 
-### Reported shutdown publication gap: local backup is not off-machine custody
+### Corrected shutdown coverage: canonical paths are not the whole repository
 
 In the coordinator's update received **2026-09-12T05:13:26Z** (September 11,
-22:13 PDT), their latest sweep reported **eleven evidence trees on GitHub**
-and **eight owner evidence publications still outstanding**: **Bash
-job-control, Berkeley DB, OpenSSL/PCRE2, curl, MVP assembly, signal-generation,
-runtime-integration, and argv**. These are the coordinator's dated sweep
-categories/counts, **not a new complete remote audit by this guide's publisher**.
-They refer to full owner exports, not an assertion that no code or small
-receipt from those topics exists remotely: this branch, the fallback, and
-other owner trees already preserve some overlapping records.
+22:13 PDT), they reported "eleven evidence trees on GitHub" and "eight owners
+pending": Bash job-control, Berkeley DB, OpenSSL/PCRE2, curl, MVP assembly,
+signal-generation, runtime-integration and argv.
+**COORDINATOR RETRACTION at 2026-09-12T05:20:38Z: that eight-owner figure was
+wrong. It came from another directory-name sweep, not a content search.**
+The earlier claim is preserved here only as a corrected statement; it is
+**not a live publication-gap list** and must not send a reader hunting for
+findings that are already published.
 
-The coordinator reports the outstanding owners' raw data is in their local
-backup. **That local backup is NOT reformat-safe unless the user verifies an
+The coordinator then reports using the Git trees API recursively across every
+branch of both repositories. The defensible result of that **date-stamped,
+coordinator-reported content-level sweep** is **eleven canonical evidence trees
+plus at least one confirmed non-canonical location**, with some work still in
+flight. The approximate **9,890 file entries** break down as follows; this
+guide's publisher has not repeated the entire cross-repository census:
+
+| Coordinator's sweep category | Reported file entries |
+|---|---:|
+| SQLite | 5,904 |
+| Coreutils | 2,108 |
+| Ruby / reconciliation | 825 |
+| Dependency closure | 373 |
+| Independent verification | 227 |
+| Git helper packages | 154 |
+| Execution recovery | 100 |
+| Provider intake / admission | 78 |
+| Runtime request recovery | 72 |
+| Compiler recovery | 34 |
+| Atomic generation | 15 |
+| **Approximate total** | **9,890** |
+
+These categories are the coordinator's grouping of published entries, not a
+claim of 9,890 unique observations, expanded archive members, or complete source,
+binary and environment custody. The eleven-tree count groups some subtrees
+together; it is not a substitute for the recorded file inventories.
+
+**Known non-canonical location, directly checked here:** the Berkeley DB
+[`DB-MUTEX-TIMING.md` at `5350bc1e0ce39ee8bc3c5d9727660b3e5251949f`](https://github.com/crutkas/msys2-woarm64-build/blob/5350bc1e0ce39ee8bc3c5d9727660b3e5251949f/arm64-git-recovery/native/DB-MUTEX-TIMING.md)
+is already on GitHub outside the canonical evidence path. Its 8,873 raw bytes
+match SHA-256
+`391b48ffa4fa277511ea1b2310da9876af1c4d5db473bb480d2713f9c04824c7`.
+It contains the original 900-second/9-of-24 timeout and 83/76 coverage,
+completed 24/24 D70 matrix and 314/314 exits, per-case and per-yield timing
+tables, the same-binary combined907 timing comparison, and unchanged
+`.text`/`.data`/`.rdata`/`.pdata`/`.xdata`/`.idata`/**`.reloc`** sections.
+The report identifies quantized waits as the cause of the inadequate budget;
+it does not claim to exclude every ordering bug or report a full 907 matrix.
+The coordinator's earlier classification of this owner as pending was false:
+**the finding was preserved, and the search missed its location**.
+
+For future audits, enumerate all relevant branch refs with API pagination,
+then search each complete Git tree and inspect plausible files by content and
+hash. Check the recursive-tree response's `truncated` flag and traverse omitted
+subtrees before making any absence claim. Include source/docs locations,
+embedded archives, and separately indexed patch/gist custody; do not infer an
+archive's members merely from its filename. **Evidence-directory discovery is
+an index-building aid, never proof that unindexed content does not exist.**
+
+**Remaining custody decision:** the coordinator reports additional raw data
+and work-in-flight backups on the local machine, but the retracted eight-owner
+count does not establish which of those objects lack remote copies.
+**That local backup is NOT reformat-safe unless the user verifies an
 off-machine copy.** No independently verified off-machine destination
 or complete backup manifest was supplied with this update. The user must copy
 the required backup off the machine and verify its inventory/bytes before
 wiping, or accept loss of anything not separately published. Neither the
-eleven-tree count nor the six-file fallback establishes complete evidence,
+9,890-entry count nor the six-file fallback establishes complete evidence,
 source, binary, toolchain or build-tree custody. After reformat, mark any
 unrecoverable record explicitly; do not reconstruct missing results from
 summaries or assume an owner's later push occurred.
@@ -596,6 +654,11 @@ should register credentials/runners unilaterally.
   search. Inspect the contents and exact hashes of published trees before
   telling an owner they failed to preserve an artifact; counting directory
   names is not a content search.
+- **The same error also produced the retracted "eight owners pending" count.**
+  A recursive content-level sweep found the Berkeley DB timing finding at a
+  non-canonical source-documentation path already on GitHub. Keep that
+  correction prominent: canonical-path absence is not repository absence,
+  and incomplete searches must not become accusations against owners.
 
 ## 8. First actions for a fresh session
 
@@ -604,7 +667,8 @@ should register credentials/runners unilaterally.
    set, plus any verified off-machine backup, then inventory what
    binary/toolchain/source custody actually survived. Record
    missing objects explicitly. Do not fabricate a successful rebuild from a
-   recipe or a SHA-256 alone.
+   recipe or a SHA-256 alone. Search complete branch-tree contents, including
+   non-canonical source/documentation paths, before declaring anything missing.
 2. Re-query current PR heads, bases, CI and runner availability. Preserve the
    runtime merge order and both shared-file hazards; request a new work budget
    and merge/admission decisions from the user before acting.
