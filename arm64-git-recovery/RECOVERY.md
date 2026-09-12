@@ -150,3 +150,34 @@ Full transcript: `evidence/native-arm64-git-RUN-transcript.txt`,
 
 All binding constraints observed: no upstream contact; `.copilot/repos` and peer
 session dirs were read-only (copied out, never mutated).
+
+---
+
+## 8. Native MSYS exit-status observer contract
+
+The native process observer records the exact unsigned `DWORD` returned by
+`GetExitCodeProcess`; it never shifts, masks, divides, or otherwise normalizes
+that value. Four exit domains must remain distinct:
+
+| Domain | Contract |
+|--------|----------|
+| Windows process exit | Raw 32-bit `GetExitCodeProcess` value. |
+| MSYS `waitpid` status | 16-bit POSIX wait word; test `WIFEXITED` before decoding. |
+| `WEXITSTATUS(status)` | Portable 8-bit child exit value from an exited wait word. |
+| Bash `$?` | Bash's decoded exit/signal result, not a Windows process code. |
+
+For a registered MSYS child, the runtime deliberately exposes the POSIX wait
+word through the Windows process exit code so its MSYS parent retains signal
+and core-dump state. Thus an ordinary child exit 7 can appear as raw `0x0700`
+and exit 126 as raw `0x7e00`. An unregistered native-Windows-parent launch
+receives the ordinary exit byte instead.
+
+Arithmetic shape alone does not prove that a high raw value is an MSYS wait
+word: native WinAPI programs can deliberately return the same numbers.
+Classification therefore requires an explicit contract bound to the exact
+child and parent PID/creation-time generations, expected source hash, child and
+parent image names and hashes, raw value, portable status, and encoding name.
+Signals, NTSTATUS values, fork-failure markers, and uncontracted values such as
+256 or 1536 remain raw failures. The Bash configure probe follows the same
+contract: it must discover and preserve `WEXITSTATUS_OFFSET=8`, not introduce a
+second decoder.
