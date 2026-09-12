@@ -1,0 +1,36 @@
+{
+  "ObservedAt": "2026-09-11T07:10:05.3934828Z",
+  "Mode": "read-only merge-readiness analysis; no repository edits, branches, pushes, merges, builds or tests",
+  "RequestedPRs": [
+    "crutkas/msys2-runtime#32",
+    "crutkas/msys2-runtime#33",
+    "crutkas/msys2-woarm64-build#11",
+    "crutkas/msys2-woarm64-build#12",
+    "crutkas/msys2-woarm64-build#13",
+    "crutkas/msys2-woarm64-build#14",
+    "crutkas/msys2-woarm64-build#15"
+  ],
+  "AdditionalPR": "crutkas/msys2-runtime#34",
+  "BuildNativeRunnerCount": 0,
+  "CIPropagationDecision": "After actual PR11 binutils run34571963232 passes, owner5b propagates isolated CI-only a0b773dbd64b4542d9b8de05911d23af51e87c25 onto each needed base; no whole-PR11 ferry or reparenting under active work",
+  "BuildOverlap": [
+    {
+      "Kind": "both add same path, different behavior",
+      "ProposedResolution": "PR14 retained native child handles, IsProcessInJob guard and teardown wait; both owners agreement pending",
+      "PRs": [
+        13,
+        14
+      ],
+      "Path": "arm64-git-recovery/native/bounded_process.py"
+    },
+    {
+      "Kind": "different blob IDs, LF-normalized contents identical; PR13 CRLF66, PR14 LF",
+      "Warning": "Preserve explicit raw-byte receipt lineage; do not strip embedded CR",
+      "PRs": [
+        13,
+        14
+      ],
+      "Path": "arm64-git-recovery/native/test_bounded_process.py"
+    }
+  ]
+}

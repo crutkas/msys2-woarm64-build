@@ -1,0 +1,1353 @@
+{
+  "schema": 1,
+  "status": "native-msys-libsqlite-package-combined-runtime-compatibility-proved",
+  "package": {
+    "name": "libsqlite",
+    "version": "3.53.4-1",
+    "arch": "aarch64",
+    "target": "aarch64-pc-cygwin",
+    "data_model": "MSYS LP64",
+    "role": "Heimdal/SSH runtime dependency only",
+    "path": "C:\\ag-sqlite-combined-01\\package-01\\libsqlite-3.53.4-1-aarch64.pkg.tar.zst",
+    "size": 5395923,
+    "sha256": "1144d93cba23cffdfd485f36b90499dbe1a9a88871567ea7aa44fd3616aa4a2e"
+  },
+  "files": {
+    "usr/bin/msys-sqlite3-0.dll": {
+      "sha256": "ab10026d3cb35252d9581256bbf803a825becdf521a541c6663fe7564889815f",
+      "size": 14006648,
+      "path": "C:\\ag-sqlite-combined-01\\package-01\\payload\\usr\\bin\\msys-sqlite3-0.dll",
+      "pe": {
+        "path": "C:\\ag-sqlite-combined-01\\package-01\\payload\\usr\\bin\\msys-sqlite3-0.dll",
+        "size": 14006648,
+        "sha256": "ab10026d3cb35252d9581256bbf803a825becdf521a541c6663fe7564889815f",
+        "machine": "0xAA64",
+        "optional_magic": "0x20B",
+        "kind": "dll",
+        "imports": [
+          {
+            "name": "KERNEL32.dll",
+            "delayed": false
+          },
+          {
+            "name": "msys-2.0.dll",
+            "delayed": false
+          }
+        ]
+      }
+    },
+    "usr/share/licenses/libsqlite/LICENSE": {
+      "sha256": "0b76663a90e034f3d7f2af5bfada4cedec5ebc275361899eccc5c18e6f01ff1f",
+      "size": 1528,
+      "path": "C:\\ag-sqlite-combined-01\\package-01\\payload\\usr\\share\\licenses\\libsqlite\\LICENSE",
+      "pe": null
+    }
+  },
+  "archive_members": {
+    ".PKGINFO": {
+      "size": 277,
+      "sha256": "2e48f370aa3ccd12a368c5daf93ccb8c6922167005745f98e3fd89ccac0ba0fe"
+    },
+    "usr/bin/msys-sqlite3-0.dll": {
+      "size": 14006648,
+      "sha256": "ab10026d3cb35252d9581256bbf803a825becdf521a541c6663fe7564889815f"
+    },
+    "usr/share/licenses/libsqlite/LICENSE": {
+      "size": 1528,
+      "sha256": "0b76663a90e034f3d7f2af5bfada4cedec5ebc275361899eccc5c18e6f01ff1f"
+    }
+  },
+  "payload_root": "C:\\ag-sqlite-combined-01\\package-01\\payload",
+  "runtime_bundled": false,
+  "depends": [
+    "msys2-runtime"
+  ],
+  "runtime_sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c",
+  "combined_runtime_receipt_sha256": "f8c7c49b46fdf0844555b99d3c1e4d2c342817a8b01eef1e9f283875796e2b9b",
+  "runtime_import_library_sha256": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c",
+  "runtime_crt0_sha256": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737",
+  "runtime_source_commit": "563662010c2f2072ad90f28713611caabdf70dbb",
+  "sqlite_source": {
+    "repository": "https://www.sqlite.org/src",
+    "vcs": "Fossil",
+    "commit": "bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e09459bcc",
+    "prepared_tree_sha256": "62a8ab53d6148c923934cf53642ec9f93ecd3b19bce5c61dbfac1898422f3c31",
+    "tree_digest_format": "SHA256 UTF-8 JSON of exact prepared files, sorted keys, compact separators",
+    "source_archive": {
+      "file": "sqlite-src-3530400.zip",
+      "format": "zip",
+      "id": "sqlite-msys",
+      "prefix": "sqlite-src-3530400",
+      "sha256": "d18fa15aec74d8c17e1463f861095adc01b5ad190256acb4f91d22f0368d232b",
+      "url": "https://www.sqlite.org/2026/sqlite-src-3530400.zip",
+      "version": "3.53.4"
+    },
+    "recipe_inputs": {
+      "PKGBUILD": "6db1e1013349ee4189c267edc2b6640ef39c477d2f62bbc0a2d0cc97338a01c8",
+      "LICENSE": "0b76663a90e034f3d7f2af5bfada4cedec5ebc275361899eccc5c18e6f01ff1f",
+      "0001-sqlite-pcachetrace-include-sqlite3.patch": "6518119034ceb2820d058afcb099d11f636271f55a41ffae22855af66a369166",
+      "0002-sqlite3.32.3-Makefile.in-fix-rule-compiling-rbu.exe.patch": "2a3be75d6a0e8f7ea1a53f0434a9e1823fcb5965069f482083694388c7564f1c",
+      "0031-use-packaged-lempar.c.patch": "9d51e267719f48454627860cf0529928b6711c053e3b930344d897e95a0810fa",
+      "Makefile.ext.in": "8c169857b1c449fb7f4e31aaedccdb15435b2f8a83f0f4e744569894a86d8bbd",
+      "README.md.in": "ef3a1faa02a88e05539d160d51679f164dfa23cc5a637ff36bc504bf04d6d7a6"
+    },
+    "recipe_collection_commit": "9154e8a73cf7813e3e4b87df14e6aea5776dc571",
+    "patched_source": true,
+    "compiled_source_id": "2026-07-24 19:02:57 bf7c7f30031888f4e796e429ab3978879485813aaca6f641c7b33e4e0945alt1",
+    "source_receipt_sha256": "e9bedb318fd6e6051d8d16c5bd026fcd2274f023eeb1df10f7d0b0f5d51a16ba"
+  },
+  "provenance": {
+    "sqlite_rebuilt": false,
+    "runtime_rebuilt": false,
+    "original_build": "C:\\ag-sqlite-e138-01\\build-run-02\\result.json",
+    "original_build_sha256": "936cf85ffae070b468b611ba81c7b1d43d60fc94d928a5e9d232f044ffe02afc",
+    "original_seven_split_handoff": "C:\\ag-sqlite-e138-01\\handoff-01\\result.json",
+    "original_seven_split_handoff_sha256": "9bfa0f82b6456b546e654e53da68661555fee0d8a9656b592258a052c2edf718",
+    "compiled_with_original_runtime_crt": true,
+    "compatibility_not_rebuild": "Existing native SQLite and consumers validated against907afa09; no claim of relinking old binaries with new CRT",
+    "all_seven_split_pe": {
+      "sqlite": {
+        "usr/bin/dbhash.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite\\usr\\bin\\dbhash.exe",
+          "size": 14044020,
+          "sha256": "f31e31ea0e883f15913d38c0b6e1daf4a4864755543dc818d001202a564707cc",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "executable",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/rbu.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite\\usr\\bin\\rbu.exe",
+          "size": 14357280,
+          "sha256": "06d33e268c72e259abe35eb727548a3bfbd220e165ccf4c8d3054b8d77be1b3d",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "executable",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/sqldiff.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite\\usr\\bin\\sqldiff.exe",
+          "size": 14155309,
+          "sha256": "5a9711b90192d16c9d2c77c93f8834187cd2c966c31817da144ba77a067ac850",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "executable",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/sqlite3.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite\\usr\\bin\\sqlite3.exe",
+          "size": 16261314,
+          "sha256": "3899f2d63fabfe4e490a68539e5c9c8a81126f578d0eb634a6a3a33a8dd803b5",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "executable",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-readline8.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-z.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/sqlite3_analyzer.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite\\usr\\bin\\sqlite3_analyzer.exe",
+          "size": 14834723,
+          "sha256": "a73cb04a7337ed52b88a9e752f4739a6224ad1cd2e1e6145971771ffff7cdfaf",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "executable",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            },
+            {
+              "name": "libtcl8.6.dll",
+              "delayed": false
+            }
+          ]
+        }
+      },
+      "libsqlite": {
+        "usr/bin/msys-sqlite3-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\libsqlite\\usr\\bin\\msys-sqlite3-0.dll",
+          "size": 14006648,
+          "sha256": "ab10026d3cb35252d9581256bbf803a825becdf521a541c6663fe7564889815f",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        }
+      },
+      "libsqlite-devel": {},
+      "sqlite-doc": {},
+      "tcl-sqlite": {
+        "usr/lib/sqlite3.53.4/cygsqlite3.53.4.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\tcl-sqlite\\usr\\lib\\sqlite3.53.4\\cygsqlite3.53.4.dll",
+          "size": 14491170,
+          "sha256": "ac542920d4b0fe88e61f2900cea512c728b0b409c9acd4dcdb04220414c8c1cb",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        }
+      },
+      "sqlite-extensions": {
+        "usr/bin/msys-sqlite3amatch-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3amatch-0.dll",
+          "size": 72818,
+          "sha256": "7d47ea370baaec949e580265ff86aee03b6deb3537af553717211e330fe2cbcd",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3anycollseq-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3anycollseq-0.dll",
+          "size": 55364,
+          "sha256": "6ed8bca93614be02cfaa492f250ccab8798aea8b32706ebda02335ede9ab60b7",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3appendvfs-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3appendvfs-0.dll",
+          "size": 62060,
+          "sha256": "24c9cab973d918bdd01b9e611c223536b409313dace98ea9e3edebbca4e2f2e8",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3base64-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3base64-0.dll",
+          "size": 58775,
+          "sha256": "d0266ec321405b75dd74a0481b34d0257a2282acc378f457e77e00ee445afc19",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3base85-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3base85-0.dll",
+          "size": 59617,
+          "sha256": "c2d013090d0ffd5fba83400740baaca4480ada177fec291f4c26523914b60932",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3basexx-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3basexx-0.dll",
+          "size": 63108,
+          "sha256": "37cc9086ce3e625d7fd487b1e9a8d16bd502c205825ed9b120d04134ed729176",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3blobio-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3blobio-0.dll",
+          "size": 56390,
+          "sha256": "7ede82e0cc0d466d8b5968a18d30bf667e8bad6e28352dffb34385310b1e7d88",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3btreeinfo-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3btreeinfo-0.dll",
+          "size": 59741,
+          "sha256": "1da414b70c8b9da300ac617defefd83c98fe796fa46478b102361948a16d3855",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3cksumvfs-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3cksumvfs-0.dll",
+          "size": 64075,
+          "sha256": "5273e8b54b0a11b5994ab9a836c4fe7c573fe43ac28e899f295d252745bb6875",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3closure-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3closure-0.dll",
+          "size": 65180,
+          "sha256": "60ed685d1f1ff79aa974b5b0fba9b1fbe1cc00cc4f32f95c22c83afd82b7c6a2",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3completion-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3completion-0.dll",
+          "size": 60445,
+          "sha256": "f4222b3315739f4e4173c7d4a0929e109f68856dd33e6c81ae04d1cceffe6df5",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3compress-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3compress-0.dll",
+          "size": 56758,
+          "sha256": "08d70ff9dc821480e0ba0c38e51eccfe396d32625fe2908f1175a6dcbb3f88cb",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-z.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3csv-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3csv-0.dll",
+          "size": 68342,
+          "sha256": "ef2ce7a7607cef2fd3e5f405a1c9e9f0f8b110a1f61a099d7b0767eee8176ed9",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3dbdump-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3dbdump-0.dll",
+          "size": 71514,
+          "sha256": "8bb68799696e0ea78d0aecb633d0d00f7d50746ca17e781790391be51cb24192",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "msys-sqlite3-0.dll",
+              "delayed": false
+            },
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3decimal-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3decimal-0.dll",
+          "size": 69705,
+          "sha256": "853c94294be38bb93b002014315ff6820b044e9b11567c5f527af38cab14a855",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3eval-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3eval-0.dll",
+          "size": 56808,
+          "sha256": "b4ad4410b716a68eb51f6a21e01bce8f4b064e0631f86a67743c2204db18743b",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3explain-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3explain-0.dll",
+          "size": 57335,
+          "sha256": "795fa58534bb0b46514aa2b3d30513e05a68b957d3a929cee910f43596276adf",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3fileio-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3fileio-0.dll",
+          "size": 71347,
+          "sha256": "e7e11e816192bc7a154987c975a25460bda479e86c489bd066433ea63d479a77",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3fossildelta-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3fossildelta-0.dll",
+          "size": 65791,
+          "sha256": "289fb3e7fb2d1c81637371ec2fc84846fd9250fab9428c5be293d41cb1f0dffa",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3fuzzer-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3fuzzer-0.dll",
+          "size": 65825,
+          "sha256": "13d5de951bdab6a9a551cd337921445c2e44af0e83ace2c5602a21c773fa289b",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3ieee754-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3ieee754-0.dll",
+          "size": 58110,
+          "sha256": "4a2de7710fc183b9ed9357d489e494cf85101f8969b693c909fe6549090eb962",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3memstat-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3memstat-0.dll",
+          "size": 59610,
+          "sha256": "fc90193a9b0cff13798dcbbffb273644ede134e890ac5a413a5d8318b8290b39",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3mmapwarm-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3mmapwarm-0.dll",
+          "size": 58295,
+          "sha256": "eec63407cce311ede2903a28bbea4cf7de54571d59647ea0254315880caca8bc",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "msys-sqlite3-0.dll",
+              "delayed": false
+            },
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3nextchar-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3nextchar-0.dll",
+          "size": 58670,
+          "sha256": "070c469e9082e3b7e3680a537b56d9319bb7b465098b91fe528ba7ab4140d260",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3noop-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3noop-0.dll",
+          "size": 56103,
+          "sha256": "27e3ff196063826f194f067b81f0fe17caadc05d3576ea54762fd8c4f9024e2b",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3normalize-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3normalize-0.dll",
+          "size": 62738,
+          "sha256": "f1266870a9330cbd6e4035338d7b610eaa2a372dd1002f0c822f039e4b64d2b3",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "msys-sqlite3-0.dll",
+              "delayed": false
+            },
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3pcachetrace-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3pcachetrace-0.dll",
+          "size": 58710,
+          "sha256": "93077fb5967beb28448a334c49baa8018c0a07bd355d340a24bce0b64a9b0281",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "msys-sqlite3-0.dll",
+              "delayed": false
+            },
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3percentile-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3percentile-0.dll",
+          "size": 61016,
+          "sha256": "e883a5c26902d48df210ff898803e584c6fe97c5e703d57f983ab67b312be894",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3prefixes-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3prefixes-0.dll",
+          "size": 57516,
+          "sha256": "0ec4420d3104d7f8d21337be1d60354bc89a57dbd84b632e9d293fbe38d18d5b",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3qpvtab-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3qpvtab-0.dll",
+          "size": 61197,
+          "sha256": "bc09746878c946176e10878d762b91a1aa42da03c2f545532fbae85f31e6b50f",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3randomjson-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3randomjson-0.dll",
+          "size": 61824,
+          "sha256": "56425e50e5b240b998b0a9a2ebf9aa70c271f810e85a21f5aba92fb936cd57ed",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3remember-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3remember-0.dll",
+          "size": 55489,
+          "sha256": "7e6bc793d24e6d283b91573534492eb48f71d5b0428a0abadc672c3f7d738a49",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3rot13-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3rot13-0.dll",
+          "size": 56025,
+          "sha256": "8cf74441da30b3d1d2bc78bd2b20e66078e5f9ee8595826dd24189dc4c9b8d36",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3series-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3series-0.dll",
+          "size": 63594,
+          "sha256": "80875c998a905092bacd62ce201c733d65546fc4978ac12fd6e0815eb7dc6d78",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3sha1-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3sha1-0.dll",
+          "size": 70634,
+          "sha256": "e7fecf7fcc864090a1f1151bbb27aacd05a3c448eb915f55056db5e53c9ee451",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3shathree-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3shathree-0.dll",
+          "size": 67303,
+          "sha256": "5066d2a423e1a6e10d7ca78e5b7422836ee9822a56f27d9267387c0bdfb910b1",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3showauth-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3showauth-0.dll",
+          "size": 58081,
+          "sha256": "f6b4a779446f174431ae672d18acac5b4778e58dbd1dedb192cf2626dd5636f2",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3spellfix-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3spellfix-0.dll",
+          "size": 91510,
+          "sha256": "c7a3b82dfdd62078f5f17136d259f534e693339d500805853a00fdb85cf1f96a",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3sqlar-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3sqlar-0.dll",
+          "size": 57269,
+          "sha256": "ff40c65947490b6045529e931edc44918b395bf99bd885977f1d66333b06b48a",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-z.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3sqlite3_stdio-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3sqlite3_stdio-0.dll",
+          "size": 53923,
+          "sha256": "a2b49b6f33a033a602e43eeaac5a8d9fa43fe8fe8808f5bd25d8e3fffc0001ce",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3stmt-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3stmt-0.dll",
+          "size": 57615,
+          "sha256": "4526582b015bdf6d8abe5e329bde4786bab0464068939b5b1b39e4f22aa66967",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3stmtrand-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3stmtrand-0.dll",
+          "size": 55210,
+          "sha256": "ccf48513bbb4d41716e6a78fcd5e894821374d3ee82470589bc43171c3667a6e",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3templatevtab-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3templatevtab-0.dll",
+          "size": 56555,
+          "sha256": "8af30a3a6dcf3dcc4ee7dab8e583f79809369065e5bec8e9b72d94300b07e6e2",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3tmstmpvfs-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3tmstmpvfs-0.dll",
+          "size": 66548,
+          "sha256": "18137014af049c4bcac8d946101012a29a77afedd06fa8406d55ffee88bbc9fc",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3totype-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3totype-0.dll",
+          "size": 61048,
+          "sha256": "78bf11fa4e950f6b9af887f5dce6dd6056e6afc6796e6c82ed31c41847642460",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3uint-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3uint-0.dll",
+          "size": 56099,
+          "sha256": "f9fa12fe95af6c2fc50cd5b1850644e4db32cdfface70f59e61405a1df9efa56",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3unionvtab-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3unionvtab-0.dll",
+          "size": 72783,
+          "sha256": "0de1bc6849bc9bc6a8845ca707c6f670c2e551dbb21af01e12e50efb9b1b810e",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3urifuncs-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3urifuncs-0.dll",
+          "size": 57147,
+          "sha256": "433ca04e8a8dbe56a24b7a77fe707c922f6b0884817d054681015cee05e4bde9",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3uuid-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3uuid-0.dll",
+          "size": 57508,
+          "sha256": "a5058e64c2ef46a403e81ea2f721967893235454876c90c01cdf498dc0a420b1",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3vfslog-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3vfslog-0.dll",
+          "size": 66971,
+          "sha256": "5d42554af63dfaf8131b9f1a96f08d7ba010d6df11235d766e6e3db0ce88c249",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "msys-sqlite3-0.dll",
+              "delayed": false
+            },
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3vfsstat-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3vfsstat-0.dll",
+          "size": 64045,
+          "sha256": "4d6dc452b7a20a7e535073d73c0ccde41fb04b5782ff4cf19260c9dd5b05d635",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3vtablog-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3vtablog-0.dll",
+          "size": 68409,
+          "sha256": "8a90ae4d0d815e4ce3a9bdcbcfbcd6138a230e6a59d7baa7f70720b69eb5656e",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3vtshim-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3vtshim-0.dll",
+          "size": 64422,
+          "sha256": "c4209faf64a273021fe4f9e218b421f653b0a671d3c8a2fc799247bebd2dd4f5",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3wholenumber-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3wholenumber-0.dll",
+          "size": 57324,
+          "sha256": "e02fa7105eea74888148a43fa6091a7d0717ee273f533b8d8c9c520aeb9b63cd",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3zipfile-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3zipfile-0.dll",
+          "size": 88600,
+          "sha256": "759cb422aca21407a9f015b507bc8c0ac3dcc947db4e9a9a5d707f303f76540c",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-z.dll",
+              "delayed": false
+            }
+          ]
+        },
+        "usr/bin/msys-sqlite3zorder-0.dll": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\sqlite-extensions\\usr\\bin\\msys-sqlite3zorder-0.dll",
+          "size": 55839,
+          "sha256": "06849cd5685dc86ead8eb4c86893e3f54e670d746e4686a6fc405024bcb4db47",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "dll",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        }
+      },
+      "lemon": {
+        "usr/bin/lemon.exe": {
+          "path": "C:\\ag-sqlite-e138-01\\build-06\\splits\\lemon\\usr\\bin\\lemon.exe",
+          "size": 442381,
+          "sha256": "2aa73c7d618f701f022c3564daa6a2cb1d0130fcbecc72bf76ca7c537e0eaf90",
+          "machine": "0xAA64",
+          "optional_magic": "0x20B",
+          "kind": "executable",
+          "imports": [
+            {
+              "name": "KERNEL32.dll",
+              "delayed": false
+            },
+            {
+              "name": "msys-2.0.dll",
+              "delayed": false
+            }
+          ]
+        }
+      }
+    }
+  },
+  "validation": {
+    "proof": "C:\\ag-sqlite-combined-01\\proof-01\\result.json",
+    "sha256": "7ce162884cf53104bfa7c565d3d7d038e56ca6ffb8f41d5494d1c0bd8f9c6e21",
+    "executed_positive_steps": 63,
+    "reused_native_consumers": 3,
+    "every_step_exact_combined_runtime": true,
+    "foreign_bootstrap_in_execution_path": false,
+    "launcher_drain": {
+      "pid": 5344,
+      "creation_filetime": 134335705527900515,
+      "state": "exact-generation-exited"
+    },
+    "ordinary": "C:\\ag-sqlite-combined-01\\ordinary-01\\result.json",
+    "ordinary_sha256": "83d3eb55b56bb587235d04ff8772c51b0b6e235c6eaf2a1345e5cafde0453e25",
+    "ordinary_steps": 3,
+    "ordinary_launcher_drain": {
+      "pid": 19696,
+      "creation_filetime": 134335706620395136,
+      "state": "process-gone"
+    }
+  },
+  "scope": {
+    "mvp_runtime_only": true,
+    "cli_devel_docs_extensions_packaged": false,
+    "full_upstream_qualified": false,
+    "provider_admitted": false,
+    "historical_failures_waived": false,
+    "remaining": [
+      "Review full upstream failures/timeouts and missing native sanitizer libraries",
+      "Producer-qualified cross-architecture MSYS child-info/environment fix",
+      "Provider admission and independent Tcl/compiler/full Git qualification"
+    ]
+  },
+  "free_ram_gib_at_package": 30.551250457763672
+}

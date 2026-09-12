@@ -1,0 +1,82 @@
+# Adapted from msys2/MINGW-packages at
+# fbb9173f78adaea078046ea53e35cee47e7a5527.
+# Upstream maintainer: Alexey Pavlov <alexpux@gmail.com>
+
+_realname=asciidoctor
+pkgbase=mingw-w64-asciidoctor
+pkgname=mingw-w64-aarch64-asciidoctor
+pkgver=2.0.26
+pkgrel=3
+pkgdesc="AsciiDoc processor using the official native ARM64 MSYS2 Ruby bootstrap"
+arch=('aarch64')
+mingw_arch=('mingwarm64')
+url='https://asciidoctor.org/'
+license=('spdx:MIT')
+depends=('mingw-w64-clang-aarch64-ruby=4.0.6-1')
+options=('!strip' '!emptydirs')
+source=("https://rubygems.org/downloads/${_realname}-${pkgver}.gem"
+        'asciidoctor'
+        'asciidoctor.bat'
+        'launcher.rb')
+sha256sums=('16e3accf1fc206bbd6335848649d7fd65f31d2daa60d85af13d47a8ee4b071c1'
+            '4c850587eddf8a41f2af6b8c8cb0d0c81a981297dbd65389803df38ce757e417'
+            '333d8badb4ac0c9953a40862fe1a3bae36e2f1850cda8169a05e7d9dc372a25c'
+            'fe0741d167c1f55b495042b333cf86dd7f22f380149a39927d02bb9aa28b7c50')
+
+_ruby=/clangarm64/bin/ruby.exe
+_gem=/clangarm64/bin/gem
+_gemdir=/mingwarm64/lib/ruby/gems/4.0.0
+
+_run_ruby() (
+  local _windows_root
+  _windows_root="$(/usr/bin/cygpath -u "${SYSTEMROOT}")"
+  unset RUBYOPT RUBYLIB GEM_HOME GEM_PATH
+  export PATH="/clangarm64/bin:${_windows_root}/System32:${_windows_root}"
+  exec "${_ruby}" "$@"
+)
+
+build() {
+  _run_ruby "${_gem}" unpack "${srcdir}/${_realname}-${pkgver}.gem"
+}
+
+check() {
+  _run_ruby -rrubygems/package -e '
+    package = Gem::Package.new(ARGV.fetch(0))
+    package.verify
+    abort "Unexpected Asciidoctor version" unless package.spec.version.to_s == ARGV.fetch(1)
+    abort "Unexpected runtime gem dependencies" unless package.spec.runtime_dependencies.empty?
+    abort "Wrong Ruby version" unless RUBY_VERSION == "4.0.6"
+    abort "Not a native ARM64 Ruby" unless RUBY_PLATFORM.start_with?("aarch64-mingw")
+  ' "${_realname}-${pkgver}.gem" "${pkgver}"
+
+  _run_ruby -I"${srcdir}/${_realname}-${pkgver}/lib" -e '
+    require "asciidoctor"
+    require "asciidoctor/extensions"
+    require "asciidoctor/converter/html5"
+    require "asciidoctor/converter/docbook5"
+    [Asciidoctor::Converter::Html5Converter, Asciidoctor::Converter::DocBook5Converter].each do |converter|
+      abort "Missing Git converter API" unless converter.method_defined?(:convert_inline_quoted)
+    end
+    source = "= native-doc(1)\n\n== NAME\nnative-doc - native documentation\n\n== SYNOPSIS\n*native-doc* _argument_\n"
+    html = Asciidoctor.convert(source, backend: "xhtml5", doctype: "manpage", standalone: true)
+    xml = Asciidoctor.convert(source, backend: "docbook5", doctype: "manpage", standalone: true)
+    abort "Missing XHTML payload" unless html.include?("http://www.w3.org/1999/xhtml")
+    abort "Missing DocBook payload" unless xml.include?("http://docbook.org/ns/docbook") && xml.include?("<refentry")
+  '
+}
+
+package() {
+  _run_ruby "${_gem}" install --local --no-document --no-user-install \
+    --install-dir "${pkgdir}${_gemdir}" \
+    --bindir "${pkgdir}/mingwarm64/bin" \
+    "${_realname}-${pkgver}.gem"
+
+  # Ruby remains in its original signed CLANGARM64 package and namespace.
+  install -m755 "${srcdir}/asciidoctor" "${pkgdir}/mingwarm64/bin/asciidoctor"
+  install -m755 "${srcdir}/asciidoctor.bat" "${pkgdir}/mingwarm64/bin/asciidoctor.bat"
+  install -Dm644 "${srcdir}/launcher.rb" "${pkgdir}/mingwarm64/lib/asciidoctor/launcher.rb"
+  install -Dm644 "${srcdir}/${_realname}-${pkgver}/LICENSE" \
+    "${pkgdir}/mingwarm64/share/licenses/${_realname}/LICENSE"
+  install -Dm644 "${srcdir}/${_realname}-${pkgver}/man/asciidoctor.1" \
+    "${pkgdir}/mingwarm64/share/man/man1/asciidoctor.1"
+}

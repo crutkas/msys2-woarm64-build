@@ -1,0 +1,34 @@
+pkgname=woarm64-native-rust-bridge-control
+pkgver=1
+pkgrel=1
+pkgdesc='Actual native Rust/GCC package environment integration control'
+arch=('aarch64')
+license=('custom')
+options=('!strip' '!debug' '!lto')
+
+prepare() {
+    source "$WOARM64_SCRIPTS/native-rust-environment.sh"
+    printf 'LDFLAGS =%s\nEXTLIBS +=%s\n' "$WOARM64_RUST_LDFLAGS" "$WOARM64_RUST_EXTLIBS" > "$srcdir/config.mak"
+}
+
+build() {
+    source "$WOARM64_SCRIPTS/native-rust-environment.sh"
+    export CARGO_HOME="$srcdir/cargo-home" CARGO_NET_OFFLINE=true
+    mkdir -p "$srcdir/probe/src"
+    printf '[package]\nname="rust-package-probe"\nversion="0.1.0"\nedition="2024"\nbuild="build.rs"\n' > "$srcdir/probe/Cargo.toml"
+    printf 'fn main(){println!("cargo:rustc-env=BUILD_SCRIPT_RESULT=executed");}\n' > "$srcdir/probe/build.rs"
+    printf 'fn main(){assert_eq!(env!("BUILD_SCRIPT_RESULT"),"executed");assert!(std::panic::catch_unwind(||panic!("expected package unwind control")).is_err());println!("native-rust-package-bridge-passed");}\n' > "$srcdir/probe/src/main.rs"
+    cargo build --offline --jobs "$WOARM64_JOBS" --manifest-path "$srcdir/probe/Cargo.toml" --target-dir "$srcdir/cargo-target"
+}
+
+check() {
+    source "$WOARM64_SCRIPTS/native-rust-environment.sh"
+    bash "$(cygpath -u "${WOARM64_NATIVE_EXEC:?}")" "$srcdir/cargo-target/debug/rust-package-probe.exe"
+    grep -F -- '-fuse-ld=lld -Wl,-m,arm64pe' "$srcdir/config.mak"
+    grep -F -- 'libunwind.dll.a' "$srcdir/config.mak"
+}
+
+package() {
+    install -Dm755 "$srcdir/cargo-target/debug/rust-package-probe.exe" "$pkgdir/mingwarm64/bin/rust-package-probe.exe"
+    install -Dm644 "$srcdir/config.mak" "$pkgdir/mingwarm64/share/woarm64-rust-bridge/config.mak"
+}

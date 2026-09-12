@@ -1,0 +1,120 @@
+'\" t
+.\"     Title: git-bash
+.\"    Author: [see the "Authors" section]
+.\" Generator: DocBook XSL Stylesheets v1.79.2 <http://docbook.sf.net/>
+.\"      Date: 2026-08-20
+.\"    Manual: Git Manual
+.\"    Source: Git 2.55.0.windows.5
+.\"  Language: English
+.\"
+.TH "GIT\-BASH" "1" "2026-08-20" "Git 2\&.55\&.0\&.windows\&.5" "Git Manual"
+.\" -----------------------------------------------------------------
+.\" * Define some portability stuff
+.\" -----------------------------------------------------------------
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.\" http://bugs.debian.org/507673
+.\" http://lists.gnu.org/archive/html/groff/2009-02/msg00013.html
+.\" ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+.ie \n(.g .ds Aq \(aq
+.el       .ds Aq '
+.\" -----------------------------------------------------------------
+.\" * set default formatting
+.\" -----------------------------------------------------------------
+.\" disable hyphenation
+.nh
+.\" disable justification (adjust text to left margin only)
+.ad l
+.\" -----------------------------------------------------------------
+.\" * MAIN CONTENT STARTS HERE *
+.\" -----------------------------------------------------------------
+.SH "NAME"
+git-bash \- A Windows\-specific wrapper to open a Git Bash window
+.SH "SYNOPSIS"
+.sp
+.nf
+git\-bash [\-\-cd\-to\-home] [\-\-cd=<directory>] [\-\-minimal\-search\-path]
+    [\-\-command=<path>] [\-\-app\-id=<id>] [<args>\&...\:]
+.fi
+.SH "DESCRIPTION"
+.sp
+This command opens a window with an interactive Git Bash\&. It is specific to the Git for Windows project\&.
+.sp
+By default, this will open a MinTTY window, but it can be configured in Git for Windows\*(Aq installer to use Windows\*(Aq default Console window instead\&.
+.sp
+Before starting the interactive Bash session, the environment is adjusted a bit\&. For example, the \fBPATH\fR is adjusted to find the \fBgit\fR executable, and \fBgit\-bash\fR will ensure that \fBHOME\fR is set (because it is expected to be present by Git, and to point to the current user\(cqs home directory)\&. See the the section called \(lqENVIRONMENT VARIABLES\(rq section below for more information\&.
+.SH "OPTIONS"
+.PP
+\-\-cd\-to\-home, \-\-no\-cd, \-\-cd=<directory>
+.RS 4
+By default, Git Bash will not change the current directory; To allow e\&.g\&. for Windows Explorer integration ("Git Bash Here"), the
+\fB\-\-cd=\fR\fI<directory>\fR
+option can be used to change the current directory before running the interactive Bash\&.
+.sp
+The
+\fB\-\-cd\-to\-home\fR
+option can be used to change the current directory to the user\(cqs home directory (as determined by the environment variable
+\fBHOME\fR)\&. The
+\fB\-\-no\-cd\fR
+option can be used to override
+\fB\-\-cd\fR
+options that precede it\&.
+.RE
+.PP
+\-\-minimal\-search\-path, \-\-no\-minimal\-search\-path
+.RS 4
+By default, Git Bash will adjust the
+\fBPATH\fR
+not only to include the
+\fBgit\fR
+executable, but also all of the Unix\-y tools (such as
+\fBsed\fR,
+\fBawk\fR, etc)\&. With
+\fB\-\-minimal\-search\-path\fR, it will be adjusted so that
+\fBonly\fR
+the
+\fBgit\fR,
+\fBgit\-gui\fR
+and
+\fBgitk\fR
+executables are found, as well as the scripts
+\fBstart\-ssh\-agent\&.cmd\fR
+and
+\fBstart\-ssh\-pageant\&.cmd\fR\&.
+.RE
+.PP
+\-\-command=<command>
+.RS 4
+Allows the user to ask for a different command to be specified\&. Defaults to
+\fBusr\e\ebin\e\emintty\&.exe\fR\&. If the specified command is not an absolute path, it is interpreted relative to
+\fBgit\-bash\&.exe\fR\&.
+.RE
+.PP
+\-\-app\-id=<command>
+.RS 4
+Allows the user to override the ID used e\&.g\&. in Windows\*(Aq Task Bar\&. Defaults to
+\fBGitForWindows\&.Bash\fR\&.
+.RE
+.PP
+\-\-needs\-console, \-\-no\-needs\-console, \-\-hide, \-\-no\-hide, \-\-append\-quote, \-\-no\-append\-quote
+.RS 4
+These options do not make sense in the context of
+\fBgit\-bash\fR; They are merely inherited from the Git Wrapper (see the
+the section called \(lqGIT WRAPPER\(rq
+section below)\&.
+.RE
+.SS "ENVIRONMENT VARIABLES"
+.sp
+Upon startup, \fBgit\-bash\fR will ensure that a couple of environment variables are set/adjusted\&.
+.sp
+The most important variable to adjust is \fBPATH\fR: Git Bash does want to make sure that the \fBgit\fR executable is in the search path\&.
+.sp
+If \fBHOME\fR is unset, \fBgit\-bash\fR will first look whether \fB%HOMEDRIVE%%HOMEPATH%\fR points to a valid directory and if it does, use it as value for \fBHOME\fR\&. If either \fBHOMEDRIVE\fR or \fBHOMEPATH\fR are unset, or if they do not point to a valid directory, \fB%USERPROFILE%\fR is used instead\&.
+.SS "GIT WRAPPER"
+.sp
+In the Git for Windows project, the source code of \fBgit\-bash\fR is called the "Git Wrapper", as it merely parses the command\-line parameters, sets up a few environment variables, then spawns the actual command, and waits for the spawned command to exit\&. The Git Wrapper is not only used for \fBgit\-bash\fR but also for \fBgit\-cmd\fR and for certain placeholders internal to Git (the so\-called "built\-ins")\&.
+.SH "AUTHORS"
+.sp
+The "Git Wrapper" was written by Johannes Schindelin and other Git for Windows contributors\&.
+.SH "GIT"
+.sp
+Part of the \fBgit\fR(1) suite

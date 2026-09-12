@@ -1,0 +1,96 @@
+{
+  "schemaVersion": 1,
+  "purpose": "Native ARM64 host interpreter for Git documentation, not a GCC-built Ruby or a MinGW target library provider",
+  "packageBaseUrl": "https://repo.msys2.org/mingw/clangarm64/",
+  "packagePrefix": "clangarm64",
+  "recipeRepository": "https://github.com/msys2/MINGW-packages",
+  "asciidoctorRecipeCommit": "fbb9173f78adaea078046ea53e35cee47e7a5527",
+  "asciidoctorGemVersion": "2.0.26",
+  "asciidoctorGemSha256": "16e3accf1fc206bbd6335848649d7fd65f31d2daa60d85af13d47a8ee4b071c1",
+  "gitRecipeCommit": "d65b87de173ac2209a63cef8c4528669b5571fd3",
+  "gitSourceCommit": "32c4f7689275d233577576630e1ac5b7eb354eb0",
+  "rubyCompilerFromOriginalBuildinfo": "mingw-w64-clang-aarch64-clang-22.1.8-2-any",
+  "runtimeVersionsFrom": "Original Ruby package .BUILDINFO; each recipe hash matches the original package .BUILDINFO",
+  "signaturePolicy": "Require each original detached .sig to validate with the approved MSYS2 package keyring. A matching SHA256 alone does not establish signature trust.",
+  "namespacePolicy": "Preserve original signed packages unchanged. Install only in an owned private bootstrap. Do not provide mingw-w64-aarch64-ruby or replace MINGWARM64 OpenSSL/zlib providers.",
+  "packages": [
+    {
+      "name": "mingw-w64-clang-aarch64-gmp",
+      "version": "6.3.0-2",
+      "archive": "mingw-w64-clang-aarch64-gmp-6.3.0-2-any.pkg.tar.zst",
+      "sha256": "edfaa0517787819ec3ad5da2cc4d691563962a576d0102e91eea507abdc3bdfb",
+      "signatureSha256": "7f078690db32dc29d1f2618145106be2e6be59ffaa9bdbcacdb6f87a40637e90",
+      "recipeCommit": "19a497b647dea2939e4fe9cc2ad5818f83b1632f",
+      "recipePath": "mingw-w64-gmp/PKGBUILD",
+      "recipeSha256": "b9d3bb2b5b12cb0fc47c4dc17a9a2aa82513236eaefa34c8dfc57dd0d92bc42a",
+      "licenses": ["LGPL3", "GPL"],
+      "declaredDependencies": []
+    },
+    {
+      "name": "mingw-w64-clang-aarch64-libffi",
+      "version": "3.7.1-1",
+      "archive": "mingw-w64-clang-aarch64-libffi-3.7.1-1-any.pkg.tar.zst",
+      "sha256": "b96d60f3892e0803e8e073299c8873ebc9623682f78a2ec6f01e2bee5b5feba7",
+      "signatureSha256": "f8c99142c9e09e87fdce4c5d67950075f6f9a5da2bae827a8caa76b2f0ae38a6",
+      "recipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+      "recipePath": "mingw-w64-libffi/PKGBUILD",
+      "recipeSha256": "3217a9bc33162f0ea6d4043c57a81276facebe2c66c0e6bd42ca979524f72eb1",
+      "licenses": ["spdx:MIT"],
+      "declaredDependencies": []
+    },
+    {
+      "name": "mingw-w64-clang-aarch64-libyaml",
+      "version": "0.2.5-2",
+      "archive": "mingw-w64-clang-aarch64-libyaml-0.2.5-2-any.pkg.tar.zst",
+      "sha256": "925eccdaa904b57822c7cce5c42ffcb7687a7871160c9092afdaa7d5b6c6b7e2",
+      "signatureSha256": "ceb5932496862698b05d17b49768e8542aedda7c70e5ee5aa00186e540a10fd1",
+      "recipeCommit": "fa1e7f9acd57236b7addc8b834950bdcb61aa9ff",
+      "recipePath": "mingw-w64-libyaml/PKGBUILD",
+      "recipeSha256": "ec246521f68f377eb2774a241045003e73b65fcecc8fadbca22e3209c9b93728",
+      "licenses": ["MIT"],
+      "declaredDependencies": []
+    },
+    {
+      "name": "mingw-w64-clang-aarch64-openssl",
+      "version": "3.6.3-1",
+      "archive": "mingw-w64-clang-aarch64-openssl-3.6.3-1-any.pkg.tar.zst",
+      "sha256": "e46e21bd5f1a3c36e391dbb0c7e5cf4fb6a35b2acd52e1992bfdd90fa415a310",
+      "signatureSha256": "3c64f80a3a1b59544462cd72211039fdbcd339659762a132984f66fb3d392292",
+      "recipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+      "recipePath": "mingw-w64-openssl/PKGBUILD",
+      "recipeSha256": "aa58dfbee69365129a0e0c50a23193bf6f878c3cef34918fe37754411c9029d6",
+      "licenses": ["spdx:Apache-2.0"],
+      "declaredDependencies": []
+    },
+    {
+      "name": "mingw-w64-clang-aarch64-zlib",
+      "version": "1.3.2-2",
+      "archive": "mingw-w64-clang-aarch64-zlib-1.3.2-2-any.pkg.tar.zst",
+      "sha256": "28c111cc05d923ac56faa33aa5d7618c9dc16ac2d7c9e43a87f875403517894a",
+      "signatureSha256": "385de9429126cc6063966b3cd5a9dfc783cac008771adf8f1e5b241a88c215cb",
+      "recipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+      "recipePath": "mingw-w64-zlib/PKGBUILD",
+      "recipeSha256": "8a4a54a964eab7efa313e2faa8267052bc237ef61f8adf82a55cc93f4028db8a",
+      "licenses": ["spdx:Zlib"],
+      "declaredDependencies": []
+    },
+    {
+      "name": "mingw-w64-clang-aarch64-ruby",
+      "version": "4.0.6-1",
+      "archive": "mingw-w64-clang-aarch64-ruby-4.0.6-1-any.pkg.tar.zst",
+      "sha256": "eecf056bc94c0782042ac9bbe913053ae519644d6dffb35af54f2e277f78201a",
+      "signatureSha256": "91aa029bc821740c716092492a044d18fa0cc9e63423fb48d300f0243f370ecf",
+      "recipeCommit": "c06bdfb1f888622af6e5ea3d33766cdcbd5bf9f9",
+      "recipePath": "mingw-w64-ruby/PKGBUILD",
+      "recipeSha256": "3fb75942f58b147f4f4c34cd8bbb3aa8b356ea770ddd18129f0288a270bd096e",
+      "licenses": ["spdx:Ruby AND BSD-2-Clause"],
+      "declaredDependencies": [
+        "mingw-w64-clang-aarch64-gmp",
+        "mingw-w64-clang-aarch64-libffi",
+        "mingw-w64-clang-aarch64-libyaml",
+        "mingw-w64-clang-aarch64-openssl",
+        "mingw-w64-clang-aarch64-zlib"
+      ]
+    }
+  ]
+}

@@ -1,0 +1,58 @@
+{
+  "schema": 1,
+  "status": "runtime-generation-hardening-proposal-actual-make-qualified",
+  "baseRepository": "https://github.com/crutkas/msys2-runtime.git",
+  "baseCommit": "563662010c2f2072ad90f28713611caabdf70dbb",
+  "baseSource": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/source",
+  "proposalSource": "/root/arm64-vnext-20260905/toolchain/epochs/generation-hardening-20260911-01/source",
+  "applicationOwner": "67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a",
+  "patch": {
+    "path": "/mnt/c/agtc-signal-01/build-hardening-proposal-01/runtime-generation-guards.patch",
+    "sha256": "50736b8ccbdbca6df589a5d514db0d55fc27e698a1fab547dc374a612175dbd7"
+  },
+  "changes": [
+    {
+      "path": "winsup/cygwin/Makefile.am",
+      "before": "23ff9bf045e9772514f4c3efbe5568488379849d6e9c561585d281673695b0c9",
+      "after": "b32b91ce0f1c0ed20b0adfaf2c6ca4b69ab53035eec43fba3b32e340e6b80b42"
+    },
+    {
+      "path": "winsup/cygwin/scripts/guard-runtime-generation",
+      "before": null,
+      "after": "e713a9aca592a5aa4c310741793f0dab5f2a85feeee30fff3561cc94318163d8"
+    },
+    {
+      "path": "winsup/testsuite/build/runtime-generation-make.py",
+      "before": null,
+      "after": "78987638bb4514bc3adc0c65c8e3a2878bac7792d6f2f99d912c66e4b52ef8a2"
+    }
+  ],
+  "actualMakeProof": {
+    "path": "/mnt/c/agtc-signal-01/build-hardening-proposal-01/make-controls/result.json",
+    "sha256": "f0c91360abb63805e900360a9e9cf33cf5a28dcafff7d003a943f70dc9038018"
+  },
+  "actualMakeCases": 16,
+  "existingTlsCases": 40,
+  "failuresAcceptedAsSuccess": false,
+  "historicalBadTls": {
+    "path": "/root/arm64-vnext-20260905/toolchain/epochs/generation-hardening-20260911-01/make-controls-03/fixtures/historical-tls-output",
+    "bytes": 56,
+    "sha256": "95e965fc1beea943c3eadc2cd941c34b01a3151968a0ffbe6917b354d2f0d8a5",
+    "text": ".equ _cygtls.local_clib, 0\n.equ _cygtls.local_clib_p, 0\n",
+    "scope": "Unmodified old parser; wrapper only adapts its basename-only output convention."
+  },
+  "goodTls": {
+    "path": "/mnt/c/agtc-signal-01/build-hardening-proposal-01/tlsoffsets.good",
+    "sha256": "49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566"
+  },
+  "generated": {
+    "tlsoffsets": "49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566",
+    "msys.def": "0ae964429679c5a406e04e8a31628a76e4223c723f5c06d72d851ce3f4642171",
+    "sigfe.s": "d7045af187e7e666cec44fc69065a0f76b93dbe9749dd74eac5e8b0241e864e7",
+    "sigfe.o": "cebcf326bf6997d3724401f90fabcd030ebd0238754f846d9009b5b9f74b3cdd",
+    "tlsoffsets.generation.json": "f69fced8bb6b098174b91d4b4f192c41d96f0169cb35d415c429300f687ad22f",
+    "sigfe.s.generation.json": "60667c192cadb489b888af69008726ce16ab280cd1fd562b8c3abcd697d05fcd"
+  },
+  "atomicity": "Each output is atomically renamed; receipt is published last. Every make validates inputs/output hashes, rejecting partial publication or corruption.",
+  "limits": "Proposal only: no runtime owner worktree/branch changes, no runtime DLL rebuild or ABI change. Owner must apply/publish the patch to the runtime repository."
+}

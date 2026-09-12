@@ -76,6 +76,30 @@ patch the MSYS2 installation to add the `MINGWARM64` environment using
 [`.github/scripts/setup-mingwarm64.sh`](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/scripts/setup-mingwarm64.sh)
 script.
 
+## Native Git Documentation Host Tools
+
+The recipe in [`packages/mingw-w64-asciidoctor`](packages/mingw-w64-asciidoctor)
+packages Asciidoctor 2.0.26 for the native Git documentation dependency. Git's pinned
+recipe requests Asciidoctor without a version constraint; this does not require
+porting the obsolete Ruby recipe found in the same historical recipe repository.
+
+This recipe depends directly on the original `mingw-w64-clang-aarch64-ruby=4.0.6-1`
+package. Ruby is a genuine native ARM64 **host tool built by upstream with Clang**,
+not a GCC-built runtime or a library linked into Git. The accompanying
+`ruby-bootstrap.lock.json` pins the original Ruby package and its five runtime
+dependency archives, detached signatures, licenses, and matching upstream recipe
+commits. Their names, payloads, and `/clangarm64` prefix remain unchanged; there
+is no synthetic `mingw-w64-aarch64-ruby` provider.
+
+Admit these packages only into an approved private bootstrap after checking their
+original MSYS2 signatures. Use the maintained package engine without bypassing
+dependency or native-identity checks. Both Asciidoctor launchers isolate Ruby's
+DLL search path from `/mingwarm64/bin` before starting the native interpreter.
+The recipe checks the XHTML5/DocBook5 converter APIs. Acceptance additionally
+requires raw native exit/module evidence and the pinned Git documentation
+Makefile, generated Ruby extensions, and xmlto pipeline; these package checks
+alone are not evidence that all Git documentation has been built.
+
 ## MingGW Cross-Compilation Toolchain CI
 
 The [mingw-cross-toolchain.yml](https://github.com/Windows-on-ARM-Experiments/msys2-woarm64-build/blob/main/.github/workflows/mingw-cross-toolchain.yml)

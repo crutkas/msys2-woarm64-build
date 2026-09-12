@@ -1,0 +1,310 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-11T03:12:23.9038158Z",
+  "status": "combined-arm64-runtime-reproducible-scoped-qualified-and-published",
+  "scope": "Coherent recovered ARM64 runtime, maintained build reproducibility/startup safety, exact mechanical source closure and qualified myfault/signal integration; not a complete Git distribution or universal exit-domain admission.",
+  "authority": {
+    "grantor": "user",
+    "granted_date": "2026-09-10",
+    "relay": "General Chat ece7fd0d-2da8-4291-9297-7df1a6f3b078",
+    "permissions": [
+      "runtime source edits",
+      "local builds",
+      "commit",
+      "push to crutkas fork",
+      "fork pull request"
+    ],
+    "superseded_boundary": "V10 GO_RUNTIME_ABI_SESSION_START_LOCAL_BUILD_ONLY; historical verdict unavailable and not re-verified",
+    "upstream_submission": false,
+    "plan": {
+      "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\plan.md",
+      "sha256": "0df6962d2aaeaf3bdd7f06d28e6b153eb2d6545bb31d25b9d666fdf96e995072"
+    }
+  },
+  "publication": {
+    "repository": "crutkas/msys2-runtime",
+    "branch": "crutkas-arm64-runtime-integration",
+    "commit": "563662010c2f2072ad90f28713611caabdf70dbb",
+    "pull_request": "https://github.com/crutkas/msys2-runtime/pull/33",
+    "base": "crutkas-arm64-vnext/msys2-runtime/generator",
+    "remote_head_verified": true,
+    "working_tree_clean": true,
+    "mechanical_peer": {
+      "commit": "846c26818d0594f8f872aae9258abb00f52d592a",
+      "pull_request": "https://github.com/crutkas/msys2-runtime/pull/32"
+    },
+    "signal_peer": {
+      "patch_probe_commit": "13b9c1101abb447c1473c0c028b55cd9c40812f4",
+      "head": "3f260f8d68ee091fcc724c2b65f684c27ea8208c",
+      "pull_request": "https://github.com/crutkas/msys2-woarm64-build/pull/11"
+    }
+  },
+  "source_snapshot": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/source",
+  "source_manifest": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/source.SHA256SUMS",
+    "sha256": "2180cb8b66ae8cf7a6c121b856dd1d4a1a7dccea927a672c4e0cbaa385adce59"
+  },
+  "source_files": 6886,
+  "committed_source_delta": "Final README/test documentation and synchronized generated config.h.in template; template equals the actual autoheader output used in both builds. Runtime/compiler inputs otherwise unchanged.",
+  "build_version_inputs": {
+    "source_date_epoch": 1788224411,
+    "msys2_runtime_commit": "d890a845e992638a6f09560efacc26d15b3ffe6a",
+    "uname_dev_version": "3.6.10-45-gd890a845e992-dirty"
+  },
+  "prefix": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/prefix",
+  "runtime": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/new-msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+  },
+  "second_runtime": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/b/winsup/cygwin/new-msys-2.0.dll",
+    "sha256": "907afa099a69aa3c13d4e3b30eeba18c4a6b1766d5fa39b4746fae23c3f9e76c"
+  },
+  "import_library": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/libmsys-2.0.a",
+    "sha256": "6f19eb725d275d6e9f3564783cf5a18c9f13849b6c8033ca92291ecd3f5a735c"
+  },
+  "startup": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/crt0.o",
+    "sha256": "29b356f7105386a37bc8b16169e8beac1b0cbc2c1640946df02f85bbae5d3737"
+  },
+  "header": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/prefix/aarch64-pc-cygwin/include/machine/setjmp.h",
+    "sha256": "95dd6781b75bd5740a56317c5e654696969ce210464d4b814549d3dfe7ef07c7"
+  },
+  "generated_header": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/prefix/aarch64-pc-cygwin/include/newlib.h",
+    "sha256": "76208fc6f2d59334afe85099295aa63680a9811dd22893927425277a0357cce4"
+  },
+  "pair_manifest": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/SHA256SUMS",
+    "sha256": "8d887231f676ed9e3fd389808dcf2d8374881b0c9bb5e76d61b8d0bee3c032d6"
+  },
+  "build_chain": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/build-chain/build-chain.SHA256SUMS",
+    "sha256": "2c29007bb33406a38f3ebd07f8b171f1f327e5a834f2e36c7d9933d5c52b9a56"
+  },
+  "runtime_objects": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/build-chain/objects.SHA256SUMS",
+    "sha256": "82d64275c85a3f20a9021353ebe45a2975247324015a78fd8bccbf2cd3ea2f25"
+  },
+  "all_receipt_inputs": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/SHA256SUMS",
+    "sha256": "59e10ad79535da94750dc8a68baefabf839a1da109f25c9a7944ef9c93b5a344"
+  },
+  "public_headers": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/public-headers.sha256",
+    "sha256": "25ca58561c21389325f21155c352b9cf1d2c818645255d130f9f9b4501538ac1"
+  },
+  "runtime_libraries": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/runtime-inputs.sha256",
+    "sha256": "eca7816a5f5eaec8ad29cb42ae112253642f29be5406b48b3932a20d520e6aef"
+  },
+  "selected_producer_libraries": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/producer-and-link-libraries.sha256",
+    "sha256": "7b0d7862d97a436405558a3eb96a13ade3536fb7a78cde3bad00a27ccf741757"
+  },
+  "a_direct_link_inputs": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/a-direct-link-inputs.sha256",
+    "sha256": "210e065cf6c4a5c4244f90275de139e5e23767bfa2a19f70e5fdbfb0c8f056aa"
+  },
+  "b_direct_link_inputs": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/b-direct-link-inputs.sha256",
+    "sha256": "5408ca423a5c19952339f4ebb44a0d7b13cbd52474c944360c98975a089d79f2"
+  },
+  "actual_link_command": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/new-msys-2.0.dll.link.H3ieU5/command.sh",
+    "sha256": "ca1601a2d46e3db10a2c652cb8e178895ba6fe576e569236243781851809621a"
+  },
+  "actual_link_argv": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/new-msys-2.0.dll.link.H3ieU5/argv",
+    "sha256": "ba24406e66a4458312b79a54a1efc708c860d9e4383b0e320bf812c01fc6cf03"
+  },
+  "link_exit": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/new-msys-2.0.dll.link.H3ieU5/exit-status",
+    "sha256": "9a271f2a916b0b6ee6cecb2426f0b3206ef074578be55d9bc94f6f3fe3ab86aa"
+  },
+  "a_link_records": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/a-link-records.sha256",
+    "sha256": "b64f44108178d597ae19d65ca6e0f77fba27403c92b7b948a108add81f6afd27"
+  },
+  "b_link_records": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/b-link-records.sha256",
+    "sha256": "63a28620981d5e8dd89512dc1de5a4a1d137e470bf536897b557f5ac662b4d61"
+  },
+  "frozen_prefix_inventory": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/preserved/prefix-before.sha256",
+    "sha256": "5aaf8a86f7af245a0c62bc7a2a3613c137b2295207bec311e371610691d2f38a"
+  },
+  "frozen_prefix_after": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/frozen-prefix-after.log",
+    "sha256": "392c933d206e914c57844ff266511c60152e9c6b68588df5d1d9f5859fd1491c"
+  },
+  "frozen_tls_after": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/receipt-inputs/frozen-tls-after.log",
+    "sha256": "a1912b92d7cc725b79623d8fc24870d382005ca8bc0aceab10500dd0ebf57641"
+  },
+  "reused_newlib": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/reused-newlib.sha256",
+    "sha256": "54190365ec61fb547e8e107adc8292229827628bafec31582cd0b12af7212a92"
+  },
+  "regenerated_tls": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/tlsoffsets",
+    "sha256": "49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566"
+  },
+  "regenerated_signal_assembly": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/sigfe.s",
+    "sha256": "d7045af187e7e666cec44fc69065a0f76b93dbe9749dd74eac5e8b0241e864e7"
+  },
+  "regenerated_signal_object": {
+    "path": "/root/arm64-vnext-20260905/runtime/combined-20260911-02/pair/a/winsup/cygwin/sigfe.o",
+    "sha256": "7c645c5faf53cf101b98d5eb0c9caa6061ca988aaf6d4db1ca0001b491cbaf25"
+  },
+  "mechanical_source_equality": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\mechanical-source-equality.json",
+    "sha256": "9da954fd6764ae0211c501add3eddbc68e2bfa913752577cc10615eeb9254019"
+  },
+  "mechanical_handoff": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\0af73d1b-9b87-4723-8e25-1e32f44a090c\\files\\mechanical-link-20260911-02\\mechanical-link-handoff.json",
+    "sha256": "6ce64e609dc49f13aad957943c6b398d34642257a3341f0cad1112929f22e2f2"
+  },
+  "signal_handoff": {
+    "path": "C:\\agtc-signal-01\\handoff-01\\handoff.json",
+    "sha256": "d932e0a60bd4198ea49195710ac708dfd80c06dd9df4f041aeb65f3af1c5a5e9"
+  },
+  "signal_handoff_manifest": {
+    "path": "C:\\agtc-signal-01\\handoff-01.manifest.json",
+    "sha256": "c37eb0cbe6894674d56f91d4d5e4e6f4881bbee95b9d4e162698fd34d45fce20"
+  },
+  "signal_patch": {
+    "path": "C:\\agtc-signal-01\\handoff-01\\source\\runtime-arm64-myfault-context.patch",
+    "sha256": "970f1beb6dfab74b6568d4b8328868dede46464ceaf0dec46af218dfe4908487"
+  },
+  "generation_correction": "ARM64 generation already existed; stale x86-only74f502 selected instead of coherent180d3e. Independent native61d966 object was not substituted.",
+  "build_launch": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\build-pair-02.launch.json",
+    "sha256": "896b6877661eb444fe062bfd49b92101c05e508483c49abab5d345ad61b47062"
+  },
+  "build_result": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\build-pair-02.stdout",
+    "sha256": "e02cbfd14fd360cf0265d16bae86c7274c18ac6f7380c9c21856f24d906d505f"
+  },
+  "native_summary": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\native-evidence-summary.json",
+    "sha256": "37c40bda1a5bb4e08d6555db07007e87b41283b54c9fadbed61f7c2f1a943bbb"
+  },
+  "native_core": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\native-01\\results\\results.json",
+    "sha256": "12a3958ed1d5a207b4376a269eda00ae69f2137999a6f52bd84c24aa83b7702b"
+  },
+  "native_mechanical": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\native-01\\mechanical-results\\result.json",
+    "sha256": "d68f49b919dbe7c3fffd7ae48cedda7dbf80489135c44cfc56979f294470c2b3"
+  },
+  "native_mechanical_modules": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\native-01\\mechanical-modules-02\\result.json",
+    "sha256": "3442856e53a93a4fec676061db9ebaf5f071a763d209b6f219e22b08405a7ef4"
+  },
+  "myfault_ordinary": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\capture-ordinary\\result.json",
+    "sha256": "52fff3a52736adf1f150f1288b7d0a8b642c23498a8effff697e174460fef0d6"
+  },
+  "myfault_debug": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\capture-debug\\result.json",
+    "sha256": "3728f3b2ddd7b41189c4bc72a63d64434392198b0e12fe4eaf6afe174d4b6e15"
+  },
+  "myfault_no_context": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\capture-no-context\\result.json",
+    "sha256": "6ca4a7db79a874c1bb3ac95560411edd7865780482f6610355025517eb4b9045"
+  },
+  "normal_readiness": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\native-01\\readiness\\runtime-readiness.json",
+    "sha256": "43c1f86210f5ad196e47efc84604525723bfda30fcdb95ef80ecc0bbec7c59df"
+  },
+  "normal_readiness_observer": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\native-01\\readiness-observer\\native-job.json",
+    "sha256": "ffd319e39b00cbe1999693055789b697ce98c10fc2d7bf3a4e6d198dbe89f5c8"
+  },
+  "exports": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\final-exports.json",
+    "sha256": "48834e68f683a577621a5e28e53ee48afe68ca507845457d0a09f03c448dee86"
+  },
+  "host_tls": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\host-gentls_offsets.sh.log",
+    "sha256": "dbde692a3fa30bed834b8ab0c6fef57547997260ad31a4cea8b865569585ff2c"
+  },
+  "host_link_resource": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\host-runtime_build.sh.log",
+    "sha256": "429bd4a3329534ce388b0310ff57fbf0851098828429c408732b3502eadd371f"
+  },
+  "host_allocation_copy": {
+    "path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\67ba2e76-32e2-4f0d-a2fe-844ee8fe1d8a\\files\\combined-runtime-20260911\\host-startup_safety.sh.log",
+    "sha256": "b1c1fb0bdd2ce853586a7295f038cf775d5faa6822b589b4ff948d43e6aefdc7"
+  },
+  "progression": [
+    {
+      "label": "inherited-reported-scaffold",
+      "result": "254/310 objects,15errors; inherited report, not rerun"
+    },
+    {
+      "label": "earlier-conditional-diagnostic",
+      "result": "271/310 withtemporaryfixes; unsealed"
+    },
+    {
+      "label": "mechanical-owner",
+      "result": "3targetedobjects,431autoloadglobals,1763exports,27491fce DLL and native smoke"
+    },
+    {
+      "label": "repro-startup",
+      "result": "72c169 two8jobcleanbuilds,8identicalartifacts,10nativecorecontrols"
+    },
+    {
+      "label": "myfault-source-integration",
+      "result": "5aa799 reproduced by twofullcleanbuilds;12corecontrols and ordinary/debug/no-context EFAULT; earlier readiness wrapper timeout preserved"
+    },
+    {
+      "label": "combined-final",
+      "result": "907afa two12jobcleanbuilds,8identicalartifacts,14corecontrols; exact mechanical semantics and raw observer rejection separately recorded; 8EFAULT each ordinary/debug/no-context"
+    }
+  ],
+  "results": {
+    "clean_builds": 2,
+    "compile_jobs": 12,
+    "matching_artifacts": 8,
+    "runtime_archive_objects": 181,
+    "newlib_rebuilt": false,
+    "compiler_backends_rebuilt": false,
+    "public_export_names_and_ordinals": 1763,
+    "headers_and_jump_abi_unchanged": true,
+    "mechanical_files_exact_peer_commit": true,
+    "genuine_netapi32_user32_in_recorded_link": true,
+    "signal_object_regenerated_from_source": true,
+    "native_prebuilt_signal_object_substituted": false,
+    "native_core_passes": 14,
+    "strong_signals_each": 16,
+    "myfault_EFAULT_each_mode": 8,
+    "debug_forwarded_AV_each": 8,
+    "debug_memory_register_writes": 0,
+    "same_process_generation_handle_exit_join": true,
+    "mechanical_semantics_passed": true,
+    "mechanical_observer_passed": false,
+    "mechanical_preserved_raw_codes": [
+      32256,
+      1792
+    ],
+    "normal_link_readiness_passed": true,
+    "host_tls_cases": 40,
+    "host_tls_failures": 0,
+    "startup_guard_and_allocation_checks": true,
+    "child_copy_error_and_short_count_checks": true,
+    "active_owned_processes": 0
+  },
+  "limits": [
+    "Mechanical smoke expected env126/fork7 semantics pass, but the conservative unchanged observer retains raw32256/1792 as rejected high exits. No decoder, fake relay or pass override.",
+    "The uname myfault scope is qualified ordinary/debug/no-context; this is not universal C++ debugger parity or general exception/exit-domain admission.",
+    "No full Git distribution/package claim. Published peer PRs remain separate source review surfaces alongside this coherent integration PR.",
+    "The dated12:24 artifact could not be located. Historicalrecipef6d852/blob86bca711 association isUNPROVEN; recipeomitswinver.o/handselectsobjects and isunsafe. Forensicsclosedunresolvable-by-evidence undernewuserauthority.",
+    "Old72/5aa/D70/AP11 andfailedcopy-only/phase-only/Automake/readiness/snapshot cohorts remain immutable. Combinedattempt01failedbeforecompile ontestobjectbasenamecollision; attempt02 uses renamedassemblyfilenamewithbyte-identicalpeercontent.",
+    "No upstream filing, globalsettings, privilege, credential or WSLconfiguration changes. Commit identity was set only per-command after no local Gitidentity was configured."
+  ]
+}

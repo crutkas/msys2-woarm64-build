@@ -1,0 +1,77 @@
+{
+  "schema": 1,
+  "status": "independent-runtime-generation-successor-qualified",
+  "recordedAtUtc": "2026-09-11T07:02:52.1962697Z",
+  "repository": "https://github.com/crutkas/msys2-runtime",
+  "branch": "crutkas-atomic-runtime-generation",
+  "baseCommit": "563662010c2f2072ad90f28713611caabdf70dbb",
+  "commit": "df7d66f9b1433c50dd7cd234b0d8bd1213418b22",
+  "verifiedRemoteHead": "df7d66f9b1433c50dd7cd234b0d8bd1213418b22",
+  "intendedPrBase": "crutkas-arm64-runtime-integration",
+  "windowsProof": "C:\\agtc-signal-01\\runtime-generation-application-3fc49c8a",
+  "ownedWslRoot": "/root/arm64-vnext-20260905/runtime/atomic-generation-20260911-3fc49c8a",
+  "sourcePaths": [
+    "winsup/cygwin/Makefile.am",
+    "winsup/cygwin/scripts/guard-runtime-generation",
+    "winsup/testsuite/build/runtime-generation-make.py"
+  ],
+  "lineage": {
+    "sealedProposal": {
+      "handoffSha256": "f8429c52a5599f4f1e4601358b564f3dd3d2ee2774dce2ee91760477726f0fed",
+      "patchSha256": "50736b8ccbdbca6df589a5d514db0d55fc27e698a1fab547dc374a612175dbd7",
+      "manifestSha256": "106fa206a3e37e89de416512e9d6080c642d2dd7ce9daa46c84fa3c78b77c085",
+      "verifiedFiles": 50,
+      "appliedByteExact": true,
+      "untouched": true
+    },
+    "sealedFreshBaseline": {
+      "actualMakeCases": 16,
+      "existingTlsCases": 40,
+      "result": "make-controls-sealed/result.json",
+      "resultSha256": "36c169ee34291d4b3961fcbf054cca3438e5450f101f9ae6ed2737b78580463c",
+      "coverageLimit": "Sealed 16-case baseline does NOT cover the newly discovered changed-input receipt bypass."
+    },
+    "newAdversarialFinding": {
+      "result": "make-controls-receipt-gap-before/result.json",
+      "resultSha256": "2e37d0d89e90d053b0ecb8ee98e6acecfe496740a1102ba6cc76c020eaf2c296",
+      "case": "reject-changed-input-corrupt-sigfe-s",
+      "actualExit": 0,
+      "expectedExit": "nonzero",
+      "outcome": "Actual configured make incorrectly accepted changed SIGNAL_GENERATOR plus corrupt sigfe.s and silently regenerated it."
+    },
+    "successor": {
+      "rationale": "Validate the existing receipt output set and hashes BEFORE input-signature comparison or changed-input regeneration. Corrupt/missing output now fails loudly and preserves all other prior artifacts.",
+      "patchSha256": "61d1a0b72ad9af6e80288029937de5ae3f415a6d0d18db2f72445a5d894c95a8",
+      "result": "make-controls-final-02/result.json",
+      "resultSha256": "f045f2b371282247c90748237b1631d0df7bc86bde947ca4545bb4490527aef9",
+      "actualMakeCases": 26,
+      "changedInputDamageCases": 6,
+      "existingTlsCases": 40,
+      "existingTlsLogSha256": "7d1a3d7b09523ba3c8ed2b166c7f99bde5e953be4afaad097a9bde284cc2f806",
+      "guardSha256": "0c1ae414eb65308e25465dc37c6858c03ead2c9786b7a25bf7977b455bd51884",
+      "testSha256": "366fc6957bb83cb9ba984cb426b34bd0ba3762a63a9241fb3e22c75e718e026a",
+      "validChangedInputRegenerationAndNoOp": true
+    }
+  },
+  "qualifiedTls": {
+    "bytes": 1822,
+    "entries": 59,
+    "sha256": "49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566"
+  },
+  "historicalTls": {
+    "generatorSha256": "b5ad924f820df3def1b9d19671086ee5c8a92c1e0918a81c9262649e5089de18",
+    "bytes": 56,
+    "sha256": "95e965fc1beea943c3eadc2cd941c34b01a3151968a0ffbe6917b354d2f0d8a5",
+    "parserUnmodified": true,
+    "adapter": "Output basename only; no parser replacement or repair.",
+    "rejectedByActualMake": true,
+    "priorArtifactsPreserved": true
+  },
+  "staleGendefSha256": "74f502440493f2406435006bce46674adcfda59b269f0da98586a7b87e0127fb",
+  "limits": [
+    "Host generation and ARM64 sigfe.o assembly only; no full DLL/runtime/GCC/OpenSSL build.",
+    "All make invocations use owned configured root and -j1; at least 8 GiB MemAvailable checked before each suite.",
+    "No changes to gentls_offsets, session67, main checkout, frozen source/prefix, or parent sealed proposal.",
+    "x86 control validates generator export/label compatibility only using a copied TLS input; not an x86 build or ABI proof."
+  ]
+}

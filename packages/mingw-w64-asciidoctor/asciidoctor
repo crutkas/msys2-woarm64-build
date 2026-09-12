@@ -1,0 +1,8 @@
+#!/bin/sh
+set -eu
+bindir=$(CDPATH= cd -- "${0%/*}" && pwd)
+windows_root=$(/usr/bin/cygpath -u "${SYSTEMROOT}")
+unset RUBYOPT RUBYLIB GEM_HOME GEM_PATH
+export PATH="${bindir}/../../clangarm64/bin:${windows_root}/System32:${windows_root}"
+exec "${bindir}/../../clangarm64/bin/ruby.exe" \
+  "${bindir}/../lib/asciidoctor/launcher.rb" "$@"
