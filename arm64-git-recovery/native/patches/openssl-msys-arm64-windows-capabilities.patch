@@ -1,0 +1,20 @@
+--- a/crypto/armcap.c
++++ b/crypto/armcap.c
+@@ -18,7 +18,7 @@
+ #include <signal.h>
+ #endif
+ #include "internal/cryptlib.h"
+-#ifdef _WIN32
++#if defined(_WIN32) || defined(__CYGWIN__)
+ #include <windows.h>
+ #else
+ #include <unistd.h>
+@@ -29,7 +29,7 @@
+ unsigned int OPENSSL_arm_midr = 0;
+ unsigned int OPENSSL_armv8_rsa_neonized = 0;
+ 
+-#ifdef _WIN32
++#if defined(_WIN32) || defined(__CYGWIN__)
+ void OPENSSL_cpuid_setup(void)
+ {
+     OPENSSL_armcap_P |= ARMV7_NEON;

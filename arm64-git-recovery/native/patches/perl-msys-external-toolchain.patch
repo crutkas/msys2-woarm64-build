@@ -1,0 +1,17 @@
+--- a/hints/msys.sh
++++ b/hints/msys.sh
+@@ -28,12 +28,12 @@
+ libswanted=`echo " $libswanted " | sed -e 's/ util / /g'`
+ ignore_versioned_solibs='y'
+ usenm='no'
+-libc='/usr/lib/libmsys-2.0.a'
++libc="${PERL_MSYS_LIBC:-/usr/lib/libmsys-2.0.a}"
+ loclibpth=' '
+ glibpth=' '
+ plibpth=' '
+ libpth=' '
+-PATH='.:/usr/bin/'
++PATH="${PERL_MSYS_BUILD_PATH:-.:/usr/bin/}"
+ # - add libgdbm_compat $libswanted
+ libswanted="$libswanted gdbm_compat"
+ test -z "$optimize" && optimize='-O3'

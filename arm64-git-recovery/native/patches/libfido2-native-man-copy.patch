@@ -1,0 +1,20 @@
+--- a/man/CMakeLists.txt
++++ b/man/CMakeLists.txt
+@@ -321,7 +321,7 @@
+ # man_copy
+ foreach(f ${MAN_SOURCES})
+ 	add_custom_command(OUTPUT ${f}
+-		COMMAND cp -f ${PROJECT_SOURCE_DIR}/man/${f} .
++		COMMAND "${CMAKE_COMMAND}" -E copy "${PROJECT_SOURCE_DIR}/man/${f}" .
+ 		DEPENDS ${f})
+ 	list(APPEND COPY_FILES ${f})
+ endforeach()
+@@ -368,7 +368,7 @@
+ 		list(GET MAN_ALIAS ${i} SRC)
+ 		list(GET MAN_ALIAS ${j} DST)
+ 		add_custom_command(OUTPUT ${DST}.${EXT}
+-			COMMAND cp -f ${SRC}.${EXT} ${DST}.${EXT})
++			COMMAND "${CMAKE_COMMAND}" -E copy "${SRC}.${EXT}" "${DST}.${EXT}")
+ 		list(APPEND ${NAME}_LINK_FILES ${DST}.${EXT})
+ 	endforeach()
+ 	add_custom_target(${NAME} DEPENDS ${${NAME}_LINK_FILES})

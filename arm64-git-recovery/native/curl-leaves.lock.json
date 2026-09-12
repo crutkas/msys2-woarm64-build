@@ -1,0 +1,67 @@
+{
+  "schema": 1,
+  "recipe_repository": "https://github.com/msys2/MINGW-packages",
+  "recipe_commit": "fbb9173f78adaea078046ea53e35cee47e7a5527",
+  "native_driver_sha256": {
+    "cmake.exe": "a32ae68e4b8b030a9df26a27c4094fca8eb0f3083cd0c3a9db348c9c4cdab54b",
+    "ctest.exe": "8e1869c682238f6b1efd1f5cf75dceb47d8947f6991422f8655212cc255e6629",
+    "ninja.exe": "7f519afd93cd1d1dce67c9644990b5d3b40b458e547cb39df608d8f352a6ad79"
+  },
+  "libgcc_sha256": "ee091009c9893c049fc2f13a24f3ce3d70d3a5431ca92254d786d89a07f60adc",
+  "sources": [
+    {
+      "id": "brotli",
+      "version": "1.2.0",
+      "file": "brotli-1.2.0.tar.gz",
+      "prefix": "brotli-1.2.0",
+      "url": "https://github.com/google/brotli/archive/v1.2.0/brotli-1.2.0.tar.gz",
+      "sha256": "816c96e8e8f193b40151dad7e8ff37b1221d019dbcb9c35cd3fadbfe6477dfec",
+      "recipe_sha256": "5062248b53ecd7a70027732630874cb9e8cf113be49975a9eb561a631121aea6",
+      "patches": []
+    },
+    {
+      "id": "c-ares",
+      "version": "1.34.8",
+      "file": "c-ares-1.34.8.tar.gz",
+      "prefix": "c-ares-1.34.8",
+      "url": "https://github.com/c-ares/c-ares/releases/download/v1.34.8/c-ares-1.34.8.tar.gz",
+      "sha256": "c222b6d681096f9444d2c4863d2c1174019e27cacca0a4a5c114d36dd7d7bf78",
+      "recipe_sha256": "5f44d57beab57d336e49666b25147a3cba2b8a73539335bc6d72407218f7d447",
+      "patches": []
+    },
+    {
+      "id": "zstd",
+      "version": "1.5.7",
+      "file": "zstd-1.5.7.tar.gz",
+      "prefix": "zstd-1.5.7",
+      "url": "https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.gz",
+      "sha256": "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3",
+      "recipe_sha256": "ef88e168f729b6e57bdccb8d566a1cbc1b0b1fd4ef86b26cc4c441236e496388",
+      "patches": [
+        {
+          "file": "zstd-1.4.0-fileio-mingw.patch",
+          "sha256": "283e584477a8f70c9bea86a500486dd11dfcb59b22690fd94deb44a3f95a6668"
+        }
+      ]
+    },
+    {
+      "id": "nghttp2",
+      "version": "1.70.0",
+      "file": "nghttp2-1.70.0.tar.xz",
+      "prefix": "nghttp2-1.70.0",
+      "url": "https://github.com/nghttp2/nghttp2/releases/download/v1.70.0/nghttp2-1.70.0.tar.xz",
+      "sha256": "e05cb1388eaca3830aded4ccf20044b6e1ac1a61411dcca11b0437c4285c8bc2",
+      "recipe_sha256": "27798659ce38e4b5e8ce91354e56acd32a5a9ce1d15a6706b264ca686b427f80",
+      "patches": [
+        {
+          "file": "001-fix-pc-prefix.patch",
+          "sha256": "baf901e7d565eaea1133d30b13620b02681ce96ebe56d38e1dea4394299106b6"
+        },
+        {
+          "file": "002-nghttp2-pkgconfig-add-cflags-private.patch",
+          "sha256": "d82d0b5b32e26955c99ef70e129b33696fee01ad9a9a4e5d0fb98951fb5d0f22"
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,51 @@
+--- a/build/cmake/programs/CMakeLists.txt
++++ b/build/cmake/programs/CMakeLists.txt
+@@ -48,10 +48,11 @@
+   BUNDLE DESTINATION "${CMAKE_INSTALL_BINDIR}")
+ 
+ if (UNIX)
+-    add_custom_target(zstdcat ALL ${CMAKE_COMMAND} -E create_symlink zstd zstdcat DEPENDS zstd COMMENT "Creating zstdcat symlink")
+-    add_custom_target(unzstd ALL ${CMAKE_COMMAND} -E create_symlink zstd unzstd DEPENDS zstd COMMENT "Creating unzstd symlink")
+-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/zstdcat DESTINATION "${CMAKE_INSTALL_BINDIR}")
+-    install(FILES ${CMAKE_CURRENT_BINARY_DIR}/unzstd DESTINATION "${CMAKE_INSTALL_BINDIR}")
++    include("${CMAKE_CURRENT_LIST_DIR}/ZstdProgramAlias.cmake")
++    zstd_add_alias(zstdcat zstd zstd ZSTDCAT_ALIAS)
++    zstd_add_alias(unzstd zstd zstd UNZSTD_ALIAS)
++    install(PROGRAMS "${ZSTDCAT_ALIAS}" DESTINATION "${CMAKE_INSTALL_BINDIR}")
++    install(PROGRAMS "${UNZSTD_ALIAS}" DESTINATION "${CMAKE_INSTALL_BINDIR}")
+     install(PROGRAMS ${PROGRAMS_DIR}/zstdgrep DESTINATION "${CMAKE_INSTALL_BINDIR}")
+     install(PROGRAMS ${PROGRAMS_DIR}/zstdless DESTINATION "${CMAKE_INSTALL_BINDIR}")
+ 
+@@ -63,8 +64,8 @@
+     add_custom_target(zstdless.1 ALL
+         ${CMAKE_COMMAND} -E copy ${PROGRAMS_DIR}/zstdless.1 .
+         COMMENT "Copying manpage zstdless.1")
+-    add_custom_target(zstdcat.1 ALL ${CMAKE_COMMAND} -E create_symlink zstd.1 zstdcat.1 DEPENDS zstd.1 COMMENT "Creating zstdcat.1 symlink")
+-    add_custom_target(unzstd.1 ALL ${CMAKE_COMMAND} -E create_symlink zstd.1 unzstd.1 DEPENDS zstd.1 COMMENT "Creating unzstd.1 symlink")
++    zstd_add_alias(zstdcat.1 zstd.1 zstd.1 ZSTDCAT_MAN_ALIAS)
++    zstd_add_alias(unzstd.1 zstd.1 zstd.1 UNZSTD_MAN_ALIAS)
+ 
+     # Define MAN_INSTALL_DIR if necessary
+     if (MAN_INSTALL_DIR)
+@@ -74,8 +75,8 @@
+ 
+     install(FILES
+         ${CMAKE_CURRENT_BINARY_DIR}/zstd.1
+-        ${CMAKE_CURRENT_BINARY_DIR}/zstdcat.1
+-        ${CMAKE_CURRENT_BINARY_DIR}/unzstd.1
++        "${ZSTDCAT_MAN_ALIAS}"
++        "${UNZSTD_MAN_ALIAS}"
+         ${CMAKE_CURRENT_BINARY_DIR}/zstdgrep.1
+         ${CMAKE_CURRENT_BINARY_DIR}/zstdless.1
+         DESTINATION "${MAN_INSTALL_DIR}")
+@@ -95,8 +96,8 @@
+     if (UNIX)
+         target_link_libraries(zstd ${THREADS_LIBS})
+ 
+-        add_custom_target(zstdmt ALL ${CMAKE_COMMAND} -E create_symlink zstd zstdmt DEPENDS zstd COMMENT "Creating zstdmt symlink")
+-        install(FILES ${CMAKE_CURRENT_BINARY_DIR}/zstdmt DESTINATION "${CMAKE_INSTALL_BINDIR}")
++        zstd_add_alias(zstdmt zstd zstd ZSTDMT_ALIAS)
++        install(PROGRAMS "${ZSTDMT_ALIAS}" DESTINATION "${CMAKE_INSTALL_BINDIR}")
+     endif ()
+ endif ()
+ 

@@ -1,0 +1,23 @@
+--- a/win/Makefile.in
++++ b/win/Makefile.in
+@@ -206,7 +206,8 @@
+ SHLIB_LD_LIBS	= @SHLIB_LD_LIBS@
+ SHLIB_CFLAGS	= @SHLIB_CFLAGS@
+ SHLIB_SUFFIX	= @SHLIB_SUFFIX@
+-LIBS		= @LIBS@ $(shell $(CYGPATH) '@ZLIB_LIBS@')
++ZLIB_LIBS	= @ZLIB_LIBS@
++LIBS		= @LIBS@ $(shell $(CYGPATH) '$(ZLIB_LIBS)')
+ 
+ RMDIR		= rm -rf
+ MKDIR		= mkdir -p
+@@ -539,7 +539,9 @@
+ 
+ # use prebuilt zlib1.dll
+ ${ZLIB_DLL_FILE}: ${TCL_STUB_LIB_FILE}
+-	@if test "@ZLIB_LIBS@set" = "${ZLIB_DIR_NATIVE}/win64-arm/zdll.libset" ; then \
++	@if test -n "$(ZLIB_EXTERNAL_DIR)" ; then \
++		$(COPY) "$(ZLIB_EXTERNAL_DIR)/$(ZLIB_DLL_FILE)" "$(ZLIB_DLL_FILE)"; \
++	elif test "@ZLIB_LIBS@set" = "${ZLIB_DIR_NATIVE}/win64-arm/zdll.libset" ; then \
+ 		$(COPY) $(ZLIB_DIR)/win64-arm/${ZLIB_DLL_FILE} ${ZLIB_DLL_FILE}; \
+ 	elif test "@ZLIB_LIBS@set" = "${ZLIB_DIR_NATIVE}/win64-arm/libz.dll.aset" ; then \
+ 		$(COPY) $(ZLIB_DIR)/win64-arm/${ZLIB_DLL_FILE} ${ZLIB_DLL_FILE}; \

@@ -1,0 +1,14 @@
+--- a/cmake/Modules/AddCMockaTest.cmake
++++ b/cmake/Modules/AddCMockaTest.cmake
+@@ -125,8 +125,10 @@
+ 
+         if (TARGET_SYSTEM_EMULATOR)
+             set(DLL_PATH_ENV "WINEPATH=${CMOCKA_DLL_PATH};$ENV{WINEPATH}")
+-        else()
++        elseif(CMAKE_CONFIGURATION_TYPES)
+             set(DLL_PATH_ENV "PATH=${CMOCKA_DLL_PATH}\\${CMAKE_BUILD_TYPE};$ENV{PATH}")
++        else()
++            set(DLL_PATH_ENV "PATH=${CMOCKA_DLL_PATH};$ENV{PATH}")
+         endif()
+         #
+         # IMPORTANT NOTE: The set_tests_properties(), below, internally

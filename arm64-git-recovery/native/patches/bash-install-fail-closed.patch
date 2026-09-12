@@ -1,0 +1,27 @@
+--- a/Makefile.in
++++ b/Makefile.in
+@@ -913,19 +913,19 @@
+ 	@${SHELL} $(SUPPORT_SRC)mkinstalldirs $(DESTDIR)$(man1dir)
+ 	@${SHELL} $(SUPPORT_SRC)mkinstalldirs $(DESTDIR)$(infodir)
+ 	@${SHELL} $(SUPPORT_SRC)mkinstalldirs $(DESTDIR)$(docdir)
+-	-( cd $(PO_DIR) ; $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
++	( cd $(PO_DIR) ; $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
+ 
+ install:	.made installdirs
+ 	$(INSTALL_PROGRAM) $(INSTALLMODE) $(Program) $(DESTDIR)$(bindir)/$(Program)
+ 	$(INSTALL_SCRIPT) $(INSTALLMODE2) bashbug $(DESTDIR)$(bindir)/bashbug
+ 	$(INSTALL_DATA) $(OTHER_DOCS) $(DESTDIR)$(docdir)
+-	-( cd $(DOCDIR) ; $(MAKE) $(BASH_MAKEFLAGS) \
++	( cd $(DOCDIR) ; $(MAKE) $(BASH_MAKEFLAGS) \
+ 		man1dir=$(man1dir) man1ext=$(man1ext) \
+ 		man3dir=$(man3dir) man3ext=$(man3ext) \
+ 		infodir=$(infodir) htmldir=$(htmldir) DESTDIR=$(DESTDIR) $@ )
+-	-( cd $(DEFDIR) ; $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
+-	-( cd $(PO_DIR) ; $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
+-	-( cd $(LOADABLES_DIR) && $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
++	( cd $(DEFDIR) ; $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
++	( cd $(PO_DIR) ; $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
++	( cd $(LOADABLES_DIR) && $(MAKE) $(BASH_MAKEFLAGS) DESTDIR=$(DESTDIR) $@ )
+ 
+ install-strip:
+ 	$(MAKE) $(BASH_MAKEFLAGS) INSTALL_PROGRAM='$(INSTALL_STRIP_PROGRAM)' \
