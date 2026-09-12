@@ -1,0 +1,48 @@
+--- a/doxygen/update-doxygen
++++ b/doxygen/update-doxygen
+@@ -78,6 +78,17 @@
+ # Get the package version so that it can be included in the generated docs.
+ PACKAGE_VERSION=`cd "$ABS_TOP_SRCDIR" && sh build-aux/version.sh`
+ 
++if test "${WOARM64_WINDOWS_DOXYGEN-}" = 1; then
++	ABS_TOP_SRCDIR=`cygpath -am "$ABS_TOP_SRCDIR"`
++	ABS_OUTDIR=`cygpath -am "$ABS_OUTDIR"`
++	DOXYGEN_THREADS='NUM_PROC_THREADS = 1'
++elif test -n "${WOARM64_WINDOWS_DOXYGEN-}"; then
++	echo "$0: Invalid Windows documentation-driver mode" >&2
++	exit 1
++else
++	DOXYGEN_THREADS=
++fi
++
+ case $1 in
+ 	api)
+ 		# Remove old documentation before re-generating the new.
+@@ -96,9 +107,10 @@
+ 		(
+ 			cat "$ABS_TOP_SRCDIR/doxygen/Doxyfile"
+ 			echo "PROJECT_NUMBER         = $PACKAGE_VERSION"
+-			echo "OUTPUT_DIRECTORY       = $ABS_OUTDIR"
+-			echo "STRIP_FROM_PATH        = $ABS_SRCDIR"
+-			echo "INPUT                  = $ABS_SRCDIR"
++			echo "$DOXYGEN_THREADS"
++			echo "OUTPUT_DIRECTORY       = \"$ABS_OUTDIR\""
++			echo "STRIP_FROM_PATH        = \"$ABS_SRCDIR\""
++			echo "INPUT                  = \"$ABS_SRCDIR\""
+ 		) | doxygen -q -
+ 		;;
+ 
+@@ -110,9 +122,10 @@
+ 			cat "$ABS_TOP_SRCDIR/doxygen/Doxyfile"
+ 			echo 'PROJECT_NAME           = "XZ Utils"'
+ 			echo "PROJECT_NUMBER         = $PACKAGE_VERSION"
+-			echo "OUTPUT_DIRECTORY       = $ABS_OUTDIR"
+-			echo "STRIP_FROM_PATH        = $ABS_TOP_SRCDIR"
+-			echo "INPUT                  = $ABS_TOP_SRCDIR/src"
++			echo "$DOXYGEN_THREADS"
++			echo "OUTPUT_DIRECTORY       = \"$ABS_OUTDIR\""
++			echo "STRIP_FROM_PATH        = \"$ABS_TOP_SRCDIR\""
++			echo "INPUT                  = \"$ABS_TOP_SRCDIR/src\""
+ 			echo 'HTML_OUTPUT            = internal'
+ 			echo 'SEARCHENGINE           = YES'
+ 		) | doxygen -q -

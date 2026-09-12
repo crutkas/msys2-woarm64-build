@@ -1,0 +1,20 @@
+--- a/Configure
++++ b/Configure
+@@ -17466,6 +17466,7 @@
+ 	while test $# -gt 0; do
+ 	    type=$1; try=$2
+ 	    shift; shift
++	    : "${issymlink:?A tested symlink predicate is required; refusing to execute a pathname}"
+ 	    if $issymlink $try; then
+ 		$ls -l $try > reflect
+ 		if $contains /`basename $ls` reflect >/dev/null 2>&1; then
+--- a/Makefile.SH
++++ b/Makefile.SH
+@@ -729,6 +729,7 @@
+ !NO!SUBS!
+ 
+ for file in $mini_special; do
++    : "${issymlink:?A tested symlink predicate is required; refusing to execute a source file}"
+     if $issymlink $file.c; then
+         $spitshell >>$Makefile <<!GROK!THIS!
+ 

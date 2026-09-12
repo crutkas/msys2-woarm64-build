@@ -1,0 +1,17 @@
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -97,4 +97,11 @@
+ # Link combile database for clangd
+-execute_process(COMMAND cmake -E create_symlink
+-                "${cmocka_BINARY_DIR}/compile_commands.json"
+-                "${cmocka_SOURCE_DIR}/compile_commands.json")
++option(CMOCKA_SOURCE_COMPILE_DATABASE "Link the compilation database into the source tree" ON)
++if(CMOCKA_SOURCE_COMPILE_DATABASE)
++    execute_process(COMMAND "${CMAKE_COMMAND}" -E create_symlink
++                    "${cmocka_BINARY_DIR}/compile_commands.json"
++                    "${cmocka_SOURCE_DIR}/compile_commands.json"
++                    RESULT_VARIABLE CMOCKA_COMPDB_LINK_RESULT)
++    if(NOT CMOCKA_COMPDB_LINK_RESULT EQUAL 0)
++        message(FATAL_ERROR "Cannot create the requested source compilation-database link")
++    endif()
++endif()

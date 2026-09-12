@@ -1,0 +1,20 @@
+--- a/builtins/shopt.def
++++ b/builtins/shopt.def
+@@ -97,7 +97,7 @@
+ extern int patsub_replacement;
+ extern int bash_source_fullpath;
+ 
+-#ifdef __CYGWIN__
++#if defined (__CYGWIN__) && defined (READLINE)
+ extern int completion_strip_exe;
+ #endif
+ 
+@@ -205,7 +205,7 @@
+   { "compat42", &shopt_compat42, set_compatibility_level },
+   { "compat43", &shopt_compat43, set_compatibility_level },
+   { "compat44", &shopt_compat44, set_compatibility_level },
+-#ifdef __CYGWIN__
++#if defined (__CYGWIN__) && defined (READLINE)
+   { "completion_strip_exe", &completion_strip_exe, NULL },
+ #endif
+ #if defined (READLINE)

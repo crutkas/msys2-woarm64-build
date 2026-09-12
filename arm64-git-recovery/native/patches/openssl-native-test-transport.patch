@@ -1,0 +1,10 @@
+--- a/util/perl/OpenSSL/Test.pm
++++ b/util/perl/OpenSSL/Test.pm
+@@ -1218,6 +1218,7 @@
+ sub __wrap_cmd {
+     my $cmd = shift;
+     my $exe_shell = shift;
++    $exe_shell //= $ENV{OPENSSL_NATIVE_TEST_TRANSPORT};
+ 
+     my @prefix = ();
+ 

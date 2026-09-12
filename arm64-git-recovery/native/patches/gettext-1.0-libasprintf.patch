@@ -1,0 +1,12 @@
+--- a/gettext-runtime/libasprintf/lib-asprintf.c
++++ b/gettext-runtime/libasprintf/lib-asprintf.c
+@@ -18,6 +18,9 @@
+ 
+ #include <config.h>
+ 
++/* Include stdio declarations before applying private symbol aliases.  */
++#include "vasnprintf.h"
++
+ #if !(HAVE_VASPRINTF && HAVE_POSIX_PRINTF)
+ 
+ /* Define to the same symbols as in lib-asprintf.h.  */

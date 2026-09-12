@@ -1,0 +1,13 @@
+--- a/test/symbols-static.pl
++++ b/test/symbols-static.pl
+@@ -45,8 +45,9 @@
+     # with _Z, which are C++ mangled names) are part of the library's
+     # public interface.
++    # COFF references to _crypt_ symbols retain the same private scope.
+     return get_symbols(
+         find_real_library(shift, 'static'),
+-        sub { $_[0] !~ /^_(?:[_A-Y]|crypt_)/ },
++        sub { $_[0] !~ /^(?:_(?:[_A-Y]|crypt_)|\.refptr\._crypt_)/ },
+     );
+ }
+ 
