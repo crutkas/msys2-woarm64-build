@@ -1,0 +1,27 @@
+--- a/testone
++++ b/testone
+@@ -24,7 +24,7 @@
+ 		echo "Note: $good does not exist"
+ 		return
+ 	fi
+-	tmpout=/tmp/blddb$$.tmp
++	tmpout=$TMPDIR/blddb$$.tmp
+ 	diff "$good" "$latest" > $tmpout
+ 	if [ -s $tmpout ]; then
+ 		nbad=`grep '^[0-9]' $tmpout | wc -l`
+@@ -100,10 +100,13 @@
+ 	gdb ./$name
+         exit 0
+ elif [ "$stdinflag" = y ]; then
+-	./$name           >../$name.out 2>../$name.err
++	/usr/bin/bash "$WOARM64_DB_TEST_RELAY" "$(/usr/bin/cygpath -am "./$name.exe")" >../$name.out 2>../$name.err
+ else
+-	./$name  <$infile >../$name.out 2>../$name.err
++	/usr/bin/bash "$WOARM64_DB_TEST_RELAY" "$(/usr/bin/cygpath -am "./$name.exe")" <$infile >../$name.out 2>../$name.err
+ fi
++if [ "$?" -ne 0 ]; then
++	error "native process $name failed"
++fi
+ cd ..
+ 
+ testerr=$name.testerr

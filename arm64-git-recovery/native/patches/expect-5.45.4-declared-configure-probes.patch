@@ -1,0 +1,129 @@
+--- a/configure.in
++++ b/configure.in
+@@ -452,7 +452,7 @@
+ # because Unixware 2.0 handles it specially and refuses to compile
+ # autoconf's automatic test that is a call with no arguments
+ AC_MSG_CHECKING([for memcpy])
+-AC_TRY_LINK(,[
++AC_TRY_LINK([#include <string.h>],[
+ char *s1, *s2;
+ memcpy(s1,s2,0);
+ ],
+@@ -469,7 +469,7 @@
+ AC_MSG_CHECKING([if WNOHANG requires _POSIX_SOURCE])
+ AC_TRY_RUN([
+ #include <sys/wait.h>
+-main() {
++int main(void) {
+ #ifndef WNOHANG
+ 	return 0;
+ #else
+@@ -489,7 +489,7 @@
+ AC_TRY_RUN([
+ #include <stdio.h>
+ #include <sys/wait.h>
+-main() {
++int main(void) {
+ #ifdef WNOHANG
+ 	FILE *fp = fopen("wnohang","w");
+ 	fprintf(fp,"%d",WNOHANG);
+@@ -536,24 +536,24 @@
+ AC_MSG_CHECKING([if signals need to be re-armed])
+ AC_TRY_RUN([
+ #include <signal.h>
+-#define RETSIGTYPE $retsigtype
++#include <stdlib.h>
++#include <sys/wait.h>
++#include <unistd.h>
+ 
+ int signal_rearms = 0;
+ 
+ RETSIGTYPE
+-child_sigint_handler(n)
+-int n;
++child_sigint_handler(int n)
+ {
+ }
+ 
+ RETSIGTYPE
+-parent_sigint_handler(n)
+-int n;
++parent_sigint_handler(int n)
+ {
+ signal_rearms++;
+ }
+ 
+-main()
++int main(void)
+ {
+ 	signal(SIGINT,parent_sigint_handler);
+ 
+@@ -714,7 +715,8 @@
+ AC_MSG_CHECKING([for struct sgttyb])
+ AC_TRY_RUN([
+ #include <sgtty.h>
+-main()
++#include <stdlib.h>
++int main(void)
+ {
+   struct sgttyb tmp;
+   exit(0);
+@@ -738,7 +740,8 @@
+   # pty_termios.c is set up to handle pty_termio.
+   AC_MSG_CHECKING([for struct termio])
+   AC_TRY_RUN([#include <termio.h>
+-  main()
++#include <stdlib.h>
++  int main(void)
+   {
+     struct termio tmp;
+     exit(0);
+@@ -760,7 +763,8 @@
+ #  include <inttypes.h>
+ #  endif
+ #  include <termios.h>
+-  main()
++#  include <stdlib.h>
++  int main(void)
+   {
+     struct termios tmp;
+     exit(0);
+@@ -782,7 +786,7 @@
+ #include <inttypes.h>
+ #endif
+ #include <termios.h>
+-main() {
++int main(void) {
+ #if defined(TCGETS) || defined(TCGETA)
+ 	return 0;
+ #else
+@@ -804,7 +808,7 @@
+ #include <inttypes.h>
+ #endif
+ #include <termios.h>
+-main() {
++int main(void) {
+ #ifdef TIOCGWINSZ
+ 	return 0;
+ #else
+@@ -823,7 +827,7 @@
+ AC_MSG_CHECKING([for Cray-style ptys])
+ SETUID=":"
+ AC_TRY_RUN([
+-main(){
++int main(void){
+ #ifdef CRAY
+ 	return 0;
+ #else
+@@ -876,9 +880,10 @@
+ #
+ AC_MSG_CHECKING([for SV-style timezone])
+ AC_TRY_RUN([
++#include <stdlib.h>
+ extern char *tzname[2];
+ extern int daylight;
+-main()
++int main(void)
+ {
+   int *x = &daylight;
+   char **y = tzname;

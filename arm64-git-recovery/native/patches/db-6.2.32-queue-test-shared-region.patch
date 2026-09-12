@@ -1,0 +1,239 @@
+--- a/TestQueue.c
++++ b/TestQueue.c
+@@ -13,6 +13,7 @@
+ #include <sys/types.h>
+ 
+ #include <assert.h>
++#include <stddef.h>
+ #include <stdio.h>
+ #include <stdlib.h>
+ #include <string.h>
+@@ -25,6 +26,34 @@
+ #include "dbinc/queue.h"
+ #include "dbinc/shqueue.h"
+ 
++/* Shared-queue offsets require head and entries in one allocation. */
++#define QUEUE_REGION_BYTES 4096
++static unsigned char *queue_region;
++static size_t queue_used;
++
++static void *
++queue_calloc(size_t count, size_t size)
++{
++	size_t alignment = _Alignof(max_align_t);
++	size_t offset = (queue_used + alignment - 1) & ~(alignment - 1);
++	void *result;
++
++	assert(offset <= QUEUE_REGION_BYTES && size != 0 &&
++	    count <= (QUEUE_REGION_BYTES - offset) / size);
++	result = queue_region + offset;
++	queue_used = offset + count * size;
++	memset(result, 0, count * size);
++	return (result);
++}
++
++static void
++queue_free(void *pointer)
++{
++	/* Reclaim the shared backing region after the complete operation case. */
++	assert(pointer == NULL || ((unsigned char *)pointer >= queue_region &&
++	    (unsigned char *)pointer < queue_region + queue_used));
++}
++
+ typedef enum {
+ 	FORWARD_WALK_FAILED = 1,
+ 	FOREACH_WALK_FAILED,
+@@ -79,14 +108,14 @@
+ {
+ 	const char *c = items;
+ 	struct sh_le *ele = NULL, *last_ele = (struct sh_le*)-1;
+-	struct sh_lq *l = calloc(1, sizeof(struct sh_lq));
++	struct sh_lq *l = queue_calloc(1, sizeof(struct sh_lq));
+ 
+ 	SH_LIST_INIT(l);
+ 
+ 	while (*c != '\0') {
+ 		if (c[0] != ' ') {
+ 			last_ele = ele;
+-			ele = calloc(1, sizeof(struct sh_le));
++			ele = queue_calloc(1, sizeof(struct sh_le));
+ 			ele->content = c[0];
+ 			if (SH_LIST_EMPTY(l))
+ 				SH_LIST_INSERT_HEAD(l, ele, sh_les, sh_le);
+@@ -107,7 +136,7 @@
+ 
+ 	SH_LIST_REMOVE_HEAD(l, sh_les, sh_le);
+ 	if (ele != NULL)
+-		free(ele);
++		queue_free(ele);
+ 
+ 	return (l);
+ }
+@@ -126,7 +155,7 @@
+ 
+ 	if (ele) {
+ 		SH_LIST_REMOVE(ele, sh_les, sh_le);
+-		free(ele);
++		queue_free(ele);
+ 	}
+ 	return (l);
+ }
+@@ -153,7 +182,7 @@
+ 	struct sh_lq *l;
+ 	const char *item;
+ {
+-	struct sh_le *ele = calloc(1, sizeof(struct sh_le));
++	struct sh_le *ele = queue_calloc(1, sizeof(struct sh_le));
+ 
+ 	ele->content = item[0];
+ 	SH_LIST_INSERT_HEAD(l, ele, sh_les, sh_le);
+@@ -174,11 +203,11 @@
+ 			last_ele = SH_LIST_NEXT(last_ele, sh_les, sh_le);
+ 
+ 	if (last_ele == NULL) {
+-		ele = calloc(1, sizeof(struct sh_le));
++		ele = queue_calloc(1, sizeof(struct sh_le));
+ 		ele->content = item[0];
+ 		SH_LIST_INSERT_HEAD(l, ele, sh_les, sh_le);
+ 	} else {
+-		ele = calloc(1, sizeof(struct sh_le));
++		ele = queue_calloc(1, sizeof(struct sh_le));
+ 		ele->content = item[0];
+ 		SH_LIST_INSERT_AFTER(last_ele, ele, sh_les, sh_le);
+ 	}
+@@ -201,7 +230,7 @@
+ 		before_ele = SH_LIST_NEXT(before_ele, sh_les, sh_le);
+ 	}
+ 	if (before_ele != NULL) {
+-		ele = calloc(1, sizeof(struct sh_le));
++		ele = queue_calloc(1, sizeof(struct sh_le));
+ 		ele->content = item[0];
+ 		SH_LIST_INSERT_BEFORE(l, before_ele, ele, sh_les, sh_le);
+ 	}
+@@ -223,7 +252,7 @@
+ 		after_ele = SH_LIST_NEXT(after_ele, sh_les, sh_le);
+ 	}
+ 	if (after_ele != NULL) {
+-		ele = calloc(1, sizeof(struct sh_le));
++		ele = queue_calloc(1, sizeof(struct sh_le));
+ 		ele->content = item[0];
+ 		SH_LIST_INSERT_AFTER(after_ele, ele, sh_les, sh_le);
+ 	}
+@@ -238,10 +267,10 @@
+ 
+ 	while ((ele = SH_LIST_FIRST(l, sh_le)) != NULL) {
+ 		SH_LIST_REMOVE(ele, sh_les, sh_le);
+-		free(ele);
++		queue_free(ele);
+ 	}
+ 
+-	free(l);
++	queue_free(l);
+ }
+ 
+ int
+@@ -361,13 +390,13 @@
+ {
+ 	const char *c = items;
+ 	struct sh_te *ele = NULL, *last_ele = (struct sh_te*)-1;
+-	struct sh_tq *l = calloc(1, sizeof(struct sh_tq));
++	struct sh_tq *l = queue_calloc(1, sizeof(struct sh_tq));
+ 
+ 	SH_TAILQ_INIT(l);
+ 
+ 	while (*c != '\0') {
+ 		if (c[0] != ' ') {
+-			ele = calloc(1, sizeof(struct sh_te));
++			ele = queue_calloc(1, sizeof(struct sh_te));
+ 			ele->content = c[0];
+ 
+ 			if (SH_TAILQ_EMPTY(l))
+@@ -391,7 +420,7 @@
+ 	if (ele != NULL)
+ 		SH_TAILQ_REMOVE(l, ele, sh_tes, sh_te);
+ 
+-	free(ele);
++	queue_free(ele);
+ 
+ 	return (l);
+ }
+@@ -410,7 +439,7 @@
+ 
+ 	if (ele != NULL) {
+ 		SH_TAILQ_REMOVE(l, ele, sh_tes, sh_te);
+-		free(ele);
++		queue_free(ele);
+ 	}
+ 
+ 	return (l);
+@@ -439,7 +468,7 @@
+ 	struct sh_tq *l;
+ 	const char *item;
+ {
+-	struct sh_te *ele = calloc(1, sizeof(struct sh_te));
++	struct sh_te *ele = queue_calloc(1, sizeof(struct sh_te));
+ 
+ 	ele->content = item[0];
+ 	SH_TAILQ_INSERT_HEAD(l, ele, sh_tes, sh_te);
+@@ -453,7 +482,7 @@
+ 	const char *item;
+ {
+ 	struct sh_te *ele = 0;
+-	ele = calloc(1, sizeof(struct sh_te));
++	ele = queue_calloc(1, sizeof(struct sh_te));
+ 	ele->content = item[0];
+ 	SH_TAILQ_INSERT_TAIL(l, ele, sh_tes);
+ 	return l;
+@@ -475,7 +504,7 @@
+ 	}
+ 
+ 	if (before_ele != NULL) {
+-		ele = calloc(1, sizeof(struct sh_te));
++		ele = queue_calloc(1, sizeof(struct sh_te));
+ 		ele->content = item[0];
+ 		SH_TAILQ_INSERT_BEFORE(l, before_ele, ele, sh_tes, sh_te);
+ 	}
+@@ -499,7 +528,7 @@
+ 	}
+ 
+ 	if (after_ele != NULL) {
+-		ele = calloc(1, sizeof(struct sh_te));
++		ele = queue_calloc(1, sizeof(struct sh_te));
+ 		ele->content = item[0];
+ 		SH_TAILQ_INSERT_AFTER(l, after_ele, ele, sh_tes, sh_te);
+ 	}
+@@ -515,9 +544,9 @@
+ 
+ 	while ((ele = SH_TAILQ_FIRST(l, sh_te)) != NULL) {
+ 		SH_TAILQ_REMOVE(l, ele, sh_tes, sh_te);
+-		free(ele);
++		queue_free(ele);
+ 	}
+-	free(l);
++	queue_free(l);
+ }
+ 
+ int
+@@ -760,11 +789,14 @@
+ 	int eval, i, t, result;
+ 
+ 	eval = 0;
++	queue_region = calloc(1, QUEUE_REGION_BYTES);
++	CuAssert(ct, "allocate shared queue test region", queue_region != NULL);
+ 	for (t = 0; t < sizeof(qfns) / sizeof(qfns[0]); ++t) {
+ 		fc = tc = 0;
+ 		printf("TESTING: %s\n", qfns[t].name);
+ 
+ 		for (i = 0; i < sizeof(ops) / sizeof(ops[0]); i++) {
++			queue_used = 0;
+ 			list = qfns[t].f_init(ops[i].init);
+ 			result = qfns[t].f_verify(list, ops[i].init);
+ 			if (result == 0) {
+@@ -842,5 +874,7 @@
+ 		printf("\t%0.2f%% passed (%d/%d).\n",
+ 		    (((double)fc/tc) * 100), fc, tc);
+ 	}
++	free(queue_region);
++	queue_region = NULL;
+ 	return (eval);
+ }

@@ -1,0 +1,6 @@
+--- a/configure.in
++++ b/configure.in
+@@ -368,2 +368,3 @@
+   i[[3456]]86-*-sysv4.2MP)	stty_reads_stdout=0 ;;
++  *-*-cygwin*|*-*-msys*)	stty_reads_stdout=0 ;;
+   *-*-linux*)		stty_reads_stdout=0 ;;

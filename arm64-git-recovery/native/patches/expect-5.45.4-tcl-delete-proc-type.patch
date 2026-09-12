@@ -1,0 +1,13 @@
+--- a/exp_command.h
++++ b/exp_command.h
+@@ -222,8 +222,8 @@
+ 
+ EXTERN void		exp_strftime(char *format, const struct tm *timeptr,Tcl_DString *dstring);
+ 
+-#define exp_deleteProc (void (*)())0
+-#define exp_deleteObjProc (void (*)())0
++#define exp_deleteProc ((Tcl_CmdDeleteProc *)0)
++#define exp_deleteObjProc ((Tcl_CmdDeleteProc *)0)
+ 
+ EXTERN int expect_key;
+ EXTERN int exp_configure_count;	/* # of times descriptors have been closed */
