@@ -55,6 +55,8 @@ git -C .\build-recovery worktree add --detach ..\verification-evidence `
   bfea25a4fe7703d602b8d4282b75fc064ee8ee59
 git -C .\build-recovery worktree add --detach ..\closure-evidence `
   7368ba69e60e7092792c10ee5f1c5c8aea3923da
+git -C .\build-recovery worktree add --detach ..\closure-source-evidence `
+  0da6e92a060e11144ba2ded1a6962096963615a2
 git -C .\runtime-recovery worktree add --detach ..\generation-evidence `
   2af0ec0c244f522b65ace15be71deab4f3c528ad
 git -C .\build-recovery worktree add --detach ..\provider-evidence `
@@ -78,7 +80,7 @@ merely because another receipt mentions it**.
 |---|---|---|
 | Master continuity, Ruby/Asciidoctor, merge-readiness (`ab17e048`) | `crutkas/msys2-woarm64-build`, `crutkas-arm64-ruby-documentation`, [PR 15](https://github.com/crutkas/msys2-woarm64-build/pull/15) | This branch: `arm64-vnext/evidence/ruby-asciidoctor/` and `arm64-vnext/evidence/programme-reconciliation/`. Complete original Ruby packet, six signed upstream runtime archives plus real Asciidoctor package, exact generated documentation, source archives, API/owner records and primary receipt backups. See their READMEs and `preservation-manifest.json`. |
 | Independent moved Git/HTTPS/TLS/ZIP verification (`b1b1deaf`) | Same build repo, `crutkas-native-tcl-qualification`, [PR 16](https://github.com/crutkas/msys2-woarm64-build/pull/16) | **Published** `bfea25a4fe7703d602b8d4282b75fc064ee8ee59`: [`arm64-vnext/evidence/independent-verification/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/bfea25a4fe7703d602b8d4282b75fc064ee8ee59/arm64-vnext/evidence/independent-verification/README.md). 227 preservation files; original records indexed by `index.json`. This export deliberately excludes artifact ZIPs, binaries and extracted payloads. |
-| Strict blocker and DLL closure audit (`accd408a`) | Same build repo, `crutkas-arm64-pcre2-package`, [PR 17](https://github.com/crutkas/msys2-woarm64-build/pull/17) | **Published** `7368ba69e60e7092792c10ee5f1c5c8aea3923da`: [`arm64-vnext/evidence/dependency-closure/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/7368ba69e60e7092792c10ee5f1c5c8aea3923da/arm64-vnext/evidence/dependency-closure/README.md). `preservation-index.json` maps 231 original paths to 230 exact evidence files. Start at `closure/delivery-03/report.md`, preserving delivery-01/02 and their older seals. No runtime/package binaries are included. |
+| Strict blocker and DLL closure audit (`accd408a`) | Same build repo, `crutkas-arm64-pcre2-package`, [PR 17](https://github.com/crutkas/msys2-woarm64-build/pull/17) | **Original sealed evidence** `7368ba69e60e7092792c10ee5f1c5c8aea3923da`: [`arm64-vnext/evidence/dependency-closure/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/7368ba69e60e7092792c10ee5f1c5c8aea3923da/arm64-vnext/evidence/dependency-closure/README.md). `preservation-index.json` maps 231 original paths to 230 exact evidence files. **Distinct source rescue** is published at successor `0da6e92a060e11144ba2ded1a6962096963615a2`, [`source-recovery/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/0da6e92a060e11144ba2ded1a6962096963615a2/arm64-vnext/evidence/dependency-closure/source-recovery/README.md); it does not alter the old evidence or qualify its mixed archived code. Start evidence review at `closure/delivery-03/report.md`; retain delivery-01/02. No runtime/package binaries are included. |
 | Atomic runtime generation (`e6a17275`) | `crutkas/msys2-runtime`, `crutkas-atomic-runtime-generation`, [PR 34](https://github.com/crutkas/msys2-runtime/pull/34) | **Published standardized recovery root** at `2af0ec0c244f522b65ace15be71deab4f3c528ad`: [`arm64-vnext/evidence/atomic-generation/README.md`](https://github.com/crutkas/msys2-runtime/blob/2af0ec0c244f522b65ace15be71deab4f3c528ad/arm64-vnext/evidence/atomic-generation/README.md). Preserves original 50-file proposal baseline plus all 170 application files; baseline archive SHA `19d273f86f14b9b3beb5debaa9f1309683f79bff242e8bf78ab363632d8d85c5`. Application `proof.tar.gz` remains SHA `2abaa10780ef6e287a2bd90f424d599771aa7db1d72faf354ed81af7557f1c84` (269,076 bytes). The earlier `fb627b685141eea8bd7e7813837e4b21c754dc35` / `winsup/testsuite/build/evidence/runtime-generation-20260911/` locator remains valid. Qualified source remains `df7d66f9b1433c50dd7cd234b0d8bd1213418b22`; both later commits are evidence-only. |
 | Combined runtime, Bash/PTY investigation (`67ba2e76`) | Runtime repo, `crutkas-arm64-runtime-integration`, PR 33 | Owner preservation requested; confirm its final evidence-publication commit/path before claiming the complete runtime/toolchain/build tree survives. A byte-exact `combined-runtime-handoff.json` backup is already in this branch's `programme-reconciliation/source-receipts/`. |
 | Signal/myfault/Texinfo producer (`5b01b4e5`) | Build repo, `crutkas-arm64-toolchain-bootstrap`, PR 11 | Owner preservation requested. This branch already preserves exact Texinfo root-cause/success handoffs, actual successful binutils log, old TLS proposal handoff and known-good TLS offsets under `programme-reconciliation/source-receipts/`. Complete producer environment custody must come from the owner export. |
@@ -168,6 +170,30 @@ the patch and run `git apply --check` only in a new owned checkout at that base.
 Clean application is not content correctness or qualification. Application,
 commit, integration and a new CI run are separate future actions requiring
 their own authority and evidence.
+
+### Published source rescue: dependency-closure producer
+
+The evidence-only exclusion was subsequently repaired by a **separate source
+preservation**, not by pretending the earlier evidence commit contained code.
+PR 17 successor **`0da6e92a060e11144ba2ded1a6962096963615a2`** adds
+`arm64-vnext/evidence/dependency-closure/source-recovery/`; original evidence
+commit **`7368ba69e60e7092792c10ee5f1c5c8aea3923da`** remains unchanged.
+
+| Source-recovery item | Identity and scope |
+|---|---|
+| Current working-tree patch | `current-working-tree.patch`, **636,626 bytes**, SHA-256 **`931096cb524f6c7d53ff1ba627fc47773d9aee32021e2486627703a8688e367a`**, exact base **`7368ba69e60e7092792c10ee5f1c5c8aea3923da`**. Preserves **158 files: 20 tracked modifications + 138 untracked files**, including exact raw line endings. |
+| Source inventory | `source-inventory.json`, SHA-256 **`5ddb66aca2fea065066027d710e9867b73439c5a0125e86d307aeb3cbf6a245f`**. Also inventories **18 session-local qualification/audit/diagnostic scripts** under `session-source/`. |
+| Historical checkpoint rescue | `checkpoint-recovery.json`, SHA-256 **`aac88f842bd0977808391179b568e746824741a784385e90901e7e01d6da94bb`**; maps **99 own-session checkpoint refs** to ref/commit/path/mode/blob/SHA identities and **115 additional historical source blobs** under `checkpoint-source/`. |
+| Captured Git state | Owner recorded zero staged changes, zero local-only HEAD commits and zero stashes; the dirty working files were preserved **without reset**, not declared clean. |
+| Qualification boundary | **Archival patch, NOT a blanket qualified change.** Scoped completed PCRE2/native907 less/tools results remain separately evidenced. Imported generic pipeline code, diagnostic scripts and intermediate checkpoints are not independently qualified or recommended fixes merely because they were rescued. |
+
+The patch and both manifest hashes above were independently verified from
+immutable GitHub raw bytes by this guide's publisher. The producer reports
+exact 158-file restoration via an isolated temporary index; that restore was
+not rerun by the guide's publisher. Use the source README's binary/full-index
+patch instructions in a **new checkout at the exact base**, then compare every
+restored file against its source inventory. Do not apply the mixed patch to a
+live toolchain/worktree or overlay every checkpoint version together.
 
 ### Source-custody checklist for each owner
 
