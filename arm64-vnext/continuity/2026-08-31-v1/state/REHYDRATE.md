@@ -42,6 +42,8 @@ git -C .\build-recovery fetch origin crutkas-native-provider-intake
 if ($LASTEXITCODE -ne 0) { throw 'Could not recover the provider branch (no PR)' }
 git -C .\build-recovery fetch origin crutkas-native-git-helper-packages
 if ($LASTEXITCODE -ne 0) { throw 'Could not recover the helper-package evidence branch' }
+git -C .\build-recovery fetch origin crutkas-native-execution-recovery
+if ($LASTEXITCODE -ne 0) { throw 'Could not recover the execution evidence branch' }
 ```
 
 Read the evidence directory on each fetched branch. Do not merge branches just
@@ -85,6 +87,7 @@ merely because another receipt mentions it**.
 | MVP assembly and replacement-TLS candidate (`f6ea7713`) | Build repo, `crutkas-full-native-git-assembly`, draft PR 14 | Owner evidence publication requested. Qualified candidate/ZIP binary preservation is **not confirmed here**; do not assume the 186 MB named ZIP is in Git. Independent verification and dependency-closure exports above preserve measured identities and failures even if a binary must be rebuilt. |
 | Provider ledger/admission (`a2dd0a44`, pipeline `2160ef10`) | Build repo, [`crutkas-native-provider-intake`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-provider-intake); **NO PR** (creation returned 422 twice, per coordinator) | **Published and remote directories confirmed** at `3ebc0c133105c77496ae80d4ea76fad7ed463c80`: [`arm64-vnext/evidence/provider-intake/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-intake/README.md) covers ordered contracts, rejected libintl-selection captures and limited roles; [`arm64-vnext/evidence/provider-admission/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-admission/README.md) covers strict authority, OpenSSL/header scopes and ledger v20-v42. Provider-intake `manifest.json` SHA-256 `df94ef731519e129e1dde7b497be7b501726366c2326b85b3f0f9291b1f8c65e` was verified from GitHub bytes. **No archives or payload binaries** are included: replacement OpenSSL payload custody is still separate. Search this branch directly, not only the PR list. |
 | Git helpers / GnuPG dependencies (`6b81b146`) | Build repo, [`crutkas-native-git-helper-packages`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-git-helper-packages) | **Published and remote root confirmed** at `2460d9fbd50a894c774e938670fae27ece1202cf`: [`arm64-vnext/evidence/git-helper-packages/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/2460d9fbd50a894c774e938670fae27ece1202cf/arm64-vnext/evidence/git-helper-packages/README.md), with per-file SHA-256 and `ORIGINS.tsv`. Includes Git LFS/git-extra evidence, later runtime907 client-only MSYS OpenSSH admission, crypto/libxcrypt dependency records and GnuPG work. Ledger v42's runtime907 GMP versus d70 conflict remains explicit. The interrupted libgcrypt `1-04` run proves no completed test/package success. No archives, PE binaries, private keyrings or build trees are included. |
+| Execution/CRT recovery (`efd00553`) | Build repo, [`crutkas-native-execution-recovery`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-execution-recovery) | **Published** evidence commit `de2353205ee2aece40435047a89cc6377fe47460`: [`arm64-vnext/evidence/execution-recovery/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/de2353205ee2aece40435047a89cc6377fe47460/arm64-vnext/evidence/execution-recovery/README.md). Separately, the **uncommitted, unintegrated CRT source fix** survives in [gist `e5d1ddc3410c418069046455c99ad09b`](https://gist.github.com/crutkas/e5d1ddc3410c418069046455c99ad09b), not in that evidence commit or PR 11. See the exact source-recovery contract below. |
 
 **Publication gaps are explicit, not absence claims.** Owners were pushing in
 parallel during shutdown. If an entry says requested/unconfirmed, inspect that
@@ -118,6 +121,66 @@ guards, do not pretty-print sealed JSON, normalize CRLF, strip embedded CR, or
 rewrite old paths inside originals. Windows `git archive` can be affected by
 autocrlf: use `git -c core.autocrlf=false archive` or raw Git blob reads when
 proving exact source bytes. Preserve original and successor receipts separately.
+
+## Uncommitted source is a separate loss category
+
+**Evidence completeness does NOT imply source completeness.** The shutdown
+sweeps looked for `arm64-vnext/evidence/` on remote branches. That finds receipts,
+not necessarily the code that produced or fixed them. The dependency-closure
+owner explicitly excluded uncommitted producer code from its evidence PR;
+that was correct evidence scoping, not a source backup.
+
+The CRT bootstrap fix is a concrete near-loss: according to its owner it
+existed on **no remote Git ref**, survived only in local checkpoint objects,
+and was invisible to evidence-directory sweeps. It is now preserved as a patch
+in an unlisted gist. A future session must recover **both** evidence and source
+locators; some fixes are patches/gists, not branch commits.
+
+### Known source-only recovery: CRT bootstrap header closure
+
+| Field | Preserved identity / state |
+|---|---|
+| Source owner | Execution-recovery session `efd00553` |
+| Patch locator | [Unlisted gist](https://gist.github.com/crutkas/e5d1ddc3410c418069046455c99ad09b), file `pr11-crt-bootstrap-header-closure.patch` |
+| Exact size and SHA-256 | **13,915 bytes**, **`4cc4f5387496e86911a56bef3c1fa1d690c57bf5f07888f441a9bd8747efe5d4`**; the coordinator reports two independent matching downloads, and this guide's publisher independently matched the raw download too |
+| API-supplied raw URL | [`pr11-crt-bootstrap-header-closure.patch`](https://gist.githubusercontent.com/crutkas/e5d1ddc3410c418069046455c99ad09b/raw/2e289a9653932466afe56102fb8b713efae9d50c/pr11-crt-bootstrap-header-closure.patch) |
+| Separate evidence | Commit `de2353205ee2aece40435047a89cc6377fe47460`, `arm64-vnext/evidence/execution-recovery/`, including `crt/closure-receipt.json` and its controls |
+| Integration status | Source remains **UNCOMMITTED and NOT applied to PR 11** at preservation time. A remote patch copy is not an integrated source commit. |
+| Qualification scope | **Locally qualified CRT bootstrap header closure only. No CI rerun claim.** Do not inherit the earlier Texinfo CI pass for this additional patch. |
+| Access caveat | **Unlisted is not access-controlled:** anyone holding the gist URL can read it. This was an explicitly accepted preservation tradeoff, not a promise of private storage. Keep the URL in the recovery set; never use this method for credentials or secrets. |
+
+Download without changing source, and fail closed on the exact identity:
+
+```powershell
+$url = 'https://gist.githubusercontent.com/crutkas/e5d1ddc3410c418069046455c99ad09b/raw/2e289a9653932466afe56102fb8b713efae9d50c/pr11-crt-bootstrap-header-closure.patch'
+$patch = Join-Path (Get-Location) 'pr11-crt-bootstrap-header-closure.patch'
+if (Test-Path -LiteralPath $patch) { throw 'Choose a fresh preservation path' }
+Invoke-WebRequest $url -OutFile $patch
+$hash = (Get-FileHash -LiteralPath $patch -Algorithm SHA256).Hash.ToLowerInvariant()
+if ((Get-Item -LiteralPath $patch).Length -ne 13915 -or
+    $hash -ne '4cc4f5387496e86911a56bef3c1fa1d690c57bf5f07888f441a9bd8747efe5d4') {
+  throw 'CRT patch identity mismatch; do not apply'
+}
+```
+
+Before any application, recover the producer's base/input contract, inspect
+the patch and run `git apply --check` only in a new owned checkout at that base.
+Clean application is not content correctness or qualification. Application,
+commit, integration and a new CI run are separate future actions requiring
+their own authority and evidence.
+
+### Source-custody checklist for each owner
+
+Before a wipe, each owner must inventory its **own** tracked working-tree
+changes, untracked/ignored source, staged changes, local-only commits, stashes,
+reflogs and checkpoint objects. Merely checking remote branches or evidence
+directories is insufficient. After a wipe these local objects may be gone;
+the checklist is a discovery obligation, not a claim they can be reconstructed.
+Preserve any required source with its base commit, exact path/mode/bytes/hash,
+patch or archive, remote locator and explicit applied/unapplied status.
+Review for secrets before publishing; do not sweep or modify other worktrees
+without owner authority. **No known gap may be silently converted into "source
+complete" because the evidence manifests verify.**
 
 ## 2. Source PR map and agreed merge order
 
@@ -382,7 +445,8 @@ should register credentials/runners unilaterally.
 ## 8. First actions for a fresh session
 
 1. Recover this branch and the evidence branches above; verify manifests and
-   inventory what binary/toolchain/source custody actually survived. Record
+   the separate patch/gist source-recovery set, then inventory what
+   binary/toolchain/source custody actually survived. Record
    missing objects explicitly. Do not fabricate a successful rebuild from a
    recipe or a SHA-256 alone.
 2. Re-query current PR heads, bases, CI and runner availability. Preserve the
