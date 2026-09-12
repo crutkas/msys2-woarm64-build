@@ -1,0 +1,499 @@
+{
+  "schema": 1,
+  "provenance": "Initial recipe/archive recovery pins date from 2026-09-05; later task-specific pins carry their own provenance. Historical versions are recovery inputs, not a claim of reproducing the lost patched source tree or its binary hashes. No archive is executed by source recovery.",
+  "sources": [
+    {
+      "id": "doxygen-windows-x64-doc-bootstrap",
+      "version": "1.18.0",
+      "url": "https://www.doxygen.nl/files/doxygen-1.18.0.windows.x64.bin.zip",
+      "file": "doxygen-1.18.0.windows.x64.bin.zip",
+      "sha256": "e84f54cfd49ef06b0b16536056dbec0c496323de28abcce53a4269463de35eaf",
+      "prefix": "doxygen-1.18.0-windows-x64",
+      "format": "file",
+      "purpose": "Explicit x64 emulated documentation driver only; never a native distribution payload",
+      "checksum_source": "https://www.doxygen.nl/download.html",
+      "pinned_date": "2026-09-07"
+    },
+    {
+      "id": "doxygen-source",
+      "version": "1.18.0",
+      "url": "https://www.doxygen.nl/files/doxygen-1.18.0.src.tar.gz",
+      "file": "doxygen-1.18.0.src.tar.gz",
+      "sha256": "a1deed70a6785bbec95a2b2a9e419dc7f7b223a9d74a8644ae611c8e2dcdd354",
+      "prefix": "doxygen-1.18.0",
+      "purpose": "Source and license provenance for the documentation bootstrap",
+      "checksum_source": "Pinned msys-upstream-recipes/doxygen/PKGBUILD",
+      "pinned_date": "2026-09-07"
+    },
+    {
+      "id": "bzip2",
+      "version": "1.0.8",
+      "url": "https://sourceware.org/pub/bzip2/bzip2-1.0.8.tar.gz",
+      "file": "bzip2-1.0.8.tar.gz",
+      "sha256": "ab5a03176ee106d3f0fa90e381da478ddae405918153cca248e682cd0c4a2269",
+      "prefix": "bzip2-1.0.8"
+    },
+    {
+      "id": "xz",
+      "version": "5.8.3",
+      "url": "https://github.com/tukaani-project/xz/archive/refs/tags/v5.8.3.tar.gz",
+      "file": "xz-5.8.3.tar.gz",
+      "sha256": "8ec1767fa517642ecb4cf08b891ce667ba6f143551e382b07c7ef437bda335e2",
+      "prefix": "xz-5.8.3"
+    },
+    {
+      "id": "zstd",
+      "version": "1.5.7",
+      "url": "https://github.com/facebook/zstd/releases/download/v1.5.7/zstd-1.5.7.tar.gz",
+      "file": "zstd-1.5.7.tar.gz",
+      "sha256": "eb33e51f49a15e023950cd7825ca74a4a2b43db8354825ac24fc1b7ee09e6fa3",
+      "prefix": "zstd-1.5.7"
+    },
+    {
+      "id": "cmocka",
+      "version": "1.1.8",
+      "url": "https://cmocka.org/files/1.1/cmocka-1.1.8.tar.xz",
+      "file": "cmocka-1.1.8.tar.xz",
+      "sha256": "58435b558766d7f4c729ba163bdf3aec38bed3bc766dab684e3526ed0aa7c780",
+      "prefix": "cmocka-1.1.8"
+    },
+    {
+      "id": "heimdal",
+      "version": "7.8.0",
+      "url": "https://github.com/heimdal/heimdal/releases/download/heimdal-7.8.0/heimdal-7.8.0.tar.gz",
+      "file": "heimdal-7.8.0.tar.gz",
+      "sha256": "fd87a207846fa650fd377219adc4b8a8193e55904d8a752c2c3715b4155d8d38",
+      "prefix": "heimdal-7.8.0"
+    },
+    {
+      "id": "libcbor",
+      "version": "0.14.0",
+      "url": "https://github.com/PJK/libcbor/archive/v0.14.0/libcbor-0.14.0.tar.gz",
+      "file": "libcbor-0.14.0.tar.gz",
+      "sha256": "a8c1516e741562cf95aa4479c64916c3d4d2623e24fdc35e414e2320e7300aae",
+      "prefix": "libcbor-0.14.0"
+    },
+    {
+      "id": "libfido2",
+      "version": "1.17.0",
+      "url": "https://developers.yubico.com/libfido2/Releases/libfido2-1.17.0.tar.gz",
+      "file": "libfido2-1.17.0.tar.gz",
+      "sha256": "c1012c8871d71b65872fd5ff1a9d6b0838a55683a03e85ba97479ce57129c736",
+      "prefix": "libfido2-1.17.0"
+    },
+    {
+      "id": "db",
+      "version": "6.2.32",
+      "url": "https://download.oracle.com/berkeley-db/db-6.2.32.tar.gz",
+      "file": "db-6.2.32.tar.gz",
+      "sha256": "a9c5e2b004a5777aa03510cfe5cd766a4a3b777713406b02809c17c8e0e7a8fb",
+      "prefix": "db-6.2.32"
+    },
+    {
+      "id": "sqlite-msys",
+      "version": "3.53.4",
+      "url": "https://www.sqlite.org/2026/sqlite-src-3530400.zip",
+      "file": "sqlite-src-3530400.zip",
+      "sha256": "d18fa15aec74d8c17e1463f861095adc01b5ad190256acb4f91d22f0368d232b",
+      "prefix": "sqlite-src-3530400",
+      "format": "zip"
+    },
+    {
+      "id": "sqlite-doc-msys",
+      "version": "3.53.4",
+      "url": "https://www.sqlite.org/2026/sqlite-doc-3530400.zip",
+      "file": "sqlite-doc-3530400.zip",
+      "sha256": "a1d0f5de57485d062796ed7e67daff0758b50d00001a0f233a2c15aaf40bbdc8",
+      "prefix": "sqlite-doc-3530400",
+      "format": "zip"
+    },
+    {
+      "id": "file",
+      "version": "5.48",
+      "url": "https://astron.com/pub/file/file-5.48.tar.gz",
+      "file": "file-5.48.tar.gz",
+      "sha256": "ed14656883b23a364b4057c05595d93252da9bc473d30106519519d0da141283",
+      "prefix": "file-5.48"
+    },
+    {
+      "id": "readline",
+      "version": "8.3",
+      "url": "https://ftp.gnu.org/gnu/readline/readline-8.3.tar.gz",
+      "file": "readline-8.3.tar.gz",
+      "sha256": "fe5383204467828cd495ee8d1d3c037a7eba1389c22bc6a041f627976f9061cc",
+      "prefix": "readline-8.3"
+    },
+    {
+      "id": "readline83-001",
+      "version": "8.3.001",
+      "url": "https://ftp.gnu.org/gnu/readline/readline-8.3-patches/readline83-001",
+      "file": "readline83-001",
+      "sha256": "21f0a03106dbe697337cd25c70eb0edbaa2bdb6d595b45f83285cdd35bac84de",
+      "prefix": "readline83-001",
+      "format": "file"
+    },
+    {
+      "id": "readline83-002",
+      "version": "8.3.002",
+      "url": "https://ftp.gnu.org/gnu/readline/readline-8.3-patches/readline83-002",
+      "file": "readline83-002",
+      "sha256": "e27364396ba9f6debf7cbaaf1a669e2b2854241ae07f7eca74ca8a8ba0c97472",
+      "prefix": "readline83-002",
+      "format": "file"
+    },
+    {
+      "id": "readline83-003",
+      "version": "8.3.003",
+      "url": "https://ftp.gnu.org/gnu/readline/readline-8.3-patches/readline83-003",
+      "file": "readline83-003",
+      "sha256": "72dee13601ce38f6746eb15239999a7c56f8e1ff5eb1ec8153a1f213e4acdb29",
+      "prefix": "readline83-003",
+      "format": "file"
+    },
+    {
+      "id": "libtool-msys",
+      "version": "2.6.2",
+      "url": "https://ftp.gnu.org/gnu/libtool/libtool-2.6.2.tar.xz",
+      "file": "libtool-2.6.2.tar.xz",
+      "sha256": "2ef1067c16c97db930fd740cc9bc3d3ba9a583804ae5ac42cc3e8719e49e191e",
+      "prefix": "libtool-2.6.2"
+    },
+    {
+      "id": "gettext",
+      "version": "1.0",
+      "url": "https://ftp.gnu.org/pub/gnu/gettext/gettext-1.0.tar.gz",
+      "file": "gettext-1.0.tar.gz",
+      "sha256": "85d99b79c981a404874c02e0342176cf75c7698e2b51fe41031cf6526d974f1a",
+      "prefix": "gettext-1.0"
+    },
+    {
+      "id": "libiconv",
+      "version": "1.19",
+      "url": "https://ftp.gnu.org/pub/gnu/libiconv/libiconv-1.19.tar.gz",
+      "file": "libiconv-1.19.tar.gz",
+      "sha256": "88dd96a8c0464eca144fc791ae60cd31cd8ee78321e67397e25fc095c4a19aa6",
+      "prefix": "libiconv-1.19"
+    },
+    {
+      "id": "libunistring",
+      "version": "1.4.2",
+      "url": "https://ftp.gnu.org/gnu/libunistring/libunistring-1.4.2.tar.gz",
+      "file": "libunistring-1.4.2.tar.gz",
+      "sha256": "e82664b170064e62331962126b259d452d53b227bb4a93ab20040d846fec01d8",
+      "prefix": "libunistring-1.4.2"
+    },
+    {
+      "id": "libidn2",
+      "version": "2.3.8",
+      "url": "https://ftp.gnu.org/gnu/libidn/libidn2-2.3.8.tar.gz",
+      "file": "libidn2-2.3.8.tar.gz",
+      "sha256": "f557911bf6171621e1f72ff35f5b1825bb35b52ed45325dcdee931e5d3c0787a",
+      "prefix": "libidn2-2.3.8"
+    },
+    {
+      "id": "libpsl",
+      "version": "0.21.5",
+      "url": "https://github.com/rockdaboot/libpsl/releases/download/0.21.5/libpsl-0.21.5.tar.gz",
+      "file": "libpsl-0.21.5.tar.gz",
+      "sha256": "1dcc9ceae8b128f3c0b3f654decd0e1e891afc6ff81098f227ef260449dae208",
+      "prefix": "libpsl-0.21.5"
+    },
+    {
+      "id": "libssh2",
+      "version": "1.11.1",
+      "url": "https://libssh2.org/download/libssh2-1.11.1.tar.gz",
+      "file": "libssh2-1.11.1.tar.gz",
+      "sha256": "d9ec76cbe34db98eec3539fe2c899d26b0c837cb3eb466a56b0f109cabf658f7",
+      "prefix": "libssh2-1.11.1"
+    },
+    {
+      "id": "mingw-upstream-recipes",
+      "version": "fbb9173f78adaea078046ea53e35cee47e7a5527",
+      "url": "https://codeload.github.com/msys2/MINGW-packages/tar.gz/fbb9173f78adaea078046ea53e35cee47e7a5527",
+      "file": "mingw-upstream-recipes-fbb9173.tar.gz",
+      "sha256": "e58712ab3ea8bd4530b4381e3b0add239ebab6cfb1cfdb5e22209bf48b8daf62",
+      "prefix": "MINGW-packages-fbb9173f78adaea078046ea53e35cee47e7a5527"
+    },
+    {
+      "id": "zlib",
+      "version": "1.3.2",
+      "url": "https://github.com/madler/zlib/releases/download/v1.3.2/zlib-1.3.2.tar.xz",
+      "file": "zlib-1.3.2.tar.xz",
+      "sha256": "d7a0654783a4da529d1bb793b7ad9c3318020af77667bcae35f95d0e42a792f3",
+      "prefix": "zlib-1.3.2"
+    },
+    {
+      "id": "expat",
+      "version": "2.8.4",
+      "url": "https://github.com/libexpat/libexpat/releases/download/R_2_8_4/expat-2.8.4.tar.xz",
+      "file": "expat-2.8.4.tar.xz",
+      "sha256": "656ae1cc8da3b4ea513bb4e254f33e6243938084c0ec6239da873376b09985a7",
+      "prefix": "expat-2.8.4"
+    },
+    {
+      "id": "pcre2",
+      "version": "10.48",
+      "url": "https://github.com/PhilipHazel/pcre2/releases/download/pcre2-10.48/pcre2-10.48.tar.bz2",
+      "file": "pcre2-10.48.tar.bz2",
+      "sha256": "b6c68fdf6f3ac31388b50aa89ff0fc49c00c987c16e7b5146491d12003f2c8ed",
+      "prefix": "pcre2-10.48"
+    },
+    {
+      "id": "openssl",
+      "version": "3.6.4",
+      "url": "https://github.com/openssl/openssl/releases/download/openssl-3.6.4/openssl-3.6.4.tar.gz",
+      "file": "openssl-3.6.4.tar.gz",
+      "sha256": "9bffaa1ad1e07b354c21bd3324ec02fa15579f45a7d0494b3e74bc449b7333ef",
+      "prefix": "openssl-3.6.4"
+    },
+    {
+      "id": "curl",
+      "version": "8.22.0",
+      "url": "https://github.com/curl/curl/releases/download/curl-8_22_0/curl-8.22.0.tar.xz",
+      "file": "curl-8.22.0.tar.xz",
+      "sha256": "f7ef3ae8a22e521f289803fe93543eb64c329b58aa73a9e224dfd915a2a5f4f7",
+      "prefix": "curl-8.22.0"
+    },
+    {
+      "id": "mingw-recipes",
+      "version": "d65b87de173ac2209a63cef8c4528669b5571fd3",
+      "url": "https://codeload.github.com/git-for-windows/MINGW-packages/tar.gz/d65b87de173ac2209a63cef8c4528669b5571fd3",
+      "file": "mingw-recipes-d65b87d.tar.gz",
+      "sha256": "9fd7b7d4a403eb586aadbe4ea7ce27a58c143491e4680e2628fe7f0cbef6a59b",
+      "prefix": "MINGW-packages-d65b87de173ac2209a63cef8c4528669b5571fd3"
+    },
+    {
+      "id": "msys-recipes",
+      "version": "d6337d462fc6c0ed909358e7173e7a266d7aacbd",
+      "url": "https://codeload.github.com/git-for-windows/MSYS2-packages/tar.gz/d6337d462fc6c0ed909358e7173e7a266d7aacbd",
+      "file": "msys-recipes-d6337d4.tar.gz",
+      "sha256": "ad689b6455019ca9cff17a4ed335ae0cd67788d1de6701797ee2a61bcab3b4f8",
+      "prefix": "MSYS2-packages-d6337d462fc6c0ed909358e7173e7a266d7aacbd"
+    },
+    {
+      "id": "msys-upstream-recipes",
+      "version": "9154e8a73cf7813e3e4b87df14e6aea5776dc571",
+      "url": "https://codeload.github.com/msys2/MSYS2-packages/tar.gz/9154e8a73cf7813e3e4b87df14e6aea5776dc571",
+      "file": "msys-upstream-recipes-9154e8a.tar.gz",
+      "sha256": "7cfab11653116d518f45011b3c699e2db13d19d61de56b7c0bd4d10a31890c4d",
+      "prefix": "MSYS2-packages-9154e8a73cf7813e3e4b87df14e6aea5776dc571"
+    },
+    {
+      "id": "build-extra",
+      "version": "21d6ed86c38d28e89c950c9e1e349b6edefd1afb",
+      "url": "https://codeload.github.com/git-for-windows/build-extra/tar.gz/21d6ed86c38d28e89c950c9e1e349b6edefd1afb",
+      "file": "build-extra-21d6ed8.tar.gz",
+      "sha256": "6434e6a286ba43cdd7f104313456dcec0d23d1807f551a4ae0e38069d0a28668",
+      "prefix": "build-extra-21d6ed86c38d28e89c950c9e1e349b6edefd1afb"
+    },
+    {
+      "id": "git-full",
+      "version": "2.55.0.windows.5",
+      "commit": "32c4f7689275d233577576630e1ac5b7eb354eb0",
+      "url": "https://codeload.github.com/git-for-windows/git/tar.gz/32c4f7689275d233577576630e1ac5b7eb354eb0",
+      "file": "git-2.55.0.windows.5.tar.gz",
+      "sha256": "a31334ece26af0c79b2f3666eca7eaf664c456004290c748fddd0df5ab870162",
+      "prefix": "git-32c4f7689275d233577576630e1ac5b7eb354eb0"
+    },
+    {
+      "id": "git-historical",
+      "version": "2.47.1",
+      "url": "https://www.kernel.org/pub/software/scm/git/git-2.47.1.tar.xz",
+      "file": "git-2.47.1.tar.xz",
+      "sha256": "f3d8f9bb23ae392374e91cd9d395970dabc5b9c5ee72f39884613cd84a6ed310",
+      "prefix": "git-2.47.1"
+    },
+    {
+      "id": "zlib-historical",
+      "version": "1.3.1",
+      "url": "https://zlib.net/fossils/zlib-1.3.1.tar.gz",
+      "file": "zlib-1.3.1.tar.gz",
+      "sha256": "9a93b2b7dfdac77ceba5a558a580e74667dd6fede4585b91eefb60f03b72df23",
+      "prefix": "zlib-1.3.1"
+    },
+    {
+      "id": "openssl-historical",
+      "version": "3.4.1",
+      "url": "https://github.com/openssl/openssl/releases/download/openssl-3.4.1/openssl-3.4.1.tar.gz",
+      "file": "openssl-3.4.1.tar.gz",
+      "sha256": "002a2d6b30b58bf4bea46c43bdd96365aaf8daa6c428782aa4feee06da197df3",
+      "prefix": "openssl-3.4.1"
+    },
+    {
+      "id": "expat-historical",
+      "version": "2.6.4",
+      "url": "https://github.com/libexpat/libexpat/releases/download/R_2_6_4/expat-2.6.4.tar.xz",
+      "file": "expat-2.6.4.tar.xz",
+      "sha256": "a695629dae047055b37d50a0ff4776d1d45d0a4c842cf4ccee158441f55ff7ee",
+      "prefix": "expat-2.6.4"
+    },
+    {
+      "id": "pcre2-historical",
+      "version": "10.44",
+      "url": "https://github.com/PCRE2Project/pcre2/releases/download/pcre2-10.44/pcre2-10.44.tar.bz2",
+      "file": "pcre2-10.44.tar.bz2",
+      "sha256": "d34f02e113cf7193a1ebf2770d3ac527088d485d4e047ed10e5d217c6ef5de96",
+      "prefix": "pcre2-10.44"
+    },
+    {
+      "id": "curl-historical",
+      "version": "8.11.1",
+      "url": "https://curl.se/download/curl-8.11.1.tar.xz",
+      "file": "curl-8.11.1.tar.xz",
+      "sha256": "c7ca7db48b0909743eaef34250da02c19bc61d4f1dcedd6603f109409536ab56",
+      "prefix": "curl-8.11.1"
+    },
+    {
+      "id": "make",
+      "version": "4.4.1",
+      "url": "https://ftp.gnu.org/gnu/make/make-4.4.1.tar.gz",
+      "file": "make-4.4.1.tar.gz",
+      "sha256": "dd16fb1d67bfab79a72f5e8390735c49e3e8e70b4945a15ab1f81ddb78658fb3",
+      "prefix": "make-4.4.1"
+    },
+    {
+      "id": "bash",
+      "version": "5.3",
+      "url": "https://ftp.gnu.org/gnu/bash/bash-5.3.tar.gz",
+      "file": "bash-5.3.tar.gz",
+      "sha256": "0d5cd86965f869a26cf64f4b71be7b96f90a3ba8b3d74e27e8e9d9d5550f31ba",
+      "prefix": "bash-5.3"
+    },
+    {
+      "id": "perl-gfw",
+      "version": "5.38.2",
+      "url": "https://www.cpan.org/src/5.0/perl-5.38.2.tar.xz",
+      "file": "perl-5.38.2.tar.xz",
+      "sha256": "d91115e90b896520e83d4de6b52f8254ef2b70a8d545ffab33200ea9f1cf29e8",
+      "prefix": "perl-5.38.2"
+    },
+    {
+      "id": "coreutils",
+      "version": "8.32",
+      "url": "https://ftp.gnu.org/gnu/coreutils/coreutils-8.32.tar.xz",
+      "file": "coreutils-8.32.tar.xz",
+      "sha256": "4458d8de7849df44ccab15e16b1548b285224dbba5f08fac070c1c0e0bcc4cfa",
+      "prefix": "coreutils-8.32"
+    },
+    {
+      "id": "sed",
+      "version": "4.9",
+      "url": "https://ftp.gnu.org/pub/gnu/sed/sed-4.9.tar.xz",
+      "file": "sed-4.9.tar.xz",
+      "sha256": "6e226b732e1cd739464ad6862bd1a1aba42d7982922da7a53519631d24975181",
+      "prefix": "sed-4.9"
+    },
+    {
+      "id": "gawk",
+      "version": "5.4.1",
+      "url": "https://ftp.gnu.org/pub/gnu/gawk/gawk-5.4.1.tar.gz",
+      "file": "gawk-5.4.1.tar.gz",
+      "sha256": "8b3b0ea83930311a3f30905d3ce898d32c6103c2fe20d6a90b40341171b174de",
+      "prefix": "gawk-5.4.1"
+    },
+    {
+      "id": "grep",
+      "version": "3.0",
+      "url": "https://ftp.gnu.org/gnu/grep/grep-3.0.tar.xz",
+      "file": "grep-3.0.tar.xz",
+      "sha256": "e2c81db5056e3e8c5995f0bb5d0d0e1cad1f6f45c3b2fc77b6e81435aed48ab5",
+      "prefix": "grep-3.0"
+    },
+    {
+      "id": "findutils",
+      "version": "4.11.0",
+      "url": "https://ftp.gnu.org/pub/gnu/findutils/findutils-4.11.0.tar.xz",
+      "file": "findutils-4.11.0.tar.xz",
+      "sha256": "bfd19cb06cc71f3352d567e90284d8cdac02ac89774bbeadf0b533b0c11432fd",
+      "prefix": "findutils-4.11.0"
+    },
+    {
+      "id": "meson",
+      "version": "1.12.0",
+      "url": "https://github.com/mesonbuild/meson/releases/download/1.12.0/meson-1.12.0.tar.gz",
+      "file": "meson-1.12.0.tar.gz",
+      "sha256": "88afe0c20e52030218924ac37d0c81c59b4b5f3ae3752c8c6d7470c7d365886c",
+      "prefix": "meson-1.12.0"
+    },
+    {
+      "id": "pkgconf",
+      "version": "3.0.5",
+      "url": "https://github.com/pkgconf/pkgconf/archive/pkgconf-3.0.5/pkgconf-3.0.5.tar.gz",
+      "file": "pkgconf-3.0.5.tar.gz",
+      "sha256": "245d441b9d8f7b74390e060cb9db1a326c26f1b96b1a6c3216b54a5d5439367a",
+      "prefix": "pkgconf-pkgconf-3.0.5"
+    },
+    {
+      "id": "tcl-msys",
+      "version": "8.6.12",
+      "url": "https://downloads.sourceforge.net/sourceforge/tcl/tcl8.6.12-src.tar.gz",
+      "file": "tcl8.6.12-src.tar.gz",
+      "sha256": "26c995dd0f167e48b11961d891ee555f680c175f7173ff8cb829f4ebcde4c1a6",
+      "prefix": "tcl8.6.12"
+    },
+    {
+      "id": "tcl",
+      "version": "8.6.18",
+      "url": "https://downloads.sourceforge.net/sourceforge/tcl/tcl8.6.18-src.tar.gz",
+      "file": "tcl8.6.18-src.tar.gz",
+      "sha256": "14f9af32b1767ff718477a8f974ad03c34341097e6b43f4ce54644ee974e268e",
+      "prefix": "tcl8.6.18"
+    },
+    {
+      "id": "tk",
+      "version": "8.6.18",
+      "url": "https://downloads.sourceforge.net/sourceforge/tcl/tk8.6.18-src.tar.gz",
+      "file": "tk8.6.18-src.tar.gz",
+      "sha256": "95cd528a80f5e4bdb557af9b14a7197d6860793a3894e25e7c9fad2ed05d4c3c",
+      "prefix": "tk8.6.18"
+    },
+    {
+      "id": "ncurses",
+      "version": "6.6",
+      "url": "https://invisible-island.net/archives/ncurses/ncurses-6.6.tar.gz",
+      "file": "ncurses-6.6.tar.gz",
+      "sha256": "355b4cbbed880b0381a04c46617b7656e362585d52e9cf84a67e2009b749ff11",
+      "prefix": "ncurses-6.6"
+    },
+    {
+      "id": "nano",
+      "version": "9.2",
+      "url": "https://www.nano-editor.org/dist/v9/nano-9.2.tar.xz",
+      "file": "nano-9.2.tar.xz",
+      "sha256": "05ecb99247b782e8a5b3a25ed4101dd034b0236902f7449bc9795b717642f7e9",
+      "prefix": "nano-9.2"
+    },
+    {
+      "id": "openssh",
+      "version": "10.5p1",
+      "url": "https://ftp.openbsd.org/pub/OpenBSD/OpenSSH/portable/openssh-10.5p1.tar.gz",
+      "file": "openssh-10.5p1.tar.gz",
+      "sha256": "d44d28a839ea9daf969cc69150fde59910b2b39361dad81a3bd6cbd19218db11",
+      "prefix": "openssh-10.5p1"
+    },
+    {
+      "id": "libedit",
+      "version": "20240808-3.1",
+      "url": "https://www.thrysoee.dk/editline/libedit-20240808-3.1.tar.gz",
+      "file": "libedit-20240808-3.1.tar.gz",
+      "sha256": "5f0573349d77c4a48967191cdd6634dd7aa5f6398c6a57fe037cc02696d6099f",
+      "prefix": "libedit-20240808-3.1"
+    },
+    {
+      "id": "libxcrypt",
+      "version": "4.5.2",
+      "url": "https://github.com/besser82/libxcrypt/releases/download/v4.5.2/libxcrypt-4.5.2.tar.xz",
+      "file": "libxcrypt-4.5.2.tar.xz",
+      "sha256": "71513a31c01a428bccd5367a32fd95f115d6dac50fb5b60c779d5c7942aec071",
+      "prefix": "libxcrypt-4.5.2"
+    },
+    {
+      "id": "gettext-msys",
+      "version": "0.22.5",
+      "url": "https://ftp.gnu.org/pub/gnu/gettext/gettext-0.22.5.tar.gz",
+      "file": "gettext-0.22.5.tar.gz",
+      "sha256": "ec1705b1e969b83a9f073144ec806151db88127f5e40fe5a94cb6c8fa48996a0",
+      "prefix": "gettext-0.22.5"
+    }
+  ]
+}

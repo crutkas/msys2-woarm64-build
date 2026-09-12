@@ -1,0 +1,90 @@
+diff --git a/autosetup/proj.tcl b/autosetup/proj.tcl
+--- a/autosetup/proj.tcl
++++ b/autosetup/proj.tcl
+@@ -1629,7 +1629,14 @@
+   lappend shBody "exit"
+   set shBody [join $shBody "\n"]
+   #puts "shBody=$shBody\n"; exit
+-  eval [exec echo $shBody | sh]
++  set bridge [file join [pwd] "conftest__tcl-config-[pid].sh"]
++  writefile $bridge $shBody
++  set status [catch {exec sh $bridge} result options]
++  file delete $bridge
++  if {$status} {
++    return -options $options $result
++  }
++  eval $result
+ }
+ 
+ #
+diff --git a/test/testrunner_data.tcl b/test/testrunner_data.tcl
+--- a/test/testrunner_data.tcl
++++ b/test/testrunner_data.tcl
+@@ -478,8 +478,25 @@
+ proc make_sh_script {srcdir opts cflags makeOpts configOpts} {
+ 
+   set tcldir [::tcl::pkgconfig get libdir,install]
++  if {[info exists ::env(SQLITE_TEST_TCL_CONFIG)]} {
++    set cfg [file normalize $::env(SQLITE_TEST_TCL_CONFIG)]
++    if {![file isfile $cfg] || [file tail $cfg] ne "tclConfig.sh"} {
++      error "SQLITE_TEST_TCL_CONFIG must name an existing tclConfig.sh"
++    }
++    set tcldir [file dirname $cfg]
++  }
++  if {[info exists ::env(SQLITE_TEST_BUILD)]} {
++    if {![regexp {^[a-zA-Z0-9_.-]+$} $::env(SQLITE_TEST_BUILD)]} {
++      error "Invalid SQLITE_TEST_BUILD triplet"
++    }
++    lappend configOpts --build=$::env(SQLITE_TEST_BUILD)
++  }
+   set myopts ""
++  if {[info exists ::env(SQLITE_TEST_BUILD)] && [string match *-cygwin $::env(SQLITE_TEST_BUILD)]} {
++    append myopts {case "$1" in sqlite3|testfixture|fuzzcheck|fuzzcheck-asan|fuzzcheck-ubsan|sessionfuzz) set -- "$1.exe";; esac}
++    append myopts "\n"
++  }
+   if {[info exists ::env(OPTS)]} {
+     append myopts "# From environment variable:\n"
+     append myopts "OPTS=\"$::env(OPTS)\"\n\n"
+   }
+diff --git a/test/testrunner.tcl b/test/testrunner.tcl
+--- a/test/testrunner.tcl
++++ b/test/testrunner.tcl
+@@ -1213,6 +1213,18 @@
+       set displayname "[lindex $build 2] $displayname"
+     }
+ 
++    if {[info exists ::env(SQLITE_TEST_VERBOSE_DIR)]} {
++      set logs [file normalize $::env(SQLITE_TEST_VERBOSE_DIR)]
++      if {![file isdirectory $logs] || [regexp {[[:space:]"\\$`]} $logs]} {
++        error "SQLITE_TEST_VERBOSE_DIR must name an unambiguous existing directory"
++      }
++      set tag "[lindex $build 2]-$config-[expr {$ntcljob+1}]"
++      if {![regexp {^[A-Za-z0-9_.-]+$} $tag]} {
++        error "Unsupported verbose log identifier"
++      }
++      append cmd " --verbose=file --output=[file join $logs $tag.txt]"
++    }
++
+     set lProp [trd_test_script_properties $f]
+     set priority 0
+     if {[lsearch $lProp slow]>=0} { set priority 2 }
+@@ -1738,7 +1738,19 @@
+     cd $dir
+     set fd [open $TRG(run) w]
+     puts $fd $set_tmp_dir
++    if {[info exists ::env(SQLITE_TEST_SHELL_INIT)]} {
++      set init $::env(SQLITE_TEST_SHELL_INIT)
++      if {![file isfile $init] || [regexp {["\\$`\n\r]} $init]} {
++        error "SQLITE_TEST_SHELL_INIT must name an unambiguous shell file"
++      }
++      set exits $::env(SQLITE_TEST_EXIT_DIR)
++      if {![file isdirectory $exits] || [regexp {["\\$`\n\r]} $exits]} {
++        error "SQLITE_TEST_EXIT_DIR must name an unambiguous existing directory"
++      }
++      set kind [expr {$job(build) eq "" ? "test" : "build"}]
++      puts $fd ". \"$init\" $kind \"$exits\" || exit \$?"
++    }
+     puts $fd $job(cmd)
+     close $fd
+     set fd [open "|$TRG(runcmd) 2>@1" r]
+     cd $pwd
