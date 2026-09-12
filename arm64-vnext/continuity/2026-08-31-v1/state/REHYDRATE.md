@@ -104,6 +104,88 @@ parallel during shutdown. If an entry says requested/unconfirmed, inspect that
 branch's latest `arm64-vnext/evidence/` or documented alternate directory and
 record its exact commit/hash before using it. Do not invent a completed backup.
 
+### Coordinator fallback gist: duplicate custody, not owner authority
+
+The coordinator published
+[fallback gist `eb29a10918bb69ea0a0c0227b15950bb`](https://gist.github.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb)
+at observed revision `fe8f58b3b7ab763f2da4954e54e6ee4732347988`
+(`2026-09-12T05:12:35Z`). It contains **six evidence/reference artifacts plus
+a README**, not an owner publication or an integrated fix. This guide's
+publisher independently downloaded all six raw files and matched every size
+and SHA-256 below; the coordinator also reports post-upload raw-byte readback.
+
+**Why the fallback was made, and the custody correction:** the coordinator
+reported three unanswered preservation requests over five hours, then found
+their own local backup covered only one of sixty evidence roots. They report
+repairing that backup and publishing these small files directly rather than
+waiting longer. Those process/backup-coverage observations are attributed to
+the coordinator, not independently audited here.
+
+**COORDINATOR CORRECTION, CONFIRMED BY RAW-BYTE READBACK:** the statements that
+`tlsoffsets.good` had reached **"no branch"** and was **"protected by nothing"**
+were **FALSE**. The coordinator explicitly retracted them after independently
+downloading the earlier copy already published in
+[`bae18d68797a8bf129fbc5022071d8414f2779af`, this branch's `source-receipts/tlsoffsets.good`](https://github.com/crutkas/msys2-woarm64-build/blob/bae18d68797a8bf129fbc5022071d8414f2779af/arm64-vnext/evidence/programme-reconciliation/source-receipts/tlsoffsets.good).
+Fresh downloads of that exact old commit matched **1,822 bytes** and
+`49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566`.
+**PR 15 has prior, canonical custody of this artifact; the gist is a
+coordinator duplicate, not a rescue.** The coordinator reports having repeated
+the false claim to the user and in three escalating messages to the signal
+owner `5b01b4e5`, and withdraws the accusation that the owner failed to preserve
+it. The search had counted evidence-directory **names** and checked the
+coordinator's local backup, but never searched the **contents** of the remote
+tree already counted as safe. That incomplete index could not establish absence.
+
+This does not prove the producer's complete source/build environment was
+preserved; it does establish prior remote custody of these particular bytes.
+PR 17 likewise has prior owner custody of the closure report and CSVs. The
+coordinator now reports that five of the six gist files were already preserved
+by owners; that aggregate is attributed, not a fresh six-file custody census.
+The fallback's role is **redundancy**, not newly granted authority or a claim
+that an otherwise lost artifact was saved.
+
+| Fallback file (immutable raw locator) | Bytes | SHA-256 |
+|---|---:|---|
+| [`tlsoffsets.good`](https://gist.githubusercontent.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb/raw/549981d096aababc1bdaf46f8541fff357fa53f7/tlsoffsets.good) | 1,822 | `49ac682b8f5ed4295d03abc2dab5953fc472684d42eb0b87d779057942b23566` |
+| [`db-mutex-timing-handoff.json`](https://gist.githubusercontent.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb/raw/13d7f35537d2f3684dd23c82c0a8891092a82371/db-mutex-timing-handoff.json) | 8,146 | `406c1c7d6ee5242fe888140b132d452771677380d6b0b76323bc625922a1c34f` |
+| [`independent-tls-evidence-01.json`](https://gist.githubusercontent.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb/raw/3b2fe5e8918835f16dc594e7bba3621202429b5c/independent-tls-evidence-01.json) | 13,094 | `94a0f60c30d3a36fb20b17131e7915730ddb26c6ca763e7904030a406eec85dc` |
+| [`mingw-closure-report.md`](https://gist.githubusercontent.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb/raw/f7c05485fee602107cfb38d3201e3e86f719c867/mingw-closure-report.md) | 11,280 | `22b79d6d71afc5103a36efae48753debd02062de572ed9f7c97767a25bb517df` |
+| [`dll-admission-table.csv`](https://gist.githubusercontent.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb/raw/12ba00555d18a2782b74ca5617a63ae80ccab465/dll-admission-table.csv) | 12,385 | `ac964ec2e40b568128c060dc2b52c6ab8f67b5e5be5897563d7a0c5abb367644` |
+| [`remaining-59-blockers.csv`](https://gist.githubusercontent.com/crutkas/eb29a10918bb69ea0a0c0227b15950bb/raw/e8cd4dfc1882f24d970b3c639dfb3c1e72c6d1fc/remaining-59-blockers.csv) | 4,731 | `bf30c9c0de6afe5bf5a52d29b3a35acff22fe3b06b956b29eb7f08d769d3dfaa` |
+
+**Authority and access:** this is a **COORDINATOR FALLBACK**. Publication does
+not integrate, fix, qualify or CI-validate anything. Original owner branch
+evidence and its scoped receipts remain authoritative; when the owner
+publishes matching bytes, that owner copy is canonical and this gist is a
+duplicate. The gist README is coordinator navigation prose, not a successor
+verdict. Preserve the DB result's D70-only scope and the strict audit's
+81/22/conditional-59 meaning. **Unlisted/secret is not access-controlled:
+anyone holding the URL can read it.** The coordinator explicitly accepted that
+tradeoff. Do not place credentials or private keys in such a fallback.
+
+### Reported shutdown publication gap: local backup is not off-machine custody
+
+In the coordinator's update received **2026-09-12T05:13:26Z** (September 11,
+22:13 PDT), their latest sweep reported **eleven evidence trees on GitHub**
+and **eight owner evidence publications still outstanding**: **Bash
+job-control, Berkeley DB, OpenSSL/PCRE2, curl, MVP assembly, signal-generation,
+runtime-integration, and argv**. These are the coordinator's dated sweep
+categories/counts, **not a new complete remote audit by this guide's publisher**.
+They refer to full owner exports, not an assertion that no code or small
+receipt from those topics exists remotely: this branch, the fallback, and
+other owner trees already preserve some overlapping records.
+
+The coordinator reports the outstanding owners' raw data is in their local
+backup. **That local backup is NOT reformat-safe unless the user verifies an
+off-machine copy.** No independently verified off-machine destination
+or complete backup manifest was supplied with this update. The user must copy
+the required backup off the machine and verify its inventory/bytes before
+wiping, or accept loss of anything not separately published. Neither the
+eleven-tree count nor the six-file fallback establishes complete evidence,
+source, binary, toolchain or build-tree custody. After reformat, mark any
+unrecoverable record explicitly; do not reconstruct missing results from
+summaries or assume an owner's later push occurred.
+
 ### Verify before trusting a recovered copy
 
 For this branch's two evidence topics:
@@ -508,11 +590,18 @@ should register credentials/runners unilaterally.
   the actual measurements. Keep those corrections visible, re-derive counts
   from the bound record, and retain explicit scope flags rather than defending
   an authoritative-sounding headline.
+- **Absence from a coordinator's index is not evidence of absence.** The
+  coordinator identifies the false `tlsoffsets.good` custody claim above as
+  their ninth correction that day and second absence claim from an incomplete
+  search. Inspect the contents and exact hashes of published trees before
+  telling an owner they failed to preserve an artifact; counting directory
+  names is not a content search.
 
 ## 8. First actions for a fresh session
 
 1. Recover this branch and the evidence branches above; verify manifests and
-   the separate patch/gist source-recovery set, then inventory what
+   both the coordinator fallback and the separate patch/gist source-recovery
+   set, plus any verified off-machine backup, then inventory what
    binary/toolchain/source custody actually survived. Record
    missing objects explicitly. Do not fabricate a successful rebuild from a
    recipe or a SHA-256 alone.
