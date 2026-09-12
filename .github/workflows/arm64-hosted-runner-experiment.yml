@@ -1,0 +1,127 @@
+name: EXPERIMENT - GitHub-hosted ARM64 runner probe
+
+# Scoped experiment for moving aarch64 jobs off the self-hosted
+# ["Windows", "ARM64", "MSYS2"] pool onto GitHub-hosted windows-11-arm.
+#
+# This deliberately runs at most ONE real package job. It does not launch the
+# full native toolchain. It exists to answer two questions with evidence:
+#
+#   1. Does Windows-on-ARM-Experiments/setup-msys2@main run at all on
+#      windows-11-arm, or does it refuse the runner?
+#   2. Is the resulting MSYS2 environment native ARM64, or x86_64 running
+#      under Windows-on-ARM x64 emulation?
+#
+# Upstream MSYS2 publishes no native ARM64 distribution and the action
+# requests the installer from the tool cache with a hardcoded 'x64'
+# architecture, so the expected answer to (2) is "emulated". Record what is
+# actually measured, not what is hoped for.
+
+on:
+  workflow_dispatch:
+    inputs:
+      run_package_job:
+        description: "Also build one cheap native package (mingw-w64-libtre)"
+        type: boolean
+        required: false
+        default: false
+
+jobs:
+  probe:
+    name: Probe windows-11-arm + MSYS2
+    runs-on: windows-11-arm
+    timeout-minutes: 30
+
+    steps:
+      - name: Report runner identity
+        shell: powershell
+        run: |
+          "runner.arch              = $env:RUNNER_ARCH"
+          "runner.os                = $env:RUNNER_OS"
+          "PROCESSOR_ARCHITECTURE   = $env:PROCESSOR_ARCHITECTURE"
+          "PROCESSOR_ARCHITEW6432   = $env:PROCESSOR_ARCHITEW6432"
+          "os.caption               = " + (Get-CimInstance Win32_OperatingSystem).Caption
+          "os.osarchitecture        = " + (Get-CimInstance Win32_OperatingSystem).OSArchitecture
+
+      - name: Setup MSYS2 (MINGWARM64)
+        id: msys2
+        uses: Windows-on-ARM-Experiments/setup-msys2@main
+        timeout-minutes: 20
+        continue-on-error: true
+        with:
+          msystem: MINGWARM64
+          path-type: minimal
+          update: false
+          cache: false
+
+      - name: Report setup-msys2 outcome
+        shell: powershell
+        run: |
+          "setup-msys2.outcome  = ${{ steps.msys2.outcome }}"
+          "msys2-location       = ${{ steps.msys2.outputs.msys2-location }}"
+          if ('${{ steps.msys2.outcome }}' -ne 'success') {
+            "The action did not succeed on this runner. Stopping honestly here."
+            exit 1
+          }
+
+      - name: Measure PE machine types (native vs emulated)
+        shell: powershell
+        run: |
+          function Get-PEMachine([string]$Path) {
+            if (-not (Test-Path -LiteralPath $Path)) { return 'ABSENT' }
+            $fs = [System.IO.File]::OpenRead($Path)
+            try {
+              $br = New-Object System.IO.BinaryReader($fs)
+              $fs.Position = 0x3C
+              $peOffset = $br.ReadInt32()
+              $fs.Position = $peOffset
+              if ($br.ReadUInt32() -ne 0x00004550) { return 'NOT-PE' }
+              $machine = $br.ReadUInt16()
+              switch ($machine) {
+                0x8664  { "x86_64 (0x8664) EMULATED-ON-ARM64" }
+                0xAA64  { "ARM64  (0xAA64) NATIVE" }
+                0x01C4  { "ARMNT  (0x01C4)" }
+                0x014C  { "x86    (0x014C) EMULATED-ON-ARM64" }
+                default { "UNKNOWN (0x{0:X4})" -f $machine }
+              }
+            } finally { $fs.Dispose() }
+          }
+
+          $root = '${{ steps.msys2.outputs.msys2-location }}'
+          "msys2 root = $root"
+          foreach ($rel in @(
+            'usr\bin\msys-2.0.dll',
+            'usr\bin\bash.exe',
+            'usr\bin\pacman.exe',
+            'mingwarm64\bin\gcc.exe'
+          )) {
+            $full = Join-Path $root $rel
+            "{0,-34} {1}" -f $rel, (Get-PEMachine $full)
+          }
+
+      - name: Report MSYS2 environment from inside the shell
+        shell: msys2 {0}
+        run: |
+          echo "MSYSTEM   = ${MSYSTEM}"
+          echo "uname -m  = $(uname -m)"
+          echo "uname -s  = $(uname -s)"
+          echo "uname -a  = $(uname -a)"
+          echo "--- can the emulated MSYS2 shell exec a native ARM64 binary? ---"
+          if command -v gcc >/dev/null 2>&1; then
+            echo "gcc path    = $(command -v gcc)"
+            gcc -dumpmachine || echo "gcc -dumpmachine FAILED"
+          else
+            echo "gcc is not present in this MSYSTEM (expected before the toolchain is installed)"
+          fi
+
+  package:
+    name: One cheap native package on hosted ARM64
+    needs: probe
+    if: inputs.run_package_job
+    uses: ./.github/workflows/build-package.yml
+    with:
+      package_name: mingw-w64-libtre
+      packages_repository: Windows-on-ARM-Experiments/MINGW-packages
+      packages_branch: woarm64
+      runner_arch: aarch64
+      hosted_arm64: true
+      build_with_native: true
