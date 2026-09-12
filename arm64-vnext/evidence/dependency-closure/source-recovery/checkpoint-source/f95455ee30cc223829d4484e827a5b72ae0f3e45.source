@@ -1,0 +1,41 @@
+#!/bin/bash
+set -euo pipefail
+
+: "${LESS_BUILD_ROOT:?Owned output root is required}"
+root=$(/usr/bin/cygpath -u "$LESS_BUILD_ROOT")
+compiler="$root/compiler/bin"
+sdk=$(/usr/bin/cygpath -am "$root/sdk02/usr")
+export PATH="$root/runtime/usr/bin:$compiler:/usr/bin:/c/Windows/System32"
+export MSYS2_ARG_CONV_EXCL='*'
+export CC="$compiler/aarch64-pc-cygwin-gcc.exe"
+export AR="$compiler/aarch64-pc-cygwin-ar.exe"
+export RANLIB="$compiler/aarch64-pc-cygwin-ranlib.exe"
+export CFLAGS="-O2 -g -pipe -fstack-protector-strong -D_FORTIFY_SOURCE=2"
+export CPPFLAGS="-I$sdk/include -I$sdk/include/ncursesw"
+export LDFLAGS="-L$sdk/lib -Wl,--no-insert-timestamp -Wl,-t"
+export LIBS="-lncursesw -lpcre2-8"
+export MAKEFLAGS=-j1
+export LC_ALL=C.UTF-8
+export TERM=xterm-256color
+export TERMINFO="$root/sdk02/usr/share/terminfo"
+
+cd "$root/check-source/less-704"
+make LESSTEST=1
+make -C lesstest
+# Upstream execve deliberately gives lt_screen an empty environment. Supply
+# its genuine native DLLs beside the test executables instead of host PATH.
+for directory in . lesstest; do
+  for library in msys-2.0.dll msys-ncursesw6.dll msys-pcre2-8-0.dll; do
+    install -m755 "$root/runtime/usr/bin/$library" "$directory/$library"
+  done
+done
+# The bootstrap and target runtimes can use different drive mount prefixes.
+# Pass the actual fixtures through their common proc-cygdrive namespace.
+target=$(/usr/bin/cygpath -U -u "$(/usr/bin/cygpath -am "$PWD")")
+/usr/bin/perl "$PWD/lesstest/runtest" \
+  -d "$target/lesstest" \
+  -l "$target/less.exe" \
+  -t "$target/lesstest/lesstest.exe" \
+  -s "$target/lesstest/lt_screen.exe" \
+  -r "$target/lesstest/.runtest-native" \
+  "$target/lesstest/lt"

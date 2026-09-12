@@ -1,0 +1,261 @@
+#requires -Version 7.3
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)][string]$BuildDirectory,
+    [Parameter(Mandatory)][string]$OutputDirectory,
+    [Parameter(Mandatory)][string]$DependencyArchives,
+    [Parameter(Mandatory)][string]$SourceDirectory,
+    [Parameter(Mandatory)][string]$HeaderDeltaManifest
+)
+
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+. "$PSScriptRoot\cohort-inventory.ps1"
+
+$build = (Resolve-Path -LiteralPath $BuildDirectory).Path
+$output = [IO.Path]::GetFullPath($OutputDirectory)
+if (Test-Path -LiteralPath $output) { throw 'PCRE2 readback output must be new.' }
+$buildResult = Get-Content -LiteralPath "$build\result.json" -Raw | ConvertFrom-Json
+$job = Get-Content -LiteralPath "$build\native-job.json" -Raw | ConvertFrom-Json
+if ($buildResult.Status -cne 'passed' -or $job.passed -ne $true -or $buildResult.Packages.Count -ne 1) {
+    throw 'A successful full PCRE2 package build and native exit observer are required.'
+}
+$package = $buildResult.Packages[0]
+if ((Get-FileHash -LiteralPath $package.Path).Hash.ToLowerInvariant() -cne $package.SHA256) {
+    throw 'PCRE2 archive changed after the package build.'
+}
+$sourcePins = @{
+    'pcre2_jit_test.c' = '0517761272a5122c7d4bde833b16603a8b0887bfbcca1e4bcb8c4a2c666e3b95'
+    'pcre2posix_test.c' = '236a977130bfe9fa84e2221cb21c948ea062c5bee9225c9cf268c4d06276369c'
+}
+foreach ($name in $sourcePins.Keys) {
+    if ((Get-FileHash -LiteralPath "$SourceDirectory\src\$name").Hash.ToLowerInvariant() -cne $sourcePins[$name]) {
+        throw "The unchanged upstream PCRE2 10.48 test is required: $name"
+    }
+}
+
+New-Item -ItemType Directory -Path $output, "$output\package", "$output\dependencies", "$output\consumers", "$output\home" | Out-Null
+$report = [ordered]@{
+    Status = 'failed'
+    Package = $package
+    Epoch = $buildResult.After.Epoch
+    BuildReceipt = @{ Path = "$build\result.json"; SHA256 = (Get-FileHash -LiteralPath "$build\result.json").Hash.ToLowerInvariant() }
+    NativeJob = @{ Path = "$build\native-job.json"; SHA256 = (Get-FileHash -LiteralPath "$build\native-job.json").Hash.ToLowerInvariant() }
+    DependencyManifest = @{ Path = $DependencyArchives; SHA256 = (Get-FileHash -LiteralPath $DependencyArchives).Hash.ToLowerInvariant() }
+    UpstreamTestSources = $sourcePins
+    Runs = [Collections.Generic.List[object]]::new()
+    Images = [Collections.Generic.List[object]]::new()
+}
+$expectedImages = [Collections.Generic.Dictionary[string, string]]::new([StringComparer]::OrdinalIgnoreCase)
+$prefix = "$output\package\mingwarm64"
+$dependencies = "$output\dependencies"
+
+function Add-ReadbackImage([string]$Path) {
+    $image = & "$PSScriptRoot\assert-arm64-pe.ps1" -Path $Path | ConvertFrom-Json
+    $expectedImages.Add($image.path, $image.sha256)
+    $report.Images.Add($image)
+}
+
+function Invoke-Readback {
+    param(
+        [string]$Name,
+        [string]$Executable,
+        [string[]]$Arguments = @(),
+        [byte[]]$InputBytes = @(),
+        [string[]]$RequiredModules = @(),
+        [uint32]$ExpectedExit = 0,
+        [int]$TimeoutSeconds = 120
+    )
+    $record = [ordered]@{
+        Name = $Name; Executable = $Executable; Arguments = $Arguments
+        ExecutableSHA256 = (Get-FileHash -LiteralPath $Executable).Hash.ToLowerInvariant()
+        Status = 'failed'; RawExitCode = $null; ExpectedExitCode = $ExpectedExit
+        PID = $null; CreationFileTimeUtc = $null; Modules = @()
+        Stdout = "$output\$Name.stdout.log"; Stderr = "$output\$Name.stderr.log"
+    }
+    $report.Runs.Add($record)
+    $start = [Diagnostics.ProcessStartInfo]::new($Executable)
+    $start.UseShellExecute = $false
+    $start.RedirectStandardInput = $true
+    $start.RedirectStandardOutput = $true
+    $start.RedirectStandardError = $true
+    $start.WorkingDirectory = $output
+    $start.Environment.Clear()
+    foreach ($entry in @{
+        SystemRoot = $env:SystemRoot; WINDIR = $env:SystemRoot
+        PATH = "$prefix\bin;$dependencies;$env:SystemRoot\System32"
+        HOME = "$output\home"; USERPROFILE = "$output\home"; TEMP = $output; TMP = $output
+    }.GetEnumerator()) { $start.Environment[$entry.Key] = $entry.Value }
+    foreach ($argument in $Arguments) { $start.ArgumentList.Add($argument) }
+    $process = [Diagnostics.Process]::new()
+    $process.StartInfo = $start
+    $started = $false
+    try {
+        $started = $process.Start()
+        if (-not $started) { throw "Cannot start native readback: $Name" }
+        $record.PID = $process.Id
+        $record.CreationFileTimeUtc = $process.StartTime.ToFileTimeUtc()
+        $stdout = [IO.File]::Create($record.Stdout)
+        $stderr = [IO.File]::Create($record.Stderr)
+        try {
+            $copyOut = $process.StandardOutput.BaseStream.CopyToAsync($stdout)
+            $copyErr = $process.StandardError.BaseStream.CopyToAsync($stderr)
+            if ($RequiredModules.Count) {
+                # Hold stdin open while observing the actual loaded DLLs, as in the bzip2 admission path.
+                $deadline = [DateTime]::UtcNow.AddSeconds(30)
+                $modules = @()
+                $missing = $RequiredModules
+                while ($missing.Count -and -not $process.HasExited -and [DateTime]::UtcNow -lt $deadline) {
+                    $process.Refresh()
+                    $modules = @($process.Modules)
+                    $missing = @($RequiredModules | Where-Object { $_ -notin $modules.ModuleName })
+                    if ($missing.Count) { Start-Sleep -Milliseconds 50 }
+                }
+                if ($missing.Count) { throw "Required live PCRE2 modules were not observed: $($missing -join ', ')" }
+                $observed = foreach ($module in $modules) {
+                    $path = $module.FileName
+                    $hash = (Get-FileHash -LiteralPath $path).Hash.ToLowerInvariant()
+                    $system = $path.StartsWith("$env:SystemRoot\System32\", [StringComparison]::OrdinalIgnoreCase) -or
+                        $path.StartsWith("$env:SystemRoot\WinSxS\", [StringComparison]::OrdinalIgnoreCase)
+                    if (-not $system -and (-not $expectedImages.ContainsKey($path) -or $expectedImages[$path] -cne $hash)) {
+                        throw "Unexpected or changed module in native PCRE2 process: $path"
+                    }
+                    [pscustomobject]@{ Path = $path; SHA256 = $hash; WindowsSystemModule = $system }
+                }
+                $record.Modules = @($observed)
+            }
+            if ($InputBytes.Length) { $process.StandardInput.BaseStream.Write($InputBytes, 0, $InputBytes.Length) }
+            $process.StandardInput.Close()
+            if (-not $process.WaitForExit($TimeoutSeconds * 1000)) { throw "Native PCRE2 readback timed out: $Name" }
+            $record.RawExitCode = [BitConverter]::ToUInt32([BitConverter]::GetBytes([int]$process.ExitCode), 0)
+            $null = $copyOut.GetAwaiter().GetResult()
+            $null = $copyErr.GetAwaiter().GetResult()
+        } finally {
+            $stdout.Dispose()
+            $stderr.Dispose()
+        }
+        if ($record.RawExitCode -ne $ExpectedExit) { throw "Native PCRE2 $Name returned raw exit $($record.RawExitCode), expected $ExpectedExit" }
+        $record.Status = 'expected-native-exit'
+    } finally {
+        if ($started -and -not $process.HasExited) { $process.Kill($true); $process.WaitForExit() }
+        $process.Dispose()
+        $record | ConvertTo-Json -Depth 8 | Set-Content -LiteralPath "$output\$Name.json"
+    }
+    [pscustomobject]$record
+}
+
+try {
+    & "$env:SystemRoot\System32\tar.exe" -xf $package.Path -C "$output\package"
+    if ($LASTEXITCODE -ne 0) { throw 'PCRE2 package extraction failed.' }
+    $pkginfo = [IO.File]::ReadAllText("$output\package\.PKGINFO")
+    if ($pkginfo -notmatch '(?m)^pkgname = mingw-w64-aarch64-pcre2\r?$' -or
+        $pkginfo -notmatch '(?m)^pkgver = 10\.48-3\r?$') { throw 'Unexpected PCRE2 package identity.' }
+    foreach ($file in 'bin\pcre2test.exe', 'bin\pcre2grep.exe', 'include\pcre2.h', 'include\pcre2posix.h',
+        'share\licenses\pcre2\COPYING', 'share\licenses\pcre2\LICENCE.md') {
+        if (-not (Test-Path -LiteralPath "$prefix\$file" -PathType Leaf)) { throw "Required PCRE2 payload missing: $file" }
+    }
+    $pcreDlls = foreach ($library in '8', '16', '32', 'posix') {
+        foreach ($suffix in '.a', '.dll.a') {
+            if (-not (Test-Path -LiteralPath "$prefix\lib\libpcre2-$library$suffix" -PathType Leaf)) {
+                throw "Required PCRE2 static/import library missing: $library$suffix"
+            }
+        }
+        $dll = @(Get-ChildItem -LiteralPath "$prefix\bin" -Filter "libpcre2-$library-*.dll" -File)
+        if ($dll.Count -ne 1) { throw "Expected one PCRE2 $library DLL." }
+        $dll[0].Name
+    }
+    $payload = @(Get-CohortInventory $prefix)
+    $report.PayloadFiles = $payload
+    $report.PackageMetadata = @('.PKGINFO', '.BUILDINFO', '.MTREE' | ForEach-Object {
+        @{ Path = "$output\package\$_"; SHA256 = (Get-FileHash -LiteralPath "$output\package\$_").Hash.ToLowerInvariant() }
+    })
+    foreach ($image in Get-ChildItem -LiteralPath $prefix -Recurse -File | Where-Object Extension -In '.exe', '.dll') {
+        Add-ReadbackImage $image.FullName
+    }
+    $providers = @(Get-Content -LiteralPath $DependencyArchives -Raw | ConvertFrom-Json)
+    $report.DependencyArchives = $providers
+    for ($i = 0; $i -lt $providers.Count; $i++) {
+        $provider = $providers[$i]
+        if ((Get-FileHash -LiteralPath $provider.Path).Hash.ToLowerInvariant() -cne $provider.SHA256) {
+            throw 'An admitted dependency archive changed.'
+        }
+        $extract = "$output\provider-$i"
+        New-Item -ItemType Directory -Path $extract | Out-Null
+        & "$env:SystemRoot\System32\tar.exe" -xf $provider.Path -C $extract
+        if ($LASTEXITCODE -ne 0) { throw 'Dependency extraction failed.' }
+        foreach ($image in Get-ChildItem -LiteralPath "$extract\mingwarm64\bin" -File |
+            Where-Object { $_.Extension -eq '.dll' -or $_.Name -eq 'bzip2.exe' }) {
+            $destination = Join-Path $dependencies $image.Name
+            if (Test-Path -LiteralPath $destination) { throw "Duplicate dependency image: $($image.Name)" }
+            Copy-Item -LiteralPath $image.FullName -Destination $destination
+            Add-ReadbackImage $destination
+        }
+    }
+    foreach ($name in 'edit.dll', 'libbz2-1.dll', 'zlib1.dll', 'bzip2.exe') {
+        if (-not (Test-Path -LiteralPath "$dependencies\$name" -PathType Leaf)) { throw "Required admitted dependency missing: $name" }
+    }
+    $dependencyPayload = @(Get-CohortInventory $dependencies)
+    $report.DependencyImages = $dependencyPayload
+    $configuration = Invoke-Readback 'configuration' "$prefix\bin\pcre2test.exe" @('-C')
+    $configurationText = [IO.File]::ReadAllText($configuration.Stdout)
+    foreach ($feature in '8-bit support', '16-bit support', '32-bit support', 'UTF and UCP support',
+        'Just-in-time compiler support', 'Can allocate executable memory: Yes', 'pcre2test has libedit support') {
+        if (-not $configurationText.Contains($feature)) { throw "Required PCRE2 capability missing: $feature" }
+    }
+    if ($configurationText -notmatch 'Architecture:.*ARM-64') { throw 'JIT did not identify the native ARM64 backend.' }
+    $testInput = [Text.Encoding]::ASCII.GetBytes("/foo/`nfoobar`n`n")
+    foreach ($width in 8, 16, 32) {
+        $run = Invoke-Readback "live-jit-$width" "$prefix\bin\pcre2test.exe" @('-q', "-$width", '-jitfast') $testInput (@($pcreDlls) + 'edit.dll')
+        if ([IO.File]::ReadAllText($run.Stdout) -notmatch '(?m)^\s*0: foo\r?$') { throw "Extracted $width-bit direct JIT matching failed." }
+    }
+    $grepInput = [Text.Encoding]::ASCII.GetBytes("native-pcre2`nnot-a-match`n")
+    $grepDlls = @($pcreDlls | Where-Object { $_ -like 'libpcre2-8-*' }) + @('libbz2-1.dll', 'zlib1.dll')
+    $grep = Invoke-Readback 'live-grep' "$prefix\bin\pcre2grep.exe" @('-e', '^native-pcre2$') $grepInput $grepDlls
+    if ([IO.File]::ReadAllText($grep.Stdout).Trim() -cne 'native-pcre2') { throw 'Extracted pcre2grep matching failed.' }
+    $compressed = Invoke-Readback 'bzip2-fixture' "$dependencies\bzip2.exe" @('-c') $grepInput @('libbz2-1.dll')
+    Copy-Item -LiteralPath $compressed.Stdout -Destination "$output\input.bz2"
+    $file = [IO.File]::Create("$output\input.gz")
+    $gzip = [IO.Compression.GZipStream]::new($file, [IO.Compression.CompressionLevel]::Optimal)
+    try { $gzip.Write($grepInput, 0, $grepInput.Length) } finally { $gzip.Dispose(); $file.Dispose() }
+    foreach ($extension in 'gz', 'bz2') {
+        $run = Invoke-Readback "grep-$extension" "$prefix\bin\pcre2grep.exe" @('-e', '^native-pcre2$', "$output\input.$extension")
+        if ([IO.File]::ReadAllText($run.Stdout).Trim() -cne 'native-pcre2') { throw "Native pcre2grep $extension support failed." }
+    }
+    $null = Invoke-Readback 'invalid-pattern' "$prefix\bin\pcre2grep.exe" @('-e', '[') -ExpectedExit 2
+
+    $compiler = Join-Path $buildResult.After.Prefix 'bin\gcc.exe'
+    $report.ConsumerCompiler = & "$PSScriptRoot\assert-arm64-pe.ps1" -Path $compiler | ConvertFrom-Json
+    foreach ($mode in 'static', 'shared') {
+        $suffix = if ($mode -eq 'static') { '.a' } else { '.dll.a' }
+        $flags = @('-O2', "-I$prefix\include")
+        if ($mode -eq 'static') { $flags += '-DPCRE2_STATIC' }
+        $jit = "$output\consumers\jit-$mode.exe"
+        $jitLibraries = @('8', '16', '32' | ForEach-Object { "$prefix\lib\libpcre2-$_$suffix" })
+        $null = Invoke-Readback "compile-jit-$mode" $compiler ($flags + @('-DSUPPORT_PCRE2_8', '-DSUPPORT_PCRE2_16', '-DSUPPORT_PCRE2_32',
+            "$SourceDirectory\src\pcre2_jit_test.c") + $jitLibraries + @('-o', $jit)) -TimeoutSeconds 600
+        Add-ReadbackImage $jit
+        $run = Invoke-Readback "upstream-jit-$mode" $jit
+        $text = [IO.File]::ReadAllText($run.Stdout)
+        foreach ($width in 8, 16, 32) {
+            if ($text -notmatch "in\s+$width bit mode with UTF-$width\s+enabled") {
+                throw "Upstream $mode JIT tests did not exercise Unicode width $width."
+            }
+        }
+        $posix = "$output\consumers\posix-$mode.exe"
+        if ($mode -eq 'shared') { $flags += '-DPCRE2POSIX_SHARED' }
+        $null = Invoke-Readback "compile-posix-$mode" $compiler ($flags + @("$SourceDirectory\src\pcre2posix_test.c",
+            "$prefix\lib\libpcre2-posix$suffix", "$prefix\lib\libpcre2-8$suffix", '-o', $posix)) -TimeoutSeconds 600
+        Add-ReadbackImage $posix
+        $null = Invoke-Readback "upstream-posix-$mode" $posix @('-v')
+    }
+    Assert-CohortInventory $prefix $payload
+    Assert-CohortInventory $dependencies $dependencyPayload
+    $after = & "$PSScriptRoot\test-qualified-header-delta.ps1" -Prefix $buildResult.After.Prefix -Manifest $HeaderDeltaManifest
+    if ($after.Epoch -cne $buildResult.After.Epoch) { throw 'Qualified compiler inputs changed during extracted-package readback.' }
+    $report.After = $after
+    $report.Status = 'native-pcre2-full-profile-extracted-package-readback-passed'
+} finally {
+    $report.CompletedAt = [DateTime]::UtcNow.ToString('o')
+    $report | ConvertTo-Json -Depth 12 | Set-Content -LiteralPath "$output\readback.json"
+}
+$report.Status

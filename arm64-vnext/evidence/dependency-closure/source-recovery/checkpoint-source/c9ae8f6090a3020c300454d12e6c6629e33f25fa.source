@@ -1,0 +1,63 @@
+[CmdletBinding()]
+param(
+    [Parameter(Mandatory)][string]$UpstreamDirectory,
+    [Parameter(Mandatory)][string]$OutputDirectory
+)
+
+$ErrorActionPreference = 'Stop'
+Set-StrictMode -Version Latest
+. "$PSScriptRoot\cohort-inventory.ps1"
+
+$pins = [ordered]@{
+    'PKGBUILD' = '0b94fbb011bf5f78960beb73e5c8d0fd026bace4bd671ca1ee22a3e373706107'
+    '0001-pcre2test-wineditline.patch' = '73400390211bfaf1ad7e5b900335bc48b50d9bd1aa5b864fa54a3e8f666d5eb9'
+}
+$patch = Join-Path $PSScriptRoot '..\..\patches\pcre2\0001-mingwarm64-and-strict-checks.patch'
+$upstream = (Resolve-Path -LiteralPath $UpstreamDirectory).Path
+$output = [IO.Path]::GetFullPath($OutputDirectory)
+if (Test-Path -LiteralPath $output) {
+    throw "Output directory already exists; preserve it and select a new path: $output"
+}
+if ($output.StartsWith("$upstream\", [StringComparison]::OrdinalIgnoreCase)) {
+    throw 'Prepared recipe must be outside its immutable source.'
+}
+
+$members = @($pins.GetEnumerator() | ForEach-Object {
+    [pscustomobject]@{ Path = $_.Key; SHA256 = $_.Value }
+})
+Assert-CohortInventory $upstream $members
+
+New-Item -ItemType Directory -Path $output | Out-Null
+foreach ($name in $pins.Keys) {
+    $path = Join-Path $output $name
+    Copy-Item -LiteralPath (Join-Path $upstream $name) -Destination $path
+}
+Assert-CohortInventory $output $members
+
+Push-Location -LiteralPath $output
+try {
+    & git -c core.autocrlf=false -c core.eol=lf apply --check $patch
+    if ($LASTEXITCODE -ne 0) { throw 'PCRE2 recipe patch check failed' }
+    & git -c core.autocrlf=false -c core.eol=lf apply $patch
+    if ($LASTEXITCODE -ne 0) { throw 'PCRE2 recipe patch application failed' }
+} finally {
+    Pop-Location
+}
+Assert-CohortInventory $upstream $members
+if ([IO.File]::ReadAllText((Join-Path $output 'PKGBUILD')).Contains("`r")) {
+    throw 'The prepared PKGBUILD must retain LF line endings for makepkg.'
+}
+
+[pscustomobject]@{
+    UpstreamRepository = 'msys2/MINGW-packages'
+    UpstreamCommit = 'fbb9173f78adaea078046ea53e35cee47e7a5527'
+    PackageVersion = '10.48-3'
+    RecipeDirectory = $output
+    RecipeSHA256 = (Get-FileHash -LiteralPath (Join-Path $output 'PKGBUILD') -Algorithm SHA256).Hash.ToLowerInvariant()
+    RecipePatchSHA256 = (Get-FileHash -LiteralPath $patch -Algorithm SHA256).Hash.ToLowerInvariant()
+    SourceSHA256 = 'b6c68fdf6f3ac31388b50aa89ff0fc49c00c987c16e7b5146491d12003f2c8ed'
+    SourceSigner = 'A95536204A3BB489715231282A98E77EB6F24CA8'
+    BootstrapHostGenerators = @('autoconf', 'automake', 'make', 'libtool')
+    NativePkgconf = 'mingw-w64-aarch64-pkgconf'
+    Scope = 'Full-feature recipe preparation, not package or native runtime admission'
+}

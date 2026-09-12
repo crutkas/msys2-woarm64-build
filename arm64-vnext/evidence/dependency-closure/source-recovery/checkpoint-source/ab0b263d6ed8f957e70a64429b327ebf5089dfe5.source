@@ -1,0 +1,16 @@
+#define PCRE2_CODE_UNIT_WIDTH 8
+#include <pcre2.h>
+#include <ncurses.h>
+#include <stdio.h>
+#include <string.h>
+
+int main(void)
+{
+    unsigned unicode = 0;
+    const char *curses = curses_version();
+    int result = pcre2_config(PCRE2_CONFIG_UNICODE, &unicode);
+    printf("long=%zu pointer=%zu pcre2_config=%d unicode=%u ncurses=%s\n",
+           sizeof(long), sizeof(void *), result, unicode, curses);
+    return sizeof(long) == 8 && sizeof(void *) == 8 && result == 0 &&
+           unicode == 1 && strstr(curses, "ncurses") != NULL ? 0 : 1;
+}

@@ -1,0 +1,108 @@
+"""Package the original less install tree without synthesizing dependency providers."""
+import argparse
+import gzip
+import hashlib
+import io
+import json
+from pathlib import Path
+import subprocess
+import tarfile
+import time
+
+
+def digest(path):
+    return hashlib.sha256(path.read_bytes()).hexdigest()
+
+
+def main():
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--root", type=Path, required=True)
+    parser.add_argument("--zstd", type=Path, required=True)
+    parser.add_argument("--source-epoch", type=int, required=True)
+    args = parser.parse_args()
+    root = args.root.resolve()
+    stage = root / "stage"
+    output = root / "packages"
+    if output.exists():
+        raise RuntimeError("Package output must be new")
+    for required in ("usr/bin/less.exe", "usr/bin/lesskey.exe", "usr/libexec/lessecho.exe",
+                     "usr/libexec/less-osc8-open", "usr/share/man/man1/less.1",
+                     "usr/share/man/man1/lesskey.1", "usr/share/man/man1/lessecho.1",
+                     "usr/share/licenses/less/COPYING", "usr/share/licenses/less/LICENSE"):
+        if not (stage / required).is_file():
+            raise RuntimeError(f"Original installed file missing: {required}")
+    members = []
+    for path in sorted(stage.rglob("*")):
+        if path.is_symlink():
+            raise RuntimeError("Unexpected staged symlink")
+        if path.is_file():
+            relative = path.relative_to(stage).as_posix()
+            if any(token in relative for token in ("lesstest", "native-less", "controller", "test-only")):
+                raise RuntimeError("Test-only payload in the production install")
+            members.append({"path": relative, "size": path.stat().st_size, "sha256": digest(path)})
+    output.mkdir()
+    pkginfo = "\n".join([
+        "# Native less package from the pinned MSYS2 recipe install tree",
+        "pkgname = less", "pkgbase = less", "pkgver = 704-1", "xdata = pkgtype=pkg",
+        "pkgdesc = A terminal based program for viewing text files",
+        "url = http://www.greenwoodsoftware.com/less",
+        f"builddate = {args.source_epoch}", "packager = Native ARM64 less producer",
+        "size = " + str(sum(item["size"] for item in members)), "arch = aarch64",
+        "license = spdx:GPL-3.0-or-later", "depend = ncurses", "depend = libpcre2_8",
+    ]) + "\n"
+    buildinfo = "\n".join([
+        "format = 2", "pkgname = less", "pkgbase = less", "pkgver = 704-1",
+        "pkgarch = aarch64", f"builddate = {args.source_epoch}",
+        "pkgbuild_sha256sum = " + digest(root / "recipe/PKGBUILD"),
+        "buildenv = !distcc", "buildenv = !ccache", "options = strip", "options = docs",
+        "installed = ncurses-6.6-2", "installed = ncurses-devel-6.6-2",
+        "installed = libpcre2_8-10.48-1", "installed = pcre2-devel-10.48-1",
+    ]) + "\n"
+    metadata = {".PKGINFO": pkginfo.encode(), ".BUILDINFO": buildinfo.encode()}
+    mtree_lines = ["#mtree", "/set type=file uid=0 gid=0 mode=644"]
+    for name, data in metadata.items():
+        mtree_lines.append(f"./{name} time={args.source_epoch}.0 size={len(data)} sha256digest={hashlib.sha256(data).hexdigest()}")
+    for item in members:
+        mode = "755" if item["path"].endswith(".exe") or item["path"] == "usr/libexec/less-osc8-open" else "644"
+        mtree_lines.append(f"./{item['path']} mode={mode} time={args.source_epoch}.0 size={item['size']} sha256digest={item['sha256']}")
+    metadata[".MTREE"] = gzip.compress(("\n".join(mtree_lines) + "\n").encode(), mtime=0)
+    tarpath = output / "less-704-1-aarch64.pkg.tar"
+    with tarfile.open(tarpath, "w", format=tarfile.PAX_FORMAT) as archive:
+        for name, data in metadata.items():
+            item = tarfile.TarInfo(name)
+            item.size, item.mtime, item.mode = len(data), args.source_epoch, 0o644
+            archive.addfile(item, io.BytesIO(data))
+        for member in members:
+            path = stage / member["path"]
+            item = archive.gettarinfo(str(path), arcname=member["path"])
+            item.uid = item.gid = 0
+            item.uname = item.gname = "root"
+            item.mtime = args.source_epoch
+            item.mode = 0o755 if member["path"].endswith(".exe") or member["path"] == "usr/libexec/less-osc8-open" else 0o644
+            with path.open("rb") as stream:
+                archive.addfile(item, stream)
+    compressed = tarpath.with_suffix(tarpath.suffix + ".zst")
+    command = [str(args.zstd), "-T1", "-19", "-q", str(tarpath), "-o", str(compressed)]
+    process = subprocess.run(command, capture_output=True, timeout=120)
+    (output / "compression.stdout").write_bytes(process.stdout)
+    (output / "compression.stderr").write_bytes(process.stderr)
+    receipt = {
+        "status": "compressed" if process.returncode == 0 else "failed",
+        "command": command, "raw_exit": process.returncode,
+        "zstd_sha256": digest(args.zstd), "package": str(compressed),
+        "payload": members, "source_epoch": args.source_epoch,
+        "metadata_scope": "Declared recipe dependencies plus exact privately staged target SDK versions; not a fabricated native toolchain package or a package-manager transaction proof.",
+        "build_provenance": str(root / "evidence"),
+        "test_only_files_included": False, "new_provides": [],
+    }
+    if process.returncode == 0:
+        receipt["package_sha256"] = digest(compressed)
+        receipt["package_size"] = compressed.stat().st_size
+    (output / "packaging.json").write_text(json.dumps(receipt, indent=2) + "\n")
+    if process.returncode:
+        raise RuntimeError(f"Package compression failed raw {process.returncode}")
+    print(json.dumps({"package": str(compressed), "sha256": receipt["package_sha256"], "files": len(members)}))
+
+
+if __name__ == "__main__":
+    main()

@@ -1,0 +1,1730 @@
+{
+  "schema": 1,
+  "base_commit": "7368ba69e60e7092792c10ee5f1c5c8aea3923da",
+  "branch": "crutkas-arm64-pcre2-package",
+  "state": "recovery-only source snapshot; no blanket correctness or fresh build claim",
+  "patch": {
+    "path": "current-working-tree.patch",
+    "sha256": "931096cb524f6c7d53ff1ba627fc47773d9aee32021e2486627703a8688e367a",
+    "bytes": 636626
+  },
+  "patch_replay_exact_blob_verification": true,
+  "files": [
+    {
+      "path": ".gitattributes",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.gitattributes",
+      "sha256": "db799d8c8ee42b43e9cc66dc05852eb27d5648ea5ee69893cf1f3ad2a2e8ae5a",
+      "bytes": 125,
+      "mode": "100644",
+      "blob": "934db27622749817e443490f0f7e4b18fa6e05bc",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/assert-arm64-pe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\assert-arm64-pe.ps1",
+      "sha256": "439b336c54636004d9f6bb84d7775bd24cb22e99939f0b1154f0e6c51e08cf89",
+      "bytes": 1456,
+      "mode": "100644",
+      "blob": "f3eb248f372b00e329e26142212d83cc351c9924",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/assert-libtool-path-budget.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\assert-libtool-path-budget.sh",
+      "sha256": "6dd97a0840bd669bf7b94548eb058a67a9f2e5baac3629120e0ac684a3ffa494",
+      "bytes": 913,
+      "mode": "100644",
+      "blob": "7d125604f1619bbc5432e59d0823f36e86b01318",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/assert-native-toolchain.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\assert-native-toolchain.sh",
+      "sha256": "15b9b0e83e00f9d6fb11c61447ad33ded4085c08cc2fc1139487828e82e554ab",
+      "bytes": 2220,
+      "mode": "100644",
+      "blob": "36d9aef20624fa7b26931ed2d6e0948fe2c64733",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/build-hello-world.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\build-hello-world.sh",
+      "sha256": "36942d7b747b39ed102e32b5eea1628daae93644cfe29847ba3fd4b791433b6e",
+      "bytes": 737,
+      "mode": "100755",
+      "blob": "f8b79cbcb3f41f1edaf9bb5068cf3dc831fe889e",
+      "base_blob": "fc10d888bf8846591e581952fd8b1b3e86a1472a"
+    },
+    {
+      "path": ".github/scripts/build-package.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\build-package.sh",
+      "sha256": "60e31464600d486f118ee5ca860edd9bfef5aa09a5994c9a529d7207d6852423",
+      "bytes": 1432,
+      "mode": "100755",
+      "blob": "77a13ec23b155402f2e9072a9350285583737c6b",
+      "base_blob": "18d0c3a306244d6e3e60ae6c73637f007f02ec17"
+    },
+    {
+      "path": ".github/scripts/cohort-inventory.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\cohort-inventory.ps1",
+      "sha256": "46f1d76ddcd50f177a3ac2618ba143bb0dae92e54a6ebb4b7759bc2a5b58aa27",
+      "bytes": 1795,
+      "mode": "100644",
+      "blob": "24911cab863e9de11f73b6e18d47a1cb33ebac75",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/enable-ccache.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\enable-ccache.sh",
+      "sha256": "e113d6bec147d22de4a81558559a11d94d9db3437e7a3935e6043c6f50ac1139",
+      "bytes": 1411,
+      "mode": "100755",
+      "blob": "959dee21f37bfd254b72c88a90aa9aa97e6fa6fd",
+      "base_blob": "350760dbd3505a6087ddaaa7b073d91b90ce2420"
+    },
+    {
+      "path": ".github/scripts/get-native-target-driver.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\get-native-target-driver.ps1",
+      "sha256": "9440a5c362c4e5c5eabd5126eddc965111c11c9f067d0066985553edaa32d7b8",
+      "bytes": 551,
+      "mode": "100644",
+      "blob": "60317d9c969c7b9ee02951b16ceb77e928370a65",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/get-toolchain-epoch.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\get-toolchain-epoch.ps1",
+      "sha256": "c30377e46a59bcaafad4f1022eca3db878e702b6d6f38ca96c50ed841b27e91a",
+      "bytes": 849,
+      "mode": "100644",
+      "blob": "cbe569ff11e495c60f3155fab40696aa958a11cc",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/install-dependencies.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\install-dependencies.sh",
+      "sha256": "6a58f60fadba4af3391a4bea6b3caf00b9eb413b5b063d05617ada67c30de92b",
+      "bytes": 656,
+      "mode": "100755",
+      "blob": "6bf6f56d4c53400230af6467626a78ca4c253074",
+      "base_blob": "fd41bfe22ddfc7aa17fab44342ba57454f4824a9"
+    },
+    {
+      "path": ".github/scripts/invoke-native-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\invoke-native-package.ps1",
+      "sha256": "45898ecf9192cd82fffb982401e09296f8c220a177c783cdbfc3543a4d2563c2",
+      "bytes": 11100,
+      "mode": "100644",
+      "blob": "7fefd3541199db856f58dd9b3f3bd9f274b0cf43",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/audit-native-less.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\audit-native-less.py",
+      "sha256": "8eb9dd5654a1af19a456b7c44f5c02f8a8c0d323b36d265d6dc8b1b4ae05ae42",
+      "bytes": 9761,
+      "mode": "100644",
+      "blob": "2d50729e0fd55e4535a3ce30b72db171fb7b2755",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/build-native-msys-less.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\build-native-msys-less.sh",
+      "sha256": "8db85b98b3587584192ec8e720108df9a639f7540f369a26dc039aafba1b87de",
+      "bytes": 1564,
+      "mode": "100644",
+      "blob": "1c530b733fe0a2cfe1944de78bbf4bf5b31db694",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/check-native-msys-less.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\check-native-msys-less.sh",
+      "sha256": "93d5a31e339e1a3301ab3939a112b8aaf7d3f413e974d9613985e2dc3e14abb5",
+      "bytes": 1923,
+      "mode": "100644",
+      "blob": "f0a5e691f7ea8d86147a4ab63aa9206a11f3ba50",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/invoke-private-command.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\invoke-private-command.ps1",
+      "sha256": "fe925e37280882a2936bd299016105a502373f80d05bfc0ba67787edceee5cdb",
+      "bytes": 3963,
+      "mode": "100644",
+      "blob": "4b08b154826e3bea779e3cc1f8de83a992f65bde",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/package-native-less.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\package-native-less.py",
+      "sha256": "d0e130f7dfe042af383ed8f984b8d56c9040251eb0d311b3349069f6c4ab90aa",
+      "bytes": 5881,
+      "mode": "100644",
+      "blob": "b50abdfd454d6109ef6347be8213f71d5f1cdbb3",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/prepare-pager-fixtures.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\prepare-pager-fixtures.py",
+      "sha256": "90a103cee2a5747f2300d1e79e626c5f279407706a0c62b0060f7a6a2be68d81",
+      "bytes": 2448,
+      "mode": "100644",
+      "blob": "fa329b4600bb9830dc251d9821d4296eb5f185c5",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/seal-native-less.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\seal-native-less.py",
+      "sha256": "c36076ba3573efc9b52c1d06d0c5aa7db093b21420e28ff2689e9fe743c18e60",
+      "bytes": 15470,
+      "mode": "100644",
+      "blob": "bd9f81f09bc5175768f9b7320d79378bdc3b50aa",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/less/test-native-less.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\less\\test-native-less.py",
+      "sha256": "5acb51204adcf55ae895f3dd53d9a33557e2bf80da1929ead04df2ed09595b44",
+      "bytes": 8953,
+      "mode": "100644",
+      "blob": "84b5ba61d026a51661bbf3d3e128de3bd2cf2cb1",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/makepkg-buildenv.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\makepkg-buildenv.sh",
+      "sha256": "02b441a24a134e0e82d906c88623e22bd0c8fc4c7c3a77d48bffc5fb75ad2746",
+      "bytes": 2586,
+      "mode": "100644",
+      "blob": "460f2ef14c616a0c5c2b94a30924f6fcb4640ea8",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/invoke-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\invoke-package.ps1",
+      "sha256": "5884dc1ac8db3915dcb651a8b4aec89d3a5e24821a3b09f54c06c4b7de97182c",
+      "bytes": 7270,
+      "mode": "100644",
+      "blob": "c821118d5c706573aa02fa10a31edf77c1f9ae51",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/manifest-contract.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\manifest-contract.ps1",
+      "sha256": "9a14204026398a68a0435baa6e199fec32f3afe613514e31a01c13bc296c72cb",
+      "bytes": 7227,
+      "mode": "100644",
+      "blob": "b97e5a8bdac31c24837c04f48dd8d380dc5e1394",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/new-package-context.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\new-package-context.ps1",
+      "sha256": "a8423fece9ea7818df4e63c81bd4852365b26fdc07f84219da2229749c6dbf0d",
+      "bytes": 3258,
+      "mode": "100644",
+      "blob": "bd507f92f04085aa66705ec4c4cd29cd14604de4",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/package-config.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\package-config.ps1",
+      "sha256": "d402fa925ee478653e0f2171083f65edb1b36ef1dc16f877558a5e79f97dd87c",
+      "bytes": 2385,
+      "mode": "100644",
+      "blob": "496556bfba32988c9c2fc4e94307158cde6c03fb",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/prepare-cygpath-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\prepare-cygpath-package.ps1",
+      "sha256": "6fc54717e040d93f5ab7f57780f59200b99ea6b001d7d8bc8ebaebafbf7a7216",
+      "bytes": 4826,
+      "mode": "100644",
+      "blob": "24567c6c724fac0e60f4adabdf0ec970e7e67bcf",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/prepare-library-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\prepare-library-package.ps1",
+      "sha256": "ad1f148a0f8224d5d60ed6815a42b2718fc87bd250dbeb20d67c4993b2e61d9d",
+      "bytes": 7815,
+      "mode": "100644",
+      "blob": "7c2eb89f341bbd9730c071eb3f22c507d7496257",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/prepare-libxcrypt-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\prepare-libxcrypt-package.ps1",
+      "sha256": "d30832a1265d452bbe90da3c133a5b3415584dc2d645df946ea96f82dac35100",
+      "bytes": 5775,
+      "mode": "100644",
+      "blob": "e2a189d145ae8f34d270df001147bce71d29ec69",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/read-qualified-toolchain.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\read-qualified-toolchain.ps1",
+      "sha256": "c875e478ae6bd29d92942a47e4d415716a6d218647fab2316dc4daca3f57ac7f",
+      "bytes": 11089,
+      "mode": "100644",
+      "blob": "4492571d1e6b6a376907a5261d82a92f68defb80",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/run-package.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\run-package.sh",
+      "sha256": "334e5bab78e3a362ec92fdf42b2ace2c43ce5b56d58267292b9079f61d331fb4",
+      "bytes": 507,
+      "mode": "100644",
+      "blob": "e25a3448e7f8f82ac9368a6dda0a67c555fec2cd",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/msys/test-msys-profile.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\msys\\test-msys-profile.ps1",
+      "sha256": "e59264fcf2a736f54c0d3ffd191b3053420ddde16390019492f7f26a542d928f",
+      "bytes": 4140,
+      "mode": "100644",
+      "blob": "7a17744946c992b132782769df8252d3da8e835e",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-job.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-job.py",
+      "sha256": "e806e70c7aedd226f2cb1c454221e6d5738525e34a2d3266b577f486114fd89e",
+      "bytes": 15053,
+      "mode": "100644",
+      "blob": "1cf75cbe6b8c53d63b56a1ff2644eab08825d049",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-rust-environment.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-rust-environment.sh",
+      "sha256": "336237e7348341263e4965321de73b6b6256f12f9df1d3fc922b988d92609b87",
+      "bytes": 2123,
+      "mode": "100644",
+      "blob": "47efabf4612aeb9bab2b92e31fe2c6f2554d75f1",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-target-exec.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-target-exec.py",
+      "sha256": "caa2a31e13a465abb0557482c289f1228ae34a1bd020eb8bb5c3ee6d3d675818",
+      "bytes": 3985,
+      "mode": "100644",
+      "blob": "7c7210a9ad6c653e05d521d66f8a2f99bb5344fc",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-target-exec.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-target-exec.sh",
+      "sha256": "6c52480af548957dbba36c1d643ae510912f2df87232dc3291f0f2ab154b8476",
+      "bytes": 779,
+      "mode": "100644",
+      "blob": "c07fc8cb496ce1d78d776cd8be5e179553a3da7f",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/NativeUtilityTransport.pm",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\NativeUtilityTransport.pm",
+      "sha256": "e1e25392246ed7e0485fac3138351c0a46e88c1a65ac70b32ff7983a8f2b0c60",
+      "bytes": 923,
+      "mode": "100644",
+      "blob": "faf03a9396c8b6f99f632dc8e8cc5b2aff1cb9d7",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/build-native-utility.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\build-native-utility.sh",
+      "sha256": "4fbfd764f22201a996fd370f01c2626b9be7e426d171837a0a632224ad6d1774",
+      "bytes": 1839,
+      "mode": "100644",
+      "blob": "388cafd27553415a1e74fb642e149b05a8844354",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/check-native-utility.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\check-native-utility.sh",
+      "sha256": "20961a8125c115e6bba92cc345db69e5b308063a33549395ea5858a70e133bf3",
+      "bytes": 1022,
+      "mode": "100644",
+      "blob": "5d2b7376bbb65d310b04ed1b4f07a7e9985745a5",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/extract-native-utilities.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\extract-native-utilities.sh",
+      "sha256": "7b5a1f2246b4a67c0defcdff5fad712be4b952f15f3ea8788d4be3d1687c8794",
+      "bytes": 545,
+      "mode": "100644",
+      "blob": "58fd160ecc14d500da15ea2870d0ba89b8523bab",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/extract-native-utility-package.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\extract-native-utility-package.sh",
+      "sha256": "5d463841e92317327826466251ea58877f9c8bf9d2512972b4e4bc4943c5575a",
+      "bytes": 492,
+      "mode": "100644",
+      "blob": "617f9ca7ce96092fe57734a0185ec27843a47d31",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/package-native-utility.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\package-native-utility.py",
+      "sha256": "75b79197fee364cab9c0ac2237180a62a14c3faa9b05ce9f81cb3f1e77065eb8",
+      "bytes": 6665,
+      "mode": "100644",
+      "blob": "a57311a03afd075dd30a6387f4062ace714c961e",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/prepare-native-utility-check.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\prepare-native-utility-check.ps1",
+      "sha256": "ea4fe5e1a9f60f9d76b1632c8890fe6eb68bf9282ae1744a0975fb83c049ed4d",
+      "bytes": 908,
+      "mode": "100644",
+      "blob": "d27822a8621c53562af8752f152b4dcc56570bd1",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/prepare-native-utility.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\prepare-native-utility.py",
+      "sha256": "5d87317476af55641a18fbae5a88139b0cb413473ff28d2dfb2500f17ffdcce5",
+      "bytes": 2049,
+      "mode": "100644",
+      "blob": "b37343d3321bd26c7cfc2f44aaa9a390250ea846",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/readback-native-utility.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\readback-native-utility.py",
+      "sha256": "9a2c1a86bc2b8b4bf2f700eaff9daa66dc8d25edd6d95e84fb0ba0ab8e31a569",
+      "bytes": 4287,
+      "mode": "100644",
+      "blob": "5ac2cd3e0a8703537f2c06d3a0040d8108da77ab",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/seal-native-utility.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\seal-native-utility.py",
+      "sha256": "6691dd0fa9c0f0bf911e910f863b408fa8a0abf79d627391dfc0a82988367a3b",
+      "bytes": 17593,
+      "mode": "100644",
+      "blob": "6d255aec1356e9ae99af01b2f3c1cfda4f42e629",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/test-native-dos2unix.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\test-native-dos2unix.py",
+      "sha256": "515208ecd07c33a9d7f806746e9118fca2e315906f3816e76890cd2e06ed8bd2",
+      "bytes": 9454,
+      "mode": "100644",
+      "blob": "a4d985ce7bdd62372267f83444b4c311340389e8",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/native-utilities/test-native-which.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\native-utilities\\test-native-which.py",
+      "sha256": "16f2129c80153f91a07beba1a87220328d026486104006abaa5d99fe43623bb5",
+      "bytes": 6686,
+      "mode": "100644",
+      "blob": "ec97e0433ce02d50dd2e74eb4a2a43bcb5f7d498",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/package-runtime.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\package-runtime.ps1",
+      "sha256": "950846e2e8d3be22d8c56b90ca44ed1eb32b10c8d24771b83ca0237bc0194730",
+      "bytes": 3570,
+      "mode": "100644",
+      "blob": "4cfa47e30ed90829c6fd7dccde9300541f871bd9",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/patch-libtool-native-tests.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\patch-libtool-native-tests.py",
+      "sha256": "6e8afe5bf79ba92fe7b34da087193f77bd54c5a5a1296590fe10c6586e8cd840",
+      "bytes": 2623,
+      "mode": "100644",
+      "blob": "9337ecf52f35da698f5fc54a9a5f7567f8182a48",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-expat-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-expat-mingwarm64-recipe.ps1",
+      "sha256": "a991e221a2ae9879c1dc7250fc7b220a8900568d384ff388a407b99794eaec72",
+      "bytes": 2521,
+      "mode": "100644",
+      "blob": "551a236abfc589d8d063ffa40e593ef481050866",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-git-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-git-mingwarm64-recipe.ps1",
+      "sha256": "47c8e891f927e0e43a94bb323588c26121ce333746ae8b40bd47caf791193aca",
+      "bytes": 2865,
+      "mode": "100644",
+      "blob": "555ae86df3315add9a7a303bd4c8f23330f1669a",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-git-rust-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-git-rust-recipe.ps1",
+      "sha256": "eaaf174b1289dff1a3d90741c9443f47ca5a7b41d809a796f275645261b2f328",
+      "bytes": 1727,
+      "mode": "100644",
+      "blob": "2b57708ce91e0dfd40f1941efa2c9d1fe5b9c795",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-libtool-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-libtool-mingwarm64-recipe.ps1",
+      "sha256": "b58d4986c747593288eb9abf5821451ac291c636614e7f7906755eee8898e27a",
+      "bytes": 2988,
+      "mode": "100644",
+      "blob": "138540c307473bdcc69bcd9bd79c09bec0b607ce",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-native-tool-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-native-tool-package.ps1",
+      "sha256": "d3a30cc69ff0b0621db7053dfd2c68a44107fa5868733d614763cfcb1a35de2a",
+      "bytes": 9897,
+      "mode": "100644",
+      "blob": "bcd4ca5a890476a0839f8e20ed081f1ed2a62764",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-openssl-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-openssl-mingwarm64-recipe.ps1",
+      "sha256": "854ff3a3ad47905cc7c275e2d426a89b8b23d2b1e44b762e76597a3a0b8f2a20",
+      "bytes": 2582,
+      "mode": "100644",
+      "blob": "bf4372b0f52b81f037530b16853872653a24e264",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-pcre2-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-pcre2-recipe.ps1",
+      "sha256": "e14901ec552870804d1bd9d7a187fbcfb17b1e56342b3f96ab8a38051f505e92",
+      "bytes": 4268,
+      "mode": "100644",
+      "blob": "808ce907003077706473daf38a105480a884c921",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-pinned-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-pinned-mingwarm64-recipe.ps1",
+      "sha256": "f63dcaba812dfc1bd8263623356267a8d3f179962b341ac920073a23b34d9d7c",
+      "bytes": 3718,
+      "mode": "100644",
+      "blob": "b5b93a4e43756bb170e3b99daaabbaeb8b7bd1f0",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-wineditline-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-wineditline-mingwarm64-recipe.ps1",
+      "sha256": "493fc911c59f1b8c5975241a5ddf6de58cf8b0db897cd1658186bbe49a8fc86f",
+      "bytes": 1474,
+      "mode": "100644",
+      "blob": "a5c049f19b8d4a36b9f98830451e1a8fe6cd8c91",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/prepare-xmlto-msys-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\prepare-xmlto-msys-recipe.ps1",
+      "sha256": "b30bf04e407a03010737e8fb6a04bc7698f7712a8e3b7139105167aed252248a",
+      "bytes": 2398,
+      "mode": "100644",
+      "blob": "a484509712a6b368c78cd1784957d1dd6dd9a7bf",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/probe-ccache.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\probe-ccache.sh",
+      "sha256": "5158f858ce30f881cb1ebb10c2045bba8d71d5c42d420f3e99633c70ce598aaf",
+      "bytes": 1743,
+      "mode": "100644",
+      "blob": "1039936dd7e3a121725ec844ca2f784c689593cf",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/record-build-provenance.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\record-build-provenance.sh",
+      "sha256": "cc2d7a6a0181cfdf83bae0db295d1c7068b258452352c2659538a9e1631e6ef0",
+      "bytes": 1600,
+      "mode": "100644",
+      "blob": "d5e46b12bc57de07eb37c9c3eb07e37ae56f7aa8",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/run-native-package.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\run-native-package.sh",
+      "sha256": "a90feee801172da9a12ff16b43d7259771775a88ed4663d532670e60b11b6b04",
+      "bytes": 418,
+      "mode": "100644",
+      "blob": "da91b71aa8462470a1d8b553ee8b424796fd44ad",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/set-package-directories.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\set-package-directories.sh",
+      "sha256": "602b13b50ce7aef913cea5cee943ba9e07b0db6ec62e303bd61b9ac433b02598",
+      "bytes": 660,
+      "mode": "100644",
+      "blob": "5612d29b9c1b102fd64954a0278e9f6c401ae055",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/setup-mingwarm64.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\setup-mingwarm64.sh",
+      "sha256": "4cdac7c3ca49f7491e1512847a72e54d2fb0707593e2ee64376e47bacd21b7f4",
+      "bytes": 1320,
+      "mode": "100644",
+      "blob": "911aff60ab842ae7fd4934a12ed7185a202002e9",
+      "base_blob": "0516470c0342d300defb14fc1e08d0cbf4b82f12"
+    },
+    {
+      "path": ".github/scripts/test-pcre2-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\test-pcre2-package.ps1",
+      "sha256": "47b77d73b7c5d5fd5fd3d04524a4f06141613477592d0446c45785c896d112ce",
+      "bytes": 17395,
+      "mode": "100644",
+      "blob": "ef2eb79a7622f23513d9faf4a723f124699da37a",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/test-qualified-header-delta.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\test-qualified-header-delta.ps1",
+      "sha256": "13af1264f00478d0011d9669742658fba31763c8f6b4f0eea1a4ffedb6c155e3",
+      "bytes": 4416,
+      "mode": "100644",
+      "blob": "edaf4b266251dfc27ad38e3f18957b29a3235f87",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/test-qualified-native-cohort.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\test-qualified-native-cohort.ps1",
+      "sha256": "93cc5e78c9a8042d4a364859f9795d58f5316bf4f9f6ea01c3bd420200d8f6f4",
+      "bytes": 8162,
+      "mode": "100644",
+      "blob": "f751da5e79c6ac15b5babf3e768c323d466fc06c",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/test-qualified-rust-bootstrap.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\test-qualified-rust-bootstrap.ps1",
+      "sha256": "a85cb211cbb1fae7791e70f1a2733278ce2208c3367979679f159a3bcfcc15bd",
+      "bytes": 3338,
+      "mode": "100644",
+      "blob": "cb320fd3b75a94a200600abff31bf4f6bb929a47",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/test-qualified-toolchain.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\test-qualified-toolchain.ps1",
+      "sha256": "27fcd2d1f03790d7a9ece95755b4c51a2790942285abea649a0c6670ed67cf66",
+      "bytes": 5681,
+      "mode": "100644",
+      "blob": "26f5cbbda63b8448e49c560111b529dcd9967498",
+      "base_blob": null
+    },
+    {
+      "path": ".github/scripts/with-makepkg-evidence.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\scripts\\with-makepkg-evidence.sh",
+      "sha256": "d5b40c450c550c7009950f37d5e7130d3f8b6d5f1e5702933d74e1871c57bd03",
+      "bytes": 803,
+      "mode": "100644",
+      "blob": "40fdef2c2f87c1e868bc0ef3f4f0a333be1626ef",
+      "base_blob": null
+    },
+    {
+      "path": ".github/workflows/build-package.yml",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\workflows\\build-package.yml",
+      "sha256": "235aafc1828530a3c4efd27a42f1341939defb801e6b43e7446e6a45e0ec7b87",
+      "bytes": 5464,
+      "mode": "100644",
+      "blob": "58da65f6e05ad687e0bb60f3581f45745ec01638",
+      "base_blob": "afd8bb23866e7de721a3929c226338246a1b7a98"
+    },
+    {
+      "path": ".github/workflows/check-repository.yml",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\workflows\\check-repository.yml",
+      "sha256": "46ea5fbafe8c4aedc67695de212dd595753d03286135832efe2cc4a67199267a",
+      "bytes": 3408,
+      "mode": "100644",
+      "blob": "46c82b1057b1b39fc2165e4d2f8aec339a6ab794",
+      "base_blob": "8e6ff2a50c968bcb5e8d7b01c8ec7bc644966fc2"
+    },
+    {
+      "path": ".github/workflows/main.yml",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\workflows\\main.yml",
+      "sha256": "fdce712fd5a4be71cfd31784126288525c2cea2a7f3314e9a1f30ee57c770ce9",
+      "bytes": 3992,
+      "mode": "100644",
+      "blob": "81892d8f0f2fadf0062f991dbef2bc14ae6b8aff",
+      "base_blob": "e60c93b96856f5bc08cf3d45dc68ef83ec69365d"
+    },
+    {
+      "path": ".github/workflows/mingw-cross-toolchain.yml",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\workflows\\mingw-cross-toolchain.yml",
+      "sha256": "5fa576adad8909f24f1bf10b13eeffc46d044abb0c88137d70c3f0d9c10f4db1",
+      "bytes": 4422,
+      "mode": "100644",
+      "blob": "ebd44cd5abc0fceb61154d0a8e9827c2225cc26b",
+      "base_blob": "0767147b2455817f1be1a562ba2f5b50e10833c1"
+    },
+    {
+      "path": ".github/workflows/mingw-native-toolchain.yml",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.github\\workflows\\mingw-native-toolchain.yml",
+      "sha256": "2f79014b170f62b1ef44e5cc44688b698aec27e964819fa30a8e91d82ba49708",
+      "bytes": 9189,
+      "mode": "100644",
+      "blob": "1cbcd851c6fdd8828d97d6dea66e483884ad09b0",
+      "base_blob": "7db65329cf8e2217a62afdc7e4602d91bccb375a"
+    },
+    {
+      "path": ".gitignore",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\.gitignore",
+      "sha256": "6ef3d969d084fedddd66eb3e9abf8e4f9b56d2930fc7dcfc755ee76eb7dd17ff",
+      "bytes": 18,
+      "mode": "100644",
+      "blob": "7252733c97e495b1ff73c10f50358cc7e4c7c68d",
+      "base_blob": "4d67604d74cd49cca0bf71e5ba3d93379a43e77c"
+    },
+    {
+      "path": "README.md",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\README.md",
+      "sha256": "3781380362b5d48e55d4c270afa6c820a4fba9c577e0537c100fc38e32bc1e43",
+      "bytes": 49412,
+      "mode": "100644",
+      "blob": "fbad97848288efccf048a917f934bb32e9b2fbaa",
+      "base_blob": "85aa6724fa2193d1885c1d142c0eb21bdc71be41"
+    },
+    {
+      "path": "build-cross.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\build-cross.sh",
+      "sha256": "7025bee7dfc36c002b779d4e5c9d5d2e7657c210533cdd6d605cb2a45065175d",
+      "bytes": 1653,
+      "mode": "100644",
+      "blob": "e823d3ef711c6ff2ea5d933860984d0c1252b3f0",
+      "base_blob": "5f7d3109fc019cc37e329d707077e6bb7aefa505"
+    },
+    {
+      "path": "build-native-with-cross.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\build-native-with-cross.sh",
+      "sha256": "e694157ae296d4f7a63f3eae7ec387c1baf9787b016da37fbf571bf5b67a8fbc",
+      "bytes": 1377,
+      "mode": "100644",
+      "blob": "7e97f2d3db33887e462426ff57f3dd64116bcd03",
+      "base_blob": "00da334b769da10a79455b9f2af037e3138302ab"
+    },
+    {
+      "path": "build-native-with-native.sh",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\build-native-with-native.sh",
+      "sha256": "b6dbc2177b10b35c39fb4b50cb3056749bd0dbd0669bf7591888963600343707",
+      "bytes": 1378,
+      "mode": "100644",
+      "blob": "de9125ea74c95f1e654fc97512f7400cc568f938",
+      "base_blob": "2424ce85e7c4a96b9ef091896429c4e006fa9470"
+    },
+    {
+      "path": "packages/native-cmake/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-cmake\\PKGBUILD.in",
+      "sha256": "af1dc3859cd56692215791894bc34ba11a1cb14cfb28af0460ad6f9c5594ef79",
+      "bytes": 1219,
+      "mode": "100644",
+      "blob": "005fba0eb49d370621a9e682bd5882e3e2420873",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-gcc/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-gcc\\PKGBUILD.in",
+      "sha256": "04f3fe6257f9146f96ddc73513ee89bd9a9cde74bc963d9ef522b351a3832f5d",
+      "bytes": 1710,
+      "mode": "100644",
+      "blob": "051321fda110889db87ef6bf258e4334048dd07b",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-msys-cygpath/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-msys-cygpath\\PKGBUILD.in",
+      "sha256": "98cb6d18382e562bf5aebf3d6837b71677286286c67b91da563b4cb979d36b07",
+      "bytes": 1383,
+      "mode": "100644",
+      "blob": "fa8a8a9d21abd5fe119a6bcadad3f57796f03149",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-msys-libiconv-bootstrap/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-msys-libiconv-bootstrap\\PKGBUILD.in",
+      "sha256": "23d7316ea66660542b09aabefe587e7d07e5e8e96e9540e62305df742516bd04",
+      "bytes": 2198,
+      "mode": "100644",
+      "blob": "5c3389cdd425d0f8a34b7e82d5e4403fd8b4cfaa",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-msys-libxcrypt/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-msys-libxcrypt\\PKGBUILD.in",
+      "sha256": "a6d61979da6283445a253360d2e6cb6db3bd94700d526de01a8f89f6fa4fcee6",
+      "bytes": 1724,
+      "mode": "100644",
+      "blob": "ab5cd0ca87b714ebea89da96d8c9bd11d2b241a2",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-msys-zlib/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-msys-zlib\\PKGBUILD.in",
+      "sha256": "8496b22913628c35439549fd5f265ed05a7e90c5e717efc04e7e61cf07e94a5d",
+      "bytes": 1563,
+      "mode": "100644",
+      "blob": "31ab68142890d56e74f1c2a1d9477ab938dd13a0",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-ninja/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-ninja\\PKGBUILD.in",
+      "sha256": "9d011b19fe273e9e9b7a8ccd329bbbf3c5501c7ba267aca8f2896d0e130a3129",
+      "bytes": 1046,
+      "mode": "100644",
+      "blob": "ddf3502d36692a7f4307ab11ec81bba92eb70db2",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-pkgconf/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-pkgconf\\PKGBUILD.in",
+      "sha256": "82b23c9e20d35440205c06e2c103535f94a06685e2f960bb2979de5a66a3644f",
+      "bytes": 1283,
+      "mode": "100644",
+      "blob": "27b37257a76e39ebb9193c9f8c755d1863216b10",
+      "base_blob": null
+    },
+    {
+      "path": "packages/native-rust/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\packages\\native-rust\\PKGBUILD.in",
+      "sha256": "dc83444827191f071542ebcc2698193a686b358ecb8ef1e130e672bf6822aced",
+      "bytes": 2249,
+      "mode": "100644",
+      "blob": "de38e7ceeec73ea83853b46357d0303ce825eb91",
+      "base_blob": null
+    },
+    {
+      "path": "patches/ccache/0001-makepkg.patch",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\ccache\\0001-makepkg.patch",
+      "sha256": "3d02f599c1e8f932c8f63642b7b18163757a7f879037666e5e99357e45f3206d",
+      "bytes": 437,
+      "mode": "100644",
+      "blob": "951a993f755223b1c5b697c1af72e94930d7a9e5",
+      "base_blob": "8c573bb582b299fe0ba5d0f2a43481200c126ca9"
+    },
+    {
+      "path": "patches/ccache/0002-makepkg-mingw.patch",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\ccache\\0002-makepkg-mingw.patch",
+      "sha256": "8fa23b95e20b05b766dbedd0358420d12afc6e40bcd84db89e4475ad3f67b647",
+      "bytes": 451,
+      "mode": "100644",
+      "blob": "33dee25607ffdb754633bd249848e51aed7d34d0",
+      "base_blob": "406cbab37d85c426ef2f4623ae0220fabb8095b9"
+    },
+    {
+      "path": "patches/makepkg/0002-mingwarm64-cross-build.patch",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\makepkg\\0002-mingwarm64-cross-build.patch",
+      "sha256": "2b6e205f0d4ac5590d3130b395974836108e7d6ba2d1996888fb0d7dc7cec983",
+      "bytes": 3170,
+      "mode": "100644",
+      "blob": "03e87d30c293adc6630aff388d60164e490b5560",
+      "base_blob": "87561f4b8fe1039abfe72818aaa7db6548b82e56"
+    },
+    {
+      "path": "patches/makepkg/MINGWARM64",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\makepkg\\MINGWARM64",
+      "sha256": "ff38a44f7dc78e293511f0ae24d10bbbd73efa6fd51be2a320266f930555cbad",
+      "bytes": 299,
+      "mode": "100644",
+      "blob": "80d733e21688425ff6a2829827c44118b29d5ca4",
+      "base_blob": null
+    },
+    {
+      "path": "patches/makepkg/mingwarm64.conf",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\makepkg\\mingwarm64.conf",
+      "sha256": "527d968aa0e9c98ba84719d3e7f36a848fcd7ef426c22e4f394439e1834a4283",
+      "bytes": 1005,
+      "mode": "100644",
+      "blob": "34324598af5aa99a8f311c6a50c0618aedb7aa77",
+      "base_blob": null
+    },
+    {
+      "path": "patches/pacman/0001-add-woarm64-cross-repository.patch",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pacman\\0001-add-woarm64-cross-repository.patch",
+      "sha256": "46264d6df250186809271c0c61749553db97f7e8bbfb46aebcd40836bd9b3af8",
+      "bytes": 314,
+      "mode": "100644",
+      "blob": "dc3a44fc3c68d7d4ff5d9da674690454124d31d1",
+      "base_blob": "55fc7dc773fc8234a0057ccfab7fcd07b0aab31f"
+    },
+    {
+      "path": "patches/pacman/0002-add-woarm64-native-repository.patch",
+      "state": "modified",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pacman\\0002-add-woarm64-native-repository.patch",
+      "sha256": "3a3f2deb97f02c5840d0376937c7b4ba32bd937605a8873504f5b518a8de1f86",
+      "bytes": 324,
+      "mode": "100644",
+      "blob": "98a52b6027f3e369aa2e63cb1000945f00515756",
+      "base_blob": "807b2b1f37227c50822eae7856b7feeeb8df6189"
+    },
+    {
+      "path": "patches/pcre2/0001-mingwarm64-and-strict-checks.patch",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pcre2\\0001-mingwarm64-and-strict-checks.patch",
+      "sha256": "11facbf0f6c8d7594c616ccdf9b588245accd30d1e671f3dc81b51e771653ac4",
+      "bytes": 1801,
+      "mode": "100644",
+      "blob": "0a9f360bb09dc11256c0d0e8c97ffad8afe044a8",
+      "base_blob": null
+    },
+    {
+      "path": "patches/pcre2/0002-posix-alpha-use-letter-table.patch",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pcre2\\0002-posix-alpha-use-letter-table.patch",
+      "sha256": "2ec77e31f2b0ae87269ff59a3810cd5ae50cefa7f3ca0c69b118ff728805b105",
+      "bytes": 1452,
+      "mode": "100644",
+      "blob": "c11f6cfb7a4505533a055a0fad21377d27e28493",
+      "base_blob": null
+    },
+    {
+      "path": "patches/pcre2/0003-native-windows-test-drivers.patch",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pcre2\\0003-native-windows-test-drivers.patch",
+      "sha256": "2758ced780aefc5a7ebb70aafbab3d641def7e8c2695863f4073fc8fafbe7456",
+      "bytes": 9574,
+      "mode": "100644",
+      "blob": "6d5fd36af0215372e7dea6b762285318baaa5df0",
+      "base_blob": null
+    },
+    {
+      "path": "patches/pcre2/0004-windows-utf8-callouts.patch",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pcre2\\0004-windows-utf8-callouts.patch",
+      "sha256": "09961e6b084fb7f14d8632bdae329420c5b9f844b03d9a32e713f7d8f01baae7",
+      "bytes": 2021,
+      "mode": "100644",
+      "blob": "60ff31505809dd61ed5ccff0305a2120683b375a",
+      "base_blob": null
+    },
+    {
+      "path": "patches/pcre2/README.md",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\patches\\pcre2\\README.md",
+      "sha256": "f4b6062e7962695fc8784ed5e73e71a4fce9b3d3d90743c82751bb71dcf5ebe3",
+      "bytes": 3575,
+      "mode": "100644",
+      "blob": "1679359b3873d4f911e5311afc44e5aa47340fa9",
+      "base_blob": null
+    },
+    {
+      "path": "tests/ccache/PKGBUILD",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\ccache\\PKGBUILD",
+      "sha256": "8ff22ce570af18f53ea6f3a7417bf9718c4b438488be8a096e71238dcb3c6542",
+      "bytes": 737,
+      "mode": "100644",
+      "blob": "0900b30707d5830dd2723b12140bc06029eb6873",
+      "base_blob": null
+    },
+    {
+      "path": "tests/mingwarm64/PKGBUILD",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\mingwarm64\\PKGBUILD",
+      "sha256": "83e616f8726f87b85772038f0172d1a528501f6802fedc4f50211f91750f2ce4",
+      "bytes": 994,
+      "mode": "100644",
+      "blob": "1f2222b7f9b52e530cf7023d492267ce92abc35f",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/native-package/PKGBUILD",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\native-package\\PKGBUILD",
+      "sha256": "f4e1b5e33727c74cbe15d57acec9d8075a70c42f5e7bf18daabafc91e88f1970",
+      "bytes": 1934,
+      "mode": "100644",
+      "blob": "859974ea8dbd5bd64f980dc07389112852a21c31",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/native-package/probe.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\native-package\\probe.c",
+      "sha256": "eef783e04cc8a8320e5bb857d247d0eb0f419bdc9210846ec8defb3d1c04799a",
+      "bytes": 263,
+      "mode": "100644",
+      "blob": "42a68642ec8e4c8855b34a26380767847cbfb0b0",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/native-package/probe.cpp",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\native-package\\probe.cpp",
+      "sha256": "62da4fc1da822d2ea9209c628cf057b95ff647194e2c7111662ebb95be765c2c",
+      "bytes": 951,
+      "mode": "100644",
+      "blob": "2fceda2f14222ef980bc4d88e0aefa3c16fefb56",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/reader-fixture.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\reader-fixture.ps1",
+      "sha256": "3e931f49fb33bd6431a4459d58d6d4ed818084afb30c72e480560fb2b682b766",
+      "bytes": 5122,
+      "mode": "100644",
+      "blob": "1868f427eefcf156f89bffff56f4ceab0d5add44",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-cygpath-package-inputs.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-cygpath-package-inputs.ps1",
+      "sha256": "c8c7879f488d02be19d4a65e9d19ba6641c5713649b4e9a3cf29b4e888cb9b21",
+      "bytes": 1587,
+      "mode": "100644",
+      "blob": "12cfe78ccc2ea850e1aff241baf5dee92a6444d3",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-library-package-inputs.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-library-package-inputs.ps1",
+      "sha256": "ae1987be51dc49cb55d5c391ab04fdf72200c4f2617c1bcc82f9440e73de1bcf",
+      "bytes": 1800,
+      "mode": "100644",
+      "blob": "cb9558ae24be9ea1f988ed49f238aab5bbab9bcb",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-libxcrypt-package-inputs.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-libxcrypt-package-inputs.ps1",
+      "sha256": "05990c8ea3a8431e3847ac0a3cfc93a496cb30cf147133350af16ca8f261c579",
+      "bytes": 1921,
+      "mode": "100644",
+      "blob": "d7cd09b1fd2e9f5b7ad7cc2663468607a4791760",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-manifest-contract.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-manifest-contract.ps1",
+      "sha256": "2b21e83fb190dc70a49846907e189b3db790e04fc4a79026ca05d2172dae7c5b",
+      "bytes": 5728,
+      "mode": "100644",
+      "blob": "d2c6b1a350d7e51146abce621fc34929019bd976",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-msys-profile.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-msys-profile.ps1",
+      "sha256": "5b3e61ae3d6f5acb8cdeac7d47aa384468227c91d0d4cb31bee3124a653b5f5b",
+      "bytes": 4926,
+      "mode": "100644",
+      "blob": "6a3a347000c201820dec006f1358e0dc40ad863b",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-package-config.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-package-config.ps1",
+      "sha256": "3d4daf42d85f2e7835bee4115959d80581d4c05fa2ae7245bd6eb82df8b06086",
+      "bytes": 3236,
+      "mode": "100644",
+      "blob": "85728b5fd0955ce77d87810e7aed8dfd31d2440e",
+      "base_blob": null
+    },
+    {
+      "path": "tests/msys/test-reader-rejection.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\msys\\test-reader-rejection.ps1",
+      "sha256": "f821d921d6bbba0496c438bb95b87400c60a0a9e9b122f2c538c13dbdf3c21d8",
+      "bytes": 3962,
+      "mode": "100644",
+      "blob": "019b4395c0302683c3ee94e7682e3a5a947645e0",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-dependency-root.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-dependency-root.c",
+      "sha256": "e718acb516f08769562f99132ef0050da53b67365b3627cf85614912a61ae9ed",
+      "bytes": 181,
+      "mode": "100644",
+      "blob": "4198a02b0841e60267166a4008dd1d716a422b9f",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-exit-package/PKGBUILD.in",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-exit-package\\PKGBUILD.in",
+      "sha256": "4151221bac82f2e534c2e9bfe22e6cbb80fb768a251973d70a51636cbb17af18",
+      "bytes": 626,
+      "mode": "100644",
+      "blob": "1556b7ef7ac5ebad8e40c75960603db69d6f6b0f",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-exit-status.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-exit-status.c",
+      "sha256": "eb9dc80aa535beb0a91de71ff136b2afa362acd9e866a1ddf493c13d8a285bb1",
+      "bytes": 144,
+      "mode": "100644",
+      "blob": "09d26fbf6fd7b9117f54ca88e9ad43c1a66f7302",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-exit-wrapper.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-exit-wrapper.c",
+      "sha256": "983c8f32c6c749e55e7c2a108991e5c5006410721eff7b626162fa59f635bfd4",
+      "bytes": 176,
+      "mode": "100644",
+      "blob": "b58e16b43d0aa45a8b77b9afae569924a1bd50d0",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-less-dependencies.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-less-dependencies.c",
+      "sha256": "f5ae5a0a8d29b4edda54bc3ab5d5e53f46b4b1408dad81c8e37c556fde235e6f",
+      "bytes": 561,
+      "mode": "100644",
+      "blob": "40b6c731113858f97223012fb5701e35972ca073",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-less-pty.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-less-pty.c",
+      "sha256": "f1e924a13e786ea7871fc19c60b2f115756e45df5fea85e32714038f039b2815",
+      "bytes": 6399,
+      "mode": "100644",
+      "blob": "39f8062ae916ca7fd79a5c08dfd6486a00e1f72a",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-package/PKGBUILD",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-package\\PKGBUILD",
+      "sha256": "fa45a41b4070ba77f6f9f6d0d8d578ffaea7642fc0ba7d5021f15f5105391195",
+      "bytes": 1803,
+      "mode": "100644",
+      "blob": "c7d1b0ed1278dda01763bbc667eb153894d56c97",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-package/probe.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-package\\probe.c",
+      "sha256": "39d141f1177a8ac4980a71dc53eb59cb0f33756a09e6596b26103e14a58c4cb3",
+      "bytes": 44,
+      "mode": "100644",
+      "blob": "8eadd7c3d6242c4f0b5168171704f9badeb1cdc4",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-package/probe.cpp",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-package\\probe.cpp",
+      "sha256": "e673bb412bab280f5b47b21d7a93316f1870963b2bcfffe450a6f8bcc5dc2e2b",
+      "bytes": 284,
+      "mode": "100644",
+      "blob": "deddce65fc8805fb7fd1273c7b98fc6f01f8c2d0",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-pcre2-locale.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-pcre2-locale.c",
+      "sha256": "bd90a15a5d7fa42b99182c2e9b0090702f9c6ed297e1bfe2a0c047552ea2b8b3",
+      "bytes": 2621,
+      "mode": "100644",
+      "blob": "99e4f6b8d16e5df36215176031c739166721127d",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-rust-package/PKGBUILD",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-rust-package\\PKGBUILD",
+      "sha256": "6daf9c9157322e62a21828902cba7945653093c8e5964a04be26c2b9ad63c338",
+      "bytes": 1697,
+      "mode": "100644",
+      "blob": "75ccef921c45145d95f512b34eab131dc12ac350",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-target-arguments.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-target-arguments.c",
+      "sha256": "8596a59d7be6424a425a1974d7e050aeb4c2b536086bfef1fc903f49f0e5ea0c",
+      "bytes": 349,
+      "mode": "100644",
+      "blob": "0cc5ad54dff02cf79873354959af110642dd2e33",
+      "base_blob": null
+    },
+    {
+      "path": "tests/native-utilities/native-utility-exec.c",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\native-utilities\\native-utility-exec.c",
+      "sha256": "cad73762b8ba196cacfdfdcfdbc7ab6263d37beb01a13bd0066913c2b6e447a6",
+      "bytes": 289,
+      "mode": "100644",
+      "blob": "917b852ec1a6b76d267a654189e3d8b3258f0a15",
+      "base_blob": null
+    },
+    {
+      "path": "tests/package-controls/PKGBUILD",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\package-controls\\PKGBUILD",
+      "sha256": "8d813e94636c8f3951ed8e345b4347832b84ea222af053077ee26e7d8d7a3644",
+      "bytes": 979,
+      "mode": "100644",
+      "blob": "29a3cdc82ea53d92703e01d6e736e2a4b03d8762",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-arm64-pe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-arm64-pe.ps1",
+      "sha256": "6bc275ccd1c203f60d0c8685493c0b4734b04cd2e909c9e0fd835110c753921b",
+      "bytes": 1825,
+      "mode": "100644",
+      "blob": "adab6c9cefca112631ab2664a599a2fe02bbffe7",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-ccache.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-ccache.sh",
+      "sha256": "50aa0e84343da54c63980d00ebc3231bd6b52ece4b51974bc1640950b5414574",
+      "bytes": 1436,
+      "mode": "100644",
+      "blob": "ac6c9ba5803e03ec93665ee8ccd4a95910d16e2d",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-check-baseline.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-check-baseline.sh",
+      "sha256": "7f4243d367efd48736205fbb413c9a63584be55902367c4d5b09763b774933f1",
+      "bytes": 1585,
+      "mode": "100644",
+      "blob": "a175ea9c8724698c8581fe917866c1bd72f8f72f",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-cohort-inventory.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-cohort-inventory.ps1",
+      "sha256": "ac98b2e69d2110c46ee8eca4414e748c8d910d64db212d30162557efada1c544",
+      "bytes": 2097,
+      "mode": "100644",
+      "blob": "4719ec05e39bdc982c6861df483f24e3bd4b9390",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-expat-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-expat-mingwarm64-recipe.ps1",
+      "sha256": "4146d6889e6c0873e043631b7cf71f863ef62d2d9ea47dae06711efa0bd48f82",
+      "bytes": 1908,
+      "mode": "100644",
+      "blob": "9d9af703e29d4d77a4913816deae1249f6f201ad",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-git-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-git-mingwarm64-recipe.ps1",
+      "sha256": "f5d66f652ab1079c4e63a5c23a3f23935a4eaeba2399206e96cdb580a250ebf2",
+      "bytes": 2010,
+      "mode": "100644",
+      "blob": "37d5cda24c6abca04a6eee719aa22aa979465135",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-git-rust-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-git-rust-recipe.ps1",
+      "sha256": "58b51e86abe3079e19291652367c2e86f9cf8961b43840befe6bda1b7d53c5c3",
+      "bytes": 1444,
+      "mode": "100644",
+      "blob": "9f20b2d648564b4e630167a4cc7ffbb3db330e67",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-isolation-baseline.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-isolation-baseline.ps1",
+      "sha256": "bd52e8d740366dec9bd7118ce738229b82c9489b9671961ab54c25a0b3becc61",
+      "bytes": 3118,
+      "mode": "100644",
+      "blob": "cb27490978d4ffb7ada5c3d0fe3ec10e7475210a",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-libtool-path-budget.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-libtool-path-budget.sh",
+      "sha256": "04063ccf7723de0619f474392e1883db223dbd4e39bc61261f8cdbd4ec46fb16",
+      "bytes": 623,
+      "mode": "100644",
+      "blob": "b1e4f9f0ace53a40ab5de91421e7690a9501f596",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-makepkg-mingw.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-makepkg-mingw.sh",
+      "sha256": "f68078e8ac91d61f202e370b92d7fe8ca8d15a487d9e83dcef91fb8547cd0e1a",
+      "bytes": 1869,
+      "mode": "100644",
+      "blob": "faf7256de122393c1115e2480d7654b0c24d22d5",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-makepkg.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-makepkg.sh",
+      "sha256": "64e27812cb1257b926816a4b0b757218a930c2d52a01762ba2f4ebfa6fee0526",
+      "bytes": 1321,
+      "mode": "100644",
+      "blob": "47e145c7a2d8516ec93d59fcba07a3ff00f2e71f",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-mingwarm64.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-mingwarm64.sh",
+      "sha256": "deb59a155396a00cecd90cb181851a80d6957c75af43526a451fe54c10659150",
+      "bytes": 1162,
+      "mode": "100644",
+      "blob": "e2ccf6a05b5011892396da6126179f66c0e824cd",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-dependency-root.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-dependency-root.ps1",
+      "sha256": "ac1651b5310fa844cfa996b4852085177f2cde549a9b29ccecbe9e48908aff01",
+      "bytes": 2606,
+      "mode": "100644",
+      "blob": "8f15a95f5617065a375733ab7b3ad9a758a214a7",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-exit-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-exit-package.ps1",
+      "sha256": "6138de38373dedeb42c61e69d05925aa8d79ef379b27d4dd50fc12f33d97dce4",
+      "bytes": 4321,
+      "mode": "100644",
+      "blob": "48a89aed3f09ff26d33c2d68e7d64ddd757319ea",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-package-controls.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-package-controls.ps1",
+      "sha256": "a8efd8448eb77c4165f415b75fa5005048bac758cd2fc76881df961c38bc057c",
+      "bytes": 4307,
+      "mode": "100644",
+      "blob": "eb15128b9b25b07826e2635ed60eb37509c93b50",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-package-signatures.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-package-signatures.ps1",
+      "sha256": "e1b7c9ff477126f968bc656c3d4400e52880dd33b414efb07f2a24441b249f34",
+      "bytes": 2852,
+      "mode": "100644",
+      "blob": "3397af4d92159825d9d84023c1bc5fdac65cabe4",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-target-arguments.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-target-arguments.ps1",
+      "sha256": "84de0eaa4bfd4a2f5a7469d55db54855393f6fec8933ae413ed349dc1c99883c",
+      "bytes": 3481,
+      "mode": "100644",
+      "blob": "8244c891421a748f0540731102e541a4194822e4",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-target-exit.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-target-exit.ps1",
+      "sha256": "3768d7daa42632872bb93859e5f2802d256d60865dc9839575071a70de055b43",
+      "bytes": 4057,
+      "mode": "100644",
+      "blob": "84fbd1efc7a0887f0ec158f123ecbe4036f74673",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-native-tool-package.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-native-tool-package.ps1",
+      "sha256": "da3fdf6d000896ff10e0001f14d75ca3db3171439144d19f74a7e30214991e09",
+      "bytes": 2562,
+      "mode": "100644",
+      "blob": "71c262a50c31e910b0b068b6914a729b48d19806",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-openssl-mingwarm64-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-openssl-mingwarm64-recipe.ps1",
+      "sha256": "a727a073ccbfb8e4bf6eb8072d465befc546e3209f4169f1824009d1105f5d3e",
+      "bytes": 2214,
+      "mode": "100644",
+      "blob": "2c9c6146e442e047ff2db61b06a0c275b8df1e9d",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-package-controls.sh",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-package-controls.sh",
+      "sha256": "0151152320a9387007053ce080bca3b5e26a1f6baf5906627f68c691728563e2",
+      "bytes": 4073,
+      "mode": "100644",
+      "blob": "826db5e929a1aa0521d380d739a3e25fd85ceddc",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-qualified-header-delta.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-qualified-header-delta.ps1",
+      "sha256": "dd8c454aa4debbc50a63849f7ac177b996205481a7c4786560a423ae36c06f8f",
+      "bytes": 1840,
+      "mode": "100644",
+      "blob": "7a5c09fac49ef7c984ee61a82774e87d3c756d94",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-qualified-inputs.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-qualified-inputs.ps1",
+      "sha256": "dfdcb21ca76cf874cd0de950a9785beeb5cdfc56b0bd8b0db45ce017ff400ad5",
+      "bytes": 2340,
+      "mode": "100644",
+      "blob": "db138822c33a8cb0b57f276794141b4cf488a97c",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-qualified-native-cohort.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-qualified-native-cohort.ps1",
+      "sha256": "2529739642f7dc352d682a5f720098a8c79ec1802d96b81c977042200b29a306",
+      "bytes": 3030,
+      "mode": "100644",
+      "blob": "240fa648ae7848ab17972830d1821c77fff5dd3a",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-qualified-rust-bootstrap.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-qualified-rust-bootstrap.ps1",
+      "sha256": "00dc704b62d66e7960b3e4f966b6aaba9bce85dc5728d67e09fe6d3ffad4a27b",
+      "bytes": 1112,
+      "mode": "100644",
+      "blob": "6a0710cfcd463d99a3d84eb1d231a28f3045cb65",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-toolchain-epoch.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-toolchain-epoch.ps1",
+      "sha256": "4f587125708021e48f7c4f56ace93087d58036185064baa783131ccda3ccd093",
+      "bytes": 1349,
+      "mode": "100644",
+      "blob": "64bfb8a4a345efa58d950f6effd000e994f58ecf",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test-xmlto-msys-recipe.ps1",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test-xmlto-msys-recipe.ps1",
+      "sha256": "a7da3871b692773c0c39deec3533c762c54602ce709a032f804725811af61dc4",
+      "bytes": 1878,
+      "mode": "100644",
+      "blob": "6e645cf817da9d4867313cf655b2dcff96f8d730",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test_native_job.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test_native_job.py",
+      "sha256": "63c63d1d67f1aad16d32e98de9892a9ee79f520df9cbfc2a18a1c668998e7636",
+      "bytes": 3356,
+      "mode": "100644",
+      "blob": "b3df7435c5fdde1ff61de7911981f0f3a3d94d82",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test_native_target_exec.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test_native_target_exec.py",
+      "sha256": "6e448216142d046c83aaba9ec7b38f13ef838cc819c88ff4dc2d1f950f82b274",
+      "bytes": 2433,
+      "mode": "100644",
+      "blob": "a0b4c9a7f211e488f3e23be3f42c0c245afdc28f",
+      "base_blob": null
+    },
+    {
+      "path": "tests/test_patch_libtool_native_tests.py",
+      "state": "untracked",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\repos\\copilot-worktrees\\msys2-woarm64-build\\crutkas-cuddly-guide\\tests\\test_patch_libtool_native_tests.py",
+      "sha256": "ca6f97d303cf1463ea59a66b3f5333f07aaa50cc5845a013731dcc436b8b33c9",
+      "bytes": 3970,
+      "mode": "100644",
+      "blob": "1b1e7f29657ab9a89bb9ab8f2e1774a021760bb7",
+      "base_blob": null
+    }
+  ],
+  "session_source": [
+    {
+      "path": "session-source/amend-mingw-live-tls.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\amend-mingw-live-tls.py",
+      "sha256": "f2080dec4463b12f94f77935cb8fd254a7a11cc11eb5c0079de776c9635a8309",
+      "bytes": 17054,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/append-mingw-curl-result.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\append-mingw-curl-result.py",
+      "sha256": "8a34f27664edeb6ec04397043eb35edfe6b74602f85f6ef207f701cf49868429",
+      "bytes": 8873,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/audit-mingw-static-closure.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\audit-mingw-static-closure.py",
+      "sha256": "730833fdb358f3465bcd832248fa6cdcb14ba08fb260890c30e197219aa4d968",
+      "bytes": 10824,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/compare-clone-libintl.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\compare-clone-libintl.py",
+      "sha256": "92d76fe86ccd40f84c8975188d1b1848568c43f736b2d77254cc0607f10a6da7",
+      "bytes": 4335,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/exercise-libintl-consumers.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\exercise-libintl-consumers.py",
+      "sha256": "9944ed3e6e8a90661476707350b53da6bae4dd830d55a4a304e60e5815f91041",
+      "bytes": 15136,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/inspect-native-archive.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\inspect-native-archive.py",
+      "sha256": "dfc4ec3bebf701a81ef1d8bf897317926fee16556dee7ee4733b97839b750c6e",
+      "bytes": 7675,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/invoke-pcre2-private-command.ps1",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\invoke-pcre2-private-command.ps1",
+      "sha256": "266f02931086c11b8b2012bbdc9903513e24c05cf66d7dad78ec7cce197a6baf",
+      "bytes": 4337,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/official-gettext-command.ps1",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\official-gettext-command.ps1",
+      "sha256": "d5fc35de07fb0b5c522bddcd5c031a439fbfe584db194e573f6f34a05e5a7927",
+      "bytes": 3453,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/preserve-dependency-evidence.ps1",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\preserve-dependency-evidence.ps1",
+      "sha256": "fba08a0674025c1f2759bfd7629849d2334a2923656021485db171b67f8e26a1",
+      "bytes": 10831,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/probe-retained-pcre2-git.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\probe-retained-pcre2-git.py",
+      "sha256": "0bf06dab269777299ef5e753eee36fb17617741393e6091881fa6907b3c79436",
+      "bytes": 4041,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/qualify-official-nls.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\qualify-official-nls.py",
+      "sha256": "99c78487d35b7f4a5a25f1754fb43d623373f80a2b6853076702087790c7d4d8",
+      "bytes": 8894,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/qualify-retained-pcre2.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\qualify-retained-pcre2.py",
+      "sha256": "418c73522526d5d4dfdac66f5d0cb012494e67e7b26173ef5d5f425730f350bb",
+      "bytes": 8799,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/reconcile-mingw-closure.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\reconcile-mingw-closure.py",
+      "sha256": "6b647f8119553b34e14447092bcb8503e875dbfd845a9a3f13ea1a12389b5e5e",
+      "bytes": 13946,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/report-mingw-closure.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\report-mingw-closure.py",
+      "sha256": "90d5c7e72123705a12f2cd98bc2eed4ba1833f31e9f567d2e5e28a4ec530ecc1",
+      "bytes": 11416,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/seal-official-gettext.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\seal-official-gettext.py",
+      "sha256": "986e521d61b465f2c27657208cc353088c085a4789aa1e664e5e74dcc52879f3",
+      "bytes": 13611,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/seal-retained-pcre2.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\seal-retained-pcre2.py",
+      "sha256": "d3959d2126b9f306d6a4c7f8561d25940c5823e7b1d5b9cb87344082141d65c0",
+      "bytes": 8608,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/stage-official-gettext.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\stage-official-gettext.py",
+      "sha256": "ba2ee93cb9f813df0f48c24fd32a34917695e24467be43f60164a0d2c390a507",
+      "bytes": 5973,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    },
+    {
+      "path": "session-source/verify-preserved-evidence.py",
+      "original_path": "C:\\Users\\crutkasLocal\\.copilot\\session-state\\accd408a-aaf0-40b4-bc67-83995f29feec\\files\\verify-preserved-evidence.py",
+      "sha256": "14760f03d13df838c846f82cf1f55d1668894a1f2b1f81089e43fe140bebe66c",
+      "bytes": 2100,
+      "state": "Historical session script; qualification only where bound by sealed receipts"
+    }
+  ],
+  "staged_diff_bytes": 0,
+  "local_only_head_commits": [],
+  "stash_entries": [],
+  "worktree_head_reflog": [
+    "7368ba69e60e7092792c10ee5f1c5c8aea3923da commit: Preserve sealed dependency-closure evidence and rehydration state",
+    "77f0d56cdf4c063c1b3af37f551e01c3a012c8bb Branch: renamed refs/heads/crutkas-cuddly-guide to refs/heads/crutkas-arm64-pcre2-package",
+    "77f0d56cdf4c063c1b3af37f551e01c3a012c8bb "
+  ]
+}

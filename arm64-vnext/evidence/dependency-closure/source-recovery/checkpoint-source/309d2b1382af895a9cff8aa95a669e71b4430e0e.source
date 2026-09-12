@@ -1,0 +1,182 @@
+/* Derived from the admitted native-editor-pty openpty/fork/readiness protocol. */
+#include <sys/cygwin.h>
+#include <sys/ioctl.h>
+#include <sys/select.h>
+#include <sys/wait.h>
+#include <pty.h>
+#include <errno.h>
+#include <signal.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <time.h>
+#include <unistd.h>
+
+static int await_text(int fd, FILE *log, const char *wanted)
+{
+    char buffer[65536] = {0};
+    size_t used = 0;
+    time_t deadline = time(NULL) + 20;
+    while (time(NULL) < deadline) {
+        fd_set readable;
+        struct timeval timeout = {1, 0};
+        FD_ZERO(&readable);
+        FD_SET(fd, &readable);
+        int selected = select(fd + 1, &readable, NULL, NULL, &timeout);
+        if (selected < 0) {
+            if (errno == EINTR)
+                continue;
+            perror("select");
+            return 0;
+        }
+        if (!selected)
+            continue;
+        ssize_t count = read(fd, buffer + used, sizeof(buffer) - used - 1);
+        if (count <= 0) {
+            perror("PTY read");
+            return 0;
+        }
+        if (fwrite(buffer + used, 1, (size_t)count, log) != (size_t)count)
+            return 0;
+        fflush(log);
+        used += (size_t)count;
+        buffer[used] = 0;
+        if (strstr(buffer, wanted))
+            return 1;
+        if (used > sizeof(buffer) / 2) {
+            memmove(buffer, buffer + used - 1024, 1024);
+            used = 1024;
+        }
+    }
+    fprintf(stderr, "Timed out waiting for terminal text: %s\n", wanted);
+    return 0;
+}
+
+static int send_and_expect(int fd, FILE *log, const char *keys, const char *expected)
+{
+    size_t size = strlen(keys);
+    if (write(fd, keys, size) != (ssize_t)size) {
+        perror("PTY write");
+        return 0;
+    }
+    return await_text(fd, log, expected);
+}
+
+int main(int argc, char **argv)
+{
+    int master = -1, slave = -1, status = 0, passed = 0;
+    unsigned assertions = 0;
+    struct winsize size = {24, 100, 0, 0};
+    if (argc != 4 || (strcmp(argv[3], "text") && strcmp(argv[3], "large"))) {
+        fputs("usage: native-less-pty LESS FILE text|large\n", stderr);
+        return 2;
+    }
+    int large = strcmp(argv[3], "large") == 0;
+    FILE *log = fopen("pty-output.bin", "wb");
+    if (!log)
+        return 3;
+    if (openpty(&master, &slave, NULL, NULL, &size) != 0) {
+        perror("openpty");
+        fclose(log);
+        return 4;
+    }
+    pid_t child = fork();
+    if (child == 0) {
+        close(master);
+        if (setsid() < 0 || ioctl(slave, TIOCSCTTY, 0) < 0)
+            _exit(5);
+        for (int fd = 0; fd != 3; ++fd)
+            if (dup2(slave, fd) < 0)
+                _exit(6);
+        if (slave > 2)
+            close(slave);
+        if (large)
+            execl(argv[1], argv[1], "-f", "-n", "-P", "LESS_READY", "+G", argv[2], (char *)NULL);
+        else
+            execl(argv[1], argv[1], "-N", "-P", "LESS_READY", argv[2], (char *)NULL);
+        _exit(7);
+    }
+    close(slave);
+    if (child < 0) {
+        perror("fork");
+        close(master);
+        fclose(log);
+        return 8;
+    }
+    if (await_text(master, log, "LESS_READY")) {
+        ++assertions;
+        FILE *ready = fopen("pager-ready.json", "wb");
+        if (ready) {
+            fprintf(ready, "{\"windows_pid\":%lu,\"controller_pid\":%lu}\n",
+                    (unsigned long)cygwin_internal(CW_CYGWIN_PID_TO_WINPID, child),
+                    (unsigned long)cygwin_internal(CW_CYGWIN_PID_TO_WINPID, getpid()));
+            fclose(ready);
+            time_t deadline = time(NULL) + 30;
+            while (access("continue", F_OK) != 0 && time(NULL) < deadline)
+                usleep(50000);
+            int interacted = access("continue", F_OK) == 0;
+            if (interacted && large) {
+                interacted = send_and_expect(master, log, "g", "LARGE_FILE_BEGIN");
+                if (interacted) {
+                    ++assertions;
+                    interacted = send_and_expect(master, log, "G", "LARGE_FILE_END_4G");
+                }
+                if (interacted)
+                    ++assertions;
+            } else if (interacted) {
+                interacted = send_and_expect(master, log, "/NEEDLE_[0-9]{3}\r", "NEEDLE_050");
+                if (interacted) {
+                    ++assertions;
+                    interacted = send_and_expect(master, log, "n", "NEEDLE_100");
+                }
+                if (interacted) {
+                    ++assertions;
+                    interacted = send_and_expect(master, log, "g", "FIRST_LINE");
+                }
+                if (interacted) {
+                    ++assertions;
+                    interacted = send_and_expect(master, log, " ", "LINE_");
+                }
+                if (interacted) {
+                    ++assertions;
+                    interacted = send_and_expect(master, log, "/UNICODE_TARGET\r", "caf\303\251 \316\273 \344\270\255");
+                }
+                if (interacted) {
+                    ++assertions;
+                    interacted = send_and_expect(master, log, "G", "LAST_LINE");
+                }
+                if (interacted)
+                    ++assertions;
+            }
+            if (interacted && write(master, "q", 1) == 1) {
+                deadline = time(NULL) + 15;
+                while (time(NULL) < deadline) {
+                    if (waitpid(child, &status, WNOHANG) == child) {
+                        passed = WIFEXITED(status) && WEXITSTATUS(status) == 0;
+                        child = -1;
+                        if (passed)
+                            ++assertions;
+                        break;
+                    }
+                    usleep(50000);
+                }
+            }
+        }
+    }
+    if (child > 0) {
+        kill(child, SIGKILL);
+        waitpid(child, &status, 0);
+    }
+    FILE *result = fopen("pty-result.json", "wb");
+    if (result) {
+        fprintf(result, "{\"passed\":%s,\"assertions\":%u,\"wait_status\":%d,\"off_t_bytes\":%zu}\n",
+                passed ? "true" : "false", assertions, status, sizeof(off_t));
+        if (fclose(result) != 0)
+            passed = 0;
+    } else {
+        passed = 0;
+    }
+    close(master);
+    fclose(log);
+    return passed ? 0 : 9;
+}
