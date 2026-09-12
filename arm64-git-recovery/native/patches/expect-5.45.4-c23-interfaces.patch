@@ -1,0 +1,99 @@
+--- a/exp_command.h
++++ b/exp_command.h
+@@ -324,1 +324,1 @@
+-EXTERN void		exp_init_tty_cmds();
++EXTERN void		exp_init_tty_cmds(Tcl_Interp *interp);
+--- a/exp_tty.h
++++ b/exp_tty.h
+@@ -21,1 +21,2 @@
+ int exp_tty_raw_noecho(Tcl_Interp *interp, exp_tty *tty_old, int *was_raw, int *was_echo);
++int exp_tty_cooked_echo(Tcl_Interp *interp, exp_tty *tty_old, int *was_raw, int *was_echo);
+--- a/exp_tty.c
++++ b/exp_tty.c
+@@ -575,1 +575,1 @@
+-	RETSIGTYPE (*old)();	/* save old sigalarm handler */
++	RETSIGTYPE (*old)(int);	/* save old sigalarm handler */
+--- a/exp_main_sub.c
++++ b/exp_main_sub.c
+@@ -52,2 +52,2 @@
+-void (*exp_app_exit)() = 0;
+-void (*exp_event_exit)() = 0;
++void (*exp_app_exit)(Tcl_Interp *) = 0;
++void (*exp_event_exit)(Tcl_Interp *) = 0;
+@@ -923,1 +923,0 @@
+-	    char *getenv();
+--- a/exp_pty.c
++++ b/exp_pty.c
+@@ -137,2 +137,2 @@
+-static RETSIGTYPE (*oldAlarmHandler)();
+-static RETSIGTYPE (*oldHupHandler)();
++static RETSIGTYPE (*oldAlarmHandler)(int);
++static RETSIGTYPE (*oldHupHandler)(int);
+--- a/exp_trap.c
++++ b/exp_trap.c
+@@ -56,1 +56,1 @@
+-static int eval_trap_action();
++static int eval_trap_action(Tcl_Interp *interp, int sig, struct trap *trap, int oldcode);
+--- a/exp_win.h
++++ b/exp_win.h
+@@ -11,2 +11,2 @@
+-int exp_window_size_set();
+-int exp_window_size_get();
++int exp_window_size_set(int fd);
++int exp_window_size_get(int fd);
+--- a/exp_win.c
++++ b/exp_win.c
+@@ -44,1 +44,4 @@
+ #endif
++#if defined(__CYGWIN__)
++#  include <sys/ioctl.h>
++#endif
+--- a/exp_clib.c
++++ b/exp_clib.c
+@@ -10,1 +10,3 @@
+ #include "expect_cf.h"
++#include <unistd.h>
++#include <sys/wait.h>
+@@ -1730,3 +1732,3 @@
+-char *exp_printify();
+-int exp_getptymaster();
+-int exp_getptyslave();
++char *exp_printify(char *s);
++int exp_getptymaster(void);
++int exp_getptyslave(int ttycopy, int ttyinit, const char *stty_args);
+@@ -1736,1 +1738,2 @@
+-void exp_init_pty();
++void exp_init_pty(void);
++void exp_init_tty(void);
+--- a/exp_chan.c
++++ b/exp_chan.c
+@@ -36,1 +36,2 @@
+ #include "exp_command.h"
++#include "exp_event.h"
+@@ -61,1 +62,5 @@
++#ifdef TCL_CHANNEL_VERSION_2
++    TCL_CHANNEL_VERSION_2,
++#else
+     ExpBlockModeProc,			/* Set blocking/nonblocking mode.*/
++#endif
+@@ -71,2 +76,7 @@
+     NULL,				/* Close2 proc */
++#ifdef TCL_CHANNEL_VERSION_2
++    ExpBlockModeProc,
++    NULL,                               /* Flush proc. */
++    NULL,                               /* Handler proc. */
++#endif
+ };
+--- a/pty_termios.c
++++ b/pty_termios.c
+@@ -108,1 +108,2 @@
+ #include "exp_pty.h"
++#include "exp_int.h"
+@@ -111,1 +112,0 @@
+-void expDiagLogPtr();
+@@ -211,1 +212,1 @@
+-	RETSIGTYPE (*old)();	/* save old sigalarm handler */
++	RETSIGTYPE (*old)(int);	/* save old sigalarm handler */
+@@ -271,1 +272,1 @@
+-	RETSIGTYPE (*old)();	/* save old sigalarm handler */
++	RETSIGTYPE (*old)(int);	/* save old sigalarm handler */
