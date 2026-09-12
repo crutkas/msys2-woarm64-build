@@ -1,0 +1,174 @@
+{
+  "schema": 1,
+  "scope": "Pinned full-feature MSYS SSH source and configuration contract; not binary admission",
+  "recipe_collection": {
+    "id": "msys-upstream-recipes",
+    "version": "9154e8a73cf7813e3e4b87df14e6aea5776dc571",
+    "sha256": "7cfab11653116d518f45011b3c699e2db13d19d61de56b7c0bd4d10a31890c4d",
+    "prepared_inventory_sha256": "135836892fa47790f3acea8ef188f88c4c436833bf4ef36fac9abca72062e54a"
+  },
+  "profiles": {
+    "openssh": {
+      "version": "10.5p1",
+      "recipe_sha256": "e59ee1214c70522a633c5dbf2cc91fbc7d361dd55f12784eafa180f828842802",
+      "dependencies": ["heimdal", "libedit", "libxcrypt", "libfido2", "openssl"],
+      "configure": ["--build=aarch64-pc-cygwin", "--prefix=/usr", "--sbindir=/usr/bin", "--libexecdir=/usr/lib/ssh", "--sysconfdir=/etc/ssh", "--localstatedir=/var", "--with-libedit", "--with-kerberos5=/usr", "--with-security-key-builtin", "--without-hardening", "--disable-strip"],
+      "environment": {"MSYSTEM": "CYGWIN", "TEST_SSH_UTF8": "no", "ac_cv_func_setproctitle": "no", "ac_cv_func_arc4random_stir": "no"},
+      "patches": [
+        {"sha256": "aa58d266499c770bbe6c69cdace605021e88a838fdf5784a88e677ce7499172d", "upstream_sha256": "4ac8da8f0933eae61e3b973e627c0c152ea4168c28cdc27066f9a5d54432f578", "local": "openssh-10.5p1-msys.patch"},
+        {"sha256": "c97186ce129960982c20ee466dce3063651e7e88be3d751402b20ebb042c34d5", "upstream_sha256": "25079cf4a10c1ab70d60302bccaabee513762520dffd7c35285f7aae3ea36087", "local": "openssh-10.5p1-msys-setkey.patch"},
+        {"sha256": "903b3eee51e492a125cab9c724ad967450307d53e457f025e4432b81cb145af5", "upstream_sha256": "903b3eee51e492a125cab9c724ad967450307d53e457f025e4432b81cb145af5"}
+      ],
+      "generation": ["autoreconf", "-fvi"],
+      "test_command": ["make", "-j1", "tests"],
+      "required_defines": ["USE_LIBEDIT", "KRB5", "HEIMDAL", "GSSAPI", "ENABLE_SK", "ENABLE_SK_INTERNAL", "ENABLE_PKCS11", "WITH_OPENSSL", "WITH_ZLIB", "HAVE_CRYPT"],
+      "notes": [
+        "The pinned recipe disables hardening/strip and two compatibility probes; these are inherited recipe choices, not new feature reductions.",
+        "Keep default zlib and PKCS#11 support in addition to every declared dependency.",
+        "Configure dependency paths must be retargeted to a private coherent native stage; /usr must not silently resolve x64 bootstrap target libraries.",
+        "Do not inherit the recipe's login-shell test-failure waiver. Actual failures remain blockers.",
+        "Test and install require separate review for credential generation, account/device interaction, symlinks and host-key installation. Source adoption authorizes none of these.",
+        "Package LICENCE, findssl.sh, ssh-copy-id and its manual in addition to make install output."
+      ]
+    },
+    "heimdal": {
+      "version": "7.8.0",
+      "recipe_sha256": "209f69bd283fbf6a8722ed8468d49be99e5c81e297656884deeae2992e42ea39",
+      "dependencies": ["libdb", "libxcrypt", "libedit", "libsqlite", "libopenssl"],
+      "configure": ["--build=aarch64-pc-cygwin", "--host=aarch64-pc-cygwin", "--target=aarch64-pc-cygwin", "--prefix=/usr", "--libexecdir=/usr/libexec", "--sbindir=/usr/bin", "--sysconfdir=/etc/krb5", "--mandir=/usr/share/man", "--datadir=/var/lib/heimdal", "--localstatedir=/var/lib/heimdal", "--with-openssl=/usr", "--with-libedit=/usr", "--with-sqlite3=/usr", "--enable-shared=yes", "--enable-static", "--without-x", "--disable-kcm", "--disable-ndbm-db", "--disable-heimdal-documentation"],
+      "environment": {"ac_cv_header_winsock2_h": "no", "ac_cv_header_ws2tcpip_h": "no"},
+      "make_ldflags_append": "-no-undefined",
+      "libtool_required": true,
+      "patches": [
+        {"sha256": "b18c9ca3f2db08cea0a4b7d7f07e8656360af848b3a30a5fa8d748240989da49", "upstream_sha256": "b18c9ca3f2db08cea0a4b7d7f07e8656360af848b3a30a5fa8d748240989da49"},
+        {"sha256": "a5591766272a1a73aa18901978172d8c9569c1d6bbc9b89d544544ad4f01d845", "upstream_sha256": "a99f0f5b69d32524399b1343a4f08b2de43351828b5b45a938f72bacb0eb9085"},
+        {"sha256": "d68bb0f8f01cc748a6ef63c74a4a15c75553c2322e9bd2649c54cb23077d521b", "upstream_sha256": "d68bb0f8f01cc748a6ef63c74a4a15c75553c2322e9bd2649c54cb23077d521b"},
+        {"sha256": "bf19c5d7326a0cf58a5b4922a9c96fb78807226bc40c2248417024b961dd559e", "upstream_sha256": "bf19c5d7326a0cf58a5b4922a9c96fb78807226bc40c2248417024b961dd559e"},
+        {"sha256": "5039112bbe27b814df115eca40607b957c13dd40bdc1d2d1ccc62b31fcfe87ac", "upstream_sha256": "5039112bbe27b814df115eca40607b957c13dd40bdc1d2d1ccc62b31fcfe87ac"},
+        {"sha256": "bb96587539084c2ea9e06da8d2b4c768edd8dd422587a045ea60d1aa3eeb6a8a", "upstream_sha256": "bb96587539084c2ea9e06da8d2b4c768edd8dd422587a045ea60d1aa3eeb6a8a"},
+        {"sha256": "1886fcb422902f80246ee104bab79a95bf8c26442038fe32977f17653e45ee2f", "upstream_sha256": "1886fcb422902f80246ee104bab79a95bf8c26442038fe32977f17653e45ee2f"},
+        {"sha256": "bfe321c0391d6f7e23abecc22e9941bcb79d0b67abb9975246a9f462ec32513b", "upstream_sha256": "bfe321c0391d6f7e23abecc22e9941bcb79d0b67abb9975246a9f462ec32513b"},
+        {"sha256": "bff78505a2f8bb29c7bfe60aa0cf4e586c00b1123329d2b840720b67b00d9326", "upstream_sha256": "bff78505a2f8bb29c7bfe60aa0cf4e586c00b1123329d2b840720b67b00d9326"}
+      ],
+      "generation": ["./autogen.sh"],
+      "notes": [
+        "All --disable/--without settings above come from the pinned upstream package, not a reduced replacement.",
+        "Require real native DB, crypt, edit, SQLite and OpenSSL development payloads, not package metadata aliases or bootstrap libraries.",
+        "Build generators include Perl JSON, Python and the sealed MSYS-aware libtool generator.",
+        "Pinned packaging removes telnetd/ftpd/rshd, renames rcp/rsh/telnet/ftp/su/login clients with a k prefix, and installs krb5.conf and LICENSE.",
+        "No native Heimdal build or test acceptance is implied by a prepared source receipt."
+      ]
+    },
+    "libedit": {
+      "version": "20240808-3.1",
+      "recipe_sha256": "93850cc27ceaa6d558139179e91e940dc5ab3d64cb78f759e6dac564adc3a690",
+      "dependencies": ["ncurses", "sh"],
+      "configure": ["--build=aarch64-pc-cygwin", "--prefix=/usr", "--enable-widec"],
+      "environment": {},
+      "cppflags_append": "-I/usr/include/ncursesw",
+      "ldflags_append": "-L/usr/lib/ncursesw",
+      "libtool_required": true,
+      "patches": [
+        {"sha256": "b04f81f22bd5601c3df54dcdc7f79c5a25a7a8563336238129ac7bba123ed2a3", "upstream_sha256": "b04f81f22bd5601c3df54dcdc7f79c5a25a7a8563336238129ac7bba123ed2a3"},
+        {"sha256": "858f123a0844bb16903014a9b3e7dd4668654931a07ca8a9a4d1a8a3572863b0", "upstream_sha256": "858f123a0844bb16903014a9b3e7dd4668654931a07ca8a9a4d1a8a3572863b0"}
+      ],
+      "generation": ["autoreconf", "-fi"],
+      "notes": ["Retarget ncursesw include/library paths to a coherent private native development stage.", "Require shared and static outputs and wide-character API; do not silently accept a static-only or narrow-character fallback.", "Install COPYING as usr/share/licenses/libedit/LICENSE."]
+    },
+    "libxcrypt": {
+      "version": "4.5.2",
+      "recipe_sha256": "bc4971d32ad680d097d3d3248def2f3454331de428829325d41afb342de28436",
+      "dependencies": [],
+      "configure": ["--prefix=/usr", "--enable-static", "--disable-failure-tokens", "--disable-xcrypt-compat-files", "--disable-obsolete-api", "--enable-hashes=all", "--disable-symvers"],
+      "environment": {},
+      "libtool_required": true,
+      "patches": [
+        {"sha256": "85ad8bd0478710f4035ae2d655370cbeef4eb5999a624a21f6786a52a9cdea5b", "upstream_sha256": "85ad8bd0478710f4035ae2d655370cbeef4eb5999a624a21f6786a52a9cdea5b"},
+        {"sha256": "fa63e5843c4ebb5ac10d48f5ec858a400a93624341d9a9fccf77fd4d1d32544c", "upstream_sha256": null, "local": "libxcrypt-coff-private-refptr-test.patch"}
+      ],
+      "generation": ["autoreconf", "-vfi"],
+      "test_command": ["make", "-j1", "check"],
+      "notes": ["All hash implementations remain enabled. The COFF patch only excludes private _crypt_ reference pointers from the public-symbol assertion.", "Require observed complete upstream checks, shared/static libraries, crypt.h, and an installed native API/loaded-module check.", "A historical successful test with a different compiler/runtime seal does not admit this continuation's binaries."]
+    }
+  },
+  "transitive_source_closure": {
+    "openssh": ["heimdal", "libedit", "libxcrypt", "libfido2", "openssl", "zlib"],
+    "heimdal": ["db", "libxcrypt", "libedit", "sqlite-msys", "openssl"],
+    "libedit": ["ncurses"],
+    "libxcrypt": [],
+    "libfido2": ["libcbor", "openssl", "zlib"],
+    "libcbor": [],
+    "openssl": [],
+    "zlib": [],
+    "ncurses": [],
+    "db": [],
+    "sqlite-msys": ["readline", "zlib", "tcl-msys"],
+    "readline": ["ncurses"],
+    "tcl-msys": ["zlib"]
+  },
+  "transitive_recipe_requirements": {
+    "ncurses": {
+      "version": "6.6",
+      "recipe_sha256": "8e3b67186951322c49e68d3cfb280f528dc1b7872a99e691ae8417544f02e735",
+      "configure": ["--build=aarch64-pc-msys", "--with-install-prefix=/usr", "--without-ada", "--with-shared", "--with-cxx-shared", "--with-normal", "--without-debug", "--disable-relink", "--disable-rpath", "--with-ticlib", "--without-termlib", "--enable-widec", "--enable-ext-colors", "--enable-ext-mouse", "--enable-sp-funcs", "--with-wrap-prefix=ncwrap_", "--enable-sigwinch", "--disable-term-driver", "--enable-colorfgbg", "--enable-tcap-names", "--disable-termcap", "--disable-mixed-case", "--with-pkg-config", "--enable-pc-files", "--with-manpage-format=normal", "--with-manpage-aliases", "--with-default-terminfo-dir=/usr/share/terminfo", "--enable-echo", "--mandir=/usr/share/man", "--includedir=/usr/include/ncursesw", "--with-build-cflags=-D_XOPEN_SOURCE_EXTENDED", "--with-pkg-config-libdir=/usr/lib/pkgconfig"],
+      "notes": ["The MSYS recipe changes the configure build spelling from -cygwin to -msys; the actual native compiler ABI must remain MSYS LP64.", "Full package includes native C++ shared libraries, tic, terminfo, manuals, and wide-character static/shared libraries; a C-only toolchain qualification is insufficient.", "Install recipe-defined real header/library aliases; do not introduce a symlink privilege workaround for package links."]
+    },
+    "readline": {
+      "version": "8.3",
+      "package_version": "8.3.003",
+      "recipe_sha256": "70dde00534e5b6419229e63d99167dd4e89cef3b5fec8e66b1d7253ad996f217",
+      "source_patch_ids": ["readline83-001", "readline83-002", "readline83-003"],
+      "configure_static": ["--prefix=/usr", "--build=aarch64-pc-cygwin", "--host=aarch64-pc-cygwin", "--with-curses", "--disable-shared", "--enable-static", "bash_cv_termcap_lib=libncurses"],
+      "configure_shared": ["--prefix=/usr", "--build=aarch64-pc-cygwin", "--host=aarch64-pc-cygwin", "--with-curses", "--disable-static", "--enable-shared", "bash_cv_termcap_lib=libncurses"],
+      "cflags_append": "-Wno-error=incompatible-pointer-types",
+      "static_cflags_append": "-DNCURSES_STATIC",
+      "notes": ["Both separate static and shared passes are required; base archive 8.3 alone is not package 8.3.003.", "Also retain the four pinned MSYS patches and inputrc from the recipe collection."]
+    },
+    "tcl": {
+      "source_id": "tcl-msys",
+      "version": "8.6.12",
+      "target": "aarch64-pc-cygwin MSYS LP64",
+      "reference_recipe_version": "8.6.12",
+      "reference_recipe_sha256": "0b35e383fa1b668f8d764ccac4758890b17c77fcc0a002638fb2baefec642189",
+      "reference_patch_sha256": "322c7e17c63249fc5f6b0d89b1c77fa67406aa91f44efa4964be3f75bb271568",
+      "mingw_gui_source_id": "tcl",
+      "mingw_gui_version": "8.6.18",
+      "notes": ["Use the actual pinned MSYS Unix-port 8.6.12 recipe and source for SQLite analyzer/native bindings. Historical 8.6.18 win/configure artifacts are MinGW LLP64 GUI/interpreter inputs and cannot be relabeled or linked as MSYS Tcl.", "The separate existing tcl 8.6.18 and tk pins remain unchanged for native Git GUI requirements.", "The full MSYS Tcl recipe includes bundled packages, development/private headers and documentation; no binary or symlink privilege substitution is authorized."]
+    },
+    "db": {
+      "version": "6.2.32",
+      "recipe_sha256": "ae9afc285176a312f229081910e62f324d530d5208a270d274e1bd44cb8c4011",
+      "configure": ["--prefix=/usr", "--build=aarch64-pc-cygwin", "--enable-compat185", "--enable-shared", "--enable-static", "--enable-dynamic", "--enable-cxx", "--enable-dbm", "--disable-java", "--disable-tcl", "--disable-test"],
+      "cflags_append": "-Wno-incompatible-pointer-types",
+      "notes": ["Needs native C++ qualification; the current C-only compiler delta is insufficient for a full recipe claim.", "Java/Tcl/test disables are inherited recipe settings. No new test waiver is introduced.", "Build serially; preserve compatibility185/DBM and C++ libraries plus the recipe's documentation output."]
+    },
+    "sqlite-msys": {
+      "version": "3.53.4",
+      "recipe_sha256": "6db1e1013349ee4189c267edc2b6640ef39c477d2f62bbc0a2d0cc97338a01c8",
+      "configure": ["--prefix=/usr", "--sysconfdir=/etc", "--localstatedir=/var", "--build=aarch64-pc-cygwin", "--enable-shared", "--enable-static", "--enable-readline", "--disable-editline", "--out-implib", "--soname=legacy", "--dll-basename=msys-sqlite3-0", "--all"],
+      "cppflags": ["-DSQLITE_ENABLE_DBSTAT_VTAB=1", "-DSQLITE_ENABLE_DBPAGE_VTAB=1", "-DSQLITE_ENABLE_STAT4=1", "-DSQLITE_ENABLE_UNLOCK_NOTIFY=1", "-DSQLITE_ENABLE_UPDATE_DELETE_LIMIT=1", "-DSQLITE_OMIT_LOOKASIDE", "-DSQLITE_SECURE_DELETE=1", "-DSQLITE_ENABLE_SESSION=1", "-DSQLITE_ENABLE_PREUPDATE_HOOK=1", "-DSQLITE_SOUNDEX=1", "-DSQLITE_TEMP_STORE=1", "-DSQLITE_USE_FCNTL_TRACE=1", "-DUSE_SYSTEM_SQLITE=1", "-DSQLITE_ENABLE_FTS3_PARENTHESIS=1", "-DSQLITE_ENABLE_COLUMN_METADATA=1", "-DSQLITE_USE_ALLOCA=1", "-DSQLITE_ENABLE_EXPLAIN_COMMENTS=1", "-DSQLITE_ENABLE_STMTVTAB=1", "-DSQLITE_HAVE_ZLIB=1", "-DSQLITE_ENABLE_MATH_FUNCTIONS=1"],
+      "notes": ["The full recipe includes Tcl analyzer/bindings, readline, extensions, lemon and separate pinned documentation input.", "Replace the upstream unbounded make -j with -j1, including nested extension builds.", "Do not inherit make quicktest || true. Record any real failure or unavailable native symlink prerequisite honestly."]
+    }
+  },
+  "ancillary_source_requirements": [
+    {"role": "readline-patchlevel", "id": "readline83-001", "file": "readline83-001", "sha256": "21f0a03106dbe697337cd25c70eb0edbaa2bdb6d595b45f83285cdd35bac84de"},
+    {"role": "readline-patchlevel", "id": "readline83-002", "file": "readline83-002", "sha256": "e27364396ba9f6debf7cbaaf1a669e2b2854241ae07f7eca74ca8a8ba0c97472"},
+    {"role": "readline-patchlevel", "id": "readline83-003", "file": "readline83-003", "sha256": "72dee13601ce38f6746eb15239999a7c56f8e1ff5eb1ec8153a1f213e4acdb29"},
+    {"role": "sqlite-full-package-documentation", "file": "sqlite-doc-3530400.zip", "version": "3.53.4", "url": "https://www.sqlite.org/2026/sqlite-doc-3530400.zip", "sha256": "a1d0f5de57485d062796ed7e67daff0758b50d00001a0f233a2c15aaf40bbdc8"}
+  ],
+  "nonlibrary_requirements": {
+    "delivered_runtime": ["Coherent native MSYS LP64 runtime", "Native gcc-libs including C++ for ncurses and DB", "Real shell"],
+    "build_drivers": ["Native GCC C/C++ and binutils", "Explicit private bootstrap shell and make", "Sealed MSYS-aware libtool generator 2.6.2-1", "Autoconf/autoreconf and automake", "Perl including JSON for Heimdal and Perl for libxcrypt/OpenSSL", "Python for Heimdal", "Groff for OpenSSH manuals", "Private pkg-config discovery"],
+    "scope": "Driver availability is not qualification. Shared helper imports alone do not provide an agreed private bootstrap, coherent target SDK, or current observed-job receipt."
+  },
+  "parent_owned_test_source_ids": ["cmocka"],
+  "execution_boundary": {
+    "jobs": 1,
+    "nested_jobs": 1,
+    "required_environment": {"WOARM64_NATIVE_ARG_CONVERSION": "none", "MAKEFLAGS": "-j1", "OMP_NUM_THREADS": "1"},
+    "free_ram_gib_strictly_greater_than": 8,
+    "source_export_executes_target_code": false,
+    "bootstrap_admission": "Explicit agreed frozen x64 bootstrap private copy may drive a build only; never target payload",
+    "required_before_native_build": ["Coherent private ARM64 MSYS LP64 compiler/runtime receipt", "Current observed-job driver", "Complete private native dependency stages", "No inherited host library search paths", "Explicit build/test authorization without account, device or credential operations"]
+  }
+}

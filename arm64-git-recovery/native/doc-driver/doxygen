@@ -1,0 +1,7 @@
+#!/usr/bin/env bash
+set -euo pipefail
+: "${WOARM64_NATIVE_PYTHON:?Explicit documentation controller required}"
+python=$(cygpath -u "$WOARM64_NATIVE_PYTHON")
+root=$(cd -- "$(dirname -- "${BASH_SOURCE[0]}")/.." && pwd)
+relay=$(cygpath -m "$root/documentation_exec.py")
+MSYS2_ARG_CONV_EXCL='*' exec "$python" "$relay" "$@"

@@ -1,0 +1,11 @@
+--- a/test/symbols-static.pl
++++ b/test/symbols-static.pl
+@@ -47,6 +47,7 @@
+     # COFF references to _crypt_ symbols retain the same private scope.
++    # The compiler's COFF stack-guard reference is not a libcrypt API.
+     return get_symbols(
+         find_real_library(shift, 'static'),
+-        sub { $_[0] !~ /^(?:_(?:[_A-Y]|crypt_)|\.refptr\._crypt_)/ },
++        sub { $_[0] !~ /^(?:_(?:[_A-Y]|crypt_)|\.refptr\._crypt_|\.refptr\.__stack_chk_guard$)/ },
+     );
+ }
