@@ -1,0 +1,361 @@
+Subject: Keep terminal display cells independent of the public wchar_t ABI
+
+Base: libedit-20240808-3.1 after the pinned MSYS recipe patch.
+Apply after recipe adoption; the independent read.c ioctl patch is unaffected.
+
+MSYS has 16-bit wchar_t and 32-bit wint_t. Screen cells hold both characters
+and the existing 32-bit EL_LITERAL / MB_FILL_CHAR values, not wchar_t strings.
+Keep the upstream wint_t allocation and literal representation, and make all
+screen diff/copy/length/output paths operate on wint_t elements without pointer
+casts. Convert real wchar_t visual text element-by-element at the boundary.
+Keep DEBUG_REFRESH usable without passing display cells to wchar_t codecs.
+Pad before wrapping a double-column literal, as re_putc already does for text.
+
+--- a/src/el.h
++++ b/src/el.h
+@@ -120,7 +120,8 @@
+ 	int		  el_flags;	/* Various flags.		*/
+ 	coord_t		  el_cursor;	/* Cursor location		*/
+-	wchar_t		**el_display;	/* Real screen image = what is there */
+-	wchar_t		**el_vdisplay;	/* Virtual screen image = what we see */
++	/* Cells also hold EL_LITERAL and MB_FILL_CHAR, not wchar_t strings. */
++	wint_t		**el_display;	/* Real screen image = what is there */
++	wint_t		**el_vdisplay;	/* Virtual screen image = what we see */
+ 	void		 *el_data;	/* Client data			*/
+ 	el_line_t	  el_line;	/* The current line information	*/
+ 	el_state_t	  el_state;	/* Current editor state		*/
+--- a/src/refresh.c
++++ b/src/refresh.c
+@@ -53,16 +53,17 @@
+ 
+ static void	re_nextline(EditLine *);
+ static void	re_addc(EditLine *, wint_t);
+-static void	re_update_line(EditLine *, wchar_t *, wchar_t *, int);
+-static void	re_insert (EditLine *, wchar_t *, int, int, wchar_t *, int);
+-static void	re_delete(EditLine *, wchar_t *, int, int, int);
++static void	re_update_line(EditLine *, wint_t *, wint_t *, int);
++static void	re_insert (EditLine *, wint_t *, int, int, const wint_t *, int);
++static void	re_delete(EditLine *, wint_t *, int, int, int);
+ static void	re_fastputc(EditLine *, wint_t);
+ static void	re_clear_eol(EditLine *, int, int, int);
+-static void	re__strncopy(wchar_t *, wchar_t *, size_t);
+-static void	re__copy_and_pad(wchar_t *, const wchar_t *, size_t);
++static void	re__strncopy(wint_t *, const wint_t *, size_t);
++static size_t	re__strlen(const wint_t *);
++static void	re__copy_and_pad(wint_t *, const wint_t *, size_t);
+ 
+ #ifdef DEBUG_REFRESH
+-static void	re_printstr(EditLine *, const char *, wchar_t *, wchar_t *);
++static void	re_printstr(EditLine *, const char *, const wint_t *, const wint_t *);
+ #define	__F el->el_errfile
+ #define	ELRE_ASSERT(a, b, c)	do				\
+ 				    if (/*CONSTCOND*/ a) {	\
+@@ -77,16 +78,18 @@
+  */
+ static void
+-re_printstr(EditLine *el, const char *str, wchar_t *f, wchar_t *t)
++re_printstr(EditLine *el, const char *str, const wint_t *f, const wint_t *t)
+ {
+ 
+ 	ELRE_DEBUG(1, (__F, "%s:\"", str));
+-	while (f < t)
+-		ELRE_DEBUG(1, (__F, "%c", *f++ & 0177));
++	/* Show marker bits too; cells must not go through a wchar_t codec. */
++	while (t == NULL ? *f != '\0' : f < t)
++		ELRE_DEBUG(1, (__F, "%lx ", (unsigned long)*f++));
+ 	ELRE_DEBUG(1, (__F, "\"\r\n"));
+ }
+ #else
+ #define	ELRE_ASSERT(a, b, c)
+ #define	ELRE_DEBUG(a, b)
++#define	re_printstr(a, b, c, d)	((void)0)
+ #endif
+ 
+ /* re_nextline():
+@@ -170,11 +173,11 @@
+ 	c = literal_add(el, begin, end, &w);
+ 	if (c == 0 || w <= 0)
+ 		return;
++	while (cur->h + w > sizeh)
++		re_putc(el, ' ', 1);
+ 	el->el_vdisplay[cur->v][cur->h] = c;
+ 
+ 	i = w;
+-	if (i > sizeh - cur->h)		/* avoid overflow */
+-		i = sizeh - cur->h;
+ 	while (--i > 0)
+ 		el->el_vdisplay[cur->v][cur->h + i] = MB_FILL_CHAR;
+ 
+@@ -327,15 +330,14 @@
+ 
+ 	ELRE_DEBUG(1, (__F,
+-		"term.h=%d vcur.h=%d vcur.v=%d vdisplay[0]=\r\n:%80.80s:\r\n",
++		"term.h=%d vcur.h=%d vcur.v=%d\r\n",
+ 		el->el_terminal.t_size.h, el->el_refresh.r_cursor.h,
+-		el->el_refresh.r_cursor.v, ct_encode_string(el->el_vdisplay[0],
+-		&el->el_scratch)));
++		el->el_refresh.r_cursor.v));
++	re_printstr(el, "vdisplay[0]", el->el_vdisplay[0], NULL);
+ 
+ 	ELRE_DEBUG(1, (__F, "updating %d lines.\r\n", el->el_refresh.r_newcv));
+ 	for (i = 0; i <= el->el_refresh.r_newcv; i++) {
+ 		/* NOTE THAT re_update_line MAY CHANGE el_display[i] */
+-		re_update_line(el, (wchar_t *)el->el_display[i],
+-		    (wchar_t *)el->el_vdisplay[i], i);
++		re_update_line(el, el->el_display[i], el->el_vdisplay[i], i);
+ 
+ 		/*
+ 		 * Copy the new line to be the current one, and pad out with
+@@ -344,8 +346,7 @@
+ 		 * end of the screen line, it won't be a NUL or some old
+ 		 * leftover stuff.
+ 		 */
+-		re__copy_and_pad((wchar_t *)el->el_display[i],
+-		    (wchar_t *)el->el_vdisplay[i],
++		re__copy_and_pad(el->el_display[i], el->el_vdisplay[i],
+ 		    (size_t) el->el_terminal.t_size.h);
+ 	}
+ 	ELRE_DEBUG(1, (__F,
+@@ -356,11 +357,13 @@
+ 		for (; i <= el->el_refresh.r_oldcv; i++) {
+ 			terminal_move_to_line(el, i);
+ 			terminal_move_to_char(el, 0);
+-                        /* This wcslen should be safe even with MB_FILL_CHARs */
+ 			terminal_clear_EOL(el,
+-			    (int) wcslen((const wchar_t *)el->el_display[i]));
++			    (int)re__strlen(el->el_display[i]));
+ #ifdef DEBUG_REFRESH
+-			terminal_overwrite(el, L"C\b", 2);
++			{
++				static const wint_t marker[] = { 'C', '\b' };
++				terminal_overwrite(el, marker, 2);
++			}
+ #endif /* DEBUG_REFRESH */
+ 			el->el_display[i][0] = '\0';
+ 		}
+@@ -396,9 +399,9 @@
+ static void
+ /*ARGSUSED*/
+ re_insert(EditLine *el __attribute__((__unused__)),
+-    wchar_t *d, int dat, int dlen, wchar_t *s, int num)
++    wint_t *d, int dat, int dlen, const wint_t *s, int num)
+ {
+-	wchar_t *a, *b;
++	wint_t *a, *b;
+ 
+ 	if (num <= 0)
+ 		return;
+@@ -406,10 +409,10 @@
+ 		num = dlen - dat;
+ 
+ 	ELRE_DEBUG(1,
+-	    (__F, "re_insert() starting: %d at %d max %d, d == \"%s\"\n",
+-	    num, dat, dlen, ct_encode_string(d, &el->el_scratch)));
+-	ELRE_DEBUG(1, (__F, "s == \"%s\"\n", ct_encode_string(s,
+-	    &el->el_scratch)));
++	    (__F, "re_insert() starting: %d at %d max %d\n",
++	    num, dat, dlen));
++	re_printstr(el, "d", d, NULL);
++	re_printstr(el, "s", s, NULL);
+ 
+ 	/* open up the space for num chars */
+ 	if (num > 0) {
+@@ -421,22 +424,18 @@
+ 	}
+ 
+ 	ELRE_DEBUG(1, (__F,
+-		"re_insert() after insert: %d at %d max %d, d == \"%s\"\n",
+-		num, dat, dlen, ct_encode_string(d, &el->el_scratch)));
+-	ELRE_DEBUG(1, (__F, "s == \"%s\"\n", ct_encode_string(s,
+-		&el->el_scratch)));
++		"re_insert() after insert: %d at %d max %d\n",
++		num, dat, dlen));
++	re_printstr(el, "d", d, NULL);
++	re_printstr(el, "s", s, NULL);
+ 
+ 	/* copy the characters */
+ 	for (a = d + dat; (a < d + dlen) && (num > 0); num--)
+ 		*a++ = *s++;
+ 
+ #ifdef notyet
+-        /* ct_encode_string() uses a static buffer, so we can't conveniently
+-         * encode both d & s here */
+-	ELRE_DEBUG(1,
+-	    (__F, "re_insert() after copy: %d at %d max %d, %s == \"%s\"\n",
+-	    num, dat, dlen, d, s));
+-	ELRE_DEBUG(1, (__F, "s == \"%s\"\n", s));
++	re_printstr(el, "re_insert() after copy: d", d, NULL);
++	re_printstr(el, "s", s, NULL);
+ #endif
+ }
+ 
+@@ -447,9 +446,9 @@
+ static void
+ /*ARGSUSED*/
+ re_delete(EditLine *el __attribute__((__unused__)),
+-    wchar_t *d, int dat, int dlen, int num)
++    wint_t *d, int dat, int dlen, int num)
+ {
+-	wchar_t *a, *b;
++	wint_t *a, *b;
+ 
+ 	if (num <= 0)
+ 		return;
+@@ -458,8 +457,9 @@
+ 		return;
+ 	}
+ 	ELRE_DEBUG(1,
+-	    (__F, "re_delete() starting: %d at %d max %d, d == \"%s\"\n",
+-	    num, dat, dlen, ct_encode_string(d, &el->el_scratch)));
++	    (__F, "re_delete() starting: %d at %d max %d\n",
++	    num, dat, dlen));
++	re_printstr(el, "d", d, NULL);
+ 
+ 	/* open up the space for num chars */
+ 	if (num > 0) {
+@@ -470,8 +470,9 @@
+ 		d[dlen] = '\0';	/* just in case */
+ 	}
+ 	ELRE_DEBUG(1,
+-	    (__F, "re_delete() after delete: %d at %d max %d, d == \"%s\"\n",
+-	    num, dat, dlen, ct_encode_string(d, &el->el_scratch)));
++	    (__F, "re_delete() after delete: %d at %d max %d\n",
++	    num, dat, dlen));
++	re_printstr(el, "d", d, NULL);
+ }
+ 
+ 
+@@ -479,13 +480,26 @@
+  *	Like strncpy without padding.
+  */
+ static void
+-re__strncopy(wchar_t *a, wchar_t *b, size_t n)
++re__strncopy(wint_t *a, const wint_t *b, size_t n)
+ {
+ 
+ 	while (n-- && *b)
+ 		*a++ = *b++;
+ }
+ 
++/* re__strlen():
++ *	Count screen cells, including literal markers and filler columns.
++ */
++static size_t
++re__strlen(const wint_t *s)
++{
++	const wint_t *p = s;
++
++	while (*p)
++		p++;
++	return (size_t)(p - s);
++}
++
+ /* re_clear_eol():
+  *	Find the number of characters we need to clear till the end of line
+  *	in order to make sure that we have cleared the previous contents of
+@@ -538,11 +552,11 @@
+ #define	MIN_END_KEEP	4
+ 
+ static void
+-re_update_line(EditLine *el, wchar_t *old, wchar_t *new, int i)
++re_update_line(EditLine *el, wint_t *old, wint_t *new, int i)
+ {
+-	wchar_t *o, *n, *p, c;
+-	wchar_t *ofd, *ols, *oe, *nfd, *nls, *ne;
+-	wchar_t *osb, *ose, *nsb, *nse;
++	wint_t *o, *n, *p, c;
++	wint_t *ofd, *ols, *oe, *nfd, *nls, *ne;
++	wint_t *osb, *ose, *nsb, *nse;
+ 	int fx, sx;
+ 	size_t len;
+ 
+@@ -1008,7 +1022,7 @@
+  *	Copy string and pad with spaces
+  */
+ static void
+-re__copy_and_pad(wchar_t *dst, const wchar_t *src, size_t width)
++re__copy_and_pad(wint_t *dst, const wint_t *src, size_t width)
+ {
+ 	size_t i;
+ 
+@@ -1130,7 +1144,8 @@
+ 			lastline = el->el_display[++el->el_refresh.r_oldcv];
+ 		}
+-		re__copy_and_pad((wchar_t *)lastline, L"",
++		lastline[0] = '\0';
++		re__copy_and_pad(lastline, lastline,
+ 		    (size_t)el->el_terminal.t_size.h);
+ 
+ 		if (EL_HAS_AUTO_MARGINS) {
+ 			if (EL_HAS_MAGIC_MARGINS) {
+--- a/src/terminal.c
++++ b/src/terminal.c
+@@ -587,7 +587,7 @@
+ 				 * el->el_cursor.h!!!
+ 				 */
+ 				terminal_overwrite(el,
+-				    (wchar_t *)&el->el_display[
++				    &el->el_display[
+ 				    el->el_cursor.v][el->el_cursor.h],
+ 				    (size_t)(where - el->el_cursor.h));
+ 
+@@ -624,7 +624,7 @@
+  *	Assumes MB_FILL_CHARs are present to keep the column count correct
+  */
+ libedit_private void
+-terminal_overwrite(EditLine *el, const wchar_t *cp, size_t n)
++terminal_overwrite(EditLine *el, const wint_t *cp, size_t n)
+ {
+ 	if (n == 0)
+ 		return;
+@@ -651,7 +651,7 @@
+ 			if (EL_HAS_MAGIC_MARGINS) {
+ 				/* force the wrap to avoid the "magic"
+ 				 * situation */
+-				wchar_t c;
++				wint_t c;
+ 				if ((c = el->el_display[el->el_cursor.v]
+ 				    [el->el_cursor.h]) != '\0') {
+ 					terminal_overwrite(el, &c, (size_t)1);
+@@ -715,7 +715,7 @@
+  *      Assumes MB_FILL_CHARs are present to keep column count correct
+  */
+ libedit_private void
+-terminal_insertwrite(EditLine *el, wchar_t *cp, int num)
++terminal_insertwrite(EditLine *el, const wint_t *cp, int num)
+ {
+ 	if (num <= 0)
+ 		return;
+@@ -1251,12 +1251,16 @@
+ libedit_private void
+ terminal_writec(EditLine *el, wint_t c)
+ {
+-	wchar_t visbuf[VISUAL_WIDTH_MAX +1];
++	wchar_t visbuf[VISUAL_WIDTH_MAX];
++	wint_t cells[VISUAL_WIDTH_MAX];
++	ssize_t i;
+ 	ssize_t vcnt = ct_visual_char(visbuf, VISUAL_WIDTH_MAX, c);
+ 	if (vcnt < 0)
+ 		vcnt = 0;
+-	visbuf[vcnt] = '\0';
+-	terminal_overwrite(el, visbuf, (size_t)vcnt);
++	/* Visual text is wchar_t; terminal_overwrite consumes display cells. */
++	for (i = 0; i < vcnt; i++)
++		cells[i] = visbuf[i];
++	terminal_overwrite(el, cells, (size_t)vcnt);
+ 	terminal__flush(el);
+ }
+ 
+--- a/src/terminal.h
++++ b/src/terminal.h
+@@ -92,8 +92,8 @@
+ libedit_private void	terminal_move_to_line(EditLine *, int);
+ libedit_private void	terminal_move_to_char(EditLine *, int);
+ libedit_private void	terminal_clear_EOL(EditLine *, int);
+-libedit_private void	terminal_overwrite(EditLine *, const wchar_t *, size_t);
+-libedit_private void	terminal_insertwrite(EditLine *, wchar_t *, int);
++libedit_private void	terminal_overwrite(EditLine *, const wint_t *, size_t);
++libedit_private void	terminal_insertwrite(EditLine *, const wint_t *, int);
+ libedit_private void	terminal_deletechars(EditLine *, int);
+ libedit_private void	terminal_clear_screen(EditLine *);
+ libedit_private void	terminal_beep(EditLine *);

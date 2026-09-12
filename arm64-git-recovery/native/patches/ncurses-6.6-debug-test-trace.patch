@@ -1,0 +1,13 @@
+--- a/ncurses/tty/hardscroll.c
++++ b/ncurses/tty/hardscroll.c
+@@ -160,6 +160,10 @@
+ # define _tracef	printf
+ # undef TR
+ # define TR(n, a)	if (_nc_tracing & (n)) { _tracef a ; putchar('\n'); }
++/* Standalone algorithm tests also use USE_TRACEF in non-TRACE builds. */
++# ifndef USE_TRACEF
++#  define USE_TRACEF(mask) (_nc_tracing & (mask))
++# endif
+ 
+ extern				NCURSES_EXPORT_VAR(unsigned) _nc_tracing;
+ 

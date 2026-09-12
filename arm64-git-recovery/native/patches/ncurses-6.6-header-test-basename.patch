@@ -1,0 +1,9 @@
+--- a/test/Makefile.in
++++ b/test/Makefile.in
+@@ -170,5 +170,6 @@
+ 	@$(SHELL) -c "for header in $(srcdir)/*.h;\
+ 		do \
++			header=\$${header##*/}; \
+ 			echo \"** testing \$${header}\" ; \
+ 			echo \"#include <\$${header}>\" >headers.c; \
+ 			echo \"int main(void) { return 0; }\" >>headers.c; \

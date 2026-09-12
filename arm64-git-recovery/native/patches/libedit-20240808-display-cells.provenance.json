@@ -1,0 +1,146 @@
+{
+  "schema": 1,
+  "package": "libedit-20240808-3.1",
+  "status": "code-only patch ready for parent review; not compiled or runtime-tested",
+  "target": {
+    "build": "aarch64-pc-cygwin",
+    "host": "aarch64-pc-cygwin",
+    "abi": "MSYS LP64; wchar_t is 16 bits, wint_t is 32 bits",
+    "preserved_configuration": [
+      "--prefix=/usr",
+      "--enable-widec",
+      "--enable-shared",
+      "--enable-static",
+      "--enable-examples",
+      "-O2 -g -fstack-protector-strong"
+    ]
+  },
+  "patch": "libedit-20240808-display-cells.patch",
+  "patch_sha256": "c013b66dd51b148c3647cd0af56a34ef0a755c5f7cb4b3aa071eaa66feae7b6f",
+  "application": {
+    "strip_components": 1,
+    "base": "Pinned source after adoption of the existing MSYS recipe patch, not pristine upstream source",
+    "adopted_source_readonly": "C:\\ag-readline-e138-01\\sources\\libedit\\source",
+    "build_source_readonly_to_author": "C:\\ag-readline-e138-01\\libedit-01\\source",
+    "independent_patch": "libedit-20240808-read-ioctl.patch",
+    "read_c": "Not included or changed. The ioctl patch is independent and must remain applied.",
+    "in_memory_inspection": "All 23 unified-diff hunks have exact original-line contexts and matching old/new line counts and offsets. Both source roots have identical before SHA256 values for all four files. Patched text was reconstructed only in memory to calculate the after hashes below; neither source root was written.",
+    "after_hash_encoding": "UTF-8 without BOM, LF line endings, final LF"
+  },
+  "modified_source_files": [
+    {
+      "path": "src\\el.h",
+      "before_sha256": "6b2ba62d3c3a6f90857c3f41aa12a976c89f6afc7fde18188031210a505290b7",
+      "after_sha256_in_memory": "57f0b51fe0823daf055d691bbac091dff2b8fea64dfe1366b09a4528a51e76c1",
+      "change": "Restore the real and virtual display pointers to wint_t **, matching the existing allocation/free and literal representation."
+    },
+    {
+      "path": "src\\refresh.c",
+      "before_sha256": "29510ca6180f738f9148d1ab8443224a28a0233467200a02f7b7c42a29d79580",
+      "after_sha256_in_memory": "fd485b13defee6468b4464a033b78d1486690b47e6965befa31db262f9702116",
+      "change": "Use wint_t elements in display diff/insert/delete/copy/padding, remove display-to-wchar_t pointer casts, replace the display wcslen with a cell-count loop, preserve marker bits in debug output, pad and wrap a double-column literal before storing its marker and filler."
+    },
+    {
+      "path": "src\\terminal.c",
+      "before_sha256": "0f1f45eb4a1615fc8a0f50b0a7824c952e7a3685a100f82187d237e96695b512",
+      "after_sha256_in_memory": "3ced9cddd1e370a882b8cfda86dce220deac82abf0efc0223d8cb8248df4bf05",
+      "change": "Use wint_t buffers for overwrite/insertwrite and the magic-margin cell; eliminate the cursor-rewrite pointer cast; widen genuine wchar_t visual text element-by-element before overwrite."
+    },
+    {
+      "path": "src\\terminal.h",
+      "before_sha256": "fe259c8186e33a05cace447ec7b1c1e10cade74aaa63b11a2298efe7021c8172",
+      "after_sha256_in_memory": "02f28356ba03fc55f455f5698290e16eb00c7e278a56faa375c8f92aff27ebdf",
+      "change": "Match the private terminal output declarations to const wint_t * cell buffers."
+    }
+  ],
+  "inspected_unchanged_marker_sources": [
+    {
+      "path": "src\\chartype.h",
+      "before_sha256": "8a0e911d5692882de7a1fd9e8e14343bdfbe4fa1b930c0cffb6e6a923426b5eb",
+      "role": "MB_FILL_CHAR remains ((wint_t)-1), exactly 0xffffffff on the target."
+    },
+    {
+      "path": "src\\literal.h",
+      "before_sha256": "cc5f22b0918a25795a6dad58d3b24355f71fb055b6cae419560206a324691a29",
+      "role": "EL_LITERAL remains ((wint_t)0x80000000); literal_add/get retain wint_t handles."
+    },
+    {
+      "path": "src\\literal.c",
+      "before_sha256": "c9828a128e530abea75c544e7623131ce2cb16a8c005c3365f114b502523300f",
+      "role": "Literal byte buffers, visible-character width, allocation and index encoding remain intact."
+    }
+  ],
+  "representation_rationale": [
+    "A display row is a zero-terminated array of terminal-column cells, not a wchar_t string. One visible wide character occupies a character or literal-handle cell plus MB_FILL_CHAR cells. Column counts and pointer differences must count wint_t elements.",
+    "The first literal handle is 0x80000000. Narrowing it to wchar_t16 produces zero, falsely terminating the row and losing the literal. Later literal handles lose their tag and can appear as unrelated control characters. Narrowing the filler produces 0xffff, which no longer equals MB_FILL_CHAR.",
+    "Leaving allocation at wint_t width but casting its storage to wchar_t * is also invalid: wchar_t operations step through half-cells and see zero high halves as premature terminators. No such pointer casts remain in the patched display paths.",
+    "terminal__putc already checks the full-width filler before testing EL_LITERAL, then expands literal byte buffers or encodes a normal character. Keeping both checks and all intervening cells at wint_t width preserves literal/color output and two-column accounting.",
+    "Public histedit wchar_t interfaces, input/edit/history buffers, prompt callbacks and their encoding remain unchanged. Normal wchar_t text is widened as scalar values; markers are never narrowed through a wchar_t codec.",
+    "The existing allocator/free code already uses wint_t ** and sizeof(**b); it does not need replacement. Reinstating that type in EditLine and its consumers aligns access, allocation, resize, free and scroll operations.",
+    "The tightly coupled right-margin literal fix follows re_putc: first pad to the next row, then place the literal handle and all of its filler cells. The old literal path clipped its filler at the margin even though the associated visible character still occupied two terminal columns."
+  ],
+  "unexecuted_regression_fixture": {
+    "path": "libedit-20240808-display-cells-regression.c",
+    "kind": "Standalone native C white-box fixture, no added test framework or runner",
+    "execution_status": "NOT compiled, linked, loaded or run",
+    "integration": "Parent may compile within its authorized aggregate observation using the actual configured source/build headers, libedit static archive and native terminal-library dependencies. Internal symbols are intentionally used; this is not an installed-header-only public ABI test. Match DEBUG_REFRESH settings between library and fixture for the debug exercise.",
+    "output": "One required new transcript path, created O_EXCL and retained. Supply a path in the parent's fresh owned output prefix. No temporary directories, terminal settings, PTY creation or child processes are used by this fixture.",
+    "checks": [
+      "Compile-time native LP64, wchar_t16/wint_t32 and both display element sizes; marker/filler bit patterns",
+      "Real display allocation, row terminators, resize/free lifecycle and null row-pointer sentinel",
+      "Two literal indices, including index zero, plus CJK and filler cells preserved through terminal_overwrite and fallback cursor movement; exact UTF-8 and escape bytes",
+      "Filler emission is empty; ic, im/ei and IC insertion paths preserve literal bytes and column counts",
+      "Control-character visual text is widened without reinterpreting wchar_t storage",
+      "Ordinary and colored double-column characters at the final column wrap with complete filler cells",
+      "Virtual and fast real-display scrolling retain full-width cells, reuse row pointers and pad the cleared row through its terminator",
+      "Magic-margin output reads a full literal handle from the next row, emits the visible two-column character and skips its filler",
+      "Colored CJK prompt, Greek/CJK input, repeated refresh, mixed-width diff insertion/deletion with a retained suffix, exact display cells and padding",
+      "Shrinking a two-row line without ce clears sixteen cells rather than stopping after the first wchar_t half-cell"
+    ]
+  },
+  "additional_proposed_native_runtime_cases": [
+    {
+      "case": "PTY wide editing and literal prompts",
+      "exercise": "Use real xterm-compatible capabilities and a UTF-8 locale. Set EL_PROMPT_ESC with ignored ANSI SGR segments followed by visible U+4E2D and reset-plus->. Type ASCII, U+03BB and U+4E2D; move left/right across the CJK character; insert, backspace, delete, recall history and accept the line.",
+      "expected": "Exact public wchar_t and UTF-8 returned line, correct cursor columns, intact color sequences, no embedded marker bytes or replacement glyphs. Check terminal-visible output, not only the internal display cache."
+    },
+    {
+      "case": "Two-column prompt at the right edge",
+      "exercise": "Use an eight-column PTY and a prompt with seven single-column characters followed by an ignored SGR sequence and visible U+4E2D. Repeat with the character ending exactly at column eight, and with the cursor on the last screen row.",
+      "expected": "One padding column when required; the literal and its filler occupy the next row together; no clipped character, orphan filler, out-of-row write or incorrect scroll."
+    },
+    {
+      "case": "Right prompt and resize",
+      "exercise": "Use left and right colored wide prompts. Grow input until the right prompt disappears, shrink it to restore the prompt, resize the PTY between wide and narrow sizes, force refresh and accept another line.",
+      "expected": "Correct prompt placement, filler cells and cursor motion; cleared stale rows; no truncated literal indices or stale allocation after resize."
+    },
+    {
+      "case": "Capability-dependent differential updates",
+      "exercise": "Exercise real terminal insert/delete operations, direct cursor addressing and rewrite fallback, clear-EOL capability and space fallback, automatic margins and magic margins. Insert/delete around CJK and literal cells while preserving a long suffix.",
+      "expected": "Rendered terminal state agrees with el_display and el_vdisplay; filler columns advance the model but emit no bytes."
+    },
+    {
+      "case": "Literal lifecycle",
+      "exercise": "Repeat forced refresh, newline/reset and prompt changes, including changes only to the ignored ANSI bytes.",
+      "expected": "No stale literal storage or incorrect visible attributes. Note the inherited literal-ID reuse concern below; this port does not silently weaken that case."
+    }
+  ],
+  "remaining_compile_and_api_concerns": [
+    "No compiler/build/test execution was authorized. The next native build may expose independent diagnostics after refresh.c; there is no claim of a successful full library or examples build.",
+    "The patch changes private screen-buffer function signatures and EditLine internals only. Rebuild affected objects with normal header dependencies; do not mix pre-port objects that used wchar_t cell access. Public histedit.h and wchar_t input ABI are unchanged.",
+    "The marker width is native wint_t32, not a substitute header/type, compiler width flag or cast-based diagnostic workaround. The fixture deliberately rejects the wrong data model.",
+    "The existing MSYS character conversion routines and UTF-16 supplementary-character behavior are outside this display-cell change. This patch neither disables wide support nor claims to add a new char32_t input API; supplementary-character round trips need their own native evidence.",
+    "Inherited literal lifecycle issue to observe separately: re_refresh clears and rebuilds the literal table before comparing old/new cell IDs. A callback changing only ignored bytes can reuse an identical ID for different bytes. This patch preserves that existing policy rather than making an unrelated literal-table lifetime redesign.",
+    "The white-box fixture validates emitted bytes and the model but is not a terminal emulator. Parent PTY observation remains necessary for visible cursor/margin behavior and installed shared-library/public API compatibility."
+  ],
+  "execution_accounting": {
+    "build_jobs": 0,
+    "test_jobs": 0,
+    "compiler_or_native_payload_jobs": 0,
+    "background_jobs": 0,
+    "delegated_agents": 0,
+    "network_requests": 0,
+    "source_tree_mutations": 0,
+    "actions": "Read source/log files, inspect SHA256 and diff text in memory, and create three maintained libedit-* files under the owned patches directory only."
+  }
+}

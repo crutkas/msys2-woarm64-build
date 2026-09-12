@@ -1,0 +1,12 @@
+--- a/src/read.c
++++ b/src/read.c
+@@ -53,6 +53,9 @@
+ #include <string.h>
+ #include <unistd.h>
+ 
++#ifdef HAVE_SYS_IOCTL_H
++#include <sys/ioctl.h>
++#endif
+ #include "el.h"
+ #include "fcns.h"
+ #include "read.h"

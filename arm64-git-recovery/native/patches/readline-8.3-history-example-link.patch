@@ -1,0 +1,17 @@
+--- a/examples/Makefile.in
++++ b/examples/Makefile.in
+@@ -155,11 +155,11 @@
+ histexamp$(EXEEXT): histexamp.o $(HISTORY_LIB)
+-	$(CC) $(LDFLAGS) -o $@ histexamp.o -lhistory $(TERMCAP_LIB)
++	$(CC) $(LDFLAGS) -o $@ histexamp.o $(HISTORY_LIB) $(TERMCAP_LIB)
+ 
+ hist_erasedups$(EXEEXT): hist_erasedups.o $(HISTORY_LIB)
+-	$(CC) $(LDFLAGS) -o $@ hist_erasedups.o -lhistory $(TERMCAP_LIB)
++	$(CC) $(LDFLAGS) -o $@ hist_erasedups.o $(HISTORY_LIB) $(TERMCAP_LIB)
+ 
+ hist_purgecmd$(EXEEXT): hist_purgecmd.o $(HISTORY_LIB)
+-	$(CC) $(LDFLAGS) -o $@ hist_purgecmd.o -lhistory $(TERMCAP_LIB)
++	$(CC) $(LDFLAGS) -o $@ hist_purgecmd.o $(HISTORY_LIB) $(TERMCAP_LIB)
+ 
+ rlfe:	force
+ 	( rlfe_srcdir=${srcdir}/rlfe ; \
