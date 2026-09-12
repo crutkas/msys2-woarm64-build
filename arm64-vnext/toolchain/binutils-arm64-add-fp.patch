@@ -1,0 +1,25 @@
+diff --git a/gas/config/obj-coff-seh.c b/gas/config/obj-coff-seh.c
+--- a/gas/config/obj-coff-seh.c
++++ b/gas/config/obj-coff-seh.c
+@@ -81,7 +81,7 @@ const struct unwind_code_pack_info unwind_code_pack_infos[] = {
+    save_fplr_x, 1},
+   {".seh_save_r19r20_x",  5, 0, 3, ARM64_UNOP_SAVER19R20X, 3, 0, 0,  0,
+    save_r19r20_x, 1},
+-  {".seh_add_fp",	  8, 0, 8, ARM64_UNOP_ADDFP,	   0, 0, 0,  0,
++  {".seh_add_fp",	  8, 0, 8, ARM64_UNOP_ADDFP,	   3, 0, 0,  0,
+    add_fp, 2},
+   {".seh_set_fp",	  0, 0, 8, ARM64_UNOP_SETFP,	   0, 0, 0,  0,
+    set_fp, 1},
+@@ -1002,6 +1002,12 @@ obj_coff_seh_save_reg (int type)
+ 
+   demand_empty_rest_of_line ();
+ 
++  if (type == add_fp && (off > 2040 || off % 8 != 0))
++    {
++      as_bad (_(".seh_add_fp offset must be a multiple of 8 in [0, 2040]"));
++      return;
++    }
++
+   seh_arm64_add_unwind_element (type, off, reg);
+ }
+ #endif

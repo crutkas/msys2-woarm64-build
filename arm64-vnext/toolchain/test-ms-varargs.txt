@@ -1,0 +1,118 @@
+MS ARM64 VARARGS ACCEPTANCE HARNESS
+=================================
+
+Files owned by this harness:
+  probes/ms-varargs-abi.h
+  probes/ms-varargs-{producer,consumer,entry,stdio}.c
+  test-ms-varargs.py
+  test-ms-varargs.ps1
+  test-ms-varargs.txt
+
+No GCC/CRT sources, recipes, installed files, or application stdio are changed.
+The Python builder runs each compiler command synchronously, one at a time.
+It installs nothing and never uses /tmp. Supply a NEW dedicated output directory.
+Existing evidence directories are rejected, not overwritten.
+
+1. CLANG REFERENCE (CAN RUN BEFORE THE GCC ABI REBUILD)
+
+In WSL Ubuntu:
+  python3 <repo>/arm64-vnext/toolchain/test-ms-varargs.py \
+    --mode reference --clang clang-18 \
+    --prefix /root/arm64-vnext-20260905/toolchain/mingw-cross \
+    --output <new-reference-build-directory>
+
+The builder compiles actual aarch64-pc-windows-msvc C and C++ COFF objects,
+then links four producer/consumer combinations. These SDK-free executables
+use the actual Kernel32 imports, not a CRT, surrogate formatter, or stub.
+They report binary observations through WriteFile and terminate with ExitProcess.
+
+On ARM64 Windows:
+  .\arm64-vnext\toolchain\test-ms-varargs.ps1 `
+    -ProbeDirectory '\\wsl.localhost\Ubuntu\<reference-build-directory>' `
+    -OutputDirectory '<new-Windows-evidence-directory>'
+
+Each case is a separate process: a crash or malformed ABI result does not hide
+later controls. GetProcessInformation(class 9) must report AA64; raw PE checks
+also require AA64, PE32+, and DYNAMIC_BASE. Both raw streams and parsed records
+are persisted per case, including failure and timeout cases.
+
+2. REBUILT GCC PLUS CRT ACCEPTANCE
+
+DO NOT START until the integrating lane confirms both the compiler and target
+CRT/runtime are ready. --gcc-ready is an explicit acknowledgement, not automatic
+detection. Rebuilding only GCC is insufficient for the out-of-line CRT wrappers.
+
+In WSL:
+  python3 <repo>/arm64-vnext/toolchain/test-ms-varargs.py \
+    --mode acceptance --gcc-ready --clang clang-18 \
+    --prefix /root/arm64-vnext-20260905/toolchain/mingw-cross \
+    --output <new-acceptance-build-directory>
+
+Run test-ms-varargs.ps1 with that build directory and a new Windows evidence
+directory, as above. Do not change the prefix during the build: driver, cc1,
+cc1plus, linker, and relevant library hashes are recorded and rechecked.
+Use --suite stdio or --suite abi for a targeted rebuild/rerun; the default is all.
+Diagnostic metadata uses raw WriteFile, including stderr, so case IDs containing
+0x0A cannot be expanded by CRT text-mode newline conversion. Application stdout
+continues to use the ordinary, unmodified CRT stream modes.
+
+Matrix:
+  Four Clang C/C++ producer/consumer combinations.
+  Four GCC C/C++ producer/consumer combinations.
+  GCC C -> Clang C and the reverse.
+  GCC C++ -> Clang C++ and the reverse (explicit extern "C" test interfaces).
+  Ordinary GCC C and C++ CRT executables, each with sixteen raw-output cases.
+
+The cross-TU tests exercise actual builtin va_list across translation units.
+They do not assume GCC Itanium C++ mangling is compatible with MSVC mangling.
+The extern "C" interfaces intentionally isolate the ARM64 parameter/va_list ABI.
+
+ABI cases (18 per producer/consumer pair):
+  va_list size; mixed int/u64/double/pointer; named double; fixed double/HFA;
+  fixed HFA return; variadic double return; unnamed pair split at x7/stack;
+  >16-byte HFA indirection; va_copy and passed-va_list TU boundary; twelve
+  overflow arguments; eight/nine named arguments; named aggregate at the
+  register/stack boundary; aligned(16) aggregate and unsigned __int128 after
+  register and stack alignment gaps; aligned named-argument control.
+
+CRT cases (16 per language):
+  printf/vfprintf/vprintf/fprintf; wprintf/vfwprintf/vwprintf/fwprintf;
+  direct __stdio_common_vfprintf/__stdio_common_vfwprintf;
+  vsnprintf/vswprintf and direct __stdio_common_vsprintf/__stdio_common_vswprintf;
+  fixed fputs/fputws controls.
+
+All formatting uses ordinary headers and defaults: no ANSI_STDIO override,
+printf replacement, output encoding change, or locale workaround.
+Literal-label cases require exactly:
+  username=dummy-user\r\npassword=dummy-password\r\n
+Buffer cases require exactly:
+  17 1234567890123 4.5 safe
+The runner checks raw bytes, va_list size, native machine, wrapper selection,
+return values, and exit status. Dummy inputs never access credentials or GUI.
+
+RESULTS AND REFERENCE QUALIFICATIONS
+
+build.json preserves source/tool hashes, every command, compiler/linker logs,
+the exact matrix, and expected raw-byte fixtures. Compiler intermediates are
+isolated by compiler/language/role so Clang's save-temps source-basename files
+cannot overwrite another translation unit's evidence. Object disassembly and
+import dumps are retained.
+
+result.json separates gcc-self, clang-reference, cross-compiler, and stdio
+groups. Any mismatch remains a failed case and makes the runner exit nonzero;
+there are no suppressed or automatically accepted reference failures.
+
+Clang is NOT assumed to be an infallible ABI oracle. The initial real Clang 18
+run found self-inconsistencies in both C and C++:
+  - Producer leaves an alignment hole before aligned(16)/i128 values, while
+    va_arg consumes the hole rather than realigning.
+  - Producer puts an unnamed 16-byte pair wholly on the stack when only x7 is
+    left, while va_arg reads x7 plus the first stack slot.
+Ordinary controls pass. Preserve and examine these failures rather than
+changing GCC's natural-alignment policy just to imitate one side of Clang.
+The cross-compiler directions identify producer versus consumer behavior.
+
+The named-pair case is a value/control check, not by itself proof of where
+the named aggregate was placed; use the retained object disassembly for layout.
+This harness does not by itself certify all MSVC C++ ABI features, SVE, or every
+vector/over-aligned extension.

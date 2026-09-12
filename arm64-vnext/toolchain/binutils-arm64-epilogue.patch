@@ -1,0 +1,40 @@
+diff --git a/gas/config/obj-coff-seh.c b/gas/config/obj-coff-seh.c
+--- a/gas/config/obj-coff-seh.c
++++ b/gas/config/obj-coff-seh.c
+@@ -711,7 +711,7 @@
+   seh_arm64_epilogue_scope *epilogue_scope;
+   epilogue_scope = seh_ctx_cur->arm64_ctx.epilogue_scopes
+     + seh_ctx_cur->arm64_ctx.epilogue_scopes_count;
+-  epilogue_scope->epilogue_start_offset = exp.X_add_number / 4;
++  epilogue_scope->epilogue_start_offset = exp.X_add_number;
+   epilogue_scope->reserved = 0;
+   epilogue_scope->epilogue_start_index
+     = seh_ctx_cur->arm64_ctx.unwind_codes_byte_count;
+@@ -1490,17 +1490,18 @@
+     {
+       header->code_words = header->ext_code_words;
+       header->epilogue_count = header->ext_epilogue_count;
+-      if (header->epilogue_count == 1)
++      /* E=1 stores a byte index, not a scope count.  It also implies that
++	 the sole epilogue is at the end of the function.  Otherwise retain
++	 an explicit scope (including indices that do not fit five bits).  */
++      if (!is_fragmented_function && header->epilogue_count == 1
++	  && scopes[first_fragment_scope].epilogue_start_index <= 31
++	  && (scopes[first_fragment_scope].epilogue_end_offset == func_length
++	      || scopes[first_fragment_scope].epilogue_end_offset + 4
++		 == func_length))
+       {
+ 	header->e = 1;
+-	if (is_fragmented_function && is_last_frag)
+-	  header->ext_epilogue_count = 0;
+-	else
+-	{
+-	  uint32_t start_index;
+-	  start_index = scopes[first_fragment_scope].epilogue_start_index;
+-	  header->ext_epilogue_count = start_index;
+-	}
++	header->epilogue_count
++	  = scopes[first_fragment_scope].epilogue_start_index;
+       }
+       out_four (c->arm64_ctx.xdata_header_value);
+     }

@@ -1,0 +1,191 @@
+{
+  "schema": 1,
+  "sources": {
+    "gcc": {
+      "repository": "https://github.com/crutkas/gcc-woarm64.git",
+      "revision": "5688a17320e775944bbe795010ebe7e89fc7a628",
+      "blob": "gcc/config/aarch64/cygming.h",
+      "patches": [
+        {
+          "file": "gcc-cygwin-crtbegin.patch",
+          "sha256": "edc5e45e1fc4882ea66522eb74a0180eb31fb27286b4ea786363f843224ebc7e"
+        },
+        {
+          "file": "gcc-mingw-driver.patch",
+          "sha256": "75cd9797cf408bd32b428107fa83c90ccaf792dbdb7403d00837910707c87521"
+        },
+        {
+          "file": "gcc-native-includes.patch",
+          "sha256": "5f2d4fd19a74dfb3517ca1bb6b819547b5636876c2669f07eb419c8ebe477a91"
+        },
+        {
+          "file": "gcc-ms-varargs.patch",
+          "sha256": "ecc73b5547750335324bd2e1eb5d44d3e13b625dd3e23b045a012915447f9ebf"
+        },
+        {
+          "file": "gcc-arm64-seh-prologue.patch",
+          "sha256": "e7a40a7dc74dd946a8778795a70e5f0f2d900a026d74e2c88c7bcfc182316723"
+        },
+        {
+          "file": "gcc-arm64-seh-contiguous.patch",
+          "sha256": "d94af735a3220309d27b74c71707621b70b165e2dab8be45366d837c4243df45"
+        },
+        {
+          "file": "gcc-arm64-seh-add-fp.patch",
+          "sha256": "a7f4cd0d5c94dc8268f69733fa71ae6b90f59097dd2c7fe1b8cec8bee407a771"
+        },
+        {
+          "file": "gcc-arm64-seh-frames.patch",
+          "sha256": "2c4f7f30ed69182e3d154d292fa2207d1de924bf3bc38de56c8d8d2ecf2320ff"
+        },
+        {
+          "file": "gcc-arm64-seh-stackalloc-reg.patch",
+          "sha256": "7397e8deacbc7ce0eec353dffd4956ef2b33b1b8f3bc2be975adb5b0c08f0973"
+        },
+        {
+          "file": "gcc-arm64-seh-prepost-index-save.patch",
+          "sha256": "8caab28001598547efbcf9b81eb2e680d0f6d29174a4fcfaaf86a3ec28d4f252"
+        },
+        {
+          "file": "gcc-arm64-seh-sp-direct-save.patch",
+          "sha256": "cfccc4de9849a50b5687b0a50a945abcd34dbf96dfe82d3f8ea4918761f2772c"
+        },
+        {
+          "file": "gcc-arm64-seh-order-offsets.patch",
+          "sha256": "2d0b9a7341c6f3eed6b368aaaa708c1bf0ff11ee9072c2f18acc2a6d07868fb1"
+        },
+        {
+          "file": "gcc-ms-varargs-named-pair.patch",
+          "sha256": "715ac8a11dfc31712a22884cfd0fbb39b85e639faa00f7acacc3f9d92dbf0d7f"
+        },
+        {
+          "file": "gcc-arm64-seh-frameless.patch",
+          "sha256": "7be6a36966d806edbe5cf10f27b76cd73327648351f979b720a20b7a53eabd4a"
+        },
+        {
+          "file": "gcc-arm64-pe-extern-data.patch",
+          "sha256": "be45108d9c9c3026e2557c90606c6b967cea120344d7d1d50f3230c033ea3e92"
+        },
+        {
+          "file": "gcc-arm64-pe-reload.patch",
+          "sha256": "9586bb049e01686e6cdf826e3df620d3a477eeb1e124661778a0233668f59209"
+        },
+        {
+          "file": "gcc-arm64-windows-cache.patch",
+          "sha256": "1c2a861dc6b208f92c906a4de7c1c924ac0003897e7a290a4d703a577ce79072"
+        },
+        {
+          "file": "gcc-cygming-crt-host-types.patch",
+          "sha256": "9c847c7f9a9af2a20b3f4c5df49b0788690e19ce9e236ee6a4076929dce56928"
+        },
+        {
+          "file": "gcc-arm64-executable-suffix.patch",
+          "sha256": "0dd0b4e5d609a9cf71484f35e6943fe2fe7c404f140eec0d510c1d0b2923b4b8"
+        },
+        {
+          "file": "gcc-emutls-returns-twice-safe-insert.patch",
+          "sha256": "2e8af2b425d9716fec157377a0945bed506a98bdd141c78ae704f9741f845c49"
+        }
+      ]
+    },
+    "binutils": {
+      "repository": "https://github.com/crutkas/binutils-woarm64.git",
+      "revision": "44335833f8f734f978211b082b15aed14efcf958",
+      "blob": "bfd/version.h",
+      "qualification": "Corroborated recovery candidate, not proof of the lost historical binary source.",
+      "patches": [
+        {
+          "file": "binutils-arm64-epilogue.patch",
+          "sha256": "87dae821464157113a2537443f2a7c2bbfa1924d9a8eb9a23c5942aca8115add"
+        },
+        {
+          "file": "binutils-arm64-add-fp.patch",
+          "sha256": "21b3702b0b1e4616dafe874da5d9c65282f41bbc16fd18184cf7b86f057ce8f1"
+        },
+        {
+          "file": "binutils-arm64-fp-unwind-enum-order.patch",
+          "sha256": "520ea312ae1e5d3764b57ad311dc4417af678192044d70a0d4381690124b7679"
+        },
+        {
+          "file": "binutils-arm64-unwind-storage.patch",
+          "sha256": "f9c21e9814d62ae1e30bcc657bbd5fec48422b8c3e2dbc05c4a2be77adc8d3b3"
+        },
+        {
+          "file": "binutils-arm64-unwind-sharing.patch",
+          "sha256": "9ffbee112c198bd4e062a5fb7adc6ebd247a50c4995924d81f8530027ff00fa7"
+        },
+        {
+          "file": "binutils-pe-runtime-reference.patch",
+          "sha256": "4784dbd0946449784008c08081a3e6e166f1fddb2db9fe2d5ada81a952c00558"
+        },
+        {
+          "file": "binutils-arm64-weak-relocs.patch",
+          "sha256": "0c7ff9c13d8ed273701c33393adf4978c0b57c6d21dc4c54424da72dac6a7716"
+        },
+        {
+          "file": "binutils-arm64-runtime-exports.patch",
+          "sha256": "bd767aca247952728a662bc35e4ed367498c0563991421a48adb08e9c30e4b75"
+        },
+        {
+          "file": "binutils-windres-windows-quotes.patch",
+          "sha256": "640a2c7ab4e3e3c216363daea850892ad325735c265366cad657f7919f4fc481"
+        }
+      ]
+    },
+    "mingw-w64": {
+      "repository": "https://github.com/mingw-w64/mingw-w64.git",
+      "revision": "819a6ec2ea87c19814b287e21d65e0dc7f05abba",
+      "blob": "mingw-w64-headers/crt/_cygwin.h",
+      "purpose": "v12.0.0 w32api headers/import definitions for the Cygwin target",
+      "patches": [],
+      "overlay_patches": [
+        {
+          "file": "w32api-arm64-cygwin.patch",
+          "sha256": "8567a8816086ed46436c9452edcb48a8b232385a423385b649fbebb51a917974"
+        }
+      ]
+    },
+    "mingw-woarm64": {
+      "repository": "https://github.com/Windows-on-ARM-Experiments/mingw-woarm64.git",
+      "revision": "70d63e7c9a477b8b275a9782b289fbf1614b6e9e",
+      "blob": "mingw-w64-crt/configure",
+      "purpose": "ARM64 UCRT headers/CRT and winpthreads, distinct from v12 w32api",
+      "patches": [
+        {
+          "file": "mingw-woarm64-crt-cexp-no-builtin-sincos.patch",
+          "sha256": "ee31170ddd4e34c4f84e7d34822ea253e07715101be95eb16a54446d19d0ad28"
+        }
+      ]
+    }
+  },
+  "archives": [
+    {
+      "file": "gmp-6.2.1.tar.bz2",
+      "url": "https://gcc.gnu.org/pub/gcc/infrastructure/gmp-6.2.1.tar.bz2",
+      "sha512": "8904334a3bcc5c896ececabc75cda9dec642e401fb5397c4992c4fabea5e962c9ce8bd44e8e4233c34e55c8010cc28db0545f5f750cbdbb5f00af538dc763be9"
+    },
+    {
+      "file": "mpfr-4.1.0.tar.bz2",
+      "url": "https://gcc.gnu.org/pub/gcc/infrastructure/mpfr-4.1.0.tar.bz2",
+      "sha512": "410208ee0d48474c1c10d3d4a59decd2dfa187064183b09358ec4c4666e34d74383128436b404123b831e585d81a9176b24c7ced9d913967c5fce35d4040a0b4"
+    },
+    {
+      "file": "mpc-1.2.1.tar.gz",
+      "url": "https://gcc.gnu.org/pub/gcc/infrastructure/mpc-1.2.1.tar.gz",
+      "sha512": "3279f813ab37f47fdcc800e4ac5f306417d07f539593ca715876e43e04896e1d5bceccfb288ef2908a3f24b760747d0dbd0392a24b9b341bc3e12082e5c836ee"
+    }
+  ],
+  "consumer_contract": {
+    "native_host": "windows-arm64",
+    "native_target": "aarch64-w64-mingw32",
+    "cross_host": "linux-aarch64",
+    "cross_targets": [
+      "aarch64-pc-cygwin",
+      "aarch64-w64-mingw32"
+    ],
+    "native_epoch_manifest": "share/toolchain-epochs/windows-cache/manifest.json",
+    "effective_inventory": "BaselineFiles with ChangedFile SHA256 replaced by LibrarySHA256; verify every actual file before using the prefix.",
+    "cache_identity": "Hash canonical sorted relative paths and effective SHA256 values, plus host/flavor/configuration. Driver-only compiler_check is insufficient.",
+    "limits": "Cygwin compiler is a Linux-hosted single-thread bootstrap with freestanding C++ headers, not hosted Cygwin libstdc++ or a Windows-hosted Cygwin-target compiler."
+  }
+}

@@ -1,0 +1,33 @@
+diff --git a/mingw-w64-crt/complex/cexp.def.h b/mingw-w64-crt/complex/cexp.def.h
+index 546f0036d..5dfce9a4a 100644
+--- a/mingw-w64-crt/complex/cexp.def.h
++++ b/mingw-w64-crt/complex/cexp.def.h
+@@ -46,6 +46,8 @@ __FLT_ABI(cexp) (__FLT_TYPE __complex__ z)
+   __complex__ __FLT_TYPE ret;
+   __FLT_TYPE s_x, c_x, exp_val, v;
+   int r_class = fpclassify (__real__ z);
++  void (__cdecl * volatile sincos_fn) (__FLT_TYPE, __FLT_TYPE *, __FLT_TYPE *)
++    = __FLT_ABI(sincos);
+   int i_class = fpclassify (__imag__ z);
+ 
+   if (r_class == FP_INFINITE)
+@@ -63,7 +65,8 @@ __FLT_ABI(cexp) (__FLT_TYPE __complex__ z)
+ 	return ret;
+       }
+ 
+-      __FLT_ABI(sincos) (__imag__ z, &s_x, &c_x);
++      /* GCC may lower builtin sincos to cexp; do not recurse from cexp itself. */
++      sincos_fn (__imag__ z, &s_x, &c_x);
+ 
+       __real__ ret = __FLT_ABI(copysign) (v, c_x);
+       __imag__ ret = __FLT_ABI(copysign) (v, s_x);
+@@ -95,7 +98,8 @@ __FLT_ABI(cexp) (__FLT_TYPE __complex__ z)
+ 
+   exp_val = __FLT_ABI(exp) (__real__ z);
+ 
+-  __FLT_ABI(sincos) (__imag__ z, &s_x, &c_x);
++  /* GCC may lower builtin sincos to cexp; do not recurse from cexp itself. */
++  sincos_fn (__imag__ z, &s_x, &c_x);
+ 
+   if (isfinite (exp_val))
+   {

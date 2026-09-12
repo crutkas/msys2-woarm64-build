@@ -1,0 +1,94 @@
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -1102,7 +1102,39 @@
+   print_reg (reg, 0, f);
+   fprintf (f, ", " HOST_WIDE_INT_PRINT_DEC "\n", offset);
+ }
+-
++#if defined (TARGET_AARCH64_MS_ABI)
++/* Emit an assembler directive to save or restore REG with a pre/post-indexed
++   stack-pointer adjustment.  */
++
++static void
++seh_emit_save_x (FILE *f, struct seh_frame_state *seh,
++		 rtx reg, HOST_WIDE_INT offset)
++{
++  const unsigned int regno = REGNO (reg);
++
++  offset = abs (offset);
++
++  if (!seh->in_epilogue)
++    {
++      if (seh->cfa_reg == stack_pointer_rtx)
++	seh->cfa_offset += offset;
++      seh->sp_offset += offset;
++      seh->reg_offset[regno] = seh->sp_offset;
++    }
++  else
++    {
++      seh->sp_offset -= MIN (seh->sp_offset, offset);
++      if (seh->cfa_reg == stack_pointer_rtx)
++	seh->cfa_offset -= MIN (seh->cfa_offset, offset);
++    }
++
++  fputs ((FP_REGNUM_P (regno) ? " \t.seh_save_freg_x\t"
++	 : GP_REGNUM_P (regno) ?  " \t.seh_save_reg_x\t"
++	 : (gcc_unreachable (), "")), f);
++  aarch64_print_reg (reg, 0, f);
++  fprintf (f, ", " HOST_WIDE_INT_PRINT_DEC " \n", offset);
++}
++#endif
+ /* Emit an assembler directive to adjust RSP by OFFSET.  */
+ 
+ static bool
+@@ -1596,7 +1628,27 @@
+ 
+ 	      case MEM:
+ 		src = XEXP (src, 0);
+-		if (GET_CODE (src) == PLUS
++		if (seh->in_epilogue
++		    && GET_CODE (src) == POST_MODIFY
++		    && CALLEE_SAVED_REG_NUMBER (REGNO (dest))
++		    && XEXP (src, 0) == stack_pointer_rtx
++		    && GET_CODE (XEXP (src, 1)) == PLUS
++		    && XEXP (XEXP (src, 1), 0) == stack_pointer_rtx
++		    && CONST_INT_P (XEXP (XEXP (src, 1), 1)))
++		  {
++		    seh_emit_save_x (f, seh, dest,
++				     INTVAL (XEXP (XEXP (src, 1), 1)));
++		    emitted = true;
++		  }
++		else if (seh->in_epilogue
++			 && GET_CODE (src) == POST_INC
++			 && CALLEE_SAVED_REG_NUMBER (REGNO (dest))
++			 && XEXP (src, 0) == stack_pointer_rtx)
++		  {
++		    seh_emit_save_x (f, seh, dest, UNITS_PER_WORD);
++		    emitted = true;
++		  }
++		else if (GET_CODE (src) == PLUS
+ 		    && GET_CODE (XEXP (src, 0)) == REG
+ 		    && CALLEE_SAVED_REG_NUMBER (REGNO (dest))
+ 		    && XEXP (src, 0) == stack_pointer_rtx)
+@@ -1615,7 +1667,19 @@
+ 
+ 	  case MEM: // Save
+ 	    dest = XEXP (dest, 0);
+-	    if (GET_CODE (dest) == PRE_DEC
++	    if (GET_CODE (dest) == PRE_MODIFY
++		&& REG_P (src)
++		&& CALLEE_SAVED_REG_NUMBER (REGNO (src))
++		&& XEXP (dest, 0) == stack_pointer_rtx
++		&& GET_CODE (XEXP (dest, 1)) == PLUS
++		&& XEXP (XEXP (dest, 1), 0) == stack_pointer_rtx
++		&& CONST_INT_P (XEXP (XEXP (dest, 1), 1)))
++	      {
++		seh_emit_save_x (f, seh, src,
++				 INTVAL (XEXP (XEXP (dest, 1), 1)));
++		emitted = true;
++	      }
++	    else if (GET_CODE (dest) == PRE_DEC
+ 		&& REG_P (src)
+ 		&& CALLEE_SAVED_REG_NUMBER (REGNO (src))
+ 		&& XEXP (dest, 0) == stack_pointer_rtx)

@@ -1,0 +1,16 @@
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -926,6 +926,12 @@ aarch64_pe_seh_begin_epilogue (FILE *f)
+ {
+   if (!TARGET_SEH || cfun->is_thunk)
+     return;
++#if defined (TARGET_AARCH64_MS_ABI)
++  /* Frameless leaves leave SP and all nonvolatile registers unchanged;
++     describing every switch-return as an epilogue adds no unwind state.  */
++  if (known_eq (cfun->machine->frame.frame_size, 0))
++    return;
++#endif
+   struct seh_frame_state *seh = cfun->machine->seh;
+   gcc_assert (seh && seh->after_prologue && !seh->in_epilogue);
+   seh->in_epilogue = true;

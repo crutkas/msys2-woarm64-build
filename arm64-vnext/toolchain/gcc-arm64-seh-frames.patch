@@ -1,0 +1,213 @@
+diff --git a/gcc/config/aarch64/aarch64.cc b/gcc/config/aarch64/aarch64.cc
+index 4a7651a..c02ddd3 100644
+--- a/gcc/config/aarch64/aarch64.cc
++++ b/gcc/config/aarch64/aarch64.cc
+@@ -9973,19 +9973,14 @@ aarch64_expand_prologue (void)
+   /* The offset of the current SP from the bottom of the static frame.  */
+   poly_int64 bytes_below_sp = frame_size - initial_adjust - callee_adjust;
+ 
+-  if (emit_frame_chain)
++  bool defer_frame_pointer = false;
++#ifdef TARGET_AARCH64_MS_ABI
++  /* With alloca, unwinding must recover SP from FP before loading any saved
++     registers.  Reverse unwind order therefore requires FP setup last.  */
++  defer_frame_pointer = emit_frame_chain && frame_pointer_needed;
++#endif
++  auto establish_frame_pointer = [&](poly_int64 chain_offset)
+     {
+-      /* The offset of the frame chain record (if any) from the current SP.  */
+-      poly_int64 chain_offset = (initial_adjust + callee_adjust
+-				 - frame.bytes_above_hard_fp);
+-      gcc_assert (known_ge (chain_offset, 0));
+-
+-      gcc_assert (reg1 == R29_REGNUM && reg2 == R30_REGNUM);
+-      if (callee_adjust == 0)
+-	aarch64_save_callee_saves (bytes_below_sp, frame.saved_gprs,
+-				   false, false);
+-      else
+-	gcc_assert (known_eq (chain_offset, 0));
+       aarch64_add_offset (Pmode, hard_frame_pointer_rtx,
+ 			  stack_pointer_rtx, chain_offset,
+ 			  tmp1_rtx, tmp0_rtx, force_isa_mode,
+@@ -10020,6 +10015,21 @@ aarch64_expand_prologue (void)
+ 				      hard_frame_pointer_rtx, 0);
+ 	}
+       aarch64_emit_stack_tie (hard_frame_pointer_rtx);
++    };
++
++  if (emit_frame_chain)
++    {
++      poly_int64 chain_offset = (initial_adjust + callee_adjust
++				 - frame.bytes_above_hard_fp);
++      gcc_assert (known_ge (chain_offset, 0));
++      gcc_assert (reg1 == R29_REGNUM && reg2 == R30_REGNUM);
++      if (callee_adjust == 0)
++	aarch64_save_callee_saves (bytes_below_sp, frame.saved_gprs,
++				   false, false);
++      else
++	gcc_assert (known_eq (chain_offset, 0));
++      if (!defer_frame_pointer)
++	establish_frame_pointer (chain_offset);
+     }
+ 
+   aarch64_save_callee_saves (bytes_below_sp, frame.saved_gprs, true,
+@@ -10040,7 +10050,8 @@ aarch64_expand_prologue (void)
+       aarch64_allocate_and_probe_stack_space (tmp1_rtx, tmp0_rtx,
+ 					      sve_callee_adjust,
+ 					      force_isa_mode,
+-					      !frame_pointer_needed, false);
++					      !frame_pointer_needed
++					      || defer_frame_pointer, false);
+       bytes_below_sp -= sve_callee_adjust;
+     }
+   aarch64_save_callee_saves (bytes_below_sp, frame.saved_prs, true,
+@@ -10048,6 +10059,10 @@ aarch64_expand_prologue (void)
+   aarch64_save_callee_saves (bytes_below_sp, frame.saved_fprs, true,
+ 			     emit_frame_chain);
+ 
++  if (defer_frame_pointer)
++    establish_frame_pointer (frame_size - bytes_below_sp
++			     - frame.bytes_above_hard_fp);
++
+   /* We may need to probe the final adjustment if it is larger than the guard
+      that is assumed by the called.  */
+   gcc_assert (known_eq (bytes_below_sp, final_adjust));
+diff --git a/gcc/config/aarch64/cygming.h b/gcc/config/aarch64/cygming.h
+index 5eff240..9516967 100644
+--- a/gcc/config/aarch64/cygming.h
++++ b/gcc/config/aarch64/cygming.h
+@@ -60,6 +60,8 @@ still needed for compilation.  */
+ #define TARGET_ASM_UNWIND_EMIT_BEFORE_INSN  false
+ #undef  TARGET_ASM_FUNCTION_END_PROLOGUE
+ #define TARGET_ASM_FUNCTION_END_PROLOGUE  mingw_pe_seh_end_prologue
++#undef TARGET_ASM_FUNCTION_BEGIN_EPILOGUE
++#define TARGET_ASM_FUNCTION_BEGIN_EPILOGUE aarch64_pe_seh_begin_epilogue
+ #undef  TARGET_ASM_EMIT_EXCEPT_PERSONALITY
+ #define TARGET_ASM_EMIT_EXCEPT_PERSONALITY mingw_pe_seh_emit_except_personality
+ #undef  TARGET_ASM_INIT_SECTIONS
+diff --git a/gcc/config/mingw/winnt.cc b/gcc/config/mingw/winnt.cc
+index b972cb6..a09f578 100644
+--- a/gcc/config/mingw/winnt.cc
++++ b/gcc/config/mingw/winnt.cc
+@@ -872,8 +872,9 @@ struct seh_frame_state
+   /* The offset wrt the CFA where register N has been saved.  */
+   HOST_WIDE_INT reg_offset[FIRST_PSEUDO_REGISTER];
+ 
+-  /* True if we are past the end of the epilogue.  */
++  /* True if we are past the end of the prologue.  */
+   bool after_prologue;
++  bool in_epilogue;
+ 
+   /* True if we are in the cold section.  */
+   bool in_cold_section;
+@@ -920,6 +921,17 @@ mingw_pe_seh_end_prologue (FILE *f)
+   fputs ("\t.seh_endprologue\n", f);
+ }
+ 
++void
++aarch64_pe_seh_begin_epilogue (FILE *f)
++{
++  if (!TARGET_SEH || cfun->is_thunk)
++    return;
++  struct seh_frame_state *seh = cfun->machine->seh;
++  gcc_assert (seh && seh->after_prologue && !seh->in_epilogue);
++  seh->in_epilogue = true;
++  fputs ("\t.seh_startepilogue\n", f);
++}
++
+ /* Emit assembler directives to reconstruct the SEH state.  */
+ 
+ void
+@@ -1022,6 +1034,10 @@ mingw_pe_seh_fini (FILE *f, bool cold)
+   seh = cfun->machine->seh;
+   if (cold != seh->in_cold_section)
+     return;
++#if defined (TARGET_AARCH64_MS_ABI)
++  if (seh->in_epilogue)
++    error ("unterminated ARM64 SEH epilogue");
++#endif
+   XDELETE (seh);
+   cfun->machine->seh = NULL;
+   fputs ("\t.seh_endproc\n", f);
+@@ -1497,10 +1513,33 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 		    fputs ("\t.seh_set_fp\n", f);
+ 		    emitted = true;
+ 		  }
++		else if (seh->in_epilogue && dest == stack_pointer_rtx
++			 && src == hard_frame_pointer_rtx)
++		  {
++		    fputs ("\t.seh_set_fp\n", f);
++		    emitted = true;
++		  }
+ 		break;
+ 
+ 	      case PLUS:
+-		if (dest == stack_pointer_rtx
++		if (seh->in_epilogue && dest == stack_pointer_rtx
++		    && XEXP (src, 0) == hard_frame_pointer_rtx
++		    && CONST_INT_P (XEXP (src, 1)))
++		  {
++		    increment = -INTVAL (XEXP (src, 1));
++		    if (IN_RANGE (increment, 0, 2040) && increment % 8 == 0)
++		      {
++			fprintf (f, "\t.seh_add_fp\t"
++				 HOST_WIDE_INT_PRINT_DEC "\n", increment);
++			emitted = true;
++		      }
++		  }
++		else if (seh->in_epilogue && dest == stack_pointer_rtx
++			 && XEXP (src, 0) == stack_pointer_rtx
++			 && REG_P (XEXP (src, 1))
++			 && REGNO (XEXP (src, 1)) == R12_REGNUM)
++		  emitted = seh_emit_stackalloc (f, seh, stack_alloc);
++		else if (dest == stack_pointer_rtx
+ 		    && CONST_INT_P (XEXP (src, 1)))
+ 		  emitted = seh_emit_stackalloc (f, seh,
+ 						 INTVAL (XEXP (src, 1)));
+@@ -1575,9 +1614,6 @@ seh_pattern_emit (FILE *f, struct seh_frame_state *seh, rtx pat)
+ 	    break;
+ 	  }
+       }
+-      else if (seh->after_prologue
+-	       && (GET_CODE (pat) == RETURN || GET_CODE (pat) == JUMP_INSN))
+-	fputs ("\t.seh_endepilogue\n", f);
+     }
+ 
+ #endif
+@@ -1601,7 +1637,7 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+ 
+   seh = cfun->machine->seh;
+ 
+-  if (!seh || seh->after_prologue)
++  if (!seh || (seh->after_prologue && !seh->in_epilogue))
+     return;
+ 
+   unsigned int length = get_attr_length (insn);
+@@ -1611,6 +1647,15 @@ aarch64_pe_seh_unwind_emit (FILE *out_file, rtx_insn *insn)
+ 
+   pat = PATTERN (insn);
+ 
++  if (seh->in_epilogue
++      && (returnjump_p (insn)
++	  || (CALL_P (insn) && SIBLING_CALL_P (insn))))
++    {
++      fputs ("\t.seh_endepilogue\n", out_file);
++      seh->in_epilogue = false;
++      return;
++    }
++
+   if (GET_CODE (pat) == SET)
+     {
+        rtx dest = SET_DEST (pat);
+diff --git a/gcc/config/mingw/winnt.h b/gcc/config/mingw/winnt.h
+index 249e42a..0d6b234 100644
+--- a/gcc/config/mingw/winnt.h
++++ b/gcc/config/mingw/winnt.h
+@@ -42,6 +42,7 @@ extern void mingw_pe_seh_init_sections (void);
+ extern void mingw_pe_seh_cold_init (FILE *, const char *);
+ extern void mingw_pe_seh_emit_except_personality (rtx);
+ extern void mingw_pe_seh_end_prologue (FILE *);
++extern void aarch64_pe_seh_begin_epilogue (FILE *);
+ 
+ #endif /* not USED_FOR_TARGET.  */
+ 

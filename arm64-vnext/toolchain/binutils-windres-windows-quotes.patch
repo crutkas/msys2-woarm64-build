@@ -1,0 +1,26 @@
+diff --git a/binutils/resrc.c b/binutils/resrc.c
+--- a/binutils/resrc.c
++++ b/binutils/resrc.c
+@@ -329,7 +329,22 @@ open_input_stream (char *cmd)
+     }
+   else
+     {
++#if defined (_WIN32) && !defined (__CYGWIN__)
++      char *shell_cmd = cmd;
++      int saved_errno;
++
++      /* _popen invokes cmd.exe /c.  Its outer quote removal must not strip
++	 the executable's quotes when later arguments also contain quotes.  */
++      if (cmd[0] == '"')
++	shell_cmd = concat ("\"", cmd, "\"", (char *) NULL);
++      cpp_pipe = popen (shell_cmd, FOPEN_RT);
++      saved_errno = errno;
++      if (shell_cmd != cmd)
++	free (shell_cmd);
++      errno = saved_errno;
++#else
+       cpp_pipe = popen (cmd, FOPEN_RT);
++#endif
+       if (cpp_pipe == NULL)
+ 	fatal (_("can't popen `%s': %s"), cmd, strerror (errno));
+       if (verbose)

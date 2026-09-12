@@ -1,0 +1,42 @@
+diff --git a/gcc/config/aarch64/aarch64.cc b/gcc/config/aarch64/aarch64.cc
+--- a/gcc/config/aarch64/aarch64.cc
++++ b/gcc/config/aarch64/aarch64.cc
+@@ -8346,7 +8346,9 @@ aarch64_layout_frame (void)
+       offset = aligned_upper_bound (offset, STACK_BOUNDARY / BITS_PER_UNIT);
+       top_of_locals = offset;
+     }
+-  offset += frame.saved_varargs_size;
++  /* Generic parameter assignment homes a named register/stack split in
++     a rounded pretend-argument area immediately below incoming SP.  */
++  offset += frame.saved_varargs_size + crtl->args.pretend_args_size;
+   gcc_assert (multiple_p (offset, STACK_BOUNDARY / BITS_PER_UNIT));
+   frame.frame_size = offset;
+ 
+@@ -10210,7 +10212,7 @@ aarch64_expand_epilogue (rtx_call_insn *sibcall)
+   /* We need to add memory barrier to prevent read from deallocated stack.  */
+   bool need_barrier_p
+     = maybe_ne (get_frame_size ()
+-		+ frame.saved_varargs_size, 0);
++		+ frame.saved_varargs_size + crtl->args.pretend_args_size, 0);
+ 
+   /* Reset PSTATE.SM, if required.  */
+   if (aarch64_cfun_enables_pstate_sm ())
+@@ -13292,7 +13294,7 @@ aarch64_initial_elimination_offset (unsigned from, unsigned to)
+   if (to == HARD_FRAME_POINTER_REGNUM)
+     {
+       if (from == ARG_POINTER_REGNUM)
+-	return frame.bytes_above_hard_fp;
++	return frame.bytes_above_hard_fp - crtl->args.pretend_args_size;
+ 
+       if (from == FRAME_POINTER_REGNUM)
+ 	return frame.bytes_above_hard_fp - frame.bytes_above_locals;
+@@ -13304,7 +13306,8 @@ aarch64_initial_elimination_offset (unsigned from, unsigned to)
+ 	return frame.frame_size - frame.bytes_above_locals;
+     }
+ 
+-  return frame.frame_size;
++  return frame.frame_size
++	 - (from == ARG_POINTER_REGNUM ? crtl->args.pretend_args_size : 0);
+ }
+ 
+ 
