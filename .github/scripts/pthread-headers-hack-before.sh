@@ -28,6 +28,23 @@ expected_hashes=(
     f49f8f267c60f7a6ec24c3ee770bdfa7efd3aee76e2f234089e9a9f75168e4db
 )
 
+# makepkg does not clone a git source straight from its URL into $srcdir. It
+# maintains a local mirror beside the recipe and clones $srcdir from that, so
+# the prepared tree's origin is a local path rather than the upstream URL.
+# Follow that chain to the first real URL so the repository check still
+# compares against upstream instead of rejecting a correctly prepared source.
+resolve_upstream_origin () {
+    local repo=$1 url depth=0
+    url=$(git -C "$repo" remote get-url origin 2>/dev/null) || return 1
+    while [[ "$url" != *://* && $depth -lt 8 ]]; do
+        repo=${url#file://}
+        [[ -d "$repo" ]] || break
+        url=$(git -C "$repo" remote get-url origin 2>/dev/null) || return 1
+        depth=$((depth + 1))
+    done
+    printf '%s' "${url#file://}"
+}
+
 [[ -f "$pkgbuild" && ! -L "$pkgbuild" ]] || {
     echo "The CRT PKGBUILD must be a regular file." >&2
     exit 1
@@ -40,7 +57,8 @@ grep -Fq 'git+https://github.com/Windows-on-ARM-Experiments/mingw-woarm64.git#br
 actual_commit=$(git -C "$source_root" rev-parse HEAD)
 [[ "$actual_commit" == "$expected_commit" ]] ||
     { echo "The prepared CRT source revision changed: $actual_commit" >&2; exit 1; }
-origin=$(git -C "$source_root" remote get-url origin)
+origin=$(resolve_upstream_origin "$source_root") ||
+    { echo "Could not resolve the prepared CRT source origin." >&2; exit 1; }
 origin=${origin%.git}
 [[ "$origin" == "${expected_repository%.git}" ]] ||
     { echo "The prepared CRT source repository changed: $origin" >&2; exit 1; }
