@@ -1,0 +1,43 @@
+{
+  "schema": 1,
+  "recorded_utc": "2026-09-11T06:28:39.9138157Z",
+  "status": "qualified-native-windows-arm64-openssl-provider-exported-with-path-provenance",
+  "provider": "mingw-w64-aarch64-openssl",
+  "version": "3.6.4-1",
+  "supersedes": {
+    "export": "C:\\ap11-native-provider-intake\\openssl-qualified-v1\\export.json",
+    "sha256": "6f4b4eb3af9c9969918871bdf9403dde94e08264e6cc5e97a17705861c55b384",
+    "reason": "adds explicit nonoperational compiler/CRT build-path provenance; package bytes unchanged"
+  },
+  "package": {
+    "path": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\packages\\mingw-w64-aarch64-openssl-3.6.4-1-any.pkg.tar.zst",
+    "sha256": "02f2e786dcf78a3b47d62a18cb0d1d9078cfcb69486a891bc4b901ad21b8e5ab",
+    "bytes": 13478480
+  },
+  "qualification": {
+    "package_handoff": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\receipts\\package-handoff.json",
+    "package_handoff_sha256": "4779da58f593e6c10f2672314d106adfa53f33e2007c20e33874685ca2f13342",
+    "path_provenance_supplement": "C:\\ap11-native-provider-intake\\openssl-qualified-v2\\receipts\\path-provenance-supplement.json",
+    "path_provenance_supplement_sha256": "4df171d29215da055570ba75286569e64bfc5b5ea332657e0b93f687cead55e4",
+    "full_suite_handoff_sha256": "a1714700a43ed3e74ff9081061683a834a45371da078a2acba739d7cf87e853b",
+    "recipes": "355/355",
+    "tests": "4405/4405",
+    "observer": "81776/81776",
+    "all_pe_aarch64": true,
+    "all_seven_pe_match_tested_build": true,
+    "relocation_provider_certificate_tls_controls": true
+  },
+  "path_provenance": {
+    "disclosed": "/root/arm64-vnext-20260905 toolchain/CRT source and build debug strings in all seven PEs",
+    "operational": false,
+    "runtime_defaults": "relocate from canonical /mingwarm64 to extracted prefix",
+    "recovery_workspace_markers_absent": [
+      ".copilot",
+      "session-state",
+      "C:/Users",
+      "C:/ag-",
+      "/c/ag-"
+    ]
+  },
+  "consumer_boundary": "Native MinGW ARM64 OpenSSL provider; not a native MSYS msys-crypto-3.dll provider."
+}
