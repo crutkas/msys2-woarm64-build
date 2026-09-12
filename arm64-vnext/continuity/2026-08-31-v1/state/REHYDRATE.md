@@ -57,6 +57,8 @@ git -C .\build-recovery worktree add --detach ..\closure-evidence `
   7368ba69e60e7092792c10ee5f1c5c8aea3923da
 git -C .\build-recovery worktree add --detach ..\closure-source-evidence `
   0da6e92a060e11144ba2ded1a6962096963615a2
+git -C .\build-recovery worktree add --detach ..\closure-published-source `
+  e5f5b4c1ffb7c090fd38661b7b1be2458aeb2aea
 git -C .\runtime-recovery worktree add --detach ..\generation-evidence `
   2af0ec0c244f522b65ace15be71deab4f3c528ad
 git -C .\build-recovery worktree add --detach ..\provider-evidence `
@@ -90,6 +92,12 @@ merely because another receipt mentions it**.
 | Provider ledger/admission (`a2dd0a44`, pipeline `2160ef10`) | Build repo, [`crutkas-native-provider-intake`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-provider-intake); **NO PR** (creation returned 422 twice, per coordinator) | **Published and remote directories confirmed** at `3ebc0c133105c77496ae80d4ea76fad7ed463c80`: [`arm64-vnext/evidence/provider-intake/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-intake/README.md) covers ordered contracts, rejected libintl-selection captures and limited roles; [`arm64-vnext/evidence/provider-admission/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/3ebc0c133105c77496ae80d4ea76fad7ed463c80/arm64-vnext/evidence/provider-admission/README.md) covers strict authority, OpenSSL/header scopes and ledger v20-v42. Provider-intake `manifest.json` SHA-256 `df94ef731519e129e1dde7b497be7b501726366c2326b85b3f0f9291b1f8c65e` was verified from GitHub bytes. **No archives or payload binaries** are included: replacement OpenSSL payload custody is still separate. Search this branch directly, not only the PR list. |
 | Git helpers / GnuPG dependencies (`6b81b146`) | Build repo, [`crutkas-native-git-helper-packages`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-git-helper-packages) | **Published and remote root confirmed** at `2460d9fbd50a894c774e938670fae27ece1202cf`: [`arm64-vnext/evidence/git-helper-packages/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/2460d9fbd50a894c774e938670fae27ece1202cf/arm64-vnext/evidence/git-helper-packages/README.md), with per-file SHA-256 and `ORIGINS.tsv`. Includes Git LFS/git-extra evidence, later runtime907 client-only MSYS OpenSSH admission, crypto/libxcrypt dependency records and GnuPG work. Ledger v42's runtime907 GMP versus d70 conflict remains explicit. The interrupted libgcrypt `1-04` run proves no completed test/package success. No archives, PE binaries, private keyrings or build trees are included. |
 | Execution/CRT recovery (`efd00553`) | Build repo, [`crutkas-native-execution-recovery`](https://github.com/crutkas/msys2-woarm64-build/tree/crutkas-native-execution-recovery) | **Published** evidence commit `de2353205ee2aece40435047a89cc6377fe47460`: [`arm64-vnext/evidence/execution-recovery/README.md`](https://github.com/crutkas/msys2-woarm64-build/blob/de2353205ee2aece40435047a89cc6377fe47460/arm64-vnext/evidence/execution-recovery/README.md). Separately, the **uncommitted, unintegrated CRT source fix** survives in [gist `e5d1ddc3410c418069046455c99ad09b`](https://gist.github.com/crutkas/e5d1ddc3410c418069046455c99ad09b), not in that evidence commit or PR 11. See the exact source-recovery contract below. |
+
+**Later direct source publication on PR 17:** commit
+[`e5f5b4c1ffb7c090fd38661b7b1be2458aeb2aea`](https://github.com/crutkas/msys2-woarm64-build/commit/e5f5b4c1ffb7c090fd38661b7b1be2458aeb2aea)
+also commits 153 rescued source files at their live repository paths, plus
+the source-publication manifest. The old `7368ba69` evidence and `0da6e92a`
+recovery archive remain distinct; see the direct-publication boundary below.
 
 **Publication gaps are explicit, not absence claims.** Owners were pushing in
 parallel during shutdown. If an entry says requested/unconfirmed, inspect that
@@ -195,6 +203,38 @@ patch instructions in a **new checkout at the exact base**, then compare every
 restored file against its source inventory. Do not apply the mixed patch to a
 live toolchain/worktree or overlay every checkpoint version together.
 
+### Subsequent direct source publication on the same PR
+
+PR 17's later commit **`e5f5b4c1ffb7c090fd38661b7b1be2458aeb2aea`**, a direct
+child of `0da6e92a060e11144ba2ded1a6962096963615a2`, publishes **153 live
+source/script/documentation files: 15 tracked modifications + 138 additions**.
+Including its manifest, this commit changes **154 files**, not 154 newly
+qualified source files. These 153 files are now present directly at their
+repository paths; the earlier mixed source patch remains an archival record.
+**Do not reapply that whole patch over the direct-publication checkout.**
+The earlier 158-file recovery snapshot and this 153-file direct publication
+are different inventories; retain both rather than conflating their counts.
+
+The portable manifest is
+[`arm64-vnext/evidence/dependency-closure/source-recovery/direct-source-publication.json`](https://github.com/crutkas/msys2-woarm64-build/blob/e5f5b4c1ffb7c090fd38661b7b1be2458aeb2aea/arm64-vnext/evidence/dependency-closure/source-recovery/direct-source-publication.json),
+SHA-256 **`d61a5610319d73cff336f8d9a32a5c086983f5d2d490ef26ffc2fcc4376e2c10`**.
+It binds raw bytes, modes and Git blob IDs and records that all 153 files
+already had byte-identical copies in the earlier recovery patch. This guide's
+publisher downloaded and verified the manifest and matched its 153 paths to
+the GitHub commit's changed-file list, not replayed every file restoration.
+
+The owner reports fresh immutable-URL downloads of **all 154 published files**,
+with byte counts/SHA-256 matching the originals, and reports remote-read
+receipt SHA-256
+`bd3cac1b243e17810835398c359cc84750b0dbd3ae1b4017b966cfe0a942bd15`.
+No portable location for that separate readback receipt was supplied to this
+guide; it is not independently verified here. The published manifest records
+the verification procedure, not the subsequent result. **Published source is
+not merged or newly qualified source**: no build/test rerun accompanied this
+shutdown publication, imported generic pipeline code remains unqualified by
+this leaf, and completed PCRE2/native907 less/tools outcomes remain bounded by
+their separate original receipts.
+
 ### Source-custody checklist for each owner
 
 Before a wipe, each owner must inventory its **own** tracked working-tree
@@ -211,8 +251,9 @@ complete" because the evidence manifests verify.**
 ## 2. Source PR map and agreed merge order
 
 These are the eight engineering/continuity PRs, still open at the pre-shutdown
-snapshot, plus later evidence-only publications. A preservation commit can
-advance a PR head without changing its qualified source. Re-query the GitHub
+snapshot, plus later evidence and source-rescue publications. Some commits only
+add evidence; PR 17's direct source publication also changes live source paths
+without newly qualifying them. Re-query the GitHub
 API for live heads, bases, checks and mergeability; do not use stale counts as
 merge authority.
 
