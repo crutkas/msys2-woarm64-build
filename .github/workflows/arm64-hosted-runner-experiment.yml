@@ -17,6 +17,12 @@ name: EXPERIMENT - GitHub-hosted ARM64 runner probe
 # actually measured, not what is hoped for.
 
 on:
+  push:
+    branches:
+      - crutkas-crt-fix-arm64-hosted-runners
+    paths:
+      - .github/workflows/arm64-hosted-runner-experiment.yml
+      - .github/workflows/build-package.yml
   workflow_dispatch:
     inputs:
       run_package_job:
@@ -116,7 +122,12 @@ jobs:
   package:
     name: One cheap native package on hosted ARM64
     needs: probe
-    if: inputs.run_package_job
+    # workflow_dispatch is only usable once this file reaches the default
+    # branch, so on a push the single package job is opted into explicitly
+    # with a [hosted-arm64-package] marker in the commit message.
+    if: >-
+      ${{ inputs.run_package_job
+        || contains(github.event.head_commit.message, '[hosted-arm64-package]') }}
     uses: ./.github/workflows/build-package.yml
     with:
       package_name: mingw-w64-libtre
